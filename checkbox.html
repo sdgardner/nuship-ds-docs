@@ -110,7 +110,7 @@
       <section class="doc-section" id="definition">
         <div class="def-eyebrow">Inputs</div>
         <h1 class="def-title">Checkbox</h1>
-        <p class="def-desc">A checkbox allows users to select one or more options from a set. Each checkbox operates independently — checking one does not affect others. It supports optional description text and an error state for validation feedback.</p>
+        <p class="def-desc">The Checkbox component allows users to select one or more options from a list. Checkboxes are used for non-exclusive choices where users can select multiple items, and can also represent a parent-child relationship through the indeterminate state.</p>
         <div class="def-tags">
           <span class="tag">Developed</span>
           <span class="tag">Figma</span>
@@ -161,7 +161,6 @@
               <div class="cb-text">
                 <div class="cb-label">Checkbox Label</div>
                 <div class="cb-desc">Optional description text</div>
-                <div class="cb-error-msg" style="display:none;">Error message appears here</div>
               </div>
             </div>
             <span class="callout" style="top:2px;left:10px">1</span>
@@ -169,10 +168,10 @@
             <span class="callout" style="top:24px;left:53px">3</span>
           </div>
           <div class="anatomy-legend">
-            <div class="legend-item"><span class="legend-num">1</span>Checkbox control</div>
+            <div class="legend-item"><span class="legend-num">1</span>Checkbox input</div>
             <div class="legend-item"><span class="legend-num">2</span>Label</div>
-            <div class="legend-item"><span class="legend-num">3</span>Description <span style="color:var(--text-tertiary);margin-left:3px">(optional)</span></div>
-            <div class="legend-item"><span class="legend-num" style="background:var(--err-bd)">4</span>Error message <span style="color:var(--text-tertiary);margin-left:3px">(replaces description)</span></div>
+            <div class="legend-item"><span class="legend-num">3</span>Helper text <span style="color:var(--text-tertiary);margin-left:3px">(optional)</span></div>
+            <div class="legend-item"><span class="legend-num" style="background:var(--err-bd)">4</span>Error message <span style="color:var(--text-tertiary);margin-left:3px">(replaces helper text)</span></div>
           </div>
         </div>
       </section>
@@ -326,28 +325,55 @@
 
         <div class="usage-block">
           <div class="usage-cols">
+
             <div class="usage-card">
               <div class="usage-card-header">
                 <div class="usage-icon do-icon"><i data-lucide="check" style="width:12px;height:12px"></i></div>
-                <div class="usage-card-title">Multiple independent choices</div>
+                <div class="usage-card-title">Use checkboxes for multiple selections</div>
               </div>
               <ul class="usage-list">
-                <li>Use when users can select more than one option at a time</li>
-                <li>Each checkbox should represent a standalone, independent choice</li>
-                <li>Use for preferences, filters, and feature toggles</li>
+                <li>Selecting multiple items from a list</li>
+                <li>Filters where users can apply several criteria at once</li>
+                <li>Multi-select forms where 0, 1, or many options are valid</li>
               </ul>
             </div>
+
             <div class="usage-card">
               <div class="usage-card-header">
                 <div class="usage-icon do-icon"><i data-lucide="check" style="width:12px;height:12px"></i></div>
-                <div class="usage-card-title">Indeterminate for parent selection</div>
+                <div class="usage-card-title">Single toggle options</div>
               </div>
               <ul class="usage-list">
-                <li>Use indeterminate state when a parent checkbox controls a group</li>
-                <li>Show indeterminate when only some children are checked</li>
-                <li>Selecting the parent should check all children</li>
+                <li>On/off preferences or settings</li>
+                <li>Optional features that can be enabled/disabled</li>
+                <li>Agreement to terms or policies</li>
               </ul>
             </div>
+
+            <div class="usage-card">
+              <div class="usage-card-header">
+                <div class="usage-icon do-icon"><i data-lucide="check" style="width:12px;height:12px"></i></div>
+                <div class="usage-card-title">Task or item lists</div>
+              </div>
+              <ul class="usage-list">
+                <li>To-do lists or task completion tracking</li>
+                <li>Selection of items for batch actions</li>
+                <li>Item selection in data tables</li>
+              </ul>
+            </div>
+
+            <div class="usage-card">
+              <div class="usage-card-header">
+                <div class="usage-icon do-icon"><i data-lucide="check" style="width:12px;height:12px"></i></div>
+                <div class="usage-card-title">Hierarchal selections</div>
+              </div>
+              <ul class="usage-list">
+                <li>Parent-child relationships with "Select All" functionality</li>
+                <li>Nested categories with indeterminate states</li>
+                <li>Group selections with sub-options</li>
+              </ul>
+            </div>
+
           </div>
         </div>
 
@@ -355,33 +381,170 @@
 
         <div class="usage-block">
           <div class="usage-cols">
+
             <div class="usage-card">
               <div class="usage-card-header">
                 <div class="usage-icon dont-icon"><i data-lucide="x" style="width:12px;height:12px"></i></div>
-                <div class="usage-card-title">Don't use for single exclusive choice</div>
+                <div class="usage-card-title">Don't use for mutually exclusive choices</div>
               </div>
               <ul class="usage-list">
-                <li>Don't use checkboxes when only one option can be selected — use Radio Buttons</li>
-                <li>Avoid using a single checkbox as a binary yes/no decision — use a Switch</li>
-                <li>Don't use checkboxes for navigation or triggering actions</li>
+                <li>When only one option can be selected — use Radio Buttons</li>
+                <li>Binary either/or decisions between two options</li>
+                <li>Single selection from a list</li>
               </ul>
             </div>
+
             <div class="usage-card">
               <div class="usage-card-header">
                 <div class="usage-icon dont-icon"><i data-lucide="x" style="width:12px;height:12px"></i></div>
-                <div class="usage-card-title">Don't overload with options</div>
+                <div class="usage-card-title">Don't use for immediate action triggers</div>
               </div>
               <ul class="usage-list">
-                <li>Avoid long lists of checkboxes without grouping or hierarchy</li>
-                <li>Don't mix checked and disabled states without clear visual distinction</li>
-                <li>Avoid hiding the label — every checkbox needs a visible label</li>
+                <li>Actions that take effect immediately — use a Switch</li>
+                <li>Settings with instant visual feedback</li>
+                <li>States that don't require form submission</li>
               </ul>
+            </div>
+
+            <div class="usage-card">
+              <div class="usage-card-header">
+                <div class="usage-icon dont-icon"><i data-lucide="x" style="width:12px;height:12px"></i></div>
+                <div class="usage-card-title">Don't use for navigation or mode switching</div>
+              </div>
+              <ul class="usage-list">
+                <li>Switching between views or modes — use Tabs or segmented controls</li>
+                <li>Filter buttons that toggle on/off — use Toggle Buttons</li>
+              </ul>
+            </div>
+
+            <div class="usage-card">
+              <div class="usage-card-header">
+                <div class="usage-icon dont-icon"><i data-lucide="x" style="width:12px;height:12px"></i></div>
+                <div class="usage-card-title">Don't use for long lists without search</div>
+              </div>
+              <ul class="usage-list">
+                <li>More than 10–15 options without filtering — use a multi-select dropdown</li>
+                <li>Very long lists that require scrolling — consider dropdown with search</li>
+              </ul>
+            </div>
+
+          </div>
+        </div>
+      </section>
+
+      <!-- 6 · MESSAGING -->
+      <section class="doc-section" id="messaging">
+        <h2 class="section-title">Messaging</h2>
+        <p style="font-size:14px;color:var(--text-secondary);margin-bottom:24px;line-height:1.6;">When and how to label checkbox groups</p>
+
+        <div style="display:flex;flex-direction:column;gap:28px;">
+
+          <div class="var-panel">
+            <div class="var-panel-title">Checkbox Labels</div>
+            <p style="font-size:13px;color:var(--text-secondary);margin-bottom:10px;line-height:1.6;font-weight:600;">Use clear, specific labels for each checkbox:</p>
+            <ul style="font-size:13px;color:var(--text-secondary);line-height:1.7;padding-left:20px;margin:0 0 14px;">
+              <li>Keep labels concise but descriptive</li>
+              <li>Use sentence case</li>
+              <li>Place label to the right of the checkbox</li>
+              <li>Make the entire label clickable (not just the checkbox)</li>
+              <li>Avoid negative phrasing (e.g., "Don't send emails" — use "Send emails" instead)</li>
+            </ul>
+            <p style="font-size:13px;color:var(--text-secondary);margin-bottom:6px;font-weight:600;">Examples:</p>
+            <ul style="font-size:13px;color:var(--text-secondary);line-height:1.7;padding-left:20px;margin:0;">
+              <li>"Express shipping"</li>
+              <li>"Include uShip Protection"</li>
+              <li>"Send email notifications"</li>
+              <li>"Remember my preferences"</li>
+            </ul>
+          </div>
+
+          <div class="var-panel">
+            <div class="var-panel-title">Group Labels</div>
+            <p style="font-size:13px;color:var(--text-secondary);margin-bottom:10px;line-height:1.6;font-weight:600;">Use group labels to organize related checkboxes:</p>
+            <ul style="font-size:13px;color:var(--text-secondary);line-height:1.7;padding-left:20px;margin:0 0 14px;">
+              <li>Clearly describe what the group of options represents</li>
+              <li>Include required indicator (*) when at least one selection is mandatory</li>
+              <li>Use sentence case</li>
+              <li>Keep under 50 characters</li>
+            </ul>
+            <p style="font-size:13px;color:var(--text-secondary);margin-bottom:6px;font-weight:600;">Examples:</p>
+            <ul style="font-size:13px;color:var(--text-secondary);line-height:1.7;padding-left:20px;margin:0;">
+              <li>"Notification Preferences *"</li>
+              <li>"Shipment Add-ons"</li>
+              <li>"Filter by Service Type"</li>
+            </ul>
+          </div>
+
+          <div class="var-panel">
+            <div class="var-panel-title">Helper Text</div>
+            <p style="font-size:13px;color:var(--text-secondary);margin-bottom:10px;line-height:1.6;font-weight:600;">Provide context for checkbox groups when needed:</p>
+            <ul style="font-size:13px;color:var(--text-secondary);line-height:1.7;padding-left:20px;margin:0 0 14px;">
+              <li>Explain what selecting options will do</li>
+              <li>Clarify any constraints (e.g., "Select at least one")</li>
+              <li>Keep to 1–2 lines maximum</li>
+              <li>Place below the group label, above the checkboxes</li>
+            </ul>
+            <p style="font-size:13px;color:var(--text-secondary);margin-bottom:6px;font-weight:600;">Examples:</p>
+            <ul style="font-size:13px;color:var(--text-secondary);line-height:1.7;padding-left:20px;margin:0;">
+              <li>"Select all that apply"</li>
+              <li>"Choose at least one notification method"</li>
+            </ul>
+          </div>
+
+          <div class="var-panel">
+            <div class="var-panel-title">Error Messages</div>
+            <p style="font-size:13px;color:var(--text-secondary);margin-bottom:10px;line-height:1.6;font-weight:600;">Show clear, actionable error messages for validation:</p>
+            <ul style="font-size:13px;color:var(--text-secondary);line-height:1.7;padding-left:20px;margin:0 0 14px;">
+              <li>Display below the checkbox group</li>
+              <li>Use red text (<code style="font-size:11px;background:var(--surface-layer02);padding:1px 5px;border-radius:3px;">color/text/error</code>)</li>
+              <li>Be specific about what needs to be fixed</li>
+              <li>Appear immediately after validation</li>
+            </ul>
+            <p style="font-size:13px;color:var(--text-secondary);margin-bottom:6px;font-weight:600;">Examples:</p>
+            <ul style="font-size:13px;color:var(--text-secondary);line-height:1.7;padding-left:20px;margin:0;">
+              <li>"Please select at least one option"</li>
+              <li>"You must agree to the terms to continue"</li>
+            </ul>
+          </div>
+
+        </div>
+
+        <!-- Best Practices -->
+        <div style="margin-top:32px;">
+          <div class="usage-block">
+            <div class="usage-cols">
+              <div class="usage-card">
+                <div class="usage-card-header">
+                  <div class="usage-icon do-icon"><i data-lucide="check" style="width:12px;height:12px"></i></div>
+                  <div class="usage-card-title">Do</div>
+                </div>
+                <ul class="usage-list">
+                  <li>Always provide labels for every checkbox</li>
+                  <li>Make labels and checkboxes easy to click/tap</li>
+                  <li>Use helper text when selection rules aren't obvious</li>
+                  <li>Group related checkboxes together</li>
+                  <li>Test with keyboard navigation</li>
+                </ul>
+              </div>
+              <div class="usage-card">
+                <div class="usage-card-header">
+                  <div class="usage-icon dont-icon"><i data-lucide="x" style="width:12px;height:12px"></i></div>
+                  <div class="usage-card-title">Don't</div>
+                </div>
+                <ul class="usage-list">
+                  <li>Use checkboxes for single-choice scenarios (use radio buttons)</li>
+                  <li>Create labels that are ambiguous or unclear</li>
+                  <li>Stack too many checkboxes without grouping or search</li>
+                  <li>Make labels too long (wrap to multiple lines sparingly)</li>
+                  <li>Use double negatives in labels</li>
+                </ul>
+              </div>
             </div>
           </div>
         </div>
       </section>
 
-      <!-- 6 · TOKENS USED -->
+      <!-- 7 · TOKENS USED -->
       <section class="doc-section" id="tokens">
         <h2 class="section-title">Tokens used</h2>
         <div class="tokens-grid">
@@ -398,10 +561,11 @@
                 <tr><td>Border — error</td><td class="t-tok">color/border/error</td><td class="t-sw"><div class="swatch" style="background:#A12F2F;"></div></td></tr>
                 <tr><td>Border — disabled</td><td class="t-tok">color/border/disabled</td><td class="t-sw"><div class="swatch" style="background:#E5E7EB;"></div></td></tr>
                 <tr><td>Fill — checked</td><td class="t-tok">color/action/secondary/default</td><td class="t-sw"><div class="swatch" style="background:#027CB1;"></div></td></tr>
-                <tr><td>Fill — disabled</td><td class="t-tok">color/border/disabled</td><td class="t-sw"><div class="swatch" style="background:#E5E7EB;"></div></td></tr>
+                <tr><td>Fill — disabled checked</td><td class="t-tok">color/border/disabled</td><td class="t-sw"><div class="swatch" style="background:#E5E7EB;"></div></td></tr>
+                <tr><td>Hover background</td><td class="t-tok">color/surface/layer-01/hover</td><td class="t-sw"><div class="swatch" style="background:#E5E7EB;"></div></td></tr>
                 <tr><td>Focus shadow</td><td class="t-tok">color/blue/400-35</td><td class="t-sw"><div class="swatch" style="background:rgba(90,191,224,.35);"></div></td></tr>
-                <tr><td>Label text</td><td class="t-tok">color/text/primary</td><td class="t-sw"><div class="swatch" style="background:#374151;"></div></td></tr>
-                <tr><td>Description text</td><td class="t-tok">color/text/secondary</td><td class="t-sw"><div class="swatch" style="background:#4B5563;"></div></td></tr>
+                <tr><td>Label text</td><td class="t-tok">color/text/label</td><td class="t-sw"><div class="swatch" style="background:#374151;"></div></td></tr>
+                <tr><td>Helper text</td><td class="t-tok">color/text/secondary</td><td class="t-sw"><div class="swatch" style="background:#4B5563;"></div></td></tr>
                 <tr><td>Disabled text</td><td class="t-tok">color/text/disabled</td><td class="t-sw"><div class="swatch" style="background:#9CA3AF;"></div></td></tr>
                 <tr><td>Error text</td><td class="t-tok">color/text/error</td><td class="t-sw"><div class="swatch" style="background:#A12F2F;"></div></td></tr>
               </tbody>
@@ -420,10 +584,11 @@
                 <tr><td>Border — error</td><td class="t-tok">color/border/error</td><td class="t-sw"><div class="swatch" style="background:#DB3939;"></div></td></tr>
                 <tr><td>Border — disabled</td><td class="t-tok">color/border/disabled</td><td class="t-sw"><div class="swatch" style="background:#374151;border-color:rgba(255,255,255,.1)"></div></td></tr>
                 <tr><td>Fill — checked</td><td class="t-tok">color/action/secondary/default</td><td class="t-sw"><div class="swatch" style="background:#35A8D6;"></div></td></tr>
-                <tr><td>Fill — disabled</td><td class="t-tok">color/border/disabled</td><td class="t-sw"><div class="swatch" style="background:#374151;border-color:rgba(255,255,255,.1)"></div></td></tr>
+                <tr><td>Fill — disabled checked</td><td class="t-tok">color/border/disabled</td><td class="t-sw"><div class="swatch" style="background:#374151;border-color:rgba(255,255,255,.1)"></div></td></tr>
+                <tr><td>Hover background</td><td class="t-tok">color/surface/layer-03</td><td class="t-sw"><div class="swatch" style="background:#374151;border-color:rgba(255,255,255,.1)"></div></td></tr>
                 <tr><td>Focus shadow</td><td class="t-tok">color/blue/400-35</td><td class="t-sw"><div class="swatch" style="background:rgba(90,191,224,.35);border-color:rgba(255,255,255,.1)"></div></td></tr>
-                <tr><td>Label text</td><td class="t-tok">color/text/primary</td><td class="t-sw"><div class="swatch" style="background:#FFFFFF;border-color:rgba(0,0,0,.1)"></div></td></tr>
-                <tr><td>Description text</td><td class="t-tok">color/text/secondary</td><td class="t-sw"><div class="swatch" style="background:#E5E7EB;"></div></td></tr>
+                <tr><td>Label text</td><td class="t-tok">color/text/label</td><td class="t-sw"><div class="swatch" style="background:#FFFFFF;border-color:rgba(0,0,0,.1)"></div></td></tr>
+                <tr><td>Helper text</td><td class="t-tok">color/text/secondary</td><td class="t-sw"><div class="swatch" style="background:#E5E7EB;"></div></td></tr>
                 <tr><td>Disabled text</td><td class="t-tok">color/text/disabled</td><td class="t-sw"><div class="swatch" style="background:#9CA3AF;"></div></td></tr>
                 <tr><td>Error text</td><td class="t-tok">color/text/error</td><td class="t-sw"><div class="swatch" style="background:#E36868;"></div></td></tr>
               </tbody>
@@ -433,29 +598,26 @@
         </div>
       </section>
 
-      <!-- 7 · ACCESSIBILITY -->
+      <!-- 8 · ACCESSIBILITY -->
       <section class="doc-section" id="accessibility">
         <h2 class="section-title">Accessibility</h2>
         <ul class="a11y-list">
           <li>
-            <div><strong>ARIA role:</strong> Use <code>role="checkbox"</code> with <code>aria-checked="true"</code>, <code>"false"</code>, or <code>"mixed"</code> for indeterminate.</div>
+            <div><strong>Keyboard:</strong> <code>Tab</code> navigates between checkboxes. <code>Space</code> toggles on/off. <code>Shift + Tab</code> navigates backwards.</div>
           </li>
           <li>
-            <div><strong>Keyboard:</strong> Reachable via <code>Tab</code>. Toggle with <code>Space</code>. Does not use arrow keys — each checkbox is independently focusable.</div>
+            <div><strong>Screen readers:</strong> Use proper <code>&lt;input type="checkbox"&gt;</code> markup. Include <code>aria-label</code> or associate visible labels with <code>for/id</code>. For indeterminate state, set <code>aria-checked="mixed"</code>. Group related checkboxes with <code>&lt;fieldset&gt;</code> and <code>&lt;legend&gt;</code>.</div>
           </li>
           <li>
-            <div><strong>Labels:</strong> Every checkbox must have a visible label. Use <code>aria-label</code> or <code>aria-labelledby</code> if the visual label is separate.</div>
+            <div><strong>Visual:</strong> Focus indicator must be clearly visible (2px blue ring). Minimum 3:1 contrast ratio for checkbox against background. Labels must meet WCAG AA contrast (4.5:1). Don't rely on color alone to convey checked state.</div>
           </li>
           <li>
-            <div><strong>Error state:</strong> Associate error messages using <code>aria-describedby</code> pointing to the error text element.</div>
-          </li>
-          <li>
-            <div><strong>Color contrast:</strong> Border and fill colors meet WCAG AA. Focus ring provides a visible 4px outline for keyboard users.</div>
+            <div><strong>Touch targets:</strong> Checkbox + label hit area minimum 44×44px. Ensure adequate spacing between checkboxes (at least 8px). Make entire label clickable, not just the checkbox square.</div>
           </li>
         </ul>
       </section>
 
-      <!-- 8 · RELATED -->
+      <!-- 9 · RELATED -->
       <section class="doc-section" id="related">
         <h2 class="section-title">Related Components</h2>
         <div class="related-grid">
@@ -479,14 +641,15 @@
     <!-- RIGHT ANCHOR NAV -->
     <aside class="right-nav" id="rightNav">
       <ul class="rn-list">
-        <li><a href="#definition" class="active" id="rn-definition">Definition</a></li>
-        <li><a href="#anatomy"    id="rn-anatomy">Anatomy</a></li>
-        <li><a href="#variants"   id="rn-variants">Variants</a></li>
-        <li><a href="#properties" id="rn-properties">Properties</a></li>
-        <li><a href="#usage"      id="rn-usage">Usage</a></li>
-        <li><a href="#tokens"     id="rn-tokens">Tokens</a></li>
+        <li><a href="#definition"   class="active" id="rn-definition">Definition</a></li>
+        <li><a href="#anatomy"      id="rn-anatomy">Anatomy</a></li>
+        <li><a href="#variants"     id="rn-variants">Variants</a></li>
+        <li><a href="#properties"   id="rn-properties">Properties</a></li>
+        <li><a href="#usage"        id="rn-usage">Usage</a></li>
+        <li><a href="#messaging"    id="rn-messaging">Messaging</a></li>
+        <li><a href="#tokens"       id="rn-tokens">Tokens</a></li>
         <li><a href="#accessibility" id="rn-accessibility">Accessibility</a></li>
-        <li><a href="#related"    id="rn-related">Related</a></li>
+        <li><a href="#related"      id="rn-related">Related</a></li>
       </ul>
     </aside>
 
@@ -514,7 +677,7 @@
     d.setAttribute('data-theme', d.getAttribute('data-theme') === 'dark' ? 'light' : 'dark');
   }
 
-  const sections = ['definition','anatomy','variants','properties','usage','tokens','accessibility','related'];
+  const sections = ['definition','anatomy','variants','properties','usage','messaging','tokens','accessibility','related'];
   const observer = new IntersectionObserver(entries => {
     entries.forEach(e => {
       if (e.isIntersecting) {
