@@ -179,108 +179,268 @@
       <!-- 3 · VARIANTS -->
       <section class="doc-section" id="variants">
         <h2 class="section-title">Variants</h2>
-        <div class="cb-states-grid">
 
-          <div>
-            <div class="cb-state-label">Default</div>
-            <div class="cb-item">
-              <div class="cb-box"></div>
-              <div class="cb-text">
-                <div class="cb-label">Checkbox Label</div>
-                <div class="cb-desc">Description text</div>
-              </div>
-            </div>
-          </div>
-
-          <div>
-            <div class="cb-state-label">Checked</div>
-            <div class="cb-item">
-              <div class="cb-box cb-box--checked"></div>
-              <div class="cb-text">
-                <div class="cb-label">Checkbox Label</div>
-                <div class="cb-desc">Description text</div>
-              </div>
-            </div>
-          </div>
-
-          <div>
-            <div class="cb-state-label">Indeterminate</div>
-            <div class="cb-item">
-              <div class="cb-box cb-box--indeterminate"></div>
-              <div class="cb-text">
-                <div class="cb-label">Checkbox Label</div>
-                <div class="cb-desc">Description text</div>
-              </div>
-            </div>
-          </div>
-
-          <div>
-            <div class="cb-state-label">Hover</div>
-            <div class="cb-item">
-              <div class="cb-box cb-box--hover"></div>
-              <div class="cb-text">
-                <div class="cb-label">Checkbox Label</div>
-                <div class="cb-desc">Description text</div>
-              </div>
-            </div>
-          </div>
-
-          <div>
-            <div class="cb-state-label">Focus</div>
-            <div class="cb-item">
-              <div class="cb-box cb-box--focus"></div>
-              <div class="cb-text">
-                <div class="cb-label">Checkbox Label</div>
-                <div class="cb-desc">Description text</div>
-              </div>
-            </div>
-          </div>
-
-          <div>
-            <div class="cb-state-label">Focus Checked</div>
-            <div class="cb-item">
-              <div class="cb-box cb-box--focus-checked"></div>
-              <div class="cb-text">
-                <div class="cb-label">Checkbox Label</div>
-                <div class="cb-desc">Description text</div>
-              </div>
-            </div>
-          </div>
-
-          <div>
-            <div class="cb-state-label">Disabled</div>
-            <div class="cb-item">
-              <div class="cb-box cb-box--disabled"></div>
-              <div class="cb-text">
-                <div class="cb-label cb-label--disabled">Checkbox Label</div>
-                <div class="cb-desc cb-desc--disabled">Description text</div>
-              </div>
-            </div>
-          </div>
-
-          <div>
-            <div class="cb-state-label">Disabled Checked</div>
-            <div class="cb-item">
-              <div class="cb-box cb-box--disabled-checked"></div>
-              <div class="cb-text">
-                <div class="cb-label cb-label--disabled">Checkbox Label</div>
-                <div class="cb-desc cb-desc--disabled">Description text</div>
-              </div>
-            </div>
-          </div>
-
-          <div>
-            <div class="cb-state-label">Error</div>
-            <div class="cb-item">
-              <div class="cb-box cb-box--error"></div>
-              <div class="cb-text">
-                <div class="cb-label">Checkbox Label</div>
-                <div class="cb-error-msg">Error message appears here</div>
-              </div>
-            </div>
-          </div>
-
+        <div class="tabs">
+          <button class="tab active"  onclick="switchTab(this,'v-default')">Default</button>
+          <button class="tab" onclick="switchTab(this,'v-checked')">Checked</button>
+          <button class="tab" onclick="switchTab(this,'v-indeterminate')">Indeterminate</button>
+          <button class="tab" onclick="switchTab(this,'v-hover')">Hover</button>
+          <button class="tab" onclick="switchTab(this,'v-focus')">Focus</button>
+          <button class="tab" onclick="switchTab(this,'v-focus-checked')">Focus Checked</button>
+          <button class="tab" onclick="switchTab(this,'v-disabled')">Disabled</button>
+          <button class="tab" onclick="switchTab(this,'v-disabled-checked')">Disabled Checked</button>
+          <button class="tab" onclick="switchTab(this,'v-error')">Error</button>
         </div>
+
+        <!-- Default -->
+        <div class="tab-panel active" id="v-default">
+          <div class="var-panel">
+            <div class="var-previews">
+              <div class="var-preview">
+                <div class="cb-item">
+                  <div class="cb-box"></div>
+                  <div class="cb-text"><div class="cb-label">Checkbox Label</div><div class="cb-desc">Optional description text</div></div>
+                </div>
+              </div>
+              <div class="var-preview-dark">
+                <div class="cb-item">
+                  <div class="cb-box"></div>
+                  <div class="cb-text"><div class="cb-label">Checkbox Label</div><div class="cb-desc">Optional description text</div></div>
+                </div>
+              </div>
+            </div>
+            <div class="var-desc">
+              <div class="var-use-when">Use when:</div>
+              <ul class="var-use-list">
+                <li>Presenting an option before the user has interacted</li>
+                <li>Showing an unchecked optional choice</li>
+                <li>Starting state for all checkboxes in a group</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <!-- Checked -->
+        <div class="tab-panel" id="v-checked">
+          <div class="var-panel">
+            <div class="var-previews">
+              <div class="var-preview">
+                <div class="cb-item">
+                  <div class="cb-box cb-box--checked"></div>
+                  <div class="cb-text"><div class="cb-label">Checkbox Label</div><div class="cb-desc">Optional description text</div></div>
+                </div>
+              </div>
+              <div class="var-preview-dark">
+                <div class="cb-item">
+                  <div class="cb-box cb-box--checked"></div>
+                  <div class="cb-text"><div class="cb-label">Checkbox Label</div><div class="cb-desc">Optional description text</div></div>
+                </div>
+              </div>
+            </div>
+            <div class="var-desc">
+              <div class="var-use-when">Use when:</div>
+              <ul class="var-use-list">
+                <li>The user has actively selected this option</li>
+                <li>A default pre-selected value needs to be shown</li>
+                <li>Confirming agreement or preference</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <!-- Indeterminate -->
+        <div class="tab-panel" id="v-indeterminate">
+          <div class="var-panel">
+            <div class="var-previews">
+              <div class="var-preview">
+                <div class="cb-item">
+                  <div class="cb-box cb-box--indeterminate"></div>
+                  <div class="cb-text"><div class="cb-label">Checkbox Label</div><div class="cb-desc">Optional description text</div></div>
+                </div>
+              </div>
+              <div class="var-preview-dark">
+                <div class="cb-item">
+                  <div class="cb-box cb-box--indeterminate"></div>
+                  <div class="cb-text"><div class="cb-label">Checkbox Label</div><div class="cb-desc">Optional description text</div></div>
+                </div>
+              </div>
+            </div>
+            <div class="var-desc">
+              <div class="var-use-when">Use when:</div>
+              <ul class="var-use-list">
+                <li>A parent checkbox controls a group of children</li>
+                <li>Some — but not all — children are checked</li>
+                <li>Representing a mixed selection state</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <!-- Hover -->
+        <div class="tab-panel" id="v-hover">
+          <div class="var-panel">
+            <div class="var-previews">
+              <div class="var-preview">
+                <div class="cb-item">
+                  <div class="cb-box cb-box--hover"></div>
+                  <div class="cb-text"><div class="cb-label">Checkbox Label</div><div class="cb-desc">Optional description text</div></div>
+                </div>
+              </div>
+              <div class="var-preview-dark">
+                <div class="cb-item">
+                  <div class="cb-box cb-box--hover"></div>
+                  <div class="cb-text"><div class="cb-label">Checkbox Label</div><div class="cb-desc">Optional description text</div></div>
+                </div>
+              </div>
+            </div>
+            <div class="var-desc">
+              <div class="var-use-when">Use when:</div>
+              <ul class="var-use-list">
+                <li>User's cursor is over the control (desktop only)</li>
+                <li>Providing visual feedback that the element is interactive</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <!-- Focus -->
+        <div class="tab-panel" id="v-focus">
+          <div class="var-panel">
+            <div class="var-previews">
+              <div class="var-preview">
+                <div class="cb-item">
+                  <div class="cb-box cb-box--focus"></div>
+                  <div class="cb-text"><div class="cb-label">Checkbox Label</div><div class="cb-desc">Optional description text</div></div>
+                </div>
+              </div>
+              <div class="var-preview-dark">
+                <div class="cb-item">
+                  <div class="cb-box cb-box--focus"></div>
+                  <div class="cb-text"><div class="cb-label">Checkbox Label</div><div class="cb-desc">Optional description text</div></div>
+                </div>
+              </div>
+            </div>
+            <div class="var-desc">
+              <div class="var-use-when">Use when:</div>
+              <ul class="var-use-list">
+                <li>User is navigating via keyboard (Tab key)</li>
+                <li>Checkbox is focused but not yet toggled</li>
+                <li>Required for keyboard accessibility</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <!-- Focus Checked -->
+        <div class="tab-panel" id="v-focus-checked">
+          <div class="var-panel">
+            <div class="var-previews">
+              <div class="var-preview">
+                <div class="cb-item">
+                  <div class="cb-box cb-box--focus-checked"></div>
+                  <div class="cb-text"><div class="cb-label">Checkbox Label</div><div class="cb-desc">Optional description text</div></div>
+                </div>
+              </div>
+              <div class="var-preview-dark">
+                <div class="cb-item">
+                  <div class="cb-box cb-box--focus-checked"></div>
+                  <div class="cb-text"><div class="cb-label">Checkbox Label</div><div class="cb-desc">Optional description text</div></div>
+                </div>
+              </div>
+            </div>
+            <div class="var-desc">
+              <div class="var-use-when">Use when:</div>
+              <ul class="var-use-list">
+                <li>Checkbox is both checked and keyboard-focused</li>
+                <li>User has tabbed to an already-selected option</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <!-- Disabled -->
+        <div class="tab-panel" id="v-disabled">
+          <div class="var-panel">
+            <div class="var-previews">
+              <div class="var-preview">
+                <div class="cb-item">
+                  <div class="cb-box cb-box--disabled"></div>
+                  <div class="cb-text"><div class="cb-label cb-label--disabled">Checkbox Label</div><div class="cb-desc cb-desc--disabled">Optional description text</div></div>
+                </div>
+              </div>
+              <div class="var-preview-dark">
+                <div class="cb-item">
+                  <div class="cb-box cb-box--disabled"></div>
+                  <div class="cb-text"><div class="cb-label cb-label--disabled">Checkbox Label</div><div class="cb-desc cb-desc--disabled">Optional description text</div></div>
+                </div>
+              </div>
+            </div>
+            <div class="var-desc">
+              <div class="var-use-when">Use when:</div>
+              <ul class="var-use-list">
+                <li>Option is unavailable in the current context</li>
+                <li>Showing all options while preventing interaction</li>
+                <li>A prerequisite has not been met</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <!-- Disabled Checked -->
+        <div class="tab-panel" id="v-disabled-checked">
+          <div class="var-panel">
+            <div class="var-previews">
+              <div class="var-preview">
+                <div class="cb-item">
+                  <div class="cb-box cb-box--disabled-checked"></div>
+                  <div class="cb-text"><div class="cb-label cb-label--disabled">Checkbox Label</div><div class="cb-desc cb-desc--disabled">Optional description text</div></div>
+                </div>
+              </div>
+              <div class="var-preview-dark">
+                <div class="cb-item">
+                  <div class="cb-box cb-box--disabled-checked"></div>
+                  <div class="cb-text"><div class="cb-label cb-label--disabled">Checkbox Label</div><div class="cb-desc cb-desc--disabled">Optional description text</div></div>
+                </div>
+              </div>
+            </div>
+            <div class="var-desc">
+              <div class="var-use-when">Use when:</div>
+              <ul class="var-use-list">
+                <li>A pre-selected value cannot be changed by the user</li>
+                <li>Showing a locked or system-enforced selection</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <!-- Error -->
+        <div class="tab-panel" id="v-error">
+          <div class="var-panel">
+            <div class="var-previews">
+              <div class="var-preview">
+                <div class="cb-item">
+                  <div class="cb-box cb-box--error"></div>
+                  <div class="cb-text"><div class="cb-label">Checkbox Label</div><div class="cb-error-msg">Error message appears here</div></div>
+                </div>
+              </div>
+              <div class="var-preview-dark">
+                <div class="cb-item">
+                  <div class="cb-box cb-box--error"></div>
+                  <div class="cb-text"><div class="cb-label">Checkbox Label</div><div class="cb-error-msg">Error message appears here</div></div>
+                </div>
+              </div>
+            </div>
+            <div class="var-desc">
+              <div class="var-use-when">Use when:</div>
+              <ul class="var-use-list">
+                <li>Validation has failed on form submission</li>
+                <li>A required checkbox was not selected</li>
+                <li>Agreement to terms is mandatory and missing</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
       </section>
 
       <!-- 4 · PROPERTIES -->
@@ -670,6 +830,14 @@
       document.getElementById('contentWrap').style.marginLeft = sbOpen ? 'var(--left-w)' : '0';
     }
     document.getElementById('navOverlay').classList.toggle('active', sbOpen && isMobile());
+  }
+
+  function switchTab(btn, panelId) {
+    btn.closest('.doc-section').querySelectorAll('.tab').forEach(b => b.classList.remove('active'));
+    btn.closest('.doc-section').querySelectorAll('.tab-panel').forEach(p => p.classList.remove('active'));
+    btn.classList.add('active');
+    document.getElementById(panelId).classList.add('active');
+    lucide.createIcons();
   }
 
   function toggleTheme() {

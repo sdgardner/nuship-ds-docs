@@ -537,6 +537,38 @@ body {
   .cb-states-grid { grid-template-columns: repeat(2, 1fr); }
 }
 
+/* Checkbox variant previews — hardcoded light (immune to global toggle) */
+.var-preview .cb-label { color: #374151; }
+.var-preview .cb-desc { color: #4B5563; }
+.var-preview .cb-label--disabled,
+.var-preview .cb-desc--disabled { color: #9CA3AF; }
+.var-preview .cb-error-msg { color: #A12F2F; }
+.var-preview .cb-box { border-color: #9CA3AF; background: transparent; }
+.var-preview .cb-box--checked { background: #027CB1; border-color: #027CB1; }
+.var-preview .cb-box--indeterminate { background: #027CB1; border-color: #027CB1; }
+.var-preview .cb-box--hover { border-color: #9CA3AF; }
+.var-preview .cb-box--focus { border-color: #CDD2D7; box-shadow: 0 0 0 4px rgba(90,191,224,.35); }
+.var-preview .cb-box--focus-checked { background: #027CB1; border-color: #027CB1; box-shadow: 0 0 0 4px rgba(90,191,224,.35); }
+.var-preview .cb-box--disabled { border-color: #E5E7EB; background: transparent; }
+.var-preview .cb-box--disabled-checked { background: #E5E7EB; border-color: #E5E7EB; }
+.var-preview .cb-box--error { border-color: #A12F2F; background: transparent; }
+
+/* Checkbox variant previews — hardcoded dark (immune to global toggle) */
+.var-preview-dark .cb-label { color: #FFFFFF; }
+.var-preview-dark .cb-desc { color: #E5E7EB; }
+.var-preview-dark .cb-label--disabled,
+.var-preview-dark .cb-desc--disabled { color: #9CA3AF; }
+.var-preview-dark .cb-error-msg { color: #E36868; }
+.var-preview-dark .cb-box { border-color: #9CA3AF; background: transparent; }
+.var-preview-dark .cb-box--checked { background: #35A8D6; border-color: #35A8D6; }
+.var-preview-dark .cb-box--indeterminate { background: #35A8D6; border-color: #35A8D6; }
+.var-preview-dark .cb-box--hover { border-color: #9CA3AF; }
+.var-preview-dark .cb-box--focus { border-color: #CDD2D7; box-shadow: 0 0 0 4px rgba(90,191,224,.35); }
+.var-preview-dark .cb-box--focus-checked { background: #35A8D6; border-color: #35A8D6; box-shadow: 0 0 0 4px rgba(90,191,224,.35); }
+.var-preview-dark .cb-box--disabled { border-color: #374151; background: transparent; }
+.var-preview-dark .cb-box--disabled-checked { background: #374151; border-color: #374151; }
+.var-preview-dark .cb-box--error { border-color: #DB3939; background: transparent; }
+
 /* ─── TILE COMPONENT ─────────────────────────────── */
 .tile {
   width: 140px; height: 160px;
