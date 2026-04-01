@@ -315,15 +315,17 @@ body {
 
 .tabs-wrap {
   position: relative;
-  overflow: hidden;
-  margin-bottom: 20px;
-  border-bottom: 1px solid var(--border);
+  overflow-x: hidden;
+  overflow-y: visible;
+  flex: 1;
+  min-width: 0;
+  box-shadow: inset -32px 0 20px -12px rgba(0,0,0,0.12);
 }
 .tabs-wrap::after {
   content: '';
   position: absolute;
   top: 0; right: 0; bottom: 0;
-  width: 56px;
+  width: 48px;
   background: linear-gradient(to right, transparent, var(--surface-shell));
   pointer-events: none;
   z-index: 1;
