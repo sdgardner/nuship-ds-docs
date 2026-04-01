@@ -313,6 +313,22 @@ body {
 .var-preview.banner .alert-link,
 .var-preview-dark.banner .alert-link { display: block; }
 
+.variants-header {
+  display: flex;
+  align-items: flex-end;
+  border-bottom: 1px solid var(--border);
+  margin-bottom: 20px;
+}
+.variants-header .section-title {
+  padding-bottom: 10px;
+  margin-bottom: 0;
+}
+.variants-header .tabs-wrap {
+  border-bottom: none;
+  margin-bottom: 0;
+  flex: 1;
+  min-width: 0;
+}
 .tabs-wrap {
   position: relative;
   overflow-x: hidden;
