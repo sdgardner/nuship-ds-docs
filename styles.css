@@ -317,18 +317,9 @@ body {
   position: relative;
   overflow-x: hidden;
   overflow-y: visible;
-  flex: 1;
-  min-width: 0;
-  box-shadow: inset -32px 0 20px -12px rgba(0,0,0,0.12);
-}
-.tabs-wrap::after {
-  content: '';
-  position: absolute;
-  top: 0; right: 0; bottom: 0;
-  width: 48px;
-  background: linear-gradient(to right, transparent, var(--surface-shell));
-  pointer-events: none;
-  z-index: 1;
+  border-bottom: 1px solid var(--border);
+  margin-bottom: 20px;
+  box-shadow: inset -24px 0 20px -10px rgba(0,0,0,0.10);
 }
 .tabs {
   display: flex;
