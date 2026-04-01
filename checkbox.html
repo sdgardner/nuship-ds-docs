@@ -1,0 +1,533 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Checkbox — nuShip Design System</title>
+  <link href="https://fonts.googleapis.com/css2?family=Lato:wght@400;600;700;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="tokens.css">
+  <link rel="stylesheet" href="styles.css">
+  <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.min.js"></script>
+</head>
+<body>
+
+<!-- MOBILE OVERLAY -->
+<div id="navOverlay" class="nav-overlay" onclick="toggleSidebar()"></div>
+
+<!-- TOP NAV -->
+<nav class="topnav">
+  <button class="hamburger" onclick="toggleSidebar()" aria-label="Menu">
+    <i data-lucide="menu" style="width:18px;height:18px;color:var(--text-secondary)"></i>
+  </button>
+  <div class="bc">
+    <a href="index.html">UI Components</a>
+    <i data-lucide="chevron-right" style="width:14px;height:14px;flex-shrink:0"></i>
+    <a href="#">Inputs</a>
+    <i data-lucide="chevron-right" style="width:14px;height:14px;flex-shrink:0"></i>
+    <span class="cur">Checkbox</span>
+  </div>
+  <div class="nav-actions">
+    <div class="toggle-wrap" onclick="toggleTheme()" role="button">
+      <i data-lucide="moon" style="width:20px;height:20px"></i>
+      <div class="toggle-track"><div class="toggle-thumb"></div></div>
+      <i data-lucide="sun" style="width:20px;height:20px"></i>
+    </div>
+  </div>
+</nav>
+
+<div class="shell">
+
+  <!-- LEFT NAV -->
+  <nav class="left-nav" id="leftNav">
+    <div class="left-nav-inner">
+      <div class="ln-group">
+        <div class="ln-label">Inputs</div>
+        <ul class="ln-list">
+          <li><a href="checkbox.html" class="active">Checkbox</a></li>
+          <li><a href="#">Date Picker</a></li>
+          <li><a href="#">Number Input</a></li>
+          <li><a href="#">Radio Button</a></li>
+          <li><a href="#">Search</a></li>
+          <li><a href="#">Select</a></li>
+          <li><a href="#">Slider</a></li>
+          <li><a href="#">Switch</a></li>
+          <li><a href="#">Text Area</a></li>
+          <li><a href="#">Text Input</a></li>
+        </ul>
+      </div>
+      <div class="ln-group">
+        <div class="ln-label">Feedback</div>
+        <ul class="ln-list">
+          <li><a href="alert.html">Alert</a></li>
+          <li><a href="#">Badge</a></li>
+          <li><a href="#">Toast</a></li>
+          <li><a href="#">Tooltip</a></li>
+        </ul>
+      </div>
+      <div class="ln-group">
+        <div class="ln-label">Navigation</div>
+        <ul class="ln-list">
+          <li><a href="#">Accordion</a></li>
+          <li><a href="#">Breadcrumb</a></li>
+          <li><a href="#">Dropdown</a></li>
+          <li><a href="#">Menu</a></li>
+          <li><a href="#">Tabs</a></li>
+        </ul>
+      </div>
+      <div class="ln-group">
+        <div class="ln-label">Actions</div>
+        <ul class="ln-list">
+          <li><a href="#">Button</a></li>
+          <li><a href="#">Link</a></li>
+          <li><a href="#">Tags</a></li>
+        </ul>
+      </div>
+      <div class="ln-group">
+        <div class="ln-label">Overlays</div>
+        <ul class="ln-list">
+          <li><a href="#">Modal</a></li>
+          <li><a href="#">Popover</a></li>
+        </ul>
+      </div>
+      <div class="ln-group">
+        <div class="ln-label">Display</div>
+        <ul class="ln-list">
+          <li><a href="#">Carousel</a></li>
+          <li><a href="#">File Upload</a></li>
+          <li><a href="#">Star Rating</a></li>
+          <li><a href="#">Timeline</a></li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <!-- CONTENT -->
+  <div class="content-wrap" id="contentWrap">
+
+    <main class="doc">
+
+      <!-- 1 · DEFINITION -->
+      <section class="doc-section" id="definition">
+        <div class="def-eyebrow">Inputs</div>
+        <h1 class="def-title">Checkbox</h1>
+        <p class="def-desc">A checkbox allows users to select one or more options from a set. Each checkbox operates independently — checking one does not affect others. It supports optional description text and an error state for validation feedback.</p>
+        <div class="def-tags">
+          <span class="tag">Developed</span>
+          <span class="tag">Figma</span>
+        </div>
+        <div class="preview-box">
+          <div class="preview-box-inner">
+            <div style="display:flex;flex-direction:column;gap:16px;">
+              <div class="cb-item">
+                <div class="cb-box"></div>
+                <div class="cb-text">
+                  <div class="cb-label">Unchecked</div>
+                  <div class="cb-desc">Optional description text</div>
+                </div>
+              </div>
+              <div class="cb-item">
+                <div class="cb-box cb-box--checked"></div>
+                <div class="cb-text">
+                  <div class="cb-label">Checked</div>
+                  <div class="cb-desc">Optional description text</div>
+                </div>
+              </div>
+              <div class="cb-item">
+                <div class="cb-box cb-box--indeterminate"></div>
+                <div class="cb-text">
+                  <div class="cb-label">Indeterminate</div>
+                  <div class="cb-desc">Optional description text</div>
+                </div>
+              </div>
+              <div class="cb-item">
+                <div class="cb-box cb-box--error"></div>
+                <div class="cb-text">
+                  <div class="cb-label">Error</div>
+                  <div class="cb-error-msg">Error message appears here</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- 2 · ANATOMY -->
+      <section class="doc-section" id="anatomy">
+        <h2 class="section-title">Anatomy</h2>
+        <div class="anatomy-wrap">
+          <div class="anatomy-component" style="max-width:320px;">
+            <div class="cb-item">
+              <div class="cb-box cb-box--checked"></div>
+              <div class="cb-text">
+                <div class="cb-label">Checkbox Label</div>
+                <div class="cb-desc">Optional description text</div>
+                <div class="cb-error-msg" style="display:none;">Error message appears here</div>
+              </div>
+            </div>
+            <span class="callout" style="top:2px;left:10px">1</span>
+            <span class="callout" style="top:2px;left:53px">2</span>
+            <span class="callout" style="top:24px;left:53px">3</span>
+          </div>
+          <div class="anatomy-legend">
+            <div class="legend-item"><span class="legend-num">1</span>Checkbox control</div>
+            <div class="legend-item"><span class="legend-num">2</span>Label</div>
+            <div class="legend-item"><span class="legend-num">3</span>Description <span style="color:var(--text-tertiary);margin-left:3px">(optional)</span></div>
+            <div class="legend-item"><span class="legend-num" style="background:var(--err-bd)">4</span>Error message <span style="color:var(--text-tertiary);margin-left:3px">(replaces description)</span></div>
+          </div>
+        </div>
+      </section>
+
+      <!-- 3 · VARIANTS -->
+      <section class="doc-section" id="variants">
+        <h2 class="section-title">Variants</h2>
+        <div class="cb-states-grid">
+
+          <div>
+            <div class="cb-state-label">Default</div>
+            <div class="cb-item">
+              <div class="cb-box"></div>
+              <div class="cb-text">
+                <div class="cb-label">Checkbox Label</div>
+                <div class="cb-desc">Description text</div>
+              </div>
+            </div>
+          </div>
+
+          <div>
+            <div class="cb-state-label">Checked</div>
+            <div class="cb-item">
+              <div class="cb-box cb-box--checked"></div>
+              <div class="cb-text">
+                <div class="cb-label">Checkbox Label</div>
+                <div class="cb-desc">Description text</div>
+              </div>
+            </div>
+          </div>
+
+          <div>
+            <div class="cb-state-label">Indeterminate</div>
+            <div class="cb-item">
+              <div class="cb-box cb-box--indeterminate"></div>
+              <div class="cb-text">
+                <div class="cb-label">Checkbox Label</div>
+                <div class="cb-desc">Description text</div>
+              </div>
+            </div>
+          </div>
+
+          <div>
+            <div class="cb-state-label">Hover</div>
+            <div class="cb-item">
+              <div class="cb-box cb-box--hover"></div>
+              <div class="cb-text">
+                <div class="cb-label">Checkbox Label</div>
+                <div class="cb-desc">Description text</div>
+              </div>
+            </div>
+          </div>
+
+          <div>
+            <div class="cb-state-label">Focus</div>
+            <div class="cb-item">
+              <div class="cb-box cb-box--focus"></div>
+              <div class="cb-text">
+                <div class="cb-label">Checkbox Label</div>
+                <div class="cb-desc">Description text</div>
+              </div>
+            </div>
+          </div>
+
+          <div>
+            <div class="cb-state-label">Focus Checked</div>
+            <div class="cb-item">
+              <div class="cb-box cb-box--focus-checked"></div>
+              <div class="cb-text">
+                <div class="cb-label">Checkbox Label</div>
+                <div class="cb-desc">Description text</div>
+              </div>
+            </div>
+          </div>
+
+          <div>
+            <div class="cb-state-label">Disabled</div>
+            <div class="cb-item">
+              <div class="cb-box cb-box--disabled"></div>
+              <div class="cb-text">
+                <div class="cb-label cb-label--disabled">Checkbox Label</div>
+                <div class="cb-desc cb-desc--disabled">Description text</div>
+              </div>
+            </div>
+          </div>
+
+          <div>
+            <div class="cb-state-label">Disabled Checked</div>
+            <div class="cb-item">
+              <div class="cb-box cb-box--disabled-checked"></div>
+              <div class="cb-text">
+                <div class="cb-label cb-label--disabled">Checkbox Label</div>
+                <div class="cb-desc cb-desc--disabled">Description text</div>
+              </div>
+            </div>
+          </div>
+
+          <div>
+            <div class="cb-state-label">Error</div>
+            <div class="cb-item">
+              <div class="cb-box cb-box--error"></div>
+              <div class="cb-text">
+                <div class="cb-label">Checkbox Label</div>
+                <div class="cb-error-msg">Error message appears here</div>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </section>
+
+      <!-- 4 · PROPERTIES -->
+      <section class="doc-section" id="properties">
+        <h2 class="section-title">Properties</h2>
+        <table class="props-table">
+          <thead>
+            <tr><th>Property</th><th>Type</th><th>Default</th><th>Description</th></tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td class="p-name">state</td>
+              <td class="p-type">"Default" | "Checked" | "Indeterminate" | "Disabled" | "Disabled-checked" | "Hover" | "Focus" | "Focus-checked" | "Error"</td>
+              <td class="p-def">"Default"</td>
+              <td class="p-desc">Visual state of the checkbox</td>
+            </tr>
+            <tr>
+              <td class="p-name">label</td>
+              <td class="p-type">string</td>
+              <td class="p-def">—</td>
+              <td class="p-desc">Label text displayed next to the control</td>
+            </tr>
+            <tr>
+              <td class="p-name">showDescriptionText</td>
+              <td class="p-type">boolean</td>
+              <td class="p-def">true</td>
+              <td class="p-desc">Shows optional helper text below the label</td>
+            </tr>
+            <tr>
+              <td class="p-name">showErrorMessage</td>
+              <td class="p-type">boolean</td>
+              <td class="p-def">true</td>
+              <td class="p-desc">Shows error message when state is "Error"</td>
+            </tr>
+          </tbody>
+        </table>
+      </section>
+
+      <!-- 5 · USAGE -->
+      <section class="doc-section" id="usage">
+        <h2 class="section-title">Usage Guidelines</h2>
+
+        <div class="usage-block">
+          <div class="usage-cols">
+            <div class="usage-card">
+              <div class="usage-card-header">
+                <div class="usage-icon do-icon"><i data-lucide="check" style="width:12px;height:12px"></i></div>
+                <div class="usage-card-title">Multiple independent choices</div>
+              </div>
+              <ul class="usage-list">
+                <li>Use when users can select more than one option at a time</li>
+                <li>Each checkbox should represent a standalone, independent choice</li>
+                <li>Use for preferences, filters, and feature toggles</li>
+              </ul>
+            </div>
+            <div class="usage-card">
+              <div class="usage-card-header">
+                <div class="usage-icon do-icon"><i data-lucide="check" style="width:12px;height:12px"></i></div>
+                <div class="usage-card-title">Indeterminate for parent selection</div>
+              </div>
+              <ul class="usage-list">
+                <li>Use indeterminate state when a parent checkbox controls a group</li>
+                <li>Show indeterminate when only some children are checked</li>
+                <li>Selecting the parent should check all children</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <div class="usage-divider"></div>
+
+        <div class="usage-block">
+          <div class="usage-cols">
+            <div class="usage-card">
+              <div class="usage-card-header">
+                <div class="usage-icon dont-icon"><i data-lucide="x" style="width:12px;height:12px"></i></div>
+                <div class="usage-card-title">Don't use for single exclusive choice</div>
+              </div>
+              <ul class="usage-list">
+                <li>Don't use checkboxes when only one option can be selected — use Radio Buttons</li>
+                <li>Avoid using a single checkbox as a binary yes/no decision — use a Switch</li>
+                <li>Don't use checkboxes for navigation or triggering actions</li>
+              </ul>
+            </div>
+            <div class="usage-card">
+              <div class="usage-card-header">
+                <div class="usage-icon dont-icon"><i data-lucide="x" style="width:12px;height:12px"></i></div>
+                <div class="usage-card-title">Don't overload with options</div>
+              </div>
+              <ul class="usage-list">
+                <li>Avoid long lists of checkboxes without grouping or hierarchy</li>
+                <li>Don't mix checked and disabled states without clear visual distinction</li>
+                <li>Avoid hiding the label — every checkbox needs a visible label</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- 6 · TOKENS USED -->
+      <section class="doc-section" id="tokens">
+        <h2 class="section-title">Tokens used</h2>
+        <div class="tokens-grid">
+
+          <!-- Light -->
+          <div>
+            <div class="tokens-group-label">Light</div>
+            <table class="tokens-table">
+              <thead><tr><th>Property</th><th>Token</th><th></th></tr></thead>
+              <tbody>
+                <tr><td>Border — default</td><td class="t-tok">color/border/strong</td><td class="t-sw"><div class="swatch" style="background:#9CA3AF;"></div></td></tr>
+                <tr><td>Border — hover</td><td class="t-tok">color/border/strong</td><td class="t-sw"><div class="swatch" style="background:#9CA3AF;"></div></td></tr>
+                <tr><td>Border — focus</td><td class="t-tok">color/border/focus-ring</td><td class="t-sw"><div class="swatch" style="background:#5ABFE0;"></div></td></tr>
+                <tr><td>Border — error</td><td class="t-tok">color/border/error</td><td class="t-sw"><div class="swatch" style="background:#A12F2F;"></div></td></tr>
+                <tr><td>Border — disabled</td><td class="t-tok">color/border/disabled</td><td class="t-sw"><div class="swatch" style="background:#E5E7EB;"></div></td></tr>
+                <tr><td>Fill — checked</td><td class="t-tok">color/action/secondary/default</td><td class="t-sw"><div class="swatch" style="background:#027CB1;"></div></td></tr>
+                <tr><td>Fill — disabled</td><td class="t-tok">color/border/disabled</td><td class="t-sw"><div class="swatch" style="background:#E5E7EB;"></div></td></tr>
+                <tr><td>Focus shadow</td><td class="t-tok">color/blue/400-35</td><td class="t-sw"><div class="swatch" style="background:rgba(90,191,224,.35);"></div></td></tr>
+                <tr><td>Label text</td><td class="t-tok">color/text/primary</td><td class="t-sw"><div class="swatch" style="background:#374151;"></div></td></tr>
+                <tr><td>Description text</td><td class="t-tok">color/text/secondary</td><td class="t-sw"><div class="swatch" style="background:#4B5563;"></div></td></tr>
+                <tr><td>Disabled text</td><td class="t-tok">color/text/disabled</td><td class="t-sw"><div class="swatch" style="background:#9CA3AF;"></div></td></tr>
+                <tr><td>Error text</td><td class="t-tok">color/text/error</td><td class="t-sw"><div class="swatch" style="background:#A12F2F;"></div></td></tr>
+              </tbody>
+            </table>
+          </div>
+
+          <!-- Dark -->
+          <div>
+            <div class="tokens-group-label">Dark</div>
+            <table class="tokens-table">
+              <thead><tr><th>Property</th><th>Token</th><th></th></tr></thead>
+              <tbody>
+                <tr><td>Border — default</td><td class="t-tok">color/border/strong</td><td class="t-sw"><div class="swatch" style="background:#9CA3AF;"></div></td></tr>
+                <tr><td>Border — hover</td><td class="t-tok">color/border/strong</td><td class="t-sw"><div class="swatch" style="background:#9CA3AF;"></div></td></tr>
+                <tr><td>Border — focus</td><td class="t-tok">color/border/focus-ring</td><td class="t-sw"><div class="swatch" style="background:#0083BB;"></div></td></tr>
+                <tr><td>Border — error</td><td class="t-tok">color/border/error</td><td class="t-sw"><div class="swatch" style="background:#DB3939;"></div></td></tr>
+                <tr><td>Border — disabled</td><td class="t-tok">color/border/disabled</td><td class="t-sw"><div class="swatch" style="background:#374151;border-color:rgba(255,255,255,.1)"></div></td></tr>
+                <tr><td>Fill — checked</td><td class="t-tok">color/action/secondary/default</td><td class="t-sw"><div class="swatch" style="background:#35A8D6;"></div></td></tr>
+                <tr><td>Fill — disabled</td><td class="t-tok">color/border/disabled</td><td class="t-sw"><div class="swatch" style="background:#374151;border-color:rgba(255,255,255,.1)"></div></td></tr>
+                <tr><td>Focus shadow</td><td class="t-tok">color/blue/400-35</td><td class="t-sw"><div class="swatch" style="background:rgba(90,191,224,.35);border-color:rgba(255,255,255,.1)"></div></td></tr>
+                <tr><td>Label text</td><td class="t-tok">color/text/primary</td><td class="t-sw"><div class="swatch" style="background:#FFFFFF;border-color:rgba(0,0,0,.1)"></div></td></tr>
+                <tr><td>Description text</td><td class="t-tok">color/text/secondary</td><td class="t-sw"><div class="swatch" style="background:#E5E7EB;"></div></td></tr>
+                <tr><td>Disabled text</td><td class="t-tok">color/text/disabled</td><td class="t-sw"><div class="swatch" style="background:#9CA3AF;"></div></td></tr>
+                <tr><td>Error text</td><td class="t-tok">color/text/error</td><td class="t-sw"><div class="swatch" style="background:#E36868;"></div></td></tr>
+              </tbody>
+            </table>
+          </div>
+
+        </div>
+      </section>
+
+      <!-- 7 · ACCESSIBILITY -->
+      <section class="doc-section" id="accessibility">
+        <h2 class="section-title">Accessibility</h2>
+        <ul class="a11y-list">
+          <li>
+            <div><strong>ARIA role:</strong> Use <code>role="checkbox"</code> with <code>aria-checked="true"</code>, <code>"false"</code>, or <code>"mixed"</code> for indeterminate.</div>
+          </li>
+          <li>
+            <div><strong>Keyboard:</strong> Reachable via <code>Tab</code>. Toggle with <code>Space</code>. Does not use arrow keys — each checkbox is independently focusable.</div>
+          </li>
+          <li>
+            <div><strong>Labels:</strong> Every checkbox must have a visible label. Use <code>aria-label</code> or <code>aria-labelledby</code> if the visual label is separate.</div>
+          </li>
+          <li>
+            <div><strong>Error state:</strong> Associate error messages using <code>aria-describedby</code> pointing to the error text element.</div>
+          </li>
+          <li>
+            <div><strong>Color contrast:</strong> Border and fill colors meet WCAG AA. Focus ring provides a visible 4px outline for keyboard users.</div>
+          </li>
+        </ul>
+      </section>
+
+      <!-- 8 · RELATED -->
+      <section class="doc-section" id="related">
+        <h2 class="section-title">Related Components</h2>
+        <div class="related-grid">
+          <a href="#" class="related-card">
+            <div class="rc-name">Radio Button</div>
+            <div class="rc-desc">Single-select control for mutually exclusive options within a group.</div>
+          </a>
+          <a href="#" class="related-card">
+            <div class="rc-name">Switch</div>
+            <div class="rc-desc">Binary toggle for immediate on/off settings with instant effect.</div>
+          </a>
+          <a href="#" class="related-card">
+            <div class="rc-name">Tile</div>
+            <div class="rc-desc">Card-based checkbox or radio for selections that benefit from visual context.</div>
+          </a>
+        </div>
+      </section>
+
+    </main>
+
+    <!-- RIGHT ANCHOR NAV -->
+    <aside class="right-nav" id="rightNav">
+      <ul class="rn-list">
+        <li><a href="#definition" class="active" id="rn-definition">Definition</a></li>
+        <li><a href="#anatomy"    id="rn-anatomy">Anatomy</a></li>
+        <li><a href="#variants"   id="rn-variants">Variants</a></li>
+        <li><a href="#properties" id="rn-properties">Properties</a></li>
+        <li><a href="#usage"      id="rn-usage">Usage</a></li>
+        <li><a href="#tokens"     id="rn-tokens">Tokens</a></li>
+        <li><a href="#accessibility" id="rn-accessibility">Accessibility</a></li>
+        <li><a href="#related"    id="rn-related">Related</a></li>
+      </ul>
+    </aside>
+
+  </div><!-- /content-wrap -->
+</div><!-- /shell -->
+
+<script>
+  lucide.createIcons();
+
+  const isMobile = () => window.innerWidth <= 768;
+  let sbOpen = !isMobile();
+  if (!sbOpen) document.getElementById('leftNav').classList.add('hidden');
+
+  function toggleSidebar() {
+    sbOpen = !sbOpen;
+    document.getElementById('leftNav').classList.toggle('hidden', !sbOpen);
+    if (!isMobile()) {
+      document.getElementById('contentWrap').style.marginLeft = sbOpen ? 'var(--left-w)' : '0';
+    }
+    document.getElementById('navOverlay').classList.toggle('active', sbOpen && isMobile());
+  }
+
+  function toggleTheme() {
+    const d = document.documentElement;
+    d.setAttribute('data-theme', d.getAttribute('data-theme') === 'dark' ? 'light' : 'dark');
+  }
+
+  const sections = ['definition','anatomy','variants','properties','usage','tokens','accessibility','related'];
+  const observer = new IntersectionObserver(entries => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        document.querySelectorAll('.rn-list a').forEach(a => a.classList.remove('active'));
+        const link = document.getElementById('rn-' + e.target.id);
+        if (link) link.classList.add('active');
+      }
+    });
+  }, { rootMargin: '-20% 0px -70% 0px' });
+  sections.forEach(id => {
+    const el = document.getElementById(id);
+    if (el) observer.observe(el);
+  });
+</script>
+</body>
+</html>

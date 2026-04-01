@@ -440,6 +440,103 @@ body {
   border-radius: 4px; border: 1px solid rgba(0,0,0,.1); vertical-align: middle;
 }
 
+/* ─── CHECKBOX COMPONENT ────────────────────────── */
+.cb-item {
+  display: flex; gap: 12px; align-items: flex-start;
+}
+.cb-box {
+  width: 20px; height: 20px; flex-shrink: 0; margin-top: 1px;
+  border-radius: 4px; border: 2px solid var(--border-strong);
+  position: relative; background: transparent;
+  box-sizing: border-box;
+}
+/* Checked */
+.cb-box--checked {
+  background: var(--action-secondary);
+  border-color: var(--action-secondary);
+}
+.cb-box--checked::after {
+  content: ''; position: absolute; top: 50%; left: 50%;
+  transform: translate(-50%, -55%) rotate(-45deg);
+  width: 10px; height: 6px;
+  border-left: 2px solid #fff; border-bottom: 2px solid #fff;
+}
+/* Indeterminate */
+.cb-box--indeterminate {
+  background: var(--action-secondary);
+  border-color: var(--action-secondary);
+}
+.cb-box--indeterminate::after {
+  content: ''; position: absolute; top: 50%; left: 50%;
+  transform: translate(-50%, -50%);
+  width: 10px; height: 2px;
+  background: #fff; border-radius: 1px;
+}
+/* Disabled */
+.cb-box--disabled { border-color: var(--border-disabled); }
+/* Disabled-checked */
+.cb-box--disabled-checked {
+  background: var(--border-disabled);
+  border-color: var(--border-disabled);
+}
+.cb-box--disabled-checked::after {
+  content: ''; position: absolute; top: 50%; left: 50%;
+  transform: translate(-50%, -55%) rotate(-45deg);
+  width: 10px; height: 6px;
+  border-left: 2px solid #fff; border-bottom: 2px solid #fff;
+}
+/* Hover */
+.cb-box--hover { border-color: var(--border-strong); }
+/* Focus */
+.cb-box--focus {
+  border-color: var(--border-focus);
+  box-shadow: 0 0 0 4px rgba(90,191,224,.35);
+}
+/* Focus-checked */
+.cb-box--focus-checked {
+  background: var(--action-secondary);
+  border-color: var(--action-secondary);
+  box-shadow: 0 0 0 4px rgba(90,191,224,.35);
+}
+.cb-box--focus-checked::after {
+  content: ''; position: absolute; top: 50%; left: 50%;
+  transform: translate(-50%, -55%) rotate(-45deg);
+  width: 10px; height: 6px;
+  border-left: 2px solid #fff; border-bottom: 2px solid #fff;
+}
+/* Error */
+.cb-box--error { border-color: var(--err-bd); }
+
+.cb-text { flex: 1; }
+.cb-label {
+  font-size: 14px; font-weight: 700; line-height: 19px;
+  color: var(--text-primary);
+}
+.cb-desc {
+  font-size: 12px; line-height: 16px; letter-spacing: 0.3px;
+  color: var(--text-secondary); margin-top: 2px;
+}
+.cb-error-msg {
+  font-size: 12px; line-height: 16px; letter-spacing: 0.3px;
+  color: var(--err-tx); margin-top: 2px;
+}
+.cb-label--disabled, .cb-desc--disabled { color: var(--text-tertiary); }
+
+/* States grid for variant preview */
+.cb-states-grid {
+  display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px;
+  padding: 24px; background: var(--surface-layer02);
+  border-radius: 8px; border: 1px solid var(--border);
+}
+.cb-state-label {
+  font-size: 10px; font-weight: 700; letter-spacing: .5px;
+  text-transform: uppercase; color: var(--text-tertiary);
+  margin-bottom: 10px;
+}
+@media (max-width: 768px) {
+  .cb-states-grid { grid-template-columns: repeat(2, 1fr); }
+}
+
 /* ─── TILE COMPONENT ─────────────────────────────── */
 .tile {
   width: 140px; height: 160px;
