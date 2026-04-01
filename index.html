@@ -1,0 +1,285 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>nuShip Design System</title>
+  <link href="https://fonts.googleapis.com/css2?family=Lato:wght@400;600;700;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="tokens.css">
+  <link rel="stylesheet" href="styles.css">
+  <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.min.js"></script>
+  <style>
+    .home-hero {
+      padding: 64px 48px 48px;
+      max-width: 760px;
+    }
+    .home-eyebrow {
+      font-size: 10px; font-weight: 700;
+      letter-spacing: 1px; text-transform: uppercase;
+      color: var(--text-tertiary); margin-bottom: 10px;
+    }
+    .home-title {
+      font-size: 40px; font-weight: 900;
+      line-height: 1.1; margin-bottom: 16px;
+      color: var(--text-primary);
+    }
+    .home-desc {
+      font-size: 16px; color: var(--text-secondary);
+      line-height: 1.6; max-width: 520px; margin-bottom: 40px;
+    }
+    .home-section { padding: 0 48px 48px; max-width: 760px; }
+    .home-section-title {
+      font-size: 11px; font-weight: 700;
+      letter-spacing: .8px; text-transform: uppercase;
+      color: var(--text-tertiary); margin-bottom: 16px;
+      padding-bottom: 10px; border-bottom: 1px solid var(--border);
+    }
+    .component-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 12px;
+    }
+    .component-card {
+      border: 1px solid var(--border); border-radius: 8px;
+      padding: 16px; text-decoration: none;
+      background: var(--surface-card); transition: all .18s;
+      display: flex; flex-direction: column; gap: 4px;
+    }
+    .component-card:hover {
+      border-color: var(--inf-ic);
+      box-shadow: 0 2px 12px rgba(0,0,0,.07);
+      transform: translateY(-1px);
+    }
+    .cc-name { font-size: 14px; font-weight: 700; color: var(--text-primary); }
+    .cc-desc { font-size: 12px; color: var(--text-secondary); line-height: 1.4; }
+    .cc-tag {
+      display: inline-flex; margin-top: 6px;
+      padding: 2px 8px; border-radius: 100px;
+      font-size: 10px; font-weight: 700;
+      background: var(--inf-bg); color: var(--inf-tx);
+      border: 1px solid var(--inf-bd); width: fit-content;
+    }
+    .cc-tag.coming {
+      background: var(--surface-layer02); color: var(--text-tertiary);
+      border-color: var(--border);
+    }
+    @media (max-width: 768px) {
+      .home-hero { padding: 32px 16px 24px; }
+      .home-title { font-size: 28px; }
+      .home-section { padding: 0 16px 40px; }
+      .component-grid { grid-template-columns: repeat(2, 1fr); }
+    }
+  </style>
+</head>
+<body>
+
+<!-- MOBILE OVERLAY -->
+<div id="navOverlay" class="nav-overlay" onclick="toggleSidebar()"></div>
+
+<!-- TOP NAV -->
+<nav class="topnav">
+  <button class="hamburger" onclick="toggleSidebar()" aria-label="Menu">
+    <i data-lucide="menu" style="width:18px;height:18px;color:var(--text-secondary)"></i>
+  </button>
+  <div class="bc">
+    <span class="cur">nuShip Design System</span>
+  </div>
+  <div class="nav-actions">
+    <div class="toggle-wrap" onclick="toggleTheme()" role="button">
+      <i data-lucide="moon" style="width:20px;height:20px"></i>
+      <div class="toggle-track"><div class="toggle-thumb"></div></div>
+      <i data-lucide="sun" style="width:20px;height:20px"></i>
+    </div>
+  </div>
+</nav>
+
+<div class="shell">
+
+  <!-- LEFT NAV -->
+  <nav class="left-nav" id="leftNav">
+    <div class="left-nav-inner">
+      <div class="ln-group">
+        <div class="ln-label">Inputs</div>
+        <ul class="ln-list">
+          <li><a href="#">Checkbox</a></li>
+          <li><a href="#">Date Picker</a></li>
+          <li><a href="#">Number Input</a></li>
+          <li><a href="#">Radio Button</a></li>
+          <li><a href="#">Search</a></li>
+          <li><a href="#">Select</a></li>
+          <li><a href="#">Slider</a></li>
+          <li><a href="#">Switch</a></li>
+          <li><a href="#">Text Area</a></li>
+          <li><a href="#">Text Input</a></li>
+        </ul>
+      </div>
+      <div class="ln-group">
+        <div class="ln-label">Feedback</div>
+        <ul class="ln-list">
+          <li><a href="alert.html">Alert</a></li>
+          <li><a href="#">Badge</a></li>
+          <li><a href="#">Toast</a></li>
+          <li><a href="#">Tooltip</a></li>
+        </ul>
+      </div>
+      <div class="ln-group">
+        <div class="ln-label">Navigation</div>
+        <ul class="ln-list">
+          <li><a href="#">Accordion</a></li>
+          <li><a href="#">Breadcrumb</a></li>
+          <li><a href="#">Dropdown</a></li>
+          <li><a href="#">Menu</a></li>
+          <li><a href="#">Tabs</a></li>
+        </ul>
+      </div>
+      <div class="ln-group">
+        <div class="ln-label">Actions</div>
+        <ul class="ln-list">
+          <li><a href="#">Button</a></li>
+          <li><a href="#">Link</a></li>
+          <li><a href="#">Tags</a></li>
+        </ul>
+      </div>
+      <div class="ln-group">
+        <div class="ln-label">Overlays</div>
+        <ul class="ln-list">
+          <li><a href="#">Modal</a></li>
+          <li><a href="#">Popover</a></li>
+        </ul>
+      </div>
+      <div class="ln-group">
+        <div class="ln-label">Display</div>
+        <ul class="ln-list">
+          <li><a href="#">Carousel</a></li>
+          <li><a href="#">File Upload</a></li>
+          <li><a href="#">Star Rating</a></li>
+          <li><a href="#">Timeline</a></li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <!-- CONTENT -->
+  <div class="content-wrap" id="contentWrap">
+    <main class="doc" style="max-width:900px;">
+
+      <div class="home-hero" style="padding-left:0;padding-right:0;">
+        <div class="home-eyebrow">nuShip</div>
+        <h1 class="home-title">Design System</h1>
+        <p class="home-desc">A shared design language for building consistent, accessible, and token-driven UI across nuShip products.</p>
+      </div>
+
+      <!-- Feedback -->
+      <div class="home-section" style="padding-left:0;padding-right:0;">
+        <div class="home-section-title">Feedback</div>
+        <div class="component-grid">
+          <a href="alert.html" class="component-card">
+            <div class="cc-name">Alert</div>
+            <div class="cc-desc">Inline messages for errors, warnings, and confirmations.</div>
+            <span class="cc-tag">Live</span>
+          </a>
+          <a href="#" class="component-card">
+            <div class="cc-name">Badge</div>
+            <div class="cc-desc">Small labels for status, counts, and categories.</div>
+            <span class="cc-tag coming">Coming soon</span>
+          </a>
+          <a href="#" class="component-card">
+            <div class="cc-name">Toast</div>
+            <div class="cc-desc">Temporary notifications that don't interrupt flow.</div>
+            <span class="cc-tag coming">Coming soon</span>
+          </a>
+          <a href="#" class="component-card">
+            <div class="cc-name">Tooltip</div>
+            <div class="cc-desc">Contextual hints triggered on hover or focus.</div>
+            <span class="cc-tag coming">Coming soon</span>
+          </a>
+        </div>
+      </div>
+
+      <!-- Inputs -->
+      <div class="home-section" style="padding-left:0;padding-right:0;margin-top:40px;">
+        <div class="home-section-title">Inputs</div>
+        <div class="component-grid">
+          <a href="#" class="component-card">
+            <div class="cc-name">Checkbox</div>
+            <div class="cc-desc">Multi-select control for boolean or grouped choices.</div>
+            <span class="cc-tag coming">Coming soon</span>
+          </a>
+          <a href="#" class="component-card">
+            <div class="cc-name">Radio Button</div>
+            <div class="cc-desc">Single-select control within a mutually exclusive group.</div>
+            <span class="cc-tag coming">Coming soon</span>
+          </a>
+          <a href="#" class="component-card">
+            <div class="cc-name">Select</div>
+            <div class="cc-desc">Dropdown for selecting a single value from a list.</div>
+            <span class="cc-tag coming">Coming soon</span>
+          </a>
+          <a href="#" class="component-card">
+            <div class="cc-name">Text Input</div>
+            <div class="cc-desc">Single-line field for short text entry.</div>
+            <span class="cc-tag coming">Coming soon</span>
+          </a>
+          <a href="#" class="component-card">
+            <div class="cc-name">Text Area</div>
+            <div class="cc-desc">Multi-line field for longer text content.</div>
+            <span class="cc-tag coming">Coming soon</span>
+          </a>
+          <a href="#" class="component-card">
+            <div class="cc-name">Switch</div>
+            <div class="cc-desc">Toggle control for binary on/off settings.</div>
+            <span class="cc-tag coming">Coming soon</span>
+          </a>
+        </div>
+      </div>
+
+      <!-- Actions -->
+      <div class="home-section" style="padding-left:0;padding-right:0;margin-top:40px;">
+        <div class="home-section-title">Actions</div>
+        <div class="component-grid">
+          <a href="#" class="component-card">
+            <div class="cc-name">Button</div>
+            <div class="cc-desc">Primary, secondary, and destructive action controls.</div>
+            <span class="cc-tag coming">Coming soon</span>
+          </a>
+          <a href="#" class="component-card">
+            <div class="cc-name">Link</div>
+            <div class="cc-desc">Inline navigational text with underline treatment.</div>
+            <span class="cc-tag coming">Coming soon</span>
+          </a>
+          <a href="#" class="component-card">
+            <div class="cc-name">Tags</div>
+            <div class="cc-desc">Removable label chips for filtering and categorization.</div>
+            <span class="cc-tag coming">Coming soon</span>
+          </a>
+        </div>
+      </div>
+
+    </main>
+  </div>
+
+</div><!-- /shell -->
+
+<script>
+  lucide.createIcons();
+
+  const isMobile = () => window.innerWidth <= 768;
+  let sbOpen = !isMobile();
+  if (!sbOpen) document.getElementById('leftNav').classList.add('hidden');
+
+  function toggleSidebar() {
+    sbOpen = !sbOpen;
+    document.getElementById('leftNav').classList.toggle('hidden', !sbOpen);
+    if (!isMobile()) {
+      document.getElementById('contentWrap').style.marginLeft = sbOpen ? 'var(--left-w)' : '0';
+    }
+    document.getElementById('navOverlay').classList.toggle('active', sbOpen && isMobile());
+  }
+
+  function toggleTheme() {
+    const d = document.documentElement;
+    d.setAttribute('data-theme', d.getAttribute('data-theme') === 'dark' ? 'light' : 'dark');
+  }
+</script>
+</body>
+</html>

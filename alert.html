@@ -1,0 +1,542 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Alert — nuShip Design System</title>
+  <link href="https://fonts.googleapis.com/css2?family=Lato:wght@400;600;700;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="tokens.css">
+  <link rel="stylesheet" href="styles.css">
+  <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.min.js"></script>
+</head>
+<body>
+
+<!-- MOBILE OVERLAY -->
+<div id="navOverlay" class="nav-overlay" onclick="toggleSidebar()"></div>
+
+<!-- TOP NAV -->
+<nav class="topnav">
+  <button class="hamburger" onclick="toggleSidebar()" aria-label="Menu">
+    <i data-lucide="menu" style="width:18px;height:18px;color:var(--text-secondary)"></i>
+  </button>
+  <div class="bc">
+    <a href="index.html">UI Components</a>
+    <i data-lucide="chevron-right" style="width:14px;height:14px;flex-shrink:0"></i>
+    <a href="#">Feedback</a>
+    <i data-lucide="chevron-right" style="width:14px;height:14px;flex-shrink:0"></i>
+    <span class="cur">Alert</span>
+  </div>
+  <div class="nav-actions">
+    <div class="toggle-wrap" onclick="toggleTheme()" role="button">
+      <i data-lucide="moon" style="width:20px;height:20px"></i>
+      <div class="toggle-track"><div class="toggle-thumb"></div></div>
+      <i data-lucide="sun" style="width:20px;height:20px"></i>
+    </div>
+  </div>
+</nav>
+
+<div class="shell">
+
+  <!-- LEFT NAV -->
+  <nav class="left-nav" id="leftNav">
+    <div class="left-nav-inner">
+      <div class="ln-group">
+        <div class="ln-label">Inputs</div>
+        <ul class="ln-list">
+          <li><a href="#">Checkbox</a></li>
+          <li><a href="#">Date Picker</a></li>
+          <li><a href="#">Number Input</a></li>
+          <li><a href="#">Radio Button</a></li>
+          <li><a href="#">Search</a></li>
+          <li><a href="#">Select</a></li>
+          <li><a href="#">Slider</a></li>
+          <li><a href="#">Switch</a></li>
+          <li><a href="#">Text Area</a></li>
+          <li><a href="#">Text Input</a></li>
+        </ul>
+      </div>
+      <div class="ln-group">
+        <div class="ln-label">Feedback</div>
+        <ul class="ln-list">
+          <li><a href="alert.html" class="active">Alert</a></li>
+          <li><a href="#">Badge</a></li>
+          <li><a href="#">Toast</a></li>
+          <li><a href="#">Tooltip</a></li>
+        </ul>
+      </div>
+      <div class="ln-group">
+        <div class="ln-label">Navigation</div>
+        <ul class="ln-list">
+          <li><a href="#">Accordion</a></li>
+          <li><a href="#">Breadcrumb</a></li>
+          <li><a href="#">Dropdown</a></li>
+          <li><a href="#">Menu</a></li>
+          <li><a href="#">Tabs</a></li>
+        </ul>
+      </div>
+      <div class="ln-group">
+        <div class="ln-label">Actions</div>
+        <ul class="ln-list">
+          <li><a href="#">Button</a></li>
+          <li><a href="#">Link</a></li>
+          <li><a href="#">Tags</a></li>
+        </ul>
+      </div>
+      <div class="ln-group">
+        <div class="ln-label">Overlays</div>
+        <ul class="ln-list">
+          <li><a href="#">Modal</a></li>
+          <li><a href="#">Popover</a></li>
+        </ul>
+      </div>
+      <div class="ln-group">
+        <div class="ln-label">Display</div>
+        <ul class="ln-list">
+          <li><a href="#">Carousel</a></li>
+          <li><a href="#">File Upload</a></li>
+          <li><a href="#">Star Rating</a></li>
+          <li><a href="#">Timeline</a></li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <!-- CONTENT -->
+  <div class="content-wrap" id="contentWrap">
+
+    <!-- MAIN DOC -->
+    <main class="doc">
+
+      <!-- 1 · DEFINITION -->
+      <section class="doc-section" id="definition">
+        <div class="def-eyebrow">Feedback</div>
+        <h1 class="def-title">Alert</h1>
+        <p class="def-desc">Alerts communicate important messages to users — errors, warnings, confirmations, or contextual information. They appear inline within a page or section and can be dismissed when no longer needed.</p>
+        <div class="def-tags">
+          <span class="tag">Developed</span>
+          <span class="tag">Figma</span>
+        </div>
+        <div class="preview-box">
+          <div class="preview-box-inner">
+            <div style="display:flex;flex-direction:column;gap:12px;">
+              <div class="alert al-err" role="alert">
+                <i data-lucide="alert-circle" style="width:20px;height:20px;flex-shrink:0;margin-top:1px"></i>
+                <div class="alert-body"><div class="alert-hd">Error alert</div><div class="alert-tx">Something went wrong. Please try again.</div></div>
+              </div>
+              <div class="alert al-suc" role="status">
+                <i data-lucide="check-circle" style="width:20px;height:20px;flex-shrink:0;margin-top:1px"></i>
+                <div class="alert-body"><div class="alert-hd">Success alert</div><div class="alert-tx">Your changes have been saved.</div></div>
+              </div>
+              <div class="alert al-inf" role="status">
+                <i data-lucide="info" style="width:20px;height:20px;flex-shrink:0;margin-top:1px"></i>
+                <div class="alert-body"><div class="alert-hd">Info alert</div><div class="alert-tx">Maintenance is scheduled for tonight.</div></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- 2 · ANATOMY -->
+      <section class="doc-section" id="anatomy">
+        <h2 class="section-title">Anatomy</h2>
+        <div class="anatomy-wrap">
+          <div class="anatomy-component">
+            <div class="alert al-err" role="alert">
+              <i data-lucide="alert-circle" style="width:20px;height:20px;flex-shrink:0;margin-top:1px"></i>
+              <div class="alert-body">
+                <div class="alert-hd">Alert Header</div>
+                <div class="alert-tx">Descriptive text</div>
+              </div>
+              <a href="#" class="alert-link" style="display:block;">Link</a>
+              <button class="alert-close"><i data-lucide="x" style="width:20px;height:20px"></i></button>
+            </div>
+            <span class="callout" style="top:8px;left:22px">1</span>
+            <span class="callout" style="top:8px;left:53px">2</span>
+            <span class="callout" style="top:36px;left:53px">3</span>
+            <span class="callout" style="top:8px;right:65px;left:auto;transform:translate(50%,0)">4</span>
+            <span class="callout" style="top:8px;right:22px;left:auto;transform:translate(50%,0)">5</span>
+          </div>
+          <div class="anatomy-legend">
+            <div class="legend-item"><span class="legend-num">1</span>Icon</div>
+            <div class="legend-item"><span class="legend-num">2</span>Header text</div>
+            <div class="legend-item"><span class="legend-num">3</span>Descriptive text</div>
+            <div class="legend-item"><span class="legend-num">4</span>Link <span style="color:var(--text-tertiary);margin-left:3px">(optional)</span></div>
+            <div class="legend-item"><span class="legend-num">5</span>Dismiss button <span style="color:var(--text-tertiary);margin-left:3px">(optional)</span></div>
+          </div>
+        </div>
+      </section>
+
+      <!-- 3 · VARIANTS -->
+      <section class="doc-section" id="variants">
+        <div class="var-header">
+          <h2 class="section-title" style="margin-bottom:0">Variants</h2>
+          <div class="var-tags">
+            <button class="var-tag" onclick="switchLayout(this,'global')">Global</button>
+            <button class="var-tag active" onclick="switchLayout(this,'page-level')">Page Level</button>
+          </div>
+        </div>
+
+        <div class="tabs">
+          <button class="tab active" onclick="switchTab(this,'v-suc')">Success</button>
+          <button class="tab" onclick="switchTab(this,'v-inf')">Informational</button>
+          <button class="tab" onclick="switchTab(this,'v-err')">Error</button>
+        </div>
+
+        <!-- Success -->
+        <div class="tab-panel active" id="v-suc">
+          <div class="var-panel">
+            <div class="var-previews">
+              <div class="var-preview">
+                <div class="alert al-suc" role="alert">
+                  <i data-lucide="check-circle" style="width:20px;height:20px;flex-shrink:0;margin-top:1px"></i>
+                  <div class="alert-body"><div class="alert-hd">Alert Header</div><div class="alert-tx">Descriptive text</div></div>
+                  <a class="alert-link" href="#">Link</a>
+                  <button class="alert-close"><i data-lucide="x" style="width:20px;height:20px"></i></button>
+                </div>
+              </div>
+              <div class="var-preview-dark">
+                <div class="alert al-suc" role="alert">
+                  <i data-lucide="check-circle" style="width:20px;height:20px;flex-shrink:0;margin-top:1px"></i>
+                  <div class="alert-body"><div class="alert-hd">Alert Header</div><div class="alert-tx">Descriptive text</div></div>
+                  <a class="alert-link" href="#">Link</a>
+                  <button class="alert-close"><i data-lucide="x" style="width:20px;height:20px"></i></button>
+                </div>
+              </div>
+            </div>
+            <div class="var-desc">
+              <div class="var-use-when">Use when:</div>
+              <ul class="var-use-list">
+                <li>A form or action completed successfully</li>
+                <li>Data was saved or submitted</li>
+                <li>A process finished without errors</li>
+                <li>Confirming a user's action was applied</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <!-- Informational -->
+        <div class="tab-panel" id="v-inf">
+          <div class="var-panel">
+            <div class="var-previews">
+              <div class="var-preview">
+                <div class="alert al-inf" role="alert">
+                  <i data-lucide="info" style="width:20px;height:20px;flex-shrink:0;margin-top:1px"></i>
+                  <div class="alert-body"><div class="alert-hd">Alert Header</div><div class="alert-tx">Descriptive text</div></div>
+                  <a class="alert-link" href="#">Link</a>
+                  <button class="alert-close"><i data-lucide="x" style="width:20px;height:20px"></i></button>
+                </div>
+              </div>
+              <div class="var-preview-dark">
+                <div class="alert al-inf" role="alert">
+                  <i data-lucide="info" style="width:20px;height:20px;flex-shrink:0;margin-top:1px"></i>
+                  <div class="alert-body"><div class="alert-hd">Alert Header</div><div class="alert-tx">Descriptive text</div></div>
+                  <a class="alert-link" href="#">Link</a>
+                  <button class="alert-close"><i data-lucide="x" style="width:20px;height:20px"></i></button>
+                </div>
+              </div>
+            </div>
+            <div class="var-desc">
+              <div class="var-use-when">Use when:</div>
+              <ul class="var-use-list">
+                <li>Providing helpful context or guidance</li>
+                <li>Announcing upcoming maintenance</li>
+                <li>Sharing non-critical system updates</li>
+                <li>Guiding users through a process</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <!-- Error -->
+        <div class="tab-panel" id="v-err">
+          <div class="var-panel">
+            <div class="var-previews">
+              <div class="var-preview">
+                <div class="alert al-err" role="alert">
+                  <i data-lucide="alert-circle" style="width:20px;height:20px;flex-shrink:0;margin-top:1px"></i>
+                  <div class="alert-body"><div class="alert-hd">Alert Header</div><div class="alert-tx">Descriptive text</div></div>
+                  <a class="alert-link" href="#">Link</a>
+                  <button class="alert-close"><i data-lucide="x" style="width:20px;height:20px"></i></button>
+                </div>
+              </div>
+              <div class="var-preview-dark">
+                <div class="alert al-err" role="alert">
+                  <i data-lucide="alert-circle" style="width:20px;height:20px;flex-shrink:0;margin-top:1px"></i>
+                  <div class="alert-body"><div class="alert-hd">Alert Header</div><div class="alert-tx">Descriptive text</div></div>
+                  <a class="alert-link" href="#">Link</a>
+                  <button class="alert-close"><i data-lucide="x" style="width:20px;height:20px"></i></button>
+                </div>
+              </div>
+            </div>
+            <div class="var-desc">
+              <div class="var-use-when">Use when:</div>
+              <ul class="var-use-list">
+                <li>System errors prevent user actions</li>
+                <li>Validation errors need immediate attention</li>
+                <li>Failed operations need to be communicated</li>
+                <li>Critical system issues arise</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- 4 · PROPERTIES -->
+      <section class="doc-section" id="properties">
+        <h2 class="section-title">Properties</h2>
+        <table class="props-table">
+          <thead>
+            <tr><th>Property</th><th>Type</th><th>Default</th><th>Description</th></tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td class="p-name">variant</td>
+              <td class="p-type">"success" | "error" | "info"</td>
+              <td class="p-def">"info"</td>
+              <td class="p-desc">Visual style and icon</td>
+            </tr>
+            <tr>
+              <td class="p-name">header</td>
+              <td class="p-type">string</td>
+              <td class="p-def">—</td>
+              <td class="p-desc">Bold title text</td>
+            </tr>
+            <tr>
+              <td class="p-name">description</td>
+              <td class="p-type">string</td>
+              <td class="p-def">—</td>
+              <td class="p-desc">Body text content</td>
+            </tr>
+            <tr>
+              <td class="p-name">dismissible</td>
+              <td class="p-type">boolean</td>
+              <td class="p-def">true</td>
+              <td class="p-desc">Shows close button</td>
+            </tr>
+            <tr>
+              <td class="p-name">onDismiss</td>
+              <td class="p-type">() =&gt; void</td>
+              <td class="p-def">—</td>
+              <td class="p-desc">Callback when dismissed</td>
+            </tr>
+          </tbody>
+        </table>
+      </section>
+
+      <!-- 5 · USAGE -->
+      <section class="doc-section" id="usage">
+        <h2 class="section-title">Usage Guidelines</h2>
+
+        <div class="usage-block">
+          <div class="usage-cols">
+            <div class="usage-card">
+              <div class="usage-card-header">
+                <div class="usage-icon do-icon"><i data-lucide="check" style="width:12px;height:12px"></i></div>
+                <div class="usage-card-title">Use for system feedback</div>
+              </div>
+              <ul class="usage-list">
+                <li>Show alerts after user actions like submitting a form</li>
+                <li>Use to communicate system status changes</li>
+                <li>Place alerts close to the content they relate to</li>
+              </ul>
+            </div>
+            <div class="usage-card">
+              <div class="usage-card-header">
+                <div class="usage-icon do-icon"><i data-lucide="check" style="width:12px;height:12px"></i></div>
+                <div class="usage-card-title">Match variant to message</div>
+              </div>
+              <ul class="usage-list">
+                <li>Use error for failed actions or validation issues</li>
+                <li>Use success for confirmations and completed tasks</li>
+                <li>Use info for neutral guidance or announcements</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <div class="usage-divider"></div>
+
+        <div class="usage-block">
+          <div class="usage-cols">
+            <div class="usage-card">
+              <div class="usage-card-header">
+                <div class="usage-icon dont-icon"><i data-lucide="x" style="width:12px;height:12px"></i></div>
+                <div class="usage-card-title">Don't overuse alerts</div>
+              </div>
+              <ul class="usage-list">
+                <li>Don't show multiple alerts simultaneously on the same page</li>
+                <li>Avoid using alerts for non-actionable information</li>
+                <li>Don't use alerts as persistent decorative elements</li>
+              </ul>
+            </div>
+            <div class="usage-card">
+              <div class="usage-card-header">
+                <div class="usage-icon dont-icon"><i data-lucide="x" style="width:12px;height:12px"></i></div>
+                <div class="usage-card-title">Don't block the page</div>
+              </div>
+              <ul class="usage-list">
+                <li>Don't use alerts for critical decisions — use a Modal instead</li>
+                <li>Don't use inline alerts for temporary notifications — use Toast</li>
+                <li>Avoid placing alerts in areas users rarely see</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- 6 · TOKENS USED -->
+      <section class="doc-section" id="tokens">
+        <h2 class="section-title">Tokens used</h2>
+        <div class="tokens-grid">
+
+          <!-- Light -->
+          <div>
+            <div class="tokens-group-label">Light</div>
+            <table class="tokens-table">
+              <thead><tr><th>Property</th><th>Token</th><th></th></tr></thead>
+              <tbody>
+                <tr><td>Error bg</td><td class="t-tok">color/status/error/bg</td><td class="t-sw"><div class="swatch" style="background:#FCE8E8;"></div></td></tr>
+                <tr><td>Error border</td><td class="t-tok">color/status/error/border</td><td class="t-sw"><div class="swatch" style="background:#A12F2F;"></div></td></tr>
+                <tr><td>Success bg</td><td class="t-tok">color/status/success/bg</td><td class="t-sw"><div class="swatch" style="background:#E8F2E8;"></div></td></tr>
+                <tr><td>Success border</td><td class="t-tok">color/status/success/border</td><td class="t-sw"><div class="swatch" style="background:#006C21;"></div></td></tr>
+                <tr><td>Info bg</td><td class="t-tok">color/status/info/bg</td><td class="t-sw"><div class="swatch" style="background:#E5EEF5;"></div></td></tr>
+                <tr><td>Info border</td><td class="t-tok">color/status/info/border</td><td class="t-sw"><div class="swatch" style="background:#027CB1;"></div></td></tr>
+                <tr><td>Text</td><td class="t-tok">color/text/primary</td><td class="t-sw"><div class="swatch" style="background:#374151;"></div></td></tr>
+              </tbody>
+            </table>
+          </div>
+
+          <!-- Dark -->
+          <div>
+            <div class="tokens-group-label">Dark</div>
+            <table class="tokens-table">
+              <thead><tr><th>Property</th><th>Token</th><th></th></tr></thead>
+              <tbody>
+                <tr><td>Error bg</td><td class="t-tok">color/status/error/bg</td><td class="t-sw"><div class="swatch" style="background:#811F1F;border-color:rgba(255,255,255,.1)"></div></td></tr>
+                <tr><td>Error border</td><td class="t-tok">color/status/error/border</td><td class="t-sw"><div class="swatch" style="background:#DB3939;"></div></td></tr>
+                <tr><td>Success bg</td><td class="t-tok">color/status/success/bg</td><td class="t-sw"><div class="swatch" style="background:#003322;border-color:rgba(255,255,255,.1)"></div></td></tr>
+                <tr><td>Success border</td><td class="t-tok">color/status/success/border</td><td class="t-sw"><div class="swatch" style="background:#4DAD82;"></div></td></tr>
+                <tr><td>Info bg</td><td class="t-tok">color/status/info/bg</td><td class="t-sw"><div class="swatch" style="background:#001F33;border-color:rgba(255,255,255,.1)"></div></td></tr>
+                <tr><td>Info border</td><td class="t-tok">color/status/info/border</td><td class="t-sw"><div class="swatch" style="background:#8FCBE6;"></div></td></tr>
+                <tr><td>Text</td><td class="t-tok">color/text/primary</td><td class="t-sw"><div class="swatch" style="background:#FFFFFF;border-color:rgba(0,0,0,.1)"></div></td></tr>
+              </tbody>
+            </table>
+          </div>
+
+        </div>
+      </section>
+
+      <!-- 7 · ACCESSIBILITY -->
+      <section class="doc-section" id="accessibility">
+        <h2 class="section-title">Accessibility</h2>
+        <ul class="a11y-list">
+          <li>
+            <div><strong>ARIA role:</strong> Use <code>role="alert"</code> for error/warning. Use <code>role="status"</code> for success/info.</div>
+          </li>
+          <li>
+            <div><strong>Keyboard:</strong> Dismiss button reachable via <code>Tab</code>, activated with <code>Enter</code> or <code>Space</code>.</div>
+          </li>
+          <li>
+            <div><strong>Color contrast:</strong> All text/icon pairs pass WCAG AA (4.5:1). Icon always pairs with color — never color alone.</div>
+          </li>
+          <li>
+            <div><strong>Screen readers:</strong> Add <code>aria-live="polite"</code> for dynamically injected alerts so they're announced automatically.</div>
+          </li>
+        </ul>
+      </section>
+
+      <!-- 8 · RELATED -->
+      <section class="doc-section" id="related">
+        <h2 class="section-title">Related Components</h2>
+        <div class="related-grid">
+          <a href="#" class="related-card">
+            <div class="rc-name">Toast</div>
+            <div class="rc-desc">Temporary, auto-dismissing notifications that don't interrupt flow.</div>
+          </a>
+          <a href="#" class="related-card">
+            <div class="rc-name">Banner</div>
+            <div class="rc-desc">Full-width persistent messages for page-level announcements.</div>
+          </a>
+          <a href="#" class="related-card">
+            <div class="rc-name">Modal</div>
+            <div class="rc-desc">Blocking overlay for critical actions requiring an explicit decision.</div>
+          </a>
+        </div>
+      </section>
+
+    </main>
+
+    <!-- RIGHT ANCHOR NAV -->
+    <aside class="right-nav" id="rightNav">
+      <ul class="rn-list">
+        <li><a href="#definition" class="active" id="rn-definition">Definition</a></li>
+        <li><a href="#anatomy"    id="rn-anatomy">Anatomy</a></li>
+        <li><a href="#variants"   id="rn-variants">Variants</a></li>
+        <li><a href="#properties" id="rn-properties">Properties</a></li>
+        <li><a href="#usage"      id="rn-usage">Usage</a></li>
+        <li><a href="#tokens"     id="rn-tokens">Tokens</a></li>
+        <li><a href="#accessibility" id="rn-accessibility">Accessibility</a></li>
+        <li><a href="#related"    id="rn-related">Related</a></li>
+      </ul>
+    </aside>
+
+  </div><!-- /content-wrap -->
+</div><!-- /shell -->
+
+<script>
+  lucide.createIcons();
+
+  const isMobile = () => window.innerWidth <= 768;
+  let sbOpen = !isMobile();
+  if (!sbOpen) document.getElementById('leftNav').classList.add('hidden');
+
+  function toggleSidebar() {
+    sbOpen = !sbOpen;
+    document.getElementById('leftNav').classList.toggle('hidden', !sbOpen);
+    if (!isMobile()) {
+      document.getElementById('contentWrap').style.marginLeft = sbOpen ? 'var(--left-w)' : '0';
+    }
+    document.getElementById('navOverlay').classList.toggle('active', sbOpen && isMobile());
+  }
+
+  function toggleTheme() {
+    const d = document.documentElement;
+    d.setAttribute('data-theme', d.getAttribute('data-theme') === 'dark' ? 'light' : 'dark');
+  }
+
+  function switchLayout(btn, layout) {
+    document.querySelectorAll('.var-tag').forEach(t => t.classList.remove('active'));
+    btn.classList.add('active');
+    const isBanner = layout === 'global';
+    document.querySelectorAll('.var-preview, .var-preview-dark').forEach(el => {
+      el.classList.toggle('banner', isBanner);
+    });
+    lucide.createIcons();
+  }
+
+  function switchTab(btn, panelId) {
+    btn.closest('.doc-section').querySelectorAll('.tab').forEach(b => b.classList.remove('active'));
+    btn.closest('.doc-section').querySelectorAll('.tab-panel').forEach(p => p.classList.remove('active'));
+    btn.classList.add('active');
+    document.getElementById(panelId).classList.add('active');
+    lucide.createIcons();
+  }
+
+  const sections = ['definition','anatomy','variants','properties','usage','tokens','accessibility','related'];
+  const observer = new IntersectionObserver(entries => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        document.querySelectorAll('.rn-list a').forEach(a => a.classList.remove('active'));
+        const link = document.getElementById('rn-' + e.target.id);
+        if (link) link.classList.add('active');
+      }
+    });
+  }, { rootMargin: '-20% 0px -70% 0px' });
+  sections.forEach(id => {
+    const el = document.getElementById(id);
+    if (el) observer.observe(el);
+  });
+</script>
+</body>
+</html>

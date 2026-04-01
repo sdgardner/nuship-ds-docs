@@ -1,0 +1,63 @@
+/* ─────────────────────────────────────────────────────
+   NuShip Design System — Design Tokens
+   Source of truth for all color + spacing values.
+   Light mode = :root   |   Dark mode = [data-theme="dark"]
+   ───────────────────────────────────────────────────── */
+
+:root {
+  --text-primary:   #374151;  /* color/text/primary */
+  --text-secondary: #4B5563;  /* color/text/secondary */
+  --text-tertiary:  #9CA3AF;  /* color/text/tertiary */
+  --text-link:      #016692;  /* color/link/surface-01/default */
+
+  --surface-shell:   #FFFFFF;  /* color/surface/shell */
+  --surface-layer01: #F9FAFB;  /* color/surface/layer-01 */
+  --surface-layer02: #F4F6F8;  /* color/surface/layer-02 */
+  --surface-layer03: #E5E7EB;  /* color/surface/layer-03 */
+  --surface-card:    #FFFFFF;  /* color/surface/card */
+
+  --border:          #CDD2D7;  /* color/border/interactive */
+  --border-strong:   #9CA3AF;  /* color/border/strong */
+  --border-disabled: #E5E7EB;  /* color/border/disabled */
+  --border-focus:    #5ABFE0;  /* color/border/focus-ring */
+
+  --action-secondary: #027CB1;  /* color/action/secondary/default */
+  --action-sec-hover: #016692;  /* color/action/secondary/hover */
+
+  /* Status tokens */
+  --err-bg:#FCE8E8; --err-bd:#A12F2F; --err-tx:#A12F2F; --err-ic:#A12F2F;
+  --suc-bg:#E8F2E8; --suc-bd:#006C21; --suc-tx:#006C21; --suc-ic:#006C21;
+  --inf-bg:#E5EEF5; --inf-bd:#027CB1; --inf-tx:#027CB1; --inf-ic:#027CB1;
+  --wrn-bg:#FDF4E8; --wrn-bd:#A85A02; --wrn-tx:#A85A02; --wrn-ic:#A85A02;
+
+  /* Layout */
+  --nav-h:  48px;
+  --left-w: 200px;
+}
+
+[data-theme="dark"] {
+  --text-primary:   #FFFFFF;
+  --text-secondary: #E5E7EB;
+  --text-tertiary:  #CDD2D7;
+  --text-link:      #5ABFE0;
+
+  --surface-shell:   #0A0A0A;
+  --surface-layer01: #0A0A0A;
+  --surface-layer02: #1E1E1E;
+  --surface-layer03: #374151;
+  --surface-card:    #0F0F0F;
+
+  --border:          #6B7280;
+  --border-strong:   #9CA3AF;
+  --border-disabled: #374151;
+  --border-focus:    #0083BB;
+
+  --action-secondary: #35A8D6;
+  --action-sec-hover: #5ABFE0;
+
+  /* Status tokens — dark */
+  --err-bg:#811F1F; --err-bd:#DB3939; --err-tx:#E36868; --err-ic:#F8D0D0;
+  --suc-bg:#003322; --suc-bd:#4DAD82; --suc-tx:#4DAD82; --suc-ic:#33A17A;
+  --inf-bg:#001F33; --inf-bd:#8FCBE6; --inf-tx:#8FCBE6; --inf-ic:#8FCBE6;
+  --wrn-bg:#331E00; --wrn-bd:#E49A35; --wrn-tx:#E49A35; --wrn-ic:#E49A35;
+}
