@@ -316,8 +316,16 @@ body {
 .variants-header {
   display: flex;
   align-items: flex-end;
-  border-bottom: 1px solid var(--border);
+  position: relative;
   margin-bottom: 20px;
+}
+.variants-header::after {
+  content: '';
+  position: absolute;
+  bottom: 0; left: 0; right: 0;
+  height: 1px;
+  background: var(--border);
+  z-index: 2;
 }
 .variants-header .section-title {
   padding-bottom: 10px;
