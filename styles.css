@@ -364,7 +364,7 @@ body {
   color: var(--text-primary); cursor: pointer;
   font-family: 'Lato', sans-serif; transition: color .15s, border-color .15s;
 }
-.tab:hover { border-bottom-color: var(--border); }
+.tab:hover { color: var(--text-secondary); }
 .tab.active { color: var(--text-primary); border-bottom-color: var(--action-secondary); }
 
 .tab-panel { display: none; }
