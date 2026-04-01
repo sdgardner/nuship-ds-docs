@@ -313,10 +313,31 @@ body {
 .var-preview.banner .alert-link,
 .var-preview-dark.banner .alert-link { display: block; }
 
-.tabs {
-  display: flex; border-bottom: 1px solid var(--border);
+.tabs-wrap {
+  position: relative;
+  overflow: hidden;
   margin-bottom: 20px;
+  border-bottom: 1px solid var(--border);
 }
+.tabs-wrap::after {
+  content: '';
+  position: absolute;
+  top: 0; right: 0; bottom: 0;
+  width: 56px;
+  background: linear-gradient(to right, transparent, var(--surface-shell));
+  pointer-events: none;
+  z-index: 1;
+}
+.tabs {
+  display: flex;
+  overflow-x: auto;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+  flex-wrap: nowrap;
+  border-bottom: none;
+  margin-bottom: 0;
+}
+.tabs::-webkit-scrollbar { display: none; }
 .tab {
   background: none; border: none; border-bottom: 2px solid transparent;
   margin-bottom: -1px; padding: 8px 14px;
