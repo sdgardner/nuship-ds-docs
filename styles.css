@@ -354,6 +354,7 @@ body {
   flex-wrap: nowrap;
   border-bottom: none;
   margin-bottom: 0;
+  padding-right: 64px;
 }
 .tabs::-webkit-scrollbar { display: none; }
 .tab {
