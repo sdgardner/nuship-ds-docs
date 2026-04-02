@@ -376,7 +376,7 @@ body {
 .tab.active { color: var(--text-primary); position: relative; z-index: 3; }
 .tab-indicator {
   position: absolute;
-  bottom: 0; height: 2px;
+  bottom: 0; height: 3px;
   background: var(--action-secondary);
   z-index: 3;
   transition: left .2s ease, width .2s ease;
