@@ -352,7 +352,7 @@ body {
   background: var(--surface-layer01);
   box-shadow: -2px 0 4px 0 rgba(0,0,0,0.18), -8px 0 20px 0 rgba(0,0,0,0.12);
   pointer-events: none;
-  z-index: 1;
+  z-index: 3;
 }
 .tabs {
   display: flex;
@@ -373,12 +373,12 @@ body {
   font-family: 'Lato', sans-serif; transition: color .15s, border-color .15s;
 }
 .tab:hover { color: var(--text-secondary); }
-.tab.active { color: var(--text-primary); position: relative; z-index: 3; }
+.tab.active { color: var(--text-primary); position: relative; z-index: 4; }
 .tab-indicator {
   position: absolute;
   bottom: 0; height: 3px;
   background: var(--action-secondary);
-  z-index: 3;
+  z-index: 4;
   transition: left .2s ease, width .2s ease;
 }
 
