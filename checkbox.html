@@ -733,7 +733,7 @@
     if (indicator) {
       const wrapRect = wrap.getBoundingClientRect();
       const btnRect = btn.getBoundingClientRect();
-      indicator.style.left = (btnRect.left - wrapRect.left + wrap.scrollLeft) + 'px';
+      indicator.style.left = (btnRect.left - wrapRect.left) + 'px';
       indicator.style.width = btnRect.width + 'px';
     }
     lucide.createIcons();
@@ -746,12 +746,17 @@
       if (active && indicator) {
         const wrapRect = wrap.getBoundingClientRect();
         const btnRect = active.getBoundingClientRect();
-        indicator.style.left = (btnRect.left - wrapRect.left + wrap.scrollLeft) + 'px';
+        indicator.style.left = (btnRect.left - wrapRect.left) + 'px';
         indicator.style.width = btnRect.width + 'px';
       }
     });
   }
-  window.addEventListener('load', positionTabIndicator);
+  window.addEventListener('load', () => {
+    positionTabIndicator();
+    document.querySelectorAll('.tabs').forEach(tabsEl => {
+      tabsEl.addEventListener('scroll', positionTabIndicator);
+    });
+  });
   window.addEventListener('resize', positionTabIndicator);
 
   function toggleTheme() {
