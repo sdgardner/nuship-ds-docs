@@ -732,6 +732,7 @@
     const indicator = wrap && wrap.querySelector('.tab-indicator');
     const tabsEl = wrap && wrap.querySelector('.tabs');
     if (indicator && tabsEl) {
+      indicator.style.transition = '';
       indicator.style.left = (btn.offsetLeft - tabsEl.scrollLeft) + 'px';
       indicator.style.width = btn.offsetWidth + 'px';
     }
@@ -744,6 +745,7 @@
       const indicator = wrap.querySelector('.tab-indicator');
       const tabsEl = wrap.querySelector('.tabs');
       if (active && indicator && tabsEl) {
+        indicator.style.transition = 'none';
         indicator.style.left = (active.offsetLeft - tabsEl.scrollLeft) + 'px';
         indicator.style.width = active.offsetWidth + 'px';
       }
