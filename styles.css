@@ -357,11 +357,11 @@ body {
 }
 .tabs-wrap::before {
   left: 0;
-  background: linear-gradient(to right, var(--surface-layer01) 40%, transparent);
+  background: linear-gradient(to right, var(--surface-layer01) 65%, transparent);
 }
 .tabs-wrap::after {
   right: 0;
-  background: linear-gradient(to left, var(--surface-layer01) 40%, transparent);
+  background: linear-gradient(to left, var(--surface-layer01) 65%, transparent);
 }
 .tabs {
   display: flex;
