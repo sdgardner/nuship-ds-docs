@@ -141,7 +141,7 @@ body {
   order: -1;
 }
 .rn-list { list-style: none; display: flex; flex-direction: column; }
-.rn-list li { border-left: 2px solid var(--border); transition: border-color .12s; }
+.rn-list li { border-left: 1px solid var(--border); transition: border-color .12s; }
 .rn-list a {
   display: block;
   padding: 6px 16px;
