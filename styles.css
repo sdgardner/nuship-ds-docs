@@ -373,7 +373,7 @@ body {
   font-family: 'Lato', sans-serif; transition: color .15s, border-color .15s;
 }
 .tab:hover { color: var(--text-secondary); }
-.tab.active { color: var(--text-primary); border-bottom-color: var(--action-secondary); }
+.tab.active { color: var(--text-primary); border-bottom-color: var(--action-secondary); position: relative; z-index: 3; }
 
 .tab-panel { display: none; }
 .tab-panel.active { display: block; }
