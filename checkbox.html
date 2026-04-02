@@ -730,11 +730,10 @@
     document.getElementById(panelId).classList.add('active');
     const wrap = btn.closest('.tabs-wrap');
     const indicator = wrap && wrap.querySelector('.tab-indicator');
-    if (indicator) {
-      const wrapRect = wrap.getBoundingClientRect();
-      const btnRect = btn.getBoundingClientRect();
-      indicator.style.left = (btnRect.left - wrapRect.left) + 'px';
-      indicator.style.width = btnRect.width + 'px';
+    const tabsEl = wrap && wrap.querySelector('.tabs');
+    if (indicator && tabsEl) {
+      indicator.style.left = (btn.offsetLeft - tabsEl.scrollLeft) + 'px';
+      indicator.style.width = btn.offsetWidth + 'px';
     }
     lucide.createIcons();
   }
@@ -743,11 +742,10 @@
     document.querySelectorAll('.tabs-wrap').forEach(wrap => {
       const active = wrap.querySelector('.tab.active');
       const indicator = wrap.querySelector('.tab-indicator');
-      if (active && indicator) {
-        const wrapRect = wrap.getBoundingClientRect();
-        const btnRect = active.getBoundingClientRect();
-        indicator.style.left = (btnRect.left - wrapRect.left) + 'px';
-        indicator.style.width = btnRect.width + 'px';
+      const tabsEl = wrap.querySelector('.tabs');
+      if (active && indicator && tabsEl) {
+        indicator.style.left = (active.offsetLeft - tabsEl.scrollLeft) + 'px';
+        indicator.style.width = active.offsetWidth + 'px';
       }
     });
   }
