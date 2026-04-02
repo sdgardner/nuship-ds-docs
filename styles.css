@@ -348,13 +348,13 @@ body {
 .tabs-wrap::after {
   content: '';
   position: absolute;
-  top: 0; bottom: 0;
-  right: 0;
-  width: 80px;
+  top: 0; right: 0; bottom: 0;
+  width: 48px;
+  background: var(--surface-layer01);
+  box-shadow: -2px 0 4px 0 rgba(0,0,0,0.1), -8px 0 20px 0 rgba(0,0,0,0.08);
   pointer-events: none;
   z-index: 3;
   border-bottom: 1px solid var(--border);
-  background: linear-gradient(to left, var(--surface-layer01) 40%, rgba(0,0,0,0.15) 70%, transparent);
 }
 .tabs {
   display: flex;
