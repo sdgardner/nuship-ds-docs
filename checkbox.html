@@ -192,6 +192,7 @@
               <button class="tab" onclick="switchTab(this,'v-disabled-checked')">Disabled Checked</button>
               <button class="tab" onclick="switchTab(this,'v-error')">Error</button>
             </div>
+            <div class="tab-indicator"></div>
           </div>
         </div>
 
@@ -840,8 +841,31 @@
     btn.closest('.doc-section').querySelectorAll('.tab-panel').forEach(p => p.classList.remove('active'));
     btn.classList.add('active');
     document.getElementById(panelId).classList.add('active');
+    const wrap = btn.closest('.tabs-wrap');
+    const indicator = wrap && wrap.querySelector('.tab-indicator');
+    if (indicator) {
+      const wrapRect = wrap.getBoundingClientRect();
+      const btnRect = btn.getBoundingClientRect();
+      indicator.style.left = (btnRect.left - wrapRect.left + wrap.scrollLeft) + 'px';
+      indicator.style.width = btnRect.width + 'px';
+    }
     lucide.createIcons();
   }
+
+  function positionTabIndicator() {
+    document.querySelectorAll('.tabs-wrap').forEach(wrap => {
+      const active = wrap.querySelector('.tab.active');
+      const indicator = wrap.querySelector('.tab-indicator');
+      if (active && indicator) {
+        const wrapRect = wrap.getBoundingClientRect();
+        const btnRect = active.getBoundingClientRect();
+        indicator.style.left = (btnRect.left - wrapRect.left + wrap.scrollLeft) + 'px';
+        indicator.style.width = btnRect.width + 'px';
+      }
+    });
+  }
+  window.addEventListener('load', positionTabIndicator);
+  window.addEventListener('resize', positionTabIndicator);
 
   function toggleTheme() {
     const d = document.documentElement;

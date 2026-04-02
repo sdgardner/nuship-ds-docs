@@ -340,7 +340,7 @@ body {
 .tabs-wrap {
   position: relative;
   overflow-x: hidden;
-  overflow-y: visible;
+  overflow-y: hidden;
   border-bottom: 1px solid var(--border);
   margin-bottom: 20px;
 }
@@ -373,7 +373,14 @@ body {
   font-family: 'Lato', sans-serif; transition: color .15s, border-color .15s;
 }
 .tab:hover { color: var(--text-secondary); }
-.tab.active { color: var(--text-primary); border-bottom: 2px solid var(--action-secondary); margin-bottom: -2px; position: relative; z-index: 3; }
+.tab.active { color: var(--text-primary); position: relative; z-index: 3; }
+.tab-indicator {
+  position: absolute;
+  bottom: 0; height: 2px;
+  background: var(--action-secondary);
+  z-index: 3;
+  transition: left .2s ease, width .2s ease;
+}
 
 .tab-panel { display: none; }
 .tab-panel.active { display: block; }
