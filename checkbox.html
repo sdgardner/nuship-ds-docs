@@ -155,7 +155,7 @@
       <section class="doc-section" id="anatomy">
         <h2 class="section-title">Anatomy</h2>
         <div class="anatomy-wrap">
-          <div class="anatomy-component" style="max-width:320px;">
+          <div class="anatomy-component" style="max-width:320px; padding-top:14px;">
             <div class="cb-item">
               <div class="cb-box cb-box--checked"></div>
               <div class="cb-text">
@@ -163,9 +163,9 @@
                 <div class="cb-desc">Optional description text</div>
               </div>
             </div>
-            <span class="callout" style="top:2px;left:10px">1</span>
-            <span class="callout" style="top:2px;left:53px">2</span>
-            <span class="callout" style="top:24px;left:53px">3</span>
+            <span class="callout" style="top:5px;left:10px">1</span>
+            <span class="callout" style="top:16px;left:53px">2</span>
+            <span class="callout" style="top:38px;left:53px">3</span>
           </div>
           <div class="anatomy-legend">
             <div class="legend-item"><span class="legend-num">1</span>Checkbox input</div>
@@ -596,119 +596,7 @@
         </div>
       </section>
 
-      <!-- 6 · MESSAGING -->
-      <section class="doc-section" id="messaging">
-        <h2 class="section-title">Messaging</h2>
-        <p style="font-size:14px;color:var(--text-secondary);margin-bottom:24px;line-height:1.6;">When and how to label checkbox groups</p>
-
-        <div style="display:flex;flex-direction:column;gap:28px;">
-
-          <div class="var-panel">
-            <div class="var-panel-title">Checkbox Labels</div>
-            <p style="font-size:13px;color:var(--text-secondary);margin-bottom:10px;line-height:1.6;font-weight:600;">Use clear, specific labels for each checkbox:</p>
-            <ul style="font-size:13px;color:var(--text-secondary);line-height:1.7;padding-left:20px;margin:0 0 14px;">
-              <li>Keep labels concise but descriptive</li>
-              <li>Use sentence case</li>
-              <li>Place label to the right of the checkbox</li>
-              <li>Make the entire label clickable (not just the checkbox)</li>
-              <li>Avoid negative phrasing (e.g., "Don't send emails" — use "Send emails" instead)</li>
-            </ul>
-            <p style="font-size:13px;color:var(--text-secondary);margin-bottom:6px;font-weight:600;">Examples:</p>
-            <ul style="font-size:13px;color:var(--text-secondary);line-height:1.7;padding-left:20px;margin:0;">
-              <li>"Express shipping"</li>
-              <li>"Include uShip Protection"</li>
-              <li>"Send email notifications"</li>
-              <li>"Remember my preferences"</li>
-            </ul>
-          </div>
-
-          <div class="var-panel">
-            <div class="var-panel-title">Group Labels</div>
-            <p style="font-size:13px;color:var(--text-secondary);margin-bottom:10px;line-height:1.6;font-weight:600;">Use group labels to organize related checkboxes:</p>
-            <ul style="font-size:13px;color:var(--text-secondary);line-height:1.7;padding-left:20px;margin:0 0 14px;">
-              <li>Clearly describe what the group of options represents</li>
-              <li>Include required indicator (*) when at least one selection is mandatory</li>
-              <li>Use sentence case</li>
-              <li>Keep under 50 characters</li>
-            </ul>
-            <p style="font-size:13px;color:var(--text-secondary);margin-bottom:6px;font-weight:600;">Examples:</p>
-            <ul style="font-size:13px;color:var(--text-secondary);line-height:1.7;padding-left:20px;margin:0;">
-              <li>"Notification Preferences *"</li>
-              <li>"Shipment Add-ons"</li>
-              <li>"Filter by Service Type"</li>
-            </ul>
-          </div>
-
-          <div class="var-panel">
-            <div class="var-panel-title">Helper Text</div>
-            <p style="font-size:13px;color:var(--text-secondary);margin-bottom:10px;line-height:1.6;font-weight:600;">Provide context for checkbox groups when needed:</p>
-            <ul style="font-size:13px;color:var(--text-secondary);line-height:1.7;padding-left:20px;margin:0 0 14px;">
-              <li>Explain what selecting options will do</li>
-              <li>Clarify any constraints (e.g., "Select at least one")</li>
-              <li>Keep to 1–2 lines maximum</li>
-              <li>Place below the group label, above the checkboxes</li>
-            </ul>
-            <p style="font-size:13px;color:var(--text-secondary);margin-bottom:6px;font-weight:600;">Examples:</p>
-            <ul style="font-size:13px;color:var(--text-secondary);line-height:1.7;padding-left:20px;margin:0;">
-              <li>"Select all that apply"</li>
-              <li>"Choose at least one notification method"</li>
-            </ul>
-          </div>
-
-          <div class="var-panel">
-            <div class="var-panel-title">Error Messages</div>
-            <p style="font-size:13px;color:var(--text-secondary);margin-bottom:10px;line-height:1.6;font-weight:600;">Show clear, actionable error messages for validation:</p>
-            <ul style="font-size:13px;color:var(--text-secondary);line-height:1.7;padding-left:20px;margin:0 0 14px;">
-              <li>Display below the checkbox group</li>
-              <li>Use red text (<code style="font-size:11px;background:var(--surface-layer02);padding:1px 5px;border-radius:3px;">color/text/error</code>)</li>
-              <li>Be specific about what needs to be fixed</li>
-              <li>Appear immediately after validation</li>
-            </ul>
-            <p style="font-size:13px;color:var(--text-secondary);margin-bottom:6px;font-weight:600;">Examples:</p>
-            <ul style="font-size:13px;color:var(--text-secondary);line-height:1.7;padding-left:20px;margin:0;">
-              <li>"Please select at least one option"</li>
-              <li>"You must agree to the terms to continue"</li>
-            </ul>
-          </div>
-
-        </div>
-
-        <!-- Best Practices -->
-        <div style="margin-top:32px;">
-          <div class="usage-block">
-            <div class="usage-cols">
-              <div class="usage-card">
-                <div class="usage-card-header">
-                  <div class="usage-icon do-icon"><i data-lucide="check" style="width:12px;height:12px"></i></div>
-                  <div class="usage-card-title">Do</div>
-                </div>
-                <ul class="usage-list">
-                  <li>Always provide labels for every checkbox</li>
-                  <li>Make labels and checkboxes easy to click/tap</li>
-                  <li>Use helper text when selection rules aren't obvious</li>
-                  <li>Group related checkboxes together</li>
-                  <li>Test with keyboard navigation</li>
-                </ul>
-              </div>
-              <div class="usage-card">
-                <div class="usage-card-header">
-                  <div class="usage-icon dont-icon"><i data-lucide="x" style="width:12px;height:12px"></i></div>
-                  <div class="usage-card-title">Don't</div>
-                </div>
-                <ul class="usage-list">
-                  <li>Use checkboxes for single-choice scenarios (use radio buttons)</li>
-                  <li>Create labels that are ambiguous or unclear</li>
-                  <li>Stack too many checkboxes without grouping or search</li>
-                  <li>Make labels too long (wrap to multiple lines sparingly)</li>
-                  <li>Use double negatives in labels</li>
-                </ul>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <!-- 7 · TOKENS USED -->
+      <!-- 6 · TOKENS USED -->
       <section class="doc-section" id="tokens">
         <h2 class="section-title">Tokens used</h2>
         <div class="tokens-grid">
@@ -810,7 +698,6 @@
         <li><a href="#variants"     id="rn-variants">Variants</a></li>
         <li><a href="#properties"   id="rn-properties">Properties</a></li>
         <li><a href="#usage"        id="rn-usage">Usage</a></li>
-        <li><a href="#messaging"    id="rn-messaging">Messaging</a></li>
         <li><a href="#tokens"       id="rn-tokens">Tokens</a></li>
         <li><a href="#accessibility" id="rn-accessibility">Accessibility</a></li>
         <li><a href="#related"      id="rn-related">Related</a></li>
@@ -872,7 +759,7 @@
     d.setAttribute('data-theme', d.getAttribute('data-theme') === 'dark' ? 'light' : 'dark');
   }
 
-  const sections = ['definition','anatomy','variants','properties','usage','messaging','tokens','accessibility','related'];
+  const sections = ['definition','anatomy','variants','properties','usage','tokens','accessibility','related'];
   const observer = new IntersectionObserver(entries => {
     entries.forEach(e => {
       if (e.isIntersecting) {
