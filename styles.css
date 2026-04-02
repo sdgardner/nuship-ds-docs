@@ -93,17 +93,18 @@ body {
   letter-spacing: .8px; text-transform: uppercase;
   color: var(--text-tertiary);
 }
-.ln-list { list-style: none; }
+.ln-list { list-style: none; padding: 0 8px; }
 .ln-list a {
-  display: block; padding: 5px 16px;
+  display: block; padding: 6px 8px;
   font-size: 14px; color: var(--text-secondary);
-  text-decoration: none; border-left: 3px solid transparent;
-  transition: color .12s, border-color .12s;
+  text-decoration: none;
+  border-radius: 6px;
+  transition: background .12s, color .12s;
 }
-.ln-list a:hover { color: var(--text-primary); }
+.ln-list a:hover { background: var(--surface-layer03); color: var(--text-primary); }
 .ln-list a.active {
-  color: var(--action-secondary);
-  border-left-color: var(--action-secondary);
+  background: var(--inf-bg);
+  color: var(--text-primary);
 }
 
 /* ─── CONTENT AREA ───────────────────────────────── */
