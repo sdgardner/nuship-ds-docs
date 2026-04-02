@@ -318,6 +318,7 @@ body {
   align-items: flex-end;
   position: relative;
   margin-bottom: 20px;
+  margin-right: -48px;
 }
 .variants-header::after {
   content: '';
