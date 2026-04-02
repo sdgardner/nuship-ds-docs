@@ -1,0 +1,699 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Avatar — nuShip Design System</title>
+  <link href="https://fonts.googleapis.com/css2?family=Lato:wght@400;600;700;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="tokens.css">
+  <link rel="stylesheet" href="styles.css">
+  <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.min.js"></script>
+</head>
+<body>
+
+<!-- MOBILE OVERLAY -->
+<div id="navOverlay" class="nav-overlay" onclick="toggleSidebar()"></div>
+
+<!-- TOP NAV -->
+<nav class="topnav">
+  <button class="hamburger" onclick="toggleSidebar()" aria-label="Menu">
+    <i data-lucide="menu" style="width:18px;height:18px;color:var(--text-secondary)"></i>
+  </button>
+  <div class="bc">
+    <a href="index.html">UI Components</a>
+    <i data-lucide="chevron-right" style="width:14px;height:14px;flex-shrink:0"></i>
+    <a href="#">Display</a>
+    <i data-lucide="chevron-right" style="width:14px;height:14px;flex-shrink:0"></i>
+    <span class="cur">Avatar</span>
+  </div>
+  <div class="nav-actions">
+    <div class="toggle-wrap" onclick="toggleTheme()" role="button">
+      <i data-lucide="moon" style="width:20px;height:20px"></i>
+      <div class="toggle-track"><div class="toggle-thumb"></div></div>
+      <i data-lucide="sun" style="width:20px;height:20px"></i>
+    </div>
+  </div>
+</nav>
+
+<div class="shell">
+
+  <!-- LEFT NAV -->
+  <nav class="left-nav" id="leftNav">
+    <div class="left-nav-inner">
+      <div class="ln-group">
+        <div class="ln-label">Inputs</div>
+        <ul class="ln-list">
+          <li><a href="checkbox.html">Checkbox</a></li>
+          <li><a href="#">Date Picker</a></li>
+          <li><a href="#">Number Input</a></li>
+          <li><a href="#">Radio Button</a></li>
+          <li><a href="#">Search</a></li>
+          <li><a href="#">Select</a></li>
+          <li><a href="#">Slider</a></li>
+          <li><a href="#">Switch</a></li>
+          <li><a href="#">Text Area</a></li>
+          <li><a href="#">Text Input</a></li>
+        </ul>
+      </div>
+      <div class="ln-group">
+        <div class="ln-label">Feedback</div>
+        <ul class="ln-list">
+          <li><a href="alert.html">Alert</a></li>
+          <li><a href="#">Badge</a></li>
+          <li><a href="#">Toast</a></li>
+          <li><a href="#">Tooltip</a></li>
+        </ul>
+      </div>
+      <div class="ln-group">
+        <div class="ln-label">Navigation</div>
+        <ul class="ln-list">
+          <li><a href="#">Accordion</a></li>
+          <li><a href="#">Breadcrumb</a></li>
+          <li><a href="#">Dropdown</a></li>
+          <li><a href="#">Menu</a></li>
+          <li><a href="#">Tabs</a></li>
+        </ul>
+      </div>
+      <div class="ln-group">
+        <div class="ln-label">Actions</div>
+        <ul class="ln-list">
+          <li><a href="#">Button</a></li>
+          <li><a href="#">Link</a></li>
+          <li><a href="#">Tags</a></li>
+        </ul>
+      </div>
+      <div class="ln-group">
+        <div class="ln-label">Overlays</div>
+        <ul class="ln-list">
+          <li><a href="#">Modal</a></li>
+          <li><a href="#">Popover</a></li>
+        </ul>
+      </div>
+      <div class="ln-group">
+        <div class="ln-label">Display</div>
+        <ul class="ln-list">
+          <li><a href="avatar.html" class="active">Avatar</a></li>
+          <li><a href="#">Carousel</a></li>
+          <li><a href="#">File Upload</a></li>
+          <li><a href="#">Star Rating</a></li>
+          <li><a href="#">Timeline</a></li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <!-- CONTENT -->
+  <div class="content-wrap" id="contentWrap">
+
+    <main class="doc">
+
+      <!-- 1 · DEFINITION -->
+      <section class="doc-section" id="definition">
+        <div class="def-eyebrow">Display</div>
+        <h1 class="def-title">Avatar</h1>
+        <p class="def-desc">Avatars identify users through photos or initials. They appear in profiles, comments, tables, and navigation — providing visual recognition at any scale.</p>
+        <div class="def-tags">
+          <span class="tag">Developed</span>
+          <span class="tag">Figma</span>
+        </div>
+        <div class="preview-box">
+          <div class="preview-box-inner">
+            <div style="display:flex;align-items:center;gap:16px;flex-wrap:wrap;">
+              <!-- image avatars xs sm md lg -->
+              <div class="av-wrap"><div class="av av--image av--xs"><img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ccircle cx='50' cy='50' r='50' fill='%23B8D4E8'/%3E%3Ccircle cx='50' cy='37' r='20' fill='%238FAFC5'/%3E%3Cellipse cx='50' cy='88' rx='32' ry='28' fill='%238FAFC5'/%3E%3C/svg%3E" alt=""></div></div>
+              <div class="av-wrap"><div class="av av--image av--sm"><img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ccircle cx='50' cy='50' r='50' fill='%23B8D4E8'/%3E%3Ccircle cx='50' cy='37' r='20' fill='%238FAFC5'/%3E%3Cellipse cx='50' cy='88' rx='32' ry='28' fill='%238FAFC5'/%3E%3C/svg%3E" alt=""></div></div>
+              <div class="av-wrap"><div class="av av--image av--md"><img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ccircle cx='50' cy='50' r='50' fill='%23B8D4E8'/%3E%3Ccircle cx='50' cy='37' r='20' fill='%238FAFC5'/%3E%3Cellipse cx='50' cy='88' rx='32' ry='28' fill='%238FAFC5'/%3E%3C/svg%3E" alt=""></div></div>
+              <div class="av-wrap"><div class="av av--image av--lg"><img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ccircle cx='50' cy='50' r='50' fill='%23B8D4E8'/%3E%3Ccircle cx='50' cy='37' r='20' fill='%238FAFC5'/%3E%3Cellipse cx='50' cy='88' rx='32' ry='28' fill='%238FAFC5'/%3E%3C/svg%3E" alt=""></div></div>
+              <!-- initials avatars sm md lg with badge -->
+              <div class="av-wrap"><div class="av av--initials av--sm">TA</div><span class="av-badge"></span></div>
+              <div class="av-wrap"><div class="av av--initials av--md">TA</div><span class="av-badge"></span></div>
+              <div class="av-wrap"><div class="av av--initials av--lg">TA</div><span class="av-badge"></span></div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- 2 · ANATOMY -->
+      <section class="doc-section" id="anatomy">
+        <h2 class="section-title">Anatomy</h2>
+        <div class="anatomy-wrap">
+          <div class="anatomy-component" style="max-width:200px; padding-top:14px; padding-bottom:14px;">
+            <div class="av-wrap" style="margin: 0 auto; display:flex; justify-content:center;">
+              <div class="av av--image av--lg"><img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ccircle cx='50' cy='50' r='50' fill='%23B8D4E8'/%3E%3Ccircle cx='50' cy='37' r='20' fill='%238FAFC5'/%3E%3Cellipse cx='50' cy='88' rx='32' ry='28' fill='%238FAFC5'/%3E%3C/svg%3E" alt=""></div>
+              <span class="av-badge" style="width:16px;height:16px;bottom:2px;right:2px;"></span>
+            </div>
+            <span class="callout" style="top:8px;left:30px">1</span>
+            <span class="callout" style="top:38px;left:92px">2</span>
+            <span class="callout" style="top:68px;left:130px">3</span>
+          </div>
+          <div class="anatomy-legend">
+            <div class="legend-item"><span class="legend-num">1</span>Container</div>
+            <div class="legend-item"><span class="legend-num">2</span>Photo / Initials</div>
+            <div class="legend-item"><span class="legend-num">3</span>Status badge <span style="color:var(--text-tertiary);margin-left:3px">(optional)</span></div>
+          </div>
+        </div>
+      </section>
+
+      <!-- 3 · VARIANTS -->
+      <section class="doc-section" id="variants">
+        <div class="variants-header">
+          <h2 class="section-title" style="margin-bottom:0; white-space:nowrap; flex-shrink:0; padding-right:20px;">Variants</h2>
+          <div class="tabs-wrap">
+            <div class="tabs">
+              <button class="tab active" onclick="switchTab(this,'v-image')">Image</button>
+              <button class="tab" onclick="switchTab(this,'v-initials')">Initials</button>
+              <button class="tab" onclick="switchTab(this,'v-badge')">Badge</button>
+            </div>
+            <div class="tab-indicator"></div>
+          </div>
+        </div>
+
+        <!-- Image -->
+        <div class="tab-panel active" id="v-image">
+          <div class="var-panel">
+            <div class="var-previews">
+              <div class="var-preview" data-theme="light">
+                <div class="av-row">
+                  <div class="av-size-item">
+                    <div class="av-wrap"><div class="av av--image av--xs"><img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ccircle cx='50' cy='50' r='50' fill='%23B8D4E8'/%3E%3Ccircle cx='50' cy='37' r='20' fill='%238FAFC5'/%3E%3Cellipse cx='50' cy='88' rx='32' ry='28' fill='%238FAFC5'/%3E%3C/svg%3E" alt=""></div></div>
+                    <span class="av-size-label">xs</span>
+                  </div>
+                  <div class="av-size-item">
+                    <div class="av-wrap"><div class="av av--image av--sm"><img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ccircle cx='50' cy='50' r='50' fill='%23B8D4E8'/%3E%3Ccircle cx='50' cy='37' r='20' fill='%238FAFC5'/%3E%3Cellipse cx='50' cy='88' rx='32' ry='28' fill='%238FAFC5'/%3E%3C/svg%3E" alt=""></div></div>
+                    <span class="av-size-label">sm</span>
+                  </div>
+                  <div class="av-size-item">
+                    <div class="av-wrap"><div class="av av--image av--md"><img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ccircle cx='50' cy='50' r='50' fill='%23B8D4E8'/%3E%3Ccircle cx='50' cy='37' r='20' fill='%238FAFC5'/%3E%3Cellipse cx='50' cy='88' rx='32' ry='28' fill='%238FAFC5'/%3E%3C/svg%3E" alt=""></div></div>
+                    <span class="av-size-label">md</span>
+                  </div>
+                  <div class="av-size-item">
+                    <div class="av-wrap"><div class="av av--image av--lg"><img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ccircle cx='50' cy='50' r='50' fill='%23B8D4E8'/%3E%3Ccircle cx='50' cy='37' r='20' fill='%238FAFC5'/%3E%3Cellipse cx='50' cy='88' rx='32' ry='28' fill='%238FAFC5'/%3E%3C/svg%3E" alt=""></div></div>
+                    <span class="av-size-label">lg</span>
+                  </div>
+                  <div class="av-size-item">
+                    <div class="av-wrap"><div class="av av--image av--xl"><img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ccircle cx='50' cy='50' r='50' fill='%23B8D4E8'/%3E%3Ccircle cx='50' cy='37' r='20' fill='%238FAFC5'/%3E%3Cellipse cx='50' cy='88' rx='32' ry='28' fill='%238FAFC5'/%3E%3C/svg%3E" alt=""></div></div>
+                    <span class="av-size-label">xl</span>
+                  </div>
+                  <div class="av-size-item">
+                    <div class="av-wrap"><div class="av av--image av--xxl"><img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ccircle cx='50' cy='50' r='50' fill='%23B8D4E8'/%3E%3Ccircle cx='50' cy='37' r='20' fill='%238FAFC5'/%3E%3Cellipse cx='50' cy='88' rx='32' ry='28' fill='%238FAFC5'/%3E%3C/svg%3E" alt=""></div></div>
+                    <span class="av-size-label">xxl</span>
+                  </div>
+                </div>
+              </div>
+              <div class="var-preview-dark" data-theme="dark">
+                <div class="av-row">
+                  <div class="av-size-item">
+                    <div class="av-wrap"><div class="av av--image av--xs"><img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ccircle cx='50' cy='50' r='50' fill='%23B8D4E8'/%3E%3Ccircle cx='50' cy='37' r='20' fill='%238FAFC5'/%3E%3Cellipse cx='50' cy='88' rx='32' ry='28' fill='%238FAFC5'/%3E%3C/svg%3E" alt=""></div></div>
+                    <span class="av-size-label" style="color:#9CA3AF">xs</span>
+                  </div>
+                  <div class="av-size-item">
+                    <div class="av-wrap"><div class="av av--image av--sm"><img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ccircle cx='50' cy='50' r='50' fill='%23B8D4E8'/%3E%3Ccircle cx='50' cy='37' r='20' fill='%238FAFC5'/%3E%3Cellipse cx='50' cy='88' rx='32' ry='28' fill='%238FAFC5'/%3E%3C/svg%3E" alt=""></div></div>
+                    <span class="av-size-label" style="color:#9CA3AF">sm</span>
+                  </div>
+                  <div class="av-size-item">
+                    <div class="av-wrap"><div class="av av--image av--md"><img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ccircle cx='50' cy='50' r='50' fill='%23B8D4E8'/%3E%3Ccircle cx='50' cy='37' r='20' fill='%238FAFC5'/%3E%3Cellipse cx='50' cy='88' rx='32' ry='28' fill='%238FAFC5'/%3E%3C/svg%3E" alt=""></div></div>
+                    <span class="av-size-label" style="color:#9CA3AF">md</span>
+                  </div>
+                  <div class="av-size-item">
+                    <div class="av-wrap"><div class="av av--image av--lg"><img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ccircle cx='50' cy='50' r='50' fill='%23B8D4E8'/%3E%3Ccircle cx='50' cy='37' r='20' fill='%238FAFC5'/%3E%3Cellipse cx='50' cy='88' rx='32' ry='28' fill='%238FAFC5'/%3E%3C/svg%3E" alt=""></div></div>
+                    <span class="av-size-label" style="color:#9CA3AF">lg</span>
+                  </div>
+                  <div class="av-size-item">
+                    <div class="av-wrap"><div class="av av--image av--xl"><img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ccircle cx='50' cy='50' r='50' fill='%23B8D4E8'/%3E%3Ccircle cx='50' cy='37' r='20' fill='%238FAFC5'/%3E%3Cellipse cx='50' cy='88' rx='32' ry='28' fill='%238FAFC5'/%3E%3C/svg%3E" alt=""></div></div>
+                    <span class="av-size-label" style="color:#9CA3AF">xl</span>
+                  </div>
+                  <div class="av-size-item">
+                    <div class="av-wrap"><div class="av av--image av--xxl"><img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ccircle cx='50' cy='50' r='50' fill='%23B8D4E8'/%3E%3Ccircle cx='50' cy='37' r='20' fill='%238FAFC5'/%3E%3Cellipse cx='50' cy='88' rx='32' ry='28' fill='%238FAFC5'/%3E%3C/svg%3E" alt=""></div></div>
+                    <span class="av-size-label" style="color:#9CA3AF">xxl</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="var-desc">
+              <div class="var-use-when">Use when:</div>
+              <ul class="var-use-list">
+                <li>Displaying a known user's photo</li>
+                <li>Profile or account pages</li>
+                <li>When visual recognition is important</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <!-- Initials -->
+        <div class="tab-panel" id="v-initials">
+          <div class="var-panel">
+            <div class="var-previews">
+              <div class="var-preview" data-theme="light">
+                <div class="av-row">
+                  <div class="av-size-item">
+                    <div class="av av--initials av--xs">TA</div>
+                    <span class="av-size-label">xs</span>
+                  </div>
+                  <div class="av-size-item">
+                    <div class="av av--initials av--sm">TA</div>
+                    <span class="av-size-label">sm</span>
+                  </div>
+                  <div class="av-size-item">
+                    <div class="av av--initials av--md">TA</div>
+                    <span class="av-size-label">md</span>
+                  </div>
+                  <div class="av-size-item">
+                    <div class="av av--initials av--lg">TA</div>
+                    <span class="av-size-label">lg</span>
+                  </div>
+                  <div class="av-size-item">
+                    <div class="av av--initials av--xl">TA</div>
+                    <span class="av-size-label">xl</span>
+                  </div>
+                  <div class="av-size-item">
+                    <div class="av av--initials av--xxl">TA</div>
+                    <span class="av-size-label">xxl</span>
+                  </div>
+                </div>
+              </div>
+              <div class="var-preview-dark" data-theme="dark">
+                <div class="av-row">
+                  <div class="av-size-item">
+                    <div class="av av--initials av--xs" style="background:#1E1E1E;border-color:#6B7280;color:#FFFFFF;">TA</div>
+                    <span class="av-size-label" style="color:#9CA3AF">xs</span>
+                  </div>
+                  <div class="av-size-item">
+                    <div class="av av--initials av--sm" style="background:#1E1E1E;border-color:#6B7280;color:#FFFFFF;">TA</div>
+                    <span class="av-size-label" style="color:#9CA3AF">sm</span>
+                  </div>
+                  <div class="av-size-item">
+                    <div class="av av--initials av--md" style="background:#1E1E1E;border-color:#6B7280;color:#FFFFFF;">TA</div>
+                    <span class="av-size-label" style="color:#9CA3AF">md</span>
+                  </div>
+                  <div class="av-size-item">
+                    <div class="av av--initials av--lg" style="background:#1E1E1E;border-color:#6B7280;color:#FFFFFF;">TA</div>
+                    <span class="av-size-label" style="color:#9CA3AF">lg</span>
+                  </div>
+                  <div class="av-size-item">
+                    <div class="av av--initials av--xl" style="background:#1E1E1E;border-color:#6B7280;color:#FFFFFF;">TA</div>
+                    <span class="av-size-label" style="color:#9CA3AF">xl</span>
+                  </div>
+                  <div class="av-size-item">
+                    <div class="av av--initials av--xxl" style="background:#1E1E1E;border-color:#6B7280;color:#FFFFFF;">TA</div>
+                    <span class="av-size-label" style="color:#9CA3AF">xxl</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="var-desc">
+              <div class="var-use-when">Use when:</div>
+              <ul class="var-use-list">
+                <li>No photo is available</li>
+                <li>System-generated users</li>
+                <li>Placeholder before photo loads</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <!-- Badge -->
+        <div class="tab-panel" id="v-badge">
+          <div class="var-panel">
+            <div class="var-previews">
+              <div class="var-preview" data-theme="light">
+                <div class="av-row">
+                  <div class="av-size-item">
+                    <div class="av-wrap">
+                      <div class="av av--image av--md"><img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ccircle cx='50' cy='50' r='50' fill='%23B8D4E8'/%3E%3Ccircle cx='50' cy='37' r='20' fill='%238FAFC5'/%3E%3Cellipse cx='50' cy='88' rx='32' ry='28' fill='%238FAFC5'/%3E%3C/svg%3E" alt=""></div>
+                      <span class="av-badge"></span>
+                    </div>
+                    <span class="av-size-label">md image</span>
+                  </div>
+                  <div class="av-size-item">
+                    <div class="av-wrap">
+                      <div class="av av--image av--lg"><img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ccircle cx='50' cy='50' r='50' fill='%23B8D4E8'/%3E%3Ccircle cx='50' cy='37' r='20' fill='%238FAFC5'/%3E%3Cellipse cx='50' cy='88' rx='32' ry='28' fill='%238FAFC5'/%3E%3C/svg%3E" alt=""></div>
+                      <span class="av-badge"></span>
+                    </div>
+                    <span class="av-size-label">lg image</span>
+                  </div>
+                  <div class="av-size-item">
+                    <div class="av-wrap">
+                      <div class="av av--image av--xl"><img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ccircle cx='50' cy='50' r='50' fill='%23B8D4E8'/%3E%3Ccircle cx='50' cy='37' r='20' fill='%238FAFC5'/%3E%3Cellipse cx='50' cy='88' rx='32' ry='28' fill='%238FAFC5'/%3E%3C/svg%3E" alt=""></div>
+                      <span class="av-badge"></span>
+                    </div>
+                    <span class="av-size-label">xl image</span>
+                  </div>
+                  <div class="av-size-item">
+                    <div class="av-wrap">
+                      <div class="av av--initials av--md">TA</div>
+                      <span class="av-badge"></span>
+                    </div>
+                    <span class="av-size-label">md initials</span>
+                  </div>
+                  <div class="av-size-item">
+                    <div class="av-wrap">
+                      <div class="av av--initials av--lg">TA</div>
+                      <span class="av-badge"></span>
+                    </div>
+                    <span class="av-size-label">lg initials</span>
+                  </div>
+                  <div class="av-size-item">
+                    <div class="av-wrap">
+                      <div class="av av--initials av--xl">TA</div>
+                      <span class="av-badge"></span>
+                    </div>
+                    <span class="av-size-label">xl initials</span>
+                  </div>
+                </div>
+              </div>
+              <div class="var-preview-dark" data-theme="dark">
+                <div class="av-row">
+                  <div class="av-size-item">
+                    <div class="av-wrap">
+                      <div class="av av--image av--md" style="border-color:#6B7280;"><img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ccircle cx='50' cy='50' r='50' fill='%23B8D4E8'/%3E%3Ccircle cx='50' cy='37' r='20' fill='%238FAFC5'/%3E%3Cellipse cx='50' cy='88' rx='32' ry='28' fill='%238FAFC5'/%3E%3C/svg%3E" alt=""></div>
+                      <span class="av-badge" style="border-color:#0A0A0A;"></span>
+                    </div>
+                    <span class="av-size-label" style="color:#9CA3AF">md image</span>
+                  </div>
+                  <div class="av-size-item">
+                    <div class="av-wrap">
+                      <div class="av av--image av--lg" style="border-color:#6B7280;"><img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ccircle cx='50' cy='50' r='50' fill='%23B8D4E8'/%3E%3Ccircle cx='50' cy='37' r='20' fill='%238FAFC5'/%3E%3Cellipse cx='50' cy='88' rx='32' ry='28' fill='%238FAFC5'/%3E%3C/svg%3E" alt=""></div>
+                      <span class="av-badge" style="border-color:#0A0A0A;"></span>
+                    </div>
+                    <span class="av-size-label" style="color:#9CA3AF">lg image</span>
+                  </div>
+                  <div class="av-size-item">
+                    <div class="av-wrap">
+                      <div class="av av--image av--xl" style="border-color:#6B7280;"><img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ccircle cx='50' cy='50' r='50' fill='%23B8D4E8'/%3E%3Ccircle cx='50' cy='37' r='20' fill='%238FAFC5'/%3E%3Cellipse cx='50' cy='88' rx='32' ry='28' fill='%238FAFC5'/%3E%3C/svg%3E" alt=""></div>
+                      <span class="av-badge" style="border-color:#0A0A0A;"></span>
+                    </div>
+                    <span class="av-size-label" style="color:#9CA3AF">xl image</span>
+                  </div>
+                  <div class="av-size-item">
+                    <div class="av-wrap">
+                      <div class="av av--initials av--md" style="background:#1E1E1E;border-color:#6B7280;color:#FFFFFF;">TA</div>
+                      <span class="av-badge" style="border-color:#0A0A0A;"></span>
+                    </div>
+                    <span class="av-size-label" style="color:#9CA3AF">md initials</span>
+                  </div>
+                  <div class="av-size-item">
+                    <div class="av-wrap">
+                      <div class="av av--initials av--lg" style="background:#1E1E1E;border-color:#6B7280;color:#FFFFFF;">TA</div>
+                      <span class="av-badge" style="border-color:#0A0A0A;"></span>
+                    </div>
+                    <span class="av-size-label" style="color:#9CA3AF">lg initials</span>
+                  </div>
+                  <div class="av-size-item">
+                    <div class="av-wrap">
+                      <div class="av av--initials av--xl" style="background:#1E1E1E;border-color:#6B7280;color:#FFFFFF;">TA</div>
+                      <span class="av-badge" style="border-color:#0A0A0A;"></span>
+                    </div>
+                    <span class="av-size-label" style="color:#9CA3AF">xl initials</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="var-desc">
+              <div class="var-use-when">Use when:</div>
+              <ul class="var-use-list">
+                <li>Showing online/active status</li>
+                <li>Real-time presence indicators</li>
+                <li>Messaging and collaboration contexts</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+      </section>
+
+      <!-- 4 · PROPERTIES -->
+      <section class="doc-section" id="properties">
+        <h2 class="section-title">Properties</h2>
+        <table class="props-table">
+          <thead>
+            <tr><th>Property</th><th>Type</th><th>Default</th><th>Description</th></tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td class="p-name">size</td>
+              <td class="p-type">"xs" | "sm" | "md" | "lg" | "xl" | "xxl"</td>
+              <td class="p-def">"md"</td>
+              <td class="p-desc">Diameter of the avatar circle</td>
+            </tr>
+            <tr>
+              <td class="p-name">type</td>
+              <td class="p-type">"image" | "initials"</td>
+              <td class="p-def">"initials"</td>
+              <td class="p-desc">Display a photo or text initials</td>
+            </tr>
+            <tr>
+              <td class="p-name">name</td>
+              <td class="p-type">string</td>
+              <td class="p-def">—</td>
+              <td class="p-desc">Initials text displayed when type="initials" (max 2 chars recommended)</td>
+            </tr>
+            <tr>
+              <td class="p-name">src</td>
+              <td class="p-type">string</td>
+              <td class="p-def">—</td>
+              <td class="p-desc">Image URL when type="image"</td>
+            </tr>
+            <tr>
+              <td class="p-name">badge</td>
+              <td class="p-type">boolean</td>
+              <td class="p-def">false</td>
+              <td class="p-desc">Show online/active status indicator</td>
+            </tr>
+          </tbody>
+        </table>
+      </section>
+
+      <!-- 5 · USAGE -->
+      <section class="doc-section" id="usage">
+        <h2 class="section-title">Usage Guidelines</h2>
+
+        <div class="usage-block">
+          <div class="usage-cols">
+
+            <div class="usage-card">
+              <div class="usage-card-header">
+                <div class="usage-icon do-icon"><i data-lucide="check" style="width:12px;height:12px"></i></div>
+                <div class="usage-card-title">Use for user identity</div>
+              </div>
+              <ul class="usage-list">
+                <li>Profiles, comment authors, account menus</li>
+                <li>Data tables with user columns</li>
+              </ul>
+            </div>
+
+            <div class="usage-card">
+              <div class="usage-card-header">
+                <div class="usage-icon do-icon"><i data-lucide="check" style="width:12px;height:12px"></i></div>
+                <div class="usage-card-title">Scale to context</div>
+              </div>
+              <ul class="usage-list">
+                <li>xs/sm for dense tables or chips</li>
+                <li>md/lg for cards or threads</li>
+                <li>xl/xxl for profile pages</li>
+              </ul>
+            </div>
+
+          </div>
+        </div>
+
+        <div class="usage-divider"></div>
+
+        <div class="usage-block">
+          <div class="usage-cols">
+
+            <div class="usage-card">
+              <div class="usage-card-header">
+                <div class="usage-icon dont-icon"><i data-lucide="x" style="width:12px;height:12px"></i></div>
+                <div class="usage-card-title">Don't use for brand or product logos</div>
+              </div>
+              <ul class="usage-list">
+                <li>Use a dedicated logo component instead</li>
+              </ul>
+            </div>
+
+            <div class="usage-card">
+              <div class="usage-card-header">
+                <div class="usage-icon dont-icon"><i data-lucide="x" style="width:12px;height:12px"></i></div>
+                <div class="usage-card-title">Don't truncate initials beyond 2 characters</div>
+              </div>
+              <ul class="usage-list">
+                <li>Use maximum 2-letter initials for readability at small sizes</li>
+              </ul>
+            </div>
+
+          </div>
+        </div>
+      </section>
+
+      <!-- 6 · TOKENS -->
+      <section class="doc-section" id="tokens">
+        <h2 class="section-title">Tokens used</h2>
+        <div class="tokens-grid">
+
+          <!-- Light -->
+          <div>
+            <div class="tokens-group-label">Light</div>
+            <table class="tokens-table">
+              <thead><tr><th>Property</th><th>Token</th><th></th></tr></thead>
+              <tbody>
+                <tr><td>Background (image)</td><td class="t-tok">color/status/info/bg</td><td class="t-sw"><div class="swatch" style="background:#E5EEF5;"></div></td></tr>
+                <tr><td>Background (initials)</td><td class="t-tok">color/surface/layer-02</td><td class="t-sw"><div class="swatch" style="background:#F4F6F8;"></div></td></tr>
+                <tr><td>Border</td><td class="t-tok">color/border/interactive</td><td class="t-sw"><div class="swatch" style="background:#CDD2D7;"></div></td></tr>
+                <tr><td>Initials text</td><td class="t-tok">color/text/primary</td><td class="t-sw"><div class="swatch" style="background:#374151;"></div></td></tr>
+                <tr><td>Badge fill</td><td class="t-tok">—</td><td class="t-sw"><div class="swatch" style="background:#22C55E;"></div></td></tr>
+                <tr><td>Badge border</td><td class="t-tok">color/surface/shell</td><td class="t-sw"><div class="swatch" style="background:#FFFFFF;"></div></td></tr>
+              </tbody>
+            </table>
+          </div>
+
+          <!-- Dark -->
+          <div>
+            <div class="tokens-group-label">Dark</div>
+            <table class="tokens-table">
+              <thead><tr><th>Property</th><th>Token</th><th></th></tr></thead>
+              <tbody>
+                <tr><td>Background (image)</td><td class="t-tok">color/status/info/bg</td><td class="t-sw"><div class="swatch" style="background:#001F33;border-color:rgba(255,255,255,.1)"></div></td></tr>
+                <tr><td>Background (initials)</td><td class="t-tok">color/surface/layer-02</td><td class="t-sw"><div class="swatch" style="background:#1E1E1E;border-color:rgba(255,255,255,.1)"></div></td></tr>
+                <tr><td>Border</td><td class="t-tok">color/border/interactive</td><td class="t-sw"><div class="swatch" style="background:#6B7280;"></div></td></tr>
+                <tr><td>Initials text</td><td class="t-tok">color/text/primary</td><td class="t-sw"><div class="swatch" style="background:#FFFFFF;border-color:rgba(0,0,0,.1)"></div></td></tr>
+                <tr><td>Badge fill</td><td class="t-tok">—</td><td class="t-sw"><div class="swatch" style="background:#22C55E;"></div></td></tr>
+                <tr><td>Badge border</td><td class="t-tok">color/surface/shell</td><td class="t-sw"><div class="swatch" style="background:#0A0A0A;border-color:rgba(255,255,255,.1)"></div></td></tr>
+              </tbody>
+            </table>
+          </div>
+
+        </div>
+      </section>
+
+      <!-- 7 · ACCESSIBILITY -->
+      <section class="doc-section" id="accessibility">
+        <h2 class="section-title">Accessibility</h2>
+        <ul class="a11y-list">
+          <li>
+            <div><strong>Alt text:</strong> Images must have meaningful <code>alt</code> text or <code>alt=""</code> if purely decorative with a visible name nearby.</div>
+          </li>
+          <li>
+            <div><strong>Screen readers:</strong> Initials avatars should have <code>aria-label</code> with the full user name so assistive technology announces the person's name rather than the initials.</div>
+          </li>
+          <li>
+            <div><strong>Status badge:</strong> Include <code>aria-label="Online"</code> (or equivalent status wording) on the badge element so screen reader users are informed of the presence status.</div>
+          </li>
+          <li>
+            <div><strong>Touch targets:</strong> Minimum touch target of 44×44px — wrap small avatars (xs, sm) in a larger hit area for interactive use to meet WCAG 2.5.5.</div>
+          </li>
+        </ul>
+      </section>
+
+      <!-- 8 · RELATED -->
+      <section class="doc-section" id="related">
+        <h2 class="section-title">Related Components</h2>
+        <div class="related-grid">
+          <a href="#" class="related-card">
+            <div class="rc-name">Badge</div>
+            <div class="rc-desc">Standalone status or count indicators used independently of user identity.</div>
+          </a>
+          <a href="#" class="related-card">
+            <div class="rc-name">User Card</div>
+            <div class="rc-desc">Expanded user identity component showing avatar alongside name and role.</div>
+          </a>
+          <a href="#" class="related-card">
+            <div class="rc-name">Table</div>
+            <div class="rc-desc">Data tables with user columns typically use xs or sm avatars for compact display.</div>
+          </a>
+        </div>
+      </section>
+
+    </main>
+
+    <!-- RIGHT ANCHOR NAV -->
+    <aside class="right-nav" id="rightNav">
+      <ul class="rn-list">
+        <li><a href="#definition"    class="active" id="rn-definition">Definition</a></li>
+        <li><a href="#anatomy"       id="rn-anatomy">Anatomy</a></li>
+        <li><a href="#variants"      id="rn-variants">Variants</a></li>
+        <li><a href="#properties"    id="rn-properties">Properties</a></li>
+        <li><a href="#usage"         id="rn-usage">Usage</a></li>
+        <li><a href="#tokens"        id="rn-tokens">Tokens</a></li>
+        <li><a href="#accessibility" id="rn-accessibility">Accessibility</a></li>
+        <li><a href="#related"       id="rn-related">Related</a></li>
+      </ul>
+    </aside>
+
+  </div><!-- /content-wrap -->
+</div><!-- /shell -->
+
+<script>
+  lucide.createIcons();
+
+  const isMobile = () => window.innerWidth <= 768;
+  let sbOpen = !isMobile();
+  if (!sbOpen) document.getElementById('leftNav').classList.add('hidden');
+
+  function toggleSidebar() {
+    sbOpen = !sbOpen;
+    document.getElementById('leftNav').classList.toggle('hidden', !sbOpen);
+    if (!isMobile()) {
+      document.getElementById('contentWrap').style.marginLeft = sbOpen ? 'var(--left-w)' : '0';
+    }
+    document.getElementById('navOverlay').classList.toggle('active', sbOpen && isMobile());
+  }
+
+  function switchTab(btn, panelId) {
+    btn.closest('.doc-section').querySelectorAll('.tab').forEach(b => b.classList.remove('active'));
+    btn.closest('.doc-section').querySelectorAll('.tab-panel').forEach(p => p.classList.remove('active'));
+    btn.classList.add('active');
+    document.getElementById(panelId).classList.add('active');
+    const wrap = btn.closest('.tabs-wrap');
+    const indicator = wrap && wrap.querySelector('.tab-indicator');
+    const tabsEl = wrap && wrap.querySelector('.tabs');
+    if (indicator && tabsEl) {
+      indicator.style.transition = '';
+      indicator.style.left = (btn.offsetLeft - tabsEl.scrollLeft) + 'px';
+      indicator.style.width = btn.offsetWidth + 'px';
+    }
+    lucide.createIcons();
+  }
+
+  function positionTabIndicator() {
+    document.querySelectorAll('.tabs-wrap').forEach(wrap => {
+      const active = wrap.querySelector('.tab.active');
+      const indicator = wrap.querySelector('.tab-indicator');
+      const tabsEl = wrap.querySelector('.tabs');
+      if (active && indicator && tabsEl) {
+        indicator.style.transition = 'none';
+        indicator.style.left = (active.offsetLeft - tabsEl.scrollLeft) + 'px';
+        indicator.style.width = active.offsetWidth + 'px';
+      }
+    });
+  }
+  window.addEventListener('load', () => {
+    positionTabIndicator();
+    document.querySelectorAll('.tabs').forEach(tabsEl => {
+      tabsEl.addEventListener('scroll', positionTabIndicator);
+    });
+  });
+  window.addEventListener('resize', positionTabIndicator);
+
+  function toggleTheme() {
+    const d = document.documentElement;
+    d.setAttribute('data-theme', d.getAttribute('data-theme') === 'dark' ? 'light' : 'dark');
+  }
+
+  const sections = ['definition','anatomy','variants','properties','usage','tokens','accessibility','related'];
+  const observer = new IntersectionObserver(entries => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        document.querySelectorAll('.rn-list a').forEach(a => a.classList.remove('active'));
+        const link = document.getElementById('rn-' + e.target.id);
+        if (link) link.classList.add('active');
+      }
+    });
+  }, { rootMargin: '-20% 0px -70% 0px' });
+  sections.forEach(id => {
+    const el = document.getElementById(id);
+    if (el) observer.observe(el);
+  });
+</script>
+</body>
+</html>
