@@ -345,15 +345,22 @@ body {
   border-bottom: 1px solid var(--border);
   margin-bottom: 20px;
 }
+.tabs-wrap::before,
 .tabs-wrap::after {
   content: '';
   position: absolute;
-  top: 0; left: 0; bottom: 0;
-  width: 48px;
-  background: var(--surface-layer01);
-  box-shadow: 2px 0 4px 0 rgba(0,0,0,0.08), 8px 0 20px 0 rgba(0,0,0,0.06);
+  top: 0; bottom: 0;
+  width: 56px;
   pointer-events: none;
   z-index: 3;
+}
+.tabs-wrap::before {
+  left: 0;
+  background: linear-gradient(to right, var(--surface-layer01) 20%, transparent);
+}
+.tabs-wrap::after {
+  right: 0;
+  background: linear-gradient(to left, var(--surface-layer01) 20%, transparent);
 }
 .tabs {
   display: flex;
@@ -363,8 +370,7 @@ body {
   flex-wrap: nowrap;
   border-bottom: none;
   margin-bottom: 0;
-  padding-left: 64px;
-  padding-right: 24px;
+  padding-right: 32px;
 }
 .tabs::-webkit-scrollbar { display: none; }
 .tab {
