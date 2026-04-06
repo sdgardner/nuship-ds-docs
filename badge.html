@@ -1,0 +1,674 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Badge — nuShip Design System</title>
+  <link href="https://fonts.googleapis.com/css2?family=Lato:wght@400;600;700;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="tokens.css">
+  <link rel="stylesheet" href="styles.css">
+  <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.min.js"></script>
+</head>
+<body>
+
+<!-- MOBILE OVERLAY -->
+<div id="navOverlay" class="nav-overlay" onclick="toggleSidebar()"></div>
+
+<!-- TOP NAV -->
+<nav class="topnav">
+  <button class="hamburger" onclick="toggleSidebar()" aria-label="Menu">
+    <i data-lucide="menu" style="width:18px;height:18px;color:var(--text-secondary)"></i>
+  </button>
+  <div class="bc">
+    <a href="index.html">UI Components</a>
+    <i data-lucide="chevron-right" style="width:14px;height:14px;flex-shrink:0"></i>
+    <a href="#">Feedback</a>
+    <i data-lucide="chevron-right" style="width:14px;height:14px;flex-shrink:0"></i>
+    <span class="cur">Badge</span>
+  </div>
+  <div class="nav-actions">
+    <div class="toggle-wrap" onclick="toggleTheme()" role="button">
+      <i data-lucide="moon" style="width:20px;height:20px"></i>
+      <div class="toggle-track"><div class="toggle-thumb"></div></div>
+      <i data-lucide="sun" style="width:20px;height:20px"></i>
+    </div>
+  </div>
+</nav>
+
+<div class="shell">
+
+  <!-- LEFT NAV -->
+  <nav class="left-nav" id="leftNav">
+    <div class="left-nav-inner">
+      <div class="ln-group">
+        <div class="ln-label">Inputs</div>
+        <ul class="ln-list">
+          <li><a href="checkbox.html">Checkbox</a></li>
+          <li><a href="datepicker.html">Date Picker</a></li>
+          <li><a href="#">Number Input</a></li>
+          <li><a href="#">Radio Button</a></li>
+          <li><a href="#">Search</a></li>
+          <li><a href="select.html">Select</a></li>
+          <li><a href="#">Slider</a></li>
+          <li><a href="#">Switch</a></li>
+          <li><a href="#">Text Area</a></li>
+          <li><a href="#">Text Input</a></li>
+        </ul>
+      </div>
+      <div class="ln-group">
+        <div class="ln-label">Feedback</div>
+        <ul class="ln-list">
+          <li><a href="alert.html">Alert</a></li>
+          <li><a href="badge.html" class="active">Badge</a></li>
+          <li><a href="#">Toast</a></li>
+          <li><a href="#">Tooltip</a></li>
+        </ul>
+      </div>
+      <div class="ln-group">
+        <div class="ln-label">Navigation</div>
+        <ul class="ln-list">
+          <li><a href="accordion.html">Accordion</a></li>
+          <li><a href="#">Breadcrumb</a></li>
+          <li><a href="#">Dropdown</a></li>
+          <li><a href="#">Menu</a></li>
+          <li><a href="#">Tabs</a></li>
+        </ul>
+      </div>
+      <div class="ln-group">
+        <div class="ln-label">Actions</div>
+        <ul class="ln-list">
+          <li><a href="button.html">Button</a></li>
+          <li><a href="#">Link</a></li>
+          <li><a href="#">Tags</a></li>
+        </ul>
+      </div>
+      <div class="ln-group">
+        <div class="ln-label">Overlays</div>
+        <ul class="ln-list">
+          <li><a href="#">Modal</a></li>
+          <li><a href="#">Popover</a></li>
+        </ul>
+      </div>
+      <div class="ln-group">
+        <div class="ln-label">Display</div>
+        <ul class="ln-list">
+          <li><a href="avatar.html">Avatar</a></li>
+          <li><a href="#">Carousel</a></li>
+          <li><a href="#">File Upload</a></li>
+          <li><a href="#">Star Rating</a></li>
+          <li><a href="#">Timeline</a></li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <!-- CONTENT -->
+  <div class="content-wrap" id="contentWrap">
+    <main class="doc">
+
+      <!-- 1 · DEFINITION -->
+      <section class="doc-section" id="definition">
+        <div class="def-eyebrow">Feedback</div>
+        <h1 class="def-title">Badge</h1>
+        <p class="def-desc">Badges are compact, non-interactive labels used to communicate status, category, or metadata at a glance. They pair a semantic color with a short text string to convey meaning without requiring user action.</p>
+        <div class="def-tags">
+          <span class="tag">Developed</span>
+          <span class="tag">Figma</span>
+        </div>
+        <div class="preview-box">
+          <div class="preview-box-inner">
+            <div style="display:flex;gap:32px;align-items:flex-end;justify-content:center;">
+              <div style="display:flex;flex-direction:column;align-items:center;gap:8px;">
+                <span style="font-size:11px;font-weight:700;letter-spacing:.05em;text-transform:uppercase;color:var(--text-tertiary);">Small</span>
+                <div style="display:flex;gap:8px;align-items:center;">
+                  <span class="bdg bdg--blue bdg--outline">Active</span>
+                  <span class="bdg bdg--blue bdg--solid">Active</span>
+                </div>
+              </div>
+              <div style="display:flex;flex-direction:column;align-items:center;gap:8px;">
+                <span style="font-size:11px;font-weight:700;letter-spacing:.05em;text-transform:uppercase;color:var(--text-tertiary);">Large</span>
+                <div style="display:flex;gap:8px;align-items:center;">
+                  <span class="bdg bdg--blue bdg--outline bdg--lg">Active</span>
+                  <span class="bdg bdg--blue bdg--solid bdg--lg">Active</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- 2 · ANATOMY -->
+      <section class="doc-section" id="anatomy">
+        <h2 class="section-title">Anatomy</h2>
+        <div class="anatomy-wrap">
+          <div class="anatomy-component" style="width:240px;box-sizing:border-box;padding:48px;display:flex;justify-content:center;align-items:center;">
+            <span class="bdg bdg--blue bdg--outline bdg--lg" style="pointer-events:none;">Active</span>
+            <span class="callout" style="top:36px;left:76px">1</span>
+            <span class="callout" style="top:56px;left:118px">2</span>
+          </div>
+          <div class="anatomy-legend">
+            <div class="legend-item"><span class="legend-num">1</span>Container</div>
+            <div class="legend-item"><span class="legend-num">2</span>Label</div>
+          </div>
+        </div>
+      </section>
+
+      <!-- 3 · VARIANTS -->
+      <section class="doc-section" id="variants">
+        <h2 class="section-title">Variants</h2>
+        <div class="tabs-wrap">
+          <div class="tabs">
+            <button class="tab active" onclick="switchTab(this,'v-standard')">Standard</button>
+            <button class="tab" onclick="switchTab(this,'v-positive')">Positive</button>
+            <button class="tab" onclick="switchTab(this,'v-neutral')">Neutral</button>
+            <button class="tab" onclick="switchTab(this,'v-negative')">Negative</button>
+            <button class="tab" onclick="switchTab(this,'v-warning')">Warning</button>
+          </div>
+        </div>
+
+        <!-- Standard (Blue) -->
+        <div class="tab-panel active" id="v-standard">
+          <div class="var-panel">
+            <div class="var-previews">
+              <div class="var-preview" data-theme="light">
+                <div style="display:flex;flex-direction:column;gap:12px;align-items:flex-start;">
+                  <div style="display:flex;gap:8px;align-items:center;">
+                    <span class="bdg bdg--blue bdg--outline">Active</span>
+                    <span class="bdg bdg--blue bdg--outline bdg--lg">Active</span>
+                  </div>
+                  <div style="display:flex;gap:8px;align-items:center;">
+                    <span class="bdg bdg--blue bdg--solid">Active</span>
+                    <span class="bdg bdg--blue bdg--solid bdg--lg">Active</span>
+                  </div>
+                </div>
+              </div>
+              <div class="var-preview-dark" data-theme="dark">
+                <div style="display:flex;flex-direction:column;gap:12px;align-items:flex-start;">
+                  <div style="display:flex;gap:8px;align-items:center;">
+                    <span class="bdg bdg--blue bdg--outline">Active</span>
+                    <span class="bdg bdg--blue bdg--outline bdg--lg">Active</span>
+                  </div>
+                  <div style="display:flex;gap:8px;align-items:center;">
+                    <span class="bdg bdg--blue bdg--solid">Active</span>
+                    <span class="bdg bdg--blue bdg--solid bdg--lg">Active</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="var-desc">
+              <div class="var-use-when">Use when:</div>
+              <ul class="var-use-list">
+                <li>Communicating a neutral, informational, or default active status</li>
+                <li>Indicating a record is confirmed, in-service, or currently active</li>
+                <li>No strong positive or negative connotation is required</li>
+              </ul>
+              <div class="var-use-when" style="margin-top:12px;">Token group:</div>
+              <ul class="var-use-list">
+                <li><code>color/badge/standard</code></li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <!-- Positive (Green) -->
+        <div class="tab-panel" id="v-positive">
+          <div class="var-panel">
+            <div class="var-previews">
+              <div class="var-preview" data-theme="light">
+                <div style="display:flex;flex-direction:column;gap:12px;align-items:flex-start;">
+                  <div style="display:flex;gap:8px;align-items:center;">
+                    <span class="bdg bdg--green bdg--outline">Shipped</span>
+                    <span class="bdg bdg--green bdg--outline bdg--lg">Shipped</span>
+                  </div>
+                  <div style="display:flex;gap:8px;align-items:center;">
+                    <span class="bdg bdg--green bdg--solid">Shipped</span>
+                    <span class="bdg bdg--green bdg--solid bdg--lg">Shipped</span>
+                  </div>
+                </div>
+              </div>
+              <div class="var-preview-dark" data-theme="dark">
+                <div style="display:flex;flex-direction:column;gap:12px;align-items:flex-start;">
+                  <div style="display:flex;gap:8px;align-items:center;">
+                    <span class="bdg bdg--green bdg--outline">Shipped</span>
+                    <span class="bdg bdg--green bdg--outline bdg--lg">Shipped</span>
+                  </div>
+                  <div style="display:flex;gap:8px;align-items:center;">
+                    <span class="bdg bdg--green bdg--solid">Shipped</span>
+                    <span class="bdg bdg--green bdg--solid bdg--lg">Shipped</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="var-desc">
+              <div class="var-use-when">Use when:</div>
+              <ul class="var-use-list">
+                <li>Indicating a successful outcome, completed action, or confirmed delivery</li>
+                <li>Communicating a healthy, approved, or verified state</li>
+                <li>Marking items as delivered, resolved, or accepted</li>
+              </ul>
+              <div class="var-use-when" style="margin-top:12px;">Token group:</div>
+              <ul class="var-use-list">
+                <li><code>color/badge/positive</code></li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <!-- Neutral (Purple) -->
+        <div class="tab-panel" id="v-neutral">
+          <div class="var-panel">
+            <div class="var-previews">
+              <div class="var-preview" data-theme="light">
+                <div style="display:flex;flex-direction:column;gap:12px;align-items:flex-start;">
+                  <div style="display:flex;gap:8px;align-items:center;">
+                    <span class="bdg bdg--purple bdg--outline">Draft</span>
+                    <span class="bdg bdg--purple bdg--outline bdg--lg">Draft</span>
+                  </div>
+                  <div style="display:flex;gap:8px;align-items:center;">
+                    <span class="bdg bdg--purple bdg--solid">Draft</span>
+                    <span class="bdg bdg--purple bdg--solid bdg--lg">Draft</span>
+                  </div>
+                </div>
+              </div>
+              <div class="var-preview-dark" data-theme="dark">
+                <div style="display:flex;flex-direction:column;gap:12px;align-items:flex-start;">
+                  <div style="display:flex;gap:8px;align-items:center;">
+                    <span class="bdg bdg--purple bdg--outline">Draft</span>
+                    <span class="bdg bdg--purple bdg--outline bdg--lg">Draft</span>
+                  </div>
+                  <div style="display:flex;gap:8px;align-items:center;">
+                    <span class="bdg bdg--purple bdg--solid">Draft</span>
+                    <span class="bdg bdg--purple bdg--solid bdg--lg">Draft</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="var-desc">
+              <div class="var-use-when">Use when:</div>
+              <ul class="var-use-list">
+                <li>Marking items in a draft, inactive, or unpublished state</li>
+                <li>Labeling content that is not yet actioned or categorized</li>
+                <li>Distinguishing a special classification without strong positive or negative valence</li>
+              </ul>
+              <div class="var-use-when" style="margin-top:12px;">Token group:</div>
+              <ul class="var-use-list">
+                <li><code>color/badge/neutral</code></li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <!-- Negative (Red) -->
+        <div class="tab-panel" id="v-negative">
+          <div class="var-panel">
+            <div class="var-previews">
+              <div class="var-preview" data-theme="light">
+                <div style="display:flex;flex-direction:column;gap:12px;align-items:flex-start;">
+                  <div style="display:flex;gap:8px;align-items:center;">
+                    <span class="bdg bdg--red bdg--outline">Cancelled</span>
+                    <span class="bdg bdg--red bdg--outline bdg--lg">Cancelled</span>
+                  </div>
+                  <div style="display:flex;gap:8px;align-items:center;">
+                    <span class="bdg bdg--red bdg--solid">Cancelled</span>
+                    <span class="bdg bdg--red bdg--solid bdg--lg">Cancelled</span>
+                  </div>
+                </div>
+              </div>
+              <div class="var-preview-dark" data-theme="dark">
+                <div style="display:flex;flex-direction:column;gap:12px;align-items:flex-start;">
+                  <div style="display:flex;gap:8px;align-items:center;">
+                    <span class="bdg bdg--red bdg--outline">Cancelled</span>
+                    <span class="bdg bdg--red bdg--outline bdg--lg">Cancelled</span>
+                  </div>
+                  <div style="display:flex;gap:8px;align-items:center;">
+                    <span class="bdg bdg--red bdg--solid">Cancelled</span>
+                    <span class="bdg bdg--red bdg--solid bdg--lg">Cancelled</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="var-desc">
+              <div class="var-use-when">Use when:</div>
+              <ul class="var-use-list">
+                <li>Indicating an error, failure, rejection, or cancellation</li>
+                <li>Drawing attention to a blocked, invalid, or overdue state</li>
+                <li>Flagging items that represent a problem or require immediate correction</li>
+              </ul>
+              <div class="var-use-when" style="margin-top:12px;">Token group:</div>
+              <ul class="var-use-list">
+                <li><code>color/badge/negative</code></li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <!-- Warning (Orange) -->
+        <div class="tab-panel" id="v-warning">
+          <div class="var-panel">
+            <div class="var-previews">
+              <div class="var-preview" data-theme="light">
+                <div style="display:flex;flex-direction:column;gap:12px;align-items:flex-start;">
+                  <div style="display:flex;gap:8px;align-items:center;">
+                    <span class="bdg bdg--orange bdg--outline">Pending</span>
+                    <span class="bdg bdg--orange bdg--outline bdg--lg">Pending</span>
+                  </div>
+                  <div style="display:flex;gap:8px;align-items:center;">
+                    <span class="bdg bdg--orange bdg--solid">Pending</span>
+                    <span class="bdg bdg--orange bdg--solid bdg--lg">Pending</span>
+                  </div>
+                </div>
+              </div>
+              <div class="var-preview-dark" data-theme="dark">
+                <div style="display:flex;flex-direction:column;gap:12px;align-items:flex-start;">
+                  <div style="display:flex;gap:8px;align-items:center;">
+                    <span class="bdg bdg--orange bdg--outline">Pending</span>
+                    <span class="bdg bdg--orange bdg--outline bdg--lg">Pending</span>
+                  </div>
+                  <div style="display:flex;gap:8px;align-items:center;">
+                    <span class="bdg bdg--orange bdg--solid">Pending</span>
+                    <span class="bdg bdg--orange bdg--solid bdg--lg">Pending</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="var-desc">
+              <div class="var-use-when">Use when:</div>
+              <ul class="var-use-list">
+                <li>Indicating a pending, at-risk, or cautionary state that needs attention</li>
+                <li>Flagging items that are not yet failures but are time-sensitive</li>
+                <li>Marking in-progress or awaiting-action statuses</li>
+              </ul>
+              <div class="var-use-when" style="margin-top:12px;">Token group:</div>
+              <ul class="var-use-list">
+                <li><code>color/badge/warning</code></li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+      </section>
+
+      <!-- 4 · PROPERTIES -->
+      <section class="doc-section" id="properties">
+        <h2 class="section-title">Properties</h2>
+        <table class="props-table">
+          <thead>
+            <tr><th>Property</th><th>Type</th><th>Default</th><th>Description</th></tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><code>label</code></td>
+              <td>string</td>
+              <td>—</td>
+              <td>Text displayed inside the badge. Rendered uppercase automatically.</td>
+            </tr>
+            <tr>
+              <td><code>color</code></td>
+              <td>Blue | Green | Purple | Red | Orange</td>
+              <td><code>Blue</code></td>
+              <td>Semantic color intent. Maps to Standard, Positive, Neutral, Negative, and Warning respectively.</td>
+            </tr>
+            <tr>
+              <td><code>size</code></td>
+              <td>Small | Large</td>
+              <td><code>Small</code></td>
+              <td>Controls font size (10px vs 12px) and vertical padding (2px vs 4px).</td>
+            </tr>
+            <tr>
+              <td><code>type</code></td>
+              <td>Outline | Solid</td>
+              <td><code>Outline</code></td>
+              <td>Visual treatment — outline uses a tinted background with a colored border; solid uses a filled background with white text.</td>
+            </tr>
+          </tbody>
+        </table>
+      </section>
+
+      <!-- 5 · USAGE -->
+      <section class="doc-section" id="usage">
+        <h2 class="section-title">Usage</h2>
+        <div class="usage-block">
+          <div class="usage-cols">
+            <div class="usage-card">
+              <div class="usage-card-header">
+                <div class="usage-icon do-icon"><i data-lucide="check" style="width:12px;height:12px"></i></div>
+                <div class="usage-card-title">Do</div>
+              </div>
+              <ul class="usage-list">
+                <li>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor</li>
+                <li>Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi</li>
+                <li>Duis aute irure dolor in reprehenderit in voluptate velit esse cillum</li>
+              </ul>
+            </div>
+            <div class="usage-card">
+              <div class="usage-card-header">
+                <div class="usage-icon do-icon"><i data-lucide="check" style="width:12px;height:12px"></i></div>
+                <div class="usage-card-title">Do</div>
+              </div>
+              <ul class="usage-list">
+                <li>Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia</li>
+                <li>Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium</li>
+                <li>Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit fugit</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+        <div class="usage-divider"></div>
+        <div class="usage-block">
+          <div class="usage-cols">
+            <div class="usage-card">
+              <div class="usage-card-header">
+                <div class="usage-icon dont-icon"><i data-lucide="x" style="width:12px;height:12px"></i></div>
+                <div class="usage-card-title">Don't</div>
+              </div>
+              <ul class="usage-list">
+                <li>Neque porro quisquam est qui dolorem ipsum quia dolor sit amet consectetur</li>
+                <li>Quis autem vel eum iure reprehenderit qui in ea voluptate velit esse quam</li>
+                <li>At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis</li>
+              </ul>
+            </div>
+            <div class="usage-card">
+              <div class="usage-card-header">
+                <div class="usage-icon dont-icon"><i data-lucide="x" style="width:12px;height:12px"></i></div>
+                <div class="usage-card-title">Don't</div>
+              </div>
+              <ul class="usage-list">
+                <li>Nam libero tempore cum soluta nobis est eligendi optio cumque nihil</li>
+                <li>Temporibus autem quibusdam et aut officiis debitis aut rerum necessitatibus</li>
+                <li>Itaque earum rerum hic tenetur sapiente delectus ut aut reiciendis voluptatibus</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- 6 · TOKENS -->
+      <section class="doc-section" id="tokens">
+        <h2 class="section-title">Tokens used</h2>
+
+        <!-- Color -->
+        <p class="tokens-cat">Color</p>
+        <table class="tokens-table">
+          <thead><tr><th>Element</th><th>Token</th><th></th></tr></thead>
+          <tbody>
+            <tr><td>Standard — background (outline)</td><td class="t-tok">color/badge/standard/bg-outline</td><td class="t-sw"><div class="swatch" style="background:#E5EEF5;"></div></td></tr>
+            <tr><td>Standard — background (solid)</td><td class="t-tok">color/badge/standard/bg-solid</td><td class="t-sw"><div class="swatch" style="background:#027CB1;"></div></td></tr>
+            <tr><td>Standard — border</td><td class="t-tok">color/badge/standard/border</td><td class="t-sw"><div class="swatch" style="background:#027CB1;"></div></td></tr>
+            <tr><td>Positive — background (outline)</td><td class="t-tok">color/badge/positive/bg-outline</td><td class="t-sw"><div class="swatch" style="background:#E8F2E8;"></div></td></tr>
+            <tr><td>Positive — background (solid)</td><td class="t-tok">color/badge/positive/bg-solid</td><td class="t-sw"><div class="swatch" style="background:#00902C;"></div></td></tr>
+            <tr><td>Positive — border</td><td class="t-tok">color/badge/positive/border</td><td class="t-sw"><div class="swatch" style="background:#00902C;"></div></td></tr>
+            <tr><td>Neutral — background (outline)</td><td class="t-tok">color/badge/neutral/bg-outline</td><td class="t-sw"><div class="swatch" style="background:#F0ECF4;"></div></td></tr>
+            <tr><td>Neutral — background (solid)</td><td class="t-tok">color/badge/neutral/bg-solid</td><td class="t-sw"><div class="swatch" style="background:#6D4092;"></div></td></tr>
+            <tr><td>Neutral — border</td><td class="t-tok">color/badge/neutral/border</td><td class="t-sw"><div class="swatch" style="background:#6D4092;"></div></td></tr>
+            <tr><td>Negative — background (outline)</td><td class="t-tok">color/badge/negative/bg-outline</td><td class="t-sw"><div class="swatch" style="background:#FCE8E8;"></div></td></tr>
+            <tr><td>Negative — background (solid)</td><td class="t-tok">color/badge/negative/bg-solid</td><td class="t-sw"><div class="swatch" style="background:#DC4B4B;"></div></td></tr>
+            <tr><td>Negative — border</td><td class="t-tok">color/badge/negative/border</td><td class="t-sw"><div class="swatch" style="background:#DC4B4B;"></div></td></tr>
+            <tr><td>Warning — background (outline)</td><td class="t-tok">color/badge/warning/bg-outline</td><td class="t-sw"><div class="swatch" style="background:#FDF4E8;"></div></td></tr>
+            <tr><td>Warning — background (solid)</td><td class="t-tok">color/badge/warning/bg-solid</td><td class="t-sw"><div class="swatch" style="background:#D37203;"></div></td></tr>
+            <tr><td>Warning — border</td><td class="t-tok">color/badge/warning/border</td><td class="t-sw"><div class="swatch" style="background:#D37203;"></div></td></tr>
+            <tr><td>Label (outline)</td><td class="t-tok">color/text/primary</td><td class="t-sw"><div class="swatch" style="background:#374151;"></div></td></tr>
+            <tr><td>Label (solid)</td><td class="t-tok">color/text/inverse</td><td class="t-sw"><div class="swatch" style="background:#FFFFFF;border-color:rgba(0,0,0,.1);"></div></td></tr>
+          </tbody>
+        </table>
+
+        <!-- Typography -->
+        <p class="tokens-cat">Typography</p>
+        <table class="tokens-table">
+          <thead><tr><th>Element</th><th>Token</th><th>Value</th></tr></thead>
+          <tbody>
+            <tr><td>Label (small)</td><td class="t-tok">typography/badge/small</td><td>Lato Bold, 10px / 18px, 0.35px letter-spacing</td></tr>
+            <tr><td>Label (large)</td><td class="t-tok">typography/badge/large</td><td>Lato Bold, 12px / 18px, 0.35px letter-spacing</td></tr>
+          </tbody>
+        </table>
+
+        <!-- Spacing -->
+        <p class="tokens-cat">Spacing</p>
+        <table class="tokens-table">
+          <thead><tr><th>Element</th><th>Token</th><th>Value</th></tr></thead>
+          <tbody>
+            <tr><td>Horizontal padding</td><td class="t-tok">spacing/2x</td><td>8px</td></tr>
+            <tr><td>Vertical padding (small)</td><td class="t-tok">spacing/0-5x</td><td>2px</td></tr>
+            <tr><td>Vertical padding (large)</td><td class="t-tok">spacing/1x</td><td>4px</td></tr>
+          </tbody>
+        </table>
+
+        <!-- Border Radius -->
+        <p class="tokens-cat">Border Radius</p>
+        <table class="tokens-table">
+          <thead><tr><th>Element</th><th>Token</th><th>Value</th></tr></thead>
+          <tbody>
+            <tr><td>Container</td><td class="t-tok">spacing/0-5x</td><td>2px</td></tr>
+          </tbody>
+        </table>
+
+      </section>
+
+      <!-- 7 · ACCESSIBILITY -->
+      <section class="doc-section" id="accessibility">
+        <h2 class="section-title">Accessibility</h2>
+        <ul class="a11y-list">
+          <li>
+            <div><strong>Color alone:</strong> Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua ut enim.</div>
+          </li>
+          <li>
+            <div><strong>Screen readers:</strong> Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat duis aute irure dolor.</div>
+          </li>
+          <li>
+            <div><strong>Non-interactive:</strong> Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur excepteur sint occaecat cupidatat.</div>
+          </li>
+          <li>
+            <div><strong>Contrast:</strong> Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum consectetur adipiscing elit.</div>
+          </li>
+        </ul>
+      </section>
+
+      <!-- 8 · RELATED -->
+      <section class="doc-section" id="related">
+        <h2 class="section-title">Related Components</h2>
+        <div class="related-grid">
+          <a href="alert.html" class="related-card">
+            <div class="rc-name">Alert</div>
+            <div class="rc-desc">Inline feedback messages using the same semantic color system for errors, warnings, and confirmations.</div>
+          </a>
+          <a href="#" class="related-card">
+            <div class="rc-name">Tags</div>
+            <div class="rc-desc">Interactive, removable labels for filtering and categorizing content — unlike badges, tags respond to user input.</div>
+          </a>
+          <a href="avatar.html" class="related-card">
+            <div class="rc-name">Avatar</div>
+            <div class="rc-desc">Often combined with a badge overlay to indicate presence, notifications, or account status at a glance.</div>
+          </a>
+        </div>
+      </section>
+
+    </main>
+
+    <!-- RIGHT NAV -->
+    <nav class="right-nav">
+      <div class="rn-label">On this page</div>
+      <ul class="rn-list">
+        <li><a href="#definition" id="rn-definition">Definition</a></li>
+        <li><a href="#anatomy" id="rn-anatomy">Anatomy</a></li>
+        <li><a href="#variants" id="rn-variants">Variants</a></li>
+        <li><a href="#properties" id="rn-properties">Properties</a></li>
+        <li><a href="#usage" id="rn-usage">Usage</a></li>
+        <li><a href="#tokens" id="rn-tokens">Tokens</a></li>
+        <li><a href="#accessibility" id="rn-accessibility">Accessibility</a></li>
+        <li><a href="#related" id="rn-related">Related</a></li>
+      </ul>
+    </nav>
+
+  </div><!-- /content-wrap -->
+</div><!-- /shell -->
+
+<script>
+  lucide.createIcons();
+
+  const isMobile = () => window.innerWidth <= 768;
+  let sbOpen = !isMobile();
+  if (!sbOpen) document.getElementById('leftNav').classList.add('hidden');
+
+  function toggleSidebar() {
+    sbOpen = !sbOpen;
+    document.getElementById('leftNav').classList.toggle('hidden', !sbOpen);
+    if (!isMobile()) {
+      document.getElementById('contentWrap').style.marginLeft = sbOpen ? 'var(--left-w)' : '0';
+    }
+    document.getElementById('navOverlay').classList.toggle('active', sbOpen && isMobile());
+  }
+
+  function updateTabFade(tabsEl) {
+    const wrap = tabsEl.closest('.tabs-wrap');
+    if (!wrap) return;
+    const atEnd = tabsEl.scrollLeft + tabsEl.clientWidth >= tabsEl.scrollWidth - 2;
+    wrap.classList.toggle('at-end', atEnd);
+  }
+
+  function switchTab(btn, panelId) {
+    btn.closest('.doc-section').querySelectorAll('.tab').forEach(b => b.classList.remove('active'));
+    btn.closest('.doc-section').querySelectorAll('.tab-panel').forEach(p => p.classList.remove('active'));
+    btn.classList.add('active');
+    document.getElementById(panelId).classList.add('active');
+    const tabsEl = btn.closest('.tabs');
+    if (tabsEl) {
+      const tabRight = btn.offsetLeft + btn.offsetWidth;
+      const tabLeft = btn.offsetLeft;
+      if (tabRight > tabsEl.scrollLeft + tabsEl.clientWidth - 56) {
+        tabsEl.scrollLeft = tabRight - tabsEl.clientWidth + 72;
+      } else if (tabLeft < tabsEl.scrollLeft) {
+        tabsEl.scrollLeft = tabLeft;
+      }
+      updateTabFade(tabsEl);
+    }
+    lucide.createIcons();
+  }
+
+  window.addEventListener('load', () => {
+    document.querySelectorAll('.tabs').forEach(tabsEl => {
+      updateTabFade(tabsEl);
+      tabsEl.addEventListener('scroll', () => updateTabFade(tabsEl));
+    });
+  });
+
+  function toggleTheme() {
+    const d = document.documentElement;
+    d.setAttribute('data-theme', d.getAttribute('data-theme') === 'dark' ? 'light' : 'dark');
+  }
+
+  const sections = ['definition','anatomy','variants','properties','usage','tokens','accessibility','related'];
+  const observer = new IntersectionObserver(entries => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        document.querySelectorAll('.rn-list a').forEach(a => a.classList.remove('active'));
+        const link = document.getElementById('rn-' + e.target.id);
+        if (link) link.classList.add('active');
+      }
+    });
+  }, { rootMargin: '-20% 0px -70% 0px' });
+  sections.forEach(id => {
+    const el = document.getElementById(id);
+    if (el) observer.observe(el);
+  });
+</script>
+</body>
+</html>

@@ -1,0 +1,839 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Button — nuShip Design System</title>
+  <link href="https://fonts.googleapis.com/css2?family=Lato:wght@400;600;700;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="tokens.css">
+  <link rel="stylesheet" href="styles.css">
+  <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.min.js"></script>
+</head>
+<body>
+
+<!-- MOBILE OVERLAY -->
+<div id="navOverlay" class="nav-overlay" onclick="toggleSidebar()"></div>
+
+<!-- TOP NAV -->
+<nav class="topnav">
+  <button class="hamburger" onclick="toggleSidebar()" aria-label="Menu">
+    <i data-lucide="menu" style="width:18px;height:18px;color:var(--text-secondary)"></i>
+  </button>
+  <div class="bc">
+    <a href="index.html">UI Components</a>
+    <i data-lucide="chevron-right" style="width:14px;height:14px;flex-shrink:0"></i>
+    <a href="#">Actions</a>
+    <i data-lucide="chevron-right" style="width:14px;height:14px;flex-shrink:0"></i>
+    <span class="cur">Button</span>
+  </div>
+  <div class="nav-actions">
+    <div class="toggle-wrap" onclick="toggleTheme()" role="button">
+      <i data-lucide="moon" style="width:20px;height:20px"></i>
+      <div class="toggle-track"><div class="toggle-thumb"></div></div>
+      <i data-lucide="sun" style="width:20px;height:20px"></i>
+    </div>
+  </div>
+</nav>
+
+<div class="shell">
+
+  <!-- LEFT NAV -->
+  <nav class="left-nav" id="leftNav">
+    <div class="left-nav-inner">
+      <div class="ln-group">
+        <div class="ln-label">Inputs</div>
+        <ul class="ln-list">
+          <li><a href="checkbox.html">Checkbox</a></li>
+          <li><a href="datepicker.html">Date Picker</a></li>
+          <li><a href="#">Number Input</a></li>
+          <li><a href="#">Radio Button</a></li>
+          <li><a href="#">Search</a></li>
+          <li><a href="select.html">Select</a></li>
+          <li><a href="#">Slider</a></li>
+          <li><a href="#">Switch</a></li>
+          <li><a href="#">Text Area</a></li>
+          <li><a href="#">Text Input</a></li>
+        </ul>
+      </div>
+      <div class="ln-group">
+        <div class="ln-label">Feedback</div>
+        <ul class="ln-list">
+          <li><a href="alert.html">Alert</a></li>
+          <li><a href="badge.html">Badge</a></li>
+          <li><a href="#">Toast</a></li>
+          <li><a href="#">Tooltip</a></li>
+        </ul>
+      </div>
+      <div class="ln-group">
+        <div class="ln-label">Navigation</div>
+        <ul class="ln-list">
+          <li><a href="accordion.html">Accordion</a></li>
+          <li><a href="#">Breadcrumb</a></li>
+          <li><a href="#">Dropdown</a></li>
+          <li><a href="#">Menu</a></li>
+          <li><a href="#">Tabs</a></li>
+        </ul>
+      </div>
+      <div class="ln-group">
+        <div class="ln-label">Actions</div>
+        <ul class="ln-list">
+          <li><a href="button.html" class="active">Button</a></li>
+          <li><a href="#">Link</a></li>
+          <li><a href="#">Tags</a></li>
+        </ul>
+      </div>
+      <div class="ln-group">
+        <div class="ln-label">Overlays</div>
+        <ul class="ln-list">
+          <li><a href="#">Modal</a></li>
+          <li><a href="#">Popover</a></li>
+        </ul>
+      </div>
+      <div class="ln-group">
+        <div class="ln-label">Display</div>
+        <ul class="ln-list">
+          <li><a href="avatar.html">Avatar</a></li>
+          <li><a href="#">Carousel</a></li>
+          <li><a href="#">File Upload</a></li>
+          <li><a href="#">Star Rating</a></li>
+          <li><a href="#">Timeline</a></li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <!-- CONTENT -->
+  <div class="content-wrap" id="contentWrap">
+    <main class="doc">
+
+      <!-- 1 · DEFINITION -->
+      <section class="doc-section" id="definition">
+        <div class="def-eyebrow">Actions</div>
+        <h1 class="def-title">Button</h1>
+        <p class="def-desc">Buttons trigger immediate actions or navigate the user to another page. They are available in multiple styles to communicate hierarchy and intent, and in three sizes to fit different layout contexts.</p>
+        <div class="def-tags">
+          <span class="tag">Developed</span>
+          <span class="tag">Figma</span>
+        </div>
+        <div class="preview-box">
+          <div class="preview-box-inner">
+            <div style="display:flex;flex-wrap:wrap;gap:12px;align-items:center;justify-content:center;">
+              <button class="btn btn--primary btn--lg">
+                <i data-lucide="plus" style="width:24px;height:24px"></i>
+                Primary
+                <i data-lucide="plus" style="width:24px;height:24px"></i>
+              </button>
+              <button class="btn btn--secondary btn--lg">
+                <i data-lucide="plus" style="width:24px;height:24px"></i>
+                Secondary
+                <i data-lucide="plus" style="width:24px;height:24px"></i>
+              </button>
+              <button class="btn btn--tertiary btn--lg">
+                <i data-lucide="plus" style="width:24px;height:24px"></i>
+                Tertiary
+                <i data-lucide="plus" style="width:24px;height:24px"></i>
+              </button>
+              <button class="btn btn--ghost btn--lg">
+                <i data-lucide="plus" style="width:24px;height:24px"></i>
+                Ghost
+                <i data-lucide="plus" style="width:24px;height:24px"></i>
+              </button>
+              <button class="btn btn--destructive btn--lg">
+                <i data-lucide="plus" style="width:24px;height:24px"></i>
+                Destructive
+                <i data-lucide="plus" style="width:24px;height:24px"></i>
+              </button>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- 2 · ANATOMY -->
+      <section class="doc-section" id="anatomy">
+        <h2 class="section-title">Anatomy</h2>
+        <div class="anatomy-wrap">
+          <div class="anatomy-component" style="width:300px;box-sizing:border-box;padding:48px;display:flex;justify-content:center;align-items:center;">
+            <button class="btn btn--primary btn--lg" style="pointer-events:none;">
+              <i data-lucide="plus" style="width:24px;height:24px"></i>
+              Button
+              <i data-lucide="plus" style="width:24px;height:24px"></i>
+            </button>
+            <span class="callout" style="top:32px;left:60px">1</span>
+            <span class="callout" style="top:72px;left:68px">3</span>
+            <span class="callout" style="top:72px;left:138px">2</span>
+            <span class="callout" style="top:72px;left:208px">4</span>
+          </div>
+          <div class="anatomy-legend">
+            <div class="legend-item"><span class="legend-num">1</span>Container</div>
+            <div class="legend-item"><span class="legend-num">2</span>Label</div>
+            <div class="legend-item"><span class="legend-num">3</span>Leading Icon (optional)</div>
+            <div class="legend-item"><span class="legend-num">4</span>Trailing Icon (optional)</div>
+          </div>
+        </div>
+      </section>
+
+      <!-- 3 · VARIANTS -->
+      <section class="doc-section" id="variants">
+        <h2 class="section-title">Variants</h2>
+        <div class="tabs-wrap">
+          <div class="tabs">
+            <button class="tab active" onclick="switchTab(this,'v-primary')">Primary</button>
+            <button class="tab" onclick="switchTab(this,'v-secondary')">Secondary</button>
+            <button class="tab" onclick="switchTab(this,'v-tertiary')">Tertiary</button>
+            <button class="tab" onclick="switchTab(this,'v-ghost')">Ghost</button>
+            <button class="tab" onclick="switchTab(this,'v-dest-primary')">Destructive Primary</button>
+            <button class="tab" onclick="switchTab(this,'v-dest-tertiary')">Destructive Tertiary</button>
+            <button class="tab" onclick="switchTab(this,'v-dest-ghost')">Destructive Ghost</button>
+          </div>
+        </div>
+
+        <!-- Primary -->
+        <!-- Primary -->
+        <div class="tab-panel active" id="v-primary">
+          <div class="state-tab-row">
+            <button class="state-tab-btn active" onclick="switchStateTab(this,'vs-pri-def')">Default</button>
+            <button class="state-tab-btn" onclick="switchStateTab(this,'vs-pri-hov')">Hover</button>
+            <button class="state-tab-btn" onclick="switchStateTab(this,'vs-pri-foc')">Focus</button>
+            <button class="state-tab-btn" onclick="switchStateTab(this,'vs-pri-dis')">Disabled</button>
+          </div>
+          <div class="var-panel">
+            <div class="var-previews-wrap">
+              <div class="state-panel active" id="vs-pri-def">
+                <div class="var-previews">
+                  <div class="var-preview" data-theme="light"><button class="btn btn--primary btn--lg"><i data-lucide="plus" style="width:24px;height:24px"></i>Button<i data-lucide="plus" style="width:24px;height:24px"></i></button></div>
+                  <div class="var-preview-dark" data-theme="dark"><button class="btn btn--primary btn--lg"><i data-lucide="plus" style="width:24px;height:24px"></i>Button<i data-lucide="plus" style="width:24px;height:24px"></i></button></div>
+                </div>
+              </div>
+              <div class="state-panel" id="vs-pri-hov">
+                <div class="var-previews">
+                  <div class="var-preview" data-theme="light"><button class="btn btn--primary btn--lg btn--hover"><i data-lucide="plus" style="width:24px;height:24px"></i>Button<i data-lucide="plus" style="width:24px;height:24px"></i></button></div>
+                  <div class="var-preview-dark" data-theme="dark"><button class="btn btn--primary btn--lg btn--hover"><i data-lucide="plus" style="width:24px;height:24px"></i>Button<i data-lucide="plus" style="width:24px;height:24px"></i></button></div>
+                </div>
+              </div>
+              <div class="state-panel" id="vs-pri-foc">
+                <div class="var-previews">
+                  <div class="var-preview" data-theme="light"><button class="btn btn--primary btn--lg btn--focus"><i data-lucide="plus" style="width:24px;height:24px"></i>Button<i data-lucide="plus" style="width:24px;height:24px"></i></button></div>
+                  <div class="var-preview-dark" data-theme="dark"><button class="btn btn--primary btn--lg btn--focus"><i data-lucide="plus" style="width:24px;height:24px"></i>Button<i data-lucide="plus" style="width:24px;height:24px"></i></button></div>
+                </div>
+              </div>
+              <div class="state-panel" id="vs-pri-dis">
+                <div class="var-previews">
+                  <div class="var-preview" data-theme="light"><button class="btn btn--primary btn--lg" disabled><i data-lucide="plus" style="width:24px;height:24px"></i>Button<i data-lucide="plus" style="width:24px;height:24px"></i></button></div>
+                  <div class="var-preview-dark" data-theme="dark"><button class="btn btn--primary btn--lg" disabled><i data-lucide="plus" style="width:24px;height:24px"></i>Button<i data-lucide="plus" style="width:24px;height:24px"></i></button></div>
+                </div>
+              </div>
+            </div>
+            <div class="var-desc">
+              <div class="var-use-when">Use when:</div>
+              <ul class="var-use-list">
+                <li>Triggering the single most important action on a page or dialog</li>
+                <li>Confirming or submitting a task flow</li>
+                <li>Only one Primary button should appear per view</li>
+              </ul>
+              <div class="var-use-when" style="margin-top:12px;">Token group:</div>
+              <ul class="var-use-list"><li><code>color/action/primary</code></li></ul>
+            </div>
+          </div>
+        </div>
+
+        <!-- Secondary -->
+        <div class="tab-panel" id="v-secondary">
+          <div class="state-tab-row">
+            <button class="state-tab-btn active" onclick="switchStateTab(this,'vs-sec-def')">Default</button>
+            <button class="state-tab-btn" onclick="switchStateTab(this,'vs-sec-hov')">Hover</button>
+            <button class="state-tab-btn" onclick="switchStateTab(this,'vs-sec-foc')">Focus</button>
+            <button class="state-tab-btn" onclick="switchStateTab(this,'vs-sec-dis')">Disabled</button>
+          </div>
+          <div class="var-panel">
+            <div class="var-previews-wrap">
+              <div class="state-panel active" id="vs-sec-def">
+                <div class="var-previews">
+                  <div class="var-preview" data-theme="light"><button class="btn btn--secondary btn--lg"><i data-lucide="plus" style="width:24px;height:24px"></i>Button<i data-lucide="plus" style="width:24px;height:24px"></i></button></div>
+                  <div class="var-preview-dark" data-theme="dark"><button class="btn btn--secondary btn--lg"><i data-lucide="plus" style="width:24px;height:24px"></i>Button<i data-lucide="plus" style="width:24px;height:24px"></i></button></div>
+                </div>
+              </div>
+              <div class="state-panel" id="vs-sec-hov">
+                <div class="var-previews">
+                  <div class="var-preview" data-theme="light"><button class="btn btn--secondary btn--lg btn--hover"><i data-lucide="plus" style="width:24px;height:24px"></i>Button<i data-lucide="plus" style="width:24px;height:24px"></i></button></div>
+                  <div class="var-preview-dark" data-theme="dark"><button class="btn btn--secondary btn--lg btn--hover"><i data-lucide="plus" style="width:24px;height:24px"></i>Button<i data-lucide="plus" style="width:24px;height:24px"></i></button></div>
+                </div>
+              </div>
+              <div class="state-panel" id="vs-sec-foc">
+                <div class="var-previews">
+                  <div class="var-preview" data-theme="light"><button class="btn btn--secondary btn--lg btn--focus"><i data-lucide="plus" style="width:24px;height:24px"></i>Button<i data-lucide="plus" style="width:24px;height:24px"></i></button></div>
+                  <div class="var-preview-dark" data-theme="dark"><button class="btn btn--secondary btn--lg btn--focus"><i data-lucide="plus" style="width:24px;height:24px"></i>Button<i data-lucide="plus" style="width:24px;height:24px"></i></button></div>
+                </div>
+              </div>
+              <div class="state-panel" id="vs-sec-dis">
+                <div class="var-previews">
+                  <div class="var-preview" data-theme="light"><button class="btn btn--secondary btn--lg" disabled><i data-lucide="plus" style="width:24px;height:24px"></i>Button<i data-lucide="plus" style="width:24px;height:24px"></i></button></div>
+                  <div class="var-preview-dark" data-theme="dark"><button class="btn btn--secondary btn--lg" disabled><i data-lucide="plus" style="width:24px;height:24px"></i>Button<i data-lucide="plus" style="width:24px;height:24px"></i></button></div>
+                </div>
+              </div>
+            </div>
+            <div class="var-desc">
+              <div class="var-use-when">Use when:</div>
+              <ul class="var-use-list">
+                <li>Offering a supporting action alongside a Primary button</li>
+                <li>The action is important but not the critical path</li>
+                <li>Multiple equal-priority actions are available</li>
+              </ul>
+              <div class="var-use-when" style="margin-top:12px;">Token group:</div>
+              <ul class="var-use-list"><li><code>color/action/secondary</code></li></ul>
+            </div>
+          </div>
+        </div>
+
+        <!-- Tertiary -->
+        <div class="tab-panel" id="v-tertiary">
+          <div class="state-tab-row">
+            <button class="state-tab-btn active" onclick="switchStateTab(this,'vs-ter-def')">Default</button>
+            <button class="state-tab-btn" onclick="switchStateTab(this,'vs-ter-hov')">Hover</button>
+            <button class="state-tab-btn" onclick="switchStateTab(this,'vs-ter-foc')">Focus</button>
+            <button class="state-tab-btn" onclick="switchStateTab(this,'vs-ter-dis')">Disabled</button>
+          </div>
+          <div class="var-panel">
+            <div class="var-previews-wrap">
+              <div class="state-panel active" id="vs-ter-def">
+                <div class="var-previews">
+                  <div class="var-preview" data-theme="light"><button class="btn btn--tertiary btn--lg"><i data-lucide="plus" style="width:24px;height:24px"></i>Button<i data-lucide="plus" style="width:24px;height:24px"></i></button></div>
+                  <div class="var-preview-dark" data-theme="dark"><button class="btn btn--tertiary btn--lg"><i data-lucide="plus" style="width:24px;height:24px"></i>Button<i data-lucide="plus" style="width:24px;height:24px"></i></button></div>
+                </div>
+              </div>
+              <div class="state-panel" id="vs-ter-hov">
+                <div class="var-previews">
+                  <div class="var-preview" data-theme="light"><button class="btn btn--tertiary btn--lg btn--hover"><i data-lucide="plus" style="width:24px;height:24px"></i>Button<i data-lucide="plus" style="width:24px;height:24px"></i></button></div>
+                  <div class="var-preview-dark" data-theme="dark"><button class="btn btn--tertiary btn--lg btn--hover"><i data-lucide="plus" style="width:24px;height:24px"></i>Button<i data-lucide="plus" style="width:24px;height:24px"></i></button></div>
+                </div>
+              </div>
+              <div class="state-panel" id="vs-ter-foc">
+                <div class="var-previews">
+                  <div class="var-preview" data-theme="light"><button class="btn btn--tertiary btn--lg btn--focus"><i data-lucide="plus" style="width:24px;height:24px"></i>Button<i data-lucide="plus" style="width:24px;height:24px"></i></button></div>
+                  <div class="var-preview-dark" data-theme="dark"><button class="btn btn--tertiary btn--lg btn--focus"><i data-lucide="plus" style="width:24px;height:24px"></i>Button<i data-lucide="plus" style="width:24px;height:24px"></i></button></div>
+                </div>
+              </div>
+              <div class="state-panel" id="vs-ter-dis">
+                <div class="var-previews">
+                  <div class="var-preview" data-theme="light"><button class="btn btn--tertiary btn--lg" disabled><i data-lucide="plus" style="width:24px;height:24px"></i>Button<i data-lucide="plus" style="width:24px;height:24px"></i></button></div>
+                  <div class="var-preview-dark" data-theme="dark"><button class="btn btn--tertiary btn--lg" disabled><i data-lucide="plus" style="width:24px;height:24px"></i>Button<i data-lucide="plus" style="width:24px;height:24px"></i></button></div>
+                </div>
+              </div>
+            </div>
+            <div class="var-desc">
+              <div class="var-use-when">Use when:</div>
+              <ul class="var-use-list">
+                <li>Supplementary actions need a visible affordance without overwhelming a Primary</li>
+                <li>Use in toolbars or dense interfaces where a solid fill would be too heavy</li>
+                <li>Stacking alongside solid buttons for optional or alternative paths</li>
+              </ul>
+              <div class="var-use-when" style="margin-top:12px;">Token group:</div>
+              <ul class="var-use-list"><li><code>color/border/button-tertiary</code></li></ul>
+            </div>
+          </div>
+        </div>
+
+        <!-- Ghost -->
+        <div class="tab-panel" id="v-ghost">
+          <div class="state-tab-row">
+            <button class="state-tab-btn active" onclick="switchStateTab(this,'vs-gho-def')">Default</button>
+            <button class="state-tab-btn" onclick="switchStateTab(this,'vs-gho-hov')">Hover</button>
+            <button class="state-tab-btn" onclick="switchStateTab(this,'vs-gho-foc')">Focus</button>
+            <button class="state-tab-btn" onclick="switchStateTab(this,'vs-gho-dis')">Disabled</button>
+          </div>
+          <div class="var-panel">
+            <div class="var-previews-wrap">
+              <div class="state-panel active" id="vs-gho-def">
+                <div class="var-previews">
+                  <div class="var-preview" data-theme="light"><button class="btn btn--ghost btn--lg"><i data-lucide="plus" style="width:24px;height:24px"></i>Button<i data-lucide="plus" style="width:24px;height:24px"></i></button></div>
+                  <div class="var-preview-dark" data-theme="dark"><button class="btn btn--ghost btn--lg"><i data-lucide="plus" style="width:24px;height:24px"></i>Button<i data-lucide="plus" style="width:24px;height:24px"></i></button></div>
+                </div>
+              </div>
+              <div class="state-panel" id="vs-gho-hov">
+                <div class="var-previews">
+                  <div class="var-preview" data-theme="light"><button class="btn btn--ghost btn--lg btn--hover"><i data-lucide="plus" style="width:24px;height:24px"></i>Button<i data-lucide="plus" style="width:24px;height:24px"></i></button></div>
+                  <div class="var-preview-dark" data-theme="dark"><button class="btn btn--ghost btn--lg btn--hover"><i data-lucide="plus" style="width:24px;height:24px"></i>Button<i data-lucide="plus" style="width:24px;height:24px"></i></button></div>
+                </div>
+              </div>
+              <div class="state-panel" id="vs-gho-foc">
+                <div class="var-previews">
+                  <div class="var-preview" data-theme="light"><button class="btn btn--ghost btn--lg btn--focus"><i data-lucide="plus" style="width:24px;height:24px"></i>Button<i data-lucide="plus" style="width:24px;height:24px"></i></button></div>
+                  <div class="var-preview-dark" data-theme="dark"><button class="btn btn--ghost btn--lg btn--focus"><i data-lucide="plus" style="width:24px;height:24px"></i>Button<i data-lucide="plus" style="width:24px;height:24px"></i></button></div>
+                </div>
+              </div>
+              <div class="state-panel" id="vs-gho-dis">
+                <div class="var-previews">
+                  <div class="var-preview" data-theme="light"><button class="btn btn--ghost btn--lg" disabled><i data-lucide="plus" style="width:24px;height:24px"></i>Button<i data-lucide="plus" style="width:24px;height:24px"></i></button></div>
+                  <div class="var-preview-dark" data-theme="dark"><button class="btn btn--ghost btn--lg" disabled><i data-lucide="plus" style="width:24px;height:24px"></i>Button<i data-lucide="plus" style="width:24px;height:24px"></i></button></div>
+                </div>
+              </div>
+            </div>
+            <div class="var-desc">
+              <div class="var-use-when">Use when:</div>
+              <ul class="var-use-list">
+                <li>Ancillary actions should recede into the interface without visual weight</li>
+                <li>Embedding in cards, list rows, or inline alongside other content</li>
+                <li>Providing optional controls that shouldn't compete with primary actions</li>
+              </ul>
+              <div class="var-use-when" style="margin-top:12px;">Token group:</div>
+              <ul class="var-use-list"><li><code>color/bg/ghost</code></li></ul>
+            </div>
+          </div>
+        </div>
+
+        <!-- Destructive Primary -->
+        <div class="tab-panel" id="v-dest-primary">
+          <div class="state-tab-row">
+            <button class="state-tab-btn active" onclick="switchStateTab(this,'vs-dpr-def')">Default</button>
+            <button class="state-tab-btn" onclick="switchStateTab(this,'vs-dpr-hov')">Hover</button>
+            <button class="state-tab-btn" onclick="switchStateTab(this,'vs-dpr-foc')">Focus</button>
+            <button class="state-tab-btn" onclick="switchStateTab(this,'vs-dpr-dis')">Disabled</button>
+          </div>
+          <div class="var-panel">
+            <div class="var-previews-wrap">
+              <div class="state-panel active" id="vs-dpr-def">
+                <div class="var-previews">
+                  <div class="var-preview" data-theme="light"><button class="btn btn--destructive btn--lg"><i data-lucide="plus" style="width:24px;height:24px"></i>Button<i data-lucide="plus" style="width:24px;height:24px"></i></button></div>
+                  <div class="var-preview-dark" data-theme="dark"><button class="btn btn--destructive btn--lg"><i data-lucide="plus" style="width:24px;height:24px"></i>Button<i data-lucide="plus" style="width:24px;height:24px"></i></button></div>
+                </div>
+              </div>
+              <div class="state-panel" id="vs-dpr-hov">
+                <div class="var-previews">
+                  <div class="var-preview" data-theme="light"><button class="btn btn--destructive btn--lg btn--hover"><i data-lucide="plus" style="width:24px;height:24px"></i>Button<i data-lucide="plus" style="width:24px;height:24px"></i></button></div>
+                  <div class="var-preview-dark" data-theme="dark"><button class="btn btn--destructive btn--lg btn--hover"><i data-lucide="plus" style="width:24px;height:24px"></i>Button<i data-lucide="plus" style="width:24px;height:24px"></i></button></div>
+                </div>
+              </div>
+              <div class="state-panel" id="vs-dpr-foc">
+                <div class="var-previews">
+                  <div class="var-preview" data-theme="light"><button class="btn btn--destructive btn--lg btn--focus"><i data-lucide="plus" style="width:24px;height:24px"></i>Button<i data-lucide="plus" style="width:24px;height:24px"></i></button></div>
+                  <div class="var-preview-dark" data-theme="dark"><button class="btn btn--destructive btn--lg btn--focus"><i data-lucide="plus" style="width:24px;height:24px"></i>Button<i data-lucide="plus" style="width:24px;height:24px"></i></button></div>
+                </div>
+              </div>
+              <div class="state-panel" id="vs-dpr-dis">
+                <div class="var-previews">
+                  <div class="var-preview" data-theme="light"><button class="btn btn--destructive btn--lg" disabled><i data-lucide="plus" style="width:24px;height:24px"></i>Button<i data-lucide="plus" style="width:24px;height:24px"></i></button></div>
+                  <div class="var-preview-dark" data-theme="dark"><button class="btn btn--destructive btn--lg" disabled><i data-lucide="plus" style="width:24px;height:24px"></i>Button<i data-lucide="plus" style="width:24px;height:24px"></i></button></div>
+                </div>
+              </div>
+            </div>
+            <div class="var-desc">
+              <div class="var-use-when">Use when:</div>
+              <ul class="var-use-list">
+                <li>The primary action is irreversible — Delete, Remove All, Clear</li>
+                <li>The destructive action is the main focus of a confirmation dialog</li>
+                <li>High visual prominence is needed to signal risk</li>
+              </ul>
+              <div class="var-use-when" style="margin-top:12px;">Token group:</div>
+              <ul class="var-use-list"><li><code>color/action/destructive</code></li></ul>
+            </div>
+          </div>
+        </div>
+
+        <!-- Destructive Tertiary -->
+        <div class="tab-panel" id="v-dest-tertiary">
+          <div class="state-tab-row">
+            <button class="state-tab-btn active" onclick="switchStateTab(this,'vs-dte-def')">Default</button>
+            <button class="state-tab-btn" onclick="switchStateTab(this,'vs-dte-hov')">Hover</button>
+            <button class="state-tab-btn" onclick="switchStateTab(this,'vs-dte-foc')">Focus</button>
+            <button class="state-tab-btn" onclick="switchStateTab(this,'vs-dte-dis')">Disabled</button>
+          </div>
+          <div class="var-panel">
+            <div class="var-previews-wrap">
+              <div class="state-panel active" id="vs-dte-def">
+                <div class="var-previews">
+                  <div class="var-preview" data-theme="light"><button class="btn btn--destructive-tertiary btn--lg"><i data-lucide="plus" style="width:24px;height:24px"></i>Button<i data-lucide="plus" style="width:24px;height:24px"></i></button></div>
+                  <div class="var-preview-dark" data-theme="dark"><button class="btn btn--destructive-tertiary btn--lg"><i data-lucide="plus" style="width:24px;height:24px"></i>Button<i data-lucide="plus" style="width:24px;height:24px"></i></button></div>
+                </div>
+              </div>
+              <div class="state-panel" id="vs-dte-hov">
+                <div class="var-previews">
+                  <div class="var-preview" data-theme="light"><button class="btn btn--destructive-tertiary btn--lg btn--hover"><i data-lucide="plus" style="width:24px;height:24px"></i>Button<i data-lucide="plus" style="width:24px;height:24px"></i></button></div>
+                  <div class="var-preview-dark" data-theme="dark"><button class="btn btn--destructive-tertiary btn--lg btn--hover"><i data-lucide="plus" style="width:24px;height:24px"></i>Button<i data-lucide="plus" style="width:24px;height:24px"></i></button></div>
+                </div>
+              </div>
+              <div class="state-panel" id="vs-dte-foc">
+                <div class="var-previews">
+                  <div class="var-preview" data-theme="light"><button class="btn btn--destructive-tertiary btn--lg btn--focus"><i data-lucide="plus" style="width:24px;height:24px"></i>Button<i data-lucide="plus" style="width:24px;height:24px"></i></button></div>
+                  <div class="var-preview-dark" data-theme="dark"><button class="btn btn--destructive-tertiary btn--lg btn--focus"><i data-lucide="plus" style="width:24px;height:24px"></i>Button<i data-lucide="plus" style="width:24px;height:24px"></i></button></div>
+                </div>
+              </div>
+              <div class="state-panel" id="vs-dte-dis">
+                <div class="var-previews">
+                  <div class="var-preview" data-theme="light"><button class="btn btn--destructive-tertiary btn--lg" disabled><i data-lucide="plus" style="width:24px;height:24px"></i>Button<i data-lucide="plus" style="width:24px;height:24px"></i></button></div>
+                  <div class="var-preview-dark" data-theme="dark"><button class="btn btn--destructive-tertiary btn--lg" disabled><i data-lucide="plus" style="width:24px;height:24px"></i>Button<i data-lucide="plus" style="width:24px;height:24px"></i></button></div>
+                </div>
+              </div>
+            </div>
+            <div class="var-desc">
+              <div class="var-use-when">Use when:</div>
+              <ul class="var-use-list">
+                <li>A destructive action is available alongside neutral or positive actions</li>
+                <li>Deletion exists but is not the recommended or primary path</li>
+                <li>Reduced visual weight is appropriate for the context</li>
+              </ul>
+              <div class="var-use-when" style="margin-top:12px;">Token group:</div>
+              <ul class="var-use-list"><li><code>color/border/button-destructive</code></li></ul>
+            </div>
+          </div>
+        </div>
+
+        <!-- Destructive Ghost -->
+        <div class="tab-panel" id="v-dest-ghost">
+          <div class="state-tab-row">
+            <button class="state-tab-btn active" onclick="switchStateTab(this,'vs-dgh-def')">Default</button>
+            <button class="state-tab-btn" onclick="switchStateTab(this,'vs-dgh-hov')">Hover</button>
+            <button class="state-tab-btn" onclick="switchStateTab(this,'vs-dgh-foc')">Focus</button>
+            <button class="state-tab-btn" onclick="switchStateTab(this,'vs-dgh-dis')">Disabled</button>
+          </div>
+          <div class="var-panel">
+            <div class="var-previews-wrap">
+              <div class="state-panel active" id="vs-dgh-def">
+                <div class="var-previews">
+                  <div class="var-preview" data-theme="light"><button class="btn btn--destructive-ghost btn--lg"><i data-lucide="plus" style="width:24px;height:24px"></i>Button<i data-lucide="plus" style="width:24px;height:24px"></i></button></div>
+                  <div class="var-preview-dark" data-theme="dark"><button class="btn btn--destructive-ghost btn--lg"><i data-lucide="plus" style="width:24px;height:24px"></i>Button<i data-lucide="plus" style="width:24px;height:24px"></i></button></div>
+                </div>
+              </div>
+              <div class="state-panel" id="vs-dgh-hov">
+                <div class="var-previews">
+                  <div class="var-preview" data-theme="light"><button class="btn btn--destructive-ghost btn--lg btn--hover"><i data-lucide="plus" style="width:24px;height:24px"></i>Button<i data-lucide="plus" style="width:24px;height:24px"></i></button></div>
+                  <div class="var-preview-dark" data-theme="dark"><button class="btn btn--destructive-ghost btn--lg btn--hover"><i data-lucide="plus" style="width:24px;height:24px"></i>Button<i data-lucide="plus" style="width:24px;height:24px"></i></button></div>
+                </div>
+              </div>
+              <div class="state-panel" id="vs-dgh-foc">
+                <div class="var-previews">
+                  <div class="var-preview" data-theme="light"><button class="btn btn--destructive-ghost btn--lg btn--focus"><i data-lucide="plus" style="width:24px;height:24px"></i>Button<i data-lucide="plus" style="width:24px;height:24px"></i></button></div>
+                  <div class="var-preview-dark" data-theme="dark"><button class="btn btn--destructive-ghost btn--lg btn--focus"><i data-lucide="plus" style="width:24px;height:24px"></i>Button<i data-lucide="plus" style="width:24px;height:24px"></i></button></div>
+                </div>
+              </div>
+              <div class="state-panel" id="vs-dgh-dis">
+                <div class="var-previews">
+                  <div class="var-preview" data-theme="light"><button class="btn btn--destructive-ghost btn--lg" disabled><i data-lucide="plus" style="width:24px;height:24px"></i>Button<i data-lucide="plus" style="width:24px;height:24px"></i></button></div>
+                  <div class="var-preview-dark" data-theme="dark"><button class="btn btn--destructive-ghost btn--lg" disabled><i data-lucide="plus" style="width:24px;height:24px"></i>Button<i data-lucide="plus" style="width:24px;height:24px"></i></button></div>
+                </div>
+              </div>
+            </div>
+            <div class="var-desc">
+              <div class="var-use-when">Use when:</div>
+              <ul class="var-use-list">
+                <li>A low-emphasis destructive option should not draw immediate attention</li>
+                <li>Embedded in dense interfaces like table rows or inline editors</li>
+                <li>The destructive path is rare and should feel accessible but unobtrusive</li>
+              </ul>
+              <div class="var-use-when" style="margin-top:12px;">Token group:</div>
+              <ul class="var-use-list"><li><code>color/text/button-destructive</code></li></ul>
+            </div>
+          </div>
+        </div>
+
+      </section>
+
+      <!-- 4 · PROPERTIES -->
+      <section class="doc-section" id="properties">
+        <h2 class="section-title">Properties</h2>
+        <table class="props-table">
+          <thead>
+            <tr><th>Property</th><th>Type</th><th>Default</th><th>Description</th></tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><code>label</code></td>
+              <td>string</td>
+              <td>—</td>
+              <td>Text displayed inside the button. Not shown in icon-only content.</td>
+            </tr>
+            <tr>
+              <td><code>style</code></td>
+              <td>Primary | Secondary | Tertiary | Ghost | Destructive Primary | Destructive Tertiary | Destructive Ghost</td>
+              <td><code>Primary</code></td>
+              <td>Visual and semantic treatment. Communicates hierarchy and destructive intent.</td>
+            </tr>
+            <tr>
+              <td><code>size</code></td>
+              <td>Large | Medium | Small</td>
+              <td><code>Large</code></td>
+              <td>Controls padding and icon size. Large = 16px/24px padding; Medium = 12px/16px; Small = 4px/8px.</td>
+            </tr>
+            <tr>
+              <td><code>content</code></td>
+              <td>Text + Icon | Icon Only</td>
+              <td><code>Text + Icon</code></td>
+              <td>Icon-only buttons use square padding and require an accessible aria-label.</td>
+            </tr>
+            <tr>
+              <td><code>state</code></td>
+              <td>Enable | Hover | Pressed | Focus | Disabled | Skeleton</td>
+              <td><code>Enable</code></td>
+              <td>Interactive state. Disabled buttons remain in the DOM but are non-interactive.</td>
+            </tr>
+          </tbody>
+        </table>
+      </section>
+
+      <!-- 5 · USAGE -->
+      <section class="doc-section" id="usage">
+        <h2 class="section-title">Usage</h2>
+        <div class="usage-block">
+          <div class="usage-cols">
+            <div class="usage-card">
+              <div class="usage-card-header">
+                <div class="usage-icon do-icon"><i data-lucide="check" style="width:12px;height:12px"></i></div>
+                <div class="usage-card-title">Do</div>
+              </div>
+              <ul class="usage-list">
+                <li>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor</li>
+                <li>Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi</li>
+                <li>Duis aute irure dolor in reprehenderit in voluptate velit esse cillum</li>
+              </ul>
+            </div>
+            <div class="usage-card">
+              <div class="usage-card-header">
+                <div class="usage-icon do-icon"><i data-lucide="check" style="width:12px;height:12px"></i></div>
+                <div class="usage-card-title">Do</div>
+              </div>
+              <ul class="usage-list">
+                <li>Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia</li>
+                <li>Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium</li>
+                <li>Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit fugit</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+        <div class="usage-divider"></div>
+        <div class="usage-block">
+          <div class="usage-cols">
+            <div class="usage-card">
+              <div class="usage-card-header">
+                <div class="usage-icon dont-icon"><i data-lucide="x" style="width:12px;height:12px"></i></div>
+                <div class="usage-card-title">Don't</div>
+              </div>
+              <ul class="usage-list">
+                <li>Neque porro quisquam est qui dolorem ipsum quia dolor sit amet consectetur</li>
+                <li>Quis autem vel eum iure reprehenderit qui in ea voluptate velit esse quam</li>
+                <li>At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis</li>
+              </ul>
+            </div>
+            <div class="usage-card">
+              <div class="usage-card-header">
+                <div class="usage-icon dont-icon"><i data-lucide="x" style="width:12px;height:12px"></i></div>
+                <div class="usage-card-title">Don't</div>
+              </div>
+              <ul class="usage-list">
+                <li>Nam libero tempore cum soluta nobis est eligendi optio cumque nihil</li>
+                <li>Temporibus autem quibusdam et aut officiis debitis aut rerum necessitatibus</li>
+                <li>Itaque earum rerum hic tenetur sapiente delectus ut aut reiciendis voluptatibus</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- 6 · TOKENS -->
+      <section class="doc-section" id="tokens">
+        <h2 class="section-title">Tokens used</h2>
+
+        <p class="tokens-cat">Color — Background</p>
+        <table class="tokens-table">
+          <thead><tr><th>Element</th><th>Token</th><th></th></tr></thead>
+          <tbody>
+            <tr><td>Primary — default</td><td class="t-tok">color/action/primary/default</td><td class="t-sw"><div class="swatch" style="background:#006c21;"></div></td></tr>
+            <tr><td>Primary — hover</td><td class="t-tok">color/action/primary/hover</td><td class="t-sw"><div class="swatch" style="background:#004816;"></div></td></tr>
+            <tr><td>Primary — pressed</td><td class="t-tok">color/action/primary/pressed</td><td class="t-sw"><div class="swatch" style="background:#003322;"></div></td></tr>
+            <tr><td>Secondary — default</td><td class="t-tok">color/action/secondary/default</td><td class="t-sw"><div class="swatch" style="background:#027cb1;"></div></td></tr>
+            <tr><td>Secondary — hover</td><td class="t-tok">color/action/secondary/hover</td><td class="t-sw"><div class="swatch" style="background:#016692;"></div></td></tr>
+            <tr><td>Secondary — pressed</td><td class="t-tok">color/action/secondary/pressed</td><td class="t-sw"><div class="swatch" style="background:#004f70;"></div></td></tr>
+            <tr><td>Destructive — default</td><td class="t-tok">color/action/destructive/default</td><td class="t-sw"><div class="swatch" style="background:#c63b3b;"></div></td></tr>
+            <tr><td>Destructive — hover</td><td class="t-tok">color/action/destructive/hover</td><td class="t-sw"><div class="swatch" style="background:#a12f2f;"></div></td></tr>
+            <tr><td>Destructive — pressed</td><td class="t-tok">color/action/destructive/pressed</td><td class="t-sw"><div class="swatch" style="background:#811f1f;"></div></td></tr>
+            <tr><td>Ghost — hover</td><td class="t-tok">color/bg/ghost/hover</td><td class="t-sw"><div class="swatch" style="background:#e5e7eb;"></div></td></tr>
+            <tr><td>Ghost — pressed</td><td class="t-tok">color/bg/ghost/pressed</td><td class="t-sw"><div class="swatch" style="background:#cdd2d7;"></div></td></tr>
+            <tr><td>Disabled</td><td class="t-tok">color/bg/button-disabled</td><td class="t-sw"><div class="swatch" style="background:#eff1f3;"></div></td></tr>
+          </tbody>
+        </table>
+
+        <p class="tokens-cat">Color — Border</p>
+        <table class="tokens-table">
+          <thead><tr><th>Element</th><th>Token</th><th></th></tr></thead>
+          <tbody>
+            <tr><td>Tertiary border</td><td class="t-tok">color/border/button-tertiary</td><td class="t-sw"><div class="swatch" style="background:#016692;"></div></td></tr>
+            <tr><td>Destructive Tertiary border</td><td class="t-tok">color/border/button-destructive</td><td class="t-sw"><div class="swatch" style="background:#a12f2f;"></div></td></tr>
+            <tr><td>Disabled border</td><td class="t-tok">color/border/disabled</td><td class="t-sw"><div class="swatch" style="background:#e5e7eb;"></div></td></tr>
+            <tr><td>Focus ring</td><td class="t-tok">color/border/focus-ring</td><td class="t-sw"><div class="swatch" style="background:#5abfe0;"></div></td></tr>
+            <tr><td>Focus glow</td><td class="t-tok">color/blue/400-35</td><td class="t-sw"><div class="swatch" style="background:rgba(90,191,224,0.35);"></div></td></tr>
+          </tbody>
+        </table>
+
+        <p class="tokens-cat">Color — Text</p>
+        <table class="tokens-table">
+          <thead><tr><th>Element</th><th>Token</th><th></th></tr></thead>
+          <tbody>
+            <tr><td>Label (solid buttons)</td><td class="t-tok">color/text/button</td><td class="t-sw"><div class="swatch" style="background:#ffffff;border-color:rgba(0,0,0,.1)"></div></td></tr>
+            <tr><td>Label (Tertiary / Ghost)</td><td class="t-tok">color/text/button-tertiary/default</td><td class="t-sw"><div class="swatch" style="background:#016692;"></div></td></tr>
+            <tr><td>Label (Ghost — hover/pressed)</td><td class="t-tok">color/text/button-ghost/hover</td><td class="t-sw"><div class="swatch" style="background:#004f70;"></div></td></tr>
+            <tr><td>Label (Destructive Tertiary / Ghost)</td><td class="t-tok">color/text/button-destructive/default</td><td class="t-sw"><div class="swatch" style="background:#a12f2f;"></div></td></tr>
+            <tr><td>Label (disabled)</td><td class="t-tok">color/text/disabled</td><td class="t-sw"><div class="swatch" style="background:#9ca3af;"></div></td></tr>
+          </tbody>
+        </table>
+
+        <p class="tokens-cat">Typography</p>
+        <table class="tokens-table">
+          <thead><tr><th>Element</th><th>Token</th><th>Value</th></tr></thead>
+          <tbody>
+            <tr><td>Label</td><td class="t-tok">typography/button/label</td><td>Lato Bold, 16px / 24px, 0 letter-spacing</td></tr>
+          </tbody>
+        </table>
+
+        <p class="tokens-cat">Spacing</p>
+        <table class="tokens-table">
+          <thead><tr><th>Size</th><th>Padding (Text+Icon)</th><th>Padding (Icon Only)</th><th>Gap</th></tr></thead>
+          <tbody>
+            <tr><td>Large</td><td class="t-tok">16px / 24px</td><td class="t-tok">16px</td><td>8px</td></tr>
+            <tr><td>Medium</td><td class="t-tok">12px / 16px</td><td class="t-tok">12px</td><td>8px</td></tr>
+            <tr><td>Small</td><td class="t-tok">4px / 8px</td><td class="t-tok">4px</td><td>8px</td></tr>
+          </tbody>
+        </table>
+
+        <p class="tokens-cat">Border Radius</p>
+        <table class="tokens-table">
+          <thead><tr><th>Element</th><th>Token</th><th>Value</th></tr></thead>
+          <tbody>
+            <tr><td>Container</td><td class="t-tok">radius/small</td><td>4px</td></tr>
+          </tbody>
+        </table>
+
+      </section>
+
+      <!-- 7 · ACCESSIBILITY -->
+      <section class="doc-section" id="accessibility">
+        <h2 class="section-title">Accessibility</h2>
+        <ul class="a11y-list">
+          <li>
+            <div><strong>Keyboard navigation:</strong> Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua ut enim.</div>
+          </li>
+          <li>
+            <div><strong>Icon-only buttons:</strong> Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat duis aute irure dolor.</div>
+          </li>
+          <li>
+            <div><strong>Disabled state:</strong> Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur excepteur sint occaecat cupidatat.</div>
+          </li>
+          <li>
+            <div><strong>Focus indicator:</strong> Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum consectetur adipiscing elit.</div>
+          </li>
+        </ul>
+      </section>
+
+      <!-- 8 · RELATED -->
+      <section class="doc-section" id="related">
+        <h2 class="section-title">Related Components</h2>
+        <div class="related-grid">
+          <a href="#" class="related-card">
+            <div class="rc-name">Link</div>
+            <div class="rc-desc">Inline text-based navigation. Use Link for navigating to a new page; use Button for triggering in-page actions.</div>
+          </a>
+          <a href="badge.html" class="related-card">
+            <div class="rc-name">Badge</div>
+            <div class="rc-desc">Compact non-interactive status labels. Shares the same semantic color palette as the Destructive button variants.</div>
+          </a>
+          <a href="alert.html" class="related-card">
+            <div class="rc-name">Alert</div>
+            <div class="rc-desc">Inline feedback messages that often pair with a Destructive or Primary button to confirm or dismiss the alert action.</div>
+          </a>
+        </div>
+      </section>
+
+    </main>
+
+    <!-- RIGHT NAV -->
+    <nav class="right-nav">
+      <div class="rn-label">On this page</div>
+      <ul class="rn-list">
+        <li><a href="#definition" id="rn-definition">Definition</a></li>
+        <li><a href="#anatomy" id="rn-anatomy">Anatomy</a></li>
+        <li><a href="#variants" id="rn-variants">Variants</a></li>
+        <li><a href="#properties" id="rn-properties">Properties</a></li>
+        <li><a href="#usage" id="rn-usage">Usage</a></li>
+        <li><a href="#tokens" id="rn-tokens">Tokens</a></li>
+        <li><a href="#accessibility" id="rn-accessibility">Accessibility</a></li>
+        <li><a href="#related" id="rn-related">Related</a></li>
+      </ul>
+    </nav>
+
+  </div><!-- /content-wrap -->
+</div><!-- /shell -->
+
+<script>
+  lucide.createIcons();
+
+  const isMobile = () => window.innerWidth <= 768;
+  let sbOpen = !isMobile();
+  if (!sbOpen) document.getElementById('leftNav').classList.add('hidden');
+
+  function toggleSidebar() {
+    sbOpen = !sbOpen;
+    document.getElementById('leftNav').classList.toggle('hidden', !sbOpen);
+    if (!isMobile()) {
+      document.getElementById('contentWrap').style.marginLeft = sbOpen ? 'var(--left-w)' : '0';
+    }
+    document.getElementById('navOverlay').classList.toggle('active', sbOpen && isMobile());
+  }
+
+  function switchStateTab(btn, panelId) {
+    const wrap = btn.closest('.tab-panel');
+    wrap.querySelectorAll('.state-tab-btn').forEach(t => t.classList.remove('active'));
+    wrap.querySelectorAll('.state-panel').forEach(p => p.classList.remove('active'));
+    btn.classList.add('active');
+    document.getElementById(panelId).classList.add('active');
+    lucide.createIcons();
+  }
+
+  function updateTabFade(tabsEl) {
+    const wrap = tabsEl.closest('.tabs-wrap');
+    if (!wrap) return;
+    const atEnd = tabsEl.scrollLeft + tabsEl.clientWidth >= tabsEl.scrollWidth - 2;
+    wrap.classList.toggle('at-end', atEnd);
+  }
+
+  function switchTab(btn, panelId) {
+    btn.closest('.doc-section').querySelectorAll('.tab').forEach(b => b.classList.remove('active'));
+    btn.closest('.doc-section').querySelectorAll('.tab-panel').forEach(p => p.classList.remove('active'));
+    btn.classList.add('active');
+    document.getElementById(panelId).classList.add('active');
+    const tabsEl = btn.closest('.tabs');
+    if (tabsEl) {
+      const tabRight = btn.offsetLeft + btn.offsetWidth;
+      const tabLeft = btn.offsetLeft;
+      if (tabRight > tabsEl.scrollLeft + tabsEl.clientWidth - 56) {
+        tabsEl.scrollLeft = tabRight - tabsEl.clientWidth + 72;
+      } else if (tabLeft < tabsEl.scrollLeft) {
+        tabsEl.scrollLeft = tabLeft;
+      }
+      updateTabFade(tabsEl);
+    }
+    lucide.createIcons();
+  }
+
+  window.addEventListener('load', () => {
+    document.querySelectorAll('.tabs').forEach(tabsEl => {
+      updateTabFade(tabsEl);
+      tabsEl.addEventListener('scroll', () => updateTabFade(tabsEl));
+    });
+  });
+
+  function toggleTheme() {
+    const html = document.documentElement;
+    html.setAttribute('data-theme', html.getAttribute('data-theme') === 'dark' ? 'light' : 'dark');
+  }
+
+  const sections = document.querySelectorAll('.doc-section');
+  const navLinks = document.querySelectorAll('.rn-list a');
+  const observer = new IntersectionObserver(entries => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        navLinks.forEach(l => l.classList.remove('active'));
+        const link = document.getElementById('rn-' + e.target.id);
+        if (link) link.classList.add('active');
+      }
+    });
+  }, { rootMargin: '-20% 0px -70% 0px' });
+  sections.forEach(s => observer.observe(s));
+</script>
+</body>
+</html>

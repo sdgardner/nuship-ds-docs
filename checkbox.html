@@ -44,11 +44,11 @@
         <div class="ln-label">Inputs</div>
         <ul class="ln-list">
           <li><a href="checkbox.html" class="active">Checkbox</a></li>
-          <li><a href="#">Date Picker</a></li>
+          <li><a href="datepicker.html">Date Picker</a></li>
           <li><a href="#">Number Input</a></li>
           <li><a href="#">Radio Button</a></li>
           <li><a href="#">Search</a></li>
-          <li><a href="#">Select</a></li>
+          <li><a href="select.html">Select</a></li>
           <li><a href="#">Slider</a></li>
           <li><a href="#">Switch</a></li>
           <li><a href="#">Text Area</a></li>
@@ -59,7 +59,7 @@
         <div class="ln-label">Feedback</div>
         <ul class="ln-list">
           <li><a href="alert.html">Alert</a></li>
-          <li><a href="#">Badge</a></li>
+          <li><a href="badge.html">Badge</a></li>
           <li><a href="#">Toast</a></li>
           <li><a href="#">Tooltip</a></li>
         </ul>
@@ -67,7 +67,7 @@
       <div class="ln-group">
         <div class="ln-label">Navigation</div>
         <ul class="ln-list">
-          <li><a href="#">Accordion</a></li>
+          <li><a href="accordion.html">Accordion</a></li>
           <li><a href="#">Breadcrumb</a></li>
           <li><a href="#">Dropdown</a></li>
           <li><a href="#">Menu</a></li>
@@ -77,7 +77,7 @@
       <div class="ln-group">
         <div class="ln-label">Actions</div>
         <ul class="ln-list">
-          <li><a href="#">Button</a></li>
+          <li><a href="button.html">Button</a></li>
           <li><a href="#">Link</a></li>
           <li><a href="#">Tags</a></li>
         </ul>
@@ -179,66 +179,213 @@
 
       <!-- 3 · VARIANTS -->
       <section class="doc-section" id="variants">
-        <div class="variants-header">
-          <h2 class="section-title" style="margin-bottom:0; white-space:nowrap; flex-shrink:0; padding-right:20px;">Variants</h2>
-          <div class="tabs-wrap">
-            <div class="tabs">
-              <button class="tab active"  onclick="switchTab(this,'v-default')">Default</button>
-              <button class="tab" onclick="switchTab(this,'v-checked')">Checked</button>
-              <button class="tab" onclick="switchTab(this,'v-indeterminate')">Indeterminate</button>
-              <button class="tab" onclick="switchTab(this,'v-hover')">Hover</button>
-              <button class="tab" onclick="switchTab(this,'v-focus')">Focus</button>
-              <button class="tab" onclick="switchTab(this,'v-focus-checked')">Focus Checked</button>
-              <button class="tab" onclick="switchTab(this,'v-disabled')">Disabled</button>
-              <button class="tab" onclick="switchTab(this,'v-disabled-checked')">Disabled Checked</button>
-              <button class="tab" onclick="switchTab(this,'v-error')">Error</button>
-            </div>
-            <div class="tab-indicator"></div>
+        <h2 class="section-title">Variants</h2>
+        <div class="tabs-wrap">
+          <div class="tabs">
+            <button class="tab active" onclick="switchTab(this,'v-default')">Default</button>
+            <button class="tab" onclick="switchTab(this,'v-checked')">Checked</button>
+            <button class="tab" onclick="switchTab(this,'v-indeterminate')">Indeterminate</button>
           </div>
         </div>
 
-        <!-- Default -->
+        <!-- DEFAULT -->
         <div class="tab-panel active" id="v-default">
+          <div class="state-tab-row">
+            <button class="state-tab-btn active" onclick="switchStateTab(this,'vs-def-enabled')">Enabled</button>
+            <button class="state-tab-btn" onclick="switchStateTab(this,'vs-def-hover')">Hover</button>
+            <button class="state-tab-btn" onclick="switchStateTab(this,'vs-def-focus')">Focus</button>
+            <button class="state-tab-btn" onclick="switchStateTab(this,'vs-def-disabled')">Disabled</button>
+            <button class="state-tab-btn" onclick="switchStateTab(this,'vs-def-error')">Error</button>
+          </div>
           <div class="var-panel">
-            <div class="var-previews">
-              <div class="var-preview" data-theme="light">
-                <div class="cb-item">
-                  <div class="cb-box"></div>
-                  <div class="cb-text"><div class="cb-label">Checkbox Label</div><div class="cb-desc">Optional description text</div></div>
+            <div class="var-previews-wrap">
+              <div class="state-panel active" id="vs-def-enabled">
+                <div class="var-previews">
+                  <div class="var-preview">
+                    <div class="cb-item">
+                      <div class="cb-box"></div>
+                      <div class="cb-text"><div class="cb-label">Checkbox Label</div><div class="cb-desc">Optional description text</div></div>
+                    </div>
+                  </div>
+                  <div class="var-preview-dark">
+                    <div class="cb-item">
+                      <div class="cb-box"></div>
+                      <div class="cb-text"><div class="cb-label">Checkbox Label</div><div class="cb-desc">Optional description text</div></div>
+                    </div>
+                  </div>
                 </div>
               </div>
-              <div class="var-preview-dark" data-theme="dark">
-                <div class="cb-item">
-                  <div class="cb-box"></div>
-                  <div class="cb-text"><div class="cb-label">Checkbox Label</div><div class="cb-desc">Optional description text</div></div>
+              <div class="state-panel" id="vs-def-hover">
+                <div class="var-previews">
+                  <div class="var-preview">
+                    <div class="cb-item">
+                      <div class="cb-box cb-box--hover"></div>
+                      <div class="cb-text"><div class="cb-label">Checkbox Label</div><div class="cb-desc">Optional description text</div></div>
+                    </div>
+                  </div>
+                  <div class="var-preview-dark">
+                    <div class="cb-item">
+                      <div class="cb-box cb-box--hover"></div>
+                      <div class="cb-text"><div class="cb-label">Checkbox Label</div><div class="cb-desc">Optional description text</div></div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="state-panel" id="vs-def-focus">
+                <div class="var-previews">
+                  <div class="var-preview">
+                    <div class="cb-item">
+                      <div class="cb-box cb-box--focus"></div>
+                      <div class="cb-text"><div class="cb-label">Checkbox Label</div><div class="cb-desc">Optional description text</div></div>
+                    </div>
+                  </div>
+                  <div class="var-preview-dark">
+                    <div class="cb-item">
+                      <div class="cb-box cb-box--focus"></div>
+                      <div class="cb-text"><div class="cb-label">Checkbox Label</div><div class="cb-desc">Optional description text</div></div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="state-panel" id="vs-def-disabled">
+                <div class="var-previews">
+                  <div class="var-preview">
+                    <div class="cb-item">
+                      <div class="cb-box cb-box--disabled"></div>
+                      <div class="cb-text"><div class="cb-label cb-label--disabled">Checkbox Label</div><div class="cb-desc cb-desc--disabled">Optional description text</div></div>
+                    </div>
+                  </div>
+                  <div class="var-preview-dark">
+                    <div class="cb-item">
+                      <div class="cb-box cb-box--disabled"></div>
+                      <div class="cb-text"><div class="cb-label cb-label--disabled">Checkbox Label</div><div class="cb-desc cb-desc--disabled">Optional description text</div></div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="state-panel" id="vs-def-error">
+                <div class="var-previews">
+                  <div class="var-preview">
+                    <div class="cb-item">
+                      <div class="cb-box cb-box--error"></div>
+                      <div class="cb-text"><div class="cb-label">Checkbox Label</div><div class="cb-error-msg">Error message appears here</div></div>
+                    </div>
+                  </div>
+                  <div class="var-preview-dark">
+                    <div class="cb-item">
+                      <div class="cb-box cb-box--error"></div>
+                      <div class="cb-text"><div class="cb-label">Checkbox Label</div><div class="cb-error-msg">Error message appears here</div></div>
+                    </div>
+                  </div>
                 </div>
               </div>
             </div>
             <div class="var-desc">
               <div class="var-use-when">Use when:</div>
               <ul class="var-use-list">
-                <li>Presenting an option before the user has interacted</li>
-                <li>Showing an unchecked optional choice</li>
+                <li>Presenting an option the user hasn't yet selected</li>
                 <li>Starting state for all checkboxes in a group</li>
+              </ul>
+              <div class="var-use-when" style="margin-top:16px;">Visual changes:</div>
+              <ul class="var-use-list">
+                <li>Hover — stronger border</li>
+                <li>Focus — blue focus ring</li>
+                <li>Disabled — faded border and text</li>
+                <li>Error — red border and error message</li>
               </ul>
             </div>
           </div>
         </div>
 
-        <!-- Checked -->
+        <!-- CHECKED -->
         <div class="tab-panel" id="v-checked">
+          <div class="state-tab-row">
+            <button class="state-tab-btn active" onclick="switchStateTab(this,'vs-chk-enabled')">Enabled</button>
+            <button class="state-tab-btn" onclick="switchStateTab(this,'vs-chk-hover')">Hover</button>
+            <button class="state-tab-btn" onclick="switchStateTab(this,'vs-chk-focus')">Focus</button>
+            <button class="state-tab-btn" onclick="switchStateTab(this,'vs-chk-disabled')">Disabled</button>
+            <button class="state-tab-btn" onclick="switchStateTab(this,'vs-chk-error')">Error</button>
+          </div>
           <div class="var-panel">
-            <div class="var-previews">
-              <div class="var-preview" data-theme="light">
-                <div class="cb-item">
-                  <div class="cb-box cb-box--checked"></div>
-                  <div class="cb-text"><div class="cb-label">Checkbox Label</div><div class="cb-desc">Optional description text</div></div>
+            <div class="var-previews-wrap">
+              <div class="state-panel active" id="vs-chk-enabled">
+                <div class="var-previews">
+                  <div class="var-preview">
+                    <div class="cb-item">
+                      <div class="cb-box cb-box--checked"></div>
+                      <div class="cb-text"><div class="cb-label">Checkbox Label</div><div class="cb-desc">Optional description text</div></div>
+                    </div>
+                  </div>
+                  <div class="var-preview-dark">
+                    <div class="cb-item">
+                      <div class="cb-box cb-box--checked"></div>
+                      <div class="cb-text"><div class="cb-label">Checkbox Label</div><div class="cb-desc">Optional description text</div></div>
+                    </div>
+                  </div>
                 </div>
               </div>
-              <div class="var-preview-dark" data-theme="dark">
-                <div class="cb-item">
-                  <div class="cb-box cb-box--checked"></div>
-                  <div class="cb-text"><div class="cb-label">Checkbox Label</div><div class="cb-desc">Optional description text</div></div>
+              <div class="state-panel" id="vs-chk-hover">
+                <div class="var-previews">
+                  <div class="var-preview">
+                    <div class="cb-item">
+                      <div class="cb-box cb-box--checked" style="box-shadow:0 0 0 4px #E5E7EB;"></div>
+                      <div class="cb-text"><div class="cb-label">Checkbox Label</div><div class="cb-desc">Optional description text</div></div>
+                    </div>
+                  </div>
+                  <div class="var-preview-dark">
+                    <div class="cb-item">
+                      <div class="cb-box cb-box--checked" style="box-shadow:0 0 0 4px #374151;"></div>
+                      <div class="cb-text"><div class="cb-label">Checkbox Label</div><div class="cb-desc">Optional description text</div></div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="state-panel" id="vs-chk-focus">
+                <div class="var-previews">
+                  <div class="var-preview">
+                    <div class="cb-item">
+                      <div class="cb-box cb-box--focus-checked"></div>
+                      <div class="cb-text"><div class="cb-label">Checkbox Label</div><div class="cb-desc">Optional description text</div></div>
+                    </div>
+                  </div>
+                  <div class="var-preview-dark">
+                    <div class="cb-item">
+                      <div class="cb-box cb-box--focus-checked"></div>
+                      <div class="cb-text"><div class="cb-label">Checkbox Label</div><div class="cb-desc">Optional description text</div></div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="state-panel" id="vs-chk-disabled">
+                <div class="var-previews">
+                  <div class="var-preview">
+                    <div class="cb-item">
+                      <div class="cb-box cb-box--disabled-checked"></div>
+                      <div class="cb-text"><div class="cb-label cb-label--disabled">Checkbox Label</div><div class="cb-desc cb-desc--disabled">Optional description text</div></div>
+                    </div>
+                  </div>
+                  <div class="var-preview-dark">
+                    <div class="cb-item">
+                      <div class="cb-box cb-box--disabled-checked"></div>
+                      <div class="cb-text"><div class="cb-label cb-label--disabled">Checkbox Label</div><div class="cb-desc cb-desc--disabled">Optional description text</div></div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="state-panel" id="vs-chk-error">
+                <div class="var-previews">
+                  <div class="var-preview">
+                    <div class="cb-item">
+                      <div class="cb-box cb-box--checked cb-box--error"></div>
+                      <div class="cb-text"><div class="cb-label">Checkbox Label</div><div class="cb-error-msg">Error message appears here</div></div>
+                    </div>
+                  </div>
+                  <div class="var-preview-dark">
+                    <div class="cb-item">
+                      <div class="cb-box cb-box--checked cb-box--error"></div>
+                      <div class="cb-text"><div class="cb-label">Checkbox Label</div><div class="cb-error-msg">Error message appears here</div></div>
+                    </div>
+                  </div>
                 </div>
               </div>
             </div>
@@ -246,27 +393,109 @@
               <div class="var-use-when">Use when:</div>
               <ul class="var-use-list">
                 <li>The user has actively selected this option</li>
-                <li>A default pre-selected value needs to be shown</li>
+                <li>A default pre-selected value is required</li>
                 <li>Confirming agreement or preference</li>
+              </ul>
+              <div class="var-use-when" style="margin-top:16px;">Visual changes:</div>
+              <ul class="var-use-list">
+                <li>Hover — subtle outer ring on filled box</li>
+                <li>Focus — blue focus ring around filled box</li>
+                <li>Disabled — greyed fill, no interaction</li>
+                <li>Error — red border override on filled box</li>
               </ul>
             </div>
           </div>
         </div>
 
-        <!-- Indeterminate -->
+        <!-- INDETERMINATE -->
         <div class="tab-panel" id="v-indeterminate">
+          <div class="state-tab-row">
+            <button class="state-tab-btn active" onclick="switchStateTab(this,'vs-ind-enabled')">Enabled</button>
+            <button class="state-tab-btn" onclick="switchStateTab(this,'vs-ind-hover')">Hover</button>
+            <button class="state-tab-btn" onclick="switchStateTab(this,'vs-ind-focus')">Focus</button>
+            <button class="state-tab-btn" onclick="switchStateTab(this,'vs-ind-disabled')">Disabled</button>
+            <button class="state-tab-btn" onclick="switchStateTab(this,'vs-ind-error')">Error</button>
+          </div>
           <div class="var-panel">
-            <div class="var-previews">
-              <div class="var-preview" data-theme="light">
-                <div class="cb-item">
-                  <div class="cb-box cb-box--indeterminate"></div>
-                  <div class="cb-text"><div class="cb-label">Checkbox Label</div><div class="cb-desc">Optional description text</div></div>
+            <div class="var-previews-wrap">
+              <div class="state-panel active" id="vs-ind-enabled">
+                <div class="var-previews">
+                  <div class="var-preview">
+                    <div class="cb-item">
+                      <div class="cb-box cb-box--indeterminate"></div>
+                      <div class="cb-text"><div class="cb-label">Checkbox Label</div><div class="cb-desc">Optional description text</div></div>
+                    </div>
+                  </div>
+                  <div class="var-preview-dark">
+                    <div class="cb-item">
+                      <div class="cb-box cb-box--indeterminate"></div>
+                      <div class="cb-text"><div class="cb-label">Checkbox Label</div><div class="cb-desc">Optional description text</div></div>
+                    </div>
+                  </div>
                 </div>
               </div>
-              <div class="var-preview-dark" data-theme="dark">
-                <div class="cb-item">
-                  <div class="cb-box cb-box--indeterminate"></div>
-                  <div class="cb-text"><div class="cb-label">Checkbox Label</div><div class="cb-desc">Optional description text</div></div>
+              <div class="state-panel" id="vs-ind-hover">
+                <div class="var-previews">
+                  <div class="var-preview">
+                    <div class="cb-item">
+                      <div class="cb-box cb-box--indeterminate" style="box-shadow:0 0 0 4px #E5E7EB;"></div>
+                      <div class="cb-text"><div class="cb-label">Checkbox Label</div><div class="cb-desc">Optional description text</div></div>
+                    </div>
+                  </div>
+                  <div class="var-preview-dark">
+                    <div class="cb-item">
+                      <div class="cb-box cb-box--indeterminate" style="box-shadow:0 0 0 4px #374151;"></div>
+                      <div class="cb-text"><div class="cb-label">Checkbox Label</div><div class="cb-desc">Optional description text</div></div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="state-panel" id="vs-ind-focus">
+                <div class="var-previews">
+                  <div class="var-preview">
+                    <div class="cb-item">
+                      <div class="cb-box cb-box--indeterminate" style="box-shadow:0 0 0 2px #5ABFE0, 0 0 0 6px rgba(90,191,224,.35);"></div>
+                      <div class="cb-text"><div class="cb-label">Checkbox Label</div><div class="cb-desc">Optional description text</div></div>
+                    </div>
+                  </div>
+                  <div class="var-preview-dark">
+                    <div class="cb-item">
+                      <div class="cb-box cb-box--indeterminate" style="box-shadow:0 0 0 2px #0083BB, 0 0 0 6px rgba(90,191,224,.35);"></div>
+                      <div class="cb-text"><div class="cb-label">Checkbox Label</div><div class="cb-desc">Optional description text</div></div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="state-panel" id="vs-ind-disabled">
+                <div class="var-previews">
+                  <div class="var-preview">
+                    <div class="cb-item">
+                      <div class="cb-box cb-box--indeterminate" style="background:#E5E7EB;border-color:#E5E7EB;"></div>
+                      <div class="cb-text"><div class="cb-label cb-label--disabled">Checkbox Label</div><div class="cb-desc cb-desc--disabled">Optional description text</div></div>
+                    </div>
+                  </div>
+                  <div class="var-preview-dark">
+                    <div class="cb-item">
+                      <div class="cb-box cb-box--indeterminate" style="background:#374151;border-color:#374151;"></div>
+                      <div class="cb-text"><div class="cb-label cb-label--disabled">Checkbox Label</div><div class="cb-desc cb-desc--disabled">Optional description text</div></div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="state-panel" id="vs-ind-error">
+                <div class="var-previews">
+                  <div class="var-preview">
+                    <div class="cb-item">
+                      <div class="cb-box cb-box--indeterminate cb-box--error"></div>
+                      <div class="cb-text"><div class="cb-label">Checkbox Label</div><div class="cb-error-msg">Error message appears here</div></div>
+                    </div>
+                  </div>
+                  <div class="var-preview-dark">
+                    <div class="cb-item">
+                      <div class="cb-box cb-box--indeterminate cb-box--error"></div>
+                      <div class="cb-text"><div class="cb-label">Checkbox Label</div><div class="cb-error-msg">Error message appears here</div></div>
+                    </div>
+                  </div>
                 </div>
               </div>
             </div>
@@ -277,170 +506,12 @@
                 <li>Some — but not all — children are checked</li>
                 <li>Representing a mixed selection state</li>
               </ul>
-            </div>
-          </div>
-        </div>
-
-        <!-- Hover -->
-        <div class="tab-panel" id="v-hover">
-          <div class="var-panel">
-            <div class="var-previews">
-              <div class="var-preview" data-theme="light">
-                <div class="cb-item">
-                  <div class="cb-box cb-box--hover"></div>
-                  <div class="cb-text"><div class="cb-label">Checkbox Label</div><div class="cb-desc">Optional description text</div></div>
-                </div>
-              </div>
-              <div class="var-preview-dark" data-theme="dark">
-                <div class="cb-item">
-                  <div class="cb-box cb-box--hover"></div>
-                  <div class="cb-text"><div class="cb-label">Checkbox Label</div><div class="cb-desc">Optional description text</div></div>
-                </div>
-              </div>
-            </div>
-            <div class="var-desc">
-              <div class="var-use-when">Use when:</div>
+              <div class="var-use-when" style="margin-top:16px;">Visual changes:</div>
               <ul class="var-use-list">
-                <li>User's cursor is over the control (desktop only)</li>
-                <li>Providing visual feedback that the element is interactive</li>
-              </ul>
-            </div>
-          </div>
-        </div>
-
-        <!-- Focus -->
-        <div class="tab-panel" id="v-focus">
-          <div class="var-panel">
-            <div class="var-previews">
-              <div class="var-preview" data-theme="light">
-                <div class="cb-item">
-                  <div class="cb-box cb-box--focus"></div>
-                  <div class="cb-text"><div class="cb-label">Checkbox Label</div><div class="cb-desc">Optional description text</div></div>
-                </div>
-              </div>
-              <div class="var-preview-dark" data-theme="dark">
-                <div class="cb-item">
-                  <div class="cb-box cb-box--focus"></div>
-                  <div class="cb-text"><div class="cb-label">Checkbox Label</div><div class="cb-desc">Optional description text</div></div>
-                </div>
-              </div>
-            </div>
-            <div class="var-desc">
-              <div class="var-use-when">Use when:</div>
-              <ul class="var-use-list">
-                <li>User is navigating via keyboard (Tab key)</li>
-                <li>Checkbox is focused but not yet toggled</li>
-                <li>Required for keyboard accessibility</li>
-              </ul>
-            </div>
-          </div>
-        </div>
-
-        <!-- Focus Checked -->
-        <div class="tab-panel" id="v-focus-checked">
-          <div class="var-panel">
-            <div class="var-previews">
-              <div class="var-preview" data-theme="light">
-                <div class="cb-item">
-                  <div class="cb-box cb-box--focus-checked"></div>
-                  <div class="cb-text"><div class="cb-label">Checkbox Label</div><div class="cb-desc">Optional description text</div></div>
-                </div>
-              </div>
-              <div class="var-preview-dark" data-theme="dark">
-                <div class="cb-item">
-                  <div class="cb-box cb-box--focus-checked"></div>
-                  <div class="cb-text"><div class="cb-label">Checkbox Label</div><div class="cb-desc">Optional description text</div></div>
-                </div>
-              </div>
-            </div>
-            <div class="var-desc">
-              <div class="var-use-when">Use when:</div>
-              <ul class="var-use-list">
-                <li>Checkbox is both checked and keyboard-focused</li>
-                <li>User has tabbed to an already-selected option</li>
-              </ul>
-            </div>
-          </div>
-        </div>
-
-        <!-- Disabled -->
-        <div class="tab-panel" id="v-disabled">
-          <div class="var-panel">
-            <div class="var-previews">
-              <div class="var-preview" data-theme="light">
-                <div class="cb-item">
-                  <div class="cb-box cb-box--disabled"></div>
-                  <div class="cb-text"><div class="cb-label cb-label--disabled">Checkbox Label</div><div class="cb-desc cb-desc--disabled">Optional description text</div></div>
-                </div>
-              </div>
-              <div class="var-preview-dark" data-theme="dark">
-                <div class="cb-item">
-                  <div class="cb-box cb-box--disabled"></div>
-                  <div class="cb-text"><div class="cb-label cb-label--disabled">Checkbox Label</div><div class="cb-desc cb-desc--disabled">Optional description text</div></div>
-                </div>
-              </div>
-            </div>
-            <div class="var-desc">
-              <div class="var-use-when">Use when:</div>
-              <ul class="var-use-list">
-                <li>Option is unavailable in the current context</li>
-                <li>Showing all options while preventing interaction</li>
-                <li>A prerequisite has not been met</li>
-              </ul>
-            </div>
-          </div>
-        </div>
-
-        <!-- Disabled Checked -->
-        <div class="tab-panel" id="v-disabled-checked">
-          <div class="var-panel">
-            <div class="var-previews">
-              <div class="var-preview" data-theme="light">
-                <div class="cb-item">
-                  <div class="cb-box cb-box--disabled-checked"></div>
-                  <div class="cb-text"><div class="cb-label cb-label--disabled">Checkbox Label</div><div class="cb-desc cb-desc--disabled">Optional description text</div></div>
-                </div>
-              </div>
-              <div class="var-preview-dark" data-theme="dark">
-                <div class="cb-item">
-                  <div class="cb-box cb-box--disabled-checked"></div>
-                  <div class="cb-text"><div class="cb-label cb-label--disabled">Checkbox Label</div><div class="cb-desc cb-desc--disabled">Optional description text</div></div>
-                </div>
-              </div>
-            </div>
-            <div class="var-desc">
-              <div class="var-use-when">Use when:</div>
-              <ul class="var-use-list">
-                <li>A pre-selected value cannot be changed by the user</li>
-                <li>Showing a locked or system-enforced selection</li>
-              </ul>
-            </div>
-          </div>
-        </div>
-
-        <!-- Error -->
-        <div class="tab-panel" id="v-error">
-          <div class="var-panel">
-            <div class="var-previews">
-              <div class="var-preview" data-theme="light">
-                <div class="cb-item">
-                  <div class="cb-box cb-box--error"></div>
-                  <div class="cb-text"><div class="cb-label">Checkbox Label</div><div class="cb-error-msg">Error message appears here</div></div>
-                </div>
-              </div>
-              <div class="var-preview-dark" data-theme="dark">
-                <div class="cb-item">
-                  <div class="cb-box cb-box--error"></div>
-                  <div class="cb-text"><div class="cb-label">Checkbox Label</div><div class="cb-error-msg">Error message appears here</div></div>
-                </div>
-              </div>
-            </div>
-            <div class="var-desc">
-              <div class="var-use-when">Use when:</div>
-              <ul class="var-use-list">
-                <li>Validation has failed on form submission</li>
-                <li>A required checkbox was not selected</li>
-                <li>Agreement to terms is mandatory and missing</li>
+                <li>Hover — subtle outer ring on filled box</li>
+                <li>Focus — blue focus ring</li>
+                <li>Disabled — greyed fill, no interaction</li>
+                <li>Error — red border override</li>
               </ul>
             </div>
           </div>
@@ -494,48 +565,48 @@
             <div class="usage-card">
               <div class="usage-card-header">
                 <div class="usage-icon do-icon"><i data-lucide="check" style="width:12px;height:12px"></i></div>
-                <div class="usage-card-title">Use checkboxes for multiple selections</div>
+                <div class="usage-card-title">Lorem ipsum dolor sit amet</div>
               </div>
               <ul class="usage-list">
-                <li>Selecting multiple items from a list</li>
-                <li>Filters where users can apply several criteria at once</li>
-                <li>Multi-select forms where 0, 1, or many options are valid</li>
+                <li>Lorem ipsum dolor sit amet consectetur</li>
+                <li>Adipiscing elit sed do eiusmod tempor</li>
+                <li>Incididunt ut labore et dolore magna</li>
               </ul>
             </div>
 
             <div class="usage-card">
               <div class="usage-card-header">
                 <div class="usage-icon do-icon"><i data-lucide="check" style="width:12px;height:12px"></i></div>
-                <div class="usage-card-title">Single toggle options</div>
+                <div class="usage-card-title">Ut enim ad minim veniam</div>
               </div>
               <ul class="usage-list">
-                <li>On/off preferences or settings</li>
-                <li>Optional features that can be enabled/disabled</li>
-                <li>Agreement to terms or policies</li>
+                <li>Quis nostrud exercitation ullamco laboris</li>
+                <li>Nisi ut aliquip ex ea commodo consequat</li>
+                <li>Duis aute irure dolor in reprehenderit</li>
               </ul>
             </div>
 
             <div class="usage-card">
               <div class="usage-card-header">
                 <div class="usage-icon do-icon"><i data-lucide="check" style="width:12px;height:12px"></i></div>
-                <div class="usage-card-title">Task or item lists</div>
+                <div class="usage-card-title">Excepteur sint occaecat cupidatat</div>
               </div>
               <ul class="usage-list">
-                <li>To-do lists or task completion tracking</li>
-                <li>Selection of items for batch actions</li>
-                <li>Item selection in data tables</li>
+                <li>Non proident sunt in culpa qui officia</li>
+                <li>Deserunt mollit anim id est laborum</li>
+                <li>Sed ut perspiciatis unde omnis iste</li>
               </ul>
             </div>
 
             <div class="usage-card">
               <div class="usage-card-header">
                 <div class="usage-icon do-icon"><i data-lucide="check" style="width:12px;height:12px"></i></div>
-                <div class="usage-card-title">Hierarchal selections</div>
+                <div class="usage-card-title">Nemo enim ipsam voluptatem</div>
               </div>
               <ul class="usage-list">
-                <li>Parent-child relationships with "Select All" functionality</li>
-                <li>Nested categories with indeterminate states</li>
-                <li>Group selections with sub-options</li>
+                <li>Quia voluptas sit aspernatur aut odit</li>
+                <li>Neque porro quisquam est qui dolorem</li>
+                <li>Ut labore et dolore magnam aliquam</li>
               </ul>
             </div>
 
@@ -550,46 +621,46 @@
             <div class="usage-card">
               <div class="usage-card-header">
                 <div class="usage-icon dont-icon"><i data-lucide="x" style="width:12px;height:12px"></i></div>
-                <div class="usage-card-title">Don't use for mutually exclusive choices</div>
+                <div class="usage-card-title">Quis autem vel eum iure</div>
               </div>
               <ul class="usage-list">
-                <li>When only one option can be selected — use Radio Buttons</li>
-                <li>Binary either/or decisions between two options</li>
-                <li>Single selection from a list</li>
+                <li>Reprehenderit qui in ea voluptate velit</li>
+                <li>Esse quam nihil molestiae consequatur</li>
+                <li>Vel illum qui dolorem eum fugiat</li>
               </ul>
             </div>
 
             <div class="usage-card">
               <div class="usage-card-header">
                 <div class="usage-icon dont-icon"><i data-lucide="x" style="width:12px;height:12px"></i></div>
-                <div class="usage-card-title">Don't use for immediate action triggers</div>
+                <div class="usage-card-title">At vero eos et accusamus</div>
               </div>
               <ul class="usage-list">
-                <li>Actions that take effect immediately — use a Switch</li>
-                <li>Settings with instant visual feedback</li>
-                <li>States that don't require form submission</li>
+                <li>Et iusto odio dignissimos ducimus qui</li>
+                <li>Blanditiis praesentium voluptatum deleniti</li>
+                <li>Atque corrupti quos dolores et quas</li>
               </ul>
             </div>
 
             <div class="usage-card">
               <div class="usage-card-header">
                 <div class="usage-icon dont-icon"><i data-lucide="x" style="width:12px;height:12px"></i></div>
-                <div class="usage-card-title">Don't use for navigation or mode switching</div>
+                <div class="usage-card-title">Nam libero tempore cum soluta</div>
               </div>
               <ul class="usage-list">
-                <li>Switching between views or modes — use Tabs or segmented controls</li>
-                <li>Filter buttons that toggle on/off — use Toggle Buttons</li>
+                <li>Nobis est eligendi optio cumque nihil</li>
+                <li>Impedit quo minus id quod maxime</li>
               </ul>
             </div>
 
             <div class="usage-card">
               <div class="usage-card-header">
                 <div class="usage-icon dont-icon"><i data-lucide="x" style="width:12px;height:12px"></i></div>
-                <div class="usage-card-title">Don't use for long lists without search</div>
+                <div class="usage-card-title">Temporibus autem quibusdam</div>
               </div>
               <ul class="usage-list">
-                <li>More than 10–15 options without filtering — use a multi-select dropdown</li>
-                <li>Very long lists that require scrolling — consider dropdown with search</li>
+                <li>Et aut officiis debitis aut rerum necessitatibus</li>
+                <li>Saepe eveniet ut et voluptates repudiandae</li>
               </ul>
             </div>
 
@@ -692,9 +763,10 @@
     </main>
 
     <!-- RIGHT ANCHOR NAV -->
-    <aside class="right-nav" id="rightNav">
+    <nav class="right-nav">
+      <div class="rn-label">On this page</div>
       <ul class="rn-list">
-        <li><a href="#definition"   class="active" id="rn-definition">Definition</a></li>
+        <li><a href="#definition"   id="rn-definition">Definition</a></li>
         <li><a href="#anatomy"      id="rn-anatomy">Anatomy</a></li>
         <li><a href="#variants"     id="rn-variants">Variants</a></li>
         <li><a href="#properties"   id="rn-properties">Properties</a></li>
@@ -703,7 +775,7 @@
         <li><a href="#accessibility" id="rn-accessibility">Accessibility</a></li>
         <li><a href="#related"      id="rn-related">Related</a></li>
       </ul>
-    </aside>
+    </nav>
 
   </div><!-- /content-wrap -->
 </div><!-- /shell -->
@@ -724,41 +796,47 @@
     document.getElementById('navOverlay').classList.toggle('active', sbOpen && isMobile());
   }
 
+  function updateTabFade(tabsEl) {
+    const wrap = tabsEl.closest('.tabs-wrap');
+    if (!wrap) return;
+    const atEnd = tabsEl.scrollLeft + tabsEl.clientWidth >= tabsEl.scrollWidth - 2;
+    wrap.classList.toggle('at-end', atEnd);
+  }
+
+  function switchStateTab(btn, panelId) {
+    const wrap = btn.closest('.tab-panel');
+    wrap.querySelectorAll('.state-tab-btn').forEach(t => t.classList.remove('active'));
+    wrap.querySelectorAll('.state-panel').forEach(p => p.classList.remove('active'));
+    btn.classList.add('active');
+    document.getElementById(panelId).classList.add('active');
+    lucide.createIcons();
+  }
+
   function switchTab(btn, panelId) {
     btn.closest('.doc-section').querySelectorAll('.tab').forEach(b => b.classList.remove('active'));
     btn.closest('.doc-section').querySelectorAll('.tab-panel').forEach(p => p.classList.remove('active'));
     btn.classList.add('active');
     document.getElementById(panelId).classList.add('active');
-    const wrap = btn.closest('.tabs-wrap');
-    const indicator = wrap && wrap.querySelector('.tab-indicator');
-    const tabsEl = wrap && wrap.querySelector('.tabs');
-    if (indicator && tabsEl) {
-      indicator.style.transition = '';
-      indicator.style.left = (btn.offsetLeft - tabsEl.scrollLeft) + 'px';
-      indicator.style.width = btn.offsetWidth + 'px';
+    const tabsEl = btn.closest('.tabs');
+    if (tabsEl) {
+      const tabRight = btn.offsetLeft + btn.offsetWidth;
+      const tabLeft = btn.offsetLeft;
+      if (tabRight > tabsEl.scrollLeft + tabsEl.clientWidth - 56) {
+        tabsEl.scrollLeft = tabRight - tabsEl.clientWidth + 72;
+      } else if (tabLeft < tabsEl.scrollLeft) {
+        tabsEl.scrollLeft = tabLeft;
+      }
+      updateTabFade(tabsEl);
     }
     lucide.createIcons();
   }
 
-  function positionTabIndicator() {
-    document.querySelectorAll('.tabs-wrap').forEach(wrap => {
-      const active = wrap.querySelector('.tab.active');
-      const indicator = wrap.querySelector('.tab-indicator');
-      const tabsEl = wrap.querySelector('.tabs');
-      if (active && indicator && tabsEl) {
-        indicator.style.transition = 'none';
-        indicator.style.left = (active.offsetLeft - tabsEl.scrollLeft) + 'px';
-        indicator.style.width = active.offsetWidth + 'px';
-      }
-    });
-  }
   window.addEventListener('load', () => {
-    positionTabIndicator();
     document.querySelectorAll('.tabs').forEach(tabsEl => {
-      tabsEl.addEventListener('scroll', positionTabIndicator);
+      updateTabFade(tabsEl);
+      tabsEl.addEventListener('scroll', () => updateTabFade(tabsEl));
     });
   });
-  window.addEventListener('resize', positionTabIndicator);
 
   function toggleTheme() {
     const d = document.documentElement;

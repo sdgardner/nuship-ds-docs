@@ -1,0 +1,1247 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Date Picker — nuShip Design System</title>
+  <link href="https://fonts.googleapis.com/css2?family=Lato:wght@400;600;700;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="tokens.css">
+  <link rel="stylesheet" href="styles.css">
+  <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.min.js"></script>
+</head>
+<body>
+
+<!-- MOBILE OVERLAY -->
+<div id="navOverlay" class="nav-overlay" onclick="toggleSidebar()"></div>
+
+<!-- TOP NAV -->
+<nav class="topnav">
+  <button class="hamburger" onclick="toggleSidebar()" aria-label="Menu">
+    <i data-lucide="menu" style="width:18px;height:18px;color:var(--text-secondary)"></i>
+  </button>
+  <div class="bc">
+    <a href="index.html">UI Components</a>
+    <i data-lucide="chevron-right" style="width:14px;height:14px;flex-shrink:0"></i>
+    <a href="#">Inputs</a>
+    <i data-lucide="chevron-right" style="width:14px;height:14px;flex-shrink:0"></i>
+    <span class="cur">Date Picker</span>
+  </div>
+  <div class="nav-actions">
+    <div class="toggle-wrap" onclick="toggleTheme()" role="button">
+      <i data-lucide="moon" style="width:20px;height:20px"></i>
+      <div class="toggle-track"><div class="toggle-thumb"></div></div>
+      <i data-lucide="sun" style="width:20px;height:20px"></i>
+    </div>
+  </div>
+</nav>
+
+<div class="shell">
+
+  <!-- LEFT NAV -->
+  <nav class="left-nav" id="leftNav">
+    <div class="left-nav-inner">
+      <div class="ln-group">
+        <div class="ln-label">Inputs</div>
+        <ul class="ln-list">
+          <li><a href="checkbox.html">Checkbox</a></li>
+          <li><a href="datepicker.html" class="active">Date Picker</a></li>
+          <li><a href="#">Number Input</a></li>
+          <li><a href="#">Radio Button</a></li>
+          <li><a href="#">Search</a></li>
+          <li><a href="select.html">Select</a></li>
+          <li><a href="#">Slider</a></li>
+          <li><a href="#">Switch</a></li>
+          <li><a href="#">Text Area</a></li>
+          <li><a href="#">Text Input</a></li>
+        </ul>
+      </div>
+      <div class="ln-group">
+        <div class="ln-label">Feedback</div>
+        <ul class="ln-list">
+          <li><a href="alert.html">Alert</a></li>
+          <li><a href="badge.html">Badge</a></li>
+          <li><a href="#">Toast</a></li>
+          <li><a href="#">Tooltip</a></li>
+        </ul>
+      </div>
+      <div class="ln-group">
+        <div class="ln-label">Navigation</div>
+        <ul class="ln-list">
+          <li><a href="accordion.html">Accordion</a></li>
+          <li><a href="#">Breadcrumb</a></li>
+          <li><a href="#">Dropdown</a></li>
+          <li><a href="#">Menu</a></li>
+          <li><a href="#">Tabs</a></li>
+        </ul>
+      </div>
+      <div class="ln-group">
+        <div class="ln-label">Actions</div>
+        <ul class="ln-list">
+          <li><a href="button.html">Button</a></li>
+          <li><a href="#">Link</a></li>
+          <li><a href="#">Tags</a></li>
+        </ul>
+      </div>
+      <div class="ln-group">
+        <div class="ln-label">Overlays</div>
+        <ul class="ln-list">
+          <li><a href="#">Modal</a></li>
+          <li><a href="#">Popover</a></li>
+        </ul>
+      </div>
+      <div class="ln-group">
+        <div class="ln-label">Display</div>
+        <ul class="ln-list">
+          <li><a href="avatar.html">Avatar</a></li>
+          <li><a href="#">Carousel</a></li>
+          <li><a href="#">File Upload</a></li>
+          <li><a href="#">Star Rating</a></li>
+          <li><a href="#">Timeline</a></li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <!-- CONTENT -->
+  <div class="content-wrap" id="contentWrap">
+    <main class="doc">
+
+      <!-- 1 · DEFINITION -->
+      <section class="doc-section" id="definition">
+        <div class="def-eyebrow">Inputs</div>
+        <h1 class="def-title">Date Picker</h1>
+        <p class="def-desc">The Date Picker allows users to select a single date, date range, or date and time. It opens a calendar popover from an input trigger, supporting keyboard navigation and accessible date selection across scheduling, filtering, and booking workflows.</p>
+        <div class="def-tags">
+          <span class="tag">Developed</span>
+          <span class="tag">Figma</span>
+        </div>
+
+        <!-- Hero preview: input trigger + calendar popover -->
+        <div class="preview-box">
+          <div style="display:flex;flex-direction:column;gap:4px;">
+            <div class="dp-field">
+              <div class="dp-label">Pickup Date</div>
+              <div class="dp-trigger">
+                <span class="dp-trigger-text filled">Mar 18, 2026</span>
+                <i data-lucide="calendar" style="width:16px;height:16px;color:var(--text-secondary);flex-shrink:0;"></i>
+              </div>
+            </div>
+            <div class="dp-cal">
+              <div class="dp-cal-hd">
+                <span class="dp-cal-nav"><i data-lucide="chevron-left" style="width:16px;height:16px;"></i></span>
+                <span class="dp-cal-month">March 2026</span>
+                <span class="dp-cal-nav"><i data-lucide="chevron-right" style="width:16px;height:16px;"></i></span>
+              </div>
+              <div class="dp-cal-bd">
+                <div class="dp-wk-names">
+                  <span class="dp-wn">Su</span><span class="dp-wn">Mo</span><span class="dp-wn">Tu</span><span class="dp-wn">We</span><span class="dp-wn">Th</span><span class="dp-wn">Fr</span><span class="dp-wn">Sa</span>
+                </div>
+                <div class="dp-weeks">
+                  <div class="dp-week">
+                    <span class="dp-day dp-day--disabled"><span>1</span></span>
+                    <span class="dp-day dp-day--disabled"><span>2</span></span>
+                    <span class="dp-day dp-day--disabled"><span>3</span></span>
+                    <span class="dp-day dp-day--disabled"><span>4</span></span>
+                    <span class="dp-day dp-day--disabled"><span>5</span></span>
+                    <span class="dp-day dp-day--disabled"><span>6</span></span>
+                    <span class="dp-day dp-day--disabled"><span>7</span></span>
+                  </div>
+                  <div class="dp-week">
+                    <span class="dp-day dp-day--disabled"><span>8</span></span>
+                    <span class="dp-day dp-day--disabled"><span>9</span></span>
+                    <span class="dp-day dp-day--disabled"><span>10</span></span>
+                    <span class="dp-day dp-day--disabled"><span>11</span></span>
+                    <span class="dp-day dp-day--disabled"><span>12</span></span>
+                    <span class="dp-day dp-day--disabled"><span>13</span></span>
+                    <span class="dp-day dp-day--disabled"><span>14</span></span>
+                  </div>
+                  <div class="dp-week">
+                    <span class="dp-day dp-day--disabled"><span>15</span></span>
+                    <span class="dp-day dp-day--today"><span>16</span></span>
+                    <span class="dp-day"><span>17</span></span>
+                    <span class="dp-day dp-day--selected"><span>18</span></span>
+                    <span class="dp-day"><span>19</span></span>
+                    <span class="dp-day"><span>20</span></span>
+                    <span class="dp-day"><span>21</span></span>
+                  </div>
+                  <div class="dp-week">
+                    <span class="dp-day"><span>22</span></span>
+                    <span class="dp-day"><span>23</span></span>
+                    <span class="dp-day"><span>24</span></span>
+                    <span class="dp-day"><span>25</span></span>
+                    <span class="dp-day"><span>26</span></span>
+                    <span class="dp-day"><span>27</span></span>
+                    <span class="dp-day"><span>28</span></span>
+                  </div>
+                  <div class="dp-week">
+                    <span class="dp-day"><span>29</span></span>
+                    <span class="dp-day"><span>30</span></span>
+                    <span class="dp-day"><span>31</span></span>
+                    <span class="dp-day dp-day--empty"><span></span></span>
+                    <span class="dp-day dp-day--empty"><span></span></span>
+                    <span class="dp-day dp-day--empty"><span></span></span>
+                    <span class="dp-day dp-day--empty"><span></span></span>
+                  </div>
+                </div>
+              </div>
+              <div class="dp-cal-ft">
+                <button class="dp-btn-ghost">Clear</button>
+                <button class="dp-btn-primary">Apply</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- 2 · ANATOMY -->
+      <section class="doc-section" id="anatomy">
+        <h2 class="section-title">Anatomy</h2>
+        <div class="anatomy-wrap">
+          <div class="anatomy-component" style="width:300px;position:relative;">
+
+            <!-- Input trigger -->
+            <div class="dp-field" style="margin-bottom:8px;pointer-events:none;">
+              <div class="dp-label">Date</div>
+              <div class="dp-trigger">
+                <span class="dp-trigger-text filled">Mar 18, 2026</span>
+                <i data-lucide="calendar" style="width:16px;height:16px;color:var(--text-secondary);flex-shrink:0;"></i>
+              </div>
+            </div>
+
+            <!-- Calendar popover -->
+            <div class="dp-cal" style="pointer-events:none;">
+              <div class="dp-cal-hd">
+                <span class="dp-cal-nav"><i data-lucide="chevron-left" style="width:16px;height:16px;"></i></span>
+                <span class="dp-cal-month">March 2026</span>
+                <span class="dp-cal-nav"><i data-lucide="chevron-right" style="width:16px;height:16px;"></i></span>
+              </div>
+              <div class="dp-cal-bd">
+                <div class="dp-wk-names">
+                  <span class="dp-wn">Su</span><span class="dp-wn">Mo</span><span class="dp-wn">Tu</span><span class="dp-wn">We</span><span class="dp-wn">Th</span><span class="dp-wn">Fr</span><span class="dp-wn">Sa</span>
+                </div>
+                <div class="dp-weeks">
+                  <div class="dp-week">
+                    <span class="dp-day dp-day--disabled"><span>1</span></span>
+                    <span class="dp-day dp-day--disabled"><span>2</span></span>
+                    <span class="dp-day dp-day--disabled"><span>3</span></span>
+                    <span class="dp-day dp-day--disabled"><span>4</span></span>
+                    <span class="dp-day dp-day--disabled"><span>5</span></span>
+                    <span class="dp-day dp-day--disabled"><span>6</span></span>
+                    <span class="dp-day dp-day--disabled"><span>7</span></span>
+                  </div>
+                  <div class="dp-week">
+                    <span class="dp-day dp-day--disabled"><span>8</span></span>
+                    <span class="dp-day dp-day--disabled"><span>9</span></span>
+                    <span class="dp-day dp-day--disabled"><span>10</span></span>
+                    <span class="dp-day dp-day--disabled"><span>11</span></span>
+                    <span class="dp-day dp-day--disabled"><span>12</span></span>
+                    <span class="dp-day dp-day--disabled"><span>13</span></span>
+                    <span class="dp-day dp-day--disabled"><span>14</span></span>
+                  </div>
+                  <div class="dp-week">
+                    <span class="dp-day dp-day--disabled"><span>15</span></span>
+                    <span class="dp-day dp-day--today"><span>16</span></span>
+                    <span class="dp-day"><span>17</span></span>
+                    <span class="dp-day dp-day--selected"><span>18</span></span>
+                    <span class="dp-day"><span>19</span></span>
+                    <span class="dp-day"><span>20</span></span>
+                    <span class="dp-day"><span>21</span></span>
+                  </div>
+                  <div class="dp-week">
+                    <span class="dp-day"><span>22</span></span>
+                    <span class="dp-day"><span>23</span></span>
+                    <span class="dp-day"><span>24</span></span>
+                    <span class="dp-day"><span>25</span></span>
+                    <span class="dp-day"><span>26</span></span>
+                    <span class="dp-day"><span>27</span></span>
+                    <span class="dp-day"><span>28</span></span>
+                  </div>
+                  <div class="dp-week">
+                    <span class="dp-day"><span>29</span></span>
+                    <span class="dp-day"><span>30</span></span>
+                    <span class="dp-day"><span>31</span></span>
+                    <span class="dp-day dp-day--empty"><span></span></span>
+                    <span class="dp-day dp-day--empty"><span></span></span>
+                    <span class="dp-day dp-day--empty"><span></span></span>
+                    <span class="dp-day dp-day--empty"><span></span></span>
+                  </div>
+                </div>
+              </div>
+              <div class="dp-cal-ft">
+                <button class="dp-btn-ghost">Clear</button>
+                <button class="dp-btn-primary">Apply</button>
+              </div>
+            </div>
+
+            <!-- Callout dots -->
+            <span class="callout" style="top:6px;left:200px;">1</span>
+            <span class="callout" style="top:88px;left:170px;">2</span>
+            <span class="callout" style="top:160px;left:220px;">3</span>
+            <span class="callout" style="top:196px;left:140px;">4</span>
+            <span class="callout" style="top:310px;left:80px;">5</span>
+          </div>
+
+          <div class="anatomy-legend">
+            <div class="legend-item"><span class="legend-num">1</span>Input trigger</div>
+            <div class="legend-item"><span class="legend-num">2</span>Month navigation</div>
+            <div class="legend-item"><span class="legend-num">3</span>Day grid</div>
+            <div class="legend-item"><span class="legend-num">4</span>Selected day</div>
+            <div class="legend-item"><span class="legend-num">5</span>Footer actions</div>
+          </div>
+        </div>
+      </section>
+
+      <!-- 3 · VARIANTS -->
+      <section class="doc-section" id="variants">
+        <h2 class="section-title">Variants</h2>
+        <div class="tabs-wrap">
+          <div class="tabs">
+            <button class="tab active" onclick="switchTab(this,'v-single')">Single</button>
+            <button class="tab" onclick="switchTab(this,'v-range')">Range</button>
+            <button class="tab" onclick="switchTab(this,'v-datetime')">Date &amp; Time</button>
+          </div>
+        </div>
+
+        <!-- ── SINGLE ── -->
+        <div class="tab-panel active" id="v-single">
+          <div class="state-tab-row">
+            <button class="state-tab-btn active" onclick="switchStateTab(this,'vs-single-def')">Default</button>
+            <button class="state-tab-btn" onclick="switchStateTab(this,'vs-single-sel')">Selected</button>
+            <button class="state-tab-btn" onclick="switchStateTab(this,'vs-single-dis')">Disabled</button>
+          </div>
+          <div class="var-panel">
+            <div class="var-previews-wrap">
+
+              <!-- Default -->
+              <div class="state-panel active" id="vs-single-def">
+                <div class="var-previews">
+                  <div class="var-preview" style="align-items:flex-start;flex-direction:column;gap:8px;">
+                    <div class="dp-field" style="width:268px;">
+                      <div class="dp-label">Date</div>
+                      <div class="dp-trigger">
+                        <span class="dp-trigger-text">Select a date</span>
+                        <i data-lucide="calendar" style="width:16px;height:16px;color:#9CA3AF;flex-shrink:0;"></i>
+                      </div>
+                    </div>
+                    <div class="dp-cal" style="width:268px;">
+                      <div class="dp-cal-hd">
+                        <span class="dp-cal-nav"><i data-lucide="chevron-left" style="width:16px;height:16px;"></i></span>
+                        <span class="dp-cal-month">March 2026</span>
+                        <span class="dp-cal-nav"><i data-lucide="chevron-right" style="width:16px;height:16px;"></i></span>
+                      </div>
+                      <div class="dp-cal-bd">
+                        <div class="dp-wk-names">
+                          <span class="dp-wn">Su</span><span class="dp-wn">Mo</span><span class="dp-wn">Tu</span><span class="dp-wn">We</span><span class="dp-wn">Th</span><span class="dp-wn">Fr</span><span class="dp-wn">Sa</span>
+                        </div>
+                        <div class="dp-weeks">
+                          <div class="dp-week"><span class="dp-day dp-day--disabled"><span>1</span></span><span class="dp-day dp-day--disabled"><span>2</span></span><span class="dp-day dp-day--disabled"><span>3</span></span><span class="dp-day dp-day--disabled"><span>4</span></span><span class="dp-day dp-day--disabled"><span>5</span></span><span class="dp-day dp-day--disabled"><span>6</span></span><span class="dp-day dp-day--disabled"><span>7</span></span></div>
+                          <div class="dp-week"><span class="dp-day dp-day--disabled"><span>8</span></span><span class="dp-day dp-day--disabled"><span>9</span></span><span class="dp-day dp-day--disabled"><span>10</span></span><span class="dp-day dp-day--disabled"><span>11</span></span><span class="dp-day dp-day--disabled"><span>12</span></span><span class="dp-day dp-day--disabled"><span>13</span></span><span class="dp-day dp-day--disabled"><span>14</span></span></div>
+                          <div class="dp-week"><span class="dp-day dp-day--disabled"><span>15</span></span><span class="dp-day dp-day--today"><span>16</span></span><span class="dp-day"><span>17</span></span><span class="dp-day"><span>18</span></span><span class="dp-day"><span>19</span></span><span class="dp-day"><span>20</span></span><span class="dp-day"><span>21</span></span></div>
+                          <div class="dp-week"><span class="dp-day"><span>22</span></span><span class="dp-day"><span>23</span></span><span class="dp-day"><span>24</span></span><span class="dp-day"><span>25</span></span><span class="dp-day"><span>26</span></span><span class="dp-day"><span>27</span></span><span class="dp-day"><span>28</span></span></div>
+                          <div class="dp-week"><span class="dp-day"><span>29</span></span><span class="dp-day"><span>30</span></span><span class="dp-day"><span>31</span></span><span class="dp-day dp-day--empty"></span><span class="dp-day dp-day--empty"></span><span class="dp-day dp-day--empty"></span><span class="dp-day dp-day--empty"></span></div>
+                        </div>
+                      </div>
+                      <div class="dp-cal-ft">
+                        <button class="dp-btn-ghost">Clear</button>
+                        <button class="dp-btn-primary">Apply</button>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="var-preview-dark" style="align-items:flex-start;flex-direction:column;gap:8px;">
+                    <div class="dp-field" style="width:268px;">
+                      <div class="dp-label">Date</div>
+                      <div class="dp-trigger">
+                        <span class="dp-trigger-text">Select a date</span>
+                        <i data-lucide="calendar" style="width:16px;height:16px;color:#6B7280;flex-shrink:0;"></i>
+                      </div>
+                    </div>
+                    <div class="dp-cal" style="width:268px;">
+                      <div class="dp-cal-hd">
+                        <span class="dp-cal-nav"><i data-lucide="chevron-left" style="width:16px;height:16px;"></i></span>
+                        <span class="dp-cal-month">March 2026</span>
+                        <span class="dp-cal-nav"><i data-lucide="chevron-right" style="width:16px;height:16px;"></i></span>
+                      </div>
+                      <div class="dp-cal-bd">
+                        <div class="dp-wk-names">
+                          <span class="dp-wn">Su</span><span class="dp-wn">Mo</span><span class="dp-wn">Tu</span><span class="dp-wn">We</span><span class="dp-wn">Th</span><span class="dp-wn">Fr</span><span class="dp-wn">Sa</span>
+                        </div>
+                        <div class="dp-weeks">
+                          <div class="dp-week"><span class="dp-day dp-day--disabled"><span>1</span></span><span class="dp-day dp-day--disabled"><span>2</span></span><span class="dp-day dp-day--disabled"><span>3</span></span><span class="dp-day dp-day--disabled"><span>4</span></span><span class="dp-day dp-day--disabled"><span>5</span></span><span class="dp-day dp-day--disabled"><span>6</span></span><span class="dp-day dp-day--disabled"><span>7</span></span></div>
+                          <div class="dp-week"><span class="dp-day dp-day--disabled"><span>8</span></span><span class="dp-day dp-day--disabled"><span>9</span></span><span class="dp-day dp-day--disabled"><span>10</span></span><span class="dp-day dp-day--disabled"><span>11</span></span><span class="dp-day dp-day--disabled"><span>12</span></span><span class="dp-day dp-day--disabled"><span>13</span></span><span class="dp-day dp-day--disabled"><span>14</span></span></div>
+                          <div class="dp-week"><span class="dp-day dp-day--disabled"><span>15</span></span><span class="dp-day dp-day--today"><span>16</span></span><span class="dp-day"><span>17</span></span><span class="dp-day"><span>18</span></span><span class="dp-day"><span>19</span></span><span class="dp-day"><span>20</span></span><span class="dp-day"><span>21</span></span></div>
+                          <div class="dp-week"><span class="dp-day"><span>22</span></span><span class="dp-day"><span>23</span></span><span class="dp-day"><span>24</span></span><span class="dp-day"><span>25</span></span><span class="dp-day"><span>26</span></span><span class="dp-day"><span>27</span></span><span class="dp-day"><span>28</span></span></div>
+                          <div class="dp-week"><span class="dp-day"><span>29</span></span><span class="dp-day"><span>30</span></span><span class="dp-day"><span>31</span></span><span class="dp-day dp-day--empty"></span><span class="dp-day dp-day--empty"></span><span class="dp-day dp-day--empty"></span><span class="dp-day dp-day--empty"></span></div>
+                        </div>
+                      </div>
+                      <div class="dp-cal-ft">
+                        <button class="dp-btn-ghost">Clear</button>
+                        <button class="dp-btn-primary">Apply</button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Selected -->
+              <div class="state-panel" id="vs-single-sel">
+                <div class="var-previews">
+                  <div class="var-preview" style="align-items:flex-start;flex-direction:column;gap:8px;">
+                    <div class="dp-field" style="width:268px;">
+                      <div class="dp-label">Date</div>
+                      <div class="dp-trigger">
+                        <span class="dp-trigger-text filled">Mar 18, 2026</span>
+                        <i data-lucide="calendar" style="width:16px;height:16px;color:#9CA3AF;flex-shrink:0;"></i>
+                      </div>
+                    </div>
+                    <div class="dp-cal" style="width:268px;">
+                      <div class="dp-cal-hd">
+                        <span class="dp-cal-nav"><i data-lucide="chevron-left" style="width:16px;height:16px;"></i></span>
+                        <span class="dp-cal-month">March 2026</span>
+                        <span class="dp-cal-nav"><i data-lucide="chevron-right" style="width:16px;height:16px;"></i></span>
+                      </div>
+                      <div class="dp-cal-bd">
+                        <div class="dp-wk-names">
+                          <span class="dp-wn">Su</span><span class="dp-wn">Mo</span><span class="dp-wn">Tu</span><span class="dp-wn">We</span><span class="dp-wn">Th</span><span class="dp-wn">Fr</span><span class="dp-wn">Sa</span>
+                        </div>
+                        <div class="dp-weeks">
+                          <div class="dp-week"><span class="dp-day dp-day--disabled"><span>1</span></span><span class="dp-day dp-day--disabled"><span>2</span></span><span class="dp-day dp-day--disabled"><span>3</span></span><span class="dp-day dp-day--disabled"><span>4</span></span><span class="dp-day dp-day--disabled"><span>5</span></span><span class="dp-day dp-day--disabled"><span>6</span></span><span class="dp-day dp-day--disabled"><span>7</span></span></div>
+                          <div class="dp-week"><span class="dp-day dp-day--disabled"><span>8</span></span><span class="dp-day dp-day--disabled"><span>9</span></span><span class="dp-day dp-day--disabled"><span>10</span></span><span class="dp-day dp-day--disabled"><span>11</span></span><span class="dp-day dp-day--disabled"><span>12</span></span><span class="dp-day dp-day--disabled"><span>13</span></span><span class="dp-day dp-day--disabled"><span>14</span></span></div>
+                          <div class="dp-week"><span class="dp-day dp-day--disabled"><span>15</span></span><span class="dp-day dp-day--today"><span>16</span></span><span class="dp-day"><span>17</span></span><span class="dp-day dp-day--selected"><span>18</span></span><span class="dp-day"><span>19</span></span><span class="dp-day"><span>20</span></span><span class="dp-day"><span>21</span></span></div>
+                          <div class="dp-week"><span class="dp-day"><span>22</span></span><span class="dp-day"><span>23</span></span><span class="dp-day"><span>24</span></span><span class="dp-day"><span>25</span></span><span class="dp-day"><span>26</span></span><span class="dp-day"><span>27</span></span><span class="dp-day"><span>28</span></span></div>
+                          <div class="dp-week"><span class="dp-day"><span>29</span></span><span class="dp-day"><span>30</span></span><span class="dp-day"><span>31</span></span><span class="dp-day dp-day--empty"></span><span class="dp-day dp-day--empty"></span><span class="dp-day dp-day--empty"></span><span class="dp-day dp-day--empty"></span></div>
+                        </div>
+                      </div>
+                      <div class="dp-cal-ft">
+                        <button class="dp-btn-ghost">Clear</button>
+                        <button class="dp-btn-primary">Apply</button>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="var-preview-dark" style="align-items:flex-start;flex-direction:column;gap:8px;">
+                    <div class="dp-field" style="width:268px;">
+                      <div class="dp-label">Date</div>
+                      <div class="dp-trigger">
+                        <span class="dp-trigger-text filled">Mar 18, 2026</span>
+                        <i data-lucide="calendar" style="width:16px;height:16px;color:#6B7280;flex-shrink:0;"></i>
+                      </div>
+                    </div>
+                    <div class="dp-cal" style="width:268px;">
+                      <div class="dp-cal-hd">
+                        <span class="dp-cal-nav"><i data-lucide="chevron-left" style="width:16px;height:16px;"></i></span>
+                        <span class="dp-cal-month">March 2026</span>
+                        <span class="dp-cal-nav"><i data-lucide="chevron-right" style="width:16px;height:16px;"></i></span>
+                      </div>
+                      <div class="dp-cal-bd">
+                        <div class="dp-wk-names">
+                          <span class="dp-wn">Su</span><span class="dp-wn">Mo</span><span class="dp-wn">Tu</span><span class="dp-wn">We</span><span class="dp-wn">Th</span><span class="dp-wn">Fr</span><span class="dp-wn">Sa</span>
+                        </div>
+                        <div class="dp-weeks">
+                          <div class="dp-week"><span class="dp-day dp-day--disabled"><span>1</span></span><span class="dp-day dp-day--disabled"><span>2</span></span><span class="dp-day dp-day--disabled"><span>3</span></span><span class="dp-day dp-day--disabled"><span>4</span></span><span class="dp-day dp-day--disabled"><span>5</span></span><span class="dp-day dp-day--disabled"><span>6</span></span><span class="dp-day dp-day--disabled"><span>7</span></span></div>
+                          <div class="dp-week"><span class="dp-day dp-day--disabled"><span>8</span></span><span class="dp-day dp-day--disabled"><span>9</span></span><span class="dp-day dp-day--disabled"><span>10</span></span><span class="dp-day dp-day--disabled"><span>11</span></span><span class="dp-day dp-day--disabled"><span>12</span></span><span class="dp-day dp-day--disabled"><span>13</span></span><span class="dp-day dp-day--disabled"><span>14</span></span></div>
+                          <div class="dp-week"><span class="dp-day dp-day--disabled"><span>15</span></span><span class="dp-day dp-day--today"><span>16</span></span><span class="dp-day"><span>17</span></span><span class="dp-day dp-day--selected"><span>18</span></span><span class="dp-day"><span>19</span></span><span class="dp-day"><span>20</span></span><span class="dp-day"><span>21</span></span></div>
+                          <div class="dp-week"><span class="dp-day"><span>22</span></span><span class="dp-day"><span>23</span></span><span class="dp-day"><span>24</span></span><span class="dp-day"><span>25</span></span><span class="dp-day"><span>26</span></span><span class="dp-day"><span>27</span></span><span class="dp-day"><span>28</span></span></div>
+                          <div class="dp-week"><span class="dp-day"><span>29</span></span><span class="dp-day"><span>30</span></span><span class="dp-day"><span>31</span></span><span class="dp-day dp-day--empty"></span><span class="dp-day dp-day--empty"></span><span class="dp-day dp-day--empty"></span><span class="dp-day dp-day--empty"></span></div>
+                        </div>
+                      </div>
+                      <div class="dp-cal-ft">
+                        <button class="dp-btn-ghost">Clear</button>
+                        <button class="dp-btn-primary">Apply</button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Disabled -->
+              <div class="state-panel" id="vs-single-dis">
+                <div class="var-previews">
+                  <div class="var-preview">
+                    <div class="dp-field" style="width:268px;">
+                      <div class="dp-label">Date</div>
+                      <div class="dp-trigger dp-trigger--disabled">
+                        <span class="dp-trigger-text">Select a date</span>
+                        <i data-lucide="calendar" style="width:16px;height:16px;color:#9CA3AF;flex-shrink:0;"></i>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="var-preview-dark">
+                    <div class="dp-field" style="width:268px;">
+                      <div class="dp-label">Date</div>
+                      <div class="dp-trigger dp-trigger--disabled">
+                        <span class="dp-trigger-text">Select a date</span>
+                        <i data-lucide="calendar" style="width:16px;height:16px;color:#6B7280;flex-shrink:0;"></i>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+            </div>
+            <div class="var-desc">
+              <div class="var-use-when">Use when:</div>
+              <ul class="var-use-list">
+                <li>Single date selection is needed</li>
+                <li>Scheduling a specific date for an event or shipment</li>
+                <li>Filtering records by a single date value</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <!-- ── RANGE ── -->
+        <div class="tab-panel" id="v-range">
+          <div class="state-tab-row">
+            <button class="state-tab-btn active" onclick="switchStateTab(this,'vs-range-def')">Default</button>
+            <button class="state-tab-btn" onclick="switchStateTab(this,'vs-range-sel')">Selected</button>
+            <button class="state-tab-btn" onclick="switchStateTab(this,'vs-range-dis')">Disabled</button>
+          </div>
+          <div class="var-panel">
+            <div class="var-previews-wrap">
+
+              <!-- Range Default -->
+              <div class="state-panel active" id="vs-range-def">
+                <div class="var-previews">
+                  <div class="var-preview" style="align-items:flex-start;flex-direction:column;gap:8px;">
+                    <div style="display:flex;gap:8px;width:100%;">
+                      <div class="dp-field" style="flex:1;">
+                        <div class="dp-label">Start date</div>
+                        <div class="dp-trigger">
+                          <span class="dp-trigger-text">Select a date</span>
+                          <i data-lucide="calendar" style="width:16px;height:16px;color:#9CA3AF;flex-shrink:0;"></i>
+                        </div>
+                      </div>
+                      <div class="dp-field" style="flex:1;">
+                        <div class="dp-label">End date</div>
+                        <div class="dp-trigger">
+                          <span class="dp-trigger-text">Select a date</span>
+                          <i data-lucide="calendar" style="width:16px;height:16px;color:#9CA3AF;flex-shrink:0;"></i>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="dp-cal" style="width:268px;">
+                      <div class="dp-cal-hd">
+                        <span class="dp-cal-nav"><i data-lucide="chevron-left" style="width:16px;height:16px;"></i></span>
+                        <span class="dp-cal-month">March 2026</span>
+                        <span class="dp-cal-nav"><i data-lucide="chevron-right" style="width:16px;height:16px;"></i></span>
+                      </div>
+                      <div class="dp-cal-bd">
+                        <div class="dp-wk-names"><span class="dp-wn">Su</span><span class="dp-wn">Mo</span><span class="dp-wn">Tu</span><span class="dp-wn">We</span><span class="dp-wn">Th</span><span class="dp-wn">Fr</span><span class="dp-wn">Sa</span></div>
+                        <div class="dp-weeks">
+                          <div class="dp-week"><span class="dp-day dp-day--disabled"><span>1</span></span><span class="dp-day dp-day--disabled"><span>2</span></span><span class="dp-day dp-day--disabled"><span>3</span></span><span class="dp-day dp-day--disabled"><span>4</span></span><span class="dp-day dp-day--disabled"><span>5</span></span><span class="dp-day dp-day--disabled"><span>6</span></span><span class="dp-day dp-day--disabled"><span>7</span></span></div>
+                          <div class="dp-week"><span class="dp-day dp-day--disabled"><span>8</span></span><span class="dp-day dp-day--disabled"><span>9</span></span><span class="dp-day dp-day--disabled"><span>10</span></span><span class="dp-day dp-day--disabled"><span>11</span></span><span class="dp-day dp-day--disabled"><span>12</span></span><span class="dp-day dp-day--disabled"><span>13</span></span><span class="dp-day dp-day--disabled"><span>14</span></span></div>
+                          <div class="dp-week"><span class="dp-day dp-day--disabled"><span>15</span></span><span class="dp-day dp-day--today"><span>16</span></span><span class="dp-day"><span>17</span></span><span class="dp-day"><span>18</span></span><span class="dp-day"><span>19</span></span><span class="dp-day"><span>20</span></span><span class="dp-day"><span>21</span></span></div>
+                          <div class="dp-week"><span class="dp-day"><span>22</span></span><span class="dp-day"><span>23</span></span><span class="dp-day"><span>24</span></span><span class="dp-day"><span>25</span></span><span class="dp-day"><span>26</span></span><span class="dp-day"><span>27</span></span><span class="dp-day"><span>28</span></span></div>
+                          <div class="dp-week"><span class="dp-day"><span>29</span></span><span class="dp-day"><span>30</span></span><span class="dp-day"><span>31</span></span><span class="dp-day dp-day--empty"></span><span class="dp-day dp-day--empty"></span><span class="dp-day dp-day--empty"></span><span class="dp-day dp-day--empty"></span></div>
+                        </div>
+                      </div>
+                      <div class="dp-cal-ft"><button class="dp-btn-ghost">Clear</button><button class="dp-btn-primary">Apply</button></div>
+                    </div>
+                  </div>
+                  <div class="var-preview-dark" style="align-items:flex-start;flex-direction:column;gap:8px;">
+                    <div style="display:flex;gap:8px;width:100%;">
+                      <div class="dp-field" style="flex:1;">
+                        <div class="dp-label">Start date</div>
+                        <div class="dp-trigger">
+                          <span class="dp-trigger-text">Select a date</span>
+                          <i data-lucide="calendar" style="width:16px;height:16px;color:#6B7280;flex-shrink:0;"></i>
+                        </div>
+                      </div>
+                      <div class="dp-field" style="flex:1;">
+                        <div class="dp-label">End date</div>
+                        <div class="dp-trigger">
+                          <span class="dp-trigger-text">Select a date</span>
+                          <i data-lucide="calendar" style="width:16px;height:16px;color:#6B7280;flex-shrink:0;"></i>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="dp-cal" style="width:268px;">
+                      <div class="dp-cal-hd">
+                        <span class="dp-cal-nav"><i data-lucide="chevron-left" style="width:16px;height:16px;"></i></span>
+                        <span class="dp-cal-month">March 2026</span>
+                        <span class="dp-cal-nav"><i data-lucide="chevron-right" style="width:16px;height:16px;"></i></span>
+                      </div>
+                      <div class="dp-cal-bd">
+                        <div class="dp-wk-names"><span class="dp-wn">Su</span><span class="dp-wn">Mo</span><span class="dp-wn">Tu</span><span class="dp-wn">We</span><span class="dp-wn">Th</span><span class="dp-wn">Fr</span><span class="dp-wn">Sa</span></div>
+                        <div class="dp-weeks">
+                          <div class="dp-week"><span class="dp-day dp-day--disabled"><span>1</span></span><span class="dp-day dp-day--disabled"><span>2</span></span><span class="dp-day dp-day--disabled"><span>3</span></span><span class="dp-day dp-day--disabled"><span>4</span></span><span class="dp-day dp-day--disabled"><span>5</span></span><span class="dp-day dp-day--disabled"><span>6</span></span><span class="dp-day dp-day--disabled"><span>7</span></span></div>
+                          <div class="dp-week"><span class="dp-day dp-day--disabled"><span>8</span></span><span class="dp-day dp-day--disabled"><span>9</span></span><span class="dp-day dp-day--disabled"><span>10</span></span><span class="dp-day dp-day--disabled"><span>11</span></span><span class="dp-day dp-day--disabled"><span>12</span></span><span class="dp-day dp-day--disabled"><span>13</span></span><span class="dp-day dp-day--disabled"><span>14</span></span></div>
+                          <div class="dp-week"><span class="dp-day dp-day--disabled"><span>15</span></span><span class="dp-day dp-day--today"><span>16</span></span><span class="dp-day"><span>17</span></span><span class="dp-day"><span>18</span></span><span class="dp-day"><span>19</span></span><span class="dp-day"><span>20</span></span><span class="dp-day"><span>21</span></span></div>
+                          <div class="dp-week"><span class="dp-day"><span>22</span></span><span class="dp-day"><span>23</span></span><span class="dp-day"><span>24</span></span><span class="dp-day"><span>25</span></span><span class="dp-day"><span>26</span></span><span class="dp-day"><span>27</span></span><span class="dp-day"><span>28</span></span></div>
+                          <div class="dp-week"><span class="dp-day"><span>29</span></span><span class="dp-day"><span>30</span></span><span class="dp-day"><span>31</span></span><span class="dp-day dp-day--empty"></span><span class="dp-day dp-day--empty"></span><span class="dp-day dp-day--empty"></span><span class="dp-day dp-day--empty"></span></div>
+                        </div>
+                      </div>
+                      <div class="dp-cal-ft"><button class="dp-btn-ghost">Clear</button><button class="dp-btn-primary">Apply</button></div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Range Selected -->
+              <div class="state-panel" id="vs-range-sel">
+                <div class="var-previews">
+                  <div class="var-preview" style="align-items:flex-start;flex-direction:column;gap:8px;">
+                    <div style="display:flex;gap:8px;width:100%;">
+                      <div class="dp-field" style="flex:1;">
+                        <div class="dp-label">Start date</div>
+                        <div class="dp-trigger"><span class="dp-trigger-text filled">Mar 18, 2026</span><i data-lucide="calendar" style="width:16px;height:16px;color:#9CA3AF;flex-shrink:0;"></i></div>
+                      </div>
+                      <div class="dp-field" style="flex:1;">
+                        <div class="dp-label">End date</div>
+                        <div class="dp-trigger"><span class="dp-trigger-text filled">Mar 24, 2026</span><i data-lucide="calendar" style="width:16px;height:16px;color:#9CA3AF;flex-shrink:0;"></i></div>
+                      </div>
+                    </div>
+                    <div class="dp-cal" style="width:268px;">
+                      <div class="dp-cal-hd">
+                        <span class="dp-cal-nav"><i data-lucide="chevron-left" style="width:16px;height:16px;"></i></span>
+                        <span class="dp-cal-month">March 2026</span>
+                        <span class="dp-cal-nav"><i data-lucide="chevron-right" style="width:16px;height:16px;"></i></span>
+                      </div>
+                      <div class="dp-cal-bd">
+                        <div class="dp-wk-names"><span class="dp-wn">Su</span><span class="dp-wn">Mo</span><span class="dp-wn">Tu</span><span class="dp-wn">We</span><span class="dp-wn">Th</span><span class="dp-wn">Fr</span><span class="dp-wn">Sa</span></div>
+                        <div class="dp-weeks">
+                          <div class="dp-week"><span class="dp-day dp-day--disabled"><span>1</span></span><span class="dp-day dp-day--disabled"><span>2</span></span><span class="dp-day dp-day--disabled"><span>3</span></span><span class="dp-day dp-day--disabled"><span>4</span></span><span class="dp-day dp-day--disabled"><span>5</span></span><span class="dp-day dp-day--disabled"><span>6</span></span><span class="dp-day dp-day--disabled"><span>7</span></span></div>
+                          <div class="dp-week"><span class="dp-day dp-day--disabled"><span>8</span></span><span class="dp-day dp-day--disabled"><span>9</span></span><span class="dp-day dp-day--disabled"><span>10</span></span><span class="dp-day dp-day--disabled"><span>11</span></span><span class="dp-day dp-day--disabled"><span>12</span></span><span class="dp-day dp-day--disabled"><span>13</span></span><span class="dp-day dp-day--disabled"><span>14</span></span></div>
+                          <div class="dp-week"><span class="dp-day dp-day--disabled"><span>15</span></span><span class="dp-day dp-day--today"><span>16</span></span><span class="dp-day"><span>17</span></span><span class="dp-day dp-day--range-start"><span>18</span></span><span class="dp-day dp-day--in-range"><span>19</span></span><span class="dp-day dp-day--in-range"><span>20</span></span><span class="dp-day dp-day--in-range"><span>21</span></span></div>
+                          <div class="dp-week"><span class="dp-day dp-day--in-range"><span>22</span></span><span class="dp-day dp-day--in-range"><span>23</span></span><span class="dp-day dp-day--range-end"><span>24</span></span><span class="dp-day"><span>25</span></span><span class="dp-day"><span>26</span></span><span class="dp-day"><span>27</span></span><span class="dp-day"><span>28</span></span></div>
+                          <div class="dp-week"><span class="dp-day"><span>29</span></span><span class="dp-day"><span>30</span></span><span class="dp-day"><span>31</span></span><span class="dp-day dp-day--empty"></span><span class="dp-day dp-day--empty"></span><span class="dp-day dp-day--empty"></span><span class="dp-day dp-day--empty"></span></div>
+                        </div>
+                      </div>
+                      <div style="display:flex;align-items:center;justify-content:space-between;padding:12px 16px;border-top:1px solid #CDD2D7;">
+                        <span style="font-size:14px;color:#9CA3AF;">7 days selected</span>
+                        <div style="display:flex;gap:8px;"><button class="dp-btn-ghost" style="flex:none;width:auto;">Clear</button><button class="dp-btn-primary" style="flex:none;width:auto;">Apply</button></div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="var-preview-dark" style="align-items:flex-start;flex-direction:column;gap:8px;">
+                    <div style="display:flex;gap:8px;width:100%;">
+                      <div class="dp-field" style="flex:1;">
+                        <div class="dp-label">Start date</div>
+                        <div class="dp-trigger"><span class="dp-trigger-text filled">Mar 18, 2026</span><i data-lucide="calendar" style="width:16px;height:16px;color:#6B7280;flex-shrink:0;"></i></div>
+                      </div>
+                      <div class="dp-field" style="flex:1;">
+                        <div class="dp-label">End date</div>
+                        <div class="dp-trigger"><span class="dp-trigger-text filled">Mar 24, 2026</span><i data-lucide="calendar" style="width:16px;height:16px;color:#6B7280;flex-shrink:0;"></i></div>
+                      </div>
+                    </div>
+                    <div class="dp-cal" style="width:268px;">
+                      <div class="dp-cal-hd">
+                        <span class="dp-cal-nav"><i data-lucide="chevron-left" style="width:16px;height:16px;"></i></span>
+                        <span class="dp-cal-month">March 2026</span>
+                        <span class="dp-cal-nav"><i data-lucide="chevron-right" style="width:16px;height:16px;"></i></span>
+                      </div>
+                      <div class="dp-cal-bd">
+                        <div class="dp-wk-names"><span class="dp-wn">Su</span><span class="dp-wn">Mo</span><span class="dp-wn">Tu</span><span class="dp-wn">We</span><span class="dp-wn">Th</span><span class="dp-wn">Fr</span><span class="dp-wn">Sa</span></div>
+                        <div class="dp-weeks">
+                          <div class="dp-week"><span class="dp-day dp-day--disabled"><span>1</span></span><span class="dp-day dp-day--disabled"><span>2</span></span><span class="dp-day dp-day--disabled"><span>3</span></span><span class="dp-day dp-day--disabled"><span>4</span></span><span class="dp-day dp-day--disabled"><span>5</span></span><span class="dp-day dp-day--disabled"><span>6</span></span><span class="dp-day dp-day--disabled"><span>7</span></span></div>
+                          <div class="dp-week"><span class="dp-day dp-day--disabled"><span>8</span></span><span class="dp-day dp-day--disabled"><span>9</span></span><span class="dp-day dp-day--disabled"><span>10</span></span><span class="dp-day dp-day--disabled"><span>11</span></span><span class="dp-day dp-day--disabled"><span>12</span></span><span class="dp-day dp-day--disabled"><span>13</span></span><span class="dp-day dp-day--disabled"><span>14</span></span></div>
+                          <div class="dp-week"><span class="dp-day dp-day--disabled"><span>15</span></span><span class="dp-day dp-day--today"><span>16</span></span><span class="dp-day"><span>17</span></span><span class="dp-day dp-day--range-start"><span>18</span></span><span class="dp-day dp-day--in-range"><span>19</span></span><span class="dp-day dp-day--in-range"><span>20</span></span><span class="dp-day dp-day--in-range"><span>21</span></span></div>
+                          <div class="dp-week"><span class="dp-day dp-day--in-range"><span>22</span></span><span class="dp-day dp-day--in-range"><span>23</span></span><span class="dp-day dp-day--range-end"><span>24</span></span><span class="dp-day"><span>25</span></span><span class="dp-day"><span>26</span></span><span class="dp-day"><span>27</span></span><span class="dp-day"><span>28</span></span></div>
+                          <div class="dp-week"><span class="dp-day"><span>29</span></span><span class="dp-day"><span>30</span></span><span class="dp-day"><span>31</span></span><span class="dp-day dp-day--empty"></span><span class="dp-day dp-day--empty"></span><span class="dp-day dp-day--empty"></span><span class="dp-day dp-day--empty"></span></div>
+                        </div>
+                      </div>
+                      <div style="display:flex;align-items:center;justify-content:space-between;padding:12px 16px;border-top:1px solid #374151;">
+                        <span style="font-size:14px;color:#6B7280;">7 days selected</span>
+                        <div style="display:flex;gap:8px;"><button class="dp-btn-ghost" style="flex:none;width:auto;">Clear</button><button class="dp-btn-primary" style="flex:none;width:auto;">Apply</button></div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Range Disabled -->
+              <div class="state-panel" id="vs-range-dis">
+                <div class="var-previews">
+                  <div class="var-preview">
+                    <div style="display:flex;gap:8px;">
+                      <div class="dp-field" style="flex:1;">
+                        <div class="dp-label">Start date</div>
+                        <div class="dp-trigger dp-trigger--disabled"><span class="dp-trigger-text">Select a date</span><i data-lucide="calendar" style="width:16px;height:16px;color:#9CA3AF;flex-shrink:0;"></i></div>
+                      </div>
+                      <div class="dp-field" style="flex:1;">
+                        <div class="dp-label">End date</div>
+                        <div class="dp-trigger dp-trigger--disabled"><span class="dp-trigger-text">Select a date</span><i data-lucide="calendar" style="width:16px;height:16px;color:#9CA3AF;flex-shrink:0;"></i></div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="var-preview-dark">
+                    <div style="display:flex;gap:8px;">
+                      <div class="dp-field" style="flex:1;">
+                        <div class="dp-label">Start date</div>
+                        <div class="dp-trigger dp-trigger--disabled"><span class="dp-trigger-text">Select a date</span><i data-lucide="calendar" style="width:16px;height:16px;color:#6B7280;flex-shrink:0;"></i></div>
+                      </div>
+                      <div class="dp-field" style="flex:1;">
+                        <div class="dp-label">End date</div>
+                        <div class="dp-trigger dp-trigger--disabled"><span class="dp-trigger-text">Select a date</span><i data-lucide="calendar" style="width:16px;height:16px;color:#6B7280;flex-shrink:0;"></i></div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+            </div>
+            <div class="var-desc">
+              <div class="var-use-when">Use when:</div>
+              <ul class="var-use-list">
+                <li>Date range filtering across records</li>
+                <li>Booking start and end dates for a shipment or service</li>
+                <li>Selecting a report period with a clear start and end</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <!-- ── DATE & TIME ── -->
+        <div class="tab-panel" id="v-datetime">
+          <div class="state-tab-row">
+            <button class="state-tab-btn active" onclick="switchStateTab(this,'vs-dt-def')">Default</button>
+            <button class="state-tab-btn" onclick="switchStateTab(this,'vs-dt-sel')">Selected</button>
+            <button class="state-tab-btn" onclick="switchStateTab(this,'vs-dt-dis')">Disabled</button>
+          </div>
+          <div class="var-panel">
+            <div class="var-previews-wrap">
+
+              <!-- DateTime Default -->
+              <div class="state-panel active" id="vs-dt-def">
+                <div class="var-previews">
+                  <div class="var-preview" style="align-items:flex-start;flex-direction:column;gap:8px;">
+                    <div class="dp-field" style="width:268px;">
+                      <div class="dp-label">Date &amp; Time</div>
+                      <div class="dp-trigger"><span class="dp-trigger-text">Select a date</span><i data-lucide="calendar" style="width:16px;height:16px;color:#9CA3AF;flex-shrink:0;"></i></div>
+                    </div>
+                    <div class="dp-cal" style="width:268px;">
+                      <div class="dp-cal-hd">
+                        <span class="dp-cal-nav"><i data-lucide="chevron-left" style="width:16px;height:16px;"></i></span>
+                        <span class="dp-cal-month">March 2026</span>
+                        <span class="dp-cal-nav"><i data-lucide="chevron-right" style="width:16px;height:16px;"></i></span>
+                      </div>
+                      <div class="dp-cal-bd">
+                        <div class="dp-wk-names"><span class="dp-wn">Su</span><span class="dp-wn">Mo</span><span class="dp-wn">Tu</span><span class="dp-wn">We</span><span class="dp-wn">Th</span><span class="dp-wn">Fr</span><span class="dp-wn">Sa</span></div>
+                        <div class="dp-weeks">
+                          <div class="dp-week"><span class="dp-day dp-day--disabled"><span>1</span></span><span class="dp-day dp-day--disabled"><span>2</span></span><span class="dp-day dp-day--disabled"><span>3</span></span><span class="dp-day dp-day--disabled"><span>4</span></span><span class="dp-day dp-day--disabled"><span>5</span></span><span class="dp-day dp-day--disabled"><span>6</span></span><span class="dp-day dp-day--disabled"><span>7</span></span></div>
+                          <div class="dp-week"><span class="dp-day dp-day--disabled"><span>8</span></span><span class="dp-day dp-day--disabled"><span>9</span></span><span class="dp-day dp-day--disabled"><span>10</span></span><span class="dp-day dp-day--disabled"><span>11</span></span><span class="dp-day dp-day--disabled"><span>12</span></span><span class="dp-day dp-day--disabled"><span>13</span></span><span class="dp-day dp-day--disabled"><span>14</span></span></div>
+                          <div class="dp-week"><span class="dp-day dp-day--disabled"><span>15</span></span><span class="dp-day dp-day--today"><span>16</span></span><span class="dp-day"><span>17</span></span><span class="dp-day"><span>18</span></span><span class="dp-day"><span>19</span></span><span class="dp-day"><span>20</span></span><span class="dp-day"><span>21</span></span></div>
+                          <div class="dp-week"><span class="dp-day"><span>22</span></span><span class="dp-day"><span>23</span></span><span class="dp-day"><span>24</span></span><span class="dp-day"><span>25</span></span><span class="dp-day"><span>26</span></span><span class="dp-day"><span>27</span></span><span class="dp-day"><span>28</span></span></div>
+                          <div class="dp-week"><span class="dp-day"><span>29</span></span><span class="dp-day"><span>30</span></span><span class="dp-day"><span>31</span></span><span class="dp-day dp-day--empty"></span><span class="dp-day dp-day--empty"></span><span class="dp-day dp-day--empty"></span><span class="dp-day dp-day--empty"></span></div>
+                        </div>
+                        <div class="dp-time-row">
+                          <div class="dp-time-field"><div class="dp-time-label">Hour</div><div class="dp-time-sel"><span>--</span><i data-lucide="chevron-down" style="width:14px;height:14px;"></i></div></div>
+                          <div class="dp-time-colon">:</div>
+                          <div class="dp-time-field"><div class="dp-time-label">Minute</div><div class="dp-time-sel"><span>--</span><i data-lucide="chevron-down" style="width:14px;height:14px;"></i></div></div>
+                          <div class="dp-time-colon" style="visibility:hidden;">:</div>
+                          <div class="dp-time-field"><div class="dp-time-label">Period</div><div class="dp-time-sel"><span>--</span><i data-lucide="chevron-down" style="width:14px;height:14px;"></i></div></div>
+                        </div>
+                        <div class="dp-dt-actions"><button class="dp-btn-ghost" style="flex:1;">Clear</button><button class="dp-btn-primary" style="flex:1;">Apply</button></div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="var-preview-dark" style="align-items:flex-start;flex-direction:column;gap:8px;">
+                    <div class="dp-field" style="width:268px;">
+                      <div class="dp-label">Date &amp; Time</div>
+                      <div class="dp-trigger"><span class="dp-trigger-text">Select a date</span><i data-lucide="calendar" style="width:16px;height:16px;color:#6B7280;flex-shrink:0;"></i></div>
+                    </div>
+                    <div class="dp-cal" style="width:268px;">
+                      <div class="dp-cal-hd">
+                        <span class="dp-cal-nav"><i data-lucide="chevron-left" style="width:16px;height:16px;"></i></span>
+                        <span class="dp-cal-month">March 2026</span>
+                        <span class="dp-cal-nav"><i data-lucide="chevron-right" style="width:16px;height:16px;"></i></span>
+                      </div>
+                      <div class="dp-cal-bd">
+                        <div class="dp-wk-names"><span class="dp-wn">Su</span><span class="dp-wn">Mo</span><span class="dp-wn">Tu</span><span class="dp-wn">We</span><span class="dp-wn">Th</span><span class="dp-wn">Fr</span><span class="dp-wn">Sa</span></div>
+                        <div class="dp-weeks">
+                          <div class="dp-week"><span class="dp-day dp-day--disabled"><span>1</span></span><span class="dp-day dp-day--disabled"><span>2</span></span><span class="dp-day dp-day--disabled"><span>3</span></span><span class="dp-day dp-day--disabled"><span>4</span></span><span class="dp-day dp-day--disabled"><span>5</span></span><span class="dp-day dp-day--disabled"><span>6</span></span><span class="dp-day dp-day--disabled"><span>7</span></span></div>
+                          <div class="dp-week"><span class="dp-day dp-day--disabled"><span>8</span></span><span class="dp-day dp-day--disabled"><span>9</span></span><span class="dp-day dp-day--disabled"><span>10</span></span><span class="dp-day dp-day--disabled"><span>11</span></span><span class="dp-day dp-day--disabled"><span>12</span></span><span class="dp-day dp-day--disabled"><span>13</span></span><span class="dp-day dp-day--disabled"><span>14</span></span></div>
+                          <div class="dp-week"><span class="dp-day dp-day--disabled"><span>15</span></span><span class="dp-day dp-day--today"><span>16</span></span><span class="dp-day"><span>17</span></span><span class="dp-day"><span>18</span></span><span class="dp-day"><span>19</span></span><span class="dp-day"><span>20</span></span><span class="dp-day"><span>21</span></span></div>
+                          <div class="dp-week"><span class="dp-day"><span>22</span></span><span class="dp-day"><span>23</span></span><span class="dp-day"><span>24</span></span><span class="dp-day"><span>25</span></span><span class="dp-day"><span>26</span></span><span class="dp-day"><span>27</span></span><span class="dp-day"><span>28</span></span></div>
+                          <div class="dp-week"><span class="dp-day"><span>29</span></span><span class="dp-day"><span>30</span></span><span class="dp-day"><span>31</span></span><span class="dp-day dp-day--empty"></span><span class="dp-day dp-day--empty"></span><span class="dp-day dp-day--empty"></span><span class="dp-day dp-day--empty"></span></div>
+                        </div>
+                        <div class="dp-time-row">
+                          <div class="dp-time-field"><div class="dp-time-label">Hour</div><div class="dp-time-sel"><span>--</span><i data-lucide="chevron-down" style="width:14px;height:14px;"></i></div></div>
+                          <div class="dp-time-colon">:</div>
+                          <div class="dp-time-field"><div class="dp-time-label">Minute</div><div class="dp-time-sel"><span>--</span><i data-lucide="chevron-down" style="width:14px;height:14px;"></i></div></div>
+                          <div class="dp-time-colon" style="visibility:hidden;">:</div>
+                          <div class="dp-time-field"><div class="dp-time-label">Period</div><div class="dp-time-sel"><span>--</span><i data-lucide="chevron-down" style="width:14px;height:14px;"></i></div></div>
+                        </div>
+                        <div class="dp-dt-actions"><button class="dp-btn-ghost" style="flex:1;">Clear</button><button class="dp-btn-primary" style="flex:1;">Apply</button></div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- DateTime Selected -->
+              <div class="state-panel" id="vs-dt-sel">
+                <div class="var-previews">
+                  <div class="var-preview" style="align-items:flex-start;flex-direction:column;gap:8px;">
+                    <div class="dp-field" style="width:268px;">
+                      <div class="dp-label">Date &amp; Time</div>
+                      <div class="dp-trigger"><span class="dp-trigger-text filled">Mar 18, 2026 09:00 AM</span><i data-lucide="calendar" style="width:16px;height:16px;color:#9CA3AF;flex-shrink:0;"></i></div>
+                    </div>
+                    <div class="dp-cal" style="width:268px;">
+                      <div class="dp-cal-hd">
+                        <span class="dp-cal-nav"><i data-lucide="chevron-left" style="width:16px;height:16px;"></i></span>
+                        <span class="dp-cal-month">March 2026</span>
+                        <span class="dp-cal-nav"><i data-lucide="chevron-right" style="width:16px;height:16px;"></i></span>
+                      </div>
+                      <div class="dp-cal-bd">
+                        <div class="dp-wk-names"><span class="dp-wn">Su</span><span class="dp-wn">Mo</span><span class="dp-wn">Tu</span><span class="dp-wn">We</span><span class="dp-wn">Th</span><span class="dp-wn">Fr</span><span class="dp-wn">Sa</span></div>
+                        <div class="dp-weeks">
+                          <div class="dp-week"><span class="dp-day dp-day--disabled"><span>1</span></span><span class="dp-day dp-day--disabled"><span>2</span></span><span class="dp-day dp-day--disabled"><span>3</span></span><span class="dp-day dp-day--disabled"><span>4</span></span><span class="dp-day dp-day--disabled"><span>5</span></span><span class="dp-day dp-day--disabled"><span>6</span></span><span class="dp-day dp-day--disabled"><span>7</span></span></div>
+                          <div class="dp-week"><span class="dp-day dp-day--disabled"><span>8</span></span><span class="dp-day dp-day--disabled"><span>9</span></span><span class="dp-day dp-day--disabled"><span>10</span></span><span class="dp-day dp-day--disabled"><span>11</span></span><span class="dp-day dp-day--disabled"><span>12</span></span><span class="dp-day dp-day--disabled"><span>13</span></span><span class="dp-day dp-day--disabled"><span>14</span></span></div>
+                          <div class="dp-week"><span class="dp-day dp-day--disabled"><span>15</span></span><span class="dp-day dp-day--today"><span>16</span></span><span class="dp-day"><span>17</span></span><span class="dp-day dp-day--selected"><span>18</span></span><span class="dp-day"><span>19</span></span><span class="dp-day"><span>20</span></span><span class="dp-day"><span>21</span></span></div>
+                          <div class="dp-week"><span class="dp-day"><span>22</span></span><span class="dp-day"><span>23</span></span><span class="dp-day"><span>24</span></span><span class="dp-day"><span>25</span></span><span class="dp-day"><span>26</span></span><span class="dp-day"><span>27</span></span><span class="dp-day"><span>28</span></span></div>
+                          <div class="dp-week"><span class="dp-day"><span>29</span></span><span class="dp-day"><span>30</span></span><span class="dp-day"><span>31</span></span><span class="dp-day dp-day--empty"></span><span class="dp-day dp-day--empty"></span><span class="dp-day dp-day--empty"></span><span class="dp-day dp-day--empty"></span></div>
+                        </div>
+                        <div class="dp-time-row">
+                          <div class="dp-time-field"><div class="dp-time-label">Hour</div><div class="dp-time-sel"><span>09</span><i data-lucide="chevron-down" style="width:14px;height:14px;"></i></div></div>
+                          <div class="dp-time-colon">:</div>
+                          <div class="dp-time-field"><div class="dp-time-label">Minute</div><div class="dp-time-sel"><span>00</span><i data-lucide="chevron-down" style="width:14px;height:14px;"></i></div></div>
+                          <div class="dp-time-colon" style="visibility:hidden;">:</div>
+                          <div class="dp-time-field"><div class="dp-time-label">Period</div><div class="dp-time-sel"><span>AM</span><i data-lucide="chevron-down" style="width:14px;height:14px;"></i></div></div>
+                        </div>
+                        <div class="dp-dt-actions"><button class="dp-btn-ghost" style="flex:1;">Clear</button><button class="dp-btn-primary" style="flex:1;">Apply</button></div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="var-preview-dark" style="align-items:flex-start;flex-direction:column;gap:8px;">
+                    <div class="dp-field" style="width:268px;">
+                      <div class="dp-label">Date &amp; Time</div>
+                      <div class="dp-trigger"><span class="dp-trigger-text filled">Mar 18, 2026 09:00 AM</span><i data-lucide="calendar" style="width:16px;height:16px;color:#6B7280;flex-shrink:0;"></i></div>
+                    </div>
+                    <div class="dp-cal" style="width:268px;">
+                      <div class="dp-cal-hd">
+                        <span class="dp-cal-nav"><i data-lucide="chevron-left" style="width:16px;height:16px;"></i></span>
+                        <span class="dp-cal-month">March 2026</span>
+                        <span class="dp-cal-nav"><i data-lucide="chevron-right" style="width:16px;height:16px;"></i></span>
+                      </div>
+                      <div class="dp-cal-bd">
+                        <div class="dp-wk-names"><span class="dp-wn">Su</span><span class="dp-wn">Mo</span><span class="dp-wn">Tu</span><span class="dp-wn">We</span><span class="dp-wn">Th</span><span class="dp-wn">Fr</span><span class="dp-wn">Sa</span></div>
+                        <div class="dp-weeks">
+                          <div class="dp-week"><span class="dp-day dp-day--disabled"><span>1</span></span><span class="dp-day dp-day--disabled"><span>2</span></span><span class="dp-day dp-day--disabled"><span>3</span></span><span class="dp-day dp-day--disabled"><span>4</span></span><span class="dp-day dp-day--disabled"><span>5</span></span><span class="dp-day dp-day--disabled"><span>6</span></span><span class="dp-day dp-day--disabled"><span>7</span></span></div>
+                          <div class="dp-week"><span class="dp-day dp-day--disabled"><span>8</span></span><span class="dp-day dp-day--disabled"><span>9</span></span><span class="dp-day dp-day--disabled"><span>10</span></span><span class="dp-day dp-day--disabled"><span>11</span></span><span class="dp-day dp-day--disabled"><span>12</span></span><span class="dp-day dp-day--disabled"><span>13</span></span><span class="dp-day dp-day--disabled"><span>14</span></span></div>
+                          <div class="dp-week"><span class="dp-day dp-day--disabled"><span>15</span></span><span class="dp-day dp-day--today"><span>16</span></span><span class="dp-day"><span>17</span></span><span class="dp-day dp-day--selected"><span>18</span></span><span class="dp-day"><span>19</span></span><span class="dp-day"><span>20</span></span><span class="dp-day"><span>21</span></span></div>
+                          <div class="dp-week"><span class="dp-day"><span>22</span></span><span class="dp-day"><span>23</span></span><span class="dp-day"><span>24</span></span><span class="dp-day"><span>25</span></span><span class="dp-day"><span>26</span></span><span class="dp-day"><span>27</span></span><span class="dp-day"><span>28</span></span></div>
+                          <div class="dp-week"><span class="dp-day"><span>29</span></span><span class="dp-day"><span>30</span></span><span class="dp-day"><span>31</span></span><span class="dp-day dp-day--empty"></span><span class="dp-day dp-day--empty"></span><span class="dp-day dp-day--empty"></span><span class="dp-day dp-day--empty"></span></div>
+                        </div>
+                        <div class="dp-time-row">
+                          <div class="dp-time-field"><div class="dp-time-label">Hour</div><div class="dp-time-sel"><span>09</span><i data-lucide="chevron-down" style="width:14px;height:14px;"></i></div></div>
+                          <div class="dp-time-colon">:</div>
+                          <div class="dp-time-field"><div class="dp-time-label">Minute</div><div class="dp-time-sel"><span>00</span><i data-lucide="chevron-down" style="width:14px;height:14px;"></i></div></div>
+                          <div class="dp-time-colon" style="visibility:hidden;">:</div>
+                          <div class="dp-time-field"><div class="dp-time-label">Period</div><div class="dp-time-sel"><span>AM</span><i data-lucide="chevron-down" style="width:14px;height:14px;"></i></div></div>
+                        </div>
+                        <div class="dp-dt-actions"><button class="dp-btn-ghost" style="flex:1;">Clear</button><button class="dp-btn-primary" style="flex:1;">Apply</button></div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- DateTime Disabled -->
+              <div class="state-panel" id="vs-dt-dis">
+                <div class="var-previews">
+                  <div class="var-preview">
+                    <div class="dp-field" style="width:268px;">
+                      <div class="dp-label">Date &amp; Time</div>
+                      <div class="dp-trigger dp-trigger--disabled"><span class="dp-trigger-text">Select a date</span><i data-lucide="calendar" style="width:16px;height:16px;color:#9CA3AF;flex-shrink:0;"></i></div>
+                    </div>
+                  </div>
+                  <div class="var-preview-dark">
+                    <div class="dp-field" style="width:268px;">
+                      <div class="dp-label">Date &amp; Time</div>
+                      <div class="dp-trigger dp-trigger--disabled"><span class="dp-trigger-text">Select a date</span><i data-lucide="calendar" style="width:16px;height:16px;color:#6B7280;flex-shrink:0;"></i></div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+            </div>
+            <div class="var-desc">
+              <div class="var-use-when">Use when:</div>
+              <ul class="var-use-list">
+                <li>Scheduling events with specific times</li>
+                <li>Precise timestamp entry for bookings or logs</li>
+                <li>Booking with time slots where both date and time are required</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+      </section>
+
+      <!-- 4 · PROPERTIES -->
+      <section class="doc-section" id="properties">
+        <h2 class="section-title">Properties</h2>
+        <table class="props-table">
+          <thead>
+            <tr><th>Property</th><th>Type</th><th>Default</th><th>Description</th></tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><code class="p-name">type</code></td>
+              <td class="p-type">"single" | "range" | "datetime"</td>
+              <td class="p-def">"single"</td>
+              <td class="p-desc">Picker variant controlling layout and selection behavior.</td>
+            </tr>
+            <tr>
+              <td><code class="p-name">label</code></td>
+              <td class="p-type">string</td>
+              <td class="p-def">—</td>
+              <td class="p-desc">Label text displayed above the input trigger.</td>
+            </tr>
+            <tr>
+              <td><code class="p-name">placeholder</code></td>
+              <td class="p-type">string</td>
+              <td class="p-def">"Select a date"</td>
+              <td class="p-desc">Placeholder text shown when no value is selected.</td>
+            </tr>
+            <tr>
+              <td><code class="p-name">value</code></td>
+              <td class="p-type">string</td>
+              <td class="p-def">—</td>
+              <td class="p-desc">Selected date string for single and datetime variants.</td>
+            </tr>
+            <tr>
+              <td><code class="p-name">startDate</code></td>
+              <td class="p-type">string</td>
+              <td class="p-def">—</td>
+              <td class="p-desc">Range start date (range variant only).</td>
+            </tr>
+            <tr>
+              <td><code class="p-name">endDate</code></td>
+              <td class="p-type">string</td>
+              <td class="p-def">—</td>
+              <td class="p-desc">Range end date (range variant only).</td>
+            </tr>
+            <tr>
+              <td><code class="p-name">disabled</code></td>
+              <td class="p-type">boolean</td>
+              <td class="p-def">false</td>
+              <td class="p-desc">Disables the input trigger and prevents the calendar from opening.</td>
+            </tr>
+            <tr>
+              <td><code class="p-name">minDate</code></td>
+              <td class="p-type">string</td>
+              <td class="p-def">—</td>
+              <td class="p-desc">Earliest selectable date; days before this are rendered disabled.</td>
+            </tr>
+            <tr>
+              <td><code class="p-name">maxDate</code></td>
+              <td class="p-type">string</td>
+              <td class="p-def">—</td>
+              <td class="p-desc">Latest selectable date; days after this are rendered disabled.</td>
+            </tr>
+          </tbody>
+        </table>
+      </section>
+
+      <!-- 5 · USAGE -->
+      <section class="doc-section" id="usage">
+        <h2 class="section-title">Usage</h2>
+
+        <div class="usage-block">
+          <div class="usage-cols">
+            <div class="usage-card">
+              <div class="usage-card-header">
+                <div class="usage-icon do-icon"><i data-lucide="check" style="width:12px;height:12px"></i></div>
+                <div class="usage-card-title">Lorem ipsum dolor sit amet</div>
+              </div>
+              <ul class="usage-list">
+                <li>Lorem ipsum dolor sit amet, consectetur adipiscing elit sed do eiusmod tempor</li>
+                <li>Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi</li>
+                <li>Duis aute irure dolor in reprehenderit in voluptate velit esse cillum</li>
+              </ul>
+            </div>
+            <div class="usage-card">
+              <div class="usage-card-header">
+                <div class="usage-icon do-icon"><i data-lucide="check" style="width:12px;height:12px"></i></div>
+                <div class="usage-card-title">Ut labore et dolore magna aliqua</div>
+              </div>
+              <ul class="usage-list">
+                <li>Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia</li>
+                <li>Deserunt mollit anim id est laborum sed perspiciatis unde omnis iste natus</li>
+                <li>Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit</li>
+              </ul>
+            </div>
+          </div>
+          <div class="usage-cols">
+            <div class="usage-card">
+              <div class="usage-card-header">
+                <div class="usage-icon do-icon"><i data-lucide="check" style="width:12px;height:12px"></i></div>
+                <div class="usage-card-title">Neque porro quisquam est qui</div>
+              </div>
+              <ul class="usage-list">
+                <li>Dolorem ipsum quia dolor sit amet consectetur adipisci velit sed quia</li>
+                <li>Quisquam est qui dolorem ipsum quia dolor sit amet consectetur</li>
+                <li>Ut enim ad minima veniam, quis nostrum exercitationem ullam corporis</li>
+              </ul>
+            </div>
+            <div class="usage-card">
+              <div class="usage-card-header">
+                <div class="usage-icon do-icon"><i data-lucide="check" style="width:12px;height:12px"></i></div>
+                <div class="usage-card-title">Quis autem vel eum iure reprehenderit</div>
+              </div>
+              <ul class="usage-list">
+                <li>At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis</li>
+                <li>Nam libero tempore cum soluta nobis eligendi optio cumque nihil impedit</li>
+                <li>Temporibus autem quibusdam et aut officiis debitis rerum necessitatibus</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <div class="usage-divider"></div>
+
+        <div class="usage-block">
+          <div class="usage-cols">
+            <div class="usage-card">
+              <div class="usage-card-header">
+                <div class="usage-icon dont-icon"><i data-lucide="x" style="width:12px;height:12px"></i></div>
+                <div class="usage-card-title">Itaque earum rerum hic tenetur</div>
+              </div>
+              <ul class="usage-list">
+                <li>Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium</li>
+                <li>Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit</li>
+                <li>Quis autem vel eum iure reprehenderit qui voluptate velit esse quam nihil</li>
+              </ul>
+            </div>
+            <div class="usage-card">
+              <div class="usage-card-header">
+                <div class="usage-icon dont-icon"><i data-lucide="x" style="width:12px;height:12px"></i></div>
+                <div class="usage-card-title">Nam libero tempore cum soluta nobis</div>
+              </div>
+              <ul class="usage-list">
+                <li>Temporibus autem quibusdam et aut officiis debitis rerum necessitatibus saepe</li>
+                <li>Et harum quidem rerum facilis est et expedita distinctio nam libero tempore</li>
+                <li>Cum soluta nobis est eligendi optio cumque nihil impedit quo minus</li>
+              </ul>
+            </div>
+          </div>
+          <div class="usage-cols">
+            <div class="usage-card">
+              <div class="usage-card-header">
+                <div class="usage-icon dont-icon"><i data-lucide="x" style="width:12px;height:12px"></i></div>
+                <div class="usage-card-title">Totam rem aperiam eaque ipsa quae</div>
+              </div>
+              <ul class="usage-list">
+                <li>Ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt</li>
+                <li>Explicabo nemo enim ipsam voluptatem quia voluptas sit aspernatur</li>
+                <li>Ut enim ad minima veniam quis nostrum exercitationem ullam corporis</li>
+              </ul>
+            </div>
+            <div class="usage-card">
+              <div class="usage-card-header">
+                <div class="usage-icon dont-icon"><i data-lucide="x" style="width:12px;height:12px"></i></div>
+                <div class="usage-card-title">Accusantium doloremque laudantium totam</div>
+              </div>
+              <ul class="usage-list">
+                <li>Rem aperiam eaque ipsa quae ab illo inventore veritatis quasi architecto</li>
+                <li>Beatae vitae dicta sunt explicabo nemo enim ipsam voluptatem quia</li>
+                <li>Voluptas sit aspernatur aut odit aut fugit sed quia consequuntur magni</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- 6 · TOKENS -->
+      <section class="doc-section" id="tokens">
+        <h2 class="section-title">Tokens used</h2>
+
+        <div class="tokens-grid">
+          <div>
+            <div class="tokens-group-label">Light</div>
+            <table class="tokens-table">
+              <thead><tr><th>Element</th><th>Token</th><th></th></tr></thead>
+              <tbody>
+                <tr><td>Input background</td><td class="t-tok">color/surface/layer-02</td><td class="t-sw"><div class="swatch" style="background:#F4F6F8;"></div></td></tr>
+                <tr><td>Input border</td><td class="t-tok">color/border/interactive</td><td class="t-sw"><div class="swatch" style="background:#CDD2D7;"></div></td></tr>
+                <tr><td>Calendar background</td><td class="t-tok">color/surface/layer-02</td><td class="t-sw"><div class="swatch" style="background:#F4F6F8;"></div></td></tr>
+                <tr><td>Placeholder text</td><td class="t-tok">color/text/tertiary</td><td class="t-sw"><div class="swatch" style="background:#6B7280;"></div></td></tr>
+                <tr><td>Day text</td><td class="t-tok">color/text/primary</td><td class="t-sw"><div class="swatch" style="background:#374151;"></div></td></tr>
+                <tr><td>Disabled day</td><td class="t-tok">color/text/disabled</td><td class="t-sw"><div class="swatch" style="background:#9CA3AF;"></div></td></tr>
+                <tr><td>Selected day fill</td><td class="t-tok">color/action/secondary/default</td><td class="t-sw"><div class="swatch" style="background:#027CB1;"></div></td></tr>
+                <tr><td>Range highlight</td><td class="t-tok">color/control/calendar-range</td><td class="t-sw"><div class="swatch" style="background:#B7DBEE;"></div></td></tr>
+                <tr><td>Footer ghost btn</td><td class="t-tok">color/text/link</td><td class="t-sw"><div class="swatch" style="background:#016692;"></div></td></tr>
+                <tr><td>Footer primary btn</td><td class="t-tok">color/action/secondary/default</td><td class="t-sw"><div class="swatch" style="background:#027CB1;"></div></td></tr>
+              </tbody>
+            </table>
+          </div>
+          <div>
+            <div class="tokens-group-label">Dark</div>
+            <table class="tokens-table">
+              <thead><tr><th>Element</th><th>Token</th><th></th></tr></thead>
+              <tbody>
+                <tr><td>Input background</td><td class="t-tok">color/surface/layer-02</td><td class="t-sw"><div class="swatch" style="background:#1E1E1E;border-color:rgba(255,255,255,.1);"></div></td></tr>
+                <tr><td>Input border</td><td class="t-tok">color/border/interactive</td><td class="t-sw"><div class="swatch" style="background:#374151;"></div></td></tr>
+                <tr><td>Calendar background</td><td class="t-tok">color/surface/layer-02</td><td class="t-sw"><div class="swatch" style="background:#111827;border-color:rgba(255,255,255,.1);"></div></td></tr>
+                <tr><td>Placeholder text</td><td class="t-tok">color/text/tertiary</td><td class="t-sw"><div class="swatch" style="background:#6B7280;"></div></td></tr>
+                <tr><td>Day text</td><td class="t-tok">color/text/primary</td><td class="t-sw"><div class="swatch" style="background:#F3F4F6;border-color:rgba(0,0,0,.1);"></div></td></tr>
+                <tr><td>Disabled day</td><td class="t-tok">color/text/disabled</td><td class="t-sw"><div class="swatch" style="background:#4B5563;"></div></td></tr>
+                <tr><td>Selected day fill</td><td class="t-tok">color/action/secondary/default</td><td class="t-sw"><div class="swatch" style="background:#35A8D6;"></div></td></tr>
+                <tr><td>Range highlight</td><td class="t-tok">color/control/calendar-range</td><td class="t-sw"><div class="swatch" style="background:#1A3A4A;"></div></td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </section>
+
+      <!-- 7 · ACCESSIBILITY -->
+      <section class="doc-section" id="accessibility">
+        <h2 class="section-title">Accessibility</h2>
+
+        <div class="a11y-group">
+          <h3 class="a11y-group-title">Keyboard</h3>
+          <ul class="a11y-list">
+            <li><div><strong>Arrow keys</strong> navigate days within the calendar grid.</div></li>
+            <li><div><strong>Enter / Space</strong> selects the focused day.</div></li>
+            <li><div><strong>Escape</strong> closes the calendar popover and returns focus to the trigger.</div></li>
+            <li><div><strong>Tab</strong> moves focus between distinct UI regions: trigger, calendar header, day grid, and footer buttons.</div></li>
+          </ul>
+        </div>
+
+        <div class="a11y-group">
+          <h3 class="a11y-group-title">Screen Readers</h3>
+          <ul class="a11y-list">
+            <li><div>The calendar grid uses <code>aria-label</code> with the current month and year so the context is announced when focus enters.</div></li>
+            <li><div>Each day button has an <code>aria-label</code> with the full date (e.g. "March 18, 2026") and an <code>aria-pressed</code> or <code>aria-selected</code> attribute to communicate the selected state.</div></li>
+            <li><div>Disabled days use <code>aria-disabled="true"</code> and are excluded from the tab order.</div></li>
+          </ul>
+        </div>
+
+        <div class="a11y-group">
+          <h3 class="a11y-group-title">Focus Management</h3>
+          <ul class="a11y-list">
+            <li><div>When the calendar opens, focus moves into the calendar — typically to the selected day or to the current date if no selection exists.</div></li>
+            <li><div>When the calendar closes via Apply, Clear, or Escape, focus returns to the input trigger that opened it.</div></li>
+          </ul>
+        </div>
+
+        <div class="a11y-group">
+          <h3 class="a11y-group-title">Touch</h3>
+          <ul class="a11y-list">
+            <li><div>Each day cell maintains a minimum 44×44px touch target to meet WCAG 2.5.5 target size guidance.</div></li>
+            <li><div>The calendar should be dismissible by tapping outside the popover boundary without committing a selection.</div></li>
+          </ul>
+        </div>
+
+      </section>
+
+      <!-- 8 · RELATED -->
+      <section class="doc-section" id="related">
+        <h2 class="section-title">Related Components</h2>
+        <div class="related-grid">
+          <a href="#" class="related-card">
+            <div class="rc-name">Text Input</div>
+            <div class="rc-desc">For freeform date entry when format flexibility is needed.</div>
+          </a>
+          <a href="#" class="related-card">
+            <div class="rc-name">Select</div>
+            <div class="rc-desc">Use for predefined date options rather than a full calendar.</div>
+          </a>
+          <a href="#" class="related-card">
+            <div class="rc-name">Time Picker</div>
+            <div class="rc-desc">Standalone time selector when a date is already known.</div>
+          </a>
+        </div>
+      </section>
+
+    </main>
+
+    <!-- RIGHT NAV -->
+    <nav class="right-nav">
+      <div class="rn-label">On this page</div>
+      <ul class="rn-list">
+        <li><a href="#definition" id="rn-definition">Definition</a></li>
+        <li><a href="#anatomy" id="rn-anatomy">Anatomy</a></li>
+        <li><a href="#variants" id="rn-variants">Variants</a></li>
+        <li><a href="#properties" id="rn-properties">Properties</a></li>
+        <li><a href="#usage" id="rn-usage">Usage</a></li>
+        <li><a href="#tokens" id="rn-tokens">Tokens</a></li>
+        <li><a href="#accessibility" id="rn-accessibility">Accessibility</a></li>
+        <li><a href="#related" id="rn-related">Related</a></li>
+      </ul>
+    </nav>
+
+  </div><!-- /content-wrap -->
+</div><!-- /shell -->
+
+<script>
+  lucide.createIcons();
+
+  const isMobile = () => window.innerWidth <= 768;
+  let sbOpen = !isMobile();
+  if (!sbOpen) document.getElementById('leftNav').classList.add('hidden');
+
+  function toggleSidebar() {
+    sbOpen = !sbOpen;
+    document.getElementById('leftNav').classList.toggle('hidden', !sbOpen);
+    if (!isMobile()) {
+      document.getElementById('contentWrap').style.marginLeft = sbOpen ? 'var(--left-w)' : '0';
+    }
+    document.getElementById('navOverlay').classList.toggle('active', sbOpen && isMobile());
+  }
+
+  function updateTabFade(tabsEl) {
+    const wrap = tabsEl.closest('.tabs-wrap');
+    if (!wrap) return;
+    const atEnd = tabsEl.scrollLeft + tabsEl.clientWidth >= tabsEl.scrollWidth - 2;
+    wrap.classList.toggle('at-end', atEnd);
+  }
+
+  function switchTab(btn, panelId) {
+    btn.closest('.doc-section').querySelectorAll('.tab').forEach(b => b.classList.remove('active'));
+    btn.closest('.doc-section').querySelectorAll('.tab-panel').forEach(p => p.classList.remove('active'));
+    btn.classList.add('active');
+    document.getElementById(panelId).classList.add('active');
+    const tabsEl = btn.closest('.tabs');
+    if (tabsEl) {
+      const tabRight = btn.offsetLeft + btn.offsetWidth;
+      const tabLeft = btn.offsetLeft;
+      if (tabRight > tabsEl.scrollLeft + tabsEl.clientWidth - 56) {
+        tabsEl.scrollLeft = tabRight - tabsEl.clientWidth + 72;
+      } else if (tabLeft < tabsEl.scrollLeft) {
+        tabsEl.scrollLeft = tabLeft;
+      }
+      updateTabFade(tabsEl);
+    }
+    lucide.createIcons();
+  }
+
+  window.addEventListener('load', () => {
+    document.querySelectorAll('.tabs').forEach(tabsEl => {
+      updateTabFade(tabsEl);
+      tabsEl.addEventListener('scroll', () => updateTabFade(tabsEl));
+    });
+  });
+
+  function toggleTheme() {
+    const d = document.documentElement;
+    d.setAttribute('data-theme', d.getAttribute('data-theme') === 'dark' ? 'light' : 'dark');
+  }
+
+  function switchStateTab(btn, panelId) {
+    const wrap = btn.closest('.tab-panel');
+    wrap.querySelectorAll('.state-tab-btn').forEach(t => t.classList.remove('active'));
+    wrap.querySelectorAll('.state-panel').forEach(p => p.classList.remove('active'));
+    btn.classList.add('active');
+    document.getElementById(panelId).classList.add('active');
+    lucide.createIcons();
+  }
+
+  const sections = ['definition','anatomy','variants','properties','usage','tokens','accessibility','related'];
+  const observer = new IntersectionObserver(entries => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        document.querySelectorAll('.rn-list a').forEach(a => a.classList.remove('active'));
+        const link = document.getElementById('rn-' + e.target.id);
+        if (link) link.classList.add('active');
+      }
+    });
+  }, { rootMargin: '-20% 0px -70% 0px' });
+  sections.forEach(id => {
+    const el = document.getElementById(id);
+    if (el) observer.observe(el);
+  });
+</script>
+</body>
+</html>

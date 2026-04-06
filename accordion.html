@@ -1,0 +1,824 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Accordion — nuShip Design System</title>
+  <link href="https://fonts.googleapis.com/css2?family=Lato:wght@400;600;700;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="tokens.css">
+  <link rel="stylesheet" href="styles.css">
+  <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.min.js"></script>
+</head>
+<body>
+
+<!-- MOBILE OVERLAY -->
+<div id="navOverlay" class="nav-overlay" onclick="toggleSidebar()"></div>
+
+<!-- TOP NAV -->
+<nav class="topnav">
+  <button class="hamburger" onclick="toggleSidebar()" aria-label="Menu">
+    <i data-lucide="menu" style="width:18px;height:18px;color:var(--text-secondary)"></i>
+  </button>
+  <div class="bc">
+    <a href="index.html">UI Components</a>
+    <i data-lucide="chevron-right" style="width:14px;height:14px;flex-shrink:0"></i>
+    <a href="#">Navigation</a>
+    <i data-lucide="chevron-right" style="width:14px;height:14px;flex-shrink:0"></i>
+    <span class="cur">Accordion</span>
+  </div>
+  <div class="nav-actions">
+    <div class="toggle-wrap" onclick="toggleTheme()" role="button">
+      <i data-lucide="moon" style="width:20px;height:20px"></i>
+      <div class="toggle-track"><div class="toggle-thumb"></div></div>
+      <i data-lucide="sun" style="width:20px;height:20px"></i>
+    </div>
+  </div>
+</nav>
+
+<div class="shell">
+
+  <!-- LEFT NAV -->
+  <nav class="left-nav" id="leftNav">
+    <div class="left-nav-inner">
+      <div class="ln-group">
+        <div class="ln-label">Inputs</div>
+        <ul class="ln-list">
+          <li><a href="checkbox.html">Checkbox</a></li>
+          <li><a href="datepicker.html">Date Picker</a></li>
+          <li><a href="#">Number Input</a></li>
+          <li><a href="#">Radio Button</a></li>
+          <li><a href="#">Search</a></li>
+          <li><a href="select.html">Select</a></li>
+          <li><a href="#">Slider</a></li>
+          <li><a href="#">Switch</a></li>
+          <li><a href="#">Text Area</a></li>
+          <li><a href="#">Text Input</a></li>
+        </ul>
+      </div>
+      <div class="ln-group">
+        <div class="ln-label">Feedback</div>
+        <ul class="ln-list">
+          <li><a href="alert.html">Alert</a></li>
+          <li><a href="badge.html">Badge</a></li>
+          <li><a href="#">Toast</a></li>
+          <li><a href="#">Tooltip</a></li>
+        </ul>
+      </div>
+      <div class="ln-group">
+        <div class="ln-label">Navigation</div>
+        <ul class="ln-list">
+          <li><a href="accordion.html" class="active">Accordion</a></li>
+          <li><a href="#">Breadcrumb</a></li>
+          <li><a href="#">Dropdown</a></li>
+          <li><a href="#">Menu</a></li>
+          <li><a href="#">Tabs</a></li>
+        </ul>
+      </div>
+      <div class="ln-group">
+        <div class="ln-label">Actions</div>
+        <ul class="ln-list">
+          <li><a href="button.html">Button</a></li>
+          <li><a href="#">Link</a></li>
+          <li><a href="#">Tags</a></li>
+        </ul>
+      </div>
+      <div class="ln-group">
+        <div class="ln-label">Overlays</div>
+        <ul class="ln-list">
+          <li><a href="#">Modal</a></li>
+          <li><a href="#">Popover</a></li>
+        </ul>
+      </div>
+      <div class="ln-group">
+        <div class="ln-label">Display</div>
+        <ul class="ln-list">
+          <li><a href="avatar.html">Avatar</a></li>
+          <li><a href="#">Carousel</a></li>
+          <li><a href="#">File Upload</a></li>
+          <li><a href="#">Star Rating</a></li>
+          <li><a href="#">Timeline</a></li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <!-- CONTENT -->
+  <div class="content-wrap" id="contentWrap">
+    <main class="doc">
+
+      <!-- 1 · DEFINITION -->
+      <section class="doc-section" id="definition">
+        <div class="def-eyebrow">Navigation</div>
+        <h1 class="def-title">Accordion</h1>
+        <p class="def-desc">An accordion is a vertically stacked set of expandable sections. Each section contains a trigger that reveals or hides associated content. Accordions help reduce visual clutter by progressively disclosing information on demand.</p>
+        <div class="def-tags">
+          <span class="tag">Developed</span>
+          <span class="tag">Figma</span>
+        </div>
+        <div class="preview-box">
+          <div class="preview-box-inner">
+            <div style="display:flex;flex-direction:column;gap:8px;width:100%;max-width:340px;margin:0 auto;">
+              <div class="ac ac--open" id="heroAc1" onclick="toggleAc(this)">
+                <div class="ac-trigger">
+                  <span class="ac-label">Shipping &amp; delivery</span>
+                  <span class="ac-chevron"><i data-lucide="chevron-down" style="width:16px;height:16px;"></i></span>
+                </div>
+                <div class="ac-content">Standard delivery is 3–5 business days. Express options are available at checkout for next-day or 2-day delivery.</div>
+              </div>
+              <div class="ac ac--closed" id="heroAc2" onclick="toggleAc(this)">
+                <div class="ac-trigger">
+                  <span class="ac-label">Returns &amp; exchanges</span>
+                  <span class="ac-chevron"><i data-lucide="chevron-down" style="width:16px;height:16px;"></i></span>
+                </div>
+                <div class="ac-content">Items can be returned within 30 days of delivery. Visit the returns portal to generate a prepaid label.</div>
+              </div>
+              <div class="ac ac--closed" id="heroAc3" onclick="toggleAc(this)">
+                <div class="ac-trigger">
+                  <span class="ac-label">Payment methods</span>
+                  <span class="ac-chevron"><i data-lucide="chevron-down" style="width:16px;height:16px;"></i></span>
+                </div>
+                <div class="ac-content">We accept Visa, Mastercard, Amex, PayPal, and Afterpay. All transactions are processed securely.</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- 2 · ANATOMY -->
+      <section class="doc-section" id="anatomy">
+        <h2 class="section-title">Anatomy</h2>
+        <div class="anatomy-wrap">
+          <div class="anatomy-component" style="width:280px; box-sizing:border-box; padding:24px;">
+            <div class="ac ac--open" style="pointer-events:none;">
+              <div class="ac-trigger">
+                <span class="ac-label">Toggle</span>
+                <span class="ac-chevron"><i data-lucide="chevron-down" style="width:16px;height:16px;"></i></span>
+              </div>
+              <div class="ac-content">Lorem ipsum dolor sit amet, consectetur adipiscing elit nulla.</div>
+            </div>
+            <span class="callout" style="top:12px;left:12px">1</span>
+            <span class="callout" style="top:50px;left:122px">2</span>
+            <span class="callout" style="top:36px;left:46px">3</span>
+            <span class="callout" style="top:34px;left:222px">4</span>
+            <span class="callout" style="top:88px;left:80px">5</span>
+          </div>
+          <div class="anatomy-legend">
+            <div class="legend-item"><span class="legend-num">1</span>Container</div>
+            <div class="legend-item"><span class="legend-num">2</span>Trigger</div>
+            <div class="legend-item"><span class="legend-num">3</span>Label</div>
+            <div class="legend-item"><span class="legend-num">4</span>Chevron</div>
+            <div class="legend-item"><span class="legend-num">5</span>Content</div>
+          </div>
+        </div>
+      </section>
+
+      <!-- 3 · VARIANTS -->
+      <section class="doc-section" id="variants">
+        <h2 class="section-title">Variants</h2>
+        <div class="tabs-wrap">
+          <div class="tabs">
+            <button class="tab active" onclick="switchTab(this,'v-open')">Open</button>
+            <button class="tab" onclick="switchTab(this,'v-closed')">Closed</button>
+          </div>
+        </div>
+
+        <!-- Open -->
+        <div class="tab-panel active" id="v-open">
+          <div class="state-tab-row">
+            <button class="state-tab-btn active" onclick="switchStateTab(this,'vs-open-en')">Enabled</button>
+            <button class="state-tab-btn" onclick="switchStateTab(this,'vs-open-hov')">Hover</button>
+            <button class="state-tab-btn" onclick="switchStateTab(this,'vs-open-foc')">Focus</button>
+            <button class="state-tab-btn" onclick="switchStateTab(this,'vs-open-dis')">Disabled</button>
+          </div>
+          <div class="var-panel">
+            <div class="var-previews-wrap">
+              <div class="state-panel active" id="vs-open-en">
+                <div class="var-previews">
+                  <div class="var-preview tall" data-theme="light">
+                    <div class="ac ac--open" style="width:260px;">
+                      <div class="ac-trigger"><span class="ac-label">Toggle</span><span class="ac-chevron"><i data-lucide="chevron-down" style="width:16px;height:16px;"></i></span></div>
+                      <div class="ac-content">Content appears here when the accordion is expanded.</div>
+                    </div>
+                  </div>
+                  <div class="var-preview-dark tall" data-theme="dark">
+                    <div class="ac ac--open" style="width:260px;">
+                      <div class="ac-trigger"><span class="ac-label">Toggle</span><span class="ac-chevron"><i data-lucide="chevron-down" style="width:16px;height:16px;"></i></span></div>
+                      <div class="ac-content">Content appears here when the accordion is expanded.</div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="state-panel" id="vs-open-hov">
+                <div class="var-previews">
+                  <div class="var-preview tall" data-theme="light">
+                    <div class="ac ac--open ac--hover" style="width:260px;">
+                      <div class="ac-trigger"><span class="ac-label">Toggle</span><span class="ac-chevron"><i data-lucide="chevron-down" style="width:16px;height:16px;"></i></span></div>
+                      <div class="ac-content">Content appears here when the accordion is expanded.</div>
+                    </div>
+                  </div>
+                  <div class="var-preview-dark tall" data-theme="dark">
+                    <div class="ac ac--open ac--hover" style="width:260px;">
+                      <div class="ac-trigger"><span class="ac-label">Toggle</span><span class="ac-chevron"><i data-lucide="chevron-down" style="width:16px;height:16px;"></i></span></div>
+                      <div class="ac-content">Content appears here when the accordion is expanded.</div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="state-panel" id="vs-open-foc">
+                <div class="var-previews">
+                  <div class="var-preview tall" data-theme="light">
+                    <div class="ac ac--open ac--focus" style="width:260px;">
+                      <div class="ac-trigger"><span class="ac-label">Toggle</span><span class="ac-chevron"><i data-lucide="chevron-down" style="width:16px;height:16px;"></i></span></div>
+                      <div class="ac-content">Content appears here when the accordion is expanded.</div>
+                    </div>
+                  </div>
+                  <div class="var-preview-dark tall" data-theme="dark">
+                    <div class="ac ac--open ac--focus" style="width:260px;">
+                      <div class="ac-trigger"><span class="ac-label">Toggle</span><span class="ac-chevron"><i data-lucide="chevron-down" style="width:16px;height:16px;"></i></span></div>
+                      <div class="ac-content">Content appears here when the accordion is expanded.</div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="state-panel" id="vs-open-dis">
+                <div class="var-previews">
+                  <div class="var-preview tall" data-theme="light">
+                    <div class="ac ac--open ac--disabled" style="width:260px;">
+                      <div class="ac-trigger"><span class="ac-label">Toggle</span><span class="ac-chevron"><i data-lucide="chevron-down" style="width:16px;height:16px;"></i></span></div>
+                      <div class="ac-content">Content appears here when the accordion is expanded.</div>
+                    </div>
+                  </div>
+                  <div class="var-preview-dark tall" data-theme="dark">
+                    <div class="ac ac--open ac--disabled" style="width:260px;">
+                      <div class="ac-trigger"><span class="ac-label">Toggle</span><span class="ac-chevron"><i data-lucide="chevron-down" style="width:16px;height:16px;"></i></span></div>
+                      <div class="ac-content">Content appears here when the accordion is expanded.</div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="var-desc">
+              <div class="var-use-when">Use when:</div>
+              <ul class="var-use-list">
+                <li>A section should be expanded by default on load</li>
+                <li>The content is the primary reason the user is on the screen</li>
+                <li>You want to signal that content is available and readable</li>
+              </ul>
+              <div class="var-use-when" style="margin-top:12px;">Visual changes:</div>
+              <ul class="var-use-list">
+                <li>Label color: <code>color/text/button-tertiary/default</code></li>
+                <li>Chevron rotated 180°, stroke matches label color</li>
+                <li>Content area visible below trigger</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <!-- Closed -->
+        <div class="tab-panel" id="v-closed">
+          <div class="state-tab-row">
+            <button class="state-tab-btn active" onclick="switchStateTab(this,'vs-closed-en')">Enabled</button>
+            <button class="state-tab-btn" onclick="switchStateTab(this,'vs-closed-hov')">Hover</button>
+            <button class="state-tab-btn" onclick="switchStateTab(this,'vs-closed-foc')">Focus</button>
+            <button class="state-tab-btn" onclick="switchStateTab(this,'vs-closed-dis')">Disabled</button>
+          </div>
+          <div class="var-panel">
+            <div class="var-previews-wrap">
+              <div class="state-panel active" id="vs-closed-en">
+                <div class="var-previews">
+                  <div class="var-preview" data-theme="light">
+                    <div class="ac ac--closed" style="width:260px;">
+                      <div class="ac-trigger"><span class="ac-label">Toggle</span><span class="ac-chevron"><i data-lucide="chevron-down" style="width:16px;height:16px;"></i></span></div>
+                      <div class="ac-content"></div>
+                    </div>
+                  </div>
+                  <div class="var-preview-dark" data-theme="dark">
+                    <div class="ac ac--closed" style="width:260px;">
+                      <div class="ac-trigger"><span class="ac-label">Toggle</span><span class="ac-chevron"><i data-lucide="chevron-down" style="width:16px;height:16px;"></i></span></div>
+                      <div class="ac-content"></div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="state-panel" id="vs-closed-hov">
+                <div class="var-previews">
+                  <div class="var-preview" data-theme="light">
+                    <div class="ac ac--closed ac--hover" style="width:260px;">
+                      <div class="ac-trigger"><span class="ac-label">Toggle</span><span class="ac-chevron"><i data-lucide="chevron-down" style="width:16px;height:16px;"></i></span></div>
+                      <div class="ac-content"></div>
+                    </div>
+                  </div>
+                  <div class="var-preview-dark" data-theme="dark">
+                    <div class="ac ac--closed ac--hover" style="width:260px;">
+                      <div class="ac-trigger"><span class="ac-label">Toggle</span><span class="ac-chevron"><i data-lucide="chevron-down" style="width:16px;height:16px;"></i></span></div>
+                      <div class="ac-content"></div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="state-panel" id="vs-closed-foc">
+                <div class="var-previews">
+                  <div class="var-preview" data-theme="light">
+                    <div class="ac ac--closed ac--focus" style="width:260px;">
+                      <div class="ac-trigger"><span class="ac-label">Toggle</span><span class="ac-chevron"><i data-lucide="chevron-down" style="width:16px;height:16px;"></i></span></div>
+                      <div class="ac-content"></div>
+                    </div>
+                  </div>
+                  <div class="var-preview-dark" data-theme="dark">
+                    <div class="ac ac--closed ac--focus" style="width:260px;">
+                      <div class="ac-trigger"><span class="ac-label">Toggle</span><span class="ac-chevron"><i data-lucide="chevron-down" style="width:16px;height:16px;"></i></span></div>
+                      <div class="ac-content"></div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="state-panel" id="vs-closed-dis">
+                <div class="var-previews">
+                  <div class="var-preview" data-theme="light">
+                    <div class="ac ac--closed ac--disabled" style="width:260px;">
+                      <div class="ac-trigger"><span class="ac-label">Toggle</span><span class="ac-chevron"><i data-lucide="chevron-down" style="width:16px;height:16px;"></i></span></div>
+                      <div class="ac-content"></div>
+                    </div>
+                  </div>
+                  <div class="var-preview-dark" data-theme="dark">
+                    <div class="ac ac--closed ac--disabled" style="width:260px;">
+                      <div class="ac-trigger"><span class="ac-label">Toggle</span><span class="ac-chevron"><i data-lucide="chevron-down" style="width:16px;height:16px;"></i></span></div>
+                      <div class="ac-content"></div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="var-desc">
+              <div class="var-use-when">Use when:</div>
+              <ul class="var-use-list">
+                <li>The user has not yet interacted with the section</li>
+                <li>Content is secondary and not needed immediately</li>
+                <li>Multiple accordion items are present on the same screen</li>
+              </ul>
+              <div class="var-use-when" style="margin-top:12px;">Visual changes:</div>
+              <ul class="var-use-list">
+                <li>Label color: <code>color/text/primary</code></li>
+                <li>Chevron pointing down, neutral stroke color</li>
+                <li>Content area hidden</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+      </section>
+
+      <!-- 4 · PROPERTIES -->
+      <section class="doc-section" id="properties">
+        <h2 class="section-title">Properties</h2>
+        <table class="props-table">
+          <thead>
+            <tr><th>Property</th><th>Type</th><th>Default</th><th>Description</th></tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><code>label</code></td>
+              <td>string</td>
+              <td>—</td>
+              <td>Text shown in the trigger row. Required.</td>
+            </tr>
+            <tr>
+              <td><code>open</code></td>
+              <td>boolean</td>
+              <td><code>false</code></td>
+              <td>Controls whether the accordion is expanded (controlled mode).</td>
+            </tr>
+            <tr>
+              <td><code>defaultOpen</code></td>
+              <td>boolean</td>
+              <td><code>false</code></td>
+              <td>Sets the initial open state (uncontrolled mode).</td>
+            </tr>
+            <tr>
+              <td><code>disabled</code></td>
+              <td>boolean</td>
+              <td><code>false</code></td>
+              <td>Prevents the accordion from being toggled.</td>
+            </tr>
+            <tr>
+              <td><code>onChange</code></td>
+              <td>function</td>
+              <td>—</td>
+              <td>Callback fired when the expanded state changes. Receives the new boolean value.</td>
+            </tr>
+          </tbody>
+        </table>
+      </section>
+
+      <!-- 5 · USAGE -->
+      <section class="doc-section" id="usage">
+        <h2 class="section-title">Usage</h2>
+
+        <div class="usage-block">
+          <div class="usage-cols">
+            <div class="usage-card">
+              <div class="usage-card-header">
+                <div class="usage-icon do-icon"><i data-lucide="check" style="width:12px;height:12px"></i></div>
+                <div class="usage-card-title">Progressive disclosure of secondary content</div>
+              </div>
+              <ul class="usage-list">
+                <li>When detailed information is relevant but not needed at first glance</li>
+                <li>Content like policies, reviews, or legal text that some users want and others don't</li>
+                <li>When reducing visual complexity helps users focus on primary tasks</li>
+              </ul>
+            </div>
+            <div class="usage-card">
+              <div class="usage-card-header">
+                <div class="usage-icon do-icon"><i data-lucide="check" style="width:12px;height:12px"></i></div>
+                <div class="usage-card-title">FAQ and help content</div>
+              </div>
+              <ul class="usage-list">
+                <li>Contexts where users have a specific question they're scanning to find</li>
+                <li>When multiple independent questions or topics need to coexist on one screen</li>
+                <li>Help sections, onboarding explanations, and support flows</li>
+              </ul>
+            </div>
+          </div>
+          <div class="usage-cols">
+            <div class="usage-card">
+              <div class="usage-card-header">
+                <div class="usage-icon do-icon"><i data-lucide="check" style="width:12px;height:12px"></i></div>
+                <div class="usage-card-title">Grouped detail sections on detail screens</div>
+              </div>
+              <ul class="usage-list">
+                <li>Carrier or shipper profile pages where multiple content categories exist</li>
+                <li>Listing detail screens with supplemental information (reviews, insurance, terms)</li>
+                <li>When users may want to compare content across collapsible sections</li>
+              </ul>
+            </div>
+            <div class="usage-card">
+              <div class="usage-card-header">
+                <div class="usage-icon do-icon"><i data-lucide="check" style="width:12px;height:12px"></i></div>
+                <div class="usage-card-title">Long-form content management</div>
+              </div>
+              <ul class="usage-list">
+                <li>When a page has too much content to show at once without overwhelming the user</li>
+                <li>Settings or configuration panels where not all options are always relevant</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <div class="usage-divider"></div>
+
+        <div class="usage-block">
+          <div class="usage-cols">
+            <div class="usage-card">
+              <div class="usage-card-header">
+                <div class="usage-icon dont-icon"><i data-lucide="x" style="width:12px;height:12px"></i></div>
+                <div class="usage-card-title">Task critical primary information</div>
+              </div>
+              <ul class="usage-list">
+                <li>Pickup and delivery addresses — users need these visible to complete a booking</li>
+                <li>Pricing or quote totals that directly drive a decision</li>
+                <li>Required fields or actions in a form or checkout flow</li>
+              </ul>
+            </div>
+            <div class="usage-card">
+              <div class="usage-card-header">
+                <div class="usage-icon dont-icon"><i data-lucide="x" style="width:12px;height:12px"></i></div>
+                <div class="usage-card-title">Single short content blocks</div>
+              </div>
+              <ul class="usage-list">
+                <li>When there's only one section — just show the content inline</li>
+                <li>When the content inside is just 1–2 sentences — the overhead isn't worth it</li>
+                <li>Avoid creating accordion "theater" where the expand adds no real value</li>
+              </ul>
+            </div>
+          </div>
+          <div class="usage-cols">
+            <div class="usage-card">
+              <div class="usage-card-header">
+                <div class="usage-icon dont-icon"><i data-lucide="x" style="width:12px;height:12px"></i></div>
+                <div class="usage-card-title">Sequential or step-based flows</div>
+              </div>
+              <ul class="usage-list">
+                <li>Multi-step forms — use stepper or wizard patterns instead</li>
+                <li>Onboarding flows where order of completion matters</li>
+                <li>When the user needs to read everything before taking action</li>
+              </ul>
+            </div>
+            <div class="usage-card">
+              <div class="usage-card-header">
+                <div class="usage-icon dont-icon"><i data-lucide="x" style="width:12px;height:12px"></i></div>
+                <div class="usage-card-title">Navigation</div>
+              </div>
+              <ul class="usage-list">
+                <li>Don't use accordions as a substitute for page navigation or tabs</li>
+                <li>Avoid nesting interactive elements like buttons or forms inside panels</li>
+                <li>Primary CTAs should never be hidden behind an accordion</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- 6 · TOKENS -->
+      <section class="doc-section" id="tokens">
+        <h2 class="section-title">Tokens used</h2>
+
+        <!-- Color — Text -->
+        <p class="tokens-cat">Color — Text</p>
+        <div class="tokens-grid">
+          <div>
+            <div class="tokens-group-label">Light</div>
+            <table class="tokens-table">
+              <thead><tr><th>Element</th><th>Token</th><th></th></tr></thead>
+              <tbody>
+                <tr><td>Trigger label (open)</td><td class="t-tok">color/text/button-tertiary/default</td><td class="t-sw"><div class="swatch" style="background:#016692;"></div></td></tr>
+                <tr><td>Trigger label (closed)</td><td class="t-tok">color/text/primary</td><td class="t-sw"><div class="swatch" style="background:#374151;"></div></td></tr>
+                <tr><td>Trigger label (disabled)</td><td class="t-tok">color/text/disabled</td><td class="t-sw"><div class="swatch" style="background:#9CA3AF;"></div></td></tr>
+                <tr><td>Content text</td><td class="t-tok">color/text/primary</td><td class="t-sw"><div class="swatch" style="background:#374151;"></div></td></tr>
+              </tbody>
+            </table>
+          </div>
+          <div>
+            <div class="tokens-group-label">Dark</div>
+            <table class="tokens-table">
+              <thead><tr><th>Element</th><th>Token</th><th></th></tr></thead>
+              <tbody>
+                <tr><td>Trigger label (open)</td><td class="t-tok">color/text/button-tertiary/default</td><td class="t-sw"><div class="swatch" style="background:#5ABFE0;"></div></td></tr>
+                <tr><td>Trigger label (closed)</td><td class="t-tok">color/text/primary</td><td class="t-sw"><div class="swatch" style="background:#FFFFFF;border-color:rgba(0,0,0,.1);"></div></td></tr>
+                <tr><td>Trigger label (disabled)</td><td class="t-tok">color/text/disabled</td><td class="t-sw"><div class="swatch" style="background:#6B7280;"></div></td></tr>
+                <tr><td>Content text</td><td class="t-tok">color/text/primary</td><td class="t-sw"><div class="swatch" style="background:#FFFFFF;border-color:rgba(0,0,0,.1);"></div></td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <!-- Color — Border -->
+        <p class="tokens-cat">Color — Border</p>
+        <div class="tokens-grid">
+          <div>
+            <div class="tokens-group-label">Light</div>
+            <table class="tokens-table">
+              <thead><tr><th>Element</th><th>Token</th><th></th></tr></thead>
+              <tbody>
+                <tr><td>Container border (default)</td><td class="t-tok">color/border/interactive</td><td class="t-sw"><div class="swatch" style="background:#CDD2D7;"></div></td></tr>
+                <tr><td>Container border (focus)</td><td class="t-tok">color/border/focus-ring</td><td class="t-sw"><div class="swatch" style="background:#5ABFE0;"></div></td></tr>
+                <tr><td>Chevron border (default)</td><td class="t-tok">color/border/interactive</td><td class="t-sw"><div class="swatch" style="background:#CDD2D7;"></div></td></tr>
+                <tr><td>Chevron border (disabled)</td><td class="t-tok">color/border/disabled</td><td class="t-sw"><div class="swatch" style="background:#E5E7EB;"></div></td></tr>
+              </tbody>
+            </table>
+          </div>
+          <div>
+            <div class="tokens-group-label">Dark</div>
+            <table class="tokens-table">
+              <thead><tr><th>Element</th><th>Token</th><th></th></tr></thead>
+              <tbody>
+                <tr><td>Container border (default)</td><td class="t-tok">color/border/interactive</td><td class="t-sw"><div class="swatch" style="background:#6B7280;"></div></td></tr>
+                <tr><td>Container border (focus)</td><td class="t-tok">color/border/focus-ring</td><td class="t-sw"><div class="swatch" style="background:#0083BB;"></div></td></tr>
+                <tr><td>Chevron border (default)</td><td class="t-tok">color/border/interactive</td><td class="t-sw"><div class="swatch" style="background:#6B7280;"></div></td></tr>
+                <tr><td>Chevron border (disabled)</td><td class="t-tok">color/border/disabled</td><td class="t-sw"><div class="swatch" style="background:#374151;"></div></td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <!-- Color — Surface -->
+        <p class="tokens-cat">Color — Surface</p>
+        <div class="tokens-grid">
+          <div>
+            <div class="tokens-group-label">Light</div>
+            <table class="tokens-table">
+              <thead><tr><th>Element</th><th>Token</th><th></th></tr></thead>
+              <tbody>
+                <tr><td>Container bg (default, open, focus)</td><td class="t-tok">color/surface/shell</td><td class="t-sw"><div class="swatch" style="background:#FFFFFF;border-color:rgba(0,0,0,.1);"></div></td></tr>
+                <tr><td>Container bg (hover)</td><td class="t-tok">color/surface/layer-01/hover</td><td class="t-sw"><div class="swatch" style="background:#F3F4F6;"></div></td></tr>
+              </tbody>
+            </table>
+          </div>
+          <div>
+            <div class="tokens-group-label">Dark</div>
+            <table class="tokens-table">
+              <thead><tr><th>Element</th><th>Token</th><th></th></tr></thead>
+              <tbody>
+                <tr><td>Container bg (default, open, focus)</td><td class="t-tok">color/surface/shell</td><td class="t-sw"><div class="swatch" style="background:#0A0A0A;border-color:rgba(255,255,255,.1);"></div></td></tr>
+                <tr><td>Container bg (hover)</td><td class="t-tok">color/surface/layer-01/hover</td><td class="t-sw"><div class="swatch" style="background:#1A1A1A;border-color:rgba(255,255,255,.1);"></div></td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <!-- Elevation & Effects -->
+        <p class="tokens-cat">Elevation &amp; Effects</p>
+        <table class="tokens-table">
+          <thead><tr><th>Element</th><th>Token</th><th>Value</th></tr></thead>
+          <tbody>
+            <tr><td>Container shadow (resting)</td><td class="t-tok">elevation/light/level-1</td><td>0 1px 3px rgba(55, 65, 80, 0.08)</td></tr>
+            <tr><td>Container glow (focus)</td><td class="t-tok">glow/focus-glow-light-mode</td><td>0 0 0 4px rgba(90, 191, 224, 0.35)</td></tr>
+          </tbody>
+        </table>
+
+        <!-- Typography -->
+        <p class="tokens-cat">Typography</p>
+        <table class="tokens-table">
+          <thead><tr><th>Element</th><th>Token</th><th>Value</th></tr></thead>
+          <tbody>
+            <tr><td>Trigger label</td><td class="t-tok">typography/header/h4</td><td>Lato Bold, 18px / 24px</td></tr>
+            <tr><td>Content text</td><td class="t-tok">typography/body/medium</td><td>Lato Regular, 16px / 22px</td></tr>
+          </tbody>
+        </table>
+
+        <!-- Spacing -->
+        <p class="tokens-cat">Spacing</p>
+        <table class="tokens-table">
+          <thead><tr><th>Element</th><th>Token</th><th>Value</th></tr></thead>
+          <tbody>
+            <tr><td>Trigger padding</td><td class="t-tok">spacing/4x</td><td>16px</td></tr>
+            <tr><td>Content horizontal padding</td><td class="t-tok">spacing/4x</td><td>16px</td></tr>
+            <tr><td>Content vertical padding</td><td class="t-tok">spacing/3x</td><td>12px</td></tr>
+            <tr><td>Chevron internal padding</td><td class="t-tok">spacing/1x</td><td>4px</td></tr>
+          </tbody>
+        </table>
+
+        <!-- Border Radius -->
+        <p class="tokens-cat">Border Radius</p>
+        <table class="tokens-table">
+          <thead><tr><th>Element</th><th>Token</th><th>Value</th></tr></thead>
+          <tbody>
+            <tr><td>Container</td><td class="t-tok">radius/large</td><td>8px</td></tr>
+            <tr><td>Chevron</td><td class="t-tok">radius/full</td><td>100px (pill)</td></tr>
+          </tbody>
+        </table>
+
+      </section>
+
+      <!-- 7 · ACCESSIBILITY -->
+      <section class="doc-section" id="accessibility">
+        <h2 class="section-title">Accessibility</h2>
+
+        <div class="a11y-group">
+          <h3 class="a11y-group-title">Keyboard Shortcut</h3>
+          <ul class="a11y-list">
+            <li><div>The accordion trigger must be reachable and activatable by keyboard — Tab to focus, Enter or Space to toggle open/closed.</div></li>
+            <li><div>All accordion triggers on a screen must be included in the natural tab order.</div></li>
+            <li><div>Focus must not be trapped inside the accordion panel when it is expanded.</div></li>
+            <li><div>When an accordion is disabled, its trigger must not receive keyboard focus.</div></li>
+          </ul>
+        </div>
+
+        <div class="a11y-group">
+          <h3 class="a11y-group-title">Screen Readers</h3>
+          <ul class="a11y-list">
+            <li><div>The accordion trigger must have <code>role="button"</code> or be a native <code>&lt;button&gt;</code> element with a visible label.</div></li>
+            <li><div>Use <code>aria-expanded="true"</code> / <code>aria-expanded="false"</code> on the trigger to communicate open/closed state.</div></li>
+            <li><div>The content panel should be associated with the trigger via <code>aria-controls</code> pointing to the panel's ID.</div></li>
+            <li><div>Collapsed panels should use <code>aria-hidden="true"</code> or <code>hidden</code> so screen readers skip their content.</div></li>
+            <li><div>When a section is disabled, use <code>aria-disabled="true"</code> on the trigger element.</div></li>
+            <li><div>Trigger labels must be descriptive enough to make sense out of context — avoid generic labels like "More" or "Details".</div></li>
+          </ul>
+        </div>
+
+        <div class="a11y-group">
+          <h3 class="a11y-group-title">Focus Management</h3>
+          <ul class="a11y-list">
+            <li><div>When an accordion is toggled open, focus remains on the trigger — it should not jump into the content.</div></li>
+            <li><div>When an accordion is toggled closed, focus should return to the trigger that initiated the action.</div></li>
+            <li><div>If expanding an accordion causes content to shift significantly, ensure the layout change does not disorient screen reader users.</div></li>
+          </ul>
+        </div>
+
+        <div class="a11y-group">
+          <h3 class="a11y-group-title">Visual</h3>
+          <ul class="a11y-list">
+            <li><div>The focus ring using <code>color/border/focus-ring</code> must always be visible — never suppress it with <code>outline: none</code>.</div></li>
+            <li><div>The teal trigger label color (<code>color/text/button-tertiary/default</code>) must meet WCAG AA contrast (4.5:1) against the white background.</div></li>
+            <li><div>The disabled state must communicate unavailability through more than color alone — reduced opacity reinforces this alongside the muted token.</div></li>
+            <li><div>The chevron icon alone does not convey the open/closed state to screen readers — <code>aria-expanded</code> is required as the semantic signal.</div></li>
+          </ul>
+        </div>
+
+      </section>
+
+      <!-- 8 · RELATED -->
+      <section class="doc-section" id="related">
+        <h2 class="section-title">Related Components</h2>
+        <div class="related-grid">
+          <a href="#" class="related-card">
+            <div class="rc-name">Tabs</div>
+            <div class="rc-desc">Horizontal navigation between sections at the same level of hierarchy.</div>
+          </a>
+          <a href="#" class="related-card">
+            <div class="rc-name">Modal</div>
+            <div class="rc-desc">Blocking overlay for critical actions that require an explicit decision.</div>
+          </a>
+          <a href="alert.html" class="related-card">
+            <div class="rc-name">Alert</div>
+            <div class="rc-desc">Persistent inline feedback — always visible, never hidden behind a toggle.</div>
+          </a>
+        </div>
+      </section>
+
+    </main>
+
+    <!-- RIGHT NAV -->
+    <nav class="right-nav">
+      <div class="rn-label">On this page</div>
+      <ul class="rn-list">
+        <li><a href="#definition" id="rn-definition">Definition</a></li>
+        <li><a href="#anatomy" id="rn-anatomy">Anatomy</a></li>
+        <li><a href="#variants" id="rn-variants">Variants</a></li>
+        <li><a href="#properties" id="rn-properties">Properties</a></li>
+        <li><a href="#usage" id="rn-usage">Usage</a></li>
+        <li><a href="#tokens" id="rn-tokens">Tokens</a></li>
+        <li><a href="#accessibility" id="rn-accessibility">Accessibility</a></li>
+        <li><a href="#related" id="rn-related">Related</a></li>
+      </ul>
+    </nav>
+
+  </div><!-- /content-wrap -->
+</div><!-- /shell -->
+
+<script>
+  lucide.createIcons();
+
+  const isMobile = () => window.innerWidth <= 768;
+  let sbOpen = !isMobile();
+  if (!sbOpen) document.getElementById('leftNav').classList.add('hidden');
+
+  function toggleSidebar() {
+    sbOpen = !sbOpen;
+    document.getElementById('leftNav').classList.toggle('hidden', !sbOpen);
+    if (!isMobile()) {
+      document.getElementById('contentWrap').style.marginLeft = sbOpen ? 'var(--left-w)' : '0';
+    }
+    document.getElementById('navOverlay').classList.toggle('active', sbOpen && isMobile());
+  }
+
+  function updateTabFade(tabsEl) {
+    const wrap = tabsEl.closest('.tabs-wrap');
+    if (!wrap) return;
+    const atEnd = tabsEl.scrollLeft + tabsEl.clientWidth >= tabsEl.scrollWidth - 2;
+    wrap.classList.toggle('at-end', atEnd);
+  }
+
+  function switchTab(btn, panelId) {
+    btn.closest('.doc-section').querySelectorAll('.tab').forEach(b => b.classList.remove('active'));
+    btn.closest('.doc-section').querySelectorAll('.tab-panel').forEach(p => p.classList.remove('active'));
+    btn.classList.add('active');
+    document.getElementById(panelId).classList.add('active');
+    const tabsEl = btn.closest('.tabs');
+    if (tabsEl) {
+      const tabRight = btn.offsetLeft + btn.offsetWidth;
+      const tabLeft = btn.offsetLeft;
+      if (tabRight > tabsEl.scrollLeft + tabsEl.clientWidth - 56) {
+        tabsEl.scrollLeft = tabRight - tabsEl.clientWidth + 72;
+      } else if (tabLeft < tabsEl.scrollLeft) {
+        tabsEl.scrollLeft = tabLeft;
+      }
+      updateTabFade(tabsEl);
+    }
+    lucide.createIcons();
+  }
+
+  window.addEventListener('load', () => {
+    document.querySelectorAll('.tabs').forEach(tabsEl => {
+      updateTabFade(tabsEl);
+      tabsEl.addEventListener('scroll', () => updateTabFade(tabsEl));
+    });
+  });
+
+  function toggleTheme() {
+    const d = document.documentElement;
+    d.setAttribute('data-theme', d.getAttribute('data-theme') === 'dark' ? 'light' : 'dark');
+  }
+
+  function switchStateTab(btn, panelId) {
+    const wrap = btn.closest('.tab-panel');
+    wrap.querySelectorAll('.state-tab-btn').forEach(t => t.classList.remove('active'));
+    wrap.querySelectorAll('.state-panel').forEach(p => p.classList.remove('active'));
+    btn.classList.add('active');
+    document.getElementById(panelId).classList.add('active');
+    lucide.createIcons();
+  }
+
+  function toggleAc(el) {
+    const isOpen = el.classList.contains('ac--open');
+    el.classList.toggle('ac--open', !isOpen);
+    el.classList.toggle('ac--closed', isOpen);
+    lucide.createIcons();
+  }
+
+  const sections = ['definition','anatomy','variants','properties','usage','tokens','accessibility','related'];
+  const observer = new IntersectionObserver(entries => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        document.querySelectorAll('.rn-list a').forEach(a => a.classList.remove('active'));
+        const link = document.getElementById('rn-' + e.target.id);
+        if (link) link.classList.add('active');
+      }
+    });
+  }, { rootMargin: '-20% 0px -70% 0px' });
+  sections.forEach(id => {
+    const el = document.getElementById(id);
+    if (el) observer.observe(el);
+  });
+</script>
+</body>
+</html>

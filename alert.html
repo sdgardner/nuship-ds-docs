@@ -44,11 +44,11 @@
         <div class="ln-label">Inputs</div>
         <ul class="ln-list">
           <li><a href="checkbox.html">Checkbox</a></li>
-          <li><a href="#">Date Picker</a></li>
+          <li><a href="datepicker.html">Date Picker</a></li>
           <li><a href="#">Number Input</a></li>
           <li><a href="#">Radio Button</a></li>
           <li><a href="#">Search</a></li>
-          <li><a href="#">Select</a></li>
+          <li><a href="select.html">Select</a></li>
           <li><a href="#">Slider</a></li>
           <li><a href="#">Switch</a></li>
           <li><a href="#">Text Area</a></li>
@@ -59,7 +59,7 @@
         <div class="ln-label">Feedback</div>
         <ul class="ln-list">
           <li><a href="alert.html" class="active">Alert</a></li>
-          <li><a href="#">Badge</a></li>
+          <li><a href="badge.html">Badge</a></li>
           <li><a href="#">Toast</a></li>
           <li><a href="#">Tooltip</a></li>
         </ul>
@@ -67,7 +67,7 @@
       <div class="ln-group">
         <div class="ln-label">Navigation</div>
         <ul class="ln-list">
-          <li><a href="#">Accordion</a></li>
+          <li><a href="accordion.html">Accordion</a></li>
           <li><a href="#">Breadcrumb</a></li>
           <li><a href="#">Dropdown</a></li>
           <li><a href="#">Menu</a></li>
@@ -77,7 +77,7 @@
       <div class="ln-group">
         <div class="ln-label">Actions</div>
         <ul class="ln-list">
-          <li><a href="#">Button</a></li>
+          <li><a href="button.html">Button</a></li>
           <li><a href="#">Link</a></li>
           <li><a href="#">Tags</a></li>
         </ul>
@@ -169,115 +169,176 @@
 
       <!-- 3 · VARIANTS -->
       <section class="doc-section" id="variants">
-        <div class="var-header">
-          <h2 class="section-title" style="margin-bottom:0">Variants</h2>
-          <div class="var-tags">
-            <button class="var-tag" onclick="switchLayout(this,'global')">Global</button>
-            <button class="var-tag active" onclick="switchLayout(this,'page-level')">Page Level</button>
+        <h2 class="section-title">Variants</h2>
+        <div class="tabs-wrap">
+          <div class="tabs">
+            <button class="tab active" onclick="switchTab(this,'v-pl')">Page Level</button>
+            <button class="tab" onclick="switchTab(this,'v-gl')">Global</button>
           </div>
         </div>
 
-        <div class="tabs">
-          <button class="tab active" onclick="switchTab(this,'v-suc')">Success</button>
-          <button class="tab" onclick="switchTab(this,'v-inf')">Informational</button>
-          <button class="tab" onclick="switchTab(this,'v-err')">Error</button>
-        </div>
-
-        <!-- Success -->
-        <div class="tab-panel active" id="v-suc">
+        <!-- Page Level -->
+        <div class="tab-panel active" id="v-pl">
+          <div class="state-tab-row">
+            <button class="state-tab-btn active" onclick="switchStateTab(this,'vs-pl-suc')">Success</button>
+            <button class="state-tab-btn" onclick="switchStateTab(this,'vs-pl-inf')">Informational</button>
+            <button class="state-tab-btn" onclick="switchStateTab(this,'vs-pl-err')">Error</button>
+          </div>
           <div class="var-panel">
-            <div class="var-previews">
-              <div class="var-preview" data-theme="light">
-                <div class="alert al-suc" role="alert">
-                  <i data-lucide="check-circle" style="width:20px;height:20px;flex-shrink:0;margin-top:1px"></i>
-                  <div class="alert-body"><div class="alert-hd">Alert Header</div><div class="alert-tx">Descriptive text</div></div>
-                  <a class="alert-link" href="#">Link</a>
-                  <button class="alert-close"><i data-lucide="x" style="width:20px;height:20px"></i></button>
+            <div class="var-previews-wrap">
+              <div class="state-panel active" id="vs-pl-suc">
+                <div class="var-previews">
+                  <div class="var-preview" data-theme="light">
+                    <div class="alert al-suc" role="alert">
+                      <i data-lucide="check-circle" style="width:20px;height:20px;flex-shrink:0;margin-top:1px"></i>
+                      <div class="alert-body"><div class="alert-hd">Alert Header</div><div class="alert-tx">Descriptive text</div></div>
+                      <a class="alert-link" href="#">Link</a>
+                      <button class="alert-close"><i data-lucide="x" style="width:20px;height:20px"></i></button>
+                    </div>
+                  </div>
+                  <div class="var-preview-dark" data-theme="dark">
+                    <div class="alert al-suc" role="alert">
+                      <i data-lucide="check-circle" style="width:20px;height:20px;flex-shrink:0;margin-top:1px"></i>
+                      <div class="alert-body"><div class="alert-hd">Alert Header</div><div class="alert-tx">Descriptive text</div></div>
+                      <a class="alert-link" href="#">Link</a>
+                      <button class="alert-close"><i data-lucide="x" style="width:20px;height:20px"></i></button>
+                    </div>
+                  </div>
                 </div>
               </div>
-              <div class="var-preview-dark" data-theme="dark">
-                <div class="alert al-suc" role="alert">
-                  <i data-lucide="check-circle" style="width:20px;height:20px;flex-shrink:0;margin-top:1px"></i>
-                  <div class="alert-body"><div class="alert-hd">Alert Header</div><div class="alert-tx">Descriptive text</div></div>
-                  <a class="alert-link" href="#">Link</a>
-                  <button class="alert-close"><i data-lucide="x" style="width:20px;height:20px"></i></button>
+              <div class="state-panel" id="vs-pl-inf">
+                <div class="var-previews">
+                  <div class="var-preview" data-theme="light">
+                    <div class="alert al-inf" role="alert">
+                      <i data-lucide="info" style="width:20px;height:20px;flex-shrink:0;margin-top:1px"></i>
+                      <div class="alert-body"><div class="alert-hd">Alert Header</div><div class="alert-tx">Descriptive text</div></div>
+                      <a class="alert-link" href="#">Link</a>
+                      <button class="alert-close"><i data-lucide="x" style="width:20px;height:20px"></i></button>
+                    </div>
+                  </div>
+                  <div class="var-preview-dark" data-theme="dark">
+                    <div class="alert al-inf" role="alert">
+                      <i data-lucide="info" style="width:20px;height:20px;flex-shrink:0;margin-top:1px"></i>
+                      <div class="alert-body"><div class="alert-hd">Alert Header</div><div class="alert-tx">Descriptive text</div></div>
+                      <a class="alert-link" href="#">Link</a>
+                      <button class="alert-close"><i data-lucide="x" style="width:20px;height:20px"></i></button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="state-panel" id="vs-pl-err">
+                <div class="var-previews">
+                  <div class="var-preview" data-theme="light">
+                    <div class="alert al-err" role="alert">
+                      <i data-lucide="alert-circle" style="width:20px;height:20px;flex-shrink:0;margin-top:1px"></i>
+                      <div class="alert-body"><div class="alert-hd">Alert Header</div><div class="alert-tx">Descriptive text</div></div>
+                      <a class="alert-link" href="#">Link</a>
+                      <button class="alert-close"><i data-lucide="x" style="width:20px;height:20px"></i></button>
+                    </div>
+                  </div>
+                  <div class="var-preview-dark" data-theme="dark">
+                    <div class="alert al-err" role="alert">
+                      <i data-lucide="alert-circle" style="width:20px;height:20px;flex-shrink:0;margin-top:1px"></i>
+                      <div class="alert-body"><div class="alert-hd">Alert Header</div><div class="alert-tx">Descriptive text</div></div>
+                      <a class="alert-link" href="#">Link</a>
+                      <button class="alert-close"><i data-lucide="x" style="width:20px;height:20px"></i></button>
+                    </div>
+                  </div>
                 </div>
               </div>
             </div>
             <div class="var-desc">
               <div class="var-use-when">Use when:</div>
               <ul class="var-use-list">
-                <li>A form or action completed successfully</li>
-                <li>Data was saved or submitted</li>
-                <li>A process finished without errors</li>
-                <li>Confirming a user's action was applied</li>
+                <li>Scoped to a specific form, card, or section</li>
+                <li>The message relates to a user action in context</li>
+                <li>Width is constrained by the surrounding layout</li>
               </ul>
+              <div class="var-use-when" style="margin-top:12px;">Token group:</div>
+              <ul class="var-use-list"><li><code>color/status/*</code></li></ul>
             </div>
           </div>
         </div>
 
-        <!-- Informational -->
-        <div class="tab-panel" id="v-inf">
+        <!-- Global -->
+        <div class="tab-panel" id="v-gl">
+          <div class="state-tab-row">
+            <button class="state-tab-btn active" onclick="switchStateTab(this,'vs-gl-suc')">Success</button>
+            <button class="state-tab-btn" onclick="switchStateTab(this,'vs-gl-inf')">Informational</button>
+            <button class="state-tab-btn" onclick="switchStateTab(this,'vs-gl-err')">Error</button>
+          </div>
           <div class="var-panel">
-            <div class="var-previews">
-              <div class="var-preview" data-theme="light">
-                <div class="alert al-inf" role="alert">
-                  <i data-lucide="info" style="width:20px;height:20px;flex-shrink:0;margin-top:1px"></i>
-                  <div class="alert-body"><div class="alert-hd">Alert Header</div><div class="alert-tx">Descriptive text</div></div>
-                  <a class="alert-link" href="#">Link</a>
-                  <button class="alert-close"><i data-lucide="x" style="width:20px;height:20px"></i></button>
+            <div class="var-previews-wrap">
+              <div class="state-panel active" id="vs-gl-suc">
+                <div class="var-previews">
+                  <div class="var-preview banner" data-theme="light">
+                    <div class="alert al-suc" role="alert">
+                      <i data-lucide="check-circle" style="width:20px;height:20px;flex-shrink:0;margin-top:1px"></i>
+                      <div class="alert-body"><div class="alert-hd">Alert Header</div><div class="alert-tx">Descriptive text</div></div>
+                      <a class="alert-link" href="#">Link</a>
+                      <button class="alert-close"><i data-lucide="x" style="width:20px;height:20px"></i></button>
+                    </div>
+                  </div>
+                  <div class="var-preview-dark banner" data-theme="dark">
+                    <div class="alert al-suc" role="alert">
+                      <i data-lucide="check-circle" style="width:20px;height:20px;flex-shrink:0;margin-top:1px"></i>
+                      <div class="alert-body"><div class="alert-hd">Alert Header</div><div class="alert-tx">Descriptive text</div></div>
+                      <a class="alert-link" href="#">Link</a>
+                      <button class="alert-close"><i data-lucide="x" style="width:20px;height:20px"></i></button>
+                    </div>
+                  </div>
                 </div>
               </div>
-              <div class="var-preview-dark" data-theme="dark">
-                <div class="alert al-inf" role="alert">
-                  <i data-lucide="info" style="width:20px;height:20px;flex-shrink:0;margin-top:1px"></i>
-                  <div class="alert-body"><div class="alert-hd">Alert Header</div><div class="alert-tx">Descriptive text</div></div>
-                  <a class="alert-link" href="#">Link</a>
-                  <button class="alert-close"><i data-lucide="x" style="width:20px;height:20px"></i></button>
+              <div class="state-panel" id="vs-gl-inf">
+                <div class="var-previews">
+                  <div class="var-preview banner" data-theme="light">
+                    <div class="alert al-inf" role="alert">
+                      <i data-lucide="info" style="width:20px;height:20px;flex-shrink:0;margin-top:1px"></i>
+                      <div class="alert-body"><div class="alert-hd">Alert Header</div><div class="alert-tx">Descriptive text</div></div>
+                      <a class="alert-link" href="#">Link</a>
+                      <button class="alert-close"><i data-lucide="x" style="width:20px;height:20px"></i></button>
+                    </div>
+                  </div>
+                  <div class="var-preview-dark banner" data-theme="dark">
+                    <div class="alert al-inf" role="alert">
+                      <i data-lucide="info" style="width:20px;height:20px;flex-shrink:0;margin-top:1px"></i>
+                      <div class="alert-body"><div class="alert-hd">Alert Header</div><div class="alert-tx">Descriptive text</div></div>
+                      <a class="alert-link" href="#">Link</a>
+                      <button class="alert-close"><i data-lucide="x" style="width:20px;height:20px"></i></button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="state-panel" id="vs-gl-err">
+                <div class="var-previews">
+                  <div class="var-preview banner" data-theme="light">
+                    <div class="alert al-err" role="alert">
+                      <i data-lucide="alert-circle" style="width:20px;height:20px;flex-shrink:0;margin-top:1px"></i>
+                      <div class="alert-body"><div class="alert-hd">Alert Header</div><div class="alert-tx">Descriptive text</div></div>
+                      <a class="alert-link" href="#">Link</a>
+                      <button class="alert-close"><i data-lucide="x" style="width:20px;height:20px"></i></button>
+                    </div>
+                  </div>
+                  <div class="var-preview-dark banner" data-theme="dark">
+                    <div class="alert al-err" role="alert">
+                      <i data-lucide="alert-circle" style="width:20px;height:20px;flex-shrink:0;margin-top:1px"></i>
+                      <div class="alert-body"><div class="alert-hd">Alert Header</div><div class="alert-tx">Descriptive text</div></div>
+                      <a class="alert-link" href="#">Link</a>
+                      <button class="alert-close"><i data-lucide="x" style="width:20px;height:20px"></i></button>
+                    </div>
+                  </div>
                 </div>
               </div>
             </div>
             <div class="var-desc">
               <div class="var-use-when">Use when:</div>
               <ul class="var-use-list">
-                <li>Providing helpful context or guidance</li>
-                <li>Announcing upcoming maintenance</li>
-                <li>Sharing non-critical system updates</li>
-                <li>Guiding users through a process</li>
+                <li>The message applies to the entire page or session</li>
+                <li>Appears as a full-width banner above page content</li>
+                <li>Communicating system-wide status or maintenance</li>
               </ul>
-            </div>
-          </div>
-        </div>
-
-        <!-- Error -->
-        <div class="tab-panel" id="v-err">
-          <div class="var-panel">
-            <div class="var-previews">
-              <div class="var-preview" data-theme="light">
-                <div class="alert al-err" role="alert">
-                  <i data-lucide="alert-circle" style="width:20px;height:20px;flex-shrink:0;margin-top:1px"></i>
-                  <div class="alert-body"><div class="alert-hd">Alert Header</div><div class="alert-tx">Descriptive text</div></div>
-                  <a class="alert-link" href="#">Link</a>
-                  <button class="alert-close"><i data-lucide="x" style="width:20px;height:20px"></i></button>
-                </div>
-              </div>
-              <div class="var-preview-dark" data-theme="dark">
-                <div class="alert al-err" role="alert">
-                  <i data-lucide="alert-circle" style="width:20px;height:20px;flex-shrink:0;margin-top:1px"></i>
-                  <div class="alert-body"><div class="alert-hd">Alert Header</div><div class="alert-tx">Descriptive text</div></div>
-                  <a class="alert-link" href="#">Link</a>
-                  <button class="alert-close"><i data-lucide="x" style="width:20px;height:20px"></i></button>
-                </div>
-              </div>
-            </div>
-            <div class="var-desc">
-              <div class="var-use-when">Use when:</div>
-              <ul class="var-use-list">
-                <li>System errors prevent user actions</li>
-                <li>Validation errors need immediate attention</li>
-                <li>Failed operations need to be communicated</li>
-                <li>Critical system issues arise</li>
-              </ul>
+              <div class="var-use-when" style="margin-top:12px;">Token group:</div>
+              <ul class="var-use-list"><li><code>color/status/*</code></li></ul>
             </div>
           </div>
         </div>
@@ -469,9 +530,10 @@
     </main>
 
     <!-- RIGHT ANCHOR NAV -->
-    <aside class="right-nav" id="rightNav">
+    <nav class="right-nav">
+      <div class="rn-label">On this page</div>
       <ul class="rn-list">
-        <li><a href="#definition" class="active" id="rn-definition">Definition</a></li>
+        <li><a href="#definition" id="rn-definition">Definition</a></li>
         <li><a href="#anatomy"    id="rn-anatomy">Anatomy</a></li>
         <li><a href="#variants"   id="rn-variants">Variants</a></li>
         <li><a href="#properties" id="rn-properties">Properties</a></li>
@@ -480,7 +542,7 @@
         <li><a href="#accessibility" id="rn-accessibility">Accessibility</a></li>
         <li><a href="#related"    id="rn-related">Related</a></li>
       </ul>
-    </aside>
+    </nav>
 
   </div><!-- /content-wrap -->
 </div><!-- /shell -->
@@ -506,14 +568,20 @@
     d.setAttribute('data-theme', d.getAttribute('data-theme') === 'dark' ? 'light' : 'dark');
   }
 
-  function switchLayout(btn, layout) {
-    document.querySelectorAll('.var-tag').forEach(t => t.classList.remove('active'));
+  function switchStateTab(btn, panelId) {
+    const wrap = btn.closest('.tab-panel');
+    wrap.querySelectorAll('.state-tab-btn').forEach(t => t.classList.remove('active'));
+    wrap.querySelectorAll('.state-panel').forEach(p => p.classList.remove('active'));
     btn.classList.add('active');
-    const isBanner = layout === 'global';
-    document.querySelectorAll('.var-preview, .var-preview-dark').forEach(el => {
-      el.classList.toggle('banner', isBanner);
-    });
+    document.getElementById(panelId).classList.add('active');
     lucide.createIcons();
+  }
+
+  function updateTabFade(tabsEl) {
+    const wrap = tabsEl.closest('.tabs-wrap');
+    if (!wrap) return;
+    const atEnd = tabsEl.scrollLeft + tabsEl.clientWidth >= tabsEl.scrollWidth - 2;
+    wrap.classList.toggle('at-end', atEnd);
   }
 
   function switchTab(btn, panelId) {
@@ -521,8 +589,26 @@
     btn.closest('.doc-section').querySelectorAll('.tab-panel').forEach(p => p.classList.remove('active'));
     btn.classList.add('active');
     document.getElementById(panelId).classList.add('active');
+    const tabsEl = btn.closest('.tabs');
+    if (tabsEl) {
+      const tabRight = btn.offsetLeft + btn.offsetWidth;
+      const tabLeft = btn.offsetLeft;
+      if (tabRight > tabsEl.scrollLeft + tabsEl.clientWidth - 56) {
+        tabsEl.scrollLeft = tabRight - tabsEl.clientWidth + 72;
+      } else if (tabLeft < tabsEl.scrollLeft) {
+        tabsEl.scrollLeft = tabLeft;
+      }
+      updateTabFade(tabsEl);
+    }
     lucide.createIcons();
   }
+
+  window.addEventListener('load', () => {
+    document.querySelectorAll('.tabs').forEach(tabsEl => {
+      updateTabFade(tabsEl);
+      tabsEl.addEventListener('scroll', () => updateTabFade(tabsEl));
+    });
+  });
 
   const sections = ['definition','anatomy','variants','properties','usage','tokens','accessibility','related'];
   const observer = new IntersectionObserver(entries => {
