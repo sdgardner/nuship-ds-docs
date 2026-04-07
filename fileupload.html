@@ -1,0 +1,756 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>File Upload — nuShip Design System</title>
+  <link href="https://fonts.googleapis.com/css2?family=Lato:wght@400;600;700;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="tokens.css">
+  <link rel="stylesheet" href="styles.css">
+  <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.min.js"></script>
+</head>
+<body>
+
+<!-- MOBILE OVERLAY -->
+<div id="navOverlay" class="nav-overlay" onclick="toggleSidebar()"></div>
+
+<!-- TOP NAV -->
+<nav class="topnav">
+  <button class="hamburger" onclick="toggleSidebar()" aria-label="Menu">
+    <i data-lucide="menu" style="width:18px;height:18px;color:var(--text-secondary)"></i>
+  </button>
+  <div class="bc">
+    <a href="index.html">UI Components</a>
+    <i data-lucide="chevron-right" style="width:14px;height:14px;flex-shrink:0"></i>
+    <a href="#">Display</a>
+    <i data-lucide="chevron-right" style="width:14px;height:14px;flex-shrink:0"></i>
+    <span class="cur">File Upload</span>
+  </div>
+  <div class="nav-actions">
+    <div class="toggle-wrap" onclick="toggleTheme()" role="button">
+      <i data-lucide="moon" style="width:20px;height:20px"></i>
+      <div class="toggle-track"><div class="toggle-thumb"></div></div>
+      <i data-lucide="sun" style="width:20px;height:20px"></i>
+    </div>
+  </div>
+</nav>
+
+<div class="shell">
+
+  <!-- LEFT NAV -->
+  <nav class="left-nav" id="leftNav">
+    <div class="left-nav-inner">
+      <div class="ln-group">
+        <div class="ln-label">Inputs</div>
+        <ul class="ln-list">
+          <li><a href="checkbox.html">Checkbox</a></li>
+          <li><a href="datepicker.html">Date Picker</a></li>
+          <li><a href="#">Number Input</a></li>
+          <li><a href="#">Radio Button</a></li>
+          <li><a href="#">Search</a></li>
+          <li><a href="#">Select</a></li>
+          <li><a href="#">Slider</a></li>
+          <li><a href="#">Switch</a></li>
+          <li><a href="#">Text Area</a></li>
+          <li><a href="#">Text Input</a></li>
+        </ul>
+      </div>
+      <div class="ln-group">
+        <div class="ln-label">Feedback</div>
+        <ul class="ln-list">
+          <li><a href="alert.html">Alert</a></li>
+          <li><a href="badge.html">Badge</a></li>
+          <li><a href="#">Toast</a></li>
+          <li><a href="#">Tooltip</a></li>
+        </ul>
+      </div>
+      <div class="ln-group">
+        <div class="ln-label">Navigation</div>
+        <ul class="ln-list">
+          <li><a href="accordion.html">Accordion</a></li>
+          <li><a href="#">Breadcrumb</a></li>
+          <li><a href="dropdown.html">Dropdown</a></li>
+          <li><a href="#">Menu</a></li>
+          <li><a href="#">Tabs</a></li>
+        </ul>
+      </div>
+      <div class="ln-group">
+        <div class="ln-label">Actions</div>
+        <ul class="ln-list">
+          <li><a href="button.html">Button</a></li>
+          <li><a href="#">Link</a></li>
+          <li><a href="#">Tags</a></li>
+        </ul>
+      </div>
+      <div class="ln-group">
+        <div class="ln-label">Overlays</div>
+        <ul class="ln-list">
+          <li><a href="#">Modal</a></li>
+          <li><a href="#">Popover</a></li>
+        </ul>
+      </div>
+      <div class="ln-group">
+        <div class="ln-label">Display</div>
+        <ul class="ln-list">
+          <li><a href="avatar.html">Avatar</a></li>
+          <li><a href="#">Carousel</a></li>
+          <li><a href="fileupload.html" class="active">File Upload</a></li>
+          <li><a href="#">Star Rating</a></li>
+          <li><a href="#">Timeline</a></li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <!-- CONTENT -->
+  <div class="content-wrap" id="contentWrap">
+    <main class="doc">
+
+      <!-- 1 · DEFINITION -->
+      <section class="doc-section" id="definition">
+        <div class="def-eyebrow">Display</div>
+        <h1 class="def-title">File Upload</h1>
+        <p class="def-desc">The File Upload Row component displays the progress and status of an individual file being uploaded. It communicates state through a progress bar, status text, and colour-coded iconography — covering queued, uploading, complete, and failed conditions.</p>
+        <div class="def-tags">
+          <span class="tag">Developed</span>
+          <span class="tag">Figma</span>
+        </div>
+        <div class="preview-box">
+          <div class="fu-card">
+            <div class="fu-icon-tile">
+              <i data-lucide="image"></i>
+            </div>
+            <div class="fu-body">
+              <div class="fu-label-row">
+                <span class="fu-filename">photo_001.jpg</span>
+                <span class="fu-pct">—</span>
+              </div>
+              <div>
+                <div class="fu-track"></div>
+                <div class="fu-status-row" style="margin-top:4px;">
+                  <span class="fu-status-text">Queued</span>
+                  <span class="fu-filesize">3.1 MB</span>
+                </div>
+              </div>
+            </div>
+            <i data-lucide="circle-x" class="fu-right-icon"></i>
+          </div>
+        </div>
+      </section>
+
+      <!-- 2 · ANATOMY -->
+      <section class="doc-section" id="anatomy">
+        <h2 class="section-title">Anatomy</h2>
+        <div class="anatomy-wrap">
+          <div class="anatomy-component" style="width:285px;position:relative;">
+            <div class="fu-card" style="pointer-events:none;">
+              <div class="fu-icon-tile">
+                <i data-lucide="image"></i>
+              </div>
+              <div class="fu-body">
+                <div class="fu-label-row">
+                  <span class="fu-filename">photo_001.jpg</span>
+                  <span class="fu-pct">—</span>
+                </div>
+                <div>
+                  <div class="fu-track"></div>
+                  <div class="fu-status-row" style="margin-top:4px;">
+                    <span class="fu-status-text">Queued</span>
+                    <span class="fu-filesize">3.1 MB</span>
+                  </div>
+                </div>
+              </div>
+              <i data-lucide="circle-x" class="fu-right-icon"></i>
+            </div>
+            <span class="callout" style="top:12px;left:-12px;">1</span>
+            <span class="callout" style="top:-10px;left:72px;">2</span>
+            <span class="callout" style="top:30px;left:72px;">3</span>
+            <span class="callout" style="bottom:-10px;left:72px;">4</span>
+            <span class="callout" style="bottom:-10px;right:36px;">5</span>
+            <span class="callout" style="top:12px;right:-12px;">6</span>
+          </div>
+          <div class="anatomy-legend">
+            <div class="legend-item"><span class="legend-num">1</span>File icon tile</div>
+            <div class="legend-item"><span class="legend-num">2</span>Filename</div>
+            <div class="legend-item"><span class="legend-num">3</span>Progress bar</div>
+            <div class="legend-item"><span class="legend-num">4</span>Status text</div>
+            <div class="legend-item"><span class="legend-num">5</span>File size</div>
+            <div class="legend-item"><span class="legend-num">6</span>Remove button</div>
+          </div>
+        </div>
+      </section>
+
+      <!-- 3 · VARIANTS -->
+      <section class="doc-section" id="variants">
+        <h2 class="section-title">Variants</h2>
+
+        <div class="state-tab-row">
+          <button class="state-tab-btn active" onclick="switchStateTab(this,'vs-default')">Default</button>
+          <button class="state-tab-btn" onclick="switchStateTab(this,'vs-uploading')">Uploading</button>
+          <button class="state-tab-btn" onclick="switchStateTab(this,'vs-success')">Success</button>
+          <button class="state-tab-btn" onclick="switchStateTab(this,'vs-error')">Error</button>
+        </div>
+
+        <div class="var-panel">
+          <div class="var-previews-wrap">
+
+            <!-- Default -->
+            <div class="state-panel active" id="vs-default">
+              <div class="var-previews">
+                <div class="var-preview">
+                  <div class="fu-card">
+                    <div class="fu-icon-tile">
+                      <i data-lucide="image"></i>
+                    </div>
+                    <div class="fu-body">
+                      <div class="fu-label-row">
+                        <span class="fu-filename">photo_001.jpg</span>
+                        <span class="fu-pct">—</span>
+                      </div>
+                      <div>
+                        <div class="fu-track"></div>
+                        <div class="fu-status-row" style="margin-top:4px;">
+                          <span class="fu-status-text">Queued</span>
+                          <span class="fu-filesize">3.1 MB</span>
+                        </div>
+                      </div>
+                    </div>
+                    <i data-lucide="circle-x" class="fu-right-icon"></i>
+                  </div>
+                </div>
+                <div class="var-preview-dark">
+                  <div class="fu-card">
+                    <div class="fu-icon-tile">
+                      <i data-lucide="image"></i>
+                    </div>
+                    <div class="fu-body">
+                      <div class="fu-label-row">
+                        <span class="fu-filename">photo_001.jpg</span>
+                        <span class="fu-pct">—</span>
+                      </div>
+                      <div>
+                        <div class="fu-track"></div>
+                        <div class="fu-status-row" style="margin-top:4px;">
+                          <span class="fu-status-text">Queued</span>
+                          <span class="fu-filesize">3.1 MB</span>
+                        </div>
+                      </div>
+                    </div>
+                    <i data-lucide="circle-x" class="fu-right-icon"></i>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Uploading -->
+            <div class="state-panel" id="vs-uploading">
+              <div class="var-previews">
+                <div class="var-preview">
+                  <div class="fu-card">
+                    <div class="fu-icon-tile">
+                      <i data-lucide="image"></i>
+                    </div>
+                    <div class="fu-body">
+                      <div class="fu-label-row">
+                        <span class="fu-filename">photo_001.jpg</span>
+                        <span class="fu-pct">54%</span>
+                      </div>
+                      <div>
+                        <div class="fu-track">
+                          <div class="fu-fill fu-fill--uploading"></div>
+                        </div>
+                        <div class="fu-status-row" style="margin-top:4px;">
+                          <span class="fu-status-text">Uploading...</span>
+                          <span class="fu-filesize">3.1 MB</span>
+                        </div>
+                      </div>
+                    </div>
+                    <i data-lucide="circle-x" class="fu-right-icon"></i>
+                  </div>
+                </div>
+                <div class="var-preview-dark">
+                  <div class="fu-card">
+                    <div class="fu-icon-tile">
+                      <i data-lucide="image"></i>
+                    </div>
+                    <div class="fu-body">
+                      <div class="fu-label-row">
+                        <span class="fu-filename">photo_001.jpg</span>
+                        <span class="fu-pct">54%</span>
+                      </div>
+                      <div>
+                        <div class="fu-track">
+                          <div class="fu-fill fu-fill--uploading"></div>
+                        </div>
+                        <div class="fu-status-row" style="margin-top:4px;">
+                          <span class="fu-status-text">Uploading...</span>
+                          <span class="fu-filesize">3.1 MB</span>
+                        </div>
+                      </div>
+                    </div>
+                    <i data-lucide="circle-x" class="fu-right-icon"></i>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Success -->
+            <div class="state-panel" id="vs-success">
+              <div class="var-previews">
+                <div class="var-preview">
+                  <div class="fu-card">
+                    <div class="fu-icon-tile fu-icon-tile--success">
+                      <i data-lucide="image"></i>
+                    </div>
+                    <div class="fu-body">
+                      <div class="fu-label-row">
+                        <span class="fu-filename">photo_001.jpg</span>
+                        <span class="fu-pct fu-pct--success">100%</span>
+                      </div>
+                      <div>
+                        <div class="fu-track">
+                          <div class="fu-fill fu-fill--success"></div>
+                        </div>
+                        <div class="fu-status-row" style="margin-top:4px;">
+                          <span class="fu-status-text fu-status-text--success">Complete</span>
+                          <span class="fu-filesize">3.1 MB</span>
+                        </div>
+                      </div>
+                    </div>
+                    <i data-lucide="circle-check" class="fu-right-icon fu-right-icon--success"></i>
+                  </div>
+                </div>
+                <div class="var-preview-dark">
+                  <div class="fu-card">
+                    <div class="fu-icon-tile fu-icon-tile--success">
+                      <i data-lucide="image"></i>
+                    </div>
+                    <div class="fu-body">
+                      <div class="fu-label-row">
+                        <span class="fu-filename">photo_001.jpg</span>
+                        <span class="fu-pct fu-pct--success">100%</span>
+                      </div>
+                      <div>
+                        <div class="fu-track">
+                          <div class="fu-fill fu-fill--success"></div>
+                        </div>
+                        <div class="fu-status-row" style="margin-top:4px;">
+                          <span class="fu-status-text fu-status-text--success">Complete</span>
+                          <span class="fu-filesize">3.1 MB</span>
+                        </div>
+                      </div>
+                    </div>
+                    <i data-lucide="circle-check" class="fu-right-icon fu-right-icon--success"></i>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Error -->
+            <div class="state-panel" id="vs-error">
+              <div class="var-previews">
+                <div class="var-preview">
+                  <div class="fu-card">
+                    <div class="fu-icon-tile fu-icon-tile--error">
+                      <i data-lucide="image"></i>
+                    </div>
+                    <div class="fu-body">
+                      <div class="fu-label-row">
+                        <span class="fu-filename">photo_001.jpg</span>
+                        <span class="fu-pct fu-pct--error">Failed</span>
+                      </div>
+                      <div>
+                        <div class="fu-track">
+                          <div class="fu-fill fu-fill--error"></div>
+                        </div>
+                        <div class="fu-status-row" style="margin-top:4px;">
+                          <span class="fu-status-text fu-status-text--error">File too large — max 10 MB</span>
+                          <span class="fu-filesize">3.1 MB</span>
+                        </div>
+                      </div>
+                    </div>
+                    <i data-lucide="circle-x" class="fu-right-icon" style="color:#A12F2F;"></i>
+                  </div>
+                </div>
+                <div class="var-preview-dark">
+                  <div class="fu-card">
+                    <div class="fu-icon-tile fu-icon-tile--error">
+                      <i data-lucide="image"></i>
+                    </div>
+                    <div class="fu-body">
+                      <div class="fu-label-row">
+                        <span class="fu-filename">photo_001.jpg</span>
+                        <span class="fu-pct fu-pct--error">Failed</span>
+                      </div>
+                      <div>
+                        <div class="fu-track">
+                          <div class="fu-fill fu-fill--error"></div>
+                        </div>
+                        <div class="fu-status-row" style="margin-top:4px;">
+                          <span class="fu-status-text fu-status-text--error">File too large — max 10 MB</span>
+                          <span class="fu-filesize">3.1 MB</span>
+                        </div>
+                      </div>
+                    </div>
+                    <i data-lucide="circle-x" class="fu-right-icon" style="color:#DB3939;"></i>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+          </div><!-- /var-previews-wrap -->
+
+          <div class="var-desc">
+            <div class="var-use-when">Upload row states</div>
+            <ul class="var-use-list">
+              <li>One row per file — stack multiple rows for batch uploads</li>
+              <li>The row persists after success or failure so users can review the outcome</li>
+            </ul>
+            <div class="var-use-when" style="margin-top:16px;">Visual changes by state:</div>
+            <ul class="var-use-list">
+              <li>Default — empty progress bar track; status "Queued"; blue icon tile border</li>
+              <li>Uploading — partial fill (#027CB1); percentage shown; status "Uploading..."</li>
+              <li>Success — full green fill; 100% shown; "Complete" in green; circle-check icon</li>
+              <li>Error — partial red fill; "Failed" label; error message; circle-x icon</li>
+            </ul>
+          </div>
+        </div><!-- /var-panel -->
+      </section>
+
+      <!-- 4 · PROPERTIES -->
+      <section class="doc-section" id="properties">
+        <h2 class="section-title">Properties</h2>
+        <table class="props-table">
+          <thead>
+            <tr>
+              <th>Property</th>
+              <th class="p-type">Type</th>
+              <th class="p-def">Default</th>
+              <th class="p-desc">Description</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><code class="p-name">status</code></td>
+              <td class="p-type">'default' | 'uploading' | 'success' | 'error'</td>
+              <td class="p-def">'default'</td>
+              <td class="p-desc">Controls the visual state of the row.</td>
+            </tr>
+            <tr>
+              <td><code class="p-name">filename</code></td>
+              <td class="p-type">string</td>
+              <td class="p-def">—</td>
+              <td class="p-desc">The name of the file being uploaded.</td>
+            </tr>
+            <tr>
+              <td><code class="p-name">fileSize</code></td>
+              <td class="p-type">string</td>
+              <td class="p-def">—</td>
+              <td class="p-desc">Formatted file size string shown at bottom right (e.g. "3.1 MB").</td>
+            </tr>
+            <tr>
+              <td><code class="p-name">progress</code></td>
+              <td class="p-type">number</td>
+              <td class="p-def">0</td>
+              <td class="p-desc">Upload progress value from 0 to 100. Drives the progress bar fill width.</td>
+            </tr>
+            <tr>
+              <td><code class="p-name">onRemove</code></td>
+              <td class="p-type">function</td>
+              <td class="p-def">—</td>
+              <td class="p-desc">Callback fired when the remove (circle-x) button is clicked.</td>
+            </tr>
+            <tr>
+              <td><code class="p-name">showFileSize</code></td>
+              <td class="p-type">boolean</td>
+              <td class="p-def">true</td>
+              <td class="p-desc">Toggles visibility of the file size label.</td>
+            </tr>
+            <tr>
+              <td><code class="p-name">showStatusText</code></td>
+              <td class="p-type">boolean</td>
+              <td class="p-def">true</td>
+              <td class="p-desc">Toggles visibility of the status text below the progress bar.</td>
+            </tr>
+            <tr>
+              <td><code class="p-name">showIcon</code></td>
+              <td class="p-type">boolean</td>
+              <td class="p-def">true</td>
+              <td class="p-desc">Toggles visibility of the file type icon tile.</td>
+            </tr>
+          </tbody>
+        </table>
+      </section>
+
+      <!-- 5 · USAGE -->
+      <section class="doc-section" id="usage">
+        <h2 class="section-title">Usage</h2>
+
+        <div class="usage-block">
+          <div class="usage-cols">
+            <div class="usage-card">
+              <div class="usage-card-header">
+                <div class="usage-icon do-icon"><i data-lucide="check" style="width:12px;height:12px"></i></div>
+                <div class="usage-card-title">Lorem ipsum dolor sit amet</div>
+              </div>
+              <ul class="usage-list">
+                <li>Lorem ipsum dolor sit amet, consectetur adipiscing elit sed do eiusmod tempor</li>
+                <li>Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi</li>
+                <li>Duis aute irure dolor in reprehenderit in voluptate velit esse cillum</li>
+              </ul>
+            </div>
+            <div class="usage-card">
+              <div class="usage-card-header">
+                <div class="usage-icon do-icon"><i data-lucide="check" style="width:12px;height:12px"></i></div>
+                <div class="usage-card-title">Ut labore et dolore magna aliqua</div>
+              </div>
+              <ul class="usage-list">
+                <li>Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia</li>
+                <li>Deserunt mollit anim id est laborum sed perspiciatis unde omnis iste natus</li>
+                <li>Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit</li>
+              </ul>
+            </div>
+          </div>
+          <div class="usage-cols">
+            <div class="usage-card">
+              <div class="usage-card-header">
+                <div class="usage-icon do-icon"><i data-lucide="check" style="width:12px;height:12px"></i></div>
+                <div class="usage-card-title">Neque porro quisquam est qui</div>
+              </div>
+              <ul class="usage-list">
+                <li>Dolorem ipsum quia dolor sit amet consectetur adipisci velit sed quia</li>
+                <li>Quisquam est qui dolorem ipsum quia dolor sit amet consectetur</li>
+                <li>Ut enim ad minima veniam, quis nostrum exercitationem ullam corporis</li>
+              </ul>
+            </div>
+            <div class="usage-card">
+              <div class="usage-card-header">
+                <div class="usage-icon do-icon"><i data-lucide="check" style="width:12px;height:12px"></i></div>
+                <div class="usage-card-title">Quis autem vel eum iure reprehenderit</div>
+              </div>
+              <ul class="usage-list">
+                <li>At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis</li>
+                <li>Nam libero tempore cum soluta nobis eligendi optio cumque nihil impedit</li>
+                <li>Temporibus autem quibusdam et aut officiis debitis rerum necessitatibus</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <div class="usage-divider"></div>
+
+        <div class="usage-block">
+          <div class="usage-cols">
+            <div class="usage-card">
+              <div class="usage-card-header">
+                <div class="usage-icon dont-icon"><i data-lucide="x" style="width:12px;height:12px"></i></div>
+                <div class="usage-card-title">Itaque earum rerum hic tenetur</div>
+              </div>
+              <ul class="usage-list">
+                <li>Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium</li>
+                <li>Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit</li>
+                <li>Quis autem vel eum iure reprehenderit qui voluptate velit esse quam nihil</li>
+              </ul>
+            </div>
+            <div class="usage-card">
+              <div class="usage-card-header">
+                <div class="usage-icon dont-icon"><i data-lucide="x" style="width:12px;height:12px"></i></div>
+                <div class="usage-card-title">Nam libero tempore cum soluta nobis</div>
+              </div>
+              <ul class="usage-list">
+                <li>Temporibus autem quibusdam et aut officiis debitis rerum necessitatibus saepe</li>
+                <li>Et harum quidem rerum facilis est et expedita distinctio nam libero tempore</li>
+                <li>Cum soluta nobis est eligendi optio cumque nihil impedit quo minus</li>
+              </ul>
+            </div>
+          </div>
+          <div class="usage-cols">
+            <div class="usage-card">
+              <div class="usage-card-header">
+                <div class="usage-icon dont-icon"><i data-lucide="x" style="width:12px;height:12px"></i></div>
+                <div class="usage-card-title">Totam rem aperiam eaque ipsa quae</div>
+              </div>
+              <ul class="usage-list">
+                <li>Ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt</li>
+                <li>Explicabo nemo enim ipsam voluptatem quia voluptas sit aspernatur</li>
+                <li>Ut enim ad minima veniam quis nostrum exercitationem ullam corporis</li>
+              </ul>
+            </div>
+            <div class="usage-card">
+              <div class="usage-card-header">
+                <div class="usage-icon dont-icon"><i data-lucide="x" style="width:12px;height:12px"></i></div>
+                <div class="usage-card-title">Accusantium doloremque laudantium totam</div>
+              </div>
+              <ul class="usage-list">
+                <li>Rem aperiam eaque ipsa quae ab illo inventore veritatis quasi architecto</li>
+                <li>Beatae vitae dicta sunt explicabo nemo enim ipsam voluptatem quia</li>
+                <li>Voluptas sit aspernatur aut odit aut fugit sed quia consequuntur magni</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- 6 · TOKENS -->
+      <section class="doc-section" id="tokens">
+        <h2 class="section-title">Tokens used</h2>
+
+        <div class="tokens-grid">
+          <div>
+            <div class="tokens-group-label">Light</div>
+            <table class="tokens-table">
+              <thead><tr><th>Element</th><th>Token</th><th></th></tr></thead>
+              <tbody>
+                <tr><td>Card background</td><td class="t-tok">color/surface/card</td><td class="t-sw"><div class="swatch" style="background:#FFFFFF;"></div></td></tr>
+                <tr><td>Card border</td><td class="t-tok">color/border/interactive</td><td class="t-sw"><div class="swatch" style="background:#CDD2D7;"></div></td></tr>
+                <tr><td>Filename text</td><td class="t-tok">color/text/helper</td><td class="t-sw"><div class="swatch" style="background:#4B5563;"></div></td></tr>
+                <tr><td>Status / size text</td><td class="t-tok">color/text/tertiary</td><td class="t-sw"><div class="swatch" style="background:#9CA3AF;"></div></td></tr>
+                <tr><td>Icon tile border (default)</td><td class="t-tok">color/action/secondary/default</td><td class="t-sw"><div class="swatch" style="background:#027CB1;"></div></td></tr>
+                <tr><td>Icon tile border (success)</td><td class="t-tok">color/status/success/border</td><td class="t-sw"><div class="swatch" style="background:#006C21;"></div></td></tr>
+                <tr><td>Icon tile border (error)</td><td class="t-tok">color/border/error</td><td class="t-sw"><div class="swatch" style="background:#A12F2F;"></div></td></tr>
+                <tr><td>Progress bar track</td><td class="t-tok">color/border/interactive</td><td class="t-sw"><div class="swatch" style="background:#CDD2D7;"></div></td></tr>
+                <tr><td>Progress fill (uploading)</td><td class="t-tok">color/status/info/border</td><td class="t-sw"><div class="swatch" style="background:#027CB1;"></div></td></tr>
+                <tr><td>Progress fill (success)</td><td class="t-tok">color/status/success/border</td><td class="t-sw"><div class="swatch" style="background:#006C21;"></div></td></tr>
+                <tr><td>Progress fill (error)</td><td class="t-tok">color/status/error/border</td><td class="t-sw"><div class="swatch" style="background:#A12F2F;"></div></td></tr>
+                <tr><td>Success text</td><td class="t-tok">color/status/success/text</td><td class="t-sw"><div class="swatch" style="background:#006C21;"></div></td></tr>
+                <tr><td>Error text</td><td class="t-tok">color/text/error</td><td class="t-sw"><div class="swatch" style="background:#A12F2F;"></div></td></tr>
+              </tbody>
+            </table>
+          </div>
+          <div>
+            <div class="tokens-group-label">Dark</div>
+            <table class="tokens-table">
+              <thead><tr><th>Element</th><th>Token</th><th></th></tr></thead>
+              <tbody>
+                <tr><td>Card background</td><td class="t-tok">color/surface/card</td><td class="t-sw"><div class="swatch" style="background:#0F0F0F;border-color:rgba(255,255,255,.1);"></div></td></tr>
+                <tr><td>Card border</td><td class="t-tok">color/border/interactive</td><td class="t-sw"><div class="swatch" style="background:#6B7280;"></div></td></tr>
+                <tr><td>Filename text</td><td class="t-tok">color/text/helper</td><td class="t-sw"><div class="swatch" style="background:#E5E7EB;border-color:rgba(0,0,0,.1);"></div></td></tr>
+                <tr><td>Status / size text</td><td class="t-tok">color/text/tertiary</td><td class="t-sw"><div class="swatch" style="background:#9CA3AF;"></div></td></tr>
+                <tr><td>Icon tile border (default)</td><td class="t-tok">color/action/secondary/default</td><td class="t-sw"><div class="swatch" style="background:#35A8D6;"></div></td></tr>
+                <tr><td>Icon tile border (success)</td><td class="t-tok">color/status/success/border</td><td class="t-sw"><div class="swatch" style="background:#4DAD82;"></div></td></tr>
+                <tr><td>Icon tile border (error)</td><td class="t-tok">color/border/error</td><td class="t-sw"><div class="swatch" style="background:#DB3939;"></div></td></tr>
+                <tr><td>Progress bar track</td><td class="t-tok">color/border/interactive</td><td class="t-sw"><div class="swatch" style="background:#374151;"></div></td></tr>
+                <tr><td>Progress fill (uploading)</td><td class="t-tok">color/status/info/border</td><td class="t-sw"><div class="swatch" style="background:#35A8D6;"></div></td></tr>
+                <tr><td>Progress fill (success)</td><td class="t-tok">color/status/success/border</td><td class="t-sw"><div class="swatch" style="background:#4DAD82;"></div></td></tr>
+                <tr><td>Progress fill (error)</td><td class="t-tok">color/status/error/border</td><td class="t-sw"><div class="swatch" style="background:#DB3939;"></div></td></tr>
+                <tr><td>Success text</td><td class="t-tok">color/status/success/text</td><td class="t-sw"><div class="swatch" style="background:#4DAD82;"></div></td></tr>
+                <tr><td>Error text</td><td class="t-tok">color/text/error</td><td class="t-sw"><div class="swatch" style="background:#E36868;"></div></td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </section>
+
+      <!-- 7 · ACCESSIBILITY -->
+      <section class="doc-section" id="accessibility">
+        <h2 class="section-title">Accessibility</h2>
+
+        <div class="a11y-group">
+          <h3 class="a11y-group-title">Keyboard Navigation</h3>
+          <ul class="a11y-list">
+            <li><div><strong>Tab</strong> moves focus to the remove button on each upload row.</div></li>
+            <li><div><strong>Enter / Space</strong> activates the remove button, cancelling or dismissing the file.</div></li>
+          </ul>
+        </div>
+
+        <div class="a11y-group">
+          <h3 class="a11y-group-title">Screen Reader</h3>
+          <ul class="a11y-list">
+            <li><div>The progress bar uses <code>role="progressbar"</code> with <code>aria-valuenow</code>, <code>aria-valuemin="0"</code>, and <code>aria-valuemax="100"</code> to communicate upload progress.</div></li>
+            <li><div>The filename and current status should be combined in an <code>aria-label</code> on the row container so assistive technologies announce both together (e.g. "photo_001.jpg — Uploading, 54%").</div></li>
+            <li><div>The remove button uses <code>aria-label="Remove photo_001.jpg"</code> to provide a descriptive accessible name.</div></li>
+          </ul>
+        </div>
+
+        <div class="a11y-group">
+          <h3 class="a11y-group-title">Status Announcements</h3>
+          <ul class="a11y-list">
+            <li><div>State transitions (success, error) should be announced via <code>aria-live="polite"</code> on the status text element so screen reader users are notified without losing focus.</div></li>
+            <li><div>Error messages (e.g. "File too large — max 10 MB") should be persistent and not auto-dismissed, ensuring users have time to read the message.</div></li>
+          </ul>
+        </div>
+
+      </section>
+
+      <!-- 8 · RELATED -->
+      <section class="doc-section" id="related">
+        <h2 class="section-title">Related Components</h2>
+        <div class="related-grid">
+          <a href="alert.html" class="related-card">
+            <div class="rc-name">Alert</div>
+            <div class="rc-desc">Use for system-level error or success feedback after an upload operation completes.</div>
+          </a>
+          <a href="badge.html" class="related-card">
+            <div class="rc-name">Badge</div>
+            <div class="rc-desc">Use to surface a count of pending or failed uploads in navigation or headings.</div>
+          </a>
+          <a href="#" class="related-card">
+            <div class="rc-name">Toast</div>
+            <div class="rc-desc">Use for transient upload notifications that auto-dismiss after a short delay.</div>
+          </a>
+        </div>
+      </section>
+
+    </main>
+
+    <!-- RIGHT NAV -->
+    <nav class="right-nav">
+      <div class="rn-label">On this page</div>
+      <ul class="rn-list">
+        <li><a href="#definition" id="rn-definition">Definition</a></li>
+        <li><a href="#anatomy" id="rn-anatomy">Anatomy</a></li>
+        <li><a href="#variants" id="rn-variants">Variants</a></li>
+        <li><a href="#properties" id="rn-properties">Properties</a></li>
+        <li><a href="#usage" id="rn-usage">Usage</a></li>
+        <li><a href="#tokens" id="rn-tokens">Tokens</a></li>
+        <li><a href="#accessibility" id="rn-accessibility">Accessibility</a></li>
+        <li><a href="#related" id="rn-related">Related</a></li>
+      </ul>
+    </nav>
+
+  </div><!-- /content-wrap -->
+</div><!-- /shell -->
+
+<script>
+  lucide.createIcons();
+
+  const isMobile = () => window.innerWidth <= 768;
+  let sbOpen = !isMobile();
+  if (!sbOpen) document.getElementById('leftNav').classList.add('hidden');
+
+  function toggleSidebar() {
+    sbOpen = !sbOpen;
+    document.getElementById('leftNav').classList.toggle('hidden', !sbOpen);
+    if (!isMobile()) {
+      document.getElementById('contentWrap').style.marginLeft = sbOpen ? 'var(--left-w)' : '0';
+    }
+    document.getElementById('navOverlay').classList.toggle('active', sbOpen && isMobile());
+  }
+
+  function switchStateTab(btn, panelId) {
+    const section = btn.closest('.doc-section');
+    section.querySelectorAll('.state-tab-btn').forEach(b => b.classList.remove('active'));
+    section.querySelectorAll('.state-panel').forEach(p => p.classList.remove('active'));
+    btn.classList.add('active');
+    document.getElementById(panelId).classList.add('active');
+  }
+
+  function toggleTheme() {
+    const html = document.documentElement;
+    const isDark = html.getAttribute('data-theme') === 'dark';
+    html.setAttribute('data-theme', isDark ? 'light' : 'dark');
+  }
+
+  // Right nav scroll spy
+  const rnLinks = document.querySelectorAll('.rn-list a');
+  const sections = [...rnLinks].map(l => document.querySelector(l.getAttribute('href')));
+  function updateRN() {
+    let active = 0;
+    sections.forEach((s, i) => { if (s && s.getBoundingClientRect().top <= 80) active = i; });
+    rnLinks.forEach((l, i) => l.classList.toggle('active', i === active));
+  }
+  document.getElementById('contentWrap').addEventListener('scroll', updateRN);
+  updateRN();
+</script>
+</body>
+</html>

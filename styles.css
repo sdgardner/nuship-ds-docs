@@ -196,6 +196,8 @@ body {
 /* Component preview box */
 .preview-box {
   background: var(--surface-layer02);
+  background-image: radial-gradient(circle, var(--border) 1px, transparent 1px);
+  background-size: 10px 10px;
   border: 1px solid var(--border);
   border-radius: 10px;
   padding: 48px 32px;
@@ -234,6 +236,8 @@ body {
 /* ─── ANATOMY ────────────────────────────────────── */
 .anatomy-wrap {
   background: var(--surface-layer02);
+  background-image: radial-gradient(circle, var(--border) 1px, transparent 1px);
+  background-size: 10px 10px;
   border: 1px solid var(--border);
   border-radius: 10px;
   padding: 40px 32px 32px;
@@ -955,7 +959,8 @@ code {
 .sl-label--disabled { color: var(--text-tertiary); }
 
 .sl-focus-wrap { border-radius: 4px; }
-.sl-focus-wrap--focus { border: 2px solid #5ABFE0; border-radius: 4px; padding: 2px; }
+.sl-focus-wrap--focus { border: 1px solid #5ABFE0; border-radius: 4px; }
+.sl-focus-wrap--focus .sl-trigger { box-shadow: 0 0 0 4px rgba(90,191,224,.35); }
 
 .sl-trigger {
   display: flex; align-items: center; justify-content: space-between;
@@ -1024,8 +1029,97 @@ code {
 .var-preview-dark .sl-tag { background: #111827; border-color: #374151; }
 .var-preview-dark .sl-tag-label { color: #F3F4F6; }
 .var-preview-dark .sl-focus-wrap--focus { border-color: #0083BB; }
+.var-preview-dark .sl-focus-wrap--focus .sl-trigger { box-shadow: 0 0 0 4px rgba(0,131,187,.35); }
 .var-preview-dark .sl-error-icon { color: #E36868; }
 .var-preview-dark .sl-error-msg { color: #E36868; }
+
+/* ─── File Upload ────────────────────────────────── */
+.fu-card {
+  background: var(--surface-card);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  box-shadow: 0px 1px 3px 0px rgba(55,65,80,0.08);
+  padding: 12px 16px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  width: 100%;
+  max-width: 285px;
+}
+.fu-icon-tile {
+  width: 44px; height: 44px;
+  border-radius: 8px;
+  border: 1px solid var(--action-secondary);
+  display: flex; align-items: center; justify-content: center;
+  flex-shrink: 0;
+  color: var(--action-secondary);
+}
+.fu-icon-tile i { width: 20px; height: 20px; }
+.fu-icon-tile--success { border-color: var(--suc-bd); color: var(--suc-bd); }
+.fu-icon-tile--error   { border-color: var(--err-bd); color: var(--err-bd); }
+
+.fu-body { display: flex; flex-direction: column; gap: 6px; flex: 1; min-width: 0; }
+
+.fu-label-row { display: flex; align-items: center; justify-content: space-between; gap: 4px; }
+.fu-filename  { font-size: 14px; line-height: 19px; color: var(--text-secondary); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.fu-pct       { font-size: 14px; line-height: 19px; color: var(--text-tertiary); white-space: nowrap; flex-shrink: 0; }
+.fu-pct--success { color: var(--suc-tx); }
+.fu-pct--error   { color: var(--err-tx); }
+
+.fu-track { background: var(--border); border-radius: 100px; height: 6px; width: 100%; position: relative; overflow: hidden; }
+.fu-fill  { height: 6px; position: absolute; left: 0; top: 0; }
+.fu-fill--uploading { background: var(--inf-bd); width: 62%; border-radius: 100px 0 0 100px; }
+.fu-fill--success   { background: var(--suc-bd); width: 100%; border-radius: 100px; }
+.fu-fill--error     { background: var(--err-bd); width: 62%; border-radius: 100px 0 0 100px; }
+
+.fu-status-row { display: flex; align-items: center; justify-content: space-between; gap: 4px; }
+.fu-status-text { font-size: 12px; line-height: 16px; color: var(--text-tertiary); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.fu-status-text--success { color: var(--suc-tx); }
+.fu-status-text--error   { color: var(--err-tx); }
+.fu-filesize { font-size: 12px; line-height: 16px; color: var(--text-tertiary); white-space: nowrap; flex-shrink: 0; }
+
+.fu-right-icon { width: 24px; height: 24px; flex-shrink: 0; color: var(--text-tertiary); }
+.fu-right-icon--success { color: var(--suc-bd); }
+
+/* File Upload — var-preview hardcoded light overrides */
+.var-preview .fu-card     { background: #FFFFFF; border-color: #CDD2D7; }
+.var-preview .fu-icon-tile { border-color: #027CB1; color: #027CB1; }
+.var-preview .fu-icon-tile--success { border-color: #006C21; color: #006C21; }
+.var-preview .fu-icon-tile--error   { border-color: #A12F2F; color: #A12F2F; }
+.var-preview .fu-filename   { color: #4B5563; }
+.var-preview .fu-pct        { color: #9CA3AF; }
+.var-preview .fu-pct--success { color: #006C21; }
+.var-preview .fu-pct--error   { color: #A12F2F; }
+.var-preview .fu-track      { background: #CDD2D7; }
+.var-preview .fu-fill--uploading { background: #027CB1; }
+.var-preview .fu-fill--success   { background: #006C21; }
+.var-preview .fu-fill--error     { background: #A12F2F; }
+.var-preview .fu-status-text { color: #9CA3AF; }
+.var-preview .fu-status-text--success { color: #006C21; }
+.var-preview .fu-status-text--error   { color: #A12F2F; }
+.var-preview .fu-filesize   { color: #9CA3AF; }
+.var-preview .fu-right-icon { color: #9CA3AF; }
+.var-preview .fu-right-icon--success { color: #006C21; }
+
+/* File Upload — var-preview-dark hardcoded dark overrides */
+.var-preview-dark .fu-card     { background: #0F0F0F; border-color: #6B7280; }
+.var-preview-dark .fu-icon-tile { border-color: #35A8D6; color: #35A8D6; }
+.var-preview-dark .fu-icon-tile--success { border-color: #4DAD82; color: #4DAD82; }
+.var-preview-dark .fu-icon-tile--error   { border-color: #DB3939; color: #DB3939; }
+.var-preview-dark .fu-filename   { color: #E5E7EB; }
+.var-preview-dark .fu-pct        { color: #9CA3AF; }
+.var-preview-dark .fu-pct--success { color: #4DAD82; }
+.var-preview-dark .fu-pct--error   { color: #E36868; }
+.var-preview-dark .fu-track      { background: #374151; }
+.var-preview-dark .fu-fill--uploading { background: #35A8D6; }
+.var-preview-dark .fu-fill--success   { background: #4DAD82; }
+.var-preview-dark .fu-fill--error     { background: #DB3939; }
+.var-preview-dark .fu-status-text { color: #9CA3AF; }
+.var-preview-dark .fu-status-text--success { color: #4DAD82; }
+.var-preview-dark .fu-status-text--error   { color: #E36868; }
+.var-preview-dark .fu-filesize   { color: #6B7280; }
+.var-preview-dark .fu-right-icon { color: #6B7280; }
+.var-preview-dark .fu-right-icon--success { color: #4DAD82; }
 
 /* ─── Button ─────────────────────────────────────── */
 .btn {
