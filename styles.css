@@ -1075,11 +1075,15 @@ code {
 .ic-arrow {
   width: 32px; height: 32px;
   display: flex; align-items: center; justify-content: center;
-  border-radius: 4px; border: none; background: transparent;
-  cursor: pointer; color: var(--text-secondary); padding: 4px; flex-shrink: 0;
+  border-radius: 4px; border: 2px solid transparent;
+  background: transparent; cursor: pointer;
+  color: #016692; padding: 4px; flex-shrink: 0;
+  font-family: 'Lato', sans-serif;
+  transition: background 0.1s, color 0.1s;
 }
 .ic-arrow i { width: 20px; height: 20px; }
-.ic-arrow:hover { background: var(--surface-layer02); }
+.ic-arrow:hover  { background: #E5E7EB; color: #004F70; }
+.ic-arrow:active { background: #CDD2D7; color: #004F70; }
 
 /* dot cluster */
 .ic-dots { display: flex; align-items: center; justify-content: center; gap: 12px; }
@@ -1091,7 +1095,8 @@ code {
 /* Carousel — var-preview hardcoded light overrides */
 .var-preview .ic-photo            { border-color: #CDD2D7; }
 .var-preview .ic-placeholder      { background: linear-gradient(135deg, #F4F6F8 0%, #E5E7EB 100%); color: #9CA3AF; }
-.var-preview .ic-arrow            { color: #4B5563; }
+.var-preview .ic-arrow            { color: #016692; }
+.var-preview .ic-arrow:hover      { background: #E5E7EB; color: #004F70; }
 .var-preview .ic-dot--active      { background: #027CB1; }
 .var-preview .ic-dot--default     { background: #F4F6F8; border-color: #CDD2D7; }
 .var-preview .ic-dot--distant     { background: #F4F6F8; border-color: #CDD2D7; }
@@ -1100,7 +1105,8 @@ code {
 /* Carousel — var-preview-dark hardcoded dark overrides */
 .var-preview-dark .ic-photo       { border-color: #6B7280; }
 .var-preview-dark .ic-placeholder { background: linear-gradient(135deg, #1E1E1E 0%, #374151 100%); color: #6B7280; }
-.var-preview-dark .ic-arrow       { color: #9CA3AF; }
+.var-preview-dark .ic-arrow       { color: #5ABFE0; }
+.var-preview-dark .ic-arrow:hover { background: #374151; color: #8FCBE6; }
 .var-preview-dark .ic-dot--active { background: #35A8D6; }
 .var-preview-dark .ic-dot--default{ background: #1E1E1E; border-color: #6B7280; }
 .var-preview-dark .ic-dot--distant{ background: #1E1E1E; border-color: #6B7280; }
