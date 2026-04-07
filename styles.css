@@ -1052,11 +1052,11 @@ code {
 /* overlays */
 .ic-badge {
   position: absolute; bottom: 11px; left: 15px;
-  background: #001F33; border: 1px solid #35A8D6;
+  background: var(--badge-std-bg); border: 1px solid var(--badge-std-bd);
   border-radius: 2px; padding: 4px 8px;
   font-family: 'Lato', sans-serif; font-size: 12px; font-weight: 700;
   line-height: 18px; letter-spacing: 0.35px; text-transform: uppercase;
-  color: #FFFFFF; white-space: nowrap;
+  color: var(--badge-std-tx); white-space: nowrap;
 }
 .ic-expand-btn {
   position: absolute; bottom: 13px; right: 14px;

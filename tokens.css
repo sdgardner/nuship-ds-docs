@@ -30,6 +30,11 @@
   --inf-bg:#E5EEF5; --inf-bd:#027CB1; --inf-tx:#027CB1; --inf-ic:#027CB1;
   --wrn-bg:#FDF4E8; --wrn-bd:#A85A02; --wrn-tx:#A85A02; --wrn-ic:#A85A02;
 
+  /* Badge tokens */
+  --badge-std-bg: #E5EEF5;  /* color/badge/standard/bg-outline */
+  --badge-std-bd: #027CB1;  /* color/badge/standard/border */
+  --badge-std-tx: #016692;  /* color/badge/standard/text */
+
   /* Layout */
   --nav-h:  48px;
   --left-w: 200px;
@@ -59,6 +64,10 @@
   --suc-bg:#E8F2E8; --suc-bd:#006C21; --suc-tx:#006C21; --suc-ic:#006C21;
   --inf-bg:#E5EEF5; --inf-bd:#027CB1; --inf-tx:#027CB1; --inf-ic:#027CB1;
   --wrn-bg:#FDF4E8; --wrn-bd:#A85A02; --wrn-tx:#A85A02; --wrn-ic:#A85A02;
+
+  --badge-std-bg: #E5EEF5;
+  --badge-std-bd: #027CB1;
+  --badge-std-tx: #016692;
 }
 
 [data-theme="dark"] {
@@ -86,4 +95,8 @@
   --suc-bg:#003322; --suc-bd:#4DAD82; --suc-tx:#4DAD82; --suc-ic:#33A17A;
   --inf-bg:#001F33; --inf-bd:#8FCBE6; --inf-tx:#8FCBE6; --inf-ic:#8FCBE6;
   --wrn-bg:#331E00; --wrn-bd:#E49A35; --wrn-tx:#E49A35; --wrn-ic:#E49A35;
+
+  --badge-std-bg: #001F33;
+  --badge-std-bd: #35A8D6;
+  --badge-std-tx: #FFFFFF;
 }
