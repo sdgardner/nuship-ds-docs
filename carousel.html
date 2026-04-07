@@ -235,7 +235,8 @@
       <section class="doc-section" id="variants">
         <h2 class="section-title">Variants</h2>
         <div class="state-tab-row">
-          <button class="state-tab-btn active" onclick="switchStateTab(this,'vs-default')">Default</button>
+          <button class="state-tab-btn active" onclick="switchStateTab(this,'vs-empty')">Empty</button>
+          <button class="state-tab-btn" onclick="switchStateTab(this,'vs-default')">Default</button>
           <button class="state-tab-btn" onclick="switchStateTab(this,'vs-minimal')">Minimal</button>
           <button class="state-tab-btn" onclick="switchStateTab(this,'vs-no-badge')">No badge</button>
           <button class="state-tab-btn" onclick="switchStateTab(this,'vs-no-expand')">No expand</button>
@@ -244,8 +245,8 @@
         <div class="var-panel">
           <div class="var-previews-wrap">
 
-            <!-- Default -->
-            <div class="state-panel active" id="vs-default">
+            <!-- Empty state -->
+            <div class="state-panel active" id="vs-empty">
               <div class="var-previews">
                 <div class="var-preview">
                   <div class="ic-wrap">
@@ -259,6 +260,36 @@
                         <button class="ic-ph-btn">Browse Files</button>
                         <p class="ic-ph-hint">Max file size: 10 MB • Supported types: JPG, PNG, GIF, PDF</p>
                       </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="var-preview-dark">
+                  <div class="ic-wrap">
+                    <div class="ic-photo">
+                      <div class="ic-placeholder">
+                        <img src="assets/upload-icon.svg" class="ic-ph-icon" alt="">
+                        <div class="ic-ph-text">
+                          <h4 class="ic-ph-title">Drag files here</h4>
+                          <p class="ic-ph-sub">or click to browse</p>
+                        </div>
+                        <button class="ic-ph-btn">Browse Files</button>
+                        <p class="ic-ph-hint">Max file size: 10 MB • Supported types: JPG, PNG, GIF, PDF</p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Default — all controls -->
+            <div class="state-panel" id="vs-default">
+              <div class="var-previews">
+                <div class="var-preview">
+                  <div class="ic-wrap">
+                    <div class="ic-photo">
+                      <img src="assets/carousel-sample.jpg" class="ic-photo-img" alt="Sample">
+                      <div class="ic-badge">1 / 6</div>
+                      <button class="ic-expand-btn"><i data-lucide="expand"></i></button>
                     </div>
                     <div class="ic-nav">
                       <button class="ic-arrow"><i data-lucide="chevron-left"></i></button>
@@ -276,15 +307,9 @@
                 <div class="var-preview-dark">
                   <div class="ic-wrap">
                     <div class="ic-photo">
-                      <div class="ic-placeholder">
-                        <img src="assets/upload-icon.svg" class="ic-ph-icon" alt="">
-                        <div class="ic-ph-text">
-                          <h4 class="ic-ph-title">Drag files here</h4>
-                          <p class="ic-ph-sub">or click to browse</p>
-                        </div>
-                        <button class="ic-ph-btn">Browse Files</button>
-                        <p class="ic-ph-hint">Max file size: 10 MB • Supported types: JPG, PNG, GIF, PDF</p>
-                      </div>
+                      <img src="assets/carousel-sample.jpg" class="ic-photo-img" alt="Sample">
+                      <div class="ic-badge">1 / 6</div>
+                      <button class="ic-expand-btn"><i data-lucide="expand"></i></button>
                     </div>
                     <div class="ic-nav">
                       <button class="ic-arrow"><i data-lucide="chevron-left"></i></button>
@@ -308,15 +333,7 @@
                 <div class="var-preview">
                   <div class="ic-wrap">
                     <div class="ic-photo">
-                      <div class="ic-placeholder">
-                        <img src="assets/upload-icon.svg" class="ic-ph-icon" alt="">
-                        <div class="ic-ph-text">
-                          <h4 class="ic-ph-title">Drag files here</h4>
-                          <p class="ic-ph-sub">or click to browse</p>
-                        </div>
-                        <button class="ic-ph-btn">Browse Files</button>
-                        <p class="ic-ph-hint">Max file size: 10 MB • Supported types: JPG, PNG, GIF, PDF</p>
-                      </div>
+                      <img src="assets/carousel-sample.jpg" class="ic-photo-img" alt="Sample">
                     </div>
                     <div class="ic-nav">
                       <div class="ic-dots">
@@ -332,15 +349,7 @@
                 <div class="var-preview-dark">
                   <div class="ic-wrap">
                     <div class="ic-photo">
-                      <div class="ic-placeholder">
-                        <img src="assets/upload-icon.svg" class="ic-ph-icon" alt="">
-                        <div class="ic-ph-text">
-                          <h4 class="ic-ph-title">Drag files here</h4>
-                          <p class="ic-ph-sub">or click to browse</p>
-                        </div>
-                        <button class="ic-ph-btn">Browse Files</button>
-                        <p class="ic-ph-hint">Max file size: 10 MB • Supported types: JPG, PNG, GIF, PDF</p>
-                      </div>
+                      <img src="assets/carousel-sample.jpg" class="ic-photo-img" alt="Sample">
                     </div>
                     <div class="ic-nav">
                       <div class="ic-dots">
@@ -362,15 +371,8 @@
                 <div class="var-preview">
                   <div class="ic-wrap">
                     <div class="ic-photo">
-                      <div class="ic-placeholder">
-                        <img src="assets/upload-icon.svg" class="ic-ph-icon" alt="">
-                        <div class="ic-ph-text">
-                          <h4 class="ic-ph-title">Drag files here</h4>
-                          <p class="ic-ph-sub">or click to browse</p>
-                        </div>
-                        <button class="ic-ph-btn">Browse Files</button>
-                        <p class="ic-ph-hint">Max file size: 10 MB • Supported types: JPG, PNG, GIF, PDF</p>
-                      </div>
+                      <img src="assets/carousel-sample.jpg" class="ic-photo-img" alt="Sample">
+                      <button class="ic-expand-btn"><i data-lucide="expand"></i></button>
                     </div>
                     <div class="ic-nav">
                       <button class="ic-arrow"><i data-lucide="chevron-left"></i></button>
@@ -388,15 +390,8 @@
                 <div class="var-preview-dark">
                   <div class="ic-wrap">
                     <div class="ic-photo">
-                      <div class="ic-placeholder">
-                        <img src="assets/upload-icon.svg" class="ic-ph-icon" alt="">
-                        <div class="ic-ph-text">
-                          <h4 class="ic-ph-title">Drag files here</h4>
-                          <p class="ic-ph-sub">or click to browse</p>
-                        </div>
-                        <button class="ic-ph-btn">Browse Files</button>
-                        <p class="ic-ph-hint">Max file size: 10 MB • Supported types: JPG, PNG, GIF, PDF</p>
-                      </div>
+                      <img src="assets/carousel-sample.jpg" class="ic-photo-img" alt="Sample">
+                      <button class="ic-expand-btn"><i data-lucide="expand"></i></button>
                     </div>
                     <div class="ic-nav">
                       <button class="ic-arrow"><i data-lucide="chevron-left"></i></button>
@@ -420,15 +415,8 @@
                 <div class="var-preview">
                   <div class="ic-wrap">
                     <div class="ic-photo">
-                      <div class="ic-placeholder">
-                        <img src="assets/upload-icon.svg" class="ic-ph-icon" alt="">
-                        <div class="ic-ph-text">
-                          <h4 class="ic-ph-title">Drag files here</h4>
-                          <p class="ic-ph-sub">or click to browse</p>
-                        </div>
-                        <button class="ic-ph-btn">Browse Files</button>
-                        <p class="ic-ph-hint">Max file size: 10 MB • Supported types: JPG, PNG, GIF, PDF</p>
-                      </div>
+                      <img src="assets/carousel-sample.jpg" class="ic-photo-img" alt="Sample">
+                      <div class="ic-badge">1 / 6</div>
                     </div>
                     <div class="ic-nav">
                       <button class="ic-arrow"><i data-lucide="chevron-left"></i></button>
@@ -446,15 +434,8 @@
                 <div class="var-preview-dark">
                   <div class="ic-wrap">
                     <div class="ic-photo">
-                      <div class="ic-placeholder">
-                        <img src="assets/upload-icon.svg" class="ic-ph-icon" alt="">
-                        <div class="ic-ph-text">
-                          <h4 class="ic-ph-title">Drag files here</h4>
-                          <p class="ic-ph-sub">or click to browse</p>
-                        </div>
-                        <button class="ic-ph-btn">Browse Files</button>
-                        <p class="ic-ph-hint">Max file size: 10 MB • Supported types: JPG, PNG, GIF, PDF</p>
-                      </div>
+                      <img src="assets/carousel-sample.jpg" class="ic-photo-img" alt="Sample">
+                      <div class="ic-badge">1 / 6</div>
                     </div>
                     <div class="ic-nav">
                       <button class="ic-arrow"><i data-lucide="chevron-left"></i></button>
@@ -477,6 +458,7 @@
           <div class="var-desc">
             <div class="var-use-when">Carousel variants</div>
             <ul class="var-use-list">
+              <li>Empty — initial state before any images are loaded; shows upload prompt</li>
               <li>Default — all controls shown: arrows, dots, badge, expand button</li>
               <li>Minimal — dots only; no arrows, badge, or expand button; used in constrained layouts</li>
               <li>No badge — hides the position counter; useful when the total count is implied</li>
