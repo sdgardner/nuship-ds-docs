@@ -1033,6 +1033,116 @@ code {
 .var-preview-dark .sl-error-icon { color: #E36868; }
 .var-preview-dark .sl-error-msg { color: #E36868; }
 
+/* ─── File Upload Zone ───────────────────────────── */
+.fuz-zone {
+  border: 2px dashed var(--border-strong);
+  border-radius: 8px;
+  width: 100%;
+  max-width: 400px;
+  background: var(--surface-layer02);
+}
+/* empty states — centred */
+.fuz-zone--empty {
+  height: 260px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 48px;
+  box-sizing: border-box;
+}
+.fuz-zone--hover    { background: var(--inf-bg); }
+.fuz-zone--dragging { background: var(--inf-bg); border-color: var(--inf-bd); border-style: solid; }
+/* filled states — stacked rows */
+.fuz-zone--filled {
+  border-style: solid;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  padding: 16px;
+  box-sizing: border-box;
+}
+.fuz-zone--uploading { border-color: var(--inf-bd); }
+.fuz-zone--complete  { border-color: var(--suc-bd); }
+.fuz-zone--error     { border-color: var(--err-bd); }
+
+.fuz-content { display: flex; flex-direction: column; align-items: center; gap: 16px; }
+.fuz-icon    { width: 40px; height: 40px; color: var(--text-secondary); }
+.fuz-icon i  { width: 40px; height: 40px; }
+.fuz-icon--drag { color: var(--action-secondary); }
+
+.fuz-text      { display: flex; flex-direction: column; align-items: center; gap: 4px; }
+.fuz-title     { font-family: 'Lato', sans-serif; font-size: 22px; font-weight: 700; line-height: 22px; color: var(--text-primary); white-space: nowrap; }
+.fuz-title--drag { color: var(--action-secondary); }
+.fuz-subtitle  { font-size: 14px; line-height: 19px; color: var(--text-secondary); white-space: nowrap; }
+.fuz-subtitle--drag { color: var(--action-secondary); }
+
+.fuz-btn {
+  background: var(--action-secondary); color: #FFFFFF;
+  font-family: 'Lato', sans-serif; font-weight: 700;
+  font-size: 16px; line-height: 24px;
+  padding: 12px 16px; border-radius: 4px; border: none;
+  cursor: pointer; white-space: nowrap;
+}
+.fuz-btn:hover { background: var(--action-sec-hover); }
+
+.fuz-hint { font-size: 12px; line-height: 16px; color: var(--text-secondary); text-align: center; }
+
+.fuz-list   { display: flex; flex-direction: column; gap: 8px; width: 100%; }
+.fuz-footer { display: flex; flex-direction: column; gap: 10px; }
+.fuz-info   { font-size: 14px; line-height: 19px; color: var(--text-secondary); }
+.fuz-summary { display: flex; align-items: center; gap: 8px; font-size: 14px; line-height: 19px; }
+.fuz-summary i { width: 20px; height: 20px; flex-shrink: 0; }
+.fuz-summary--complete { color: var(--suc-tx); }
+.fuz-summary--error    { color: var(--err-tx); }
+.fuz-ghost-btn {
+  display: inline-flex; align-items: center; gap: 8px;
+  background: transparent; border: none; cursor: pointer;
+  font-family: 'Lato', sans-serif; font-weight: 700;
+  font-size: 16px; line-height: 24px; color: var(--action-sec-hover);
+  padding: 4px 8px; border-radius: 4px;
+}
+.fuz-ghost-btn i { width: 20px; height: 20px; }
+
+/* Zone — var-preview hardcoded light overrides */
+.var-preview .fuz-zone          { background: #F4F6F8; border-color: #9CA3AF; }
+.var-preview .fuz-zone--hover   { background: #E5EEF5; border-color: #9CA3AF; }
+.var-preview .fuz-zone--dragging{ background: #E5EEF5; border-color: #027CB1; }
+.var-preview .fuz-zone--uploading{ background: #F4F6F8; border-color: #027CB1; }
+.var-preview .fuz-zone--complete { background: #F4F6F8; border-color: #006C21; }
+.var-preview .fuz-zone--error    { background: #F4F6F8; border-color: #A12F2F; }
+.var-preview .fuz-icon           { color: #4B5563; }
+.var-preview .fuz-icon--drag     { color: #027CB1; }
+.var-preview .fuz-title          { color: #374151; }
+.var-preview .fuz-title--drag    { color: #027CB1; }
+.var-preview .fuz-subtitle       { color: #4B5563; }
+.var-preview .fuz-subtitle--drag { color: #027CB1; }
+.var-preview .fuz-btn            { background: #027CB1; }
+.var-preview .fuz-hint           { color: #4B5563; }
+.var-preview .fuz-info           { color: #4B5563; }
+.var-preview .fuz-summary--complete { color: #006C21; }
+.var-preview .fuz-summary--error    { color: #A12F2F; }
+.var-preview .fuz-ghost-btn      { color: #016692; }
+
+/* Zone — var-preview-dark hardcoded dark overrides */
+.var-preview-dark .fuz-zone           { background: #1E1E1E; border-color: #6B7280; }
+.var-preview-dark .fuz-zone--hover    { background: #001F33; border-color: #6B7280; }
+.var-preview-dark .fuz-zone--dragging { background: #001F33; border-color: #8FCBE6; }
+.var-preview-dark .fuz-zone--uploading{ background: #1E1E1E; border-color: #8FCBE6; }
+.var-preview-dark .fuz-zone--complete { background: #1E1E1E; border-color: #4DAD82; }
+.var-preview-dark .fuz-zone--error    { background: #1E1E1E; border-color: #DB3939; }
+.var-preview-dark .fuz-icon           { color: #9CA3AF; }
+.var-preview-dark .fuz-icon--drag     { color: #8FCBE6; }
+.var-preview-dark .fuz-title          { color: #F3F4F6; }
+.var-preview-dark .fuz-title--drag    { color: #8FCBE6; }
+.var-preview-dark .fuz-subtitle       { color: #9CA3AF; }
+.var-preview-dark .fuz-subtitle--drag { color: #8FCBE6; }
+.var-preview-dark .fuz-btn            { background: #35A8D6; }
+.var-preview-dark .fuz-hint           { color: #9CA3AF; }
+.var-preview-dark .fuz-info           { color: #9CA3AF; }
+.var-preview-dark .fuz-summary--complete { color: #4DAD82; }
+.var-preview-dark .fuz-summary--error    { color: #E36868; }
+.var-preview-dark .fuz-ghost-btn      { color: #5ABFE0; }
+
 /* ─── File Upload ────────────────────────────────── */
 .fu-card {
   background: var(--surface-card);

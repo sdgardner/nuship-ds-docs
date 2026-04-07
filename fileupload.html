@@ -110,30 +110,24 @@
       <section class="doc-section" id="definition">
         <div class="def-eyebrow">Display</div>
         <h1 class="def-title">File Upload</h1>
-        <p class="def-desc">The File Upload Row component displays the progress and status of an individual file being uploaded. It communicates state through a progress bar, status text, and colour-coded iconography — covering queued, uploading, complete, and failed conditions.</p>
+        <p class="def-desc">The File Upload component provides a drop zone for dragging and dropping files, or browsing the file system. It manages the full upload lifecycle — from idle drop zone to per-file progress rows — with clear visual states for uploading, complete, and error conditions.</p>
         <div class="def-tags">
           <span class="tag">Developed</span>
           <span class="tag">Figma</span>
         </div>
         <div class="preview-box">
-          <div class="fu-card">
-            <div class="fu-icon-tile">
-              <i data-lucide="image"></i>
-            </div>
-            <div class="fu-body">
-              <div class="fu-label-row">
-                <span class="fu-filename">photo_001.jpg</span>
-                <span class="fu-pct">—</span>
+          <div class="fuz-zone fuz-zone--empty">
+            <div class="fuz-content">
+              <div class="fuz-icon">
+                <i data-lucide="upload"></i>
               </div>
-              <div>
-                <div class="fu-track"></div>
-                <div class="fu-status-row" style="margin-top:4px;">
-                  <span class="fu-status-text">Queued</span>
-                  <span class="fu-filesize">3.1 MB</span>
-                </div>
+              <div class="fuz-text">
+                <span class="fuz-title">Drag files here</span>
+                <span class="fuz-subtitle">or click to browse</span>
               </div>
+              <button class="fuz-btn">Browse Files</button>
+              <span class="fuz-hint">Max file size: 10 MB &bull; Supported types: JPG, PNG, GIF, PDF</span>
             </div>
-            <i data-lucide="circle-x" class="fu-right-icon"></i>
           </div>
         </div>
       </section>
@@ -142,40 +136,34 @@
       <section class="doc-section" id="anatomy">
         <h2 class="section-title">Anatomy</h2>
         <div class="anatomy-wrap">
-          <div class="anatomy-component" style="width:285px;position:relative;">
-            <div class="fu-card" style="pointer-events:none;">
-              <div class="fu-icon-tile">
-                <i data-lucide="image"></i>
-              </div>
-              <div class="fu-body">
-                <div class="fu-label-row">
-                  <span class="fu-filename">photo_001.jpg</span>
-                  <span class="fu-pct">—</span>
+          <div class="anatomy-component" style="width:400px;position:relative;">
+            <div class="fuz-zone fuz-zone--empty" style="pointer-events:none;">
+              <div class="fuz-content">
+                <div class="fuz-icon">
+                  <i data-lucide="upload"></i>
                 </div>
-                <div>
-                  <div class="fu-track"></div>
-                  <div class="fu-status-row" style="margin-top:4px;">
-                    <span class="fu-status-text">Queued</span>
-                    <span class="fu-filesize">3.1 MB</span>
-                  </div>
+                <div class="fuz-text">
+                  <span class="fuz-title">Drag files here</span>
+                  <span class="fuz-subtitle">or click to browse</span>
                 </div>
+                <button class="fuz-btn">Browse Files</button>
+                <span class="fuz-hint">Max file size: 10 MB &bull; Supported types: JPG, PNG, GIF, PDF</span>
               </div>
-              <i data-lucide="circle-x" class="fu-right-icon"></i>
             </div>
-            <span class="callout" style="top:12px;left:-12px;">1</span>
-            <span class="callout" style="top:-10px;left:72px;">2</span>
-            <span class="callout" style="top:30px;left:72px;">3</span>
-            <span class="callout" style="bottom:-10px;left:72px;">4</span>
-            <span class="callout" style="bottom:-10px;right:36px;">5</span>
-            <span class="callout" style="top:12px;right:-12px;">6</span>
+            <span class="callout" style="top:38px;left:-12px;">1</span>
+            <span class="callout" style="top:96px;left:-12px;">2</span>
+            <span class="callout" style="top:122px;right:-12px;">3</span>
+            <span class="callout" style="top:154px;right:-12px;">4</span>
+            <span class="callout" style="bottom:22px;left:-12px;">5</span>
+            <span class="callout" style="top:-10px;right:40px;">6</span>
           </div>
           <div class="anatomy-legend">
-            <div class="legend-item"><span class="legend-num">1</span>File icon tile</div>
-            <div class="legend-item"><span class="legend-num">2</span>Filename</div>
-            <div class="legend-item"><span class="legend-num">3</span>Progress bar</div>
-            <div class="legend-item"><span class="legend-num">4</span>Status text</div>
-            <div class="legend-item"><span class="legend-num">5</span>File size</div>
-            <div class="legend-item"><span class="legend-num">6</span>Remove button</div>
+            <div class="legend-item"><span class="legend-num">1</span>Upload icon</div>
+            <div class="legend-item"><span class="legend-num">2</span>Headline</div>
+            <div class="legend-item"><span class="legend-num">3</span>Sub-text</div>
+            <div class="legend-item"><span class="legend-num">4</span>Browse button</div>
+            <div class="legend-item"><span class="legend-num">5</span>Format &amp; size hint</div>
+            <div class="legend-item"><span class="legend-num">6</span>Drop zone border</div>
           </div>
         </div>
       </section>
@@ -183,238 +171,558 @@
       <!-- 3 · VARIANTS -->
       <section class="doc-section" id="variants">
         <h2 class="section-title">Variants</h2>
-
-        <div class="state-tab-row">
-          <button class="state-tab-btn active" onclick="switchStateTab(this,'vs-default')">Default</button>
-          <button class="state-tab-btn" onclick="switchStateTab(this,'vs-uploading')">Uploading</button>
-          <button class="state-tab-btn" onclick="switchStateTab(this,'vs-success')">Success</button>
-          <button class="state-tab-btn" onclick="switchStateTab(this,'vs-error')">Error</button>
+        <div class="tabs-wrap">
+          <div class="tabs">
+            <button class="tab active" onclick="switchTab(this,'v-empty')">Empty</button>
+            <button class="tab" onclick="switchTab(this,'v-filled')">With files</button>
+          </div>
         </div>
 
-        <div class="var-panel">
-          <div class="var-previews-wrap">
-
-            <!-- Default -->
-            <div class="state-panel active" id="vs-default">
-              <div class="var-previews">
-                <div class="var-preview">
-                  <div class="fu-card">
-                    <div class="fu-icon-tile">
-                      <i data-lucide="image"></i>
-                    </div>
-                    <div class="fu-body">
-                      <div class="fu-label-row">
-                        <span class="fu-filename">photo_001.jpg</span>
-                        <span class="fu-pct">—</span>
-                      </div>
-                      <div>
-                        <div class="fu-track"></div>
-                        <div class="fu-status-row" style="margin-top:4px;">
-                          <span class="fu-status-text">Queued</span>
-                          <span class="fu-filesize">3.1 MB</span>
-                        </div>
-                      </div>
-                    </div>
-                    <i data-lucide="circle-x" class="fu-right-icon"></i>
-                  </div>
-                </div>
-                <div class="var-preview-dark">
-                  <div class="fu-card">
-                    <div class="fu-icon-tile">
-                      <i data-lucide="image"></i>
-                    </div>
-                    <div class="fu-body">
-                      <div class="fu-label-row">
-                        <span class="fu-filename">photo_001.jpg</span>
-                        <span class="fu-pct">—</span>
-                      </div>
-                      <div>
-                        <div class="fu-track"></div>
-                        <div class="fu-status-row" style="margin-top:4px;">
-                          <span class="fu-status-text">Queued</span>
-                          <span class="fu-filesize">3.1 MB</span>
-                        </div>
-                      </div>
-                    </div>
-                    <i data-lucide="circle-x" class="fu-right-icon"></i>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            <!-- Uploading -->
-            <div class="state-panel" id="vs-uploading">
-              <div class="var-previews">
-                <div class="var-preview">
-                  <div class="fu-card">
-                    <div class="fu-icon-tile">
-                      <i data-lucide="image"></i>
-                    </div>
-                    <div class="fu-body">
-                      <div class="fu-label-row">
-                        <span class="fu-filename">photo_001.jpg</span>
-                        <span class="fu-pct">54%</span>
-                      </div>
-                      <div>
-                        <div class="fu-track">
-                          <div class="fu-fill fu-fill--uploading"></div>
-                        </div>
-                        <div class="fu-status-row" style="margin-top:4px;">
-                          <span class="fu-status-text">Uploading...</span>
-                          <span class="fu-filesize">3.1 MB</span>
-                        </div>
-                      </div>
-                    </div>
-                    <i data-lucide="circle-x" class="fu-right-icon"></i>
-                  </div>
-                </div>
-                <div class="var-preview-dark">
-                  <div class="fu-card">
-                    <div class="fu-icon-tile">
-                      <i data-lucide="image"></i>
-                    </div>
-                    <div class="fu-body">
-                      <div class="fu-label-row">
-                        <span class="fu-filename">photo_001.jpg</span>
-                        <span class="fu-pct">54%</span>
-                      </div>
-                      <div>
-                        <div class="fu-track">
-                          <div class="fu-fill fu-fill--uploading"></div>
-                        </div>
-                        <div class="fu-status-row" style="margin-top:4px;">
-                          <span class="fu-status-text">Uploading...</span>
-                          <span class="fu-filesize">3.1 MB</span>
-                        </div>
-                      </div>
-                    </div>
-                    <i data-lucide="circle-x" class="fu-right-icon"></i>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            <!-- Success -->
-            <div class="state-panel" id="vs-success">
-              <div class="var-previews">
-                <div class="var-preview">
-                  <div class="fu-card">
-                    <div class="fu-icon-tile fu-icon-tile--success">
-                      <i data-lucide="image"></i>
-                    </div>
-                    <div class="fu-body">
-                      <div class="fu-label-row">
-                        <span class="fu-filename">photo_001.jpg</span>
-                        <span class="fu-pct fu-pct--success">100%</span>
-                      </div>
-                      <div>
-                        <div class="fu-track">
-                          <div class="fu-fill fu-fill--success"></div>
-                        </div>
-                        <div class="fu-status-row" style="margin-top:4px;">
-                          <span class="fu-status-text fu-status-text--success">Complete</span>
-                          <span class="fu-filesize">3.1 MB</span>
-                        </div>
-                      </div>
-                    </div>
-                    <i data-lucide="circle-check" class="fu-right-icon fu-right-icon--success"></i>
-                  </div>
-                </div>
-                <div class="var-preview-dark">
-                  <div class="fu-card">
-                    <div class="fu-icon-tile fu-icon-tile--success">
-                      <i data-lucide="image"></i>
-                    </div>
-                    <div class="fu-body">
-                      <div class="fu-label-row">
-                        <span class="fu-filename">photo_001.jpg</span>
-                        <span class="fu-pct fu-pct--success">100%</span>
-                      </div>
-                      <div>
-                        <div class="fu-track">
-                          <div class="fu-fill fu-fill--success"></div>
-                        </div>
-                        <div class="fu-status-row" style="margin-top:4px;">
-                          <span class="fu-status-text fu-status-text--success">Complete</span>
-                          <span class="fu-filesize">3.1 MB</span>
-                        </div>
-                      </div>
-                    </div>
-                    <i data-lucide="circle-check" class="fu-right-icon fu-right-icon--success"></i>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            <!-- Error -->
-            <div class="state-panel" id="vs-error">
-              <div class="var-previews">
-                <div class="var-preview">
-                  <div class="fu-card">
-                    <div class="fu-icon-tile fu-icon-tile--error">
-                      <i data-lucide="image"></i>
-                    </div>
-                    <div class="fu-body">
-                      <div class="fu-label-row">
-                        <span class="fu-filename">photo_001.jpg</span>
-                        <span class="fu-pct fu-pct--error">Failed</span>
-                      </div>
-                      <div>
-                        <div class="fu-track">
-                          <div class="fu-fill fu-fill--error"></div>
-                        </div>
-                        <div class="fu-status-row" style="margin-top:4px;">
-                          <span class="fu-status-text fu-status-text--error">File too large — max 10 MB</span>
-                          <span class="fu-filesize">3.1 MB</span>
-                        </div>
-                      </div>
-                    </div>
-                    <i data-lucide="circle-x" class="fu-right-icon" style="color:#A12F2F;"></i>
-                  </div>
-                </div>
-                <div class="var-preview-dark">
-                  <div class="fu-card">
-                    <div class="fu-icon-tile fu-icon-tile--error">
-                      <i data-lucide="image"></i>
-                    </div>
-                    <div class="fu-body">
-                      <div class="fu-label-row">
-                        <span class="fu-filename">photo_001.jpg</span>
-                        <span class="fu-pct fu-pct--error">Failed</span>
-                      </div>
-                      <div>
-                        <div class="fu-track">
-                          <div class="fu-fill fu-fill--error"></div>
-                        </div>
-                        <div class="fu-status-row" style="margin-top:4px;">
-                          <span class="fu-status-text fu-status-text--error">File too large — max 10 MB</span>
-                          <span class="fu-filesize">3.1 MB</span>
-                        </div>
-                      </div>
-                    </div>
-                    <i data-lucide="circle-x" class="fu-right-icon" style="color:#DB3939;"></i>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-          </div><!-- /var-previews-wrap -->
-
-          <div class="var-desc">
-            <div class="var-use-when">Upload row states</div>
-            <ul class="var-use-list">
-              <li>One row per file — stack multiple rows for batch uploads</li>
-              <li>The row persists after success or failure so users can review the outcome</li>
-            </ul>
-            <div class="var-use-when" style="margin-top:16px;">Visual changes by state:</div>
-            <ul class="var-use-list">
-              <li>Default — empty progress bar track; status "Queued"; blue icon tile border</li>
-              <li>Uploading — partial fill (#027CB1); percentage shown; status "Uploading..."</li>
-              <li>Success — full green fill; 100% shown; "Complete" in green; circle-check icon</li>
-              <li>Error — partial red fill; "Failed" label; error message; circle-x icon</li>
-            </ul>
+        <!-- ── EMPTY ── -->
+        <div class="tab-panel active" id="v-empty">
+          <div class="state-tab-row">
+            <button class="state-tab-btn active" onclick="switchStateTab(this,'vs-e-def')">Default</button>
+            <button class="state-tab-btn" onclick="switchStateTab(this,'vs-e-hov')">Hover</button>
+            <button class="state-tab-btn" onclick="switchStateTab(this,'vs-e-drag')">Dragging</button>
           </div>
-        </div><!-- /var-panel -->
+          <div class="var-panel">
+            <div class="var-previews-wrap">
+
+              <!-- Empty Default -->
+              <div class="state-panel active" id="vs-e-def">
+                <div class="var-previews">
+                  <div class="var-preview">
+                    <div class="fuz-zone fuz-zone--empty">
+                      <div class="fuz-content">
+                        <div class="fuz-icon"><i data-lucide="upload"></i></div>
+                        <div class="fuz-text">
+                          <span class="fuz-title">Drag files here</span>
+                          <span class="fuz-subtitle">or click to browse</span>
+                        </div>
+                        <button class="fuz-btn">Browse Files</button>
+                        <span class="fuz-hint">Max file size: 10 MB &bull; Supported types: JPG, PNG, GIF, PDF</span>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="var-preview-dark">
+                    <div class="fuz-zone fuz-zone--empty">
+                      <div class="fuz-content">
+                        <div class="fuz-icon"><i data-lucide="upload"></i></div>
+                        <div class="fuz-text">
+                          <span class="fuz-title">Drag files here</span>
+                          <span class="fuz-subtitle">or click to browse</span>
+                        </div>
+                        <button class="fuz-btn">Browse Files</button>
+                        <span class="fuz-hint">Max file size: 10 MB &bull; Supported types: JPG, PNG, GIF, PDF</span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Empty Hover -->
+              <div class="state-panel" id="vs-e-hov">
+                <div class="var-previews">
+                  <div class="var-preview">
+                    <div class="fuz-zone fuz-zone--empty fuz-zone--hover">
+                      <div class="fuz-content">
+                        <div class="fuz-icon"><i data-lucide="upload"></i></div>
+                        <div class="fuz-text">
+                          <span class="fuz-title">Drop files here</span>
+                          <span class="fuz-subtitle">or click to browse</span>
+                        </div>
+                        <button class="fuz-btn">Browse Files</button>
+                        <span class="fuz-hint">Max file size: 10 MB &bull; Supported types: JPG, PNG, GIF, PDF</span>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="var-preview-dark">
+                    <div class="fuz-zone fuz-zone--empty fuz-zone--hover">
+                      <div class="fuz-content">
+                        <div class="fuz-icon"><i data-lucide="upload"></i></div>
+                        <div class="fuz-text">
+                          <span class="fuz-title">Drop files here</span>
+                          <span class="fuz-subtitle">or click to browse</span>
+                        </div>
+                        <button class="fuz-btn">Browse Files</button>
+                        <span class="fuz-hint">Max file size: 10 MB &bull; Supported types: JPG, PNG, GIF, PDF</span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Empty Dragging -->
+              <div class="state-panel" id="vs-e-drag">
+                <div class="var-previews">
+                  <div class="var-preview">
+                    <div class="fuz-zone fuz-zone--empty fuz-zone--dragging">
+                      <div class="fuz-content">
+                        <div class="fuz-icon fuz-icon--drag"><i data-lucide="upload"></i></div>
+                        <div class="fuz-text">
+                          <span class="fuz-title fuz-title--drag">Drop files here</span>
+                          <span class="fuz-subtitle fuz-subtitle--drag">Release to upload</span>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="var-preview-dark">
+                    <div class="fuz-zone fuz-zone--empty fuz-zone--dragging">
+                      <div class="fuz-content">
+                        <div class="fuz-icon fuz-icon--drag"><i data-lucide="upload"></i></div>
+                        <div class="fuz-text">
+                          <span class="fuz-title fuz-title--drag">Drop files here</span>
+                          <span class="fuz-subtitle fuz-subtitle--drag">Release to upload</span>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+            </div><!-- /var-previews-wrap -->
+            <div class="var-desc">
+              <div class="var-use-when">Empty drop zone</div>
+              <ul class="var-use-list">
+                <li>Shown before any files are selected or dropped</li>
+                <li>Provides two entry points: drag-and-drop or clicking Browse Files</li>
+              </ul>
+              <div class="var-use-when" style="margin-top:16px;">Visual changes by state:</div>
+              <ul class="var-use-list">
+                <li>Default — dashed grey border (#9CA3AF), neutral grey background</li>
+                <li>Hover — same dashed border, background fills with light info blue</li>
+                <li>Dragging — solid blue border (#027CB1), blue tint bg, icon and text turn blue, button hidden</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <!-- ── WITH FILES ── -->
+        <div class="tab-panel" id="v-filled">
+          <div class="state-tab-row">
+            <button class="state-tab-btn active" onclick="switchStateTab(this,'vs-f-upl')">Uploading</button>
+            <button class="state-tab-btn" onclick="switchStateTab(this,'vs-f-com')">Complete</button>
+            <button class="state-tab-btn" onclick="switchStateTab(this,'vs-f-err')">Error</button>
+          </div>
+          <div class="var-panel">
+            <div class="var-previews-wrap">
+
+              <!-- Uploading -->
+              <div class="state-panel active" id="vs-f-upl">
+                <div class="var-previews">
+                  <div class="var-preview">
+                    <div class="fuz-zone fuz-zone--filled fuz-zone--uploading">
+                      <div class="fuz-list">
+                        <!-- Row 1: complete -->
+                        <div class="fu-card">
+                          <div class="fu-icon-tile fu-icon-tile--success"><i data-lucide="image"></i></div>
+                          <div class="fu-body">
+                            <div class="fu-label-row">
+                              <span class="fu-filename">photo_001.jpg</span>
+                              <span class="fu-pct fu-pct--success">100%</span>
+                            </div>
+                            <div>
+                              <div class="fu-track"><div class="fu-fill fu-fill--success"></div></div>
+                              <div class="fu-status-row" style="margin-top:4px;">
+                                <span class="fu-status-text fu-status-text--success">Complete</span>
+                                <span class="fu-filesize">3.1 MB</span>
+                              </div>
+                            </div>
+                          </div>
+                          <i data-lucide="circle-check" class="fu-right-icon fu-right-icon--success"></i>
+                        </div>
+                        <!-- Row 2: uploading -->
+                        <div class="fu-card">
+                          <div class="fu-icon-tile"><i data-lucide="image"></i></div>
+                          <div class="fu-body">
+                            <div class="fu-label-row">
+                              <span class="fu-filename">photo_002.jpg</span>
+                              <span class="fu-pct">54%</span>
+                            </div>
+                            <div>
+                              <div class="fu-track"><div class="fu-fill fu-fill--uploading"></div></div>
+                              <div class="fu-status-row" style="margin-top:4px;">
+                                <span class="fu-status-text">Uploading...</span>
+                                <span class="fu-filesize">2.4 MB</span>
+                              </div>
+                            </div>
+                          </div>
+                          <i data-lucide="circle-x" class="fu-right-icon"></i>
+                        </div>
+                        <!-- Row 3: queued -->
+                        <div class="fu-card">
+                          <div class="fu-icon-tile"><i data-lucide="image"></i></div>
+                          <div class="fu-body">
+                            <div class="fu-label-row">
+                              <span class="fu-filename">photo_003.jpg</span>
+                              <span class="fu-pct">—</span>
+                            </div>
+                            <div>
+                              <div class="fu-track"></div>
+                              <div class="fu-status-row" style="margin-top:4px;">
+                                <span class="fu-status-text">Queued</span>
+                                <span class="fu-filesize">1.8 MB</span>
+                              </div>
+                            </div>
+                          </div>
+                          <i data-lucide="circle-x" class="fu-right-icon"></i>
+                        </div>
+                      </div>
+                      <div class="fuz-footer">
+                        <span class="fuz-info">Uploading 3 files — do not close this window</span>
+                        <button class="fuz-ghost-btn"><i data-lucide="plus"></i>Add More</button>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="var-preview-dark">
+                    <div class="fuz-zone fuz-zone--filled fuz-zone--uploading">
+                      <div class="fuz-list">
+                        <div class="fu-card">
+                          <div class="fu-icon-tile fu-icon-tile--success"><i data-lucide="image"></i></div>
+                          <div class="fu-body">
+                            <div class="fu-label-row">
+                              <span class="fu-filename">photo_001.jpg</span>
+                              <span class="fu-pct fu-pct--success">100%</span>
+                            </div>
+                            <div>
+                              <div class="fu-track"><div class="fu-fill fu-fill--success"></div></div>
+                              <div class="fu-status-row" style="margin-top:4px;">
+                                <span class="fu-status-text fu-status-text--success">Complete</span>
+                                <span class="fu-filesize">3.1 MB</span>
+                              </div>
+                            </div>
+                          </div>
+                          <i data-lucide="circle-check" class="fu-right-icon fu-right-icon--success"></i>
+                        </div>
+                        <div class="fu-card">
+                          <div class="fu-icon-tile"><i data-lucide="image"></i></div>
+                          <div class="fu-body">
+                            <div class="fu-label-row">
+                              <span class="fu-filename">photo_002.jpg</span>
+                              <span class="fu-pct">54%</span>
+                            </div>
+                            <div>
+                              <div class="fu-track"><div class="fu-fill fu-fill--uploading"></div></div>
+                              <div class="fu-status-row" style="margin-top:4px;">
+                                <span class="fu-status-text">Uploading...</span>
+                                <span class="fu-filesize">2.4 MB</span>
+                              </div>
+                            </div>
+                          </div>
+                          <i data-lucide="circle-x" class="fu-right-icon"></i>
+                        </div>
+                        <div class="fu-card">
+                          <div class="fu-icon-tile"><i data-lucide="image"></i></div>
+                          <div class="fu-body">
+                            <div class="fu-label-row">
+                              <span class="fu-filename">photo_003.jpg</span>
+                              <span class="fu-pct">—</span>
+                            </div>
+                            <div>
+                              <div class="fu-track"></div>
+                              <div class="fu-status-row" style="margin-top:4px;">
+                                <span class="fu-status-text">Queued</span>
+                                <span class="fu-filesize">1.8 MB</span>
+                              </div>
+                            </div>
+                          </div>
+                          <i data-lucide="circle-x" class="fu-right-icon"></i>
+                        </div>
+                      </div>
+                      <div class="fuz-footer">
+                        <span class="fuz-info">Uploading 3 files — do not close this window</span>
+                        <button class="fuz-ghost-btn"><i data-lucide="plus"></i>Add More</button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Complete -->
+              <div class="state-panel" id="vs-f-com">
+                <div class="var-previews">
+                  <div class="var-preview">
+                    <div class="fuz-zone fuz-zone--filled fuz-zone--complete">
+                      <div class="fuz-list">
+                        <div class="fu-card">
+                          <div class="fu-icon-tile fu-icon-tile--success"><i data-lucide="image"></i></div>
+                          <div class="fu-body">
+                            <div class="fu-label-row">
+                              <span class="fu-filename">photo_001.jpg</span>
+                              <span class="fu-pct fu-pct--success">100%</span>
+                            </div>
+                            <div>
+                              <div class="fu-track"><div class="fu-fill fu-fill--success"></div></div>
+                              <div class="fu-status-row" style="margin-top:4px;">
+                                <span class="fu-status-text fu-status-text--success">Complete</span>
+                                <span class="fu-filesize">3.1 MB</span>
+                              </div>
+                            </div>
+                          </div>
+                          <i data-lucide="trash-2" class="fu-right-icon"></i>
+                        </div>
+                        <div class="fu-card">
+                          <div class="fu-icon-tile fu-icon-tile--success"><i data-lucide="image"></i></div>
+                          <div class="fu-body">
+                            <div class="fu-label-row">
+                              <span class="fu-filename">photo_002.jpg</span>
+                              <span class="fu-pct fu-pct--success">100%</span>
+                            </div>
+                            <div>
+                              <div class="fu-track"><div class="fu-fill fu-fill--success"></div></div>
+                              <div class="fu-status-row" style="margin-top:4px;">
+                                <span class="fu-status-text fu-status-text--success">Complete</span>
+                                <span class="fu-filesize">2.4 MB</span>
+                              </div>
+                            </div>
+                          </div>
+                          <i data-lucide="trash-2" class="fu-right-icon"></i>
+                        </div>
+                        <div class="fu-card">
+                          <div class="fu-icon-tile fu-icon-tile--success"><i data-lucide="image"></i></div>
+                          <div class="fu-body">
+                            <div class="fu-label-row">
+                              <span class="fu-filename">photo_003.jpg</span>
+                              <span class="fu-pct fu-pct--success">100%</span>
+                            </div>
+                            <div>
+                              <div class="fu-track"><div class="fu-fill fu-fill--success"></div></div>
+                              <div class="fu-status-row" style="margin-top:4px;">
+                                <span class="fu-status-text fu-status-text--success">Complete</span>
+                                <span class="fu-filesize">1.8 MB</span>
+                              </div>
+                            </div>
+                          </div>
+                          <i data-lucide="trash-2" class="fu-right-icon"></i>
+                        </div>
+                      </div>
+                      <div class="fuz-footer">
+                        <div class="fuz-summary fuz-summary--complete">
+                          <i data-lucide="circle-check"></i>
+                          3 files uploaded successfully
+                        </div>
+                        <button class="fuz-ghost-btn"><i data-lucide="plus"></i>Add More</button>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="var-preview-dark">
+                    <div class="fuz-zone fuz-zone--filled fuz-zone--complete">
+                      <div class="fuz-list">
+                        <div class="fu-card">
+                          <div class="fu-icon-tile fu-icon-tile--success"><i data-lucide="image"></i></div>
+                          <div class="fu-body">
+                            <div class="fu-label-row">
+                              <span class="fu-filename">photo_001.jpg</span>
+                              <span class="fu-pct fu-pct--success">100%</span>
+                            </div>
+                            <div>
+                              <div class="fu-track"><div class="fu-fill fu-fill--success"></div></div>
+                              <div class="fu-status-row" style="margin-top:4px;">
+                                <span class="fu-status-text fu-status-text--success">Complete</span>
+                                <span class="fu-filesize">3.1 MB</span>
+                              </div>
+                            </div>
+                          </div>
+                          <i data-lucide="trash-2" class="fu-right-icon"></i>
+                        </div>
+                        <div class="fu-card">
+                          <div class="fu-icon-tile fu-icon-tile--success"><i data-lucide="image"></i></div>
+                          <div class="fu-body">
+                            <div class="fu-label-row">
+                              <span class="fu-filename">photo_002.jpg</span>
+                              <span class="fu-pct fu-pct--success">100%</span>
+                            </div>
+                            <div>
+                              <div class="fu-track"><div class="fu-fill fu-fill--success"></div></div>
+                              <div class="fu-status-row" style="margin-top:4px;">
+                                <span class="fu-status-text fu-status-text--success">Complete</span>
+                                <span class="fu-filesize">2.4 MB</span>
+                              </div>
+                            </div>
+                          </div>
+                          <i data-lucide="trash-2" class="fu-right-icon"></i>
+                        </div>
+                        <div class="fu-card">
+                          <div class="fu-icon-tile fu-icon-tile--success"><i data-lucide="image"></i></div>
+                          <div class="fu-body">
+                            <div class="fu-label-row">
+                              <span class="fu-filename">photo_003.jpg</span>
+                              <span class="fu-pct fu-pct--success">100%</span>
+                            </div>
+                            <div>
+                              <div class="fu-track"><div class="fu-fill fu-fill--success"></div></div>
+                              <div class="fu-status-row" style="margin-top:4px;">
+                                <span class="fu-status-text fu-status-text--success">Complete</span>
+                                <span class="fu-filesize">1.8 MB</span>
+                              </div>
+                            </div>
+                          </div>
+                          <i data-lucide="trash-2" class="fu-right-icon"></i>
+                        </div>
+                      </div>
+                      <div class="fuz-footer">
+                        <div class="fuz-summary fuz-summary--complete">
+                          <i data-lucide="circle-check"></i>
+                          3 files uploaded successfully
+                        </div>
+                        <button class="fuz-ghost-btn"><i data-lucide="plus"></i>Add More</button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Error -->
+              <div class="state-panel" id="vs-f-err">
+                <div class="var-previews">
+                  <div class="var-preview">
+                    <div class="fuz-zone fuz-zone--filled fuz-zone--error">
+                      <div class="fuz-list">
+                        <div class="fu-card">
+                          <div class="fu-icon-tile fu-icon-tile--success"><i data-lucide="image"></i></div>
+                          <div class="fu-body">
+                            <div class="fu-label-row">
+                              <span class="fu-filename">photo_001.jpg</span>
+                              <span class="fu-pct fu-pct--success">100%</span>
+                            </div>
+                            <div>
+                              <div class="fu-track"><div class="fu-fill fu-fill--success"></div></div>
+                              <div class="fu-status-row" style="margin-top:4px;">
+                                <span class="fu-status-text fu-status-text--success">Complete</span>
+                                <span class="fu-filesize">3.1 MB</span>
+                              </div>
+                            </div>
+                          </div>
+                          <i data-lucide="trash-2" class="fu-right-icon"></i>
+                        </div>
+                        <div class="fu-card">
+                          <div class="fu-icon-tile fu-icon-tile--error"><i data-lucide="image"></i></div>
+                          <div class="fu-body">
+                            <div class="fu-label-row">
+                              <span class="fu-filename">photo_002.jpg</span>
+                              <span class="fu-pct fu-pct--error">Failed</span>
+                            </div>
+                            <div>
+                              <div class="fu-track"><div class="fu-fill fu-fill--error"></div></div>
+                              <div class="fu-status-row" style="margin-top:4px;">
+                                <span class="fu-status-text fu-status-text--error">File too large — max 10 MB</span>
+                                <span class="fu-filesize">14.2 MB</span>
+                              </div>
+                            </div>
+                          </div>
+                          <i data-lucide="circle-x" class="fu-right-icon" style="color:#A12F2F;"></i>
+                        </div>
+                        <div class="fu-card">
+                          <div class="fu-icon-tile fu-icon-tile--error"><i data-lucide="image"></i></div>
+                          <div class="fu-body">
+                            <div class="fu-label-row">
+                              <span class="fu-filename">photo_003.jpg</span>
+                              <span class="fu-pct fu-pct--error">Failed</span>
+                            </div>
+                            <div>
+                              <div class="fu-track"><div class="fu-fill fu-fill--error"></div></div>
+                              <div class="fu-status-row" style="margin-top:4px;">
+                                <span class="fu-status-text fu-status-text--error">File too large — max 10 MB</span>
+                                <span class="fu-filesize">11.6 MB</span>
+                              </div>
+                            </div>
+                          </div>
+                          <i data-lucide="circle-x" class="fu-right-icon" style="color:#A12F2F;"></i>
+                        </div>
+                      </div>
+                      <div class="fuz-footer">
+                        <div class="fuz-summary fuz-summary--error">
+                          <i data-lucide="circle-x"></i>
+                          2 of 3 files failed to upload
+                        </div>
+                        <button class="fuz-ghost-btn"><i data-lucide="refresh-cw"></i>Retry Failed</button>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="var-preview-dark">
+                    <div class="fuz-zone fuz-zone--filled fuz-zone--error">
+                      <div class="fuz-list">
+                        <div class="fu-card">
+                          <div class="fu-icon-tile fu-icon-tile--success"><i data-lucide="image"></i></div>
+                          <div class="fu-body">
+                            <div class="fu-label-row">
+                              <span class="fu-filename">photo_001.jpg</span>
+                              <span class="fu-pct fu-pct--success">100%</span>
+                            </div>
+                            <div>
+                              <div class="fu-track"><div class="fu-fill fu-fill--success"></div></div>
+                              <div class="fu-status-row" style="margin-top:4px;">
+                                <span class="fu-status-text fu-status-text--success">Complete</span>
+                                <span class="fu-filesize">3.1 MB</span>
+                              </div>
+                            </div>
+                          </div>
+                          <i data-lucide="trash-2" class="fu-right-icon"></i>
+                        </div>
+                        <div class="fu-card">
+                          <div class="fu-icon-tile fu-icon-tile--error"><i data-lucide="image"></i></div>
+                          <div class="fu-body">
+                            <div class="fu-label-row">
+                              <span class="fu-filename">photo_002.jpg</span>
+                              <span class="fu-pct fu-pct--error">Failed</span>
+                            </div>
+                            <div>
+                              <div class="fu-track"><div class="fu-fill fu-fill--error"></div></div>
+                              <div class="fu-status-row" style="margin-top:4px;">
+                                <span class="fu-status-text fu-status-text--error">File too large — max 10 MB</span>
+                                <span class="fu-filesize">14.2 MB</span>
+                              </div>
+                            </div>
+                          </div>
+                          <i data-lucide="circle-x" class="fu-right-icon" style="color:#DB3939;"></i>
+                        </div>
+                        <div class="fu-card">
+                          <div class="fu-icon-tile fu-icon-tile--error"><i data-lucide="image"></i></div>
+                          <div class="fu-body">
+                            <div class="fu-label-row">
+                              <span class="fu-filename">photo_003.jpg</span>
+                              <span class="fu-pct fu-pct--error">Failed</span>
+                            </div>
+                            <div>
+                              <div class="fu-track"><div class="fu-fill fu-fill--error"></div></div>
+                              <div class="fu-status-row" style="margin-top:4px;">
+                                <span class="fu-status-text fu-status-text--error">File too large — max 10 MB</span>
+                                <span class="fu-filesize">11.6 MB</span>
+                              </div>
+                            </div>
+                          </div>
+                          <i data-lucide="circle-x" class="fu-right-icon" style="color:#DB3939;"></i>
+                        </div>
+                      </div>
+                      <div class="fuz-footer">
+                        <div class="fuz-summary fuz-summary--error">
+                          <i data-lucide="circle-x"></i>
+                          2 of 3 files failed to upload
+                        </div>
+                        <button class="fuz-ghost-btn"><i data-lucide="refresh-cw"></i>Retry Failed</button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+            </div><!-- /var-previews-wrap -->
+            <div class="var-desc">
+              <div class="var-use-when">With files</div>
+              <ul class="var-use-list">
+                <li>Zone switches from the centred drop area to a stacked file list once files are selected</li>
+                <li>Each file row shows its own status; the zone border reflects the overall batch status</li>
+              </ul>
+              <div class="var-use-when" style="margin-top:16px;">Visual changes by state:</div>
+              <ul class="var-use-list">
+                <li>Uploading — solid blue border; rows show mixed per-file states; warning footer text; Add More button</li>
+                <li>Complete — solid green border; all rows green; "N files uploaded" summary; Add More button</li>
+                <li>Error — solid red border; failed rows shown in red; error count summary; Retry Failed button</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
       </section>
 
       <!-- 4 · PROPERTIES -->
@@ -431,52 +739,58 @@
           </thead>
           <tbody>
             <tr>
-              <td><code class="p-name">status</code></td>
-              <td class="p-type">'default' | 'uploading' | 'success' | 'error'</td>
+              <td><code class="p-name">state</code></td>
+              <td class="p-type">'default' | 'hover' | 'dragging' | 'uploading' | 'complete' | 'error'</td>
               <td class="p-def">'default'</td>
-              <td class="p-desc">Controls the visual state of the row.</td>
+              <td class="p-desc">Controls the overall visual state of the drop zone.</td>
             </tr>
             <tr>
-              <td><code class="p-name">filename</code></td>
+              <td><code class="p-name">files</code></td>
+              <td class="p-type">FileRow[]</td>
+              <td class="p-def">[]</td>
+              <td class="p-desc">Array of file objects. Each item includes <code>name</code>, <code>size</code>, <code>progress</code>, and <code>status</code>.</td>
+            </tr>
+            <tr>
+              <td><code class="p-name">maxFileSize</code></td>
               <td class="p-type">string</td>
-              <td class="p-def">—</td>
-              <td class="p-desc">The name of the file being uploaded.</td>
+              <td class="p-def">'10 MB'</td>
+              <td class="p-desc">Maximum allowed file size. Displayed in the hint text below the Browse button.</td>
             </tr>
             <tr>
-              <td><code class="p-name">fileSize</code></td>
+              <td><code class="p-name">acceptedTypes</code></td>
               <td class="p-type">string</td>
-              <td class="p-def">—</td>
-              <td class="p-desc">Formatted file size string shown at bottom right (e.g. "3.1 MB").</td>
+              <td class="p-def">'JPG, PNG, GIF, PDF'</td>
+              <td class="p-desc">Comma-separated list of accepted file types. Displayed in the hint text.</td>
             </tr>
             <tr>
-              <td><code class="p-name">progress</code></td>
-              <td class="p-type">number</td>
-              <td class="p-def">0</td>
-              <td class="p-desc">Upload progress value from 0 to 100. Drives the progress bar fill width.</td>
+              <td><code class="p-name">multiple</code></td>
+              <td class="p-type">boolean</td>
+              <td class="p-def">true</td>
+              <td class="p-desc">Allows multiple files to be selected or dropped simultaneously.</td>
             </tr>
             <tr>
-              <td><code class="p-name">onRemove</code></td>
+              <td><code class="p-name">showAddMore</code></td>
+              <td class="p-type">boolean</td>
+              <td class="p-def">true</td>
+              <td class="p-desc">Shows the Add More button in uploading and complete states.</td>
+            </tr>
+            <tr>
+              <td><code class="p-name">onFileDrop</code></td>
               <td class="p-type">function</td>
               <td class="p-def">—</td>
-              <td class="p-desc">Callback fired when the remove (circle-x) button is clicked.</td>
+              <td class="p-desc">Callback fired when files are dropped onto the zone.</td>
             </tr>
             <tr>
-              <td><code class="p-name">showFileSize</code></td>
-              <td class="p-type">boolean</td>
-              <td class="p-def">true</td>
-              <td class="p-desc">Toggles visibility of the file size label.</td>
+              <td><code class="p-name">onBrowse</code></td>
+              <td class="p-type">function</td>
+              <td class="p-def">—</td>
+              <td class="p-desc">Callback fired when the Browse Files button is clicked.</td>
             </tr>
             <tr>
-              <td><code class="p-name">showStatusText</code></td>
-              <td class="p-type">boolean</td>
-              <td class="p-def">true</td>
-              <td class="p-desc">Toggles visibility of the status text below the progress bar.</td>
-            </tr>
-            <tr>
-              <td><code class="p-name">showIcon</code></td>
-              <td class="p-type">boolean</td>
-              <td class="p-def">true</td>
-              <td class="p-desc">Toggles visibility of the file type icon tile.</td>
+              <td><code class="p-name">onRetryFailed</code></td>
+              <td class="p-type">function</td>
+              <td class="p-def">—</td>
+              <td class="p-desc">Callback fired when the Retry Failed button is clicked in error state.</td>
             </tr>
           </tbody>
         </table>
@@ -601,19 +915,19 @@
             <table class="tokens-table">
               <thead><tr><th>Element</th><th>Token</th><th></th></tr></thead>
               <tbody>
-                <tr><td>Card background</td><td class="t-tok">color/surface/card</td><td class="t-sw"><div class="swatch" style="background:#FFFFFF;"></div></td></tr>
-                <tr><td>Card border</td><td class="t-tok">color/border/interactive</td><td class="t-sw"><div class="swatch" style="background:#CDD2D7;"></div></td></tr>
-                <tr><td>Filename text</td><td class="t-tok">color/text/helper</td><td class="t-sw"><div class="swatch" style="background:#4B5563;"></div></td></tr>
-                <tr><td>Status / size text</td><td class="t-tok">color/text/tertiary</td><td class="t-sw"><div class="swatch" style="background:#9CA3AF;"></div></td></tr>
-                <tr><td>Icon tile border (default)</td><td class="t-tok">color/action/secondary/default</td><td class="t-sw"><div class="swatch" style="background:#027CB1;"></div></td></tr>
-                <tr><td>Icon tile border (success)</td><td class="t-tok">color/status/success/border</td><td class="t-sw"><div class="swatch" style="background:#006C21;"></div></td></tr>
-                <tr><td>Icon tile border (error)</td><td class="t-tok">color/border/error</td><td class="t-sw"><div class="swatch" style="background:#A12F2F;"></div></td></tr>
-                <tr><td>Progress bar track</td><td class="t-tok">color/border/interactive</td><td class="t-sw"><div class="swatch" style="background:#CDD2D7;"></div></td></tr>
-                <tr><td>Progress fill (uploading)</td><td class="t-tok">color/status/info/border</td><td class="t-sw"><div class="swatch" style="background:#027CB1;"></div></td></tr>
-                <tr><td>Progress fill (success)</td><td class="t-tok">color/status/success/border</td><td class="t-sw"><div class="swatch" style="background:#006C21;"></div></td></tr>
-                <tr><td>Progress fill (error)</td><td class="t-tok">color/status/error/border</td><td class="t-sw"><div class="swatch" style="background:#A12F2F;"></div></td></tr>
-                <tr><td>Success text</td><td class="t-tok">color/status/success/text</td><td class="t-sw"><div class="swatch" style="background:#006C21;"></div></td></tr>
-                <tr><td>Error text</td><td class="t-tok">color/text/error</td><td class="t-sw"><div class="swatch" style="background:#A12F2F;"></div></td></tr>
+                <tr><td>Zone background</td><td class="t-tok">color/surface/layer-02</td><td class="t-sw"><div class="swatch" style="background:#F4F6F8;"></div></td></tr>
+                <tr><td>Zone border (default)</td><td class="t-tok">color/border/strong</td><td class="t-sw"><div class="swatch" style="background:#9CA3AF;"></div></td></tr>
+                <tr><td>Zone border (uploading)</td><td class="t-tok">color/status/info/border</td><td class="t-sw"><div class="swatch" style="background:#027CB1;"></div></td></tr>
+                <tr><td>Zone border (complete)</td><td class="t-tok">color/status/success/border</td><td class="t-sw"><div class="swatch" style="background:#006C21;"></div></td></tr>
+                <tr><td>Zone border (error)</td><td class="t-tok">color/border/error</td><td class="t-sw"><div class="swatch" style="background:#A12F2F;"></div></td></tr>
+                <tr><td>Hover / drag background</td><td class="t-tok">color/status/info/bg</td><td class="t-sw"><div class="swatch" style="background:#E5EEF5;"></div></td></tr>
+                <tr><td>Headline text</td><td class="t-tok">color/text/primary</td><td class="t-sw"><div class="swatch" style="background:#374151;"></div></td></tr>
+                <tr><td>Sub-text / hint</td><td class="t-tok">color/text/secondary</td><td class="t-sw"><div class="swatch" style="background:#4B5563;"></div></td></tr>
+                <tr><td>Drag active text</td><td class="t-tok">color/action/secondary/default</td><td class="t-sw"><div class="swatch" style="background:#027CB1;"></div></td></tr>
+                <tr><td>Browse button</td><td class="t-tok">color/action/secondary/default</td><td class="t-sw"><div class="swatch" style="background:#027CB1;"></div></td></tr>
+                <tr><td>Ghost button text</td><td class="t-tok">color/link/surface-01/default</td><td class="t-sw"><div class="swatch" style="background:#016692;"></div></td></tr>
+                <tr><td>Success summary</td><td class="t-tok">color/status/success/text</td><td class="t-sw"><div class="swatch" style="background:#006C21;"></div></td></tr>
+                <tr><td>Error summary</td><td class="t-tok">color/text/error</td><td class="t-sw"><div class="swatch" style="background:#A12F2F;"></div></td></tr>
               </tbody>
             </table>
           </div>
@@ -622,19 +936,19 @@
             <table class="tokens-table">
               <thead><tr><th>Element</th><th>Token</th><th></th></tr></thead>
               <tbody>
-                <tr><td>Card background</td><td class="t-tok">color/surface/card</td><td class="t-sw"><div class="swatch" style="background:#0F0F0F;border-color:rgba(255,255,255,.1);"></div></td></tr>
-                <tr><td>Card border</td><td class="t-tok">color/border/interactive</td><td class="t-sw"><div class="swatch" style="background:#6B7280;"></div></td></tr>
-                <tr><td>Filename text</td><td class="t-tok">color/text/helper</td><td class="t-sw"><div class="swatch" style="background:#E5E7EB;border-color:rgba(0,0,0,.1);"></div></td></tr>
-                <tr><td>Status / size text</td><td class="t-tok">color/text/tertiary</td><td class="t-sw"><div class="swatch" style="background:#9CA3AF;"></div></td></tr>
-                <tr><td>Icon tile border (default)</td><td class="t-tok">color/action/secondary/default</td><td class="t-sw"><div class="swatch" style="background:#35A8D6;"></div></td></tr>
-                <tr><td>Icon tile border (success)</td><td class="t-tok">color/status/success/border</td><td class="t-sw"><div class="swatch" style="background:#4DAD82;"></div></td></tr>
-                <tr><td>Icon tile border (error)</td><td class="t-tok">color/border/error</td><td class="t-sw"><div class="swatch" style="background:#DB3939;"></div></td></tr>
-                <tr><td>Progress bar track</td><td class="t-tok">color/border/interactive</td><td class="t-sw"><div class="swatch" style="background:#374151;"></div></td></tr>
-                <tr><td>Progress fill (uploading)</td><td class="t-tok">color/status/info/border</td><td class="t-sw"><div class="swatch" style="background:#35A8D6;"></div></td></tr>
-                <tr><td>Progress fill (success)</td><td class="t-tok">color/status/success/border</td><td class="t-sw"><div class="swatch" style="background:#4DAD82;"></div></td></tr>
-                <tr><td>Progress fill (error)</td><td class="t-tok">color/status/error/border</td><td class="t-sw"><div class="swatch" style="background:#DB3939;"></div></td></tr>
-                <tr><td>Success text</td><td class="t-tok">color/status/success/text</td><td class="t-sw"><div class="swatch" style="background:#4DAD82;"></div></td></tr>
-                <tr><td>Error text</td><td class="t-tok">color/text/error</td><td class="t-sw"><div class="swatch" style="background:#E36868;"></div></td></tr>
+                <tr><td>Zone background</td><td class="t-tok">color/surface/layer-02</td><td class="t-sw"><div class="swatch" style="background:#1E1E1E;border-color:rgba(255,255,255,.1);"></div></td></tr>
+                <tr><td>Zone border (default)</td><td class="t-tok">color/border/strong</td><td class="t-sw"><div class="swatch" style="background:#6B7280;"></div></td></tr>
+                <tr><td>Zone border (uploading)</td><td class="t-tok">color/status/info/border</td><td class="t-sw"><div class="swatch" style="background:#8FCBE6;"></div></td></tr>
+                <tr><td>Zone border (complete)</td><td class="t-tok">color/status/success/border</td><td class="t-sw"><div class="swatch" style="background:#4DAD82;"></div></td></tr>
+                <tr><td>Zone border (error)</td><td class="t-tok">color/border/error</td><td class="t-sw"><div class="swatch" style="background:#DB3939;"></div></td></tr>
+                <tr><td>Hover / drag background</td><td class="t-tok">color/status/info/bg</td><td class="t-sw"><div class="swatch" style="background:#001F33;border-color:rgba(255,255,255,.1);"></div></td></tr>
+                <tr><td>Headline text</td><td class="t-tok">color/text/primary</td><td class="t-sw"><div class="swatch" style="background:#F3F4F6;border-color:rgba(0,0,0,.1);"></div></td></tr>
+                <tr><td>Sub-text / hint</td><td class="t-tok">color/text/secondary</td><td class="t-sw"><div class="swatch" style="background:#9CA3AF;"></div></td></tr>
+                <tr><td>Drag active text</td><td class="t-tok">color/action/secondary/default</td><td class="t-sw"><div class="swatch" style="background:#8FCBE6;"></div></td></tr>
+                <tr><td>Browse button</td><td class="t-tok">color/action/secondary/default</td><td class="t-sw"><div class="swatch" style="background:#35A8D6;"></div></td></tr>
+                <tr><td>Ghost button text</td><td class="t-tok">color/link/surface-01/default</td><td class="t-sw"><div class="swatch" style="background:#5ABFE0;"></div></td></tr>
+                <tr><td>Success summary</td><td class="t-tok">color/status/success/text</td><td class="t-sw"><div class="swatch" style="background:#4DAD82;"></div></td></tr>
+                <tr><td>Error summary</td><td class="t-tok">color/text/error</td><td class="t-sw"><div class="swatch" style="background:#E36868;"></div></td></tr>
               </tbody>
             </table>
           </div>
@@ -648,25 +962,26 @@
         <div class="a11y-group">
           <h3 class="a11y-group-title">Keyboard Navigation</h3>
           <ul class="a11y-list">
-            <li><div><strong>Tab</strong> moves focus to the remove button on each upload row.</div></li>
-            <li><div><strong>Enter / Space</strong> activates the remove button, cancelling or dismissing the file.</div></li>
+            <li><div><strong>Tab</strong> moves focus to the Browse Files button and to each file row's action button (cancel or remove).</div></li>
+            <li><div><strong>Enter / Space</strong> activates the Browse Files button, opening the file picker dialog.</div></li>
+            <li><div><strong>Escape</strong> cancels an active drag operation and returns the zone to its default state.</div></li>
           </ul>
         </div>
 
         <div class="a11y-group">
           <h3 class="a11y-group-title">Screen Reader</h3>
           <ul class="a11y-list">
-            <li><div>The progress bar uses <code>role="progressbar"</code> with <code>aria-valuenow</code>, <code>aria-valuemin="0"</code>, and <code>aria-valuemax="100"</code> to communicate upload progress.</div></li>
-            <li><div>The filename and current status should be combined in an <code>aria-label</code> on the row container so assistive technologies announce both together (e.g. "photo_001.jpg — Uploading, 54%").</div></li>
-            <li><div>The remove button uses <code>aria-label="Remove photo_001.jpg"</code> to provide a descriptive accessible name.</div></li>
+            <li><div>The drop zone uses <code>role="region"</code> with an <code>aria-label</code> (e.g. "File upload area") to give it a descriptive landmark.</div></li>
+            <li><div>Drag-over state changes are announced via <code>aria-live="polite"</code> on a visually hidden status element, so users know when the zone is ready to accept a drop.</div></li>
+            <li><div>Each file row's progress bar uses <code>role="progressbar"</code> with <code>aria-valuenow</code>, <code>aria-valuemin="0"</code>, and <code>aria-valuemax="100"</code>.</div></li>
           </ul>
         </div>
 
         <div class="a11y-group">
           <h3 class="a11y-group-title">Status Announcements</h3>
           <ul class="a11y-list">
-            <li><div>State transitions (success, error) should be announced via <code>aria-live="polite"</code> on the status text element so screen reader users are notified without losing focus.</div></li>
-            <li><div>Error messages (e.g. "File too large — max 10 MB") should be persistent and not auto-dismissed, ensuring users have time to read the message.</div></li>
+            <li><div>Batch completion and error summaries ("3 files uploaded", "2 of 4 failed") use <code>aria-live="polite"</code> so they are announced automatically without interrupting the user.</div></li>
+            <li><div>The "do not close this window" warning during upload uses <code>role="alert"</code> to ensure it is read immediately when the upload begins.</div></li>
           </ul>
         </div>
 
@@ -727,10 +1042,26 @@
     document.getElementById('navOverlay').classList.toggle('active', sbOpen && isMobile());
   }
 
+  function updateTabFade(tabsEl) {
+    const wrap = tabsEl.closest('.tabs-wrap');
+    if (!wrap) return;
+    const atEnd = tabsEl.scrollLeft + tabsEl.clientWidth >= tabsEl.scrollWidth - 2;
+    wrap.classList.toggle('at-end', atEnd);
+  }
+
+  function switchTab(btn, panelId) {
+    btn.closest('.doc-section').querySelectorAll('.tab').forEach(b => b.classList.remove('active'));
+    btn.closest('.doc-section').querySelectorAll('.tab-panel').forEach(p => p.classList.remove('active'));
+    btn.classList.add('active');
+    document.getElementById(panelId).classList.add('active');
+    const tabsEl = btn.closest('.tabs');
+    if (tabsEl) updateTabFade(tabsEl);
+  }
+
   function switchStateTab(btn, panelId) {
-    const section = btn.closest('.doc-section');
-    section.querySelectorAll('.state-tab-btn').forEach(b => b.classList.remove('active'));
-    section.querySelectorAll('.state-panel').forEach(p => p.classList.remove('active'));
+    const varPanel = btn.closest('.var-panel') || btn.closest('.doc-section');
+    varPanel.querySelectorAll('.state-tab-btn').forEach(b => b.classList.remove('active'));
+    varPanel.querySelectorAll('.state-panel').forEach(p => p.classList.remove('active'));
     btn.classList.add('active');
     document.getElementById(panelId).classList.add('active');
   }
