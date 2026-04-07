@@ -1102,6 +1102,9 @@ code {
 .ic-dot-states { display: flex; gap: 32px; align-items: flex-end; flex-wrap: wrap; }
 .ic-dot-state  { display: flex; flex-direction: column; align-items: center; gap: 10px; }
 .ic-dot-state-label { font-size: 12px; line-height: 16px; color: var(--text-tertiary); white-space: nowrap; }
+/* Interactive state overrides — Default + Hover are filled in the states strip */
+.ic-dot-states .ic-dot--default { background: #016692; border: none; }
+.ic-dot-states .ic-dot--hover   { background: #004F70; border: none; }
 
 /* Carousel — var-preview hardcoded light overrides */
 .var-preview .ic-photo            { border-color: #CDD2D7; }
