@@ -1087,10 +1087,21 @@ code {
 
 /* dot cluster */
 .ic-dots { display: flex; align-items: center; justify-content: center; gap: 12px; }
-.ic-dot  { border-radius: 100px; flex-shrink: 0; }
+.ic-dot  { border-radius: 100px; flex-shrink: 0; box-sizing: border-box; }
 .ic-dot--active  { width: 16px; height: 16px; background: var(--action-secondary); }
-.ic-dot--default { width: 12px; height: 12px; background: var(--surface-layer02); border: 1px solid var(--border); }
+.ic-dot--default { width: 12px; height: 12px; background: #016692; }
+.ic-dot--hover   { width: 12px; height: 12px; background: #004F70; }
 .ic-dot--distant { width: 10px; height: 10px; background: var(--surface-layer02); border: 1px solid var(--border); }
+.ic-dot--focus   {
+  width: 12px; height: 12px;
+  background: var(--border); border: 1px solid var(--border-focus);
+  box-shadow: 0 0 0 4px rgba(90,191,224,0.35);
+}
+
+/* dots anatomy display — labelled state strip */
+.ic-dot-states { display: flex; gap: 32px; align-items: flex-end; flex-wrap: wrap; }
+.ic-dot-state  { display: flex; flex-direction: column; align-items: center; gap: 10px; }
+.ic-dot-state-label { font-size: 12px; line-height: 16px; color: var(--text-tertiary); white-space: nowrap; }
 
 /* Carousel — var-preview hardcoded light overrides */
 .var-preview .ic-photo            { border-color: #CDD2D7; }
@@ -1098,8 +1109,10 @@ code {
 .var-preview .ic-arrow            { color: #016692; }
 .var-preview .ic-arrow:hover      { background: #E5E7EB; color: #004F70; }
 .var-preview .ic-dot--active      { background: #027CB1; }
-.var-preview .ic-dot--default     { background: #F4F6F8; border-color: #CDD2D7; }
+.var-preview .ic-dot--default     { background: #016692; }
+.var-preview .ic-dot--hover       { background: #004F70; }
 .var-preview .ic-dot--distant     { background: #F4F6F8; border-color: #CDD2D7; }
+.var-preview .ic-dot--focus       { background: #CDD2D7; border-color: #5ABFE0; box-shadow: 0 0 0 4px rgba(90,191,224,0.35); }
 .var-preview .ic-expand-btn       { background: #027CB1; }
 
 /* Carousel — var-preview-dark hardcoded dark overrides */
@@ -1108,8 +1121,10 @@ code {
 .var-preview-dark .ic-arrow       { color: #5ABFE0; }
 .var-preview-dark .ic-arrow:hover { background: #374151; color: #8FCBE6; }
 .var-preview-dark .ic-dot--active { background: #35A8D6; }
-.var-preview-dark .ic-dot--default{ background: #1E1E1E; border-color: #6B7280; }
+.var-preview-dark .ic-dot--default{ background: #5ABFE0; }
+.var-preview-dark .ic-dot--hover  { background: #0083BB; }
 .var-preview-dark .ic-dot--distant{ background: #1E1E1E; border-color: #6B7280; }
+.var-preview-dark .ic-dot--focus  { background: #374151; border-color: #0083BB; box-shadow: 0 0 0 4px rgba(0,131,187,0.35); }
 .var-preview-dark .ic-expand-btn  { background: #35A8D6; }
 
 /* ─── File Upload Zone ───────────────────────────── */
