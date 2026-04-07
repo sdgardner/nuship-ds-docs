@@ -1056,7 +1056,7 @@ code {
   border-radius: 2px; padding: 4px 8px;
   font-family: 'Lato', sans-serif; font-size: 12px; font-weight: 700;
   line-height: 18px; letter-spacing: 0.35px; text-transform: uppercase;
-  color: var(--badge-std-tx); white-space: nowrap;
+  color: var(--text-primary); white-space: nowrap;
 }
 .ic-expand-btn {
   position: absolute; bottom: 13px; right: 14px;
@@ -1091,10 +1091,10 @@ code {
 .ic-dot--active  { width: 16px; height: 16px; background: var(--action-secondary); }
 .ic-dot--default { width: 12px; height: 12px; background: #016692; }
 .ic-dot--hover   { width: 12px; height: 12px; background: #004F70; }
-.ic-dot--distant { width: 10px; height: 10px; background: var(--surface-layer02); border: 1px solid var(--border); }
+.ic-dot--distant { width: 10px; height: 10px; background: var(--surface-card); border: 1px solid var(--border); }
 .ic-dot--focus   {
   width: 12px; height: 12px;
-  background: var(--border); border: 1px solid var(--border-focus);
+  background: var(--surface-card); border: 2px solid var(--border-focus);
   box-shadow: 0 0 0 4px rgba(90,191,224,0.35);
 }
 
@@ -1111,8 +1111,8 @@ code {
 .var-preview .ic-dot--active      { background: #027CB1; }
 .var-preview .ic-dot--default     { background: #016692; }
 .var-preview .ic-dot--hover       { background: #004F70; }
-.var-preview .ic-dot--distant     { background: #F4F6F8; border-color: #CDD2D7; }
-.var-preview .ic-dot--focus       { background: #CDD2D7; border-color: #5ABFE0; box-shadow: 0 0 0 4px rgba(90,191,224,0.35); }
+.var-preview .ic-dot--distant     { background: #FFFFFF; border-color: #CDD2D7; }
+.var-preview .ic-dot--focus       { background: #FFFFFF; border-color: #5ABFE0; box-shadow: 0 0 0 4px rgba(90,191,224,0.35); }
 .var-preview .ic-expand-btn       { background: #027CB1; }
 
 /* Carousel — var-preview-dark hardcoded dark overrides */
@@ -1123,8 +1123,8 @@ code {
 .var-preview-dark .ic-dot--active { background: #35A8D6; }
 .var-preview-dark .ic-dot--default{ background: #5ABFE0; }
 .var-preview-dark .ic-dot--hover  { background: #0083BB; }
-.var-preview-dark .ic-dot--distant{ background: #1E1E1E; border-color: #6B7280; }
-.var-preview-dark .ic-dot--focus  { background: #374151; border-color: #0083BB; box-shadow: 0 0 0 4px rgba(0,131,187,0.35); }
+.var-preview-dark .ic-dot--distant{ background: #0F0F0F; border-color: #6B7280; }
+.var-preview-dark .ic-dot--focus  { background: #0F0F0F; border-color: #0083BB; box-shadow: 0 0 0 4px rgba(0,131,187,0.35); }
 .var-preview-dark .ic-expand-btn  { background: #35A8D6; }
 
 /* ─── File Upload Zone ───────────────────────────── */
