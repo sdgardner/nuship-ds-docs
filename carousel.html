@@ -1,0 +1,731 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Carousel — nuShip Design System</title>
+  <link href="https://fonts.googleapis.com/css2?family=Lato:wght@400;600;700;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="tokens.css">
+  <link rel="stylesheet" href="styles.css">
+  <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.min.js"></script>
+</head>
+<body>
+
+<!-- MOBILE OVERLAY -->
+<div id="navOverlay" class="nav-overlay" onclick="toggleSidebar()"></div>
+
+<!-- TOP NAV -->
+<nav class="topnav">
+  <button class="hamburger" onclick="toggleSidebar()" aria-label="Menu">
+    <i data-lucide="menu" style="width:18px;height:18px;color:var(--text-secondary)"></i>
+  </button>
+  <div class="bc">
+    <a href="index.html">UI Components</a>
+    <i data-lucide="chevron-right" style="width:14px;height:14px;flex-shrink:0"></i>
+    <a href="#">Display</a>
+    <i data-lucide="chevron-right" style="width:14px;height:14px;flex-shrink:0"></i>
+    <span class="cur">Carousel</span>
+  </div>
+  <div class="nav-actions">
+    <div class="toggle-wrap" onclick="toggleTheme()" role="button">
+      <i data-lucide="moon" style="width:20px;height:20px"></i>
+      <div class="toggle-track"><div class="toggle-thumb"></div></div>
+      <i data-lucide="sun" style="width:20px;height:20px"></i>
+    </div>
+  </div>
+</nav>
+
+<div class="shell">
+
+  <!-- LEFT NAV -->
+  <nav class="left-nav" id="leftNav">
+    <div class="left-nav-inner">
+      <div class="ln-group">
+        <div class="ln-label">Inputs</div>
+        <ul class="ln-list">
+          <li><a href="checkbox.html">Checkbox</a></li>
+          <li><a href="datepicker.html">Date Picker</a></li>
+          <li><a href="#">Number Input</a></li>
+          <li><a href="#">Radio Button</a></li>
+          <li><a href="#">Search</a></li>
+          <li><a href="#">Select</a></li>
+          <li><a href="#">Slider</a></li>
+          <li><a href="#">Switch</a></li>
+          <li><a href="#">Text Area</a></li>
+          <li><a href="#">Text Input</a></li>
+        </ul>
+      </div>
+      <div class="ln-group">
+        <div class="ln-label">Feedback</div>
+        <ul class="ln-list">
+          <li><a href="alert.html">Alert</a></li>
+          <li><a href="badge.html">Badge</a></li>
+          <li><a href="#">Toast</a></li>
+          <li><a href="#">Tooltip</a></li>
+        </ul>
+      </div>
+      <div class="ln-group">
+        <div class="ln-label">Navigation</div>
+        <ul class="ln-list">
+          <li><a href="accordion.html">Accordion</a></li>
+          <li><a href="#">Breadcrumb</a></li>
+          <li><a href="dropdown.html">Dropdown</a></li>
+          <li><a href="#">Menu</a></li>
+          <li><a href="#">Tabs</a></li>
+        </ul>
+      </div>
+      <div class="ln-group">
+        <div class="ln-label">Actions</div>
+        <ul class="ln-list">
+          <li><a href="button.html">Button</a></li>
+          <li><a href="#">Link</a></li>
+          <li><a href="#">Tags</a></li>
+        </ul>
+      </div>
+      <div class="ln-group">
+        <div class="ln-label">Overlays</div>
+        <ul class="ln-list">
+          <li><a href="#">Modal</a></li>
+          <li><a href="#">Popover</a></li>
+        </ul>
+      </div>
+      <div class="ln-group">
+        <div class="ln-label">Display</div>
+        <ul class="ln-list">
+          <li><a href="avatar.html">Avatar</a></li>
+          <li><a href="carousel.html" class="active">Carousel</a></li>
+          <li><a href="fileupload.html">File Upload</a></li>
+          <li><a href="#">Star Rating</a></li>
+          <li><a href="#">Timeline</a></li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <!-- CONTENT -->
+  <div class="content-wrap" id="contentWrap">
+    <main class="doc">
+
+      <!-- 1 · DEFINITION -->
+      <section class="doc-section" id="definition">
+        <div class="def-eyebrow">Display</div>
+        <h1 class="def-title">Carousel</h1>
+        <p class="def-desc">The Carousel component displays a series of images in a single framed slot with dot-based navigation and optional arrow controls. A position counter badge and fullscreen expand button can be overlaid on the image for added context and accessibility.</p>
+        <div class="def-tags">
+          <span class="tag">Developed</span>
+          <span class="tag">Figma</span>
+        </div>
+        <div class="preview-box">
+          <div class="ic-wrap">
+            <div class="ic-photo">
+              <div class="ic-placeholder">
+                <i data-lucide="image"></i>
+              </div>
+              <div class="ic-badge">1 / 6</div>
+              <button class="ic-expand-btn" aria-label="Expand image">
+                <i data-lucide="expand"></i>
+              </button>
+            </div>
+            <div class="ic-nav">
+              <button class="ic-arrow" aria-label="Previous image">
+                <i data-lucide="chevron-left"></i>
+              </button>
+              <div class="ic-dots" role="tablist" aria-label="Image navigation">
+                <div class="ic-dot ic-dot--distant" role="tab" aria-label="Image 1"></div>
+                <div class="ic-dot ic-dot--default" role="tab" aria-label="Image 2"></div>
+                <div class="ic-dot ic-dot--active"  role="tab" aria-label="Image 3" aria-selected="true"></div>
+                <div class="ic-dot ic-dot--default" role="tab" aria-label="Image 4"></div>
+                <div class="ic-dot ic-dot--distant" role="tab" aria-label="Image 5"></div>
+              </div>
+              <button class="ic-arrow" aria-label="Next image">
+                <i data-lucide="chevron-right"></i>
+              </button>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- 2 · ANATOMY -->
+      <section class="doc-section" id="anatomy">
+        <h2 class="section-title">Anatomy</h2>
+        <div class="anatomy-wrap">
+          <div class="anatomy-component" style="width:480px;position:relative;">
+            <div class="ic-wrap" style="pointer-events:none;">
+              <div class="ic-photo">
+                <div class="ic-placeholder">
+                  <i data-lucide="image"></i>
+                </div>
+                <div class="ic-badge">1 / 6</div>
+                <button class="ic-expand-btn" aria-label="Expand image">
+                  <i data-lucide="expand"></i>
+                </button>
+              </div>
+              <div class="ic-nav">
+                <button class="ic-arrow">
+                  <i data-lucide="chevron-left"></i>
+                </button>
+                <div class="ic-dots">
+                  <div class="ic-dot ic-dot--distant"></div>
+                  <div class="ic-dot ic-dot--default"></div>
+                  <div class="ic-dot ic-dot--active"></div>
+                  <div class="ic-dot ic-dot--default"></div>
+                  <div class="ic-dot ic-dot--distant"></div>
+                </div>
+                <button class="ic-arrow">
+                  <i data-lucide="chevron-right"></i>
+                </button>
+              </div>
+            </div>
+            <span class="callout" style="top:-10px;left:40px;">1</span>
+            <span class="callout" style="top:295px;left:-12px;">2</span>
+            <span class="callout" style="top:295px;right:-12px;">3</span>
+            <span class="callout" style="bottom:8px;left:-12px;">4</span>
+            <span class="callout" style="bottom:-10px;left:212px;">5</span>
+            <span class="callout" style="bottom:8px;right:-12px;">6</span>
+          </div>
+          <div class="anatomy-legend">
+            <div class="legend-item"><span class="legend-num">1</span>Photo slot</div>
+            <div class="legend-item"><span class="legend-num">2</span>Image counter badge</div>
+            <div class="legend-item"><span class="legend-num">3</span>Expand button</div>
+            <div class="legend-item"><span class="legend-num">4</span>Previous arrow</div>
+            <div class="legend-item"><span class="legend-num">5</span>Navigation dots</div>
+            <div class="legend-item"><span class="legend-num">6</span>Next arrow</div>
+          </div>
+        </div>
+      </section>
+
+      <!-- 3 · VARIANTS -->
+      <section class="doc-section" id="variants">
+        <h2 class="section-title">Variants</h2>
+        <div class="state-tab-row">
+          <button class="state-tab-btn active" onclick="switchStateTab(this,'vs-default')">Default</button>
+          <button class="state-tab-btn" onclick="switchStateTab(this,'vs-minimal')">Minimal</button>
+          <button class="state-tab-btn" onclick="switchStateTab(this,'vs-no-badge')">No badge</button>
+          <button class="state-tab-btn" onclick="switchStateTab(this,'vs-no-expand')">No expand</button>
+        </div>
+
+        <div class="var-panel">
+          <div class="var-previews-wrap">
+
+            <!-- Default -->
+            <div class="state-panel active" id="vs-default">
+              <div class="var-previews">
+                <div class="var-preview">
+                  <div class="ic-wrap">
+                    <div class="ic-photo">
+                      <div class="ic-placeholder"><i data-lucide="image"></i></div>
+                      <div class="ic-badge">1 / 6</div>
+                      <button class="ic-expand-btn"><i data-lucide="expand"></i></button>
+                    </div>
+                    <div class="ic-nav">
+                      <button class="ic-arrow"><i data-lucide="chevron-left"></i></button>
+                      <div class="ic-dots">
+                        <div class="ic-dot ic-dot--distant"></div>
+                        <div class="ic-dot ic-dot--default"></div>
+                        <div class="ic-dot ic-dot--active"></div>
+                        <div class="ic-dot ic-dot--default"></div>
+                        <div class="ic-dot ic-dot--distant"></div>
+                      </div>
+                      <button class="ic-arrow"><i data-lucide="chevron-right"></i></button>
+                    </div>
+                  </div>
+                </div>
+                <div class="var-preview-dark">
+                  <div class="ic-wrap">
+                    <div class="ic-photo">
+                      <div class="ic-placeholder"><i data-lucide="image"></i></div>
+                      <div class="ic-badge">1 / 6</div>
+                      <button class="ic-expand-btn"><i data-lucide="expand"></i></button>
+                    </div>
+                    <div class="ic-nav">
+                      <button class="ic-arrow"><i data-lucide="chevron-left"></i></button>
+                      <div class="ic-dots">
+                        <div class="ic-dot ic-dot--distant"></div>
+                        <div class="ic-dot ic-dot--default"></div>
+                        <div class="ic-dot ic-dot--active"></div>
+                        <div class="ic-dot ic-dot--default"></div>
+                        <div class="ic-dot ic-dot--distant"></div>
+                      </div>
+                      <button class="ic-arrow"><i data-lucide="chevron-right"></i></button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Minimal — dots only -->
+            <div class="state-panel" id="vs-minimal">
+              <div class="var-previews">
+                <div class="var-preview">
+                  <div class="ic-wrap">
+                    <div class="ic-photo">
+                      <div class="ic-placeholder"><i data-lucide="image"></i></div>
+                    </div>
+                    <div class="ic-nav">
+                      <div class="ic-dots">
+                        <div class="ic-dot ic-dot--distant"></div>
+                        <div class="ic-dot ic-dot--default"></div>
+                        <div class="ic-dot ic-dot--active"></div>
+                        <div class="ic-dot ic-dot--default"></div>
+                        <div class="ic-dot ic-dot--distant"></div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="var-preview-dark">
+                  <div class="ic-wrap">
+                    <div class="ic-photo">
+                      <div class="ic-placeholder"><i data-lucide="image"></i></div>
+                    </div>
+                    <div class="ic-nav">
+                      <div class="ic-dots">
+                        <div class="ic-dot ic-dot--distant"></div>
+                        <div class="ic-dot ic-dot--default"></div>
+                        <div class="ic-dot ic-dot--active"></div>
+                        <div class="ic-dot ic-dot--default"></div>
+                        <div class="ic-dot ic-dot--distant"></div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- No badge -->
+            <div class="state-panel" id="vs-no-badge">
+              <div class="var-previews">
+                <div class="var-preview">
+                  <div class="ic-wrap">
+                    <div class="ic-photo">
+                      <div class="ic-placeholder"><i data-lucide="image"></i></div>
+                      <button class="ic-expand-btn"><i data-lucide="expand"></i></button>
+                    </div>
+                    <div class="ic-nav">
+                      <button class="ic-arrow"><i data-lucide="chevron-left"></i></button>
+                      <div class="ic-dots">
+                        <div class="ic-dot ic-dot--distant"></div>
+                        <div class="ic-dot ic-dot--default"></div>
+                        <div class="ic-dot ic-dot--active"></div>
+                        <div class="ic-dot ic-dot--default"></div>
+                        <div class="ic-dot ic-dot--distant"></div>
+                      </div>
+                      <button class="ic-arrow"><i data-lucide="chevron-right"></i></button>
+                    </div>
+                  </div>
+                </div>
+                <div class="var-preview-dark">
+                  <div class="ic-wrap">
+                    <div class="ic-photo">
+                      <div class="ic-placeholder"><i data-lucide="image"></i></div>
+                      <button class="ic-expand-btn"><i data-lucide="expand"></i></button>
+                    </div>
+                    <div class="ic-nav">
+                      <button class="ic-arrow"><i data-lucide="chevron-left"></i></button>
+                      <div class="ic-dots">
+                        <div class="ic-dot ic-dot--distant"></div>
+                        <div class="ic-dot ic-dot--default"></div>
+                        <div class="ic-dot ic-dot--active"></div>
+                        <div class="ic-dot ic-dot--default"></div>
+                        <div class="ic-dot ic-dot--distant"></div>
+                      </div>
+                      <button class="ic-arrow"><i data-lucide="chevron-right"></i></button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- No expand -->
+            <div class="state-panel" id="vs-no-expand">
+              <div class="var-previews">
+                <div class="var-preview">
+                  <div class="ic-wrap">
+                    <div class="ic-photo">
+                      <div class="ic-placeholder"><i data-lucide="image"></i></div>
+                      <div class="ic-badge">1 / 6</div>
+                    </div>
+                    <div class="ic-nav">
+                      <button class="ic-arrow"><i data-lucide="chevron-left"></i></button>
+                      <div class="ic-dots">
+                        <div class="ic-dot ic-dot--distant"></div>
+                        <div class="ic-dot ic-dot--default"></div>
+                        <div class="ic-dot ic-dot--active"></div>
+                        <div class="ic-dot ic-dot--default"></div>
+                        <div class="ic-dot ic-dot--distant"></div>
+                      </div>
+                      <button class="ic-arrow"><i data-lucide="chevron-right"></i></button>
+                    </div>
+                  </div>
+                </div>
+                <div class="var-preview-dark">
+                  <div class="ic-wrap">
+                    <div class="ic-photo">
+                      <div class="ic-placeholder"><i data-lucide="image"></i></div>
+                      <div class="ic-badge">1 / 6</div>
+                    </div>
+                    <div class="ic-nav">
+                      <button class="ic-arrow"><i data-lucide="chevron-left"></i></button>
+                      <div class="ic-dots">
+                        <div class="ic-dot ic-dot--distant"></div>
+                        <div class="ic-dot ic-dot--default"></div>
+                        <div class="ic-dot ic-dot--active"></div>
+                        <div class="ic-dot ic-dot--default"></div>
+                        <div class="ic-dot ic-dot--distant"></div>
+                      </div>
+                      <button class="ic-arrow"><i data-lucide="chevron-right"></i></button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+          </div><!-- /var-previews-wrap -->
+
+          <div class="var-desc">
+            <div class="var-use-when">Carousel variants</div>
+            <ul class="var-use-list">
+              <li>Default — all controls shown: arrows, dots, badge, expand button</li>
+              <li>Minimal — dots only; no arrows, badge, or expand button; used in constrained layouts</li>
+              <li>No badge — hides the position counter; useful when the total count is implied</li>
+              <li>No expand — removes the fullscreen shortcut; use when a lightbox is not available</li>
+            </ul>
+            <div class="var-use-when" style="margin-top:16px;">Navigation dots scale by proximity:</div>
+            <ul class="var-use-list">
+              <li>Active — 16px solid blue; marks the current image</li>
+              <li>Default — 12px outlined; adjacent images</li>
+              <li>Distant — 10px outlined; further images, creates depth gradient</li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      <!-- 4 · PROPERTIES -->
+      <section class="doc-section" id="properties">
+        <h2 class="section-title">Properties</h2>
+        <table class="props-table">
+          <thead>
+            <tr>
+              <th>Property</th>
+              <th class="p-type">Type</th>
+              <th class="p-def">Default</th>
+              <th class="p-desc">Description</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><code class="p-name">images</code></td>
+              <td class="p-type">string[]</td>
+              <td class="p-def">[]</td>
+              <td class="p-desc">Array of image URLs to display in the carousel.</td>
+            </tr>
+            <tr>
+              <td><code class="p-name">activeIndex</code></td>
+              <td class="p-type">number</td>
+              <td class="p-def">0</td>
+              <td class="p-desc">Zero-based index of the currently displayed image.</td>
+            </tr>
+            <tr>
+              <td><code class="p-name">showBadge</code></td>
+              <td class="p-type">boolean</td>
+              <td class="p-def">true</td>
+              <td class="p-desc">Displays the image position counter (e.g. "1 / 6") overlaid at the bottom-left of the photo.</td>
+            </tr>
+            <tr>
+              <td><code class="p-name">showButton</code></td>
+              <td class="p-type">boolean</td>
+              <td class="p-def">true</td>
+              <td class="p-desc">Shows the previous and next arrow buttons flanking the navigation dots.</td>
+            </tr>
+            <tr>
+              <td><code class="p-name">showExpand</code></td>
+              <td class="p-type">boolean</td>
+              <td class="p-def">true</td>
+              <td class="p-desc">Shows the expand icon button at the bottom-right of the photo, typically triggering a lightbox.</td>
+            </tr>
+            <tr>
+              <td><code class="p-name">onNext</code></td>
+              <td class="p-type">function</td>
+              <td class="p-def">—</td>
+              <td class="p-desc">Callback fired when the next arrow or a dot to the right is activated.</td>
+            </tr>
+            <tr>
+              <td><code class="p-name">onPrev</code></td>
+              <td class="p-type">function</td>
+              <td class="p-def">—</td>
+              <td class="p-desc">Callback fired when the previous arrow or a dot to the left is activated.</td>
+            </tr>
+            <tr>
+              <td><code class="p-name">onExpand</code></td>
+              <td class="p-type">function</td>
+              <td class="p-def">—</td>
+              <td class="p-desc">Callback fired when the expand button is clicked.</td>
+            </tr>
+          </tbody>
+        </table>
+      </section>
+
+      <!-- 5 · USAGE -->
+      <section class="doc-section" id="usage">
+        <h2 class="section-title">Usage</h2>
+
+        <div class="usage-block">
+          <div class="usage-cols">
+            <div class="usage-card">
+              <div class="usage-card-header">
+                <div class="usage-icon do-icon"><i data-lucide="check" style="width:12px;height:12px"></i></div>
+                <div class="usage-card-title">Lorem ipsum dolor sit amet</div>
+              </div>
+              <ul class="usage-list">
+                <li>Lorem ipsum dolor sit amet, consectetur adipiscing elit sed do eiusmod tempor</li>
+                <li>Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi</li>
+                <li>Duis aute irure dolor in reprehenderit in voluptate velit esse cillum</li>
+              </ul>
+            </div>
+            <div class="usage-card">
+              <div class="usage-card-header">
+                <div class="usage-icon do-icon"><i data-lucide="check" style="width:12px;height:12px"></i></div>
+                <div class="usage-card-title">Ut labore et dolore magna aliqua</div>
+              </div>
+              <ul class="usage-list">
+                <li>Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia</li>
+                <li>Deserunt mollit anim id est laborum sed perspiciatis unde omnis iste natus</li>
+                <li>Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit</li>
+              </ul>
+            </div>
+          </div>
+          <div class="usage-cols">
+            <div class="usage-card">
+              <div class="usage-card-header">
+                <div class="usage-icon do-icon"><i data-lucide="check" style="width:12px;height:12px"></i></div>
+                <div class="usage-card-title">Neque porro quisquam est qui</div>
+              </div>
+              <ul class="usage-list">
+                <li>Dolorem ipsum quia dolor sit amet consectetur adipisci velit sed quia</li>
+                <li>Quisquam est qui dolorem ipsum quia dolor sit amet consectetur</li>
+                <li>Ut enim ad minima veniam, quis nostrum exercitationem ullam corporis</li>
+              </ul>
+            </div>
+            <div class="usage-card">
+              <div class="usage-card-header">
+                <div class="usage-icon do-icon"><i data-lucide="check" style="width:12px;height:12px"></i></div>
+                <div class="usage-card-title">Quis autem vel eum iure reprehenderit</div>
+              </div>
+              <ul class="usage-list">
+                <li>At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis</li>
+                <li>Nam libero tempore cum soluta nobis eligendi optio cumque nihil impedit</li>
+                <li>Temporibus autem quibusdam et aut officiis debitis rerum necessitatibus</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <div class="usage-divider"></div>
+
+        <div class="usage-block">
+          <div class="usage-cols">
+            <div class="usage-card">
+              <div class="usage-card-header">
+                <div class="usage-icon dont-icon"><i data-lucide="x" style="width:12px;height:12px"></i></div>
+                <div class="usage-card-title">Itaque earum rerum hic tenetur</div>
+              </div>
+              <ul class="usage-list">
+                <li>Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium</li>
+                <li>Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit</li>
+                <li>Quis autem vel eum iure reprehenderit qui voluptate velit esse quam nihil</li>
+              </ul>
+            </div>
+            <div class="usage-card">
+              <div class="usage-card-header">
+                <div class="usage-icon dont-icon"><i data-lucide="x" style="width:12px;height:12px"></i></div>
+                <div class="usage-card-title">Nam libero tempore cum soluta nobis</div>
+              </div>
+              <ul class="usage-list">
+                <li>Temporibus autem quibusdam et aut officiis debitis rerum necessitatibus saepe</li>
+                <li>Et harum quidem rerum facilis est et expedita distinctio nam libero tempore</li>
+                <li>Cum soluta nobis est eligendi optio cumque nihil impedit quo minus</li>
+              </ul>
+            </div>
+          </div>
+          <div class="usage-cols">
+            <div class="usage-card">
+              <div class="usage-card-header">
+                <div class="usage-icon dont-icon"><i data-lucide="x" style="width:12px;height:12px"></i></div>
+                <div class="usage-card-title">Totam rem aperiam eaque ipsa quae</div>
+              </div>
+              <ul class="usage-list">
+                <li>Ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt</li>
+                <li>Explicabo nemo enim ipsam voluptatem quia voluptas sit aspernatur</li>
+                <li>Ut enim ad minima veniam quis nostrum exercitationem ullam corporis</li>
+              </ul>
+            </div>
+            <div class="usage-card">
+              <div class="usage-card-header">
+                <div class="usage-icon dont-icon"><i data-lucide="x" style="width:12px;height:12px"></i></div>
+                <div class="usage-card-title">Accusantium doloremque laudantium totam</div>
+              </div>
+              <ul class="usage-list">
+                <li>Rem aperiam eaque ipsa quae ab illo inventore veritatis quasi architecto</li>
+                <li>Beatae vitae dicta sunt explicabo nemo enim ipsam voluptatem quia</li>
+                <li>Voluptas sit aspernatur aut odit aut fugit sed quia consequuntur magni</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- 6 · TOKENS -->
+      <section class="doc-section" id="tokens">
+        <h2 class="section-title">Tokens used</h2>
+
+        <div class="tokens-grid">
+          <div>
+            <div class="tokens-group-label">Light</div>
+            <table class="tokens-table">
+              <thead><tr><th>Element</th><th>Token</th><th></th></tr></thead>
+              <tbody>
+                <tr><td>Photo border</td><td class="t-tok">color/border/interactive</td><td class="t-sw"><div class="swatch" style="background:#CDD2D7;"></div></td></tr>
+                <tr><td>Active dot</td><td class="t-tok">color/action/secondary/default</td><td class="t-sw"><div class="swatch" style="background:#027CB1;"></div></td></tr>
+                <tr><td>Inactive dot fill</td><td class="t-tok">color/surface/layer-02</td><td class="t-sw"><div class="swatch" style="background:#F4F6F8;"></div></td></tr>
+                <tr><td>Inactive dot border</td><td class="t-tok">color/border/interactive</td><td class="t-sw"><div class="swatch" style="background:#CDD2D7;"></div></td></tr>
+                <tr><td>Arrow icon</td><td class="t-tok">color/text/secondary</td><td class="t-sw"><div class="swatch" style="background:#4B5563;"></div></td></tr>
+                <tr><td>Expand button</td><td class="t-tok">color/action/secondary/default</td><td class="t-sw"><div class="swatch" style="background:#027CB1;"></div></td></tr>
+                <tr><td>Badge background</td><td class="t-tok">color/status/info/bg (dark)</td><td class="t-sw"><div class="swatch" style="background:#001F33;"></div></td></tr>
+                <tr><td>Badge border</td><td class="t-tok">color/action/secondary/default (dark)</td><td class="t-sw"><div class="swatch" style="background:#35A8D6;"></div></td></tr>
+              </tbody>
+            </table>
+          </div>
+          <div>
+            <div class="tokens-group-label">Dark</div>
+            <table class="tokens-table">
+              <thead><tr><th>Element</th><th>Token</th><th></th></tr></thead>
+              <tbody>
+                <tr><td>Photo border</td><td class="t-tok">color/border/interactive</td><td class="t-sw"><div class="swatch" style="background:#6B7280;"></div></td></tr>
+                <tr><td>Active dot</td><td class="t-tok">color/action/secondary/default</td><td class="t-sw"><div class="swatch" style="background:#35A8D6;"></div></td></tr>
+                <tr><td>Inactive dot fill</td><td class="t-tok">color/surface/layer-02</td><td class="t-sw"><div class="swatch" style="background:#1E1E1E;border-color:rgba(255,255,255,.1);"></div></td></tr>
+                <tr><td>Inactive dot border</td><td class="t-tok">color/border/interactive</td><td class="t-sw"><div class="swatch" style="background:#6B7280;"></div></td></tr>
+                <tr><td>Arrow icon</td><td class="t-tok">color/text/secondary</td><td class="t-sw"><div class="swatch" style="background:#9CA3AF;"></div></td></tr>
+                <tr><td>Expand button</td><td class="t-tok">color/action/secondary/default</td><td class="t-sw"><div class="swatch" style="background:#35A8D6;"></div></td></tr>
+                <tr><td>Badge background</td><td class="t-tok">color/status/info/bg (dark)</td><td class="t-sw"><div class="swatch" style="background:#001F33;border-color:rgba(255,255,255,.1);"></div></td></tr>
+                <tr><td>Badge border</td><td class="t-tok">color/action/secondary/default (dark)</td><td class="t-sw"><div class="swatch" style="background:#35A8D6;"></div></td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </section>
+
+      <!-- 7 · ACCESSIBILITY -->
+      <section class="doc-section" id="accessibility">
+        <h2 class="section-title">Accessibility</h2>
+
+        <div class="a11y-group">
+          <h3 class="a11y-group-title">Keyboard Navigation</h3>
+          <ul class="a11y-list">
+            <li><div><strong>Tab</strong> moves focus to the previous button, navigation dots, next button, and expand button in order.</div></li>
+            <li><div><strong>Enter / Space</strong> activates the focused arrow button or dot.</div></li>
+            <li><div><strong>Arrow Left / Arrow Right</strong> can be used within the dot group (when dots have <code>role="tab"</code>) to navigate between images.</div></li>
+          </ul>
+        </div>
+
+        <div class="a11y-group">
+          <h3 class="a11y-group-title">Screen Reader</h3>
+          <ul class="a11y-list">
+            <li><div>The dot container uses <code>role="tablist"</code> with each dot as <code>role="tab"</code> and <code>aria-label="Image N"</code> so screen readers can announce position and navigate directly.</div></li>
+            <li><div>The active dot carries <code>aria-selected="true"</code>; inactive dots use <code>aria-selected="false"</code>.</div></li>
+            <li><div>Arrow buttons use descriptive <code>aria-label</code> values ("Previous image", "Next image") since they contain only icons.</div></li>
+            <li><div>The photo <code>&lt;img&gt;</code> element must have a meaningful <code>alt</code> attribute describing the image content (e.g. "Tan leather sofa, front view").</div></li>
+            <li><div>The expand button uses <code>aria-label="Expand image"</code> and <code>aria-haspopup="dialog"</code> when it triggers a lightbox overlay.</div></li>
+          </ul>
+        </div>
+
+        <div class="a11y-group">
+          <h3 class="a11y-group-title">Motion &amp; Animation</h3>
+          <ul class="a11y-list">
+            <li><div>Image transitions should respect <code>prefers-reduced-motion</code> — disable slide/fade animations when the user has requested reduced motion.</div></li>
+            <li><div>Auto-playing carousels must provide a pause control and must not advance faster than every 5 seconds per WCAG 2.2 guideline 2.2.2.</div></li>
+          </ul>
+        </div>
+
+      </section>
+
+      <!-- 8 · RELATED -->
+      <section class="doc-section" id="related">
+        <h2 class="section-title">Related Components</h2>
+        <div class="related-grid">
+          <a href="badge.html" class="related-card">
+            <div class="rc-name">Badge</div>
+            <div class="rc-desc">The image counter overlay uses the Badge component's dark-on-photo treatment.</div>
+          </a>
+          <a href="#" class="related-card">
+            <div class="rc-name">Modal</div>
+            <div class="rc-desc">Use for the fullscreen lightbox triggered by the expand button.</div>
+          </a>
+          <a href="button.html" class="related-card">
+            <div class="rc-name">Button</div>
+            <div class="rc-desc">Arrow controls and the expand button follow the icon-only button pattern.</div>
+          </a>
+        </div>
+      </section>
+
+    </main>
+
+    <!-- RIGHT NAV -->
+    <nav class="right-nav">
+      <div class="rn-label">On this page</div>
+      <ul class="rn-list">
+        <li><a href="#definition" id="rn-definition">Definition</a></li>
+        <li><a href="#anatomy" id="rn-anatomy">Anatomy</a></li>
+        <li><a href="#variants" id="rn-variants">Variants</a></li>
+        <li><a href="#properties" id="rn-properties">Properties</a></li>
+        <li><a href="#usage" id="rn-usage">Usage</a></li>
+        <li><a href="#tokens" id="rn-tokens">Tokens</a></li>
+        <li><a href="#accessibility" id="rn-accessibility">Accessibility</a></li>
+        <li><a href="#related" id="rn-related">Related</a></li>
+      </ul>
+    </nav>
+
+  </div><!-- /content-wrap -->
+</div><!-- /shell -->
+
+<script>
+  lucide.createIcons();
+
+  const isMobile = () => window.innerWidth <= 768;
+  let sbOpen = !isMobile();
+  if (!sbOpen) document.getElementById('leftNav').classList.add('hidden');
+
+  function toggleSidebar() {
+    sbOpen = !sbOpen;
+    document.getElementById('leftNav').classList.toggle('hidden', !sbOpen);
+    if (!isMobile()) {
+      document.getElementById('contentWrap').style.marginLeft = sbOpen ? 'var(--left-w)' : '0';
+    }
+    document.getElementById('navOverlay').classList.toggle('active', sbOpen && isMobile());
+  }
+
+  function switchStateTab(btn, panelId) {
+    const section = btn.closest('.doc-section');
+    section.querySelectorAll('.state-tab-btn').forEach(b => b.classList.remove('active'));
+    section.querySelectorAll('.state-panel').forEach(p => p.classList.remove('active'));
+    btn.classList.add('active');
+    document.getElementById(panelId).classList.add('active');
+  }
+
+  function toggleTheme() {
+    const html = document.documentElement;
+    const isDark = html.getAttribute('data-theme') === 'dark';
+    html.setAttribute('data-theme', isDark ? 'light' : 'dark');
+  }
+
+  // Right nav scroll spy
+  const rnLinks = document.querySelectorAll('.rn-list a');
+  const sections = [...rnLinks].map(l => document.querySelector(l.getAttribute('href')));
+  function updateRN() {
+    let active = 0;
+    sections.forEach((s, i) => { if (s && s.getBoundingClientRect().top <= 80) active = i; });
+    rnLinks.forEach((l, i) => l.classList.toggle('active', i === active));
+  }
+  document.getElementById('contentWrap').addEventListener('scroll', updateRN);
+  updateRN();
+</script>
+</body>
+</html>
