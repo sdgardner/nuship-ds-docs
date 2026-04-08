@@ -1852,6 +1852,25 @@ code {
 .md-btn-confirm--success     { background: var(--action-primary); }
 
 /* var-preview overrides — light */
+.var-preview .md-modal,
+.var-preview-dark .md-modal { width: 300px; padding: 18px; gap: 12px; }
+.var-preview .md-modal--mobile,
+.var-preview-dark .md-modal--mobile { width: 220px; }
+.var-preview .md-title,
+.var-preview-dark .md-title { font-size: 16px; line-height: 20px; }
+.var-preview .md-desc,
+.var-preview-dark .md-desc { font-size: 13px; line-height: 18px; }
+.var-preview .md-body,
+.var-preview-dark .md-body { gap: 20px; }
+.var-preview .md-btn-cancel,
+.var-preview-dark .md-btn-cancel { font-size: 13px; padding: 4px 6px; }
+.var-preview .md-btn-confirm,
+.var-preview-dark .md-btn-confirm { font-size: 13px; padding: 6px 10px; }
+.var-preview .md-btn-cancel--mobile,
+.var-preview-dark .md-btn-cancel--mobile { padding: 10px 12px; }
+.var-preview .md-btn-confirm--mobile,
+.var-preview-dark .md-btn-confirm--mobile { padding: 10px 12px; }
+
 .var-preview .md-modal { background: #FFFFFF; }
 .var-preview .md-title { color: #374151; }
 .var-preview .md-desc  { color: #4B5563; }
