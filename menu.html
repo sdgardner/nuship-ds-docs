@@ -1,0 +1,848 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Menu — nuShip Design System</title>
+  <link href="https://fonts.googleapis.com/css2?family=Lato:wght@400;600;700;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="tokens.css">
+  <link rel="stylesheet" href="styles.css">
+  <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.min.js"></script>
+</head>
+<body>
+
+<!-- MOBILE OVERLAY -->
+<div id="navOverlay" class="nav-overlay" onclick="toggleSidebar()"></div>
+
+<!-- TOP NAV -->
+<nav class="topnav">
+  <button class="hamburger" onclick="toggleSidebar()" aria-label="Menu">
+    <i data-lucide="menu" style="width:18px;height:18px;color:var(--text-secondary)"></i>
+  </button>
+  <div class="bc">
+    <a href="index.html">UI Components</a>
+    <i data-lucide="chevron-right" style="width:14px;height:14px;flex-shrink:0"></i>
+    <a href="#">Navigation</a>
+    <i data-lucide="chevron-right" style="width:14px;height:14px;flex-shrink:0"></i>
+    <span class="cur">Menu</span>
+  </div>
+  <div class="nav-actions">
+    <div class="toggle-wrap" onclick="toggleTheme()" role="button">
+      <i data-lucide="moon" style="width:20px;height:20px"></i>
+      <div class="toggle-track"><div class="toggle-thumb"></div></div>
+      <i data-lucide="sun" style="width:20px;height:20px"></i>
+    </div>
+  </div>
+</nav>
+
+<div class="shell">
+
+  <!-- LEFT NAV -->
+  <nav class="left-nav" id="leftNav">
+    <div class="left-nav-inner">
+      <div class="ln-group">
+        <div class="ln-label">Inputs</div>
+        <ul class="ln-list">
+          <li><a href="checkbox.html">Checkbox</a></li>
+          <li><a href="datepicker.html">Date Picker</a></li>
+          <li><a href="#">Number Input</a></li>
+          <li><a href="#">Radio Button</a></li>
+          <li><a href="#">Search</a></li>
+          <li><a href="#">Select</a></li>
+          <li><a href="#">Slider</a></li>
+          <li><a href="#">Switch</a></li>
+          <li><a href="#">Text Area</a></li>
+          <li><a href="#">Text Input</a></li>
+        </ul>
+      </div>
+      <div class="ln-group">
+        <div class="ln-label">Feedback</div>
+        <ul class="ln-list">
+          <li><a href="alert.html">Alert</a></li>
+          <li><a href="badge.html">Badge</a></li>
+          <li><a href="#">Toast</a></li>
+          <li><a href="#">Tooltip</a></li>
+        </ul>
+      </div>
+      <div class="ln-group">
+        <div class="ln-label">Navigation</div>
+        <ul class="ln-list">
+          <li><a href="accordion.html">Accordion</a></li>
+          <li><a href="#">Breadcrumb</a></li>
+          <li><a href="dropdown.html">Dropdown</a></li>
+          <li><a href="menu.html" class="active">Menu</a></li>
+          <li><a href="#">Tabs</a></li>
+        </ul>
+      </div>
+      <div class="ln-group">
+        <div class="ln-label">Actions</div>
+        <ul class="ln-list">
+          <li><a href="button.html">Button</a></li>
+          <li><a href="link.html">Link</a></li>
+          <li><a href="#">Tags</a></li>
+        </ul>
+      </div>
+      <div class="ln-group">
+        <div class="ln-label">Overlays</div>
+        <ul class="ln-list">
+          <li><a href="#">Modal</a></li>
+          <li><a href="#">Popover</a></li>
+        </ul>
+      </div>
+      <div class="ln-group">
+        <div class="ln-label">Display</div>
+        <ul class="ln-list">
+          <li><a href="avatar.html">Avatar</a></li>
+          <li><a href="carousel.html">Carousel</a></li>
+          <li><a href="fileupload.html">File Upload</a></li>
+          <li><a href="#">Star Rating</a></li>
+          <li><a href="#">Timeline</a></li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <!-- CONTENT -->
+  <div class="content-wrap" id="contentWrap">
+    <main class="doc">
+
+      <!-- 1 · DEFINITION -->
+      <section class="doc-section" id="definition">
+        <div class="def-hero">
+          <div class="def-hero-left">
+            <div class="def-eyebrow">NAVIGATION</div>
+            <h1 class="def-title">Menu</h1>
+            <p class="def-desc">A floating panel that presents a list of contextual actions for an element. Menus support items, submenus, selected states, destructive actions, and keyboard shortcuts.</p>
+            <div class="def-tags">
+              <span class="tag">Developed</span>
+              <span class="tag">Figma</span>
+            </div>
+          </div>
+          <div class="def-hero-right">
+            <div class="preview-box" style="padding:32px;display:flex;align-items:flex-start;justify-content:center;gap:40px;flex-wrap:wrap;">
+              <!-- Light preview -->
+              <nav class="mn-menu" style="min-width:188px;" aria-label="Example menu">
+                <div class="mn-item">
+                  <div class="mn-item-content">
+                    <i data-lucide="folder-plus" class="mn-icon"></i>
+                    <span class="mn-label">New Folder</span>
+                  </div>
+                  <span class="mn-kbd">⌘N</span>
+                </div>
+                <div class="mn-item">
+                  <div class="mn-item-content">
+                    <i data-lucide="copy" class="mn-icon"></i>
+                    <span class="mn-label">Duplicate</span>
+                  </div>
+                  <span class="mn-kbd">⌘D</span>
+                </div>
+                <div class="mn-item mn-item--selected">
+                  <div class="mn-item-content">
+                    <i data-lucide="check-square" class="mn-icon"></i>
+                    <span class="mn-label">Show Hidden</span>
+                  </div>
+                  <div class="mn-trailing"><i data-lucide="check"></i></div>
+                </div>
+                <div class="mn-item">
+                  <div class="mn-item-content">
+                    <i data-lucide="folder-symlink" class="mn-icon"></i>
+                    <span class="mn-label">Move To</span>
+                  </div>
+                  <div class="mn-trailing"><i data-lucide="chevron-right"></i></div>
+                </div>
+                <div class="mn-divider"></div>
+                <div class="mn-item mn-item--destructive">
+                  <div class="mn-item-content">
+                    <i data-lucide="trash-2" class="mn-icon"></i>
+                    <span class="mn-label">Delete</span>
+                  </div>
+                </div>
+              </nav>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- 2 · ANATOMY -->
+      <section class="doc-section" id="anatomy">
+        <h2 class="section-title">Anatomy</h2>
+        <div style="display:flex;flex-wrap:wrap;gap:20px;">
+
+          <!-- Menu container -->
+          <div class="anatomy-wrap" style="flex:1;min-width:260px;">
+            <div style="font-size:11px;font-weight:700;letter-spacing:.5px;text-transform:uppercase;color:var(--text-tertiary);margin-bottom:20px;">Menu container</div>
+            <div class="anatomy-component" style="padding:32px 40px;display:flex;justify-content:center;align-items:center;position:relative;">
+              <nav class="mn-menu" style="pointer-events:none;width:180px;">
+                <div class="mn-item">
+                  <div class="mn-item-content">
+                    <i data-lucide="folder-plus" class="mn-icon"></i>
+                    <span class="mn-label">New Folder</span>
+                  </div>
+                  <span class="mn-kbd">⌘N</span>
+                </div>
+                <div class="mn-item mn-item--selected">
+                  <div class="mn-item-content">
+                    <i data-lucide="check-square" class="mn-icon"></i>
+                    <span class="mn-label">Show Hidden</span>
+                  </div>
+                  <div class="mn-trailing"><i data-lucide="check"></i></div>
+                </div>
+                <div class="mn-divider"></div>
+                <div class="mn-item mn-item--destructive">
+                  <div class="mn-item-content">
+                    <i data-lucide="trash-2" class="mn-icon"></i>
+                    <span class="mn-label">Delete</span>
+                  </div>
+                </div>
+              </nav>
+              <span class="callout" style="top:18px;left:24px;">1</span>
+              <span class="callout" style="top:18px;right:18px;">2</span>
+              <span class="callout" style="bottom:56px;left:24px;">3</span>
+              <span class="callout" style="bottom:18px;left:24px;">4</span>
+            </div>
+            <div class="anatomy-legend">
+              <div class="legend-item"><span class="legend-num">1</span>Container background &amp; border</div>
+              <div class="legend-item"><span class="legend-num">2</span>Drop shadow</div>
+              <div class="legend-item"><span class="legend-num">3</span>Divider</div>
+              <div class="legend-item"><span class="legend-num">4</span>Menu item</div>
+            </div>
+          </div>
+
+          <!-- Menu item -->
+          <div class="anatomy-wrap" style="flex:1;min-width:260px;">
+            <div style="font-size:11px;font-weight:700;letter-spacing:.5px;text-transform:uppercase;color:var(--text-tertiary);margin-bottom:20px;">Menu item</div>
+            <div class="anatomy-component" style="padding:32px 40px;display:flex;justify-content:center;align-items:center;position:relative;">
+              <div style="pointer-events:none;width:180px;">
+                <div class="mn-item mn-item--hover" style="position:relative;">
+                  <div class="mn-item-content">
+                    <i data-lucide="folder-plus" class="mn-icon"></i>
+                    <span class="mn-label">New Folder</span>
+                  </div>
+                  <span class="mn-kbd">⌘N</span>
+                  <span class="callout" style="top:-12px;left:8px;position:absolute;">1</span>
+                  <span class="callout" style="top:-12px;left:40px;position:absolute;">2</span>
+                  <span class="callout" style="top:-12px;right:8px;position:absolute;">3</span>
+                </div>
+              </div>
+            </div>
+            <div class="anatomy-legend">
+              <div class="legend-item"><span class="legend-num">1</span>Icon (16×16)</div>
+              <div class="legend-item"><span class="legend-num">2</span>Label — typography/body/small</div>
+              <div class="legend-item"><span class="legend-num">3</span>Keyboard shortcut / trailing icon</div>
+            </div>
+          </div>
+
+        </div>
+      </section>
+
+      <!-- 3 · VARIANTS -->
+      <section class="doc-section" id="variants">
+        <h2 class="section-title">Variants</h2>
+        <div class="tabs-wrap">
+          <div class="tabs">
+            <button class="tab active" onclick="switchTab(this,'v-type')">Type</button>
+            <button class="tab" onclick="switchTab(this,'v-state')">State</button>
+          </div>
+        </div>
+
+        <!-- Type -->
+        <div class="tab-panel active" id="v-type">
+          <div class="var-panel">
+            <div class="var-previews-wrap">
+              <div class="state-panel active">
+                <div class="var-previews">
+
+                  <!-- Light -->
+                  <div class="var-preview" style="align-items:flex-start;gap:20px;flex-wrap:wrap;">
+                    <div>
+                      <div style="font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.5px;color:#9CA3AF;margin-bottom:10px;">Item</div>
+                      <nav class="mn-menu" style="min-width:170px;" aria-label="Item type">
+                        <div class="mn-item">
+                          <div class="mn-item-content">
+                            <i data-lucide="folder-plus" class="mn-icon"></i>
+                            <span class="mn-label">New Folder</span>
+                          </div>
+                          <span class="mn-kbd">⌘N</span>
+                        </div>
+                        <div class="mn-item">
+                          <div class="mn-item-content">
+                            <i data-lucide="copy" class="mn-icon"></i>
+                            <span class="mn-label">Duplicate</span>
+                          </div>
+                          <span class="mn-kbd">⌘D</span>
+                        </div>
+                      </nav>
+                    </div>
+                    <div>
+                      <div style="font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.5px;color:#9CA3AF;margin-bottom:10px;">Submenu</div>
+                      <nav class="mn-menu" style="min-width:170px;" aria-label="Submenu type">
+                        <div class="mn-item">
+                          <div class="mn-item-content">
+                            <i data-lucide="folder-symlink" class="mn-icon"></i>
+                            <span class="mn-label">Move To</span>
+                          </div>
+                          <div class="mn-trailing"><i data-lucide="chevron-right"></i></div>
+                        </div>
+                        <div class="mn-item">
+                          <div class="mn-item-content">
+                            <i data-lucide="share-2" class="mn-icon"></i>
+                            <span class="mn-label">Share With</span>
+                          </div>
+                          <div class="mn-trailing"><i data-lucide="chevron-right"></i></div>
+                        </div>
+                      </nav>
+                    </div>
+                    <div>
+                      <div style="font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.5px;color:#9CA3AF;margin-bottom:10px;">Selected</div>
+                      <nav class="mn-menu" style="min-width:170px;" aria-label="Selected type">
+                        <div class="mn-item mn-item--selected">
+                          <div class="mn-item-content">
+                            <i data-lucide="check-square" class="mn-icon"></i>
+                            <span class="mn-label">Show Hidden</span>
+                          </div>
+                          <div class="mn-trailing"><i data-lucide="check"></i></div>
+                        </div>
+                        <div class="mn-item">
+                          <div class="mn-item-content">
+                            <i data-lucide="columns-2" class="mn-icon"></i>
+                            <span class="mn-label">Show Preview</span>
+                          </div>
+                        </div>
+                      </nav>
+                    </div>
+                    <div>
+                      <div style="font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.5px;color:#9CA3AF;margin-bottom:10px;">Destructive</div>
+                      <nav class="mn-menu" style="min-width:170px;" aria-label="Destructive type">
+                        <div class="mn-item">
+                          <div class="mn-item-content">
+                            <i data-lucide="archive" class="mn-icon"></i>
+                            <span class="mn-label">Archive</span>
+                          </div>
+                        </div>
+                        <div class="mn-divider"></div>
+                        <div class="mn-item mn-item--destructive">
+                          <div class="mn-item-content">
+                            <i data-lucide="trash-2" class="mn-icon"></i>
+                            <span class="mn-label">Delete</span>
+                          </div>
+                        </div>
+                      </nav>
+                    </div>
+                  </div>
+
+                  <!-- Dark -->
+                  <div class="var-preview-dark" style="align-items:flex-start;gap:20px;flex-wrap:wrap;">
+                    <div>
+                      <div style="font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.5px;color:#6B7280;margin-bottom:10px;">Item</div>
+                      <nav class="mn-menu" style="min-width:170px;" aria-label="Item type dark">
+                        <div class="mn-item">
+                          <div class="mn-item-content">
+                            <i data-lucide="folder-plus" class="mn-icon"></i>
+                            <span class="mn-label">New Folder</span>
+                          </div>
+                          <span class="mn-kbd">⌘N</span>
+                        </div>
+                        <div class="mn-item">
+                          <div class="mn-item-content">
+                            <i data-lucide="copy" class="mn-icon"></i>
+                            <span class="mn-label">Duplicate</span>
+                          </div>
+                          <span class="mn-kbd">⌘D</span>
+                        </div>
+                      </nav>
+                    </div>
+                    <div>
+                      <div style="font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.5px;color:#6B7280;margin-bottom:10px;">Submenu</div>
+                      <nav class="mn-menu" style="min-width:170px;" aria-label="Submenu type dark">
+                        <div class="mn-item">
+                          <div class="mn-item-content">
+                            <i data-lucide="folder-symlink" class="mn-icon"></i>
+                            <span class="mn-label">Move To</span>
+                          </div>
+                          <div class="mn-trailing"><i data-lucide="chevron-right"></i></div>
+                        </div>
+                        <div class="mn-item">
+                          <div class="mn-item-content">
+                            <i data-lucide="share-2" class="mn-icon"></i>
+                            <span class="mn-label">Share With</span>
+                          </div>
+                          <div class="mn-trailing"><i data-lucide="chevron-right"></i></div>
+                        </div>
+                      </nav>
+                    </div>
+                    <div>
+                      <div style="font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.5px;color:#6B7280;margin-bottom:10px;">Selected</div>
+                      <nav class="mn-menu" style="min-width:170px;" aria-label="Selected type dark">
+                        <div class="mn-item mn-item--selected">
+                          <div class="mn-item-content">
+                            <i data-lucide="check-square" class="mn-icon"></i>
+                            <span class="mn-label">Show Hidden</span>
+                          </div>
+                          <div class="mn-trailing"><i data-lucide="check"></i></div>
+                        </div>
+                        <div class="mn-item">
+                          <div class="mn-item-content">
+                            <i data-lucide="columns-2" class="mn-icon"></i>
+                            <span class="mn-label">Show Preview</span>
+                          </div>
+                        </div>
+                      </nav>
+                    </div>
+                    <div>
+                      <div style="font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.5px;color:#6B7280;margin-bottom:10px;">Destructive</div>
+                      <nav class="mn-menu" style="min-width:170px;" aria-label="Destructive type dark">
+                        <div class="mn-item">
+                          <div class="mn-item-content">
+                            <i data-lucide="archive" class="mn-icon"></i>
+                            <span class="mn-label">Archive</span>
+                          </div>
+                        </div>
+                        <div class="mn-divider"></div>
+                        <div class="mn-item mn-item--destructive">
+                          <div class="mn-item-content">
+                            <i data-lucide="trash-2" class="mn-icon"></i>
+                            <span class="mn-label">Delete</span>
+                          </div>
+                        </div>
+                      </nav>
+                    </div>
+                  </div>
+
+                </div>
+              </div>
+            </div>
+            <div class="var-desc">
+              <div class="var-use-when">Use when:</div>
+              <ul class="var-use-list">
+                <li><strong>Item</strong> — standard action with optional keyboard shortcut</li>
+                <li><strong>Submenu</strong> — action that reveals a nested menu; always shows a chevron trailing icon</li>
+                <li><strong>Selected</strong> — toggleable option currently active; shows a checkmark and info-blue label</li>
+                <li><strong>Destructive</strong> — irreversible action (delete, remove); uses error-red for emphasis</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <!-- State -->
+        <div class="tab-panel" id="v-state">
+          <div class="var-panel">
+            <div class="var-previews-wrap">
+              <div class="state-panel active">
+                <div class="var-previews">
+
+                  <!-- Light -->
+                  <div class="var-preview" style="align-items:flex-start;gap:20px;flex-wrap:wrap;">
+                    <div>
+                      <div style="font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.5px;color:#9CA3AF;margin-bottom:10px;">Default</div>
+                      <nav class="mn-menu" style="min-width:170px;" aria-label="Default state">
+                        <div class="mn-item">
+                          <div class="mn-item-content">
+                            <i data-lucide="folder-plus" class="mn-icon"></i>
+                            <span class="mn-label">New Folder</span>
+                          </div>
+                          <span class="mn-kbd">⌘N</span>
+                        </div>
+                        <div class="mn-item">
+                          <div class="mn-item-content">
+                            <i data-lucide="copy" class="mn-icon"></i>
+                            <span class="mn-label">Duplicate</span>
+                          </div>
+                          <span class="mn-kbd">⌘D</span>
+                        </div>
+                      </nav>
+                    </div>
+                    <div>
+                      <div style="font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.5px;color:#9CA3AF;margin-bottom:10px;">Hover</div>
+                      <nav class="mn-menu" style="min-width:170px;" aria-label="Hover state">
+                        <div class="mn-item mn-item--hover">
+                          <div class="mn-item-content">
+                            <i data-lucide="folder-plus" class="mn-icon"></i>
+                            <span class="mn-label">New Folder</span>
+                          </div>
+                          <span class="mn-kbd">⌘N</span>
+                        </div>
+                        <div class="mn-item">
+                          <div class="mn-item-content">
+                            <i data-lucide="copy" class="mn-icon"></i>
+                            <span class="mn-label">Duplicate</span>
+                          </div>
+                          <span class="mn-kbd">⌘D</span>
+                        </div>
+                      </nav>
+                    </div>
+                    <div>
+                      <div style="font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.5px;color:#9CA3AF;margin-bottom:10px;">Disabled</div>
+                      <nav class="mn-menu" style="min-width:170px;" aria-label="Disabled state">
+                        <div class="mn-item">
+                          <div class="mn-item-content">
+                            <i data-lucide="folder-plus" class="mn-icon"></i>
+                            <span class="mn-label">New Folder</span>
+                          </div>
+                          <span class="mn-kbd">⌘N</span>
+                        </div>
+                        <div class="mn-item mn-item--disabled">
+                          <div class="mn-item-content">
+                            <i data-lucide="copy" class="mn-icon"></i>
+                            <span class="mn-label">Duplicate</span>
+                          </div>
+                          <span class="mn-kbd">⌘D</span>
+                        </div>
+                      </nav>
+                    </div>
+                  </div>
+
+                  <!-- Dark -->
+                  <div class="var-preview-dark" style="align-items:flex-start;gap:20px;flex-wrap:wrap;">
+                    <div>
+                      <div style="font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.5px;color:#6B7280;margin-bottom:10px;">Default</div>
+                      <nav class="mn-menu" style="min-width:170px;" aria-label="Default state dark">
+                        <div class="mn-item">
+                          <div class="mn-item-content">
+                            <i data-lucide="folder-plus" class="mn-icon"></i>
+                            <span class="mn-label">New Folder</span>
+                          </div>
+                          <span class="mn-kbd">⌘N</span>
+                        </div>
+                        <div class="mn-item">
+                          <div class="mn-item-content">
+                            <i data-lucide="copy" class="mn-icon"></i>
+                            <span class="mn-label">Duplicate</span>
+                          </div>
+                          <span class="mn-kbd">⌘D</span>
+                        </div>
+                      </nav>
+                    </div>
+                    <div>
+                      <div style="font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.5px;color:#6B7280;margin-bottom:10px;">Hover</div>
+                      <nav class="mn-menu" style="min-width:170px;" aria-label="Hover state dark">
+                        <div class="mn-item mn-item--hover">
+                          <div class="mn-item-content">
+                            <i data-lucide="folder-plus" class="mn-icon"></i>
+                            <span class="mn-label">New Folder</span>
+                          </div>
+                          <span class="mn-kbd">⌘N</span>
+                        </div>
+                        <div class="mn-item">
+                          <div class="mn-item-content">
+                            <i data-lucide="copy" class="mn-icon"></i>
+                            <span class="mn-label">Duplicate</span>
+                          </div>
+                          <span class="mn-kbd">⌘D</span>
+                        </div>
+                      </nav>
+                    </div>
+                    <div>
+                      <div style="font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.5px;color:#6B7280;margin-bottom:10px;">Disabled</div>
+                      <nav class="mn-menu" style="min-width:170px;" aria-label="Disabled state dark">
+                        <div class="mn-item">
+                          <div class="mn-item-content">
+                            <i data-lucide="folder-plus" class="mn-icon"></i>
+                            <span class="mn-label">New Folder</span>
+                          </div>
+                          <span class="mn-kbd">⌘N</span>
+                        </div>
+                        <div class="mn-item mn-item--disabled">
+                          <div class="mn-item-content">
+                            <i data-lucide="copy" class="mn-icon"></i>
+                            <span class="mn-label">Duplicate</span>
+                          </div>
+                          <span class="mn-kbd">⌘D</span>
+                        </div>
+                      </nav>
+                    </div>
+                  </div>
+
+                </div>
+              </div>
+            </div>
+            <div class="var-desc">
+              <div class="var-use-when">Item states:</div>
+              <ul class="var-use-list">
+                <li><strong>Default</strong> — no background; item is actionable</li>
+                <li><strong>Hover</strong> — <code>surface-layer01-hover</code> background fill; triggered on pointer enter</li>
+                <li><strong>Disabled</strong> — all text and icon shift to <code>text-tertiary</code>; pointer-events removed</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+      </section>
+
+      <!-- 4 · PROPERTIES -->
+      <section class="doc-section" id="properties">
+        <h2 class="section-title">Properties</h2>
+        <table class="props-table">
+          <thead><tr><th>Property</th><th>Type</th><th>Default</th><th>Description</th></tr></thead>
+          <tbody>
+            <tr>
+              <td class="p-name">type</td>
+              <td class="p-type">"item" | "submenu" | "selected" | "destructive"</td>
+              <td class="p-default">"item"</td>
+              <td class="p-desc">Determines the visual treatment and trailing element of the menu item.</td>
+            </tr>
+            <tr>
+              <td class="p-name">state</td>
+              <td class="p-type">"default" | "hover" | "disabled"</td>
+              <td class="p-default">"default"</td>
+              <td class="p-desc">Interaction state. Disabled removes pointer events and shifts all text to tertiary.</td>
+            </tr>
+            <tr>
+              <td class="p-name">label</td>
+              <td class="p-type">string</td>
+              <td class="p-default">—</td>
+              <td class="p-desc">The text content of the menu item. Keep concise — 1 to 3 words is ideal.</td>
+            </tr>
+            <tr>
+              <td class="p-name">showIcon</td>
+              <td class="p-type">boolean</td>
+              <td class="p-default">true</td>
+              <td class="p-desc">Toggles the leading 16×16 Lucide icon. When shown, all items in a group should include an icon for alignment.</td>
+            </tr>
+            <tr>
+              <td class="p-name">keyboardShortcut</td>
+              <td class="p-type">string</td>
+              <td class="p-default">—</td>
+              <td class="p-desc">Optional keyboard shortcut displayed on the trailing side (e.g. ⌘C, ⌃Z). Only applies to type "item".</td>
+            </tr>
+          </tbody>
+        </table>
+      </section>
+
+      <!-- 5 · USAGE -->
+      <section class="doc-section" id="usage">
+        <h2 class="section-title">Usage</h2>
+        <div class="usage-grid">
+
+          <div class="usage-card">
+            <div class="usage-card-header">
+              <i data-lucide="check-circle" class="usage-icon usage-do"></i>
+              <div class="usage-card-title">Group related actions with dividers</div>
+            </div>
+            <ul class="usage-list">
+              <li>Use dividers to separate logical groups — create/edit, view options, and destructive actions</li>
+              <li>Aim for 3–5 items per group; total menu length should not exceed 8–10 items</li>
+            </ul>
+          </div>
+
+          <div class="usage-card">
+            <div class="usage-card-header">
+              <i data-lucide="check-circle" class="usage-icon usage-do"></i>
+              <div class="usage-card-title">Place destructive actions last</div>
+            </div>
+            <ul class="usage-list">
+              <li>Always put Delete, Remove, or other irreversible actions at the bottom, separated by a divider</li>
+              <li>This prevents accidental activation near the first item the user targets</li>
+            </ul>
+          </div>
+
+          <div class="usage-card">
+            <div class="usage-card-header">
+              <i data-lucide="x-circle" class="usage-icon usage-dont"></i>
+              <div class="usage-card-title">Don't use menus for primary navigation</div>
+            </div>
+            <ul class="usage-list">
+              <li>Menus are contextual — they appear on demand for a specific element, not for site-wide navigation</li>
+              <li>Use a Dropdown or Tab component for persistent navigation patterns</li>
+            </ul>
+          </div>
+
+          <div class="usage-card">
+            <div class="usage-card-header">
+              <i data-lucide="x-circle" class="usage-icon usage-dont"></i>
+              <div class="usage-card-title">Don't mix icon and no-icon items</div>
+            </div>
+            <ul class="usage-list">
+              <li>If any item in a group has an icon, all items in that group should have one to maintain alignment</li>
+              <li>An empty icon slot creates visual misalignment and looks unfinished</li>
+            </ul>
+          </div>
+
+        </div>
+      </section>
+
+      <!-- 6 · TOKENS -->
+      <section class="doc-section" id="tokens">
+        <h2 class="section-title">Tokens used</h2>
+
+        <!-- Container -->
+        <div class="tokens-group-label">Container</div>
+        <table class="tokens-table">
+          <thead><tr><th>Element</th><th>Token</th><th style="width:40px;"></th><th>Light</th><th style="width:40px;"></th><th>Dark</th></tr></thead>
+          <tbody>
+            <tr><td>Background</td><td class="t-tok">--surface-layer02</td><td class="t-sw"><div class="swatch" style="background:#F4F6F8;"></div></td><td>#F4F6F8</td><td class="t-sw"><div class="swatch" style="background:#1E1E1E;border-color:rgba(255,255,255,.15);"></div></td><td>#1E1E1E</td></tr>
+            <tr><td>Border</td><td class="t-tok">--border</td><td class="t-sw"><div class="swatch" style="background:#CDD2D7;"></div></td><td>#CDD2D7</td><td class="t-sw"><div class="swatch" style="background:#6B7280;border-color:rgba(255,255,255,.15);"></div></td><td>#6B7280</td></tr>
+            <tr><td>Divider</td><td class="t-tok">--border</td><td class="t-sw"><div class="swatch" style="background:#CDD2D7;"></div></td><td>#CDD2D7</td><td class="t-sw"><div class="swatch" style="background:#6B7280;border-color:rgba(255,255,255,.15);"></div></td><td>#6B7280</td></tr>
+            <tr><td>Shadow</td><td class="t-tok">elevation/light/level-1</td><td class="t-sw"><div class="swatch" style="background:#37415014;"></div></td><td colspan="3">0 1px 3px rgba(55,65,80,0.08)</td></tr>
+          </tbody>
+        </table>
+
+        <!-- Item default -->
+        <div class="tokens-group-label" style="margin-top:16px;">Item — Default</div>
+        <table class="tokens-table">
+          <thead><tr><th>Element</th><th>Token</th><th style="width:40px;"></th><th>Light</th><th style="width:40px;"></th><th>Dark</th></tr></thead>
+          <tbody>
+            <tr><td>Label</td><td class="t-tok">--text-primary</td><td class="t-sw"><div class="swatch" style="background:#374151;"></div></td><td>#374151</td><td class="t-sw"><div class="swatch" style="background:#FFFFFF;border-color:rgba(0,0,0,.1);"></div></td><td>#FFFFFF</td></tr>
+            <tr><td>Icon</td><td class="t-tok">--text-primary</td><td class="t-sw"><div class="swatch" style="background:#374151;"></div></td><td>#374151</td><td class="t-sw"><div class="swatch" style="background:#FFFFFF;border-color:rgba(0,0,0,.1);"></div></td><td>#FFFFFF</td></tr>
+            <tr><td>Keyboard / trailing</td><td class="t-tok">--text-secondary</td><td class="t-sw"><div class="swatch" style="background:#4B5563;"></div></td><td>#4B5563</td><td class="t-sw"><div class="swatch" style="background:#E5E7EB;border-color:rgba(255,255,255,.15);"></div></td><td>#E5E7EB</td></tr>
+            <tr><td>Hover background</td><td class="t-tok">--surface-layer01-hover</td><td class="t-sw"><div class="swatch" style="background:#E5E7EB;"></div></td><td>#E5E7EB</td><td class="t-sw"><div class="swatch" style="background:#1F2937;border-color:rgba(255,255,255,.15);"></div></td><td>#1F2937</td></tr>
+          </tbody>
+        </table>
+
+        <!-- Item states -->
+        <div class="tokens-group-label" style="margin-top:16px;">Item — States &amp; Types</div>
+        <table class="tokens-table">
+          <thead><tr><th>Element</th><th>Token</th><th style="width:40px;"></th><th>Light</th><th style="width:40px;"></th><th>Dark</th></tr></thead>
+          <tbody>
+            <tr><td>Disabled text</td><td class="t-tok">--text-tertiary</td><td class="t-sw"><div class="swatch" style="background:#9CA3AF;"></div></td><td>#9CA3AF</td><td class="t-sw"><div class="swatch" style="background:#CDD2D7;border-color:rgba(255,255,255,.15);"></div></td><td>#CDD2D7</td></tr>
+            <tr><td>Selected label / icon</td><td class="t-tok">--inf-tx</td><td class="t-sw"><div class="swatch" style="background:#027CB1;"></div></td><td>#027CB1</td><td class="t-sw"><div class="swatch" style="background:#8FCBE6;border-color:rgba(255,255,255,.15);"></div></td><td>#8FCBE6</td></tr>
+            <tr><td>Destructive label / icon</td><td class="t-tok">--err-tx</td><td class="t-sw"><div class="swatch" style="background:#A12F2F;"></div></td><td>#A12F2F</td><td class="t-sw"><div class="swatch" style="background:#E36868;border-color:rgba(255,255,255,.15);"></div></td><td>#E36868</td></tr>
+            <tr><td>Destructive hover bg</td><td class="t-tok">--action-destructive</td><td class="t-sw"><div class="swatch" style="background:#C63B3B;"></div></td><td>#C63B3B</td><td class="t-sw"><div class="swatch" style="background:#C63B3B;border-color:rgba(255,255,255,.15);"></div></td><td>#C63B3B</td></tr>
+            <tr><td>Destructive hover text</td><td class="t-tok">—</td><td class="t-sw"><div class="swatch" style="background:#FFFFFF;border-color:rgba(0,0,0,.1);"></div></td><td>#FFFFFF</td><td class="t-sw"><div class="swatch" style="background:#FFFFFF;border-color:rgba(0,0,0,.1);"></div></td><td>#FFFFFF</td></tr>
+          </tbody>
+        </table>
+      </section>
+
+      <!-- 7 · ACCESSIBILITY -->
+      <section class="doc-section" id="accessibility">
+        <h2 class="section-title">Accessibility</h2>
+        <div class="a11y-section">
+          <h3 class="a11y-title">Keyboard navigation</h3>
+          <table class="props-table">
+            <thead><tr><th>Key</th><th>Action</th></tr></thead>
+            <tbody>
+              <tr><td class="p-name">↑ / ↓</td><td class="p-desc">Move focus between menu items</td></tr>
+              <tr><td class="p-name">Enter / Space</td><td class="p-desc">Activate the focused item</td></tr>
+              <tr><td class="p-name">→</td><td class="p-desc">Open a submenu when focus is on a submenu item</td></tr>
+              <tr><td class="p-name">←</td><td class="p-desc">Close current submenu and return focus to parent item</td></tr>
+              <tr><td class="p-name">Esc</td><td class="p-desc">Close the menu and return focus to the trigger element</td></tr>
+              <tr><td class="p-name">Tab</td><td class="p-desc">Closes the menu; Tab focus moves to next interactive element</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="a11y-section" style="margin-top:20px;">
+          <h3 class="a11y-title">ARIA attributes</h3>
+          <ul class="a11y-list">
+            <li>The menu container uses <code>role="menu"</code> or <code>&lt;nav&gt;</code> with a descriptive <code>aria-label</code></li>
+            <li>Each item uses <code>role="menuitem"</code> — or <code>role="menuitemcheckbox"</code> for toggleable selected items</li>
+            <li>Disabled items include <code>aria-disabled="true"</code> rather than the HTML <code>disabled</code> attribute (keeps them focusable for screen readers)</li>
+            <li>Submenu items include <code>aria-haspopup="menu"</code> and <code>aria-expanded="true/false"</code></li>
+            <li>The trigger button that opens the menu should have <code>aria-haspopup="menu"</code> and <code>aria-expanded</code></li>
+            <li>When the menu closes, focus returns to the trigger element</li>
+          </ul>
+        </div>
+      </section>
+
+      <!-- 8 · RELATED -->
+      <section class="doc-section" id="related">
+        <h2 class="section-title">Related components</h2>
+        <div class="related-grid">
+          <a href="dropdown.html" class="related-card">
+            <div class="related-card-title">Dropdown</div>
+            <div class="related-card-desc">A menu triggered by a select-like control — best for choosing a single option from a list.</div>
+          </a>
+          <a href="button.html" class="related-card">
+            <div class="related-card-title">Button</div>
+            <div class="related-card-desc">Use a Button with an icon to trigger contextual menus (icon-only variant with "more-horizontal" icon).</div>
+          </a>
+          <a href="#" class="related-card">
+            <div class="related-card-title">Tooltip</div>
+            <div class="related-card-desc">Use Tooltip to describe a menu trigger button — do not add tooltips to individual menu items.</div>
+          </a>
+        </div>
+      </section>
+
+    </main>
+
+    <!-- RIGHT NAV -->
+    <nav class="right-nav">
+      <div class="rn-label">On this page</div>
+      <ul class="rn-list">
+        <li><a href="#definition" id="rn-definition">Definition</a></li>
+        <li><a href="#anatomy" id="rn-anatomy">Anatomy</a></li>
+        <li><a href="#variants" id="rn-variants">Variants</a></li>
+        <li><a href="#properties" id="rn-properties">Properties</a></li>
+        <li><a href="#usage" id="rn-usage">Usage</a></li>
+        <li><a href="#tokens" id="rn-tokens">Tokens</a></li>
+        <li><a href="#accessibility" id="rn-accessibility">Accessibility</a></li>
+        <li><a href="#related" id="rn-related">Related</a></li>
+      </ul>
+    </nav>
+
+  </div><!-- /content-wrap -->
+</div><!-- /shell -->
+
+<script>
+  lucide.createIcons();
+
+  const isMobile = () => window.innerWidth <= 768;
+  let sbOpen = !isMobile();
+  if (!sbOpen) document.getElementById('leftNav').classList.add('hidden');
+
+  function toggleSidebar() {
+    sbOpen = !sbOpen;
+    document.getElementById('leftNav').classList.toggle('hidden', !sbOpen);
+    if (!isMobile()) {
+      document.getElementById('contentWrap').style.marginLeft = sbOpen ? 'var(--left-w)' : '0';
+    }
+    document.getElementById('navOverlay').classList.toggle('active', sbOpen && isMobile());
+  }
+
+  function switchTab(btn, panelId) {
+    btn.closest('.doc-section').querySelectorAll('.tab').forEach(b => b.classList.remove('active'));
+    btn.closest('.doc-section').querySelectorAll('.tab-panel').forEach(p => p.classList.remove('active'));
+    btn.classList.add('active');
+    document.getElementById(panelId).classList.add('active');
+    const tabsEl = btn.closest('.tabs');
+    if (tabsEl) {
+      const tabRight = btn.offsetLeft + btn.offsetWidth;
+      const tabLeft = btn.offsetLeft;
+      if (tabRight > tabsEl.scrollLeft + tabsEl.clientWidth - 56) {
+        tabsEl.scrollLeft = tabRight - tabsEl.clientWidth + 72;
+      } else if (tabLeft < tabsEl.scrollLeft) {
+        tabsEl.scrollLeft = tabLeft;
+      }
+      updateTabFade(tabsEl);
+    }
+    lucide.createIcons();
+  }
+
+  function updateTabFade(tabsEl) {
+    const wrap = tabsEl.closest('.tabs-wrap');
+    if (!wrap) return;
+    const atEnd = tabsEl.scrollLeft + tabsEl.clientWidth >= tabsEl.scrollWidth - 2;
+    wrap.classList.toggle('at-end', atEnd);
+  }
+
+  window.addEventListener('load', () => {
+    document.querySelectorAll('.tabs').forEach(tabsEl => {
+      updateTabFade(tabsEl);
+      tabsEl.addEventListener('scroll', () => updateTabFade(tabsEl));
+    });
+  });
+
+  function toggleTheme() {
+    const html = document.documentElement;
+    html.setAttribute('data-theme', html.getAttribute('data-theme') === 'dark' ? 'light' : 'dark');
+  }
+
+  // Right nav scroll spy
+  const rnLinks = document.querySelectorAll('.rn-list a');
+  const sections = [...rnLinks].map(l => document.querySelector(l.getAttribute('href')));
+  function updateRN() {
+    let active = 0;
+    sections.forEach((s, i) => { if (s && s.getBoundingClientRect().top <= 80) active = i; });
+    rnLinks.forEach((l, i) => l.classList.toggle('active', i === active));
+  }
+  window.addEventListener('scroll', updateRN);
+  updateRN();
+
+  // Smooth scroll anchor links into view
+  rnLinks.forEach(link => {
+    link.addEventListener('click', e => {
+      const target = document.querySelector(link.getAttribute('href'));
+      if (target) { e.preventDefault(); target.scrollIntoView({ behavior: 'smooth' }); }
+    });
+  });
+</script>
+</body>
+</html>

@@ -1602,3 +1602,136 @@ code {
 .var-preview-dark .lk--card.is-hover { color: #5ABFE0; }
 .var-preview-dark .lk--card.is-pressed { color: #0083BB; }
 .var-preview-dark .lk--card.is-disabled { color: #6B7280; }
+
+/* ─── Menu ─────────────────────────────────────── */
+.mn-menu {
+  background: var(--surface-layer02);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 8px;
+  box-shadow: 0 1px 3px rgba(55,65,80,0.08);
+  min-width: 180px;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+.mn-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 8px 6px;
+  border-radius: 6px;
+  cursor: pointer;
+  user-select: none;
+  gap: 8px;
+  transition: background 0.1s;
+}
+.mn-item-content {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex: 1;
+  min-width: 0;
+}
+.mn-icon {
+  width: 16px;
+  height: 16px;
+  flex-shrink: 0;
+  color: var(--text-primary);
+}
+.mn-label {
+  font-family: 'Lato', sans-serif;
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 19px;
+  color: var(--text-primary);
+  white-space: nowrap;
+}
+.mn-kbd {
+  font-family: 'Lato', sans-serif;
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 19px;
+  color: var(--text-secondary);
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+.mn-trailing {
+  display: flex;
+  align-items: center;
+  flex-shrink: 0;
+  color: var(--text-secondary);
+}
+.mn-trailing i { width: 16px; height: 16px; }
+.mn-divider {
+  height: 1px;
+  background: var(--border);
+  margin: 4px 0;
+}
+
+/* Item states */
+.mn-item:hover { background: var(--surface-layer01-hover); }
+.mn-item--hover { background: var(--surface-layer01-hover); }
+
+/* Disabled */
+.mn-item--disabled {
+  cursor: default;
+  pointer-events: none;
+}
+.mn-item--disabled .mn-icon,
+.mn-item--disabled .mn-label,
+.mn-item--disabled .mn-kbd,
+.mn-item--disabled .mn-trailing { color: var(--text-tertiary); }
+
+/* Selected */
+.mn-item--selected .mn-label { color: var(--inf-tx); }
+.mn-item--selected .mn-icon,
+.mn-item--selected .mn-trailing { color: var(--inf-tx); }
+
+/* Destructive */
+.mn-item--destructive .mn-label { color: var(--err-tx); }
+.mn-item--destructive .mn-icon  { color: var(--err-tx); }
+
+/* Destructive hover */
+.mn-item--destructive.mn-item--hover,
+.mn-item--destructive:hover { background: var(--action-destructive); }
+.mn-item--destructive.mn-item--hover .mn-label,
+.mn-item--destructive.mn-item--hover .mn-icon,
+.mn-item--destructive:hover .mn-label,
+.mn-item--destructive:hover .mn-icon { color: #FFFFFF; }
+
+/* var-preview overrides — force light values */
+.var-preview .mn-menu  { background: #F4F6F8; border-color: #CDD2D7; }
+.var-preview .mn-label,
+.var-preview .mn-icon  { color: #374151; }
+.var-preview .mn-kbd,
+.var-preview .mn-trailing { color: #4B5563; }
+.var-preview .mn-item--hover { background: #E5E7EB; }
+.var-preview .mn-item--disabled .mn-icon,
+.var-preview .mn-item--disabled .mn-label,
+.var-preview .mn-item--disabled .mn-kbd { color: #9CA3AF; }
+.var-preview .mn-item--selected .mn-label,
+.var-preview .mn-item--selected .mn-icon,
+.var-preview .mn-item--selected .mn-trailing { color: #027CB1; }
+.var-preview .mn-item--destructive .mn-label,
+.var-preview .mn-item--destructive .mn-icon { color: #A12F2F; }
+.var-preview .mn-item--destructive.mn-item--hover .mn-label,
+.var-preview .mn-item--destructive.mn-item--hover .mn-icon { color: #FFFFFF; }
+
+/* var-preview-dark overrides — force dark values */
+.var-preview-dark .mn-menu  { background: #1E1E1E; border-color: #6B7280; }
+.var-preview-dark .mn-label,
+.var-preview-dark .mn-icon  { color: #FFFFFF; }
+.var-preview-dark .mn-kbd,
+.var-preview-dark .mn-trailing { color: #E5E7EB; }
+.var-preview-dark .mn-item--hover { background: #1F2937; }
+.var-preview-dark .mn-item--disabled .mn-icon,
+.var-preview-dark .mn-item--disabled .mn-label,
+.var-preview-dark .mn-item--disabled .mn-kbd { color: #CDD2D7; }
+.var-preview-dark .mn-item--selected .mn-label,
+.var-preview-dark .mn-item--selected .mn-icon,
+.var-preview-dark .mn-item--selected .mn-trailing { color: #8FCBE6; }
+.var-preview-dark .mn-item--destructive .mn-label,
+.var-preview-dark .mn-item--destructive .mn-icon { color: #E36868; }
+.var-preview-dark .mn-item--destructive.mn-item--hover .mn-label,
+.var-preview-dark .mn-item--destructive.mn-item--hover .mn-icon { color: #FFFFFF; }

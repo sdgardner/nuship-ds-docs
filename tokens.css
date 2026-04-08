@@ -46,6 +46,12 @@
   --link-card-pressed: #001F33;
   --link-card-disabled:#6B7280;
 
+  /* Surface interactions */
+  --surface-layer01-hover: #E5E7EB;
+
+  /* Destructive action */
+  --action-destructive: #C63B3B;
+
   /* Layout */
   --nav-h:  48px;
   --left-w: 200px;
@@ -70,6 +76,8 @@
 
   --action-secondary: #027CB1;
   --action-sec-hover: #016692;
+  --surface-layer01-hover: #E5E7EB;
+  --action-destructive: #C63B3B;
 
   --err-bg:#FCE8E8; --err-bd:#A12F2F; --err-tx:#A12F2F; --err-ic:#A12F2F;
   --suc-bg:#E8F2E8; --suc-bd:#006C21; --suc-tx:#006C21; --suc-ic:#006C21;
@@ -111,6 +119,8 @@
 
   --action-secondary: #35A8D6;
   --action-sec-hover: #5ABFE0;
+  --surface-layer01-hover: #1F2937;
+  --action-destructive: #C63B3B;
 
   /* Status tokens — dark */
   --err-bg:#811F1F; --err-bd:#DB3939; --err-tx:#E36868; --err-ic:#F8D0D0;
