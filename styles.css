@@ -1681,7 +1681,7 @@ code {
 .mn-item--disabled .mn-icon,
 .mn-item--disabled .mn-label,
 .mn-item--disabled .mn-kbd,
-.mn-item--disabled .mn-trailing { color: var(--text-tertiary); }
+.mn-item--disabled .mn-trailing { color: var(--text-disabled); }
 
 /* Selected */
 .mn-item--selected .mn-label { color: var(--inf-tx); }
@@ -1728,7 +1728,7 @@ code {
 .var-preview-dark .mn-item--hover { background: #1F2937; }
 .var-preview-dark .mn-item--disabled .mn-icon,
 .var-preview-dark .mn-item--disabled .mn-label,
-.var-preview-dark .mn-item--disabled .mn-kbd { color: #CDD2D7; }
+.var-preview-dark .mn-item--disabled .mn-kbd { color: #6B7280; }
 .var-preview-dark .mn-item--selected .mn-label,
 .var-preview-dark .mn-item--selected .mn-icon,
 .var-preview-dark .mn-item--selected .mn-trailing { color: #8FCBE6; }

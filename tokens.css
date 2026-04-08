@@ -8,6 +8,7 @@
   --text-primary:   #374151;  /* color/text/primary */
   --text-secondary: #4B5563;  /* color/text/secondary */
   --text-tertiary:  #9CA3AF;  /* color/text/tertiary */
+  --text-disabled:  #9CA3AF;  /* color/text/disabled-on-card */
   --text-link:      #016692;  /* color/link/surface-01/default */
 
   --surface-shell:   #FFFFFF;  /* color/surface/shell */
@@ -61,6 +62,7 @@
   --text-primary:   #374151;
   --text-secondary: #4B5563;
   --text-tertiary:  #9CA3AF;
+  --text-disabled:  #9CA3AF;
   --text-link:      #016692;
 
   --surface-shell:   #FFFFFF;
@@ -104,6 +106,7 @@
   --text-primary:   #FFFFFF;
   --text-secondary: #E5E7EB;
   --text-tertiary:  #CDD2D7;
+  --text-disabled:  #6B7280;
   --text-link:      #5ABFE0;
 
   --surface-shell:   #0A0A0A;
