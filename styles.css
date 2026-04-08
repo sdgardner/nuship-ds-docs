@@ -1715,6 +1715,7 @@ code {
 .var-preview .mn-item--selected .mn-trailing { color: #027CB1; }
 .var-preview .mn-item--destructive .mn-label,
 .var-preview .mn-item--destructive .mn-icon { color: #A12F2F; }
+.var-preview .mn-item--destructive.mn-item--hover { background: #C63B3B; }
 .var-preview .mn-item--destructive.mn-item--hover .mn-label,
 .var-preview .mn-item--destructive.mn-item--hover .mn-icon { color: #FFFFFF; }
 
@@ -1733,5 +1734,6 @@ code {
 .var-preview-dark .mn-item--selected .mn-trailing { color: #8FCBE6; }
 .var-preview-dark .mn-item--destructive .mn-label,
 .var-preview-dark .mn-item--destructive .mn-icon { color: #E36868; }
+.var-preview-dark .mn-item--destructive.mn-item--hover { background: #C63B3B; }
 .var-preview-dark .mn-item--destructive.mn-item--hover .mn-label,
 .var-preview-dark .mn-item--destructive.mn-item--hover .mn-icon { color: #FFFFFF; }
