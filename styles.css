@@ -147,7 +147,7 @@ body {
   color: var(--text-tertiary);
 }
 .rn-list { list-style: none; display: flex; flex-direction: column; }
-.rn-list li { border-left: 1px solid var(--border); transition: border-color .12s; }
+.rn-list li { border-left: 3px solid var(--border); transition: border-color .12s; }
 .rn-list a {
   display: block;
   padding: 6px 16px;
@@ -157,7 +157,7 @@ body {
   transition: color .12s;
 }
 .rn-list a:hover { color: var(--text-primary); }
-.rn-list li:has(a.active) { border-left: 3px solid var(--action-secondary); }
+.rn-list li:has(a.active) { border-left-color: var(--action-secondary); }
 .rn-list a.active { color: var(--action-secondary); }
 
 /* ─── DOC SECTIONS ───────────────────────────────── */
