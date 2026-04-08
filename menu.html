@@ -240,188 +240,228 @@
         <h2 class="section-title">Variants</h2>
         <div class="tabs-wrap">
           <div class="tabs">
-            <button class="tab active" onclick="switchTab(this,'v-type')">Type</button>
+            <button class="tab active" onclick="switchTab(this,'v-item')">Item</button>
+            <button class="tab" onclick="switchTab(this,'v-submenu')">Submenu</button>
+            <button class="tab" onclick="switchTab(this,'v-selected')">Selected</button>
+            <button class="tab" onclick="switchTab(this,'v-destructive')">Destructive</button>
           </div>
         </div>
 
-        <!-- Type -->
-        <div class="tab-panel active" id="v-type">
+        <!-- Item -->
+        <div class="tab-panel active" id="v-item">
           <div class="var-panel">
-            <div class="var-previews-wrap">
-              <div class="state-panel active">
-                <div class="var-previews">
-
-                  <!-- Light -->
-                  <div class="var-preview" style="align-items:flex-start;gap:20px;flex-wrap:wrap;">
-                    <div>
-                      <div style="font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.5px;color:#9CA3AF;margin-bottom:10px;">Item</div>
-                      <nav class="mn-menu" style="min-width:170px;" aria-label="Item type">
-                        <div class="mn-item">
-                          <div class="mn-item-content">
-                            <i data-lucide="folder-plus" class="mn-icon"></i>
-                            <span class="mn-label">New Folder</span>
-                          </div>
-                          <span class="mn-kbd">⌘N</span>
-                        </div>
-                        <div class="mn-item">
-                          <div class="mn-item-content">
-                            <i data-lucide="copy" class="mn-icon"></i>
-                            <span class="mn-label">Duplicate</span>
-                          </div>
-                          <span class="mn-kbd">⌘D</span>
-                        </div>
-                      </nav>
+            <div class="var-previews">
+              <div class="var-preview">
+                <nav class="mn-menu" style="min-width:170px;" aria-label="Item type">
+                  <div class="mn-item">
+                    <div class="mn-item-content">
+                      <i data-lucide="folder-plus" class="mn-icon"></i>
+                      <span class="mn-label">New Folder</span>
                     </div>
-                    <div>
-                      <div style="font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.5px;color:#9CA3AF;margin-bottom:10px;">Submenu</div>
-                      <nav class="mn-menu" style="min-width:170px;" aria-label="Submenu type">
-                        <div class="mn-item">
-                          <div class="mn-item-content">
-                            <i data-lucide="folder-symlink" class="mn-icon"></i>
-                            <span class="mn-label">Move To</span>
-                          </div>
-                          <div class="mn-trailing"><i data-lucide="chevron-right"></i></div>
-                        </div>
-                        <div class="mn-item">
-                          <div class="mn-item-content">
-                            <i data-lucide="share-2" class="mn-icon"></i>
-                            <span class="mn-label">Share With</span>
-                          </div>
-                          <div class="mn-trailing"><i data-lucide="chevron-right"></i></div>
-                        </div>
-                      </nav>
+                    <span class="mn-kbd">⌘N</span>
+                  </div>
+                  <div class="mn-item">
+                    <div class="mn-item-content">
+                      <i data-lucide="copy" class="mn-icon"></i>
+                      <span class="mn-label">Duplicate</span>
                     </div>
-                    <div>
-                      <div style="font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.5px;color:#9CA3AF;margin-bottom:10px;">Selected</div>
-                      <nav class="mn-menu" style="min-width:170px;" aria-label="Selected type">
-                        <div class="mn-item mn-item--selected">
-                          <div class="mn-item-content">
-                            <i data-lucide="check-square" class="mn-icon"></i>
-                            <span class="mn-label">Show Hidden</span>
-                          </div>
-                          <div class="mn-trailing"><i data-lucide="check"></i></div>
-                        </div>
-                        <div class="mn-item">
-                          <div class="mn-item-content">
-                            <i data-lucide="columns-2" class="mn-icon"></i>
-                            <span class="mn-label">Show Preview</span>
-                          </div>
-                        </div>
-                      </nav>
-                    </div>
-                    <div>
-                      <div style="font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.5px;color:#9CA3AF;margin-bottom:10px;">Destructive</div>
-                      <nav class="mn-menu" style="min-width:170px;" aria-label="Destructive type">
-                        <div class="mn-item">
-                          <div class="mn-item-content">
-                            <i data-lucide="archive" class="mn-icon"></i>
-                            <span class="mn-label">Archive</span>
-                          </div>
-                        </div>
-                        <div class="mn-divider"></div>
-                        <div class="mn-item mn-item--destructive">
-                          <div class="mn-item-content">
-                            <i data-lucide="trash-2" class="mn-icon"></i>
-                            <span class="mn-label">Delete</span>
-                          </div>
-                        </div>
-                      </nav>
+                    <span class="mn-kbd">⌘D</span>
+                  </div>
+                  <div class="mn-item">
+                    <div class="mn-item-content">
+                      <i data-lucide="pencil" class="mn-icon"></i>
+                      <span class="mn-label">Rename</span>
                     </div>
                   </div>
-
-                  <!-- Dark -->
-                  <div class="var-preview-dark" style="align-items:flex-start;gap:20px;flex-wrap:wrap;">
-                    <div>
-                      <div style="font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.5px;color:#6B7280;margin-bottom:10px;">Item</div>
-                      <nav class="mn-menu" style="min-width:170px;" aria-label="Item type dark">
-                        <div class="mn-item">
-                          <div class="mn-item-content">
-                            <i data-lucide="folder-plus" class="mn-icon"></i>
-                            <span class="mn-label">New Folder</span>
-                          </div>
-                          <span class="mn-kbd">⌘N</span>
-                        </div>
-                        <div class="mn-item">
-                          <div class="mn-item-content">
-                            <i data-lucide="copy" class="mn-icon"></i>
-                            <span class="mn-label">Duplicate</span>
-                          </div>
-                          <span class="mn-kbd">⌘D</span>
-                        </div>
-                      </nav>
+                </nav>
+              </div>
+              <div class="var-preview-dark">
+                <nav class="mn-menu" style="min-width:170px;" aria-label="Item type dark">
+                  <div class="mn-item">
+                    <div class="mn-item-content">
+                      <i data-lucide="folder-plus" class="mn-icon"></i>
+                      <span class="mn-label">New Folder</span>
                     </div>
-                    <div>
-                      <div style="font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.5px;color:#6B7280;margin-bottom:10px;">Submenu</div>
-                      <nav class="mn-menu" style="min-width:170px;" aria-label="Submenu type dark">
-                        <div class="mn-item">
-                          <div class="mn-item-content">
-                            <i data-lucide="folder-symlink" class="mn-icon"></i>
-                            <span class="mn-label">Move To</span>
-                          </div>
-                          <div class="mn-trailing"><i data-lucide="chevron-right"></i></div>
-                        </div>
-                        <div class="mn-item">
-                          <div class="mn-item-content">
-                            <i data-lucide="share-2" class="mn-icon"></i>
-                            <span class="mn-label">Share With</span>
-                          </div>
-                          <div class="mn-trailing"><i data-lucide="chevron-right"></i></div>
-                        </div>
-                      </nav>
+                    <span class="mn-kbd">⌘N</span>
+                  </div>
+                  <div class="mn-item">
+                    <div class="mn-item-content">
+                      <i data-lucide="copy" class="mn-icon"></i>
+                      <span class="mn-label">Duplicate</span>
                     </div>
-                    <div>
-                      <div style="font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.5px;color:#6B7280;margin-bottom:10px;">Selected</div>
-                      <nav class="mn-menu" style="min-width:170px;" aria-label="Selected type dark">
-                        <div class="mn-item mn-item--selected">
-                          <div class="mn-item-content">
-                            <i data-lucide="check-square" class="mn-icon"></i>
-                            <span class="mn-label">Show Hidden</span>
-                          </div>
-                          <div class="mn-trailing"><i data-lucide="check"></i></div>
-                        </div>
-                        <div class="mn-item">
-                          <div class="mn-item-content">
-                            <i data-lucide="columns-2" class="mn-icon"></i>
-                            <span class="mn-label">Show Preview</span>
-                          </div>
-                        </div>
-                      </nav>
-                    </div>
-                    <div>
-                      <div style="font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.5px;color:#6B7280;margin-bottom:10px;">Destructive</div>
-                      <nav class="mn-menu" style="min-width:170px;" aria-label="Destructive type dark">
-                        <div class="mn-item">
-                          <div class="mn-item-content">
-                            <i data-lucide="archive" class="mn-icon"></i>
-                            <span class="mn-label">Archive</span>
-                          </div>
-                        </div>
-                        <div class="mn-divider"></div>
-                        <div class="mn-item mn-item--destructive">
-                          <div class="mn-item-content">
-                            <i data-lucide="trash-2" class="mn-icon"></i>
-                            <span class="mn-label">Delete</span>
-                          </div>
-                        </div>
-                      </nav>
+                    <span class="mn-kbd">⌘D</span>
+                  </div>
+                  <div class="mn-item">
+                    <div class="mn-item-content">
+                      <i data-lucide="pencil" class="mn-icon"></i>
+                      <span class="mn-label">Rename</span>
                     </div>
                   </div>
-
-                </div>
+                </nav>
               </div>
             </div>
             <div class="var-desc">
               <div class="var-use-when">Use when:</div>
               <ul class="var-use-list">
-                <li><strong>Item</strong> — standard action with optional keyboard shortcut</li>
-                <li><strong>Submenu</strong> — action that reveals a nested menu; always shows a chevron trailing icon</li>
-                <li><strong>Selected</strong> — toggleable option currently active; shows a checkmark and info-blue label</li>
-                <li><strong>Destructive</strong> — irreversible action (delete, remove); uses error-red for emphasis</li>
+                <li>The action is a direct command — copy, rename, export</li>
+                <li>Optionally include a keyboard shortcut on the trailing side (e.g. ⌘N, ⌘D)</li>
+                <li>Omit the shortcut if the action has no standard binding</li>
               </ul>
             </div>
           </div>
         </div>
 
+        <!-- Submenu -->
+        <div class="tab-panel" id="v-submenu">
+          <div class="var-panel">
+            <div class="var-previews">
+              <div class="var-preview">
+                <nav class="mn-menu" style="min-width:170px;" aria-label="Submenu type">
+                  <div class="mn-item">
+                    <div class="mn-item-content">
+                      <i data-lucide="folder-symlink" class="mn-icon"></i>
+                      <span class="mn-label">Move To</span>
+                    </div>
+                    <div class="mn-trailing"><i data-lucide="chevron-right"></i></div>
+                  </div>
+                  <div class="mn-item">
+                    <div class="mn-item-content">
+                      <i data-lucide="share-2" class="mn-icon"></i>
+                      <span class="mn-label">Share With</span>
+                    </div>
+                    <div class="mn-trailing"><i data-lucide="chevron-right"></i></div>
+                  </div>
+                </nav>
+              </div>
+              <div class="var-preview-dark">
+                <nav class="mn-menu" style="min-width:170px;" aria-label="Submenu type dark">
+                  <div class="mn-item">
+                    <div class="mn-item-content">
+                      <i data-lucide="folder-symlink" class="mn-icon"></i>
+                      <span class="mn-label">Move To</span>
+                    </div>
+                    <div class="mn-trailing"><i data-lucide="chevron-right"></i></div>
+                  </div>
+                  <div class="mn-item">
+                    <div class="mn-item-content">
+                      <i data-lucide="share-2" class="mn-icon"></i>
+                      <span class="mn-label">Share With</span>
+                    </div>
+                    <div class="mn-trailing"><i data-lucide="chevron-right"></i></div>
+                  </div>
+                </nav>
+              </div>
+            </div>
+            <div class="var-desc">
+              <div class="var-use-when">Use when:</div>
+              <ul class="var-use-list">
+                <li>The action opens a nested list of further options</li>
+                <li>Always shows a trailing chevron-right icon — never use text</li>
+                <li>Keep nesting to one level; two levels of submenus is the maximum</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <!-- Selected -->
+        <div class="tab-panel" id="v-selected">
+          <div class="var-panel">
+            <div class="var-previews">
+              <div class="var-preview">
+                <nav class="mn-menu" style="min-width:170px;" aria-label="Selected type">
+                  <div class="mn-item mn-item--selected">
+                    <div class="mn-item-content">
+                      <i data-lucide="check-square" class="mn-icon"></i>
+                      <span class="mn-label">Show Hidden</span>
+                    </div>
+                    <div class="mn-trailing"><i data-lucide="check"></i></div>
+                  </div>
+                  <div class="mn-item">
+                    <div class="mn-item-content">
+                      <i data-lucide="columns-2" class="mn-icon"></i>
+                      <span class="mn-label">Show Preview</span>
+                    </div>
+                  </div>
+                </nav>
+              </div>
+              <div class="var-preview-dark">
+                <nav class="mn-menu" style="min-width:170px;" aria-label="Selected type dark">
+                  <div class="mn-item mn-item--selected">
+                    <div class="mn-item-content">
+                      <i data-lucide="check-square" class="mn-icon"></i>
+                      <span class="mn-label">Show Hidden</span>
+                    </div>
+                    <div class="mn-trailing"><i data-lucide="check"></i></div>
+                  </div>
+                  <div class="mn-item">
+                    <div class="mn-item-content">
+                      <i data-lucide="columns-2" class="mn-icon"></i>
+                      <span class="mn-label">Show Preview</span>
+                    </div>
+                  </div>
+                </nav>
+              </div>
+            </div>
+            <div class="var-desc">
+              <div class="var-use-when">Use when:</div>
+              <ul class="var-use-list">
+                <li>The item is a toggleable option that is currently active</li>
+                <li>Label and icon render in <code>--inf-tx</code> (info blue); a trailing checkmark confirms the active state</li>
+                <li>On hover, the label shifts to the hover variant of the info token</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <!-- Destructive -->
+        <div class="tab-panel" id="v-destructive">
+          <div class="var-panel">
+            <div class="var-previews">
+              <div class="var-preview">
+                <nav class="mn-menu" style="min-width:170px;" aria-label="Destructive type">
+                  <div class="mn-item">
+                    <div class="mn-item-content">
+                      <i data-lucide="archive" class="mn-icon"></i>
+                      <span class="mn-label">Archive</span>
+                    </div>
+                  </div>
+                  <div class="mn-divider"></div>
+                  <div class="mn-item mn-item--destructive">
+                    <div class="mn-item-content">
+                      <i data-lucide="trash-2" class="mn-icon"></i>
+                      <span class="mn-label">Delete</span>
+                    </div>
+                  </div>
+                </nav>
+              </div>
+              <div class="var-preview-dark">
+                <nav class="mn-menu" style="min-width:170px;" aria-label="Destructive type dark">
+                  <div class="mn-item">
+                    <div class="mn-item-content">
+                      <i data-lucide="archive" class="mn-icon"></i>
+                      <span class="mn-label">Archive</span>
+                    </div>
+                  </div>
+                  <div class="mn-divider"></div>
+                  <div class="mn-item mn-item--destructive">
+                    <div class="mn-item-content">
+                      <i data-lucide="trash-2" class="mn-icon"></i>
+                      <span class="mn-label">Delete</span>
+                    </div>
+                  </div>
+                </nav>
+              </div>
+            </div>
+            <div class="var-desc">
+              <div class="var-use-when">Use when:</div>
+              <ul class="var-use-list">
+                <li>The action is irreversible — delete, remove, or permanently clear data</li>
+                <li>Label and icon render in <code>--err-tx</code> (error red) at rest; fills <code>--action-destructive</code> on hover with white text</li>
+                <li>Always separate from other actions with a divider and place at the bottom of the menu</li>
+              </ul>
+            </div>
+          </div>
+        </div>
 
       </section>
 
