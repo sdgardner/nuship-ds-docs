@@ -1118,7 +1118,7 @@ code {
 }
 
 /* dots anatomy display — labelled state strip */
-.ic-dot-states { display: flex; gap: 32px; align-items: flex-end; flex-wrap: wrap; }
+.ic-dot-states { display: flex; gap: 32px; align-items: flex-end; flex-wrap: wrap; justify-content: center; width: 100%; }
 .ic-dot-state  { display: flex; flex-direction: column; align-items: center; gap: 10px; }
 .ic-dot-state-label { font-size: 12px; line-height: 16px; color: var(--text-tertiary); white-space: nowrap; }
 /* Interactive state overrides — Default + Hover are filled in the states strip */
