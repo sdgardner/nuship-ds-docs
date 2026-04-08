@@ -1908,7 +1908,8 @@ code {
 /* States */
 .ni-wrap--hover .ni-field   { border-color: var(--border-strong); }
 .ni-wrap--focus .ni-field   { border-color: var(--border-focus); box-shadow: 0 0 0 4px rgba(90,191,224,0.35); }
-.ni-wrap--error .ni-field   { border-color: var(--err-bd); }
+.ni-wrap--error .ni-field    { border-color: var(--err-bd); }
+.ni-wrap--disabled .ni-field { border-color: var(--border-disabled); }
 .ni-wrap--disabled .ni-btn,
 .ni-wrap--disabled .ni-value { color: var(--text-disabled); cursor: not-allowed; }
 .ni-wrap--disabled .ni-label,
@@ -1922,6 +1923,7 @@ code {
 .var-preview .ni-wrap--hover .ni-field         { border-color: #9CA3AF; }
 .var-preview .ni-wrap--focus .ni-field         { border-color: #5ABFE0; box-shadow: 0 0 0 4px rgba(90,191,224,0.35); }
 .var-preview .ni-wrap--error .ni-field         { border-color: #A12F2F; }
+.var-preview .ni-wrap--disabled .ni-field      { border-color: #E5E7EB; }
 .var-preview .ni-btn,
 .var-preview .ni-value                         { color: #374151; }
 .var-preview .ni-label                         { color: #374151; }
@@ -1937,6 +1939,7 @@ code {
 .var-preview-dark .ni-wrap--hover .ni-field    { border-color: #9CA3AF; }
 .var-preview-dark .ni-wrap--focus .ni-field    { border-color: #0083BB; box-shadow: 0 0 0 4px rgba(0,131,187,0.35); }
 .var-preview-dark .ni-wrap--error .ni-field    { border-color: #DB3939; }
+.var-preview-dark .ni-wrap--disabled .ni-field { border-color: #374151; }
 .var-preview-dark .ni-btn,
 .var-preview-dark .ni-value                    { color: #FFFFFF; }
 .var-preview-dark .ni-label                    { color: #FFFFFF; }
