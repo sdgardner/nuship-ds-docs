@@ -262,45 +262,72 @@
 
         <!-- Surface -->
         <div class="tab-panel" id="v-surface">
-          <div class="var-panel">
+
+          <!-- Surface-01 row -->
+          <div class="var-panel" style="margin-bottom:16px;">
             <div class="var-previews-wrap">
-              <div class="state-panel active" id="vs-surface-all">
+              <div class="state-panel active">
                 <div class="var-previews">
-                  <div class="var-preview">
-                    <div style="display:flex;flex-direction:column;gap:20px;align-items:flex-start;width:100%;">
-                      <div>
-                        <div style="font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.5px;color:#9CA3AF;margin-bottom:8px;">Surface-01</div>
-                        <a href="#" class="lk lk--md lk--s01">Surface-01 link<i data-lucide="arrow-right" class="lk-icon"></i></a>
-                      </div>
-                      <div>
-                        <div style="font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.5px;color:#9CA3AF;margin-bottom:8px;">Card</div>
-                        <a href="#" class="lk lk--md lk--card">Card link<i data-lucide="arrow-right" class="lk-icon"></i></a>
-                      </div>
+                  <div class="var-preview" style="background:#F9FAFB;">
+                    <div style="display:flex;flex-direction:column;gap:6px;align-items:flex-start;width:100%;">
+                      <div style="font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.5px;color:#9CA3AF;margin-bottom:4px;">Surface-01 · Light</div>
+                      <a href="#" class="lk lk--md lk--s01">Standalone link<i data-lucide="arrow-right" class="lk-icon"></i></a>
+                      <a href="#" class="lk lk--md lk--s01 lk--inline">Inline link</a>
                     </div>
                   </div>
-                  <div class="var-preview-dark">
-                    <div style="display:flex;flex-direction:column;gap:20px;align-items:flex-start;width:100%;">
-                      <div>
-                        <div style="font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.5px;color:#6B7280;margin-bottom:8px;">Surface-01</div>
-                        <a href="#" class="lk lk--md lk--s01">Surface-01 link<i data-lucide="arrow-right" class="lk-icon"></i></a>
-                      </div>
-                      <div>
-                        <div style="font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.5px;color:#6B7280;margin-bottom:8px;">Card</div>
-                        <a href="#" class="lk lk--md lk--card">Card link<i data-lucide="arrow-right" class="lk-icon"></i></a>
-                      </div>
+                  <div class="var-preview-dark" style="background:#0A0A0A;">
+                    <div style="display:flex;flex-direction:column;gap:6px;align-items:flex-start;width:100%;">
+                      <div style="font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.5px;color:#6B7280;margin-bottom:4px;">Surface-01 · Dark</div>
+                      <a href="#" class="lk lk--md lk--s01">Standalone link<i data-lucide="arrow-right" class="lk-icon"></i></a>
+                      <a href="#" class="lk lk--md lk--s01 lk--inline">Inline link</a>
                     </div>
                   </div>
                 </div>
               </div>
             </div>
             <div class="var-desc">
-              <div class="var-use-when">Surface context:</div>
+              <div class="var-use-when">Surface-01</div>
               <ul class="var-use-list">
-                <li>Surface-01 — use on page backgrounds (layer-01, shell)</li>
-                <li>Card — use when placed inside a Card component; dark mode uses a lighter blue token for contrast</li>
+                <li>Use on page-level backgrounds — layer-01, shell, sidebars</li>
+                <li>Light: <code>#016692</code> → Hover <code>#004F70</code> → Pressed <code>#001F33</code></li>
+                <li>Dark: <code>#5ABFE0</code> → Hover <code>#8FCBE6</code> → Pressed <code>#0083BB</code></li>
               </ul>
             </div>
           </div>
+
+          <!-- Card row -->
+          <div class="var-panel">
+            <div class="var-previews-wrap">
+              <div class="state-panel active">
+                <div class="var-previews">
+                  <div class="var-preview" style="background:#FFFFFF;border:1px solid #E5E7EB;">
+                    <div style="display:flex;flex-direction:column;gap:6px;align-items:flex-start;width:100%;">
+                      <div style="font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.5px;color:#9CA3AF;margin-bottom:4px;">Card · Light</div>
+                      <a href="#" class="lk lk--md lk--card">Standalone link<i data-lucide="arrow-right" class="lk-icon"></i></a>
+                      <a href="#" class="lk lk--md lk--card lk--inline">Inline link</a>
+                    </div>
+                  </div>
+                  <div class="var-preview-dark" style="background:#0F0F0F;border:1px solid #1F2937;">
+                    <div style="display:flex;flex-direction:column;gap:6px;align-items:flex-start;width:100%;">
+                      <div style="font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.5px;color:#6B7280;margin-bottom:4px;">Card · Dark</div>
+                      <a href="#" class="lk lk--md lk--card">Standalone link<i data-lucide="arrow-right" class="lk-icon"></i></a>
+                      <a href="#" class="lk lk--md lk--card lk--inline">Inline link</a>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="var-desc">
+              <div class="var-use-when">Card</div>
+              <ul class="var-use-list">
+                <li>Use when the link sits inside a Card component or elevated surface</li>
+                <li>Dark mode uses a lighter blue (<code>#35A8D6</code>) for contrast against the card background</li>
+                <li>Light: <code>#016692</code> → Hover <code>#004F70</code> → Pressed <code>#001F33</code></li>
+                <li>Dark: <code>#35A8D6</code> → Hover <code>#5ABFE0</code> → Pressed <code>#0083BB</code></li>
+              </ul>
+            </div>
+          </div>
+
         </div>
 
       </section>
