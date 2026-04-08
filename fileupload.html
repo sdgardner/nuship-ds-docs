@@ -78,7 +78,7 @@
         <div class="ln-label">Actions</div>
         <ul class="ln-list">
           <li><a href="button.html">Button</a></li>
-          <li><a href="#">Link</a></li>
+          <li><a href="link.html">Link</a></li>
           <li><a href="#">Tags</a></li>
         </ul>
       </div>
@@ -1080,7 +1080,7 @@
     sections.forEach((s, i) => { if (s && s.getBoundingClientRect().top <= 80) active = i; });
     rnLinks.forEach((l, i) => l.classList.toggle('active', i === active));
   }
-  document.getElementById('contentWrap').addEventListener('scroll', updateRN);
+  window.addEventListener('scroll', updateRN);
   updateRN();
 </script>
 </body>

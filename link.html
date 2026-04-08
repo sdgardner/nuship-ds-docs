@@ -1,0 +1,743 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Link — nuShip Design System</title>
+  <link href="https://fonts.googleapis.com/css2?family=Lato:wght@400;600;700;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="tokens.css">
+  <link rel="stylesheet" href="styles.css">
+  <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.min.js"></script>
+</head>
+<body>
+
+<!-- MOBILE OVERLAY -->
+<div id="navOverlay" class="nav-overlay" onclick="toggleSidebar()"></div>
+
+<!-- TOP NAV -->
+<nav class="topnav">
+  <button class="hamburger" onclick="toggleSidebar()" aria-label="Menu">
+    <i data-lucide="menu" style="width:18px;height:18px;color:var(--text-secondary)"></i>
+  </button>
+  <div class="bc">
+    <a href="index.html">UI Components</a>
+    <i data-lucide="chevron-right" style="width:14px;height:14px;flex-shrink:0"></i>
+    <a href="#">Actions</a>
+    <i data-lucide="chevron-right" style="width:14px;height:14px;flex-shrink:0"></i>
+    <span class="cur">Link</span>
+  </div>
+  <div class="nav-actions">
+    <div class="toggle-wrap" onclick="toggleTheme()" role="button">
+      <i data-lucide="moon" style="width:20px;height:20px"></i>
+      <div class="toggle-track"><div class="toggle-thumb"></div></div>
+      <i data-lucide="sun" style="width:20px;height:20px"></i>
+    </div>
+  </div>
+</nav>
+
+<div class="shell">
+
+  <!-- LEFT NAV -->
+  <nav class="left-nav" id="leftNav">
+    <div class="left-nav-inner">
+      <div class="ln-group">
+        <div class="ln-label">Inputs</div>
+        <ul class="ln-list">
+          <li><a href="checkbox.html">Checkbox</a></li>
+          <li><a href="datepicker.html">Date Picker</a></li>
+          <li><a href="#">Number Input</a></li>
+          <li><a href="#">Radio Button</a></li>
+          <li><a href="#">Search</a></li>
+          <li><a href="#">Select</a></li>
+          <li><a href="#">Slider</a></li>
+          <li><a href="#">Switch</a></li>
+          <li><a href="#">Text Area</a></li>
+          <li><a href="#">Text Input</a></li>
+        </ul>
+      </div>
+      <div class="ln-group">
+        <div class="ln-label">Feedback</div>
+        <ul class="ln-list">
+          <li><a href="alert.html">Alert</a></li>
+          <li><a href="badge.html">Badge</a></li>
+          <li><a href="#">Toast</a></li>
+          <li><a href="#">Tooltip</a></li>
+        </ul>
+      </div>
+      <div class="ln-group">
+        <div class="ln-label">Navigation</div>
+        <ul class="ln-list">
+          <li><a href="accordion.html">Accordion</a></li>
+          <li><a href="#">Breadcrumb</a></li>
+          <li><a href="dropdown.html">Dropdown</a></li>
+          <li><a href="#">Menu</a></li>
+          <li><a href="#">Tabs</a></li>
+        </ul>
+      </div>
+      <div class="ln-group">
+        <div class="ln-label">Actions</div>
+        <ul class="ln-list">
+          <li><a href="button.html">Button</a></li>
+          <li><a href="link.html" class="active">Link</a></li>
+          <li><a href="#">Tags</a></li>
+        </ul>
+      </div>
+      <div class="ln-group">
+        <div class="ln-label">Overlays</div>
+        <ul class="ln-list">
+          <li><a href="#">Modal</a></li>
+          <li><a href="#">Popover</a></li>
+        </ul>
+      </div>
+      <div class="ln-group">
+        <div class="ln-label">Display</div>
+        <ul class="ln-list">
+          <li><a href="avatar.html">Avatar</a></li>
+          <li><a href="carousel.html">Carousel</a></li>
+          <li><a href="fileupload.html">File Upload</a></li>
+          <li><a href="#">Star Rating</a></li>
+          <li><a href="#">Timeline</a></li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <!-- CONTENT -->
+  <div class="content-wrap" id="contentWrap">
+    <main class="doc">
+
+      <!-- 1 · DEFINITION -->
+      <section class="doc-section" id="definition">
+        <div class="def-eyebrow">Actions</div>
+        <h1 class="def-title">Link</h1>
+        <p class="def-desc">The Link component is used for navigation within body text (inline) or as a standalone call-to-action. It supports three sizes, two surface contexts, and a full set of interactive states.</p>
+        <div class="def-tags">
+          <span class="tag">Developed</span>
+          <span class="tag">Figma</span>
+        </div>
+        <div class="preview-box">
+          <div style="display:flex;flex-direction:column;gap:24px;align-items:flex-start;">
+            <div style="display:flex;flex-wrap:wrap;gap:24px;align-items:center;">
+              <a href="#" class="lk lk--md lk--s01">
+                Standalone link
+                <i data-lucide="arrow-right" class="lk-icon"></i>
+              </a>
+              <a href="#" class="lk lk--md lk--s01 is-hover">
+                Hover
+                <i data-lucide="arrow-right" class="lk-icon"></i>
+              </a>
+              <a href="#" class="lk lk--md lk--s01 is-pressed">
+                Pressed
+                <i data-lucide="arrow-right" class="lk-icon"></i>
+              </a>
+              <a href="#" class="lk lk--md lk--s01 is-disabled" aria-disabled="true" tabindex="-1">
+                Disabled
+                <i data-lucide="arrow-right" class="lk-icon"></i>
+              </a>
+            </div>
+            <div style="display:flex;flex-wrap:wrap;gap:24px;align-items:center;">
+              <a href="#" class="lk lk--md lk--s01 lk--inline">Inline link</a>
+              <a href="#" class="lk lk--md lk--s01 lk--inline is-hover">Hover</a>
+              <a href="#" class="lk lk--md lk--s01 lk--inline is-pressed">Pressed</a>
+              <a href="#" class="lk lk--md lk--s01 lk--inline is-disabled" aria-disabled="true" tabindex="-1">Disabled</a>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- 2 · ANATOMY -->
+      <section class="doc-section" id="anatomy">
+        <h2 class="section-title">Anatomy</h2>
+        <div style="display:flex;flex-wrap:wrap;gap:20px;">
+
+          <!-- Standalone -->
+          <div class="anatomy-wrap" style="flex:1;min-width:260px;">
+            <div style="font-size:11px;font-weight:700;letter-spacing:.5px;text-transform:uppercase;color:var(--text-tertiary);margin-bottom:20px;">Standalone</div>
+            <div class="anatomy-component" style="padding:32px 40px;display:flex;justify-content:center;align-items:center;position:relative;">
+              <a href="#" class="lk lk--md lk--s01" style="pointer-events:none;">
+                Link text
+                <i data-lucide="arrow-right" class="lk-icon"></i>
+              </a>
+              <span class="callout" style="top:12px;left:52px;">1</span>
+              <span class="callout" style="top:12px;right:28px;">2</span>
+            </div>
+            <div class="anatomy-legend">
+              <div class="legend-item"><span class="legend-num">1</span>Link text</div>
+              <div class="legend-item"><span class="legend-num">2</span>Trailing icon</div>
+            </div>
+          </div>
+
+          <!-- Inline -->
+          <div class="anatomy-wrap" style="flex:1;min-width:260px;">
+            <div style="font-size:11px;font-weight:700;letter-spacing:.5px;text-transform:uppercase;color:var(--text-tertiary);margin-bottom:20px;">Inline</div>
+            <div class="anatomy-component" style="padding:32px 40px;display:flex;justify-content:center;align-items:center;position:relative;">
+              <a href="#" class="lk lk--md lk--s01 lk--inline" style="pointer-events:none;">Link text</a>
+              <span class="callout" style="top:12px;left:52px;">1</span>
+              <span class="callout" style="bottom:12px;left:52px;">2</span>
+            </div>
+            <div class="anatomy-legend">
+              <div class="legend-item"><span class="legend-num">1</span>Link text</div>
+              <div class="legend-item"><span class="legend-num">2</span>Underline</div>
+            </div>
+          </div>
+
+        </div>
+      </section>
+
+      <!-- 3 · VARIANTS -->
+      <section class="doc-section" id="variants">
+        <h2 class="section-title">Variants</h2>
+        <div class="tabs-wrap">
+          <div class="tabs">
+            <button class="tab active" onclick="switchTab(this,'v-size')">Size</button>
+            <button class="tab" onclick="switchTab(this,'v-style')">Style</button>
+            <button class="tab" onclick="switchTab(this,'v-surface')">Surface</button>
+          </div>
+        </div>
+
+        <!-- Size -->
+        <div class="tab-panel active" id="v-size">
+          <div class="var-panel">
+            <div class="var-previews-wrap">
+              <div class="state-panel active" id="vs-size-all">
+                <div class="var-previews">
+                  <div class="var-preview">
+                    <div style="display:flex;flex-direction:column;gap:16px;align-items:flex-start;">
+                      <a href="#" class="lk lk--sm lk--s01">Small link<i data-lucide="arrow-right" class="lk-icon"></i></a>
+                      <a href="#" class="lk lk--md lk--s01">Medium link<i data-lucide="arrow-right" class="lk-icon"></i></a>
+                      <a href="#" class="lk lk--lg lk--s01">Large link<i data-lucide="arrow-right" class="lk-icon"></i></a>
+                    </div>
+                  </div>
+                  <div class="var-preview-dark">
+                    <div style="display:flex;flex-direction:column;gap:16px;align-items:flex-start;">
+                      <a href="#" class="lk lk--sm lk--s01">Small link<i data-lucide="arrow-right" class="lk-icon"></i></a>
+                      <a href="#" class="lk lk--md lk--s01">Medium link<i data-lucide="arrow-right" class="lk-icon"></i></a>
+                      <a href="#" class="lk lk--lg lk--s01">Large link<i data-lucide="arrow-right" class="lk-icon"></i></a>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="var-desc">
+              <div class="var-use-when">Size scale:</div>
+              <ul class="var-use-list">
+                <li>Small (14px) — dense layouts, table rows, sidebar nav items</li>
+                <li>Medium (16px) — default for most body copy contexts</li>
+                <li>Large (18px / Bold) — standalone CTAs, card footers, hero sections</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <!-- Style -->
+        <div class="tab-panel" id="v-style">
+          <div class="var-panel">
+            <div class="var-previews-wrap">
+              <div class="state-panel active" id="vs-style-all">
+                <div class="var-previews">
+                  <div class="var-preview">
+                    <div style="display:flex;flex-direction:column;gap:16px;align-items:flex-start;">
+                      <a href="#" class="lk lk--md lk--s01">Standalone — no underline, arrow icon<i data-lucide="arrow-right" class="lk-icon"></i></a>
+                      <a href="#" class="lk lk--md lk--s01 lk--inline">Inline — underlined, no icon</a>
+                    </div>
+                  </div>
+                  <div class="var-preview-dark">
+                    <div style="display:flex;flex-direction:column;gap:16px;align-items:flex-start;">
+                      <a href="#" class="lk lk--md lk--s01">Standalone — no underline, arrow icon<i data-lucide="arrow-right" class="lk-icon"></i></a>
+                      <a href="#" class="lk lk--md lk--s01 lk--inline">Inline — underlined, no icon</a>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="var-desc">
+              <div class="var-use-when">Use when:</div>
+              <ul class="var-use-list">
+                <li>Standalone — use as a call-to-action that stands alone outside of running text</li>
+                <li>Inline — use inside sentences and paragraphs to link specific words</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <!-- Surface -->
+        <div class="tab-panel" id="v-surface">
+          <div class="var-panel">
+            <div class="var-previews-wrap">
+              <div class="state-panel active" id="vs-surface-all">
+                <div class="var-previews">
+                  <div class="var-preview">
+                    <div style="display:flex;flex-direction:column;gap:20px;align-items:flex-start;width:100%;">
+                      <div>
+                        <div style="font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.5px;color:#9CA3AF;margin-bottom:8px;">Surface-01</div>
+                        <a href="#" class="lk lk--md lk--s01">Surface-01 link<i data-lucide="arrow-right" class="lk-icon"></i></a>
+                      </div>
+                      <div>
+                        <div style="font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.5px;color:#9CA3AF;margin-bottom:8px;">Card</div>
+                        <a href="#" class="lk lk--md lk--card">Card link<i data-lucide="arrow-right" class="lk-icon"></i></a>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="var-preview-dark">
+                    <div style="display:flex;flex-direction:column;gap:20px;align-items:flex-start;width:100%;">
+                      <div>
+                        <div style="font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.5px;color:#6B7280;margin-bottom:8px;">Surface-01</div>
+                        <a href="#" class="lk lk--md lk--s01">Surface-01 link<i data-lucide="arrow-right" class="lk-icon"></i></a>
+                      </div>
+                      <div>
+                        <div style="font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.5px;color:#6B7280;margin-bottom:8px;">Card</div>
+                        <a href="#" class="lk lk--md lk--card">Card link<i data-lucide="arrow-right" class="lk-icon"></i></a>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="var-desc">
+              <div class="var-use-when">Surface context:</div>
+              <ul class="var-use-list">
+                <li>Surface-01 — use on page backgrounds (layer-01, shell)</li>
+                <li>Card — use when placed inside a Card component; dark mode uses a lighter blue token for contrast</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+      </section>
+
+      <!-- 4 · STATES -->
+      <section class="doc-section" id="states">
+        <h2 class="section-title">States</h2>
+        <div class="state-tab-row">
+          <button class="state-tab-btn active" onclick="switchStateTab(this,'st-default')">Default</button>
+          <button class="state-tab-btn" onclick="switchStateTab(this,'st-hover')">Hover</button>
+          <button class="state-tab-btn" onclick="switchStateTab(this,'st-pressed')">Pressed</button>
+          <button class="state-tab-btn" onclick="switchStateTab(this,'st-focus')">Focus</button>
+          <button class="state-tab-btn" onclick="switchStateTab(this,'st-disabled')">Disabled</button>
+        </div>
+        <div class="var-panel">
+          <div class="var-previews-wrap">
+
+            <!-- Default -->
+            <div class="state-panel active" id="st-default">
+              <div class="var-previews">
+                <div class="var-preview">
+                  <div style="display:flex;flex-direction:column;gap:16px;align-items:flex-start;">
+                    <a href="#" class="lk lk--md lk--s01">Standalone link<i data-lucide="arrow-right" class="lk-icon"></i></a>
+                    <a href="#" class="lk lk--md lk--s01 lk--inline">Inline link</a>
+                  </div>
+                </div>
+                <div class="var-preview-dark">
+                  <div style="display:flex;flex-direction:column;gap:16px;align-items:flex-start;">
+                    <a href="#" class="lk lk--md lk--s01">Standalone link<i data-lucide="arrow-right" class="lk-icon"></i></a>
+                    <a href="#" class="lk lk--md lk--s01 lk--inline">Inline link</a>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Hover -->
+            <div class="state-panel" id="st-hover">
+              <div class="var-previews">
+                <div class="var-preview">
+                  <div style="display:flex;flex-direction:column;gap:16px;align-items:flex-start;">
+                    <a href="#" class="lk lk--md lk--s01 is-hover">Standalone link<i data-lucide="arrow-right" class="lk-icon"></i></a>
+                    <a href="#" class="lk lk--md lk--s01 lk--inline is-hover">Inline link</a>
+                  </div>
+                </div>
+                <div class="var-preview-dark">
+                  <div style="display:flex;flex-direction:column;gap:16px;align-items:flex-start;">
+                    <a href="#" class="lk lk--md lk--s01 is-hover">Standalone link<i data-lucide="arrow-right" class="lk-icon"></i></a>
+                    <a href="#" class="lk lk--md lk--s01 lk--inline is-hover">Inline link</a>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Pressed -->
+            <div class="state-panel" id="st-pressed">
+              <div class="var-previews">
+                <div class="var-preview">
+                  <div style="display:flex;flex-direction:column;gap:16px;align-items:flex-start;">
+                    <a href="#" class="lk lk--md lk--s01 is-pressed">Standalone link<i data-lucide="arrow-right" class="lk-icon"></i></a>
+                    <a href="#" class="lk lk--md lk--s01 lk--inline is-pressed">Inline link</a>
+                  </div>
+                </div>
+                <div class="var-preview-dark">
+                  <div style="display:flex;flex-direction:column;gap:16px;align-items:flex-start;">
+                    <a href="#" class="lk lk--md lk--s01 is-pressed">Standalone link<i data-lucide="arrow-right" class="lk-icon"></i></a>
+                    <a href="#" class="lk lk--md lk--s01 lk--inline is-pressed">Inline link</a>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Focus -->
+            <div class="state-panel" id="st-focus">
+              <div class="var-previews">
+                <div class="var-preview">
+                  <div style="display:flex;flex-direction:column;gap:20px;align-items:flex-start;">
+                    <a href="#" class="lk lk--md lk--s01 is-focus">Standalone link<i data-lucide="arrow-right" class="lk-icon"></i></a>
+                    <a href="#" class="lk lk--md lk--s01 lk--inline is-focus">Inline link</a>
+                  </div>
+                </div>
+                <div class="var-preview-dark">
+                  <div style="display:flex;flex-direction:column;gap:20px;align-items:flex-start;">
+                    <a href="#" class="lk lk--md lk--s01 is-focus">Standalone link<i data-lucide="arrow-right" class="lk-icon"></i></a>
+                    <a href="#" class="lk lk--md lk--s01 lk--inline is-focus">Inline link</a>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Disabled -->
+            <div class="state-panel" id="st-disabled">
+              <div class="var-previews">
+                <div class="var-preview">
+                  <div style="display:flex;flex-direction:column;gap:16px;align-items:flex-start;">
+                    <a href="#" class="lk lk--md lk--s01 is-disabled" aria-disabled="true" tabindex="-1">Standalone link<i data-lucide="arrow-right" class="lk-icon"></i></a>
+                    <a href="#" class="lk lk--md lk--s01 lk--inline is-disabled" aria-disabled="true" tabindex="-1">Inline link</a>
+                  </div>
+                </div>
+                <div class="var-preview-dark">
+                  <div style="display:flex;flex-direction:column;gap:16px;align-items:flex-start;">
+                    <a href="#" class="lk lk--md lk--s01 is-disabled" aria-disabled="true" tabindex="-1">Standalone link<i data-lucide="arrow-right" class="lk-icon"></i></a>
+                    <a href="#" class="lk lk--md lk--s01 lk--inline is-disabled" aria-disabled="true" tabindex="-1">Inline link</a>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+          </div><!-- /var-previews-wrap -->
+          <div class="var-desc">
+            <div class="var-use-when">Interactive states:</div>
+            <ul class="var-use-list">
+              <li>Default — resting state; color token applied from surface context</li>
+              <li>Hover — link darkens to guide the user's attention</li>
+              <li>Pressed — deepest shade confirms the click or tap</li>
+              <li>Focus — 4px ring shown on keyboard navigation; meets WCAG 2.4.11</li>
+              <li>Disabled — muted grey; <code>pointer-events: none</code> prevents interaction</li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      <!-- 5 · PROPERTIES -->
+      <section class="doc-section" id="properties">
+        <h2 class="section-title">Properties</h2>
+        <table class="props-table">
+          <thead>
+            <tr>
+              <th>Property</th>
+              <th class="p-type">Type</th>
+              <th class="p-def">Default</th>
+              <th class="p-desc">Description</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><code class="p-name">href</code></td>
+              <td class="p-type">string</td>
+              <td class="p-def">—</td>
+              <td class="p-desc">Destination URL the link navigates to.</td>
+            </tr>
+            <tr>
+              <td><code class="p-name">style</code></td>
+              <td class="p-type">"standalone" | "inline"</td>
+              <td class="p-def">"standalone"</td>
+              <td class="p-desc">Visual treatment. Standalone has a trailing arrow icon and no underline; inline is underlined with no icon.</td>
+            </tr>
+            <tr>
+              <td><code class="p-name">size</code></td>
+              <td class="p-type">"sm" | "md" | "lg"</td>
+              <td class="p-def">"md"</td>
+              <td class="p-desc">Controls font size and icon dimensions. Large uses Lato Bold (700).</td>
+            </tr>
+            <tr>
+              <td><code class="p-name">surface</code></td>
+              <td class="p-type">"surface-01" | "card"</td>
+              <td class="p-def">"surface-01"</td>
+              <td class="p-desc">Background context used to select the correct colour token set. Card uses a distinct dark-mode value for contrast.</td>
+            </tr>
+            <tr>
+              <td><code class="p-name">disabled</code></td>
+              <td class="p-type">boolean</td>
+              <td class="p-def">false</td>
+              <td class="p-desc">Prevents interaction and applies the disabled colour token. Set <code>aria-disabled="true"</code> and remove from tab order with <code>tabindex="-1"</code>.</td>
+            </tr>
+          </tbody>
+        </table>
+      </section>
+
+      <!-- 6 · USAGE -->
+      <section class="doc-section" id="usage">
+        <h2 class="section-title">Usage</h2>
+
+        <div class="usage-block">
+          <div class="usage-cols">
+            <div class="usage-card">
+              <div class="usage-card-header">
+                <div class="usage-icon do-icon"><i data-lucide="check" style="width:12px;height:12px"></i></div>
+                <div class="usage-card-title">Use standalone for navigation actions</div>
+              </div>
+              <ul class="usage-list">
+                <li>Place standalone links after a block of content as a clear "read more" or "view all" CTA</li>
+                <li>Use in card footers, empty states, and sidebars where the link stands alone</li>
+                <li>Choose Large (Bold) for prominent sections that need extra visual weight</li>
+              </ul>
+            </div>
+            <div class="usage-card">
+              <div class="usage-card-header">
+                <div class="usage-icon do-icon"><i data-lucide="check" style="width:12px;height:12px"></i></div>
+                <div class="usage-card-title">Use inline within body text sentences</div>
+              </div>
+              <ul class="usage-list">
+                <li>Wrap specific words or short phrases — not entire sentences — with an inline link</li>
+                <li>Match the link size to the surrounding paragraph size for visual consistency</li>
+                <li>Provide descriptive link text that makes sense out of context</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <div class="usage-divider"></div>
+
+        <div class="usage-block">
+          <div class="usage-cols">
+            <div class="usage-card">
+              <div class="usage-card-header">
+                <div class="usage-icon dont-icon"><i data-lucide="x" style="width:12px;height:12px"></i></div>
+                <div class="usage-card-title">Don't use links as buttons for primary actions</div>
+              </div>
+              <ul class="usage-list">
+                <li>If the action submits data, triggers a modal, or changes application state, use a Button instead</li>
+                <li>Avoid replacing Button components with styled links purely for aesthetic reasons</li>
+                <li>Links imply navigation; buttons imply action — preserve this semantic distinction</li>
+              </ul>
+            </div>
+            <div class="usage-card">
+              <div class="usage-card-header">
+                <div class="usage-icon dont-icon"><i data-lucide="x" style="width:12px;height:12px"></i></div>
+                <div class="usage-card-title">Don't mix sizes in the same sentence</div>
+              </div>
+              <ul class="usage-list">
+                <li>An inline link must match the font size of the surrounding paragraph text</li>
+                <li>Avoid placing a Large link inside a paragraph written in 14px body copy</li>
+                <li>Keep standalone link sizes consistent within the same section or card</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- 7 · TOKENS -->
+      <section class="doc-section" id="tokens">
+        <h2 class="section-title">Tokens used</h2>
+
+        <div class="tokens-grid">
+
+          <!-- Surface-01 -->
+          <div>
+            <div class="tokens-group-label">Surface-01 — Light</div>
+            <table class="tokens-table">
+              <thead><tr><th>State</th><th>Token</th><th></th></tr></thead>
+              <tbody>
+                <tr><td>Default</td><td class="t-tok">--link-s01-default</td><td class="t-sw"><div class="swatch" style="background:#016692;"></div></td></tr>
+                <tr><td>Hover</td><td class="t-tok">--link-s01-hover</td><td class="t-sw"><div class="swatch" style="background:#004F70;"></div></td></tr>
+                <tr><td>Pressed</td><td class="t-tok">--link-s01-pressed</td><td class="t-sw"><div class="swatch" style="background:#001F33;"></div></td></tr>
+                <tr><td>Disabled</td><td class="t-tok">--link-s01-disabled</td><td class="t-sw"><div class="swatch" style="background:#6B7280;"></div></td></tr>
+              </tbody>
+            </table>
+            <div class="tokens-group-label" style="margin-top:16px;">Surface-01 — Dark</div>
+            <table class="tokens-table">
+              <thead><tr><th>State</th><th>Token</th><th></th></tr></thead>
+              <tbody>
+                <tr><td>Default</td><td class="t-tok">--link-s01-default</td><td class="t-sw"><div class="swatch" style="background:#5ABFE0;border-color:rgba(255,255,255,.15);"></div></td></tr>
+                <tr><td>Hover</td><td class="t-tok">--link-s01-hover</td><td class="t-sw"><div class="swatch" style="background:#8FCBE6;border-color:rgba(255,255,255,.15);"></div></td></tr>
+                <tr><td>Pressed</td><td class="t-tok">--link-s01-pressed</td><td class="t-sw"><div class="swatch" style="background:#0083BB;border-color:rgba(255,255,255,.15);"></div></td></tr>
+                <tr><td>Disabled</td><td class="t-tok">--link-s01-disabled</td><td class="t-sw"><div class="swatch" style="background:#6B7280;border-color:rgba(255,255,255,.15);"></div></td></tr>
+              </tbody>
+            </table>
+          </div>
+
+          <!-- Card -->
+          <div>
+            <div class="tokens-group-label">Card — Light</div>
+            <table class="tokens-table">
+              <thead><tr><th>State</th><th>Token</th><th></th></tr></thead>
+              <tbody>
+                <tr><td>Default</td><td class="t-tok">--link-card-default</td><td class="t-sw"><div class="swatch" style="background:#016692;"></div></td></tr>
+                <tr><td>Hover</td><td class="t-tok">--link-card-hover</td><td class="t-sw"><div class="swatch" style="background:#004F70;"></div></td></tr>
+                <tr><td>Pressed</td><td class="t-tok">--link-card-pressed</td><td class="t-sw"><div class="swatch" style="background:#001F33;"></div></td></tr>
+                <tr><td>Disabled</td><td class="t-tok">--link-card-disabled</td><td class="t-sw"><div class="swatch" style="background:#6B7280;"></div></td></tr>
+              </tbody>
+            </table>
+            <div class="tokens-group-label" style="margin-top:16px;">Card — Dark</div>
+            <table class="tokens-table">
+              <thead><tr><th>State</th><th>Token</th><th></th></tr></thead>
+              <tbody>
+                <tr><td>Default</td><td class="t-tok">--link-card-default</td><td class="t-sw"><div class="swatch" style="background:#35A8D6;border-color:rgba(255,255,255,.15);"></div></td></tr>
+                <tr><td>Hover</td><td class="t-tok">--link-card-hover</td><td class="t-sw"><div class="swatch" style="background:#5ABFE0;border-color:rgba(255,255,255,.15);"></div></td></tr>
+                <tr><td>Pressed</td><td class="t-tok">--link-card-pressed</td><td class="t-sw"><div class="swatch" style="background:#0083BB;border-color:rgba(255,255,255,.15);"></div></td></tr>
+                <tr><td>Disabled</td><td class="t-tok">--link-card-disabled</td><td class="t-sw"><div class="swatch" style="background:#6B7280;border-color:rgba(255,255,255,.15);"></div></td></tr>
+              </tbody>
+            </table>
+          </div>
+
+        </div>
+      </section>
+
+      <!-- 8 · ACCESSIBILITY -->
+      <section class="doc-section" id="accessibility">
+        <h2 class="section-title">Accessibility</h2>
+
+        <div class="a11y-group">
+          <h3 class="a11y-group-title">Keyboard Navigation</h3>
+          <ul class="a11y-list">
+            <li><div><strong>Tab</strong> moves focus to the next link in the natural document order. Ensure disabled links are removed from the tab sequence with <code>tabindex="-1"</code>.</div></li>
+            <li><div><strong>Enter</strong> activates the focused link and follows the <code>href</code> destination.</div></li>
+            <li><div>The focus ring (<code>box-shadow: 0 0 0 4px rgba(90,191,224,0.35)</code>) is always visible on keyboard focus to satisfy WCAG 2.4.11 Focus Appearance.</div></li>
+          </ul>
+        </div>
+
+        <div class="a11y-group">
+          <h3 class="a11y-group-title">Screen Reader</h3>
+          <ul class="a11y-list">
+            <li><div>Use descriptive link text that makes sense when read out of context. Avoid generic phrases like "click here" or "read more" without additional context.</div></li>
+            <li><div>When a link opens in a new tab, add <code>target="_blank"</code> together with <code>aria-label="... (opens in a new tab)"</code> or a visually hidden notice so screen reader users are informed.</div></li>
+            <li><div>Disabled links should carry <code>aria-disabled="true"</code> so assistive technology announces their unavailability rather than silently skipping them.</div></li>
+            <li><div>Standalone links with icon-only trailing arrows must include visible text — the icon is decorative and should carry <code>aria-hidden="true"</code> if rendered as SVG outside of Lucide's auto-creation.</div></li>
+          </ul>
+        </div>
+
+        <div class="a11y-group">
+          <h3 class="a11y-group-title">Colour &amp; Contrast</h3>
+          <ul class="a11y-list">
+            <li><div>All link colour tokens meet the WCAG AA 4.5:1 contrast ratio against their intended surface backgrounds in both light and dark modes.</div></li>
+            <li><div>Inline links supplement colour with an underline so they are distinguishable from surrounding text for users with colour vision deficiencies.</div></li>
+            <li><div>The disabled colour (<code>#6B7280</code>) is intentionally below 4.5:1 to communicate unavailability — this is an accepted pattern per WCAG 1.4.3 exception for disabled controls.</div></li>
+          </ul>
+        </div>
+
+      </section>
+
+      <!-- 9 · RELATED -->
+      <section class="doc-section" id="related">
+        <h2 class="section-title">Related Components</h2>
+        <div class="related-grid">
+          <a href="button.html" class="related-card">
+            <div class="rc-name">Button</div>
+            <div class="rc-desc">Use Button for actions that submit data or trigger state changes; use Link for navigation.</div>
+          </a>
+          <a href="badge.html" class="related-card">
+            <div class="rc-name">Badge</div>
+            <div class="rc-desc">Badges can be combined with inline links for inline badge-link patterns in body content.</div>
+          </a>
+        </div>
+      </section>
+
+    </main>
+
+    <!-- RIGHT NAV -->
+    <nav class="right-nav">
+      <div class="rn-label">On this page</div>
+      <ul class="rn-list">
+        <li><a href="#definition" id="rn-definition">Definition</a></li>
+        <li><a href="#anatomy" id="rn-anatomy">Anatomy</a></li>
+        <li><a href="#variants" id="rn-variants">Variants</a></li>
+        <li><a href="#states" id="rn-states">States</a></li>
+        <li><a href="#properties" id="rn-properties">Properties</a></li>
+        <li><a href="#usage" id="rn-usage">Usage</a></li>
+        <li><a href="#tokens" id="rn-tokens">Tokens</a></li>
+        <li><a href="#accessibility" id="rn-accessibility">Accessibility</a></li>
+        <li><a href="#related" id="rn-related">Related</a></li>
+      </ul>
+    </nav>
+
+  </div><!-- /content-wrap -->
+</div><!-- /shell -->
+
+<script>
+  lucide.createIcons();
+
+  const isMobile = () => window.innerWidth <= 768;
+  let sbOpen = !isMobile();
+  if (!sbOpen) document.getElementById('leftNav').classList.add('hidden');
+
+  function toggleSidebar() {
+    sbOpen = !sbOpen;
+    document.getElementById('leftNav').classList.toggle('hidden', !sbOpen);
+    if (!isMobile()) {
+      document.getElementById('contentWrap').style.marginLeft = sbOpen ? 'var(--left-w)' : '0';
+    }
+    document.getElementById('navOverlay').classList.toggle('active', sbOpen && isMobile());
+  }
+
+  function switchTab(btn, panelId) {
+    btn.closest('.doc-section').querySelectorAll('.tab').forEach(b => b.classList.remove('active'));
+    btn.closest('.doc-section').querySelectorAll('.tab-panel').forEach(p => p.classList.remove('active'));
+    btn.classList.add('active');
+    document.getElementById(panelId).classList.add('active');
+    const tabsEl = btn.closest('.tabs');
+    if (tabsEl) {
+      const tabRight = btn.offsetLeft + btn.offsetWidth;
+      const tabLeft = btn.offsetLeft;
+      if (tabRight > tabsEl.scrollLeft + tabsEl.clientWidth - 56) {
+        tabsEl.scrollLeft = tabRight - tabsEl.clientWidth + 72;
+      } else if (tabLeft < tabsEl.scrollLeft) {
+        tabsEl.scrollLeft = tabLeft;
+      }
+      updateTabFade(tabsEl);
+    }
+    lucide.createIcons();
+  }
+
+  function switchStateTab(btn, panelId) {
+    const section = btn.closest('.doc-section');
+    section.querySelectorAll('.state-tab-btn').forEach(b => b.classList.remove('active'));
+    section.querySelectorAll('.state-panel').forEach(p => p.classList.remove('active'));
+    btn.classList.add('active');
+    document.getElementById(panelId).classList.add('active');
+    lucide.createIcons();
+  }
+
+  function updateTabFade(tabsEl) {
+    const wrap = tabsEl.closest('.tabs-wrap');
+    if (!wrap) return;
+    const atEnd = tabsEl.scrollLeft + tabsEl.clientWidth >= tabsEl.scrollWidth - 2;
+    wrap.classList.toggle('at-end', atEnd);
+  }
+
+  window.addEventListener('load', () => {
+    document.querySelectorAll('.tabs').forEach(tabsEl => {
+      updateTabFade(tabsEl);
+      tabsEl.addEventListener('scroll', () => updateTabFade(tabsEl));
+    });
+  });
+
+  function toggleTheme() {
+    const html = document.documentElement;
+    html.setAttribute('data-theme', html.getAttribute('data-theme') === 'dark' ? 'light' : 'dark');
+  }
+
+  // Right nav scroll spy
+  const rnLinks = document.querySelectorAll('.rn-list a');
+  const sections = [...rnLinks].map(l => document.querySelector(l.getAttribute('href')));
+  function updateRN() {
+    let active = 0;
+    sections.forEach((s, i) => { if (s && s.getBoundingClientRect().top <= 80) active = i; });
+    rnLinks.forEach((l, i) => l.classList.toggle('active', i === active));
+  }
+  window.addEventListener('scroll', updateRN);
+  updateRN();
+
+  // Smooth scroll anchor links into view
+  rnLinks.forEach(link => {
+    link.addEventListener('click', e => {
+      const target = document.querySelector(link.getAttribute('href'));
+      if (target) { e.preventDefault(); target.scrollIntoView({ behavior: 'smooth' }); }
+    });
+  });
+</script>
+</body>
+</html>

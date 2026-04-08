@@ -35,6 +35,17 @@
   --badge-std-bd: #027CB1;  /* color/badge/standard/border */
   --badge-std-tx: #016692;  /* color/badge/standard/text */
 
+  /* Link — Surface 01 */
+  --link-s01-default: #016692;
+  --link-s01-hover:   #004F70;
+  --link-s01-pressed: #001F33;
+  --link-s01-disabled:#6B7280;
+  /* Link — Card */
+  --link-card-default: #016692;
+  --link-card-hover:   #004F70;
+  --link-card-pressed: #001F33;
+  --link-card-disabled:#6B7280;
+
   /* Layout */
   --nav-h:  48px;
   --left-w: 200px;
@@ -68,6 +79,17 @@
   --badge-std-bg: #E5EEF5;
   --badge-std-bd: #027CB1;
   --badge-std-tx: #016692;
+
+  /* Link — Surface 01 */
+  --link-s01-default: #016692;
+  --link-s01-hover:   #004F70;
+  --link-s01-pressed: #001F33;
+  --link-s01-disabled:#6B7280;
+  /* Link — Card */
+  --link-card-default: #016692;
+  --link-card-hover:   #004F70;
+  --link-card-pressed: #001F33;
+  --link-card-disabled:#6B7280;
 }
 
 [data-theme="dark"] {
@@ -99,4 +121,15 @@
   --badge-std-bg: #001F33;
   --badge-std-bd: #35A8D6;
   --badge-std-tx: #FFFFFF;
+
+  /* Link — Surface 01 */
+  --link-s01-default: #5ABFE0;
+  --link-s01-hover:   #8FCBE6;
+  --link-s01-pressed: #0083BB;
+  --link-s01-disabled:#6B7280;
+  /* Link — Card */
+  --link-card-default: #35A8D6;
+  --link-card-hover:   #5ABFE0;
+  --link-card-pressed: #0083BB;
+  --link-card-disabled:#6B7280;
 }
