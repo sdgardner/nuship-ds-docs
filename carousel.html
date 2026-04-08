@@ -801,8 +801,16 @@
     sections.forEach((s, i) => { if (s && s.getBoundingClientRect().top <= 80) active = i; });
     rnLinks.forEach((l, i) => l.classList.toggle('active', i === active));
   }
-  document.getElementById('contentWrap').addEventListener('scroll', updateRN);
+  window.addEventListener('scroll', updateRN);
   updateRN();
+
+  // Smooth scroll anchor links into view
+  rnLinks.forEach(link => {
+    link.addEventListener('click', e => {
+      const target = document.querySelector(link.getAttribute('href'));
+      if (target) { e.preventDefault(); target.scrollIntoView({ behavior: 'smooth' }); }
+    });
+  });
 </script>
 </body>
 </html>
