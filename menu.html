@@ -241,7 +241,6 @@
         <div class="tabs-wrap">
           <div class="tabs">
             <button class="tab active" onclick="switchTab(this,'v-type')">Type</button>
-            <button class="tab" onclick="switchTab(this,'v-state')">State</button>
           </div>
         </div>
 
@@ -423,152 +422,201 @@
           </div>
         </div>
 
-        <!-- State -->
-        <div class="tab-panel" id="v-state">
-          <div class="var-panel">
-            <div class="var-previews-wrap">
-              <div class="state-panel active">
-                <div class="var-previews">
-
-                  <!-- Light -->
-                  <div class="var-preview" style="align-items:flex-start;gap:20px;flex-wrap:wrap;">
-                    <div>
-                      <div style="font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.5px;color:#9CA3AF;margin-bottom:10px;">Default</div>
-                      <nav class="mn-menu" style="min-width:170px;" aria-label="Default state">
-                        <div class="mn-item">
-                          <div class="mn-item-content">
-                            <i data-lucide="folder-plus" class="mn-icon"></i>
-                            <span class="mn-label">New Folder</span>
-                          </div>
-                          <span class="mn-kbd">⌘N</span>
-                        </div>
-                        <div class="mn-item">
-                          <div class="mn-item-content">
-                            <i data-lucide="copy" class="mn-icon"></i>
-                            <span class="mn-label">Duplicate</span>
-                          </div>
-                          <span class="mn-kbd">⌘D</span>
-                        </div>
-                      </nav>
-                    </div>
-                    <div>
-                      <div style="font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.5px;color:#9CA3AF;margin-bottom:10px;">Hover</div>
-                      <nav class="mn-menu" style="min-width:170px;" aria-label="Hover state">
-                        <div class="mn-item mn-item--hover">
-                          <div class="mn-item-content">
-                            <i data-lucide="folder-plus" class="mn-icon"></i>
-                            <span class="mn-label">New Folder</span>
-                          </div>
-                          <span class="mn-kbd">⌘N</span>
-                        </div>
-                        <div class="mn-item">
-                          <div class="mn-item-content">
-                            <i data-lucide="copy" class="mn-icon"></i>
-                            <span class="mn-label">Duplicate</span>
-                          </div>
-                          <span class="mn-kbd">⌘D</span>
-                        </div>
-                      </nav>
-                    </div>
-                    <div>
-                      <div style="font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.5px;color:#9CA3AF;margin-bottom:10px;">Disabled</div>
-                      <nav class="mn-menu" style="min-width:170px;" aria-label="Disabled state">
-                        <div class="mn-item">
-                          <div class="mn-item-content">
-                            <i data-lucide="folder-plus" class="mn-icon"></i>
-                            <span class="mn-label">New Folder</span>
-                          </div>
-                          <span class="mn-kbd">⌘N</span>
-                        </div>
-                        <div class="mn-item mn-item--disabled">
-                          <div class="mn-item-content">
-                            <i data-lucide="copy" class="mn-icon"></i>
-                            <span class="mn-label">Duplicate</span>
-                          </div>
-                          <span class="mn-kbd">⌘D</span>
-                        </div>
-                      </nav>
-                    </div>
-                  </div>
-
-                  <!-- Dark -->
-                  <div class="var-preview-dark" style="align-items:flex-start;gap:20px;flex-wrap:wrap;">
-                    <div>
-                      <div style="font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.5px;color:#6B7280;margin-bottom:10px;">Default</div>
-                      <nav class="mn-menu" style="min-width:170px;" aria-label="Default state dark">
-                        <div class="mn-item">
-                          <div class="mn-item-content">
-                            <i data-lucide="folder-plus" class="mn-icon"></i>
-                            <span class="mn-label">New Folder</span>
-                          </div>
-                          <span class="mn-kbd">⌘N</span>
-                        </div>
-                        <div class="mn-item">
-                          <div class="mn-item-content">
-                            <i data-lucide="copy" class="mn-icon"></i>
-                            <span class="mn-label">Duplicate</span>
-                          </div>
-                          <span class="mn-kbd">⌘D</span>
-                        </div>
-                      </nav>
-                    </div>
-                    <div>
-                      <div style="font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.5px;color:#6B7280;margin-bottom:10px;">Hover</div>
-                      <nav class="mn-menu" style="min-width:170px;" aria-label="Hover state dark">
-                        <div class="mn-item mn-item--hover">
-                          <div class="mn-item-content">
-                            <i data-lucide="folder-plus" class="mn-icon"></i>
-                            <span class="mn-label">New Folder</span>
-                          </div>
-                          <span class="mn-kbd">⌘N</span>
-                        </div>
-                        <div class="mn-item">
-                          <div class="mn-item-content">
-                            <i data-lucide="copy" class="mn-icon"></i>
-                            <span class="mn-label">Duplicate</span>
-                          </div>
-                          <span class="mn-kbd">⌘D</span>
-                        </div>
-                      </nav>
-                    </div>
-                    <div>
-                      <div style="font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.5px;color:#6B7280;margin-bottom:10px;">Disabled</div>
-                      <nav class="mn-menu" style="min-width:170px;" aria-label="Disabled state dark">
-                        <div class="mn-item">
-                          <div class="mn-item-content">
-                            <i data-lucide="folder-plus" class="mn-icon"></i>
-                            <span class="mn-label">New Folder</span>
-                          </div>
-                          <span class="mn-kbd">⌘N</span>
-                        </div>
-                        <div class="mn-item mn-item--disabled">
-                          <div class="mn-item-content">
-                            <i data-lucide="copy" class="mn-icon"></i>
-                            <span class="mn-label">Duplicate</span>
-                          </div>
-                          <span class="mn-kbd">⌘D</span>
-                        </div>
-                      </nav>
-                    </div>
-                  </div>
-
-                </div>
-              </div>
-            </div>
-            <div class="var-desc">
-              <div class="var-use-when">Item states:</div>
-              <ul class="var-use-list">
-                <li><strong>Default</strong> — no background; item is actionable</li>
-                <li><strong>Hover</strong> — <code>surface-layer01-hover</code> background fill; triggered on pointer enter</li>
-                <li><strong>Disabled</strong> — all text and icon shift to <code>text-tertiary</code>; pointer-events removed</li>
-              </ul>
-            </div>
-          </div>
-        </div>
 
       </section>
 
-      <!-- 4 · PROPERTIES -->
+      <!-- 4 · STATES -->
+      <section class="doc-section" id="states">
+        <h2 class="section-title">States</h2>
+        <div class="state-tab-row">
+          <button class="state-tab-btn active" onclick="switchStateTab(this,'st-default')">Default</button>
+          <button class="state-tab-btn" onclick="switchStateTab(this,'st-hover')">Hover</button>
+          <button class="state-tab-btn" onclick="switchStateTab(this,'st-disabled')">Disabled</button>
+        </div>
+        <div class="var-panel">
+          <div class="var-previews-wrap">
+
+            <!-- Default -->
+            <div class="state-panel active" id="st-default">
+              <div class="var-previews">
+                <div class="var-preview">
+                  <nav class="mn-menu" style="min-width:170px;" aria-label="Default state">
+                    <div class="mn-item">
+                      <div class="mn-item-content">
+                        <i data-lucide="folder-plus" class="mn-icon"></i>
+                        <span class="mn-label">New Folder</span>
+                      </div>
+                      <span class="mn-kbd">⌘N</span>
+                    </div>
+                    <div class="mn-item">
+                      <div class="mn-item-content">
+                        <i data-lucide="copy" class="mn-icon"></i>
+                        <span class="mn-label">Duplicate</span>
+                      </div>
+                      <span class="mn-kbd">⌘D</span>
+                    </div>
+                    <div class="mn-item">
+                      <div class="mn-item-content">
+                        <i data-lucide="folder-symlink" class="mn-icon"></i>
+                        <span class="mn-label">Move To</span>
+                      </div>
+                      <div class="mn-trailing"><i data-lucide="chevron-right"></i></div>
+                    </div>
+                  </nav>
+                </div>
+                <div class="var-preview-dark">
+                  <nav class="mn-menu" style="min-width:170px;" aria-label="Default state dark">
+                    <div class="mn-item">
+                      <div class="mn-item-content">
+                        <i data-lucide="folder-plus" class="mn-icon"></i>
+                        <span class="mn-label">New Folder</span>
+                      </div>
+                      <span class="mn-kbd">⌘N</span>
+                    </div>
+                    <div class="mn-item">
+                      <div class="mn-item-content">
+                        <i data-lucide="copy" class="mn-icon"></i>
+                        <span class="mn-label">Duplicate</span>
+                      </div>
+                      <span class="mn-kbd">⌘D</span>
+                    </div>
+                    <div class="mn-item">
+                      <div class="mn-item-content">
+                        <i data-lucide="folder-symlink" class="mn-icon"></i>
+                        <span class="mn-label">Move To</span>
+                      </div>
+                      <div class="mn-trailing"><i data-lucide="chevron-right"></i></div>
+                    </div>
+                  </nav>
+                </div>
+              </div>
+            </div>
+
+            <!-- Hover -->
+            <div class="state-panel" id="st-hover">
+              <div class="var-previews">
+                <div class="var-preview">
+                  <nav class="mn-menu" style="min-width:170px;" aria-label="Hover state">
+                    <div class="mn-item mn-item--hover">
+                      <div class="mn-item-content">
+                        <i data-lucide="folder-plus" class="mn-icon"></i>
+                        <span class="mn-label">New Folder</span>
+                      </div>
+                      <span class="mn-kbd">⌘N</span>
+                    </div>
+                    <div class="mn-item">
+                      <div class="mn-item-content">
+                        <i data-lucide="copy" class="mn-icon"></i>
+                        <span class="mn-label">Duplicate</span>
+                      </div>
+                      <span class="mn-kbd">⌘D</span>
+                    </div>
+                    <div class="mn-item">
+                      <div class="mn-item-content">
+                        <i data-lucide="folder-symlink" class="mn-icon"></i>
+                        <span class="mn-label">Move To</span>
+                      </div>
+                      <div class="mn-trailing"><i data-lucide="chevron-right"></i></div>
+                    </div>
+                  </nav>
+                </div>
+                <div class="var-preview-dark">
+                  <nav class="mn-menu" style="min-width:170px;" aria-label="Hover state dark">
+                    <div class="mn-item mn-item--hover">
+                      <div class="mn-item-content">
+                        <i data-lucide="folder-plus" class="mn-icon"></i>
+                        <span class="mn-label">New Folder</span>
+                      </div>
+                      <span class="mn-kbd">⌘N</span>
+                    </div>
+                    <div class="mn-item">
+                      <div class="mn-item-content">
+                        <i data-lucide="copy" class="mn-icon"></i>
+                        <span class="mn-label">Duplicate</span>
+                      </div>
+                      <span class="mn-kbd">⌘D</span>
+                    </div>
+                    <div class="mn-item">
+                      <div class="mn-item-content">
+                        <i data-lucide="folder-symlink" class="mn-icon"></i>
+                        <span class="mn-label">Move To</span>
+                      </div>
+                      <div class="mn-trailing"><i data-lucide="chevron-right"></i></div>
+                    </div>
+                  </nav>
+                </div>
+              </div>
+            </div>
+
+            <!-- Disabled -->
+            <div class="state-panel" id="st-disabled">
+              <div class="var-previews">
+                <div class="var-preview">
+                  <nav class="mn-menu" style="min-width:170px;" aria-label="Disabled state">
+                    <div class="mn-item">
+                      <div class="mn-item-content">
+                        <i data-lucide="folder-plus" class="mn-icon"></i>
+                        <span class="mn-label">New Folder</span>
+                      </div>
+                      <span class="mn-kbd">⌘N</span>
+                    </div>
+                    <div class="mn-item mn-item--disabled" aria-disabled="true">
+                      <div class="mn-item-content">
+                        <i data-lucide="copy" class="mn-icon"></i>
+                        <span class="mn-label">Duplicate</span>
+                      </div>
+                      <span class="mn-kbd">⌘D</span>
+                    </div>
+                    <div class="mn-item mn-item--disabled" aria-disabled="true">
+                      <div class="mn-item-content">
+                        <i data-lucide="folder-symlink" class="mn-icon"></i>
+                        <span class="mn-label">Move To</span>
+                      </div>
+                      <div class="mn-trailing"><i data-lucide="chevron-right"></i></div>
+                    </div>
+                  </nav>
+                </div>
+                <div class="var-preview-dark">
+                  <nav class="mn-menu" style="min-width:170px;" aria-label="Disabled state dark">
+                    <div class="mn-item">
+                      <div class="mn-item-content">
+                        <i data-lucide="folder-plus" class="mn-icon"></i>
+                        <span class="mn-label">New Folder</span>
+                      </div>
+                      <span class="mn-kbd">⌘N</span>
+                    </div>
+                    <div class="mn-item mn-item--disabled" aria-disabled="true">
+                      <div class="mn-item-content">
+                        <i data-lucide="copy" class="mn-icon"></i>
+                        <span class="mn-label">Duplicate</span>
+                      </div>
+                      <span class="mn-kbd">⌘D</span>
+                    </div>
+                    <div class="mn-item mn-item--disabled" aria-disabled="true">
+                      <div class="mn-item-content">
+                        <i data-lucide="folder-symlink" class="mn-icon"></i>
+                        <span class="mn-label">Move To</span>
+                      </div>
+                      <div class="mn-trailing"><i data-lucide="chevron-right"></i></div>
+                    </div>
+                  </nav>
+                </div>
+              </div>
+            </div>
+
+          </div><!-- /var-previews-wrap -->
+          <div class="var-desc">
+            <div class="var-use-when">Item states:</div>
+            <ul class="var-use-list">
+              <li><strong>Default</strong> — resting state; no background fill on the row</li>
+              <li><strong>Hover</strong> — <code>surface-layer01-hover</code> background applied on pointer enter</li>
+              <li><strong>Disabled</strong> — all text and icons shift to <code>text-tertiary</code>; <code>pointer-events: none</code></li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      <!-- 5 · PROPERTIES -->
       <section class="doc-section" id="properties">
         <h2 class="section-title">Properties</h2>
         <table class="props-table">
@@ -760,6 +808,7 @@
         <li><a href="#definition" id="rn-definition">Definition</a></li>
         <li><a href="#anatomy" id="rn-anatomy">Anatomy</a></li>
         <li><a href="#variants" id="rn-variants">Variants</a></li>
+        <li><a href="#states" id="rn-states">States</a></li>
         <li><a href="#properties" id="rn-properties">Properties</a></li>
         <li><a href="#usage" id="rn-usage">Usage</a></li>
         <li><a href="#tokens" id="rn-tokens">Tokens</a></li>
