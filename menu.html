@@ -720,6 +720,15 @@
     document.getElementById('navOverlay').classList.toggle('active', sbOpen && isMobile());
   }
 
+  function switchStateTab(btn, panelId) {
+    const tabPanel = btn.closest('.tab-panel');
+    tabPanel.querySelectorAll('.state-tab-btn').forEach(b => b.classList.remove('active'));
+    tabPanel.querySelectorAll('.state-panel').forEach(p => p.classList.remove('active'));
+    btn.classList.add('active');
+    document.getElementById(panelId).classList.add('active');
+    lucide.createIcons();
+  }
+
   function switchTab(btn, panelId) {
     btn.closest('.doc-section').querySelectorAll('.tab').forEach(b => b.classList.remove('active'));
     btn.closest('.doc-section').querySelectorAll('.tab-panel').forEach(p => p.classList.remove('active'));
