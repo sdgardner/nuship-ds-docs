@@ -24,6 +24,7 @@
 
   --action-secondary: #027CB1;  /* color/action/secondary/default */
   --action-sec-hover: #016692;  /* color/action/secondary/hover */
+  --action-primary:   #006C21;  /* color/action/primary/default */
 
   /* Status tokens */
   --err-bg:#FCE8E8; --err-bd:#A12F2F; --err-tx:#A12F2F; --err-ic:#A12F2F;
@@ -78,6 +79,7 @@
 
   --action-secondary: #027CB1;
   --action-sec-hover: #016692;
+  --action-primary:   #006C21;
   --surface-layer01-hover: #E5E7EB;
   --action-destructive: #C63B3B;
 
@@ -122,6 +124,7 @@
 
   --action-secondary: #35A8D6;
   --action-sec-hover: #5ABFE0;
+  --action-primary:   #4DAD82;
   --surface-layer01-hover: #1F2937;
   --action-destructive: #C63B3B;
 

@@ -1,0 +1,836 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Modal — nuShip Design System</title>
+  <link href="https://fonts.googleapis.com/css2?family=Lato:wght@400;600;700;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="tokens.css">
+  <link rel="stylesheet" href="styles.css">
+  <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.min.js"></script>
+</head>
+<body>
+
+<!-- MOBILE OVERLAY -->
+<div id="navOverlay" class="nav-overlay" onclick="toggleSidebar()"></div>
+
+<!-- TOP NAV -->
+<nav class="topnav">
+  <button class="hamburger" onclick="toggleSidebar()" aria-label="Menu">
+    <i data-lucide="menu" style="width:18px;height:18px;color:var(--text-secondary)"></i>
+  </button>
+  <div class="bc">
+    <a href="index.html">UI Components</a>
+    <i data-lucide="chevron-right" style="width:14px;height:14px;flex-shrink:0"></i>
+    <a href="#">Overlays</a>
+    <i data-lucide="chevron-right" style="width:14px;height:14px;flex-shrink:0"></i>
+    <span class="cur">Modal</span>
+  </div>
+  <div class="nav-actions">
+    <div class="toggle-wrap" onclick="toggleTheme()" role="button">
+      <i data-lucide="moon" style="width:20px;height:20px"></i>
+      <div class="toggle-track"><div class="toggle-thumb"></div></div>
+      <i data-lucide="sun" style="width:20px;height:20px"></i>
+    </div>
+  </div>
+</nav>
+
+<div class="shell">
+
+  <!-- LEFT NAV -->
+  <nav class="left-nav" id="leftNav">
+    <div class="left-nav-inner">
+      <div class="ln-group">
+        <div class="ln-label">Inputs</div>
+        <ul class="ln-list">
+          <li><a href="checkbox.html">Checkbox</a></li>
+          <li><a href="datepicker.html">Date Picker</a></li>
+          <li><a href="#">Number Input</a></li>
+          <li><a href="#">Radio Button</a></li>
+          <li><a href="#">Search</a></li>
+          <li><a href="#">Select</a></li>
+          <li><a href="#">Slider</a></li>
+          <li><a href="#">Switch</a></li>
+          <li><a href="#">Text Area</a></li>
+          <li><a href="#">Text Input</a></li>
+        </ul>
+      </div>
+      <div class="ln-group">
+        <div class="ln-label">Feedback</div>
+        <ul class="ln-list">
+          <li><a href="alert.html">Alert</a></li>
+          <li><a href="badge.html">Badge</a></li>
+          <li><a href="#">Toast</a></li>
+          <li><a href="#">Tooltip</a></li>
+        </ul>
+      </div>
+      <div class="ln-group">
+        <div class="ln-label">Navigation</div>
+        <ul class="ln-list">
+          <li><a href="accordion.html">Accordion</a></li>
+          <li><a href="#">Breadcrumb</a></li>
+          <li><a href="dropdown.html">Dropdown</a></li>
+          <li><a href="menu.html">Menu</a></li>
+          <li><a href="#">Tabs</a></li>
+        </ul>
+      </div>
+      <div class="ln-group">
+        <div class="ln-label">Actions</div>
+        <ul class="ln-list">
+          <li><a href="button.html">Button</a></li>
+          <li><a href="link.html">Link</a></li>
+          <li><a href="#">Tags</a></li>
+        </ul>
+      </div>
+      <div class="ln-group">
+        <div class="ln-label">Overlays</div>
+        <ul class="ln-list">
+          <li><a href="modal.html" class="active">Modal</a></li>
+          <li><a href="#">Popover</a></li>
+        </ul>
+      </div>
+      <div class="ln-group">
+        <div class="ln-label">Display</div>
+        <ul class="ln-list">
+          <li><a href="avatar.html">Avatar</a></li>
+          <li><a href="carousel.html">Carousel</a></li>
+          <li><a href="fileupload.html">File Upload</a></li>
+          <li><a href="#">Star Rating</a></li>
+          <li><a href="#">Timeline</a></li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <!-- CONTENT -->
+  <div class="content-wrap" id="contentWrap">
+    <main class="doc">
+
+      <!-- 1 · DEFINITION -->
+      <section class="doc-section" id="definition">
+        <div class="def-eyebrow">Overlays</div>
+        <h1 class="def-title">Modal</h1>
+        <p class="def-desc">A focused dialog that interrupts the current workflow to request user confirmation, present critical information, or complete a short task. Modals support three intents and two screen sizes.</p>
+        <div class="def-tags">
+          <span class="tag">Developed</span>
+          <span class="tag">Figma</span>
+        </div>
+        <div class="preview-box">
+          <div class="preview-box-inner">
+            <div style="display:flex;align-items:center;justify-content:center;">
+              <div class="md-modal">
+                <div class="md-header">
+                  <div class="md-title-group">
+                    <i data-lucide="info" class="md-icon md-icon--default"></i>
+                    <h3 class="md-title">Confirm action</h3>
+                  </div>
+                  <button class="md-close" aria-label="Close">
+                    <i data-lucide="x"></i>
+                  </button>
+                </div>
+                <div class="md-body">
+                  <p class="md-desc">Are you sure you want to proceed? This action will update your settings and cannot be easily undone.</p>
+                </div>
+                <div class="md-footer">
+                  <button class="md-btn-cancel">Cancel</button>
+                  <button class="md-btn-confirm md-btn-confirm--default">Confirm</button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- 2 · ANATOMY -->
+      <section class="doc-section" id="anatomy">
+        <h2 class="section-title">Anatomy</h2>
+        <div class="anatomy-wrap">
+          <div class="anatomy-component" style="padding:40px 48px;display:flex;justify-content:center;align-items:center;position:relative;">
+            <div class="md-modal" style="pointer-events:none;position:relative;">
+              <div class="md-header">
+                <div class="md-title-group">
+                  <i data-lucide="info" class="md-icon md-icon--default"></i>
+                  <h3 class="md-title">Confirm action</h3>
+                </div>
+                <button class="md-close" aria-label="Close" tabindex="-1">
+                  <i data-lucide="x"></i>
+                </button>
+              </div>
+              <div class="md-body">
+                <p class="md-desc">Are you sure you want to proceed? This action will update your settings.</p>
+              </div>
+              <div class="md-footer">
+                <button class="md-btn-cancel" tabindex="-1">Cancel</button>
+                <button class="md-btn-confirm md-btn-confirm--default" tabindex="-1">Confirm</button>
+              </div>
+              <!-- callouts -->
+              <span class="callout" style="top:28px;left:44px">1</span>
+              <span class="callout" style="top:28px;left:96px">2</span>
+              <span class="callout" style="top:28px;right:28px">3</span>
+              <span class="callout" style="top:108px;left:28px">4</span>
+              <span class="callout" style="bottom:28px;right:108px">5</span>
+              <span class="callout" style="bottom:28px;right:28px">6</span>
+            </div>
+          </div>
+          <div class="anatomy-legend">
+            <div class="legend-item"><span class="legend-num">1</span>Icon — 24×24, intent-colored</div>
+            <div class="legend-item"><span class="legend-num">2</span>Title — typography/header/h3 (20px Bold)</div>
+            <div class="legend-item"><span class="legend-num">3</span>Close button</div>
+            <div class="legend-item"><span class="legend-num">4</span>Body text — typography/body/medium (16px Regular)</div>
+            <div class="legend-item"><span class="legend-num">5</span>Cancel button (ghost)</div>
+            <div class="legend-item"><span class="legend-num">6</span>Confirm button (intent-filled)</div>
+          </div>
+        </div>
+      </section>
+
+      <!-- 3 · VARIANTS -->
+      <section class="doc-section" id="variants">
+        <h2 class="section-title">Variants</h2>
+        <div class="tabs-wrap">
+          <div class="tabs">
+            <button class="tab active" onclick="switchTab(this,'v-default')">Default</button>
+            <button class="tab" onclick="switchTab(this,'v-destructive')">Destructive</button>
+            <button class="tab" onclick="switchTab(this,'v-success')">Success</button>
+          </div>
+        </div>
+
+        <!-- Default -->
+        <div class="tab-panel active" id="v-default">
+          <div class="state-tab-row">
+            <button class="state-tab-btn active" onclick="switchStateTab(this,'vs-def-desktop')">Desktop</button>
+            <button class="state-tab-btn" onclick="switchStateTab(this,'vs-def-mobile')">Mobile</button>
+          </div>
+          <div class="var-panel">
+            <div class="var-previews-wrap">
+
+              <!-- Default · Desktop -->
+              <div class="state-panel active" id="vs-def-desktop">
+                <div class="var-previews">
+                  <div class="var-preview" data-theme="light">
+                    <div class="md-modal">
+                      <div class="md-header">
+                        <div class="md-title-group">
+                          <i data-lucide="info" class="md-icon md-icon--default"></i>
+                          <h3 class="md-title">Confirm action</h3>
+                        </div>
+                        <button class="md-close" aria-label="Close"><i data-lucide="x"></i></button>
+                      </div>
+                      <div class="md-body">
+                        <p class="md-desc">Are you sure you want to proceed? This action will update your settings and cannot be easily undone.</p>
+                      </div>
+                      <div class="md-footer">
+                        <button class="md-btn-cancel">Cancel</button>
+                        <button class="md-btn-confirm md-btn-confirm--default">Confirm</button>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="var-preview-dark" data-theme="dark">
+                    <div class="md-modal">
+                      <div class="md-header">
+                        <div class="md-title-group">
+                          <i data-lucide="info" class="md-icon md-icon--default"></i>
+                          <h3 class="md-title">Confirm action</h3>
+                        </div>
+                        <button class="md-close" aria-label="Close"><i data-lucide="x"></i></button>
+                      </div>
+                      <div class="md-body">
+                        <p class="md-desc">Are you sure you want to proceed? This action will update your settings and cannot be easily undone.</p>
+                      </div>
+                      <div class="md-footer">
+                        <button class="md-btn-cancel">Cancel</button>
+                        <button class="md-btn-confirm md-btn-confirm--default">Confirm</button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Default · Mobile -->
+              <div class="state-panel" id="vs-def-mobile">
+                <div class="var-previews">
+                  <div class="var-preview" data-theme="light">
+                    <div class="md-modal md-modal--mobile">
+                      <div class="md-header">
+                        <div class="md-title-group">
+                          <i data-lucide="info" class="md-icon md-icon--default"></i>
+                          <h3 class="md-title">Confirm action</h3>
+                        </div>
+                        <button class="md-close" aria-label="Close"><i data-lucide="x"></i></button>
+                      </div>
+                      <div class="md-body">
+                        <p class="md-desc">Are you sure you want to proceed? This action cannot be easily undone.</p>
+                      </div>
+                      <div class="md-footer md-footer--mobile">
+                        <button class="md-btn-cancel md-btn-cancel--mobile">Cancel</button>
+                        <button class="md-btn-confirm md-btn-confirm--default md-btn-confirm--mobile">Confirm</button>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="var-preview-dark" data-theme="dark">
+                    <div class="md-modal md-modal--mobile">
+                      <div class="md-header">
+                        <div class="md-title-group">
+                          <i data-lucide="info" class="md-icon md-icon--default"></i>
+                          <h3 class="md-title">Confirm action</h3>
+                        </div>
+                        <button class="md-close" aria-label="Close"><i data-lucide="x"></i></button>
+                      </div>
+                      <div class="md-body">
+                        <p class="md-desc">Are you sure you want to proceed? This action cannot be easily undone.</p>
+                      </div>
+                      <div class="md-footer md-footer--mobile">
+                        <button class="md-btn-cancel md-btn-cancel--mobile">Cancel</button>
+                        <button class="md-btn-confirm md-btn-confirm--default md-btn-confirm--mobile">Confirm</button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+            </div>
+            <div class="var-desc">
+              <div class="var-use-when">Use when:</div>
+              <ul class="var-use-list">
+                <li>Confirming a neutral or informational action before it executes</li>
+                <li>Presenting secondary information that requires user acknowledgment</li>
+                <li>The action has no destructive or high-risk consequence</li>
+              </ul>
+              <div class="var-use-when" style="margin-top:12px;">Token group:</div>
+              <ul class="var-use-list"><li><code>--inf-ic</code>, <code>--action-secondary</code></li></ul>
+            </div>
+          </div>
+        </div>
+
+        <!-- Destructive -->
+        <div class="tab-panel" id="v-destructive">
+          <div class="state-tab-row">
+            <button class="state-tab-btn active" onclick="switchStateTab(this,'vs-dest-desktop')">Desktop</button>
+            <button class="state-tab-btn" onclick="switchStateTab(this,'vs-dest-mobile')">Mobile</button>
+          </div>
+          <div class="var-panel">
+            <div class="var-previews-wrap">
+
+              <!-- Destructive · Desktop -->
+              <div class="state-panel active" id="vs-dest-desktop">
+                <div class="var-previews">
+                  <div class="var-preview" data-theme="light">
+                    <div class="md-modal">
+                      <div class="md-header">
+                        <div class="md-title-group">
+                          <i data-lucide="triangle-alert" class="md-icon md-icon--destructive"></i>
+                          <h3 class="md-title">Delete shipment</h3>
+                        </div>
+                        <button class="md-close" aria-label="Close"><i data-lucide="x"></i></button>
+                      </div>
+                      <div class="md-body">
+                        <p class="md-desc">Deleting this shipment is permanent and cannot be undone. All associated tracking data will be removed.</p>
+                      </div>
+                      <div class="md-footer">
+                        <button class="md-btn-cancel">Cancel</button>
+                        <button class="md-btn-confirm md-btn-confirm--destructive">Delete</button>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="var-preview-dark" data-theme="dark">
+                    <div class="md-modal">
+                      <div class="md-header">
+                        <div class="md-title-group">
+                          <i data-lucide="triangle-alert" class="md-icon md-icon--destructive"></i>
+                          <h3 class="md-title">Delete shipment</h3>
+                        </div>
+                        <button class="md-close" aria-label="Close"><i data-lucide="x"></i></button>
+                      </div>
+                      <div class="md-body">
+                        <p class="md-desc">Deleting this shipment is permanent and cannot be undone. All associated tracking data will be removed.</p>
+                      </div>
+                      <div class="md-footer">
+                        <button class="md-btn-cancel">Cancel</button>
+                        <button class="md-btn-confirm md-btn-confirm--destructive">Delete</button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Destructive · Mobile -->
+              <div class="state-panel" id="vs-dest-mobile">
+                <div class="var-previews">
+                  <div class="var-preview" data-theme="light">
+                    <div class="md-modal md-modal--mobile">
+                      <div class="md-header">
+                        <div class="md-title-group">
+                          <i data-lucide="triangle-alert" class="md-icon md-icon--destructive"></i>
+                          <h3 class="md-title">Delete shipment</h3>
+                        </div>
+                        <button class="md-close" aria-label="Close"><i data-lucide="x"></i></button>
+                      </div>
+                      <div class="md-body">
+                        <p class="md-desc">Deleting this shipment is permanent and cannot be undone.</p>
+                      </div>
+                      <div class="md-footer md-footer--mobile">
+                        <button class="md-btn-cancel md-btn-cancel--mobile">Cancel</button>
+                        <button class="md-btn-confirm md-btn-confirm--destructive md-btn-confirm--mobile">Delete</button>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="var-preview-dark" data-theme="dark">
+                    <div class="md-modal md-modal--mobile">
+                      <div class="md-header">
+                        <div class="md-title-group">
+                          <i data-lucide="triangle-alert" class="md-icon md-icon--destructive"></i>
+                          <h3 class="md-title">Delete shipment</h3>
+                        </div>
+                        <button class="md-close" aria-label="Close"><i data-lucide="x"></i></button>
+                      </div>
+                      <div class="md-body">
+                        <p class="md-desc">Deleting this shipment is permanent and cannot be undone.</p>
+                      </div>
+                      <div class="md-footer md-footer--mobile">
+                        <button class="md-btn-cancel md-btn-cancel--mobile">Cancel</button>
+                        <button class="md-btn-confirm md-btn-confirm--destructive md-btn-confirm--mobile">Delete</button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+            </div>
+            <div class="var-desc">
+              <div class="var-use-when">Use when:</div>
+              <ul class="var-use-list">
+                <li>The confirmed action permanently deletes or removes data</li>
+                <li>The user must explicitly acknowledge a high-risk or irreversible outcome</li>
+                <li>System integrity depends on a deliberate, informed decision</li>
+              </ul>
+              <div class="var-use-when" style="margin-top:12px;">Token group:</div>
+              <ul class="var-use-list"><li><code>--err-ic</code>, <code>--action-destructive</code></li></ul>
+            </div>
+          </div>
+        </div>
+
+        <!-- Success -->
+        <div class="tab-panel" id="v-success">
+          <div class="state-tab-row">
+            <button class="state-tab-btn active" onclick="switchStateTab(this,'vs-suc-desktop')">Desktop</button>
+            <button class="state-tab-btn" onclick="switchStateTab(this,'vs-suc-mobile')">Mobile</button>
+          </div>
+          <div class="var-panel">
+            <div class="var-previews-wrap">
+
+              <!-- Success · Desktop -->
+              <div class="state-panel active" id="vs-suc-desktop">
+                <div class="var-previews">
+                  <div class="var-preview" data-theme="light">
+                    <div class="md-modal">
+                      <div class="md-header">
+                        <div class="md-title-group">
+                          <i data-lucide="circle-check" class="md-icon md-icon--success"></i>
+                          <h3 class="md-title">Submit order</h3>
+                        </div>
+                        <button class="md-close" aria-label="Close"><i data-lucide="x"></i></button>
+                      </div>
+                      <div class="md-body">
+                        <p class="md-desc">Ready to submit this order for fulfillment? Once submitted, the shipment will be queued for processing.</p>
+                      </div>
+                      <div class="md-footer">
+                        <button class="md-btn-cancel">Cancel</button>
+                        <button class="md-btn-confirm md-btn-confirm--success">Submit</button>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="var-preview-dark" data-theme="dark">
+                    <div class="md-modal">
+                      <div class="md-header">
+                        <div class="md-title-group">
+                          <i data-lucide="circle-check" class="md-icon md-icon--success"></i>
+                          <h3 class="md-title">Submit order</h3>
+                        </div>
+                        <button class="md-close" aria-label="Close"><i data-lucide="x"></i></button>
+                      </div>
+                      <div class="md-body">
+                        <p class="md-desc">Ready to submit this order for fulfillment? Once submitted, the shipment will be queued for processing.</p>
+                      </div>
+                      <div class="md-footer">
+                        <button class="md-btn-cancel">Cancel</button>
+                        <button class="md-btn-confirm md-btn-confirm--success">Submit</button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Success · Mobile -->
+              <div class="state-panel" id="vs-suc-mobile">
+                <div class="var-previews">
+                  <div class="var-preview" data-theme="light">
+                    <div class="md-modal md-modal--mobile">
+                      <div class="md-header">
+                        <div class="md-title-group">
+                          <i data-lucide="circle-check" class="md-icon md-icon--success"></i>
+                          <h3 class="md-title">Submit order</h3>
+                        </div>
+                        <button class="md-close" aria-label="Close"><i data-lucide="x"></i></button>
+                      </div>
+                      <div class="md-body">
+                        <p class="md-desc">Ready to submit this order for fulfillment? The shipment will be queued for processing.</p>
+                      </div>
+                      <div class="md-footer md-footer--mobile">
+                        <button class="md-btn-cancel md-btn-cancel--mobile">Cancel</button>
+                        <button class="md-btn-confirm md-btn-confirm--success md-btn-confirm--mobile">Submit</button>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="var-preview-dark" data-theme="dark">
+                    <div class="md-modal md-modal--mobile">
+                      <div class="md-header">
+                        <div class="md-title-group">
+                          <i data-lucide="circle-check" class="md-icon md-icon--success"></i>
+                          <h3 class="md-title">Submit order</h3>
+                        </div>
+                        <button class="md-close" aria-label="Close"><i data-lucide="x"></i></button>
+                      </div>
+                      <div class="md-body">
+                        <p class="md-desc">Ready to submit this order for fulfillment? The shipment will be queued for processing.</p>
+                      </div>
+                      <div class="md-footer md-footer--mobile">
+                        <button class="md-btn-cancel md-btn-cancel--mobile">Cancel</button>
+                        <button class="md-btn-confirm md-btn-confirm--success md-btn-confirm--mobile">Submit</button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+            </div>
+            <div class="var-desc">
+              <div class="var-use-when">Use when:</div>
+              <ul class="var-use-list">
+                <li>Confirming a positive, constructive action such as submitting or publishing</li>
+                <li>Signaling a successful outcome pathway to reassure the user before they commit</li>
+                <li>Green intent reinforces confidence and forward momentum</li>
+              </ul>
+              <div class="var-use-when" style="margin-top:12px;">Token group:</div>
+              <ul class="var-use-list"><li><code>--suc-ic</code>, <code>--action-primary</code></li></ul>
+            </div>
+          </div>
+        </div>
+
+      </section>
+
+      <!-- 4 · PROPERTIES -->
+      <section class="doc-section" id="properties">
+        <h2 class="section-title">Properties</h2>
+        <table class="props-table">
+          <thead>
+            <tr>
+              <th>Property</th>
+              <th class="p-type">Type</th>
+              <th class="p-def">Default</th>
+              <th class="p-desc">Description</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><code class="p-name">intent</code></td>
+              <td class="p-type">"default" | "destructive" | "success"</td>
+              <td class="p-def">"default"</td>
+              <td class="p-desc">Controls the icon color and confirm button color.</td>
+            </tr>
+            <tr>
+              <td><code class="p-name">screenSize</code></td>
+              <td class="p-type">"desktop" | "mobile"</td>
+              <td class="p-def">"desktop"</td>
+              <td class="p-desc">Desktop shows 400px with horizontal buttons; mobile shows 287px with stacked full-width buttons.</td>
+            </tr>
+            <tr>
+              <td><code class="p-name">showIcon</code></td>
+              <td class="p-type">boolean</td>
+              <td class="p-def">true</td>
+              <td class="p-desc">Toggles the leading 24×24 intent icon in the header.</td>
+            </tr>
+            <tr>
+              <td><code class="p-name">showClose</code></td>
+              <td class="p-type">boolean</td>
+              <td class="p-def">true</td>
+              <td class="p-desc">Toggles the X close button in the header.</td>
+            </tr>
+            <tr>
+              <td><code class="p-name">title</code></td>
+              <td class="p-type">string</td>
+              <td class="p-def">—</td>
+              <td class="p-desc">Modal heading text.</td>
+            </tr>
+            <tr>
+              <td><code class="p-name">description</code></td>
+              <td class="p-type">string</td>
+              <td class="p-def">—</td>
+              <td class="p-desc">Body copy describing the action or context.</td>
+            </tr>
+            <tr>
+              <td><code class="p-name">confirmLabel</code></td>
+              <td class="p-type">string</td>
+              <td class="p-def">"Confirm"</td>
+              <td class="p-desc">Label for the primary action button.</td>
+            </tr>
+            <tr>
+              <td><code class="p-name">cancelLabel</code></td>
+              <td class="p-type">string</td>
+              <td class="p-def">"Cancel"</td>
+              <td class="p-desc">Label for the dismiss button.</td>
+            </tr>
+          </tbody>
+        </table>
+      </section>
+
+      <!-- 5 · USAGE -->
+      <section class="doc-section" id="usage">
+        <h2 class="section-title">Usage</h2>
+        <div class="usage-block">
+          <div class="usage-cols">
+            <div class="usage-card">
+              <div class="usage-card-header">
+                <div class="usage-icon do-icon"><i data-lucide="check" style="width:12px;height:12px"></i></div>
+                <div class="usage-card-title">Do</div>
+              </div>
+              <ul class="usage-list">
+                <li>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore</li>
+                <li>Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat</li>
+                <li>Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur</li>
+              </ul>
+            </div>
+            <div class="usage-card">
+              <div class="usage-card-header">
+                <div class="usage-icon do-icon"><i data-lucide="check" style="width:12px;height:12px"></i></div>
+                <div class="usage-card-title">Do</div>
+              </div>
+              <ul class="usage-list">
+                <li>Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum</li>
+                <li>Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium totam rem</li>
+                <li>Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit sed quia consequuntur magni dolores</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+        <div class="usage-divider"></div>
+        <div class="usage-block">
+          <div class="usage-cols">
+            <div class="usage-card">
+              <div class="usage-card-header">
+                <div class="usage-icon dont-icon"><i data-lucide="x" style="width:12px;height:12px"></i></div>
+                <div class="usage-card-title">Don't</div>
+              </div>
+              <ul class="usage-list">
+                <li>Neque porro quisquam est qui dolorem ipsum quia dolor sit amet consectetur adipisci velit sed quia non numquam</li>
+                <li>Quis autem vel eum iure reprehenderit qui in ea voluptate velit esse quam nihil molestiae consequatur vel illum</li>
+                <li>At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti</li>
+              </ul>
+            </div>
+            <div class="usage-card">
+              <div class="usage-card-header">
+                <div class="usage-icon dont-icon"><i data-lucide="x" style="width:12px;height:12px"></i></div>
+                <div class="usage-card-title">Don't</div>
+              </div>
+              <ul class="usage-list">
+                <li>Nam libero tempore cum soluta nobis est eligendi optio cumque nihil impedit quo minus id quod maxime placeat</li>
+                <li>Temporibus autem quibusdam et aut officiis debitis aut rerum necessitatibus saepe eveniet ut et voluptates</li>
+                <li>Itaque earum rerum hic tenetur sapiente delectus ut aut reiciendis voluptatibus maiores alias consequatur</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- 6 · TOKENS -->
+      <section class="doc-section" id="tokens">
+        <h2 class="section-title">Tokens used</h2>
+
+        <p class="tokens-cat">Container</p>
+        <table class="tokens-table">
+          <thead><tr><th>Element</th><th>Token</th><th></th></tr></thead>
+          <tbody>
+            <tr><td>Background</td><td class="t-tok">--surface-card</td><td class="t-sw"><div class="swatch" style="background:#FFFFFF;border-color:rgba(0,0,0,.1)"></div></td></tr>
+            <tr><td>Shadow</td><td class="t-tok">elevation/light/level-3</td><td class="t-sw"><div class="swatch" style="background:rgba(40,50,65,0.14);border-color:rgba(0,0,0,.1)"></div></td></tr>
+          </tbody>
+        </table>
+
+        <p class="tokens-cat">Intent — Default</p>
+        <table class="tokens-table">
+          <thead><tr><th>Element</th><th>Token</th><th></th></tr></thead>
+          <tbody>
+            <tr><td>Icon color</td><td class="t-tok">--inf-ic</td><td class="t-sw"><div class="swatch" style="background:#027CB1;"></div></td></tr>
+            <tr><td>Confirm button</td><td class="t-tok">--action-secondary</td><td class="t-sw"><div class="swatch" style="background:#027CB1;"></div></td></tr>
+          </tbody>
+        </table>
+
+        <p class="tokens-cat">Intent — Destructive</p>
+        <table class="tokens-table">
+          <thead><tr><th>Element</th><th>Token</th><th></th></tr></thead>
+          <tbody>
+            <tr><td>Icon color</td><td class="t-tok">--err-ic</td><td class="t-sw"><div class="swatch" style="background:#A12F2F;"></div></td></tr>
+            <tr><td>Confirm button</td><td class="t-tok">--action-destructive</td><td class="t-sw"><div class="swatch" style="background:#C63B3B;"></div></td></tr>
+          </tbody>
+        </table>
+
+        <p class="tokens-cat">Intent — Success</p>
+        <table class="tokens-table">
+          <thead><tr><th>Element</th><th>Token</th><th></th></tr></thead>
+          <tbody>
+            <tr><td>Icon color</td><td class="t-tok">--suc-ic</td><td class="t-sw"><div class="swatch" style="background:#006C21;"></div></td></tr>
+            <tr><td>Confirm button</td><td class="t-tok">--action-primary</td><td class="t-sw"><div class="swatch" style="background:#006C21;"></div></td></tr>
+          </tbody>
+        </table>
+
+        <p class="tokens-cat">Text &amp; Actions</p>
+        <table class="tokens-table">
+          <thead><tr><th>Element</th><th>Token</th><th></th></tr></thead>
+          <tbody>
+            <tr><td>Cancel button</td><td class="t-tok">--link-s01-default</td><td class="t-sw"><div class="swatch" style="background:#016692;"></div></td></tr>
+            <tr><td>Title</td><td class="t-tok">--text-primary</td><td class="t-sw"><div class="swatch" style="background:#374151;"></div></td></tr>
+            <tr><td>Body text</td><td class="t-tok">--text-secondary</td><td class="t-sw"><div class="swatch" style="background:#4B5563;"></div></td></tr>
+          </tbody>
+        </table>
+
+      </section>
+
+      <!-- 7 · ACCESSIBILITY -->
+      <section class="doc-section" id="accessibility">
+        <h2 class="section-title">Accessibility</h2>
+        <ul class="a11y-list">
+          <li>
+            <div><strong>Keyboard navigation:</strong> When the modal opens, focus is moved to the first focusable element inside the dialog. <kbd>Tab</kbd> cycles forward through interactive elements; <kbd>Shift+Tab</kbd> cycles backward. Pressing <kbd>Enter</kbd> or <kbd>Space</kbd> activates the focused button. Pressing <kbd>Esc</kbd> dismisses the modal and returns focus to the triggering element.</div>
+          </li>
+          <li>
+            <div><strong>Focus trap:</strong> Keyboard focus must be contained within the modal while it is open. Focus must not reach elements in the background page. Implement a focus trap loop so that tabbing past the last element wraps back to the first, and shift-tabbing before the first wraps to the last.</div>
+          </li>
+          <li>
+            <div><strong>ARIA roles:</strong> The modal container must have <code>role="dialog"</code> and <code>aria-modal="true"</code> to inform assistive technologies that the dialog is modal. Use <code>aria-labelledby</code> pointing to the title element and <code>aria-describedby</code> pointing to the body text so screen readers announce context immediately on focus entry.</div>
+          </li>
+          <li>
+            <div><strong>Background inertness:</strong> When the modal is open, background content should be made inert (using the <code>inert</code> attribute or equivalent) to prevent screen reader and keyboard access to the underlying page until the modal is closed.</div>
+          </li>
+        </ul>
+      </section>
+
+      <!-- 8 · RELATED -->
+      <section class="doc-section" id="related">
+        <h2 class="section-title">Related Components</h2>
+        <div class="related-grid">
+          <a href="button.html" class="related-card">
+            <div class="rc-name">Button</div>
+            <div class="rc-desc">The Confirm and Cancel actions inside modals follow Button token conventions for solid and ghost styles.</div>
+          </a>
+          <a href="link.html" class="related-card">
+            <div class="rc-name">Link</div>
+            <div class="rc-desc">The Cancel ghost button shares the same color token as a standalone Link (<code>--link-s01-default</code>).</div>
+          </a>
+          <a href="#" class="related-card">
+            <div class="rc-name">Tooltip</div>
+            <div class="rc-desc">For lightweight contextual hints that do not require user confirmation, prefer Tooltip over Modal.</div>
+          </a>
+        </div>
+      </section>
+
+    </main>
+
+    <!-- RIGHT NAV -->
+    <nav class="right-nav">
+      <div class="rn-label">On this page</div>
+      <ul class="rn-list">
+        <li><a href="#definition" id="rn-definition">Definition</a></li>
+        <li><a href="#anatomy" id="rn-anatomy">Anatomy</a></li>
+        <li><a href="#variants" id="rn-variants">Variants</a></li>
+        <li><a href="#properties" id="rn-properties">Properties</a></li>
+        <li><a href="#usage" id="rn-usage">Usage</a></li>
+        <li><a href="#tokens" id="rn-tokens">Tokens</a></li>
+        <li><a href="#accessibility" id="rn-accessibility">Accessibility</a></li>
+        <li><a href="#related" id="rn-related">Related</a></li>
+      </ul>
+    </nav>
+
+  </div><!-- /content-wrap -->
+</div><!-- /shell -->
+
+<script>
+  lucide.createIcons();
+
+  const isMobile = () => window.innerWidth <= 768;
+  let sbOpen = !isMobile();
+  if (!sbOpen) document.getElementById('leftNav').classList.add('hidden');
+
+  function toggleSidebar() {
+    sbOpen = !sbOpen;
+    document.getElementById('leftNav').classList.toggle('hidden', !sbOpen);
+    if (!isMobile()) {
+      document.getElementById('contentWrap').style.marginLeft = sbOpen ? 'var(--left-w)' : '0';
+    }
+    document.getElementById('navOverlay').classList.toggle('active', sbOpen && isMobile());
+  }
+
+  function switchStateTab(btn, panelId) {
+    const tabPanel = btn.closest('.tab-panel');
+    tabPanel.querySelectorAll('.state-tab-btn').forEach(b => b.classList.remove('active'));
+    tabPanel.querySelectorAll('.state-panel').forEach(p => p.classList.remove('active'));
+    btn.classList.add('active');
+    document.getElementById(panelId).classList.add('active');
+    lucide.createIcons();
+  }
+
+  function updateTabFade(tabsEl) {
+    const wrap = tabsEl.closest('.tabs-wrap');
+    if (!wrap) return;
+    const atEnd = tabsEl.scrollLeft + tabsEl.clientWidth >= tabsEl.scrollWidth - 2;
+    wrap.classList.toggle('at-end', atEnd);
+  }
+
+  function switchTab(btn, panelId) {
+    btn.closest('.doc-section').querySelectorAll('.tab').forEach(b => b.classList.remove('active'));
+    btn.closest('.doc-section').querySelectorAll('.tab-panel').forEach(p => p.classList.remove('active'));
+    btn.classList.add('active');
+    document.getElementById(panelId).classList.add('active');
+    const tabsEl = btn.closest('.tabs');
+    if (tabsEl) {
+      const tabRight = btn.offsetLeft + btn.offsetWidth;
+      const tabLeft = btn.offsetLeft;
+      if (tabRight > tabsEl.scrollLeft + tabsEl.clientWidth - 56) {
+        tabsEl.scrollLeft = tabRight - tabsEl.clientWidth + 72;
+      } else if (tabLeft < tabsEl.scrollLeft) {
+        tabsEl.scrollLeft = tabLeft;
+      }
+      updateTabFade(tabsEl);
+    }
+    lucide.createIcons();
+  }
+
+  window.addEventListener('load', () => {
+    document.querySelectorAll('.tabs').forEach(tabsEl => {
+      updateTabFade(tabsEl);
+      tabsEl.addEventListener('scroll', () => updateTabFade(tabsEl));
+    });
+  });
+
+  function toggleTheme() {
+    const html = document.documentElement;
+    html.setAttribute('data-theme', html.getAttribute('data-theme') === 'dark' ? 'light' : 'dark');
+  }
+
+  // Right nav scroll spy
+  const rnLinks = document.querySelectorAll('.rn-list a');
+  const sections = [...rnLinks].map(l => document.querySelector(l.getAttribute('href')));
+  function updateRN() {
+    let active = 0;
+    sections.forEach((s, i) => { if (s && s.getBoundingClientRect().top <= 80) active = i; });
+    rnLinks.forEach((l, i) => l.classList.toggle('active', i === active));
+  }
+  window.addEventListener('scroll', updateRN);
+  updateRN();
+
+  // Smooth scroll anchor links into view
+  rnLinks.forEach(link => {
+    link.addEventListener('click', e => {
+      const target = document.querySelector(link.getAttribute('href'));
+      if (target) { e.preventDefault(); target.scrollIntoView({ behavior: 'smooth' }); }
+    });
+  });
+</script>
+</body>
+</html>

@@ -1737,3 +1737,142 @@ code {
 .var-preview-dark .mn-item--destructive.mn-item--hover { background: #C63B3B; }
 .var-preview-dark .mn-item--destructive.mn-item--hover .mn-label,
 .var-preview-dark .mn-item--destructive.mn-item--hover .mn-icon { color: #FFFFFF; }
+
+/* ─── Modal ─────────────────────────────────────── */
+.md-modal {
+  background: var(--surface-card);
+  border-radius: 8px;
+  padding: 24px;
+  box-shadow: 0 4px 8px rgba(40,50,65,0.14), 0 6px 12px rgba(55,65,80,0.10);
+  width: 400px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+.md-modal--mobile { width: 287px; }
+.md-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+}
+.md-title-group {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+.md-icon { width: 24px; height: 24px; flex-shrink: 0; }
+.md-icon--default { color: var(--inf-ic); }
+.md-icon--destructive { color: var(--err-ic); }
+.md-icon--success { color: var(--suc-ic); }
+.md-title {
+  font-family: 'Lato', sans-serif;
+  font-size: 20px;
+  font-weight: 700;
+  line-height: 24px;
+  color: var(--text-primary);
+  margin: 0;
+}
+.md-close {
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+  color: var(--text-secondary);
+  width: 24px;
+  height: 24px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 4px;
+  flex-shrink: 0;
+}
+.md-close i { width: 20px; height: 20px; }
+.md-body {
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+  width: 100%;
+}
+.md-desc {
+  font-family: 'Lato', sans-serif;
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 22px;
+  color: var(--text-secondary);
+  margin: 0;
+}
+.md-footer {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 12px;
+  width: 100%;
+}
+.md-footer--mobile {
+  flex-direction: column-reverse;
+  align-items: stretch;
+  gap: 4px;
+}
+.md-btn-cancel {
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-family: 'Lato', sans-serif;
+  font-size: 16px;
+  font-weight: 700;
+  line-height: 24px;
+  color: var(--link-s01-default);
+  padding: 4px 8px;
+  border-radius: 4px;
+}
+.md-btn-cancel--mobile {
+  padding: 12px 16px;
+  text-align: center;
+  width: 100%;
+}
+.md-btn-confirm {
+  font-family: 'Lato', sans-serif;
+  font-size: 16px;
+  font-weight: 700;
+  line-height: 24px;
+  color: #FFFFFF;
+  padding: 4px 8px;
+  border-radius: 4px;
+  border: none;
+  cursor: pointer;
+}
+.md-btn-confirm--mobile {
+  padding: 12px 16px;
+  width: 100%;
+  text-align: center;
+}
+.md-btn-confirm--default     { background: var(--action-secondary); }
+.md-btn-confirm--destructive { background: var(--action-destructive); }
+.md-btn-confirm--success     { background: var(--action-primary); }
+
+/* var-preview overrides — light */
+.var-preview .md-modal { background: #FFFFFF; }
+.var-preview .md-title { color: #374151; }
+.var-preview .md-desc  { color: #4B5563; }
+.var-preview .md-close { color: #4B5563; }
+.var-preview .md-icon--default    { color: #027CB1; }
+.var-preview .md-icon--destructive{ color: #A12F2F; }
+.var-preview .md-icon--success    { color: #006C21; }
+.var-preview .md-btn-cancel       { color: #016692; }
+.var-preview .md-btn-confirm--default     { background: #027CB1; }
+.var-preview .md-btn-confirm--destructive { background: #C63B3B; }
+.var-preview .md-btn-confirm--success     { background: #006C21; }
+
+/* var-preview-dark overrides */
+.var-preview-dark .md-modal { background: #0F0F0F; border: 1px solid #1F2937; }
+.var-preview-dark .md-title { color: #FFFFFF; }
+.var-preview-dark .md-desc  { color: #E5E7EB; }
+.var-preview-dark .md-close { color: #E5E7EB; }
+.var-preview-dark .md-icon--default    { color: #8FCBE6; }
+.var-preview-dark .md-icon--destructive{ color: #F8D0D0; }
+.var-preview-dark .md-icon--success    { color: #4DAD82; }
+.var-preview-dark .md-btn-cancel       { color: #5ABFE0; }
+.var-preview-dark .md-btn-confirm--default     { background: #35A8D6; }
+.var-preview-dark .md-btn-confirm--destructive { background: #C63B3B; }
+.var-preview-dark .md-btn-confirm--success     { background: #4DAD82; }
