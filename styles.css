@@ -2009,3 +2009,46 @@ code {
 .var-preview-dark .pw-wrap--disabled .pw-input,
 .var-preview-dark .pw-wrap--disabled .pw-toggle,
 .var-preview-dark .pw-wrap--disabled .pw-helper { color: #6B7280; }
+
+/* ─── PROGRESS BAR (pb-*) ─── */
+.pb-track {
+  background: var(--border);
+  border-radius: 100px;
+  width: 200px;
+  height: 6px;
+  position: relative;
+  overflow: hidden;
+}
+.pb-track--compact { height: 4px; }
+
+.pb-fill {
+  height: 100%;
+  border-radius: 100px 0 0 100px;
+  width: 62%;
+}
+.pb-fill--full { border-radius: 100px; width: 100%; }
+
+.pb-fill--uploading {
+  background: linear-gradient(90deg, rgba(0,0,0,0.2) 0%, rgba(102,102,102,0.2) 100%),
+              linear-gradient(90deg, var(--inf-bd) 0%, var(--inf-bd) 100%);
+}
+.pb-fill--error   { background: var(--err-bd); }
+.pb-fill--success { background: var(--suc-bd); }
+
+/* var-preview hardcoded light */
+.var-preview .pb-track           { background: #CDD2D7; }
+.var-preview .pb-fill--uploading {
+  background: linear-gradient(90deg, rgba(0,0,0,0.2) 0%, rgba(102,102,102,0.2) 100%),
+              linear-gradient(90deg, #027CB1 0%, #027CB1 100%);
+}
+.var-preview .pb-fill--error     { background: #A12F2F; }
+.var-preview .pb-fill--success   { background: #006C21; }
+
+/* var-preview-dark hardcoded dark */
+.var-preview-dark .pb-track           { background: #374151; }
+.var-preview-dark .pb-fill--uploading {
+  background: linear-gradient(90deg, rgba(0,0,0,0.2) 0%, rgba(102,102,102,0.2) 100%),
+              linear-gradient(90deg, #8FCBE6 0%, #8FCBE6 100%);
+}
+.var-preview-dark .pb-fill--error     { background: #DB3939; }
+.var-preview-dark .pb-fill--success   { background: #4DAD82; }

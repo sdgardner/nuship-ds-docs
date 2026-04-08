@@ -1,0 +1,700 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Progress Bar — nuShip Design System</title>
+  <link href="https://fonts.googleapis.com/css2?family=Lato:wght@400;600;700;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="tokens.css">
+  <link rel="stylesheet" href="styles.css">
+  <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.min.js"></script>
+</head>
+<body>
+
+<!-- MOBILE OVERLAY -->
+<div id="navOverlay" class="nav-overlay" onclick="toggleSidebar()"></div>
+
+<!-- TOP NAV -->
+<nav class="topnav">
+  <button class="hamburger" onclick="toggleSidebar()" aria-label="Menu">
+    <i data-lucide="menu" style="width:18px;height:18px;color:var(--text-secondary)"></i>
+  </button>
+  <div class="bc">
+    <a href="index.html">UI Components</a>
+    <i data-lucide="chevron-right" style="width:14px;height:14px;flex-shrink:0"></i>
+    <a href="#">Display</a>
+    <i data-lucide="chevron-right" style="width:14px;height:14px;flex-shrink:0"></i>
+    <span class="cur">Progress Bar</span>
+  </div>
+  <div class="nav-actions">
+    <div class="toggle-wrap" onclick="toggleTheme()" role="button">
+      <i data-lucide="moon" style="width:20px;height:20px"></i>
+      <div class="toggle-track"><div class="toggle-thumb"></div></div>
+      <i data-lucide="sun" style="width:20px;height:20px"></i>
+    </div>
+  </div>
+</nav>
+
+<div class="shell">
+
+  <!-- LEFT NAV -->
+  <nav class="left-nav" id="leftNav">
+    <div class="left-nav-inner">
+      <div class="ln-group">
+        <div class="ln-label">Inputs</div>
+        <ul class="ln-list">
+          <li><a href="checkbox.html">Checkbox</a></li>
+          <li><a href="datepicker.html">Date Picker</a></li>
+          <li><a href="numberinput.html">Number Input</a></li>
+          <li><a href="passwordinput.html">Password Input</a></li>
+          <li><a href="#">Radio Button</a></li>
+          <li><a href="#">Search</a></li>
+          <li><a href="#">Select</a></li>
+          <li><a href="#">Slider</a></li>
+          <li><a href="#">Switch</a></li>
+          <li><a href="#">Text Area</a></li>
+          <li><a href="#">Text Input</a></li>
+        </ul>
+      </div>
+      <div class="ln-group">
+        <div class="ln-label">Feedback</div>
+        <ul class="ln-list">
+          <li><a href="alert.html">Alert</a></li>
+          <li><a href="badge.html">Badge</a></li>
+          <li><a href="#">Toast</a></li>
+          <li><a href="#">Tooltip</a></li>
+        </ul>
+      </div>
+      <div class="ln-group">
+        <div class="ln-label">Navigation</div>
+        <ul class="ln-list">
+          <li><a href="accordion.html">Accordion</a></li>
+          <li><a href="#">Breadcrumb</a></li>
+          <li><a href="dropdown.html">Dropdown</a></li>
+          <li><a href="menu.html">Menu</a></li>
+          <li><a href="#">Tabs</a></li>
+        </ul>
+      </div>
+      <div class="ln-group">
+        <div class="ln-label">Actions</div>
+        <ul class="ln-list">
+          <li><a href="button.html">Button</a></li>
+          <li><a href="link.html">Link</a></li>
+          <li><a href="#">Tags</a></li>
+        </ul>
+      </div>
+      <div class="ln-group">
+        <div class="ln-label">Overlays</div>
+        <ul class="ln-list">
+          <li><a href="modal.html">Modal</a></li>
+          <li><a href="#">Popover</a></li>
+        </ul>
+      </div>
+      <div class="ln-group">
+        <div class="ln-label">Display</div>
+        <ul class="ln-list">
+          <li><a href="avatar.html">Avatar</a></li>
+          <li><a href="carousel.html">Carousel</a></li>
+          <li><a href="fileupload.html">File Upload</a></li>
+          <li><a href="progressbar.html" class="active">Progress Bar</a></li>
+          <li><a href="#">Star Rating</a></li>
+          <li><a href="#">Timeline</a></li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <!-- CONTENT -->
+  <div class="content-wrap" id="contentWrap">
+
+    <main class="doc">
+
+      <!-- 1 · DEFINITION -->
+      <section class="doc-section" id="definition">
+        <div class="def-eyebrow">Display</div>
+        <h1 class="def-title">Progress Bar</h1>
+        <p class="def-desc">The Progress Bar communicates the status and completion of an ongoing operation. It appears in four statuses — default (idle), uploading, error, and success — and two sizes to suit different layout contexts.</p>
+        <div class="def-tags">
+          <span class="tag">Developed</span>
+          <span class="tag">Figma</span>
+        </div>
+        <div class="preview-box">
+          <div class="preview-box-inner">
+            <div style="display:flex;flex-direction:column;gap:20px;align-items:flex-start;">
+
+              <div style="display:flex;align-items:center;gap:24px;">
+                <div style="font-size:12px;font-weight:700;width:72px;color:var(--text-tertiary)">Default</div>
+                <div class="pb-track"></div>
+              </div>
+
+              <div style="display:flex;align-items:center;gap:24px;">
+                <div style="font-size:12px;font-weight:700;width:72px;color:var(--text-tertiary)">Uploading</div>
+                <div class="pb-track"><div class="pb-fill pb-fill--uploading"></div></div>
+              </div>
+
+              <div style="display:flex;align-items:center;gap:24px;">
+                <div style="font-size:12px;font-weight:700;width:72px;color:var(--text-tertiary)">Error</div>
+                <div class="pb-track"><div class="pb-fill pb-fill--error"></div></div>
+              </div>
+
+              <div style="display:flex;align-items:center;gap:24px;">
+                <div style="font-size:12px;font-weight:700;width:72px;color:var(--text-tertiary)">Success</div>
+                <div class="pb-track"><div class="pb-fill pb-fill--success pb-fill--full"></div></div>
+              </div>
+
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- 2 · ANATOMY -->
+      <section class="doc-section" id="anatomy">
+        <h2 class="section-title">Anatomy</h2>
+        <div class="anatomy-wrap">
+          <div class="anatomy-component" style="padding:32px 40px 48px; max-width:320px;">
+            <div style="position:relative;display:inline-block;">
+              <div class="pb-track" style="width:220px;">
+                <div class="pb-fill pb-fill--uploading"></div>
+              </div>
+              <span class="callout" style="top:-20px;left:0">1</span>
+              <span class="callout" style="top:-20px;left:88px">2</span>
+            </div>
+          </div>
+          <div class="anatomy-legend">
+            <div class="legend-item"><span class="legend-num">1</span>Track (inactive background)</div>
+            <div class="legend-item"><span class="legend-num">2</span>Fill (progress indicator)</div>
+          </div>
+        </div>
+      </section>
+
+      <!-- 3 · VARIANTS -->
+      <section class="doc-section" id="variants">
+        <h2 class="section-title">Variants</h2>
+        <div class="tabs-wrap">
+          <div class="tabs">
+            <button class="tab active" onclick="switchTab(this,'v-pb-default')">Default</button>
+            <button class="tab" onclick="switchTab(this,'v-pb-uploading')">Uploading</button>
+            <button class="tab" onclick="switchTab(this,'v-pb-error')">Error</button>
+            <button class="tab" onclick="switchTab(this,'v-pb-success')">Success</button>
+          </div>
+        </div>
+
+        <!-- DEFAULT -->
+        <div class="tab-panel active" id="v-pb-default">
+          <div class="state-tab-row">
+            <button class="state-tab-btn active" onclick="switchStateTab(this,'vs-def-default')">Default</button>
+            <button class="state-tab-btn" onclick="switchStateTab(this,'vs-def-compact')">Compact</button>
+          </div>
+          <div class="var-panel">
+            <div class="var-previews-wrap">
+
+              <div class="state-panel active" id="vs-def-default">
+                <div class="var-previews">
+                  <div class="var-preview">
+                    <div class="pb-track"></div>
+                  </div>
+                  <div class="var-preview-dark">
+                    <div class="pb-track"></div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="state-panel" id="vs-def-compact">
+                <div class="var-previews">
+                  <div class="var-preview">
+                    <div class="pb-track pb-track--compact"></div>
+                  </div>
+                  <div class="var-preview-dark">
+                    <div class="pb-track pb-track--compact"></div>
+                  </div>
+                </div>
+              </div>
+
+            </div>
+            <div class="var-desc">
+              <div class="var-use-when">Use when:</div>
+              <ul class="var-use-list">
+                <li>An operation is queued but has not yet started</li>
+                <li>A placeholder bar is needed before any data is available</li>
+              </ul>
+              <div class="var-use-when" style="margin-top:16px;">Size difference:</div>
+              <ul class="var-use-list">
+                <li>Default — 6px height for standard layouts</li>
+                <li>Compact — 4px height for space-constrained contexts</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <!-- UPLOADING -->
+        <div class="tab-panel" id="v-pb-uploading">
+          <div class="state-tab-row">
+            <button class="state-tab-btn active" onclick="switchStateTab(this,'vs-upl-default')">Default</button>
+            <button class="state-tab-btn" onclick="switchStateTab(this,'vs-upl-compact')">Compact</button>
+          </div>
+          <div class="var-panel">
+            <div class="var-previews-wrap">
+
+              <div class="state-panel active" id="vs-upl-default">
+                <div class="var-previews">
+                  <div class="var-preview">
+                    <div class="pb-track"><div class="pb-fill pb-fill--uploading"></div></div>
+                  </div>
+                  <div class="var-preview-dark">
+                    <div class="pb-track"><div class="pb-fill pb-fill--uploading"></div></div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="state-panel" id="vs-upl-compact">
+                <div class="var-previews">
+                  <div class="var-preview">
+                    <div class="pb-track pb-track--compact"><div class="pb-fill pb-fill--uploading"></div></div>
+                  </div>
+                  <div class="var-preview-dark">
+                    <div class="pb-track pb-track--compact"><div class="pb-fill pb-fill--uploading"></div></div>
+                  </div>
+                </div>
+              </div>
+
+            </div>
+            <div class="var-desc">
+              <div class="var-use-when">Use when:</div>
+              <ul class="var-use-list">
+                <li>A file, data transfer, or process is actively in progress</li>
+                <li>Communicating partial completion towards a known total</li>
+              </ul>
+              <div class="var-use-when" style="margin-top:16px;">Visual details:</div>
+              <ul class="var-use-list">
+                <li>Blue fill with a subtle linear gradient overlay for depth</li>
+                <li>Left-rounded fill, right edge is flat against remaining track</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <!-- ERROR -->
+        <div class="tab-panel" id="v-pb-error">
+          <div class="state-tab-row">
+            <button class="state-tab-btn active" onclick="switchStateTab(this,'vs-err-default')">Default</button>
+            <button class="state-tab-btn" onclick="switchStateTab(this,'vs-err-compact')">Compact</button>
+          </div>
+          <div class="var-panel">
+            <div class="var-previews-wrap">
+
+              <div class="state-panel active" id="vs-err-default">
+                <div class="var-previews">
+                  <div class="var-preview">
+                    <div class="pb-track"><div class="pb-fill pb-fill--error"></div></div>
+                  </div>
+                  <div class="var-preview-dark">
+                    <div class="pb-track"><div class="pb-fill pb-fill--error"></div></div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="state-panel" id="vs-err-compact">
+                <div class="var-previews">
+                  <div class="var-preview">
+                    <div class="pb-track pb-track--compact"><div class="pb-fill pb-fill--error"></div></div>
+                  </div>
+                  <div class="var-preview-dark">
+                    <div class="pb-track pb-track--compact"><div class="pb-fill pb-fill--error"></div></div>
+                  </div>
+                </div>
+              </div>
+
+            </div>
+            <div class="var-desc">
+              <div class="var-use-when">Use when:</div>
+              <ul class="var-use-list">
+                <li>The operation failed or was interrupted before completion</li>
+                <li>Paired with an error message or retry action nearby</li>
+              </ul>
+              <div class="var-use-when" style="margin-top:16px;">Visual details:</div>
+              <ul class="var-use-list">
+                <li>Red fill showing progress reached before the failure</li>
+                <li>Same fill width as the Uploading state to show where it stopped</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <!-- SUCCESS -->
+        <div class="tab-panel" id="v-pb-success">
+          <div class="state-tab-row">
+            <button class="state-tab-btn active" onclick="switchStateTab(this,'vs-suc-default')">Default</button>
+            <button class="state-tab-btn" onclick="switchStateTab(this,'vs-suc-compact')">Compact</button>
+          </div>
+          <div class="var-panel">
+            <div class="var-previews-wrap">
+
+              <div class="state-panel active" id="vs-suc-default">
+                <div class="var-previews">
+                  <div class="var-preview">
+                    <div class="pb-track"><div class="pb-fill pb-fill--success pb-fill--full"></div></div>
+                  </div>
+                  <div class="var-preview-dark">
+                    <div class="pb-track"><div class="pb-fill pb-fill--success pb-fill--full"></div></div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="state-panel" id="vs-suc-compact">
+                <div class="var-previews">
+                  <div class="var-preview">
+                    <div class="pb-track pb-track--compact"><div class="pb-fill pb-fill--success pb-fill--full"></div></div>
+                  </div>
+                  <div class="var-preview-dark">
+                    <div class="pb-track pb-track--compact"><div class="pb-fill pb-fill--success pb-fill--full"></div></div>
+                  </div>
+                </div>
+              </div>
+
+            </div>
+            <div class="var-desc">
+              <div class="var-use-when">Use when:</div>
+              <ul class="var-use-list">
+                <li>The operation has completed fully and successfully</li>
+                <li>Confirming completion before transitioning to a next step</li>
+              </ul>
+              <div class="var-use-when" style="margin-top:16px;">Visual details:</div>
+              <ul class="var-use-list">
+                <li>Green fill spans the full track width (100%)</li>
+                <li>Both left and right edges of the fill are rounded (pill shape)</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+      </section>
+
+      <!-- 4 · PROPERTIES -->
+      <section class="doc-section" id="properties">
+        <h2 class="section-title">Properties</h2>
+        <table class="props-table">
+          <thead>
+            <tr><th>Property</th><th>Type</th><th>Default</th><th>Description</th></tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td class="p-name">status</td>
+              <td class="p-type">"Default" | "Uploading" | "Error" | "Success"</td>
+              <td class="p-def">"Default"</td>
+              <td class="p-desc">Controls the fill colour and completion state</td>
+            </tr>
+            <tr>
+              <td class="p-name">size</td>
+              <td class="p-type">"Default" | "Compact"</td>
+              <td class="p-def">"Default"</td>
+              <td class="p-desc">Default is 6px tall; Compact is 4px tall</td>
+            </tr>
+            <tr>
+              <td class="p-name">value</td>
+              <td class="p-type">number</td>
+              <td class="p-def">0</td>
+              <td class="p-desc">Percentage of completion (0–100). Drives the fill width</td>
+            </tr>
+            <tr>
+              <td class="p-name">ariaLabel</td>
+              <td class="p-type">string</td>
+              <td class="p-def">—</td>
+              <td class="p-desc">Accessible label describing what the bar represents</td>
+            </tr>
+          </tbody>
+        </table>
+      </section>
+
+      <!-- 5 · USAGE -->
+      <section class="doc-section" id="usage">
+        <h2 class="section-title">Usage Guidelines</h2>
+
+        <div class="usage-block">
+          <div class="usage-cols">
+
+            <div class="usage-card">
+              <div class="usage-card-header">
+                <div class="usage-icon do-icon"><i data-lucide="check" style="width:12px;height:12px"></i></div>
+                <div class="usage-card-title">Lorem ipsum dolor sit amet</div>
+              </div>
+              <ul class="usage-list">
+                <li>Lorem ipsum dolor sit amet consectetur</li>
+                <li>Adipiscing elit sed do eiusmod tempor</li>
+                <li>Incididunt ut labore et dolore magna</li>
+              </ul>
+            </div>
+
+            <div class="usage-card">
+              <div class="usage-card-header">
+                <div class="usage-icon do-icon"><i data-lucide="check" style="width:12px;height:12px"></i></div>
+                <div class="usage-card-title">Ut enim ad minim veniam</div>
+              </div>
+              <ul class="usage-list">
+                <li>Quis nostrud exercitation ullamco laboris</li>
+                <li>Nisi ut aliquip ex ea commodo consequat</li>
+                <li>Duis aute irure dolor in reprehenderit</li>
+              </ul>
+            </div>
+
+            <div class="usage-card">
+              <div class="usage-card-header">
+                <div class="usage-icon do-icon"><i data-lucide="check" style="width:12px;height:12px"></i></div>
+                <div class="usage-card-title">Excepteur sint occaecat</div>
+              </div>
+              <ul class="usage-list">
+                <li>Non proident sunt in culpa qui officia</li>
+                <li>Deserunt mollit anim id est laborum</li>
+                <li>Sed ut perspiciatis unde omnis iste</li>
+              </ul>
+            </div>
+
+            <div class="usage-card">
+              <div class="usage-card-header">
+                <div class="usage-icon do-icon"><i data-lucide="check" style="width:12px;height:12px"></i></div>
+                <div class="usage-card-title">Nemo enim ipsam voluptatem</div>
+              </div>
+              <ul class="usage-list">
+                <li>Quia voluptas sit aspernatur aut odit</li>
+                <li>Neque porro quisquam est qui dolorem</li>
+                <li>Ut labore et dolore magnam aliquam</li>
+              </ul>
+            </div>
+
+          </div>
+        </div>
+
+        <div class="usage-divider"></div>
+
+        <div class="usage-block">
+          <div class="usage-cols">
+
+            <div class="usage-card">
+              <div class="usage-card-header">
+                <div class="usage-icon dont-icon"><i data-lucide="x" style="width:12px;height:12px"></i></div>
+                <div class="usage-card-title">Quis autem vel eum iure</div>
+              </div>
+              <ul class="usage-list">
+                <li>Reprehenderit qui in ea voluptate velit</li>
+                <li>Esse quam nihil molestiae consequatur</li>
+                <li>Vel illum qui dolorem eum fugiat</li>
+              </ul>
+            </div>
+
+            <div class="usage-card">
+              <div class="usage-card-header">
+                <div class="usage-icon dont-icon"><i data-lucide="x" style="width:12px;height:12px"></i></div>
+                <div class="usage-card-title">At vero eos et accusamus</div>
+              </div>
+              <ul class="usage-list">
+                <li>Et iusto odio dignissimos ducimus qui</li>
+                <li>Blanditiis praesentium voluptatum deleniti</li>
+                <li>Atque corrupti quos dolores et quas</li>
+              </ul>
+            </div>
+
+            <div class="usage-card">
+              <div class="usage-card-header">
+                <div class="usage-icon dont-icon"><i data-lucide="x" style="width:12px;height:12px"></i></div>
+                <div class="usage-card-title">Nam libero tempore soluta</div>
+              </div>
+              <ul class="usage-list">
+                <li>Nobis est eligendi optio cumque nihil</li>
+                <li>Impedit quo minus id quod maxime</li>
+              </ul>
+            </div>
+
+            <div class="usage-card">
+              <div class="usage-card-header">
+                <div class="usage-icon dont-icon"><i data-lucide="x" style="width:12px;height:12px"></i></div>
+                <div class="usage-card-title">Temporibus autem quibusdam</div>
+              </div>
+              <ul class="usage-list">
+                <li>Et aut officiis debitis aut rerum necessitatibus</li>
+                <li>Saepe eveniet ut et voluptates repudiandae</li>
+              </ul>
+            </div>
+
+          </div>
+        </div>
+      </section>
+
+      <!-- 6 · TOKENS USED -->
+      <section class="doc-section" id="tokens">
+        <h2 class="section-title">Tokens used</h2>
+        <div class="tokens-grid">
+
+          <!-- Light -->
+          <div>
+            <div class="tokens-group-label">Light</div>
+            <table class="tokens-table">
+              <thead><tr><th>Property</th><th>Token</th><th></th></tr></thead>
+              <tbody>
+                <tr><td>Track background</td><td class="t-tok">color/control/track-inactive</td><td class="t-sw"><div class="swatch" style="background:#CDD2D7;"></div></td></tr>
+                <tr><td>Fill — Uploading</td><td class="t-tok">color/status/info/border</td><td class="t-sw"><div class="swatch" style="background:#027CB1;"></div></td></tr>
+                <tr><td>Fill — Error</td><td class="t-tok">color/status/error/border</td><td class="t-sw"><div class="swatch" style="background:#A12F2F;"></div></td></tr>
+                <tr><td>Fill — Success</td><td class="t-tok">color/status/success/border</td><td class="t-sw"><div class="swatch" style="background:#006C21;"></div></td></tr>
+                <tr><td>Height — Default</td><td class="t-tok">spacing/1-5x</td><td class="t-sw"><div style="background:var(--text-tertiary);width:16px;height:16px;border-radius:2px;display:flex;align-items:center;justify-content:center;font-size:10px;color:#fff;font-weight:700;">6</div></td></tr>
+                <tr><td>Height — Compact</td><td class="t-tok">spacing/1x</td><td class="t-sw"><div style="background:var(--text-tertiary);width:16px;height:16px;border-radius:2px;display:flex;align-items:center;justify-content:center;font-size:10px;color:#fff;font-weight:700;">4</div></td></tr>
+                <tr><td>Border radius</td><td class="t-tok">radius/full</td><td class="t-sw"><div style="background:var(--text-tertiary);width:16px;height:16px;border-radius:8px;"></div></td></tr>
+              </tbody>
+            </table>
+          </div>
+
+          <!-- Dark -->
+          <div>
+            <div class="tokens-group-label">Dark</div>
+            <table class="tokens-table">
+              <thead><tr><th>Property</th><th>Token</th><th></th></tr></thead>
+              <tbody>
+                <tr><td>Track background</td><td class="t-tok">color/control/track-inactive</td><td class="t-sw"><div class="swatch" style="background:#374151;border-color:rgba(255,255,255,.1)"></div></td></tr>
+                <tr><td>Fill — Uploading</td><td class="t-tok">color/status/info/border</td><td class="t-sw"><div class="swatch" style="background:#8FCBE6;"></div></td></tr>
+                <tr><td>Fill — Error</td><td class="t-tok">color/status/error/border</td><td class="t-sw"><div class="swatch" style="background:#DB3939;"></div></td></tr>
+                <tr><td>Fill — Success</td><td class="t-tok">color/status/success/border</td><td class="t-sw"><div class="swatch" style="background:#4DAD82;"></div></td></tr>
+                <tr><td>Height — Default</td><td class="t-tok">spacing/1-5x</td><td class="t-sw"><div style="background:#6B7280;width:16px;height:16px;border-radius:2px;display:flex;align-items:center;justify-content:center;font-size:10px;color:#fff;font-weight:700;">6</div></td></tr>
+                <tr><td>Height — Compact</td><td class="t-tok">spacing/1x</td><td class="t-sw"><div style="background:#6B7280;width:16px;height:16px;border-radius:2px;display:flex;align-items:center;justify-content:center;font-size:10px;color:#fff;font-weight:700;">4</div></td></tr>
+                <tr><td>Border radius</td><td class="t-tok">radius/full</td><td class="t-sw"><div style="background:#6B7280;width:16px;height:16px;border-radius:8px;"></div></td></tr>
+              </tbody>
+            </table>
+          </div>
+
+        </div>
+      </section>
+
+      <!-- 7 · ACCESSIBILITY -->
+      <section class="doc-section" id="accessibility">
+        <h2 class="section-title">Accessibility</h2>
+        <ul class="a11y-list">
+          <li>
+            <div><strong>Role:</strong> Use <code>role="progressbar"</code> on the track element. Set <code>aria-valuenow</code>, <code>aria-valuemin="0"</code>, and <code>aria-valuemax="100"</code> to communicate the current percentage to screen readers.</div>
+          </li>
+          <li>
+            <div><strong>Label:</strong> Always provide an <code>aria-label</code> or <code>aria-labelledby</code> that describes what is progressing (e.g., <code>aria-label="Uploading document"</code>). Without a label, screen readers cannot contextualise the bar.</div>
+          </li>
+          <li>
+            <div><strong>Status announcements:</strong> When the status changes to Error or Success, announce the outcome with a live region: <code>aria-live="polite"</code> or <code>role="status"</code> on a nearby text element.</div>
+          </li>
+          <li>
+            <div><strong>Colour independence:</strong> Do not rely on fill colour alone to communicate status. Pair the bar with an adjacent label, icon, or status message (e.g., "Upload failed" or "Upload complete").</div>
+          </li>
+        </ul>
+      </section>
+
+      <!-- 8 · RELATED -->
+      <section class="doc-section" id="related">
+        <h2 class="section-title">Related Components</h2>
+        <div class="related-grid">
+          <a href="fileupload.html" class="related-card">
+            <div class="rc-name">File Upload</div>
+            <div class="rc-desc">The primary context for the Progress Bar — shows upload state inside the file upload component.</div>
+          </a>
+          <a href="alert.html" class="related-card">
+            <div class="rc-name">Alert</div>
+            <div class="rc-desc">Use an Alert to accompany the Error or Success state with a descriptive message.</div>
+          </a>
+          <a href="badge.html" class="related-card">
+            <div class="rc-name">Badge</div>
+            <div class="rc-desc">Use a status Badge alongside the bar to provide a textual label for the current state.</div>
+          </a>
+        </div>
+      </section>
+
+    </main>
+
+    <!-- RIGHT ANCHOR NAV -->
+    <nav class="right-nav">
+      <div class="rn-label">On this page</div>
+      <ul class="rn-list">
+        <li><a href="#definition"    id="rn-definition">Definition</a></li>
+        <li><a href="#anatomy"       id="rn-anatomy">Anatomy</a></li>
+        <li><a href="#variants"      id="rn-variants">Variants</a></li>
+        <li><a href="#properties"    id="rn-properties">Properties</a></li>
+        <li><a href="#usage"         id="rn-usage">Usage</a></li>
+        <li><a href="#tokens"        id="rn-tokens">Tokens</a></li>
+        <li><a href="#accessibility" id="rn-accessibility">Accessibility</a></li>
+        <li><a href="#related"       id="rn-related">Related</a></li>
+      </ul>
+    </nav>
+
+  </div><!-- /content-wrap -->
+</div><!-- /shell -->
+
+<script>
+  lucide.createIcons();
+
+  const isMobile = () => window.innerWidth <= 768;
+  let sbOpen = !isMobile();
+  if (!sbOpen) document.getElementById('leftNav').classList.add('hidden');
+
+  function toggleSidebar() {
+    sbOpen = !sbOpen;
+    document.getElementById('leftNav').classList.toggle('hidden', !sbOpen);
+    if (!isMobile()) {
+      document.getElementById('contentWrap').style.marginLeft = sbOpen ? 'var(--left-w)' : '0';
+    }
+    document.getElementById('navOverlay').classList.toggle('active', sbOpen && isMobile());
+  }
+
+  function updateTabFade(tabsEl) {
+    const wrap = tabsEl.closest('.tabs-wrap');
+    if (!wrap) return;
+    const atEnd = tabsEl.scrollLeft + tabsEl.clientWidth >= tabsEl.scrollWidth - 2;
+    wrap.classList.toggle('at-end', atEnd);
+  }
+
+  function switchStateTab(btn, panelId) {
+    const tabPanel = btn.closest('.tab-panel');
+    tabPanel.querySelectorAll('.state-tab-btn').forEach(b => b.classList.remove('active'));
+    tabPanel.querySelectorAll('.state-panel').forEach(p => p.classList.remove('active'));
+    btn.classList.add('active');
+    document.getElementById(panelId).classList.add('active');
+    lucide.createIcons();
+  }
+
+  function switchTab(btn, panelId) {
+    btn.closest('.doc-section').querySelectorAll('.tab').forEach(b => b.classList.remove('active'));
+    btn.closest('.doc-section').querySelectorAll('.tab-panel').forEach(p => p.classList.remove('active'));
+    btn.classList.add('active');
+    document.getElementById(panelId).classList.add('active');
+    const tabsEl = btn.closest('.tabs');
+    if (tabsEl) {
+      const tabRight = btn.offsetLeft + btn.offsetWidth;
+      const tabLeft = btn.offsetLeft;
+      if (tabRight > tabsEl.scrollLeft + tabsEl.clientWidth - 56) {
+        tabsEl.scrollLeft = tabRight - tabsEl.clientWidth + 72;
+      } else if (tabLeft < tabsEl.scrollLeft) {
+        tabsEl.scrollLeft = tabLeft;
+      }
+      updateTabFade(tabsEl);
+    }
+    lucide.createIcons();
+  }
+
+  window.addEventListener('load', () => {
+    document.querySelectorAll('.tabs').forEach(tabsEl => {
+      updateTabFade(tabsEl);
+      tabsEl.addEventListener('scroll', () => updateTabFade(tabsEl));
+    });
+  });
+
+  function toggleTheme() {
+    const d = document.documentElement;
+    d.setAttribute('data-theme', d.getAttribute('data-theme') === 'dark' ? 'light' : 'dark');
+  }
+
+  const sections = ['definition','anatomy','variants','properties','usage','tokens','accessibility','related'];
+  const observer = new IntersectionObserver(entries => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        document.querySelectorAll('.rn-list a').forEach(a => a.classList.remove('active'));
+        const link = document.getElementById('rn-' + e.target.id);
+        if (link) link.classList.add('active');
+      }
+    });
+  }, { rootMargin: '-20% 0px -70% 0px' });
+  sections.forEach(id => {
+    const el = document.getElementById(id);
+    if (el) observer.observe(el);
+  });
+</script>
+</body>
+</html>
