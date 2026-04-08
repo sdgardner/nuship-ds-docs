@@ -2021,12 +2021,17 @@ code {
 }
 .pb-track--compact { height: 4px; }
 
+@keyframes pb-grow {
+  from { width: 0; }
+  to   { width: var(--pb-w, 62%); }
+}
 .pb-fill {
   height: 100%;
   border-radius: 100px 0 0 100px;
-  width: 62%;
+  width: 0;
+  animation: pb-grow 0.85s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards;
 }
-.pb-fill--full { border-radius: 100px; width: 100%; }
+.pb-fill--full { border-radius: 100px; --pb-w: 100%; }
 
 .pb-fill--uploading {
   background: linear-gradient(90deg, rgba(0,0,0,0.2) 0%, rgba(102,102,102,0.2) 100%),
