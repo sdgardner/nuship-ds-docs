@@ -2142,7 +2142,7 @@ code {
   width: 20px;
   height: 20px;
   border-radius: 50%;
-  border: 1.5px solid var(--border);
+  border: 2px solid var(--border);
   box-sizing: border-box;
   flex-shrink: 0;
   position: relative;
@@ -2150,8 +2150,8 @@ code {
 }
 .rb-dot {
   position: absolute;
-  width: 10px;
-  height: 10px;
+  width: 12px;
+  height: 12px;
   border-radius: 50%;
   background: var(--border-focus);
   top: 50%;
@@ -2181,8 +2181,19 @@ code {
 /* Selected */
 .rb-wrap--selected .rb-circle { border-color: var(--border-focus); }
 
-/* Hover */
+/* Hover — subtle circular halo behind the circle */
 .rb-wrap--hover .rb-circle { border-color: var(--border-strong); }
+.rb-wrap--hover .rb-circle::before {
+  content: '';
+  position: absolute;
+  top: -8px;
+  left: -8px;
+  right: -8px;
+  bottom: -8px;
+  border-radius: 50%;
+  background: rgba(0,0,0,0.04);
+  z-index: -1;
+}
 
 /* Focus (unselected) */
 .rb-wrap--focus .rb-circle {
@@ -2208,10 +2219,13 @@ code {
 .rb-wrap--disabled-selected .rb-desc   { color: var(--text-disabled); }
 .rb-wrap--disabled-selected            { cursor: not-allowed; }
 
-/* Dark theme focus glow */
+/* Dark theme overrides */
 [data-theme="dark"] .rb-wrap--focus .rb-circle,
 [data-theme="dark"] .rb-wrap--focus-selected .rb-circle {
   box-shadow: 0 0 0 4px rgba(0,131,187,0.35);
+}
+[data-theme="dark"] .rb-wrap--hover .rb-circle::before {
+  background: rgba(255,255,255,0.06);
 }
 
 /* var-preview hardcoded light */
@@ -2219,6 +2233,7 @@ code {
 .var-preview .rb-dot                             { background: #5ABFE0; }
 .var-preview .rb-wrap--selected .rb-circle       { border-color: #5ABFE0; }
 .var-preview .rb-wrap--hover .rb-circle          { border-color: #9CA3AF; }
+.var-preview .rb-wrap--hover .rb-circle::before  { background: rgba(0,0,0,0.04); }
 .var-preview .rb-wrap--focus .rb-circle          { box-shadow: 0 0 0 4px rgba(90,191,224,0.35); }
 .var-preview .rb-wrap--focus-selected .rb-circle { border-color: #5ABFE0; box-shadow: 0 0 0 4px rgba(90,191,224,0.35); }
 .var-preview .rb-wrap--disabled .rb-circle             { border-color: #E5E7EB; }
@@ -2236,6 +2251,7 @@ code {
 .var-preview-dark .rb-dot                             { background: #0083BB; }
 .var-preview-dark .rb-wrap--selected .rb-circle       { border-color: #0083BB; }
 .var-preview-dark .rb-wrap--hover .rb-circle          { border-color: #9CA3AF; }
+.var-preview-dark .rb-wrap--hover .rb-circle::before  { background: rgba(255,255,255,0.06); }
 .var-preview-dark .rb-wrap--focus .rb-circle          { box-shadow: 0 0 0 4px rgba(0,131,187,0.35); }
 .var-preview-dark .rb-wrap--focus-selected .rb-circle { border-color: #0083BB; box-shadow: 0 0 0 4px rgba(0,131,187,0.35); }
 .var-preview-dark .rb-wrap--disabled .rb-circle             { border-color: #374151; }
