@@ -2181,10 +2181,11 @@ code {
 /* Selected */
 .rb-wrap--selected .rb-circle { border-color: var(--border-focus); }
 
-/* Hover — solid halo via box-shadow */
+/* Hover — solid filled halo (background fills inside, box-shadow extends outside) */
 .rb-wrap--hover .rb-circle {
   border-color: var(--border-strong);
-  box-shadow: 0 0 0 4px var(--surface-layer03);
+  background: var(--surface-layer03);
+  box-shadow: 0 0 0 6px var(--surface-layer03);
 }
 
 /* Focus (unselected) */
@@ -2217,14 +2218,15 @@ code {
   box-shadow: 0 0 0 4px rgba(0,131,187,0.35);
 }
 [data-theme="dark"] .rb-wrap--hover .rb-circle {
-  box-shadow: 0 0 0 4px #374151;
+  background: #374151;
+  box-shadow: 0 0 0 6px #374151;
 }
 
 /* var-preview hardcoded light */
 .var-preview .rb-circle                          { border-color: #CDD2D7; }
 .var-preview .rb-dot                             { background: #5ABFE0; }
 .var-preview .rb-wrap--selected .rb-circle       { border-color: #5ABFE0; }
-.var-preview .rb-wrap--hover .rb-circle          { border-color: #9CA3AF; box-shadow: 0 0 0 4px #E5E7EB; }
+.var-preview .rb-wrap--hover .rb-circle          { border-color: #9CA3AF; background: #E5E7EB; box-shadow: 0 0 0 6px #E5E7EB; }
 .var-preview .rb-wrap--focus .rb-circle          { box-shadow: 0 0 0 4px rgba(90,191,224,0.35); }
 .var-preview .rb-wrap--focus-selected .rb-circle { border-color: #5ABFE0; box-shadow: 0 0 0 4px rgba(90,191,224,0.35); }
 .var-preview .rb-wrap--disabled .rb-circle             { border-color: #E5E7EB; }
@@ -2241,7 +2243,7 @@ code {
 .var-preview-dark .rb-circle                          { border-color: #6B7280; }
 .var-preview-dark .rb-dot                             { background: #0083BB; }
 .var-preview-dark .rb-wrap--selected .rb-circle       { border-color: #0083BB; }
-.var-preview-dark .rb-wrap--hover .rb-circle          { border-color: #9CA3AF; box-shadow: 0 0 0 4px #374151; }
+.var-preview-dark .rb-wrap--hover .rb-circle          { border-color: #9CA3AF; background: #374151; box-shadow: 0 0 0 6px #374151; }
 .var-preview-dark .rb-wrap--focus .rb-circle          { box-shadow: 0 0 0 4px rgba(0,131,187,0.35); }
 .var-preview-dark .rb-wrap--focus-selected .rb-circle { border-color: #0083BB; box-shadow: 0 0 0 4px rgba(0,131,187,0.35); }
 .var-preview-dark .rb-wrap--disabled .rb-circle             { border-color: #374151; }
