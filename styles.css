@@ -2181,17 +2181,17 @@ code {
 /* Selected */
 .rb-wrap--selected .rb-circle { border-color: var(--border-focus); }
 
-/* Hover — subtle circular halo behind the circle */
+/* Hover — solid halo behind the circle */
 .rb-wrap--hover .rb-circle { border-color: var(--border-strong); }
 .rb-wrap--hover .rb-circle::before {
   content: '';
   position: absolute;
-  top: -8px;
-  left: -8px;
-  right: -8px;
-  bottom: -8px;
+  top: -6px;
+  left: -6px;
+  width: 28px;
+  height: 28px;
   border-radius: 50%;
-  background: rgba(0,0,0,0.04);
+  background: var(--surface-layer03);
   z-index: -1;
 }
 
@@ -2225,7 +2225,7 @@ code {
   box-shadow: 0 0 0 4px rgba(0,131,187,0.35);
 }
 [data-theme="dark"] .rb-wrap--hover .rb-circle::before {
-  background: rgba(255,255,255,0.06);
+  background: #374151;
 }
 
 /* var-preview hardcoded light */
@@ -2233,7 +2233,7 @@ code {
 .var-preview .rb-dot                             { background: #5ABFE0; }
 .var-preview .rb-wrap--selected .rb-circle       { border-color: #5ABFE0; }
 .var-preview .rb-wrap--hover .rb-circle          { border-color: #9CA3AF; }
-.var-preview .rb-wrap--hover .rb-circle::before  { background: rgba(0,0,0,0.04); }
+.var-preview .rb-wrap--hover .rb-circle::before  { background: #E5E7EB; }
 .var-preview .rb-wrap--focus .rb-circle          { box-shadow: 0 0 0 4px rgba(90,191,224,0.35); }
 .var-preview .rb-wrap--focus-selected .rb-circle { border-color: #5ABFE0; box-shadow: 0 0 0 4px rgba(90,191,224,0.35); }
 .var-preview .rb-wrap--disabled .rb-circle             { border-color: #E5E7EB; }
@@ -2251,7 +2251,7 @@ code {
 .var-preview-dark .rb-dot                             { background: #0083BB; }
 .var-preview-dark .rb-wrap--selected .rb-circle       { border-color: #0083BB; }
 .var-preview-dark .rb-wrap--hover .rb-circle          { border-color: #9CA3AF; }
-.var-preview-dark .rb-wrap--hover .rb-circle::before  { background: rgba(255,255,255,0.06); }
+.var-preview-dark .rb-wrap--hover .rb-circle::before  { background: #374151; }
 .var-preview-dark .rb-wrap--focus .rb-circle          { box-shadow: 0 0 0 4px rgba(0,131,187,0.35); }
 .var-preview-dark .rb-wrap--focus-selected .rb-circle { border-color: #0083BB; box-shadow: 0 0 0 4px rgba(0,131,187,0.35); }
 .var-preview-dark .rb-wrap--disabled .rb-circle             { border-color: #374151; }
