@@ -1,0 +1,362 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Switch — nuShip Design System</title>
+  <link href="https://fonts.googleapis.com/css2?family=Lato:wght@400;600;700;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="tokens.css">
+  <link rel="stylesheet" href="styles.css">
+  <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.min.js"></script>
+</head>
+<body>
+
+<div id="navOverlay" class="nav-overlay" onclick="toggleSidebar()"></div>
+
+<nav class="topnav">
+  <button class="hamburger" onclick="toggleSidebar()" aria-label="Menu"><i data-lucide="menu" style="width:18px;height:18px;color:var(--text-secondary)"></i></button>
+  <div class="bc">
+    <a href="index.html">UI Components</a>
+    <i data-lucide="chevron-right" style="width:14px;height:14px;flex-shrink:0"></i>
+    <a href="#">Inputs</a>
+    <i data-lucide="chevron-right" style="width:14px;height:14px;flex-shrink:0"></i>
+    <span class="cur">Switch</span>
+  </div>
+  <div class="nav-actions">
+    <div class="toggle-wrap" onclick="toggleTheme()" role="button">
+      <i data-lucide="moon" style="width:20px;height:20px"></i>
+      <div class="toggle-track"><div class="toggle-thumb"></div></div>
+      <i data-lucide="sun" style="width:20px;height:20px"></i>
+    </div>
+  </div>
+</nav>
+
+<div class="shell">
+  <nav class="left-nav" id="leftNav">
+    <div class="left-nav-inner">
+      <div class="ln-group"><div class="ln-label">Inputs</div><ul class="ln-list">
+        <li><a href="checkbox.html">Checkbox</a></li><li><a href="datepicker.html">Date Picker</a></li><li><a href="numberinput.html">Number Input</a></li><li><a href="passwordinput.html">Password Input</a></li><li><a href="radiobutton.html">Radio Button</a></li><li><a href="search.html">Search</a></li><li><a href="select.html">Select</a></li><li><a href="#">Slider</a></li><li><a href="switch.html" class="active">Switch</a></li><li><a href="#">Text Area</a></li><li><a href="#">Text Input</a></li>
+      </ul></div>
+      <div class="ln-group"><div class="ln-label">Feedback</div><ul class="ln-list">
+        <li><a href="alert.html">Alert</a></li><li><a href="badge.html">Badge</a></li><li><a href="#">Toast</a></li><li><a href="#">Tooltip</a></li>
+      </ul></div>
+      <div class="ln-group"><div class="ln-label">Navigation</div><ul class="ln-list">
+        <li><a href="accordion.html">Accordion</a></li><li><a href="#">Breadcrumb</a></li><li><a href="dropdown.html">Dropdown</a></li><li><a href="menu.html">Menu</a></li><li><a href="segmentedcontrol.html">Segmented Control</a></li><li><a href="#">Tabs</a></li>
+      </ul></div>
+      <div class="ln-group"><div class="ln-label">Actions</div><ul class="ln-list">
+        <li><a href="button.html">Button</a></li><li><a href="link.html">Link</a></li><li><a href="#">Tags</a></li>
+      </ul></div>
+      <div class="ln-group"><div class="ln-label">Overlays</div><ul class="ln-list">
+        <li><a href="modal.html">Modal</a></li><li><a href="popover.html">Popover</a></li>
+      </ul></div>
+      <div class="ln-group"><div class="ln-label">Display</div><ul class="ln-list">
+        <li><a href="avatar.html">Avatar</a></li><li><a href="carousel.html">Carousel</a></li><li><a href="fileupload.html">File Upload</a></li><li><a href="progressbar.html">Progress Bar</a></li><li><a href="#">Star Rating</a></li><li><a href="#">Timeline</a></li>
+      </ul></div>
+    </div>
+  </nav>
+
+  <div class="content-wrap" id="contentWrap">
+    <main class="doc">
+
+      <!-- 1 · DEFINITION -->
+      <section class="doc-section" id="definition">
+        <div class="def-eyebrow">Inputs</div>
+        <h1 class="def-title">Switch</h1>
+        <p class="def-desc">A Switch is a binary toggle that lets users turn a setting on or off. It comes in two sizes — Default (44 &times; 24) and Compact (36 &times; 20) — and can be paired with a label and description.</p>
+        <div class="def-tags"><span class="tag">Developed</span><span class="tag">Figma</span></div>
+        <div class="preview-box">
+          <div class="preview-box-inner">
+            <div style="display:flex;flex-direction:column;gap:24px;align-items:flex-start;">
+
+              <div class="sw-row" style="width:300px;">
+                <div class="sw-label-stack"><div class="sw-label">Email notifications</div><div class="sw-desc">Receive alerts for new shipments</div></div>
+                <div class="sw-track"><div class="sw-thumb"></div></div>
+              </div>
+
+              <div class="sw-row" style="width:300px;">
+                <div class="sw-label-stack"><div class="sw-label">Dark mode</div><div class="sw-desc">Use the dark colour scheme</div></div>
+                <div class="sw-track sw-on"><div class="sw-thumb"></div></div>
+              </div>
+
+              <div style="display:flex;gap:24px;align-items:center;">
+                <div style="font-size:12px;font-weight:700;color:var(--text-tertiary);width:56px">Default</div>
+                <div class="sw-track"><div class="sw-thumb"></div></div>
+                <div class="sw-track sw-on"><div class="sw-thumb"></div></div>
+              </div>
+
+              <div style="display:flex;gap:24px;align-items:center;">
+                <div style="font-size:12px;font-weight:700;color:var(--text-tertiary);width:56px">Compact</div>
+                <div class="sw-track sw-track--compact"><div class="sw-thumb"></div></div>
+                <div class="sw-track sw-track--compact sw-on"><div class="sw-thumb"></div></div>
+              </div>
+
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- 2 · ANATOMY -->
+      <section class="doc-section" id="anatomy">
+        <h2 class="section-title">Anatomy</h2>
+        <div class="anatomy-wrap">
+          <div class="anatomy-component" style="padding:32px 40px 48px;">
+            <div style="position:relative;display:inline-flex;align-items:center;gap:12px;">
+              <div class="sw-label-stack" style="position:relative;">
+                <div class="sw-label">Switch Label<span class="callout" style="position:absolute;top:-10px;right:-24px;">1</span></div>
+                <div class="sw-desc">Optional description<span class="callout" style="position:absolute;top:-10px;right:-24px;">2</span></div>
+              </div>
+              <div class="sw-track sw-on" style="position:relative;">
+                <div class="sw-thumb"></div>
+                <span class="callout" style="top:-14px;left:2px;">3</span>
+                <span class="callout" style="top:-14px;right:2px;">4</span>
+              </div>
+            </div>
+          </div>
+          <div class="anatomy-legend">
+            <div class="legend-item"><span class="legend-num">1</span>Label (12px / bold / 700 / letter-spacing 0.5px)</div>
+            <div class="legend-item"><span class="legend-num">2</span>Description (12px / regular / helper colour)</div>
+            <div class="legend-item"><span class="legend-num">3</span>Track (pill shape, inactive #CDD2D7 or active #027CB1)</div>
+            <div class="legend-item"><span class="legend-num">4</span>Thumb (white circle with level-1 shadow, slides left/right)</div>
+          </div>
+        </div>
+      </section>
+
+      <!-- 3 · VARIANTS -->
+      <section class="doc-section" id="variants">
+        <h2 class="section-title">Variants</h2>
+        <div class="tabs-wrap">
+          <div class="tabs">
+            <button class="tab active" onclick="switchTab(this,'v-sw-default')">Default</button>
+            <button class="tab" onclick="switchTab(this,'v-sw-compact')">Compact</button>
+          </div>
+        </div>
+
+        <!-- DEFAULT SIZE -->
+        <div class="tab-panel active" id="v-sw-default">
+          <div class="state-tab-row">
+            <button class="state-tab-btn active" onclick="switchStateTab(this,'vs-d-rest')">Default</button>
+            <button class="state-tab-btn" onclick="switchStateTab(this,'vs-d-hover')">Hover</button>
+            <button class="state-tab-btn" onclick="switchStateTab(this,'vs-d-focus')">Focus</button>
+            <button class="state-tab-btn" onclick="switchStateTab(this,'vs-d-disabled')">Disabled</button>
+          </div>
+          <div class="var-panel">
+            <div class="var-previews-wrap">
+
+              <div class="state-panel active" id="vs-d-rest">
+                <div class="var-previews">
+                  <div class="var-preview"><div style="display:flex;gap:16px;align-items:center;"><div class="sw-track"><div class="sw-thumb"></div></div><div class="sw-track sw-on"><div class="sw-thumb"></div></div></div></div>
+                  <div class="var-preview-dark"><div style="display:flex;gap:16px;align-items:center;"><div class="sw-track"><div class="sw-thumb"></div></div><div class="sw-track sw-on"><div class="sw-thumb"></div></div></div></div>
+                </div>
+              </div>
+
+              <div class="state-panel" id="vs-d-hover">
+                <div class="var-previews">
+                  <div class="var-preview"><div style="display:flex;gap:16px;align-items:center;"><div class="sw-track sw-hover"><div class="sw-thumb"></div></div><div class="sw-track sw-hover-on"><div class="sw-thumb"></div></div></div></div>
+                  <div class="var-preview-dark"><div style="display:flex;gap:16px;align-items:center;"><div class="sw-track sw-hover"><div class="sw-thumb"></div></div><div class="sw-track sw-hover-on"><div class="sw-thumb"></div></div></div></div>
+                </div>
+              </div>
+
+              <div class="state-panel" id="vs-d-focus">
+                <div class="var-previews">
+                  <div class="var-preview"><div style="display:flex;gap:16px;align-items:center;"><div class="sw-track sw-focus"><div class="sw-thumb"></div></div><div class="sw-track sw-focus-on"><div class="sw-thumb"></div></div></div></div>
+                  <div class="var-preview-dark"><div style="display:flex;gap:16px;align-items:center;"><div class="sw-track sw-focus"><div class="sw-thumb"></div></div><div class="sw-track sw-focus-on"><div class="sw-thumb"></div></div></div></div>
+                </div>
+              </div>
+
+              <div class="state-panel" id="vs-d-disabled">
+                <div class="var-previews">
+                  <div class="var-preview"><div style="display:flex;gap:16px;align-items:center;"><div class="sw-track sw-disabled-off"><div class="sw-thumb"></div></div><div class="sw-track sw-disabled-on"><div class="sw-thumb"></div></div></div></div>
+                  <div class="var-preview-dark"><div style="display:flex;gap:16px;align-items:center;"><div class="sw-track sw-disabled-off"><div class="sw-thumb"></div></div><div class="sw-track sw-disabled-on"><div class="sw-thumb"></div></div></div></div>
+                </div>
+              </div>
+
+            </div>
+            <div class="var-desc">
+              <div class="var-use-when">Default size (44 &times; 24):</div>
+              <ul class="var-use-list">
+                <li>Each state shows Off (left) and On (right) side by side</li>
+                <li>Hover — adds a subtle halo behind the thumb</li>
+                <li>Focus — 2px blue ring + 4px glow around the track</li>
+                <li>Disabled — muted track colours, no interaction</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <!-- COMPACT SIZE -->
+        <div class="tab-panel" id="v-sw-compact">
+          <div class="state-tab-row">
+            <button class="state-tab-btn active" onclick="switchStateTab(this,'vs-c-rest')">Default</button>
+            <button class="state-tab-btn" onclick="switchStateTab(this,'vs-c-hover')">Hover</button>
+            <button class="state-tab-btn" onclick="switchStateTab(this,'vs-c-focus')">Focus</button>
+            <button class="state-tab-btn" onclick="switchStateTab(this,'vs-c-disabled')">Disabled</button>
+          </div>
+          <div class="var-panel">
+            <div class="var-previews-wrap">
+
+              <div class="state-panel active" id="vs-c-rest">
+                <div class="var-previews">
+                  <div class="var-preview"><div style="display:flex;gap:16px;align-items:center;"><div class="sw-track sw-track--compact"><div class="sw-thumb"></div></div><div class="sw-track sw-track--compact sw-on"><div class="sw-thumb"></div></div></div></div>
+                  <div class="var-preview-dark"><div style="display:flex;gap:16px;align-items:center;"><div class="sw-track sw-track--compact"><div class="sw-thumb"></div></div><div class="sw-track sw-track--compact sw-on"><div class="sw-thumb"></div></div></div></div>
+                </div>
+              </div>
+
+              <div class="state-panel" id="vs-c-hover">
+                <div class="var-previews">
+                  <div class="var-preview"><div style="display:flex;gap:16px;align-items:center;"><div class="sw-track sw-track--compact sw-hover"><div class="sw-thumb"></div></div><div class="sw-track sw-track--compact sw-hover-on"><div class="sw-thumb"></div></div></div></div>
+                  <div class="var-preview-dark"><div style="display:flex;gap:16px;align-items:center;"><div class="sw-track sw-track--compact sw-hover"><div class="sw-thumb"></div></div><div class="sw-track sw-track--compact sw-hover-on"><div class="sw-thumb"></div></div></div></div>
+                </div>
+              </div>
+
+              <div class="state-panel" id="vs-c-focus">
+                <div class="var-previews">
+                  <div class="var-preview"><div style="display:flex;gap:16px;align-items:center;"><div class="sw-track sw-track--compact sw-focus"><div class="sw-thumb"></div></div><div class="sw-track sw-track--compact sw-focus-on"><div class="sw-thumb"></div></div></div></div>
+                  <div class="var-preview-dark"><div style="display:flex;gap:16px;align-items:center;"><div class="sw-track sw-track--compact sw-focus"><div class="sw-thumb"></div></div><div class="sw-track sw-track--compact sw-focus-on"><div class="sw-thumb"></div></div></div></div>
+                </div>
+              </div>
+
+              <div class="state-panel" id="vs-c-disabled">
+                <div class="var-previews">
+                  <div class="var-preview"><div style="display:flex;gap:16px;align-items:center;"><div class="sw-track sw-track--compact sw-disabled-off"><div class="sw-thumb"></div></div><div class="sw-track sw-track--compact sw-disabled-on"><div class="sw-thumb"></div></div></div></div>
+                  <div class="var-preview-dark"><div style="display:flex;gap:16px;align-items:center;"><div class="sw-track sw-track--compact sw-disabled-off"><div class="sw-thumb"></div></div><div class="sw-track sw-track--compact sw-disabled-on"><div class="sw-thumb"></div></div></div></div>
+                </div>
+              </div>
+
+            </div>
+            <div class="var-desc">
+              <div class="var-use-when">Compact size (36 &times; 20):</div>
+              <ul class="var-use-list">
+                <li>Use in dense layouts — table rows, sidebars, toolbars</li>
+                <li>16px thumb instead of 20px, all states identical to Default</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+      </section>
+
+      <!-- 4 · PROPERTIES -->
+      <section class="doc-section" id="properties">
+        <h2 class="section-title">Properties</h2>
+        <table class="props-table">
+          <thead><tr><th>Property</th><th>Type</th><th>Default</th><th>Description</th></tr></thead>
+          <tbody>
+            <tr><td class="p-name">checked</td><td class="p-type">boolean</td><td class="p-def">false</td><td class="p-desc">Whether the switch is on or off</td></tr>
+            <tr><td class="p-name">disabled</td><td class="p-type">boolean</td><td class="p-def">false</td><td class="p-desc">Prevents interaction and applies the disabled style</td></tr>
+            <tr><td class="p-name">size</td><td class="p-type">"Default" | "Compact"</td><td class="p-def">"Default"</td><td class="p-desc">Default is 44 &times; 24; Compact is 36 &times; 20</td></tr>
+            <tr><td class="p-name">label</td><td class="p-type">string</td><td class="p-def">—</td><td class="p-desc">Primary label displayed beside the switch</td></tr>
+            <tr><td class="p-name">description</td><td class="p-type">string</td><td class="p-def">—</td><td class="p-desc">Optional secondary text below the label</td></tr>
+            <tr><td class="p-name">onChange</td><td class="p-type">function</td><td class="p-def">—</td><td class="p-desc">Callback fired when the switch is toggled</td></tr>
+          </tbody>
+        </table>
+      </section>
+
+      <!-- 5 · USAGE -->
+      <section class="doc-section" id="usage">
+        <h2 class="section-title">Usage Guidelines</h2>
+        <div class="usage-block"><div class="usage-cols">
+          <div class="usage-card"><div class="usage-card-header"><div class="usage-icon do-icon"><i data-lucide="check" style="width:12px;height:12px"></i></div><div class="usage-card-title">Lorem ipsum dolor sit amet</div></div><ul class="usage-list"><li>Lorem ipsum dolor sit amet consectetur</li><li>Adipiscing elit sed do eiusmod tempor</li><li>Incididunt ut labore et dolore magna</li></ul></div>
+          <div class="usage-card"><div class="usage-card-header"><div class="usage-icon do-icon"><i data-lucide="check" style="width:12px;height:12px"></i></div><div class="usage-card-title">Ut enim ad minim veniam</div></div><ul class="usage-list"><li>Quis nostrud exercitation ullamco laboris</li><li>Nisi ut aliquip ex ea commodo consequat</li><li>Duis aute irure dolor in reprehenderit</li></ul></div>
+          <div class="usage-card"><div class="usage-card-header"><div class="usage-icon do-icon"><i data-lucide="check" style="width:12px;height:12px"></i></div><div class="usage-card-title">Excepteur sint occaecat</div></div><ul class="usage-list"><li>Non proident sunt in culpa qui officia</li><li>Deserunt mollit anim id est laborum</li><li>Sed ut perspiciatis unde omnis iste</li></ul></div>
+          <div class="usage-card"><div class="usage-card-header"><div class="usage-icon do-icon"><i data-lucide="check" style="width:12px;height:12px"></i></div><div class="usage-card-title">Nemo enim ipsam voluptatem</div></div><ul class="usage-list"><li>Quia voluptas sit aspernatur aut odit</li><li>Neque porro quisquam est qui dolorem</li><li>Ut labore et dolore magnam aliquam</li></ul></div>
+        </div></div>
+        <div class="usage-divider"></div>
+        <div class="usage-block"><div class="usage-cols">
+          <div class="usage-card"><div class="usage-card-header"><div class="usage-icon dont-icon"><i data-lucide="x" style="width:12px;height:12px"></i></div><div class="usage-card-title">Quis autem vel eum iure</div></div><ul class="usage-list"><li>Reprehenderit qui in ea voluptate velit</li><li>Esse quam nihil molestiae consequatur</li><li>Vel illum qui dolorem eum fugiat</li></ul></div>
+          <div class="usage-card"><div class="usage-card-header"><div class="usage-icon dont-icon"><i data-lucide="x" style="width:12px;height:12px"></i></div><div class="usage-card-title">At vero eos et accusamus</div></div><ul class="usage-list"><li>Et iusto odio dignissimos ducimus qui</li><li>Blanditiis praesentium voluptatum deleniti</li><li>Atque corrupti quos dolores et quas</li></ul></div>
+          <div class="usage-card"><div class="usage-card-header"><div class="usage-icon dont-icon"><i data-lucide="x" style="width:12px;height:12px"></i></div><div class="usage-card-title">Nam libero tempore soluta</div></div><ul class="usage-list"><li>Nobis est eligendi optio cumque nihil</li><li>Impedit quo minus id quod maxime</li></ul></div>
+          <div class="usage-card"><div class="usage-card-header"><div class="usage-icon dont-icon"><i data-lucide="x" style="width:12px;height:12px"></i></div><div class="usage-card-title">Temporibus autem quibusdam</div></div><ul class="usage-list"><li>Et aut officiis debitis aut rerum necessitatibus</li><li>Saepe eveniet ut et voluptates repudiandae</li></ul></div>
+        </div></div>
+      </section>
+
+      <!-- 6 · TOKENS USED -->
+      <section class="doc-section" id="tokens">
+        <h2 class="section-title">Tokens used</h2>
+        <div class="tokens-grid">
+          <div>
+            <div class="tokens-group-label">Light</div>
+            <table class="tokens-table"><thead><tr><th>Property</th><th>Token</th><th></th></tr></thead>
+              <tbody>
+                <tr><td>Track (off)</td><td class="t-tok">color/control/track-inactive</td><td class="t-sw"><div class="swatch" style="background:#CDD2D7;"></div></td></tr>
+                <tr><td>Track (on)</td><td class="t-tok">color/control/track-active</td><td class="t-sw"><div class="swatch" style="background:#027CB1;"></div></td></tr>
+                <tr><td>Track (disabled off)</td><td class="t-tok">color/control/track-disabled</td><td class="t-sw"><div class="swatch" style="background:#E5E7EB;"></div></td></tr>
+                <tr><td>Track (disabled on)</td><td class="t-tok">color/control/switch-track-active-disabled</td><td class="t-sw"><div class="swatch" style="background:#B7DBEE;"></div></td></tr>
+                <tr><td>Thumb</td><td class="t-tok">color/icon/button</td><td class="t-sw"><div class="swatch" style="background:#FFFFFF;border-color:#CDD2D7"></div></td></tr>
+                <tr><td>Focus ring</td><td class="t-tok">color/border/focus-ring</td><td class="t-sw"><div class="swatch" style="background:#5ABFE0;"></div></td></tr>
+                <tr><td>Hover halo</td><td class="t-tok">color/surface/layer-03</td><td class="t-sw"><div class="swatch" style="background:#E5E7EB;"></div></td></tr>
+              </tbody>
+            </table>
+          </div>
+          <div>
+            <div class="tokens-group-label">Dark</div>
+            <table class="tokens-table"><thead><tr><th>Property</th><th>Token</th><th></th></tr></thead>
+              <tbody>
+                <tr><td>Track (off)</td><td class="t-tok">color/control/track-inactive</td><td class="t-sw"><div class="swatch" style="background:#6B7280;"></div></td></tr>
+                <tr><td>Track (on)</td><td class="t-tok">color/control/track-active</td><td class="t-sw"><div class="swatch" style="background:#35A8D6;"></div></td></tr>
+                <tr><td>Track (disabled off)</td><td class="t-tok">color/control/track-disabled</td><td class="t-sw"><div class="swatch" style="background:#374151;border-color:rgba(255,255,255,.1)"></div></td></tr>
+                <tr><td>Track (disabled on)</td><td class="t-tok">color/control/switch-track-active-disabled</td><td class="t-sw"><div class="swatch" style="background:#4B7A94;"></div></td></tr>
+                <tr><td>Thumb</td><td class="t-tok">color/icon/button</td><td class="t-sw"><div class="swatch" style="background:#FFFFFF;border-color:rgba(255,255,255,.1)"></div></td></tr>
+                <tr><td>Focus ring</td><td class="t-tok">color/border/focus-ring</td><td class="t-sw"><div class="swatch" style="background:#0083BB;"></div></td></tr>
+                <tr><td>Hover halo</td><td class="t-tok">color/surface/layer-03</td><td class="t-sw"><div class="swatch" style="background:#374151;border-color:rgba(255,255,255,.1)"></div></td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </section>
+
+      <!-- 7 · ACCESSIBILITY -->
+      <section class="doc-section" id="accessibility">
+        <h2 class="section-title">Accessibility</h2>
+        <ul class="a11y-list">
+          <li><div><strong>Role:</strong> Use <code>role="switch"</code> with <code>aria-checked="true/false"</code>. If using a native <code>&lt;input type="checkbox"&gt;</code>, add <code>role="switch"</code> to override the checkbox semantics.</div></li>
+          <li><div><strong>Keyboard:</strong> <kbd>Space</kbd> toggles the switch on/off. <kbd>Tab</kbd> moves focus to the next element. The focus ring (2px blue + 4px glow) wraps the entire track for clear visibility.</div></li>
+          <li><div><strong>Label:</strong> Every switch must have a visible label associated via <code>&lt;label for="..."&gt;</code>. Description text is connected via <code>aria-describedby</code>.</div></li>
+          <li><div><strong>Motion:</strong> The thumb slides between positions. Respect <code>prefers-reduced-motion</code> by disabling the slide transition when the user has opted out of motion.</div></li>
+        </ul>
+      </section>
+
+      <!-- 8 · RELATED -->
+      <section class="doc-section" id="related">
+        <h2 class="section-title">Related Components</h2>
+        <div class="related-grid">
+          <a href="checkbox.html" class="related-card"><div class="rc-name">Checkbox</div><div class="rc-desc">Use a Checkbox when the toggle controls a form field that is submitted. Use Switch for immediate on/off settings.</div></a>
+          <a href="radiobutton.html" class="related-card"><div class="rc-name">Radio Button</div><div class="rc-desc">Use Radio Buttons when choosing between 3+ mutually exclusive options. Switch is for binary on/off only.</div></a>
+          <a href="segmentedcontrol.html" class="related-card"><div class="rc-name">Segmented Control</div><div class="rc-desc">Use a Segmented Control when toggling between 2–4 named views. Switch is for enabling/disabling a feature.</div></a>
+        </div>
+      </section>
+
+    </main>
+
+    <nav class="right-nav">
+      <div class="rn-label">On this page</div>
+      <ul class="rn-list">
+        <li><a href="#definition" id="rn-definition">Definition</a></li>
+        <li><a href="#anatomy" id="rn-anatomy">Anatomy</a></li>
+        <li><a href="#variants" id="rn-variants">Variants</a></li>
+        <li><a href="#properties" id="rn-properties">Properties</a></li>
+        <li><a href="#usage" id="rn-usage">Usage</a></li>
+        <li><a href="#tokens" id="rn-tokens">Tokens</a></li>
+        <li><a href="#accessibility" id="rn-accessibility">Accessibility</a></li>
+        <li><a href="#related" id="rn-related">Related</a></li>
+      </ul>
+    </nav>
+  </div>
+</div>
+
+<script>
+  lucide.createIcons();
+  const isMobile = () => window.innerWidth <= 768;
+  let sbOpen = !isMobile();
+  if (!sbOpen) document.getElementById('leftNav').classList.add('hidden');
+  function toggleSidebar() { sbOpen = !sbOpen; document.getElementById('leftNav').classList.toggle('hidden', !sbOpen); if (!isMobile()) document.getElementById('contentWrap').style.marginLeft = sbOpen ? 'var(--left-w)' : '0'; document.getElementById('navOverlay').classList.toggle('active', sbOpen && isMobile()); }
+  function updateTabFade(t) { const w = t.closest('.tabs-wrap'); if (!w) return; w.classList.toggle('at-end', t.scrollLeft + t.clientWidth >= t.scrollWidth - 2); }
+  function switchStateTab(btn, id) { const p = btn.closest('.tab-panel'); p.querySelectorAll('.state-tab-btn').forEach(b => b.classList.remove('active')); p.querySelectorAll('.state-panel').forEach(p => p.classList.remove('active')); btn.classList.add('active'); document.getElementById(id).classList.add('active'); lucide.createIcons(); }
+  function switchTab(btn, id) { btn.closest('.doc-section').querySelectorAll('.tab').forEach(b => b.classList.remove('active')); btn.closest('.doc-section').querySelectorAll('.tab-panel').forEach(p => p.classList.remove('active')); btn.classList.add('active'); document.getElementById(id).classList.add('active'); const t = btn.closest('.tabs'); if (t) updateTabFade(t); lucide.createIcons(); }
+  window.addEventListener('load', () => { document.querySelectorAll('.tabs').forEach(t => { updateTabFade(t); t.addEventListener('scroll', () => updateTabFade(t)); }); });
+  function toggleTheme() { const d = document.documentElement; d.setAttribute('data-theme', d.getAttribute('data-theme') === 'dark' ? 'light' : 'dark'); }
+  const sections = ['definition','anatomy','variants','properties','usage','tokens','accessibility','related'];
+  const observer = new IntersectionObserver(entries => { entries.forEach(e => { if (e.isIntersecting) { document.querySelectorAll('.rn-list a').forEach(a => a.classList.remove('active')); const l = document.getElementById('rn-' + e.target.id); if (l) l.classList.add('active'); } }); }, { rootMargin: '-20% 0px -70% 0px' });
+  sections.forEach(id => { const el = document.getElementById(id); if (el) observer.observe(el); });
+</script>
+</body>
+</html>
