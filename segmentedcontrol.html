@@ -193,8 +193,11 @@
         <!-- 3 SEGMENTS -->
         <div class="tab-panel active" id="v-sg-3">
           <div class="state-tab-row">
-            <button class="state-tab-btn active" onclick="switchStateTab(this,'vs-3-default')">Selected</button>
-            <button class="state-tab-btn" onclick="switchStateTab(this,'vs-3-focus')">Focus</button>
+            <button class="state-tab-btn active" onclick="switchStateTab(this,'vs-3-default')">Default</button>
+            <button class="state-tab-btn" onclick="switchStateTab(this,'vs-3-hover')">Hover</button>
+            <button class="state-tab-btn" onclick="switchStateTab(this,'vs-3-focus-sel')">Focus Selected</button>
+            <button class="state-tab-btn" onclick="switchStateTab(this,'vs-3-focus-un')">Focus Unselected</button>
+            <button class="state-tab-btn" onclick="switchStateTab(this,'vs-3-disabled')">Disabled</button>
           </div>
           <div class="var-panel">
             <div class="var-previews-wrap">
@@ -202,47 +205,67 @@
               <div class="state-panel active" id="vs-3-default">
                 <div class="var-previews">
                   <div class="var-preview">
-                    <div class="sg-group">
-                      <div class="sg-item sg-item--selected">Day</div>
-                      <div class="sg-item">Week</div>
-                      <div class="sg-item">Month</div>
-                    </div>
+                    <div class="sg-group"><div class="sg-item sg-item--selected">Day</div><div class="sg-item">Week</div><div class="sg-item">Month</div></div>
                   </div>
                   <div class="var-preview-dark">
-                    <div class="sg-group">
-                      <div class="sg-item sg-item--selected">Day</div>
-                      <div class="sg-item">Week</div>
-                      <div class="sg-item">Month</div>
-                    </div>
+                    <div class="sg-group"><div class="sg-item sg-item--selected">Day</div><div class="sg-item">Week</div><div class="sg-item">Month</div></div>
                   </div>
                 </div>
               </div>
 
-              <div class="state-panel" id="vs-3-focus">
+              <div class="state-panel" id="vs-3-hover">
                 <div class="var-previews">
                   <div class="var-preview">
-                    <div class="sg-group">
-                      <div class="sg-item sg-item--focus">Day</div>
-                      <div class="sg-item">Week</div>
-                      <div class="sg-item">Month</div>
-                    </div>
+                    <div class="sg-group"><div class="sg-item sg-item--selected">Day</div><div class="sg-item sg-item--hover">Week</div><div class="sg-item">Month</div></div>
                   </div>
                   <div class="var-preview-dark">
-                    <div class="sg-group">
-                      <div class="sg-item sg-item--focus">Day</div>
-                      <div class="sg-item">Week</div>
-                      <div class="sg-item">Month</div>
-                    </div>
+                    <div class="sg-group"><div class="sg-item sg-item--selected">Day</div><div class="sg-item sg-item--hover">Week</div><div class="sg-item">Month</div></div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="state-panel" id="vs-3-focus-sel">
+                <div class="var-previews">
+                  <div class="var-preview">
+                    <div class="sg-group"><div class="sg-item sg-item--focus">Day</div><div class="sg-item">Week</div><div class="sg-item">Month</div></div>
+                  </div>
+                  <div class="var-preview-dark">
+                    <div class="sg-group"><div class="sg-item sg-item--focus">Day</div><div class="sg-item">Week</div><div class="sg-item">Month</div></div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="state-panel" id="vs-3-focus-un">
+                <div class="var-previews">
+                  <div class="var-preview">
+                    <div class="sg-group"><div class="sg-item sg-item--selected">Day</div><div class="sg-item sg-item--focus-unselected">Week</div><div class="sg-item">Month</div></div>
+                  </div>
+                  <div class="var-preview-dark">
+                    <div class="sg-group"><div class="sg-item sg-item--selected">Day</div><div class="sg-item sg-item--focus-unselected">Week</div><div class="sg-item">Month</div></div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="state-panel" id="vs-3-disabled">
+                <div class="var-previews">
+                  <div class="var-preview">
+                    <div class="sg-group"><div class="sg-item sg-item--disabled-selected">Day</div><div class="sg-item sg-item--disabled-unselected">Week</div><div class="sg-item sg-item--disabled-unselected">Month</div></div>
+                  </div>
+                  <div class="var-preview-dark">
+                    <div class="sg-group"><div class="sg-item sg-item--disabled-selected">Day</div><div class="sg-item sg-item--disabled-unselected">Week</div><div class="sg-item sg-item--disabled-unselected">Month</div></div>
                   </div>
                 </div>
               </div>
 
             </div>
             <div class="var-desc">
-              <div class="var-use-when">3 segments — use when:</div>
+              <div class="var-use-when">States:</div>
               <ul class="var-use-list">
-                <li>Three mutually exclusive options (e.g., Day / Week / Month)</li>
-                <li>The most common count, balancing density and readability</li>
+                <li>Default — first segment selected, rest unselected</li>
+                <li>Hover — unselected segment darkens to <code>layer-01/hover</code></li>
+                <li>Focus Selected — blue fill with focus ring + glow</li>
+                <li>Focus Unselected — layer-02 fill with focus ring + glow</li>
+                <li>Disabled — selected turns grey <code>#6B7280</code>, unselected turns <code>#EFF1F3</code></li>
               </ul>
             </div>
           </div>
@@ -251,8 +274,10 @@
         <!-- 2 SEGMENTS -->
         <div class="tab-panel" id="v-sg-2">
           <div class="state-tab-row">
-            <button class="state-tab-btn active" onclick="switchStateTab(this,'vs-2-default')">Selected</button>
+            <button class="state-tab-btn active" onclick="switchStateTab(this,'vs-2-default')">Default</button>
+            <button class="state-tab-btn" onclick="switchStateTab(this,'vs-2-hover')">Hover</button>
             <button class="state-tab-btn" onclick="switchStateTab(this,'vs-2-focus')">Focus</button>
+            <button class="state-tab-btn" onclick="switchStateTab(this,'vs-2-disabled')">Disabled</button>
           </div>
           <div class="var-panel">
             <div class="var-previews-wrap">
@@ -260,16 +285,21 @@
               <div class="state-panel active" id="vs-2-default">
                 <div class="var-previews">
                   <div class="var-preview">
-                    <div class="sg-group">
-                      <div class="sg-item sg-item--selected">Day</div>
-                      <div class="sg-item">Week</div>
-                    </div>
+                    <div class="sg-group"><div class="sg-item sg-item--selected">Day</div><div class="sg-item">Week</div></div>
                   </div>
                   <div class="var-preview-dark">
-                    <div class="sg-group">
-                      <div class="sg-item sg-item--selected">Day</div>
-                      <div class="sg-item">Week</div>
-                    </div>
+                    <div class="sg-group"><div class="sg-item sg-item--selected">Day</div><div class="sg-item">Week</div></div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="state-panel" id="vs-2-hover">
+                <div class="var-previews">
+                  <div class="var-preview">
+                    <div class="sg-group"><div class="sg-item sg-item--selected">Day</div><div class="sg-item sg-item--hover">Week</div></div>
+                  </div>
+                  <div class="var-preview-dark">
+                    <div class="sg-group"><div class="sg-item sg-item--selected">Day</div><div class="sg-item sg-item--hover">Week</div></div>
                   </div>
                 </div>
               </div>
@@ -277,16 +307,21 @@
               <div class="state-panel" id="vs-2-focus">
                 <div class="var-previews">
                   <div class="var-preview">
-                    <div class="sg-group">
-                      <div class="sg-item sg-item--focus">Day</div>
-                      <div class="sg-item">Week</div>
-                    </div>
+                    <div class="sg-group"><div class="sg-item sg-item--focus">Day</div><div class="sg-item">Week</div></div>
                   </div>
                   <div class="var-preview-dark">
-                    <div class="sg-group">
-                      <div class="sg-item sg-item--focus">Day</div>
-                      <div class="sg-item">Week</div>
-                    </div>
+                    <div class="sg-group"><div class="sg-item sg-item--focus">Day</div><div class="sg-item">Week</div></div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="state-panel" id="vs-2-disabled">
+                <div class="var-previews">
+                  <div class="var-preview">
+                    <div class="sg-group"><div class="sg-item sg-item--disabled-selected">Day</div><div class="sg-item sg-item--disabled-unselected">Week</div></div>
+                  </div>
+                  <div class="var-preview-dark">
+                    <div class="sg-group"><div class="sg-item sg-item--disabled-selected">Day</div><div class="sg-item sg-item--disabled-unselected">Week</div></div>
                   </div>
                 </div>
               </div>
@@ -305,8 +340,10 @@
         <!-- 4 SEGMENTS -->
         <div class="tab-panel" id="v-sg-4">
           <div class="state-tab-row">
-            <button class="state-tab-btn active" onclick="switchStateTab(this,'vs-4-default')">Selected</button>
+            <button class="state-tab-btn active" onclick="switchStateTab(this,'vs-4-default')">Default</button>
+            <button class="state-tab-btn" onclick="switchStateTab(this,'vs-4-hover')">Hover</button>
             <button class="state-tab-btn" onclick="switchStateTab(this,'vs-4-focus')">Focus</button>
+            <button class="state-tab-btn" onclick="switchStateTab(this,'vs-4-disabled')">Disabled</button>
           </div>
           <div class="var-panel">
             <div class="var-previews-wrap">
@@ -314,20 +351,21 @@
               <div class="state-panel active" id="vs-4-default">
                 <div class="var-previews">
                   <div class="var-preview">
-                    <div class="sg-group">
-                      <div class="sg-item sg-item--selected">Hour</div>
-                      <div class="sg-item">Day</div>
-                      <div class="sg-item">Week</div>
-                      <div class="sg-item">Month</div>
-                    </div>
+                    <div class="sg-group"><div class="sg-item sg-item--selected">Hour</div><div class="sg-item">Day</div><div class="sg-item">Week</div><div class="sg-item">Month</div></div>
                   </div>
                   <div class="var-preview-dark">
-                    <div class="sg-group">
-                      <div class="sg-item sg-item--selected">Hour</div>
-                      <div class="sg-item">Day</div>
-                      <div class="sg-item">Week</div>
-                      <div class="sg-item">Month</div>
-                    </div>
+                    <div class="sg-group"><div class="sg-item sg-item--selected">Hour</div><div class="sg-item">Day</div><div class="sg-item">Week</div><div class="sg-item">Month</div></div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="state-panel" id="vs-4-hover">
+                <div class="var-previews">
+                  <div class="var-preview">
+                    <div class="sg-group"><div class="sg-item sg-item--selected">Hour</div><div class="sg-item sg-item--hover">Day</div><div class="sg-item">Week</div><div class="sg-item">Month</div></div>
+                  </div>
+                  <div class="var-preview-dark">
+                    <div class="sg-group"><div class="sg-item sg-item--selected">Hour</div><div class="sg-item sg-item--hover">Day</div><div class="sg-item">Week</div><div class="sg-item">Month</div></div>
                   </div>
                 </div>
               </div>
@@ -335,20 +373,21 @@
               <div class="state-panel" id="vs-4-focus">
                 <div class="var-previews">
                   <div class="var-preview">
-                    <div class="sg-group">
-                      <div class="sg-item sg-item--focus">Hour</div>
-                      <div class="sg-item">Day</div>
-                      <div class="sg-item">Week</div>
-                      <div class="sg-item">Month</div>
-                    </div>
+                    <div class="sg-group"><div class="sg-item sg-item--focus">Hour</div><div class="sg-item">Day</div><div class="sg-item">Week</div><div class="sg-item">Month</div></div>
                   </div>
                   <div class="var-preview-dark">
-                    <div class="sg-group">
-                      <div class="sg-item sg-item--focus">Hour</div>
-                      <div class="sg-item">Day</div>
-                      <div class="sg-item">Week</div>
-                      <div class="sg-item">Month</div>
-                    </div>
+                    <div class="sg-group"><div class="sg-item sg-item--focus">Hour</div><div class="sg-item">Day</div><div class="sg-item">Week</div><div class="sg-item">Month</div></div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="state-panel" id="vs-4-disabled">
+                <div class="var-previews">
+                  <div class="var-preview">
+                    <div class="sg-group"><div class="sg-item sg-item--disabled-selected">Hour</div><div class="sg-item sg-item--disabled-unselected">Day</div><div class="sg-item sg-item--disabled-unselected">Week</div><div class="sg-item sg-item--disabled-unselected">Month</div></div>
+                  </div>
+                  <div class="var-preview-dark">
+                    <div class="sg-group"><div class="sg-item sg-item--disabled-selected">Hour</div><div class="sg-item sg-item--disabled-unselected">Day</div><div class="sg-item sg-item--disabled-unselected">Week</div><div class="sg-item sg-item--disabled-unselected">Month</div></div>
                   </div>
                 </div>
               </div>
