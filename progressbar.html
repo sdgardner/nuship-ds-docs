@@ -172,196 +172,120 @@
         <h2 class="section-title">Variants</h2>
         <div class="tabs-wrap">
           <div class="tabs">
-            <button class="tab active" onclick="switchTab(this,'v-pb-default')">Default</button>
-            <button class="tab" onclick="switchTab(this,'v-pb-uploading')">Uploading</button>
-            <button class="tab" onclick="switchTab(this,'v-pb-error')">Error</button>
-            <button class="tab" onclick="switchTab(this,'v-pb-success')">Success</button>
+            <button class="tab active" onclick="switchTab(this,'v-pb-std')">Default</button>
+            <button class="tab" onclick="switchTab(this,'v-pb-compact')">Compact</button>
           </div>
         </div>
 
-        <!-- DEFAULT -->
-        <div class="tab-panel active" id="v-pb-default">
+        <!-- DEFAULT (6px) -->
+        <div class="tab-panel active" id="v-pb-std">
           <div class="state-tab-row">
-            <button class="state-tab-btn active" onclick="switchStateTab(this,'vs-def-default')">Default</button>
-            <button class="state-tab-btn" onclick="switchStateTab(this,'vs-def-compact')">Compact</button>
+            <button class="state-tab-btn active" onclick="switchStateTab(this,'vs-std-idle')">Default</button>
+            <button class="state-tab-btn" onclick="switchStateTab(this,'vs-std-uploading')">Uploading</button>
+            <button class="state-tab-btn" onclick="switchStateTab(this,'vs-std-error')">Error</button>
+            <button class="state-tab-btn" onclick="switchStateTab(this,'vs-std-success')">Success</button>
           </div>
           <div class="var-panel">
             <div class="var-previews-wrap">
 
-              <div class="state-panel active" id="vs-def-default">
+              <div class="state-panel active" id="vs-std-idle">
                 <div class="var-previews">
-                  <div class="var-preview">
-                    <div class="pb-track"></div>
-                  </div>
-                  <div class="var-preview-dark">
-                    <div class="pb-track"></div>
-                  </div>
+                  <div class="var-preview"><div class="pb-track"></div></div>
+                  <div class="var-preview-dark"><div class="pb-track"></div></div>
                 </div>
               </div>
 
-              <div class="state-panel" id="vs-def-compact">
+              <div class="state-panel" id="vs-std-uploading">
                 <div class="var-previews">
-                  <div class="var-preview">
-                    <div class="pb-track pb-track--compact"></div>
-                  </div>
-                  <div class="var-preview-dark">
-                    <div class="pb-track pb-track--compact"></div>
-                  </div>
+                  <div class="var-preview"><div class="pb-track"><div class="pb-fill pb-fill--uploading"></div></div></div>
+                  <div class="var-preview-dark"><div class="pb-track"><div class="pb-fill pb-fill--uploading"></div></div></div>
+                </div>
+              </div>
+
+              <div class="state-panel" id="vs-std-error">
+                <div class="var-previews">
+                  <div class="var-preview"><div class="pb-track"><div class="pb-fill pb-fill--error"></div></div></div>
+                  <div class="var-preview-dark"><div class="pb-track"><div class="pb-fill pb-fill--error"></div></div></div>
+                </div>
+              </div>
+
+              <div class="state-panel" id="vs-std-success">
+                <div class="var-previews">
+                  <div class="var-preview"><div class="pb-track"><div class="pb-fill pb-fill--success pb-fill--full"></div></div></div>
+                  <div class="var-preview-dark"><div class="pb-track"><div class="pb-fill pb-fill--success pb-fill--full"></div></div></div>
                 </div>
               </div>
 
             </div>
             <div class="var-desc">
-              <div class="var-use-when">Use when:</div>
+              <div class="var-use-when">Default — 6px</div>
               <ul class="var-use-list">
-                <li>An operation is queued but has not yet started</li>
-                <li>A placeholder bar is needed before any data is available</li>
+                <li>Use in standard layouts where vertical space is available</li>
+                <li>Preferred size for file upload and data transfer contexts</li>
               </ul>
-              <div class="var-use-when" style="margin-top:16px;">Size difference:</div>
+              <div class="var-use-when" style="margin-top:16px;">States:</div>
               <ul class="var-use-list">
-                <li>Default — 6px height for standard layouts</li>
-                <li>Compact — 4px height for space-constrained contexts</li>
-              </ul>
-            </div>
-          </div>
-        </div>
-
-        <!-- UPLOADING -->
-        <div class="tab-panel" id="v-pb-uploading">
-          <div class="state-tab-row">
-            <button class="state-tab-btn active" onclick="switchStateTab(this,'vs-upl-default')">Default</button>
-            <button class="state-tab-btn" onclick="switchStateTab(this,'vs-upl-compact')">Compact</button>
-          </div>
-          <div class="var-panel">
-            <div class="var-previews-wrap">
-
-              <div class="state-panel active" id="vs-upl-default">
-                <div class="var-previews">
-                  <div class="var-preview">
-                    <div class="pb-track"><div class="pb-fill pb-fill--uploading"></div></div>
-                  </div>
-                  <div class="var-preview-dark">
-                    <div class="pb-track"><div class="pb-fill pb-fill--uploading"></div></div>
-                  </div>
-                </div>
-              </div>
-
-              <div class="state-panel" id="vs-upl-compact">
-                <div class="var-previews">
-                  <div class="var-preview">
-                    <div class="pb-track pb-track--compact"><div class="pb-fill pb-fill--uploading"></div></div>
-                  </div>
-                  <div class="var-preview-dark">
-                    <div class="pb-track pb-track--compact"><div class="pb-fill pb-fill--uploading"></div></div>
-                  </div>
-                </div>
-              </div>
-
-            </div>
-            <div class="var-desc">
-              <div class="var-use-when">Use when:</div>
-              <ul class="var-use-list">
-                <li>A file, data transfer, or process is actively in progress</li>
-                <li>Communicating partial completion towards a known total</li>
-              </ul>
-              <div class="var-use-when" style="margin-top:16px;">Visual details:</div>
-              <ul class="var-use-list">
-                <li>Blue fill with a subtle linear gradient overlay for depth</li>
-                <li>Left-rounded fill, right edge is flat against remaining track</li>
+                <li>Default — empty track, operation not yet started</li>
+                <li>Uploading — blue fill at 62% showing active progress</li>
+                <li>Error — red fill at same width showing where it failed</li>
+                <li>Success — green fill spanning full track width</li>
               </ul>
             </div>
           </div>
         </div>
 
-        <!-- ERROR -->
-        <div class="tab-panel" id="v-pb-error">
+        <!-- COMPACT (4px) -->
+        <div class="tab-panel" id="v-pb-compact">
           <div class="state-tab-row">
-            <button class="state-tab-btn active" onclick="switchStateTab(this,'vs-err-default')">Default</button>
-            <button class="state-tab-btn" onclick="switchStateTab(this,'vs-err-compact')">Compact</button>
+            <button class="state-tab-btn active" onclick="switchStateTab(this,'vs-cmp-idle')">Default</button>
+            <button class="state-tab-btn" onclick="switchStateTab(this,'vs-cmp-uploading')">Uploading</button>
+            <button class="state-tab-btn" onclick="switchStateTab(this,'vs-cmp-error')">Error</button>
+            <button class="state-tab-btn" onclick="switchStateTab(this,'vs-cmp-success')">Success</button>
           </div>
           <div class="var-panel">
             <div class="var-previews-wrap">
 
-              <div class="state-panel active" id="vs-err-default">
+              <div class="state-panel active" id="vs-cmp-idle">
                 <div class="var-previews">
-                  <div class="var-preview">
-                    <div class="pb-track"><div class="pb-fill pb-fill--error"></div></div>
-                  </div>
-                  <div class="var-preview-dark">
-                    <div class="pb-track"><div class="pb-fill pb-fill--error"></div></div>
-                  </div>
+                  <div class="var-preview"><div class="pb-track pb-track--compact"></div></div>
+                  <div class="var-preview-dark"><div class="pb-track pb-track--compact"></div></div>
                 </div>
               </div>
 
-              <div class="state-panel" id="vs-err-compact">
+              <div class="state-panel" id="vs-cmp-uploading">
                 <div class="var-previews">
-                  <div class="var-preview">
-                    <div class="pb-track pb-track--compact"><div class="pb-fill pb-fill--error"></div></div>
-                  </div>
-                  <div class="var-preview-dark">
-                    <div class="pb-track pb-track--compact"><div class="pb-fill pb-fill--error"></div></div>
-                  </div>
+                  <div class="var-preview"><div class="pb-track pb-track--compact"><div class="pb-fill pb-fill--uploading"></div></div></div>
+                  <div class="var-preview-dark"><div class="pb-track pb-track--compact"><div class="pb-fill pb-fill--uploading"></div></div></div>
+                </div>
+              </div>
+
+              <div class="state-panel" id="vs-cmp-error">
+                <div class="var-previews">
+                  <div class="var-preview"><div class="pb-track pb-track--compact"><div class="pb-fill pb-fill--error"></div></div></div>
+                  <div class="var-preview-dark"><div class="pb-track pb-track--compact"><div class="pb-fill pb-fill--error"></div></div></div>
+                </div>
+              </div>
+
+              <div class="state-panel" id="vs-cmp-success">
+                <div class="var-previews">
+                  <div class="var-preview"><div class="pb-track pb-track--compact"><div class="pb-fill pb-fill--success pb-fill--full"></div></div></div>
+                  <div class="var-preview-dark"><div class="pb-track pb-track--compact"><div class="pb-fill pb-fill--success pb-fill--full"></div></div></div>
                 </div>
               </div>
 
             </div>
             <div class="var-desc">
-              <div class="var-use-when">Use when:</div>
+              <div class="var-use-when">Compact — 4px</div>
               <ul class="var-use-list">
-                <li>The operation failed or was interrupted before completion</li>
-                <li>Paired with an error message or retry action nearby</li>
+                <li>Use in space-constrained contexts like table rows or sidebars</li>
+                <li>All four statuses behave identically to Default size</li>
               </ul>
-              <div class="var-use-when" style="margin-top:16px;">Visual details:</div>
+              <div class="var-use-when" style="margin-top:16px;">States:</div>
               <ul class="var-use-list">
-                <li>Red fill showing progress reached before the failure</li>
-                <li>Same fill width as the Uploading state to show where it stopped</li>
-              </ul>
-            </div>
-          </div>
-        </div>
-
-        <!-- SUCCESS -->
-        <div class="tab-panel" id="v-pb-success">
-          <div class="state-tab-row">
-            <button class="state-tab-btn active" onclick="switchStateTab(this,'vs-suc-default')">Default</button>
-            <button class="state-tab-btn" onclick="switchStateTab(this,'vs-suc-compact')">Compact</button>
-          </div>
-          <div class="var-panel">
-            <div class="var-previews-wrap">
-
-              <div class="state-panel active" id="vs-suc-default">
-                <div class="var-previews">
-                  <div class="var-preview">
-                    <div class="pb-track"><div class="pb-fill pb-fill--success pb-fill--full"></div></div>
-                  </div>
-                  <div class="var-preview-dark">
-                    <div class="pb-track"><div class="pb-fill pb-fill--success pb-fill--full"></div></div>
-                  </div>
-                </div>
-              </div>
-
-              <div class="state-panel" id="vs-suc-compact">
-                <div class="var-previews">
-                  <div class="var-preview">
-                    <div class="pb-track pb-track--compact"><div class="pb-fill pb-fill--success pb-fill--full"></div></div>
-                  </div>
-                  <div class="var-preview-dark">
-                    <div class="pb-track pb-track--compact"><div class="pb-fill pb-fill--success pb-fill--full"></div></div>
-                  </div>
-                </div>
-              </div>
-
-            </div>
-            <div class="var-desc">
-              <div class="var-use-when">Use when:</div>
-              <ul class="var-use-list">
-                <li>The operation has completed fully and successfully</li>
-                <li>Confirming completion before transitioning to a next step</li>
-              </ul>
-              <div class="var-use-when" style="margin-top:16px;">Visual details:</div>
-              <ul class="var-use-list">
-                <li>Green fill spans the full track width (100%)</li>
-                <li>Both left and right edges of the fill are rounded (pill shape)</li>
+                <li>Default — empty track, operation not yet started</li>
+                <li>Uploading — blue fill at 62% showing active progress</li>
+                <li>Error — red fill at same width showing where it failed</li>
+                <li>Success — green fill spanning full track width</li>
               </ul>
             </div>
           </div>
