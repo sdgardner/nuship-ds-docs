@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Radio Button — nuShip Design System</title>
+  <title>Search — nuShip Design System</title>
   <link href="https://fonts.googleapis.com/css2?family=Lato:wght@400;600;700;900&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="tokens.css">
   <link rel="stylesheet" href="styles.css">
@@ -24,7 +24,7 @@
     <i data-lucide="chevron-right" style="width:14px;height:14px;flex-shrink:0"></i>
     <a href="#">Inputs</a>
     <i data-lucide="chevron-right" style="width:14px;height:14px;flex-shrink:0"></i>
-    <span class="cur">Radio Button</span>
+    <span class="cur">Search</span>
   </div>
   <div class="nav-actions">
     <div class="toggle-wrap" onclick="toggleTheme()" role="button">
@@ -47,8 +47,8 @@
           <li><a href="datepicker.html">Date Picker</a></li>
           <li><a href="numberinput.html">Number Input</a></li>
           <li><a href="passwordinput.html">Password Input</a></li>
-          <li><a href="radiobutton.html" class="active">Radio Button</a></li>
-          <li><a href="search.html">Search</a></li>
+          <li><a href="radiobutton.html">Radio Button</a></li>
+          <li><a href="search.html" class="active">Search</a></li>
           <li><a href="#">Select</a></li>
           <li><a href="#">Slider</a></li>
           <li><a href="#">Switch</a></li>
@@ -112,37 +112,38 @@
       <!-- 1 · DEFINITION -->
       <section class="doc-section" id="definition">
         <div class="def-eyebrow">Inputs</div>
-        <h1 class="def-title">Radio Button</h1>
-        <p class="def-desc">A Radio Button allows the user to select exactly one option from a mutually exclusive set. Each radio shows a label and optional description text, providing context for the choice.</p>
+        <h1 class="def-title">Search</h1>
+        <p class="def-desc">The Search field lets users filter or find records by typing a query. It appears in two sizes — an expanded bar with placeholder text and a minimized icon-only trigger — and supports placeholder, active, hover, focus, and disabled states.</p>
         <div class="def-tags">
           <span class="tag">Developed</span>
           <span class="tag">Figma</span>
         </div>
         <div class="preview-box">
           <div class="preview-box-inner">
-            <div style="display:flex;flex-direction:column;gap:16px;">
+            <div style="display:flex;flex-direction:column;gap:20px;align-items:flex-start;">
 
-              <div class="rb-wrap">
-                <div class="rb-circle"></div>
-                <div class="rb-text">
-                  <div class="rb-label">Domestic shipping</div>
-                  <div class="rb-desc">Standard delivery within the country</div>
+              <div style="display:flex;align-items:center;gap:24px;">
+                <div style="font-size:12px;font-weight:700;width:72px;color:var(--text-tertiary)">Expanded</div>
+                <div class="sr-field">
+                  <div class="sr-icon"><i data-lucide="search" style="width:18px;height:18px"></i></div>
+                  <div class="sr-input">Search booked shipments</div>
+                  <div class="sr-clear"><i data-lucide="x-circle" style="width:18px;height:18px"></i></div>
                 </div>
               </div>
 
-              <div class="rb-wrap rb-wrap--selected">
-                <div class="rb-circle"><span class="rb-dot"></span></div>
-                <div class="rb-text">
-                  <div class="rb-label">International shipping</div>
-                  <div class="rb-desc">Cross-border delivery worldwide</div>
+              <div style="display:flex;align-items:center;gap:24px;">
+                <div style="font-size:12px;font-weight:700;width:72px;color:var(--text-tertiary)">Active</div>
+                <div class="sr-field">
+                  <div class="sr-icon"><i data-lucide="search" style="width:18px;height:18px"></i></div>
+                  <div class="sr-input sr-input--value">Austin|</div>
+                  <div class="sr-clear"><i data-lucide="x-circle" style="width:18px;height:18px"></i></div>
                 </div>
               </div>
 
-              <div class="rb-wrap">
-                <div class="rb-circle"></div>
-                <div class="rb-text">
-                  <div class="rb-label">Freight forwarding</div>
-                  <div class="rb-desc">Bulk cargo via air, sea, or rail</div>
+              <div style="display:flex;align-items:center;gap:24px;">
+                <div style="font-size:12px;font-weight:700;width:72px;color:var(--text-tertiary)">Minimized</div>
+                <div class="sr-field sr-field--minimize">
+                  <div class="sr-icon"><i data-lucide="search" style="width:18px;height:18px"></i></div>
                 </div>
               </div>
 
@@ -156,23 +157,21 @@
         <h2 class="section-title">Anatomy</h2>
         <div class="anatomy-wrap">
           <div class="anatomy-component" style="padding:32px 40px 48px;">
-            <div style="position:relative;display:inline-flex;align-items:flex-start;gap:12px;" class="rb-wrap--selected">
-              <div class="rb-circle" style="position:relative;">
-                <span class="rb-dot"></span>
-                <span class="callout" style="top:-18px;left:2px;">1</span>
-                <span class="callout" style="top:4px;left:26px;">2</span>
+            <div style="position:relative;display:inline-block;">
+              <div class="sr-field" style="width:280px;">
+                <div class="sr-icon"><i data-lucide="search" style="width:18px;height:18px"></i></div>
+                <div class="sr-input">Search booked shipments</div>
+                <div class="sr-clear"><i data-lucide="x-circle" style="width:18px;height:18px"></i></div>
               </div>
-              <div class="rb-text" style="position:relative;">
-                <div class="rb-label">Radio Label<span class="callout" style="position:absolute;top:-14px;right:-24px;">3</span></div>
-                <div class="rb-desc">Optional description text<span class="callout" style="position:absolute;top:-14px;right:-24px;">4</span></div>
-              </div>
+              <span class="callout" style="top:12px;left:-16px;">1</span>
+              <span class="callout" style="top:12px;left:52px;">2</span>
+              <span class="callout" style="top:12px;right:-16px;">3</span>
             </div>
           </div>
           <div class="anatomy-legend">
-            <div class="legend-item"><span class="legend-num">1</span>Radio circle (20 &times; 20, 1.5px border)</div>
-            <div class="legend-item"><span class="legend-num">2</span>Selection indicator (10px filled dot, appears when selected)</div>
-            <div class="legend-item"><span class="legend-num">3</span>Label (12px / bold / 700 / letter-spacing 0.5px)</div>
-            <div class="legend-item"><span class="legend-num">4</span>Description (12px / regular / 400 / letter-spacing 0.5px)</div>
+            <div class="legend-item"><span class="legend-num">1</span>Search icon (24 &times; 24, magnifying glass)</div>
+            <div class="legend-item"><span class="legend-num">2</span>Input area (16px Lato Regular, placeholder or typed value)</div>
+            <div class="legend-item"><span class="legend-num">3</span>Clear button (24 &times; 24, clears the query)</div>
           </div>
         </div>
       </section>
@@ -182,113 +181,118 @@
         <h2 class="section-title">Variants</h2>
         <div class="tabs-wrap">
           <div class="tabs">
-            <button class="tab active" onclick="switchTab(this,'v-rb-unselected')">Unselected</button>
-            <button class="tab" onclick="switchTab(this,'v-rb-selected')">Selected</button>
+            <button class="tab active" onclick="switchTab(this,'v-sr-expanded')">Expanded</button>
+            <button class="tab" onclick="switchTab(this,'v-sr-minimize')">Minimized</button>
           </div>
         </div>
 
-        <!-- UNSELECTED -->
-        <div class="tab-panel active" id="v-rb-unselected">
+        <!-- EXPANDED -->
+        <div class="tab-panel active" id="v-sr-expanded">
           <div class="state-tab-row">
-            <button class="state-tab-btn active" onclick="switchStateTab(this,'vs-un-default')">Default</button>
-            <button class="state-tab-btn" onclick="switchStateTab(this,'vs-un-hover')">Hover</button>
-            <button class="state-tab-btn" onclick="switchStateTab(this,'vs-un-focus')">Focus</button>
-            <button class="state-tab-btn" onclick="switchStateTab(this,'vs-un-disabled')">Disabled</button>
+            <button class="state-tab-btn active" onclick="switchStateTab(this,'vs-ex-default')">Default</button>
+            <button class="state-tab-btn" onclick="switchStateTab(this,'vs-ex-hover')">Hover</button>
+            <button class="state-tab-btn" onclick="switchStateTab(this,'vs-ex-focus')">Focus</button>
+            <button class="state-tab-btn" onclick="switchStateTab(this,'vs-ex-active')">Active</button>
+            <button class="state-tab-btn" onclick="switchStateTab(this,'vs-ex-disabled')">Disabled</button>
           </div>
           <div class="var-panel">
             <div class="var-previews-wrap">
 
               <!-- Default -->
-              <div class="state-panel active" id="vs-un-default">
+              <div class="state-panel active" id="vs-ex-default">
                 <div class="var-previews">
                   <div class="var-preview">
-                    <div class="rb-wrap">
-                      <div class="rb-circle"></div>
-                      <div class="rb-text">
-                        <div class="rb-label">Radio Label</div>
-                        <div class="rb-desc">Optional description text</div>
-                      </div>
+                    <div class="sr-field">
+                      <div class="sr-icon"><i data-lucide="search" style="width:18px;height:18px"></i></div>
+                      <div class="sr-input">Search booked shipments</div>
+                      <div class="sr-clear"><i data-lucide="x-circle" style="width:18px;height:18px"></i></div>
                     </div>
                   </div>
                   <div class="var-preview-dark">
-                    <div class="rb-wrap">
-                      <div class="rb-circle"></div>
-                      <div class="rb-text">
-                        <div class="rb-label">Radio Label</div>
-                        <div class="rb-desc">Optional description text</div>
-                      </div>
+                    <div class="sr-field">
+                      <div class="sr-icon"><i data-lucide="search" style="width:18px;height:18px"></i></div>
+                      <div class="sr-input">Search booked shipments</div>
+                      <div class="sr-clear"><i data-lucide="x-circle" style="width:18px;height:18px"></i></div>
                     </div>
                   </div>
                 </div>
               </div>
 
               <!-- Hover -->
-              <div class="state-panel" id="vs-un-hover">
+              <div class="state-panel" id="vs-ex-hover">
                 <div class="var-previews">
                   <div class="var-preview">
-                    <div class="rb-wrap rb-wrap--hover">
-                      <div class="rb-circle"></div>
-                      <div class="rb-text">
-                        <div class="rb-label">Radio Label</div>
-                        <div class="rb-desc">Optional description text</div>
-                      </div>
+                    <div class="sr-field sr-field--hover">
+                      <div class="sr-icon"><i data-lucide="search" style="width:18px;height:18px"></i></div>
+                      <div class="sr-input">Search booked shipments</div>
+                      <div class="sr-clear"><i data-lucide="x-circle" style="width:18px;height:18px"></i></div>
                     </div>
                   </div>
                   <div class="var-preview-dark">
-                    <div class="rb-wrap rb-wrap--hover">
-                      <div class="rb-circle"></div>
-                      <div class="rb-text">
-                        <div class="rb-label">Radio Label</div>
-                        <div class="rb-desc">Optional description text</div>
-                      </div>
+                    <div class="sr-field sr-field--hover">
+                      <div class="sr-icon"><i data-lucide="search" style="width:18px;height:18px"></i></div>
+                      <div class="sr-input">Search booked shipments</div>
+                      <div class="sr-clear"><i data-lucide="x-circle" style="width:18px;height:18px"></i></div>
                     </div>
                   </div>
                 </div>
               </div>
 
               <!-- Focus -->
-              <div class="state-panel" id="vs-un-focus">
+              <div class="state-panel" id="vs-ex-focus">
                 <div class="var-previews">
                   <div class="var-preview">
-                    <div class="rb-wrap rb-wrap--focus">
-                      <div class="rb-circle"></div>
-                      <div class="rb-text">
-                        <div class="rb-label">Radio Label</div>
-                        <div class="rb-desc">Optional description text</div>
-                      </div>
+                    <div class="sr-field sr-field--focus">
+                      <div class="sr-icon"><i data-lucide="search" style="width:18px;height:18px"></i></div>
+                      <div class="sr-input">Search booked shipments</div>
+                      <div class="sr-clear"><i data-lucide="x-circle" style="width:18px;height:18px"></i></div>
                     </div>
                   </div>
                   <div class="var-preview-dark">
-                    <div class="rb-wrap rb-wrap--focus">
-                      <div class="rb-circle"></div>
-                      <div class="rb-text">
-                        <div class="rb-label">Radio Label</div>
-                        <div class="rb-desc">Optional description text</div>
-                      </div>
+                    <div class="sr-field sr-field--focus">
+                      <div class="sr-icon"><i data-lucide="search" style="width:18px;height:18px"></i></div>
+                      <div class="sr-input">Search booked shipments</div>
+                      <div class="sr-clear"><i data-lucide="x-circle" style="width:18px;height:18px"></i></div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Active -->
+              <div class="state-panel" id="vs-ex-active">
+                <div class="var-previews">
+                  <div class="var-preview">
+                    <div class="sr-field">
+                      <div class="sr-icon"><i data-lucide="search" style="width:18px;height:18px"></i></div>
+                      <div class="sr-input sr-input--value">Austin|</div>
+                      <div class="sr-clear"><i data-lucide="x-circle" style="width:18px;height:18px"></i></div>
+                    </div>
+                  </div>
+                  <div class="var-preview-dark">
+                    <div class="sr-field">
+                      <div class="sr-icon"><i data-lucide="search" style="width:18px;height:18px"></i></div>
+                      <div class="sr-input sr-input--value">Austin|</div>
+                      <div class="sr-clear"><i data-lucide="x-circle" style="width:18px;height:18px"></i></div>
                     </div>
                   </div>
                 </div>
               </div>
 
               <!-- Disabled -->
-              <div class="state-panel" id="vs-un-disabled">
+              <div class="state-panel" id="vs-ex-disabled">
                 <div class="var-previews">
                   <div class="var-preview">
-                    <div class="rb-wrap rb-wrap--disabled">
-                      <div class="rb-circle"></div>
-                      <div class="rb-text">
-                        <div class="rb-label">Radio Label</div>
-                        <div class="rb-desc">Optional description text</div>
-                      </div>
+                    <div class="sr-field sr-field--disabled">
+                      <div class="sr-icon"><i data-lucide="search" style="width:18px;height:18px"></i></div>
+                      <div class="sr-input">Search booked shipments</div>
+                      <div class="sr-clear"><i data-lucide="x-circle" style="width:18px;height:18px"></i></div>
                     </div>
                   </div>
                   <div class="var-preview-dark">
-                    <div class="rb-wrap rb-wrap--disabled">
-                      <div class="rb-circle"></div>
-                      <div class="rb-text">
-                        <div class="rb-label">Radio Label</div>
-                        <div class="rb-desc">Optional description text</div>
-                      </div>
+                    <div class="sr-field sr-field--disabled">
+                      <div class="sr-icon"><i data-lucide="search" style="width:18px;height:18px"></i></div>
+                      <div class="sr-input">Search booked shipments</div>
+                      <div class="sr-clear"><i data-lucide="x-circle" style="width:18px;height:18px"></i></div>
                     </div>
                   </div>
                 </div>
@@ -296,106 +300,41 @@
 
             </div>
             <div class="var-desc">
-              <div class="var-use-when">Unselected states:</div>
+              <div class="var-use-when">Expanded states:</div>
               <ul class="var-use-list">
-                <li>Default — idle, no user interaction</li>
-                <li>Hover — border darkens to <code>--border-strong</code> on pointer enter</li>
-                <li>Focus — blue 4px glow ring for keyboard navigation</li>
-                <li>Disabled — muted border and text, cursor blocked</li>
+                <li>Default — idle field with placeholder text and clear button</li>
+                <li>Hover — border darkens to <code>#6B7280</code> on pointer enter</li>
+                <li>Focus — 1px solid ring + 4px translucent glow</li>
+                <li>Active — user has typed a query, text uses primary colour</li>
+                <li>Disabled — transparent background, muted border and text</li>
               </ul>
             </div>
           </div>
         </div>
 
-        <!-- SELECTED -->
-        <div class="tab-panel" id="v-rb-selected">
-          <div class="state-tab-row">
-            <button class="state-tab-btn active" onclick="switchStateTab(this,'vs-sel-default')">Default</button>
-            <button class="state-tab-btn" onclick="switchStateTab(this,'vs-sel-focus')">Focus</button>
-            <button class="state-tab-btn" onclick="switchStateTab(this,'vs-sel-disabled')">Disabled</button>
-          </div>
+        <!-- MINIMIZED -->
+        <div class="tab-panel" id="v-sr-minimize">
           <div class="var-panel">
             <div class="var-previews-wrap">
-
-              <!-- Default (selected) -->
-              <div class="state-panel active" id="vs-sel-default">
-                <div class="var-previews">
-                  <div class="var-preview">
-                    <div class="rb-wrap rb-wrap--selected">
-                      <div class="rb-circle"><span class="rb-dot"></span></div>
-                      <div class="rb-text">
-                        <div class="rb-label">Radio Label</div>
-                        <div class="rb-desc">Optional description text</div>
-                      </div>
-                    </div>
+              <div class="var-previews">
+                <div class="var-preview">
+                  <div class="sr-field sr-field--minimize">
+                    <div class="sr-icon"><i data-lucide="search" style="width:18px;height:18px"></i></div>
                   </div>
-                  <div class="var-preview-dark">
-                    <div class="rb-wrap rb-wrap--selected">
-                      <div class="rb-circle"><span class="rb-dot"></span></div>
-                      <div class="rb-text">
-                        <div class="rb-label">Radio Label</div>
-                        <div class="rb-desc">Optional description text</div>
-                      </div>
-                    </div>
+                </div>
+                <div class="var-preview-dark">
+                  <div class="sr-field sr-field--minimize">
+                    <div class="sr-icon"><i data-lucide="search" style="width:18px;height:18px"></i></div>
                   </div>
                 </div>
               </div>
-
-              <!-- Focus (selected) -->
-              <div class="state-panel" id="vs-sel-focus">
-                <div class="var-previews">
-                  <div class="var-preview">
-                    <div class="rb-wrap rb-wrap--focus-selected">
-                      <div class="rb-circle"><span class="rb-dot"></span></div>
-                      <div class="rb-text">
-                        <div class="rb-label">Radio Label</div>
-                        <div class="rb-desc">Optional description text</div>
-                      </div>
-                    </div>
-                  </div>
-                  <div class="var-preview-dark">
-                    <div class="rb-wrap rb-wrap--focus-selected">
-                      <div class="rb-circle"><span class="rb-dot"></span></div>
-                      <div class="rb-text">
-                        <div class="rb-label">Radio Label</div>
-                        <div class="rb-desc">Optional description text</div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-
-              <!-- Disabled (selected) -->
-              <div class="state-panel" id="vs-sel-disabled">
-                <div class="var-previews">
-                  <div class="var-preview">
-                    <div class="rb-wrap rb-wrap--disabled-selected">
-                      <div class="rb-circle"><span class="rb-dot"></span></div>
-                      <div class="rb-text">
-                        <div class="rb-label">Radio Label</div>
-                        <div class="rb-desc">Optional description text</div>
-                      </div>
-                    </div>
-                  </div>
-                  <div class="var-preview-dark">
-                    <div class="rb-wrap rb-wrap--disabled-selected">
-                      <div class="rb-circle"><span class="rb-dot"></span></div>
-                      <div class="rb-text">
-                        <div class="rb-label">Radio Label</div>
-                        <div class="rb-desc">Optional description text</div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-
             </div>
             <div class="var-desc">
-              <div class="var-use-when">Selected states:</div>
+              <div class="var-use-when">Use when:</div>
               <ul class="var-use-list">
-                <li>Default — blue border and 10px filled dot indicate the active choice</li>
-                <li>Focus — adds the blue 4px glow ring for keyboard users</li>
-                <li>Disabled — grey dot and border, text muted, selection locked</li>
+                <li>Screen space is limited (e.g., toolbar, mobile nav)</li>
+                <li>Clicking the icon expands the full search field</li>
+                <li>Shows only the magnifying glass icon — no placeholder or clear button</li>
               </ul>
             </div>
           </div>
@@ -412,46 +351,46 @@
           </thead>
           <tbody>
             <tr>
-              <td class="p-name">selected</td>
-              <td class="p-type">boolean</td>
-              <td class="p-def">false</td>
-              <td class="p-desc">Whether this radio is the currently active choice in its group</td>
+              <td class="p-name">value</td>
+              <td class="p-type">string</td>
+              <td class="p-def">""</td>
+              <td class="p-desc">The current search query text</td>
+            </tr>
+            <tr>
+              <td class="p-name">placeholder</td>
+              <td class="p-type">string</td>
+              <td class="p-def">"Search"</td>
+              <td class="p-desc">Hint text shown when the field is empty</td>
             </tr>
             <tr>
               <td class="p-name">disabled</td>
               <td class="p-type">boolean</td>
               <td class="p-def">false</td>
-              <td class="p-desc">Prevents interaction and applies the disabled visual style</td>
+              <td class="p-desc">Prevents interaction and applies the disabled style</td>
             </tr>
             <tr>
-              <td class="p-name">name</td>
-              <td class="p-type">string</td>
-              <td class="p-def">—</td>
-              <td class="p-desc">Groups radios together; only one in a group can be selected</td>
+              <td class="p-name">minimized</td>
+              <td class="p-type">boolean</td>
+              <td class="p-def">false</td>
+              <td class="p-desc">Renders the compact icon-only trigger instead of the full bar</td>
             </tr>
             <tr>
-              <td class="p-name">value</td>
-              <td class="p-type">string</td>
-              <td class="p-def">—</td>
-              <td class="p-desc">The value submitted when this radio is selected</td>
-            </tr>
-            <tr>
-              <td class="p-name">label</td>
-              <td class="p-type">string</td>
-              <td class="p-def">—</td>
-              <td class="p-desc">Primary label displayed beside the radio circle</td>
-            </tr>
-            <tr>
-              <td class="p-name">showDescriptionText</td>
+              <td class="p-name">showClear</td>
               <td class="p-type">boolean</td>
               <td class="p-def">true</td>
-              <td class="p-desc">Toggles the secondary description line below the label</td>
+              <td class="p-desc">Toggles the clear (X) button on the right side</td>
             </tr>
             <tr>
               <td class="p-name">onChange</td>
               <td class="p-type">function</td>
               <td class="p-def">—</td>
-              <td class="p-desc">Callback fired when the user selects this radio</td>
+              <td class="p-desc">Callback fired as the user types</td>
+            </tr>
+            <tr>
+              <td class="p-name">onClear</td>
+              <td class="p-type">function</td>
+              <td class="p-def">—</td>
+              <td class="p-desc">Callback fired when the clear button is pressed</td>
             </tr>
           </tbody>
         </table>
@@ -463,7 +402,6 @@
 
         <div class="usage-block">
           <div class="usage-cols">
-
             <div class="usage-card">
               <div class="usage-card-header">
                 <div class="usage-icon do-icon"><i data-lucide="check" style="width:12px;height:12px"></i></div>
@@ -475,7 +413,6 @@
                 <li>Incididunt ut labore et dolore magna</li>
               </ul>
             </div>
-
             <div class="usage-card">
               <div class="usage-card-header">
                 <div class="usage-icon do-icon"><i data-lucide="check" style="width:12px;height:12px"></i></div>
@@ -487,7 +424,6 @@
                 <li>Duis aute irure dolor in reprehenderit</li>
               </ul>
             </div>
-
             <div class="usage-card">
               <div class="usage-card-header">
                 <div class="usage-icon do-icon"><i data-lucide="check" style="width:12px;height:12px"></i></div>
@@ -499,7 +435,6 @@
                 <li>Sed ut perspiciatis unde omnis iste</li>
               </ul>
             </div>
-
             <div class="usage-card">
               <div class="usage-card-header">
                 <div class="usage-icon do-icon"><i data-lucide="check" style="width:12px;height:12px"></i></div>
@@ -511,7 +446,6 @@
                 <li>Ut labore et dolore magnam aliquam</li>
               </ul>
             </div>
-
           </div>
         </div>
 
@@ -519,7 +453,6 @@
 
         <div class="usage-block">
           <div class="usage-cols">
-
             <div class="usage-card">
               <div class="usage-card-header">
                 <div class="usage-icon dont-icon"><i data-lucide="x" style="width:12px;height:12px"></i></div>
@@ -531,7 +464,6 @@
                 <li>Vel illum qui dolorem eum fugiat</li>
               </ul>
             </div>
-
             <div class="usage-card">
               <div class="usage-card-header">
                 <div class="usage-icon dont-icon"><i data-lucide="x" style="width:12px;height:12px"></i></div>
@@ -543,7 +475,6 @@
                 <li>Atque corrupti quos dolores et quas</li>
               </ul>
             </div>
-
             <div class="usage-card">
               <div class="usage-card-header">
                 <div class="usage-icon dont-icon"><i data-lucide="x" style="width:12px;height:12px"></i></div>
@@ -554,7 +485,6 @@
                 <li>Impedit quo minus id quod maxime</li>
               </ul>
             </div>
-
             <div class="usage-card">
               <div class="usage-card-header">
                 <div class="usage-icon dont-icon"><i data-lucide="x" style="width:12px;height:12px"></i></div>
@@ -565,7 +495,6 @@
                 <li>Saepe eveniet ut et voluptates repudiandae</li>
               </ul>
             </div>
-
           </div>
         </div>
       </section>
@@ -581,14 +510,14 @@
             <table class="tokens-table">
               <thead><tr><th>Property</th><th>Token</th><th></th></tr></thead>
               <tbody>
-                <tr><td>Circle border</td><td class="t-tok">color/border/interactive</td><td class="t-sw"><div class="swatch" style="background:#CDD2D7;"></div></td></tr>
-                <tr><td>Circle border (hover)</td><td class="t-tok">color/border/strong</td><td class="t-sw"><div class="swatch" style="background:#9CA3AF;"></div></td></tr>
-                <tr><td>Selected border &amp; dot</td><td class="t-tok">color/action/secondary/default</td><td class="t-sw"><div class="swatch" style="background:#027CB1;"></div></td></tr>
-                <tr><td>Focus glow</td><td class="t-tok">glow/focus-glow-light</td><td class="t-sw"><div class="swatch" style="background:rgba(90,191,224,0.35);border-color:rgba(90,191,224,0.5)"></div></td></tr>
+                <tr><td>Background</td><td class="t-tok">color/surface/layer-02</td><td class="t-sw"><div class="swatch" style="background:#F4F6F8;"></div></td></tr>
+                <tr><td>Border</td><td class="t-tok">color/border/interactive</td><td class="t-sw"><div class="swatch" style="background:#CDD2D7;"></div></td></tr>
+                <tr><td>Border (hover)</td><td class="t-tok">color/border/hover</td><td class="t-sw"><div class="swatch" style="background:#6B7280;"></div></td></tr>
+                <tr><td>Focus ring</td><td class="t-tok">color/border/focus-ring</td><td class="t-sw"><div class="swatch" style="background:#5ABFE0;"></div></td></tr>
+                <tr><td>Focus glow</td><td class="t-tok">color/blue/400-35</td><td class="t-sw"><div class="swatch" style="background:rgba(90,191,224,0.35);border-color:rgba(90,191,224,0.5)"></div></td></tr>
+                <tr><td>Placeholder text</td><td class="t-tok">color/text/placeholder</td><td class="t-sw"><div class="swatch" style="background:#6B7280;"></div></td></tr>
+                <tr><td>Value text</td><td class="t-tok">color/text/primary</td><td class="t-sw"><div class="swatch" style="background:#374151;"></div></td></tr>
                 <tr><td>Disabled border</td><td class="t-tok">color/border/disabled</td><td class="t-sw"><div class="swatch" style="background:#E5E7EB;"></div></td></tr>
-                <tr><td>Label</td><td class="t-tok">color/text/primary</td><td class="t-sw"><div class="swatch" style="background:#374151;"></div></td></tr>
-                <tr><td>Description</td><td class="t-tok">color/text/secondary</td><td class="t-sw"><div class="swatch" style="background:#4B5563;"></div></td></tr>
-                <tr><td>Disabled text</td><td class="t-tok">color/text/disabled</td><td class="t-sw"><div class="swatch" style="background:#9CA3AF;"></div></td></tr>
               </tbody>
             </table>
           </div>
@@ -599,14 +528,14 @@
             <table class="tokens-table">
               <thead><tr><th>Property</th><th>Token</th><th></th></tr></thead>
               <tbody>
-                <tr><td>Circle border</td><td class="t-tok">color/border/interactive</td><td class="t-sw"><div class="swatch" style="background:#6B7280;"></div></td></tr>
-                <tr><td>Circle border (hover)</td><td class="t-tok">color/border/strong</td><td class="t-sw"><div class="swatch" style="background:#9CA3AF;"></div></td></tr>
-                <tr><td>Selected border &amp; dot</td><td class="t-tok">color/action/secondary/default</td><td class="t-sw"><div class="swatch" style="background:#35A8D6;"></div></td></tr>
-                <tr><td>Focus glow</td><td class="t-tok">glow/focus-glow-dark</td><td class="t-sw"><div class="swatch" style="background:rgba(0,131,187,0.35);border-color:rgba(0,131,187,0.5)"></div></td></tr>
+                <tr><td>Background</td><td class="t-tok">color/surface/layer-02</td><td class="t-sw"><div class="swatch" style="background:#1E1E1E;border-color:rgba(255,255,255,.1)"></div></td></tr>
+                <tr><td>Border</td><td class="t-tok">color/border/interactive</td><td class="t-sw"><div class="swatch" style="background:#6B7280;"></div></td></tr>
+                <tr><td>Border (hover)</td><td class="t-tok">color/border/hover</td><td class="t-sw"><div class="swatch" style="background:#9CA3AF;"></div></td></tr>
+                <tr><td>Focus ring</td><td class="t-tok">color/border/focus-ring</td><td class="t-sw"><div class="swatch" style="background:#0083BB;"></div></td></tr>
+                <tr><td>Focus glow</td><td class="t-tok">color/blue/400-35</td><td class="t-sw"><div class="swatch" style="background:rgba(0,131,187,0.35);border-color:rgba(0,131,187,0.5)"></div></td></tr>
+                <tr><td>Placeholder text</td><td class="t-tok">color/text/placeholder</td><td class="t-sw"><div class="swatch" style="background:#9CA3AF;"></div></td></tr>
+                <tr><td>Value text</td><td class="t-tok">color/text/primary</td><td class="t-sw"><div class="swatch" style="background:#FFFFFF;"></div></td></tr>
                 <tr><td>Disabled border</td><td class="t-tok">color/border/disabled</td><td class="t-sw"><div class="swatch" style="background:#374151;border-color:rgba(255,255,255,.1)"></div></td></tr>
-                <tr><td>Label</td><td class="t-tok">color/text/primary</td><td class="t-sw"><div class="swatch" style="background:#FFFFFF;"></div></td></tr>
-                <tr><td>Description</td><td class="t-tok">color/text/secondary</td><td class="t-sw"><div class="swatch" style="background:#E5E7EB;"></div></td></tr>
-                <tr><td>Disabled text</td><td class="t-tok">color/text/disabled</td><td class="t-sw"><div class="swatch" style="background:#6B7280;"></div></td></tr>
               </tbody>
             </table>
           </div>
@@ -619,16 +548,16 @@
         <h2 class="section-title">Accessibility</h2>
         <ul class="a11y-list">
           <li>
-            <div><strong>Role:</strong> Use a native <code>&lt;input type="radio"&gt;</code> element so the browser provides <code>role="radio"</code> and <code>aria-checked</code> automatically. Group radios with a <code>&lt;fieldset&gt;</code> and <code>&lt;legend&gt;</code> to describe the set.</div>
+            <div><strong>Role:</strong> Use <code>role="search"</code> on the containing landmark and a native <code>&lt;input type="search"&gt;</code> inside it. This lets screen readers identify the search region and enables the browser's built-in clear affordance on some platforms.</div>
           </li>
           <li>
-            <div><strong>Keyboard:</strong> <kbd>Tab</kbd> moves focus into the radio group and to the selected item (or the first item if none is selected). <kbd>Arrow Up/Down</kbd> cycles through and selects options. <kbd>Space</kbd> selects the focused radio if not already selected.</div>
+            <div><strong>Label:</strong> Add an <code>aria-label</code> or a visually-hidden <code>&lt;label&gt;</code> that describes the scope (e.g., "Search booked shipments"). Placeholder text alone is not an accessible name.</div>
           </li>
           <li>
-            <div><strong>Focus ring:</strong> The 4px glow ring meets WCAG 2.4.7 (Focus Visible). Ensure the glow is never suppressed and is visible against the page background in both light and dark themes.</div>
+            <div><strong>Clear button:</strong> Give the clear icon an <code>aria-label="Clear search"</code>. When pressed, move focus back to the input so the user can type a new query immediately.</div>
           </li>
           <li>
-            <div><strong>Labels:</strong> Each radio must have a visible, associated <code>&lt;label&gt;</code>. Description text is connected via <code>aria-describedby</code> so screen readers announce both the label and the description when the radio receives focus.</div>
+            <div><strong>Keyboard:</strong> The field should receive focus with <kbd>Tab</kbd>. <kbd>Escape</kbd> should clear the value (if non-empty) or blur the field (if already empty). The clear button should be reachable via <kbd>Tab</kbd> or as a secondary action on <kbd>Escape</kbd>.</div>
           </li>
         </ul>
       </section>
@@ -637,17 +566,17 @@
       <section class="doc-section" id="related">
         <h2 class="section-title">Related Components</h2>
         <div class="related-grid">
-          <a href="checkbox.html" class="related-card">
-            <div class="rc-name">Checkbox</div>
-            <div class="rc-desc">Use a Checkbox when the user can select multiple options. Use Radio when exactly one choice is allowed.</div>
-          </a>
           <a href="dropdown.html" class="related-card">
             <div class="rc-name">Dropdown</div>
-            <div class="rc-desc">Use a Dropdown when the set of options is long (&gt;5) and a radio group would take too much vertical space.</div>
+            <div class="rc-desc">Use a Dropdown when the user selects from a fixed list. Use Search when the user types a free-text query to filter or find records.</div>
           </a>
           <a href="#" class="related-card">
-            <div class="rc-name">Switch</div>
-            <div class="rc-desc">Use a Switch for a binary on/off toggle. Use Radio when there are three or more mutually exclusive choices.</div>
+            <div class="rc-name">Text Input</div>
+            <div class="rc-desc">A general-purpose text field. Search adds the magnifying glass icon, clear button, and search-specific ARIA semantics.</div>
+          </a>
+          <a href="popover.html" class="related-card">
+            <div class="rc-name">Popover</div>
+            <div class="rc-desc">Pair with a Popover to show search results or autocomplete suggestions beneath the field.</div>
           </a>
         </div>
       </section>
