@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Progress Bar — nuShip Design System</title>
+  <title>Segmented Control — nuShip Design System</title>
   <link href="https://fonts.googleapis.com/css2?family=Lato:wght@400;600;700;900&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="tokens.css">
   <link rel="stylesheet" href="styles.css">
@@ -22,9 +22,9 @@
   <div class="bc">
     <a href="index.html">UI Components</a>
     <i data-lucide="chevron-right" style="width:14px;height:14px;flex-shrink:0"></i>
-    <a href="#">Display</a>
+    <a href="#">Navigation</a>
     <i data-lucide="chevron-right" style="width:14px;height:14px;flex-shrink:0"></i>
-    <span class="cur">Progress Bar</span>
+    <span class="cur">Segmented Control</span>
   </div>
   <div class="nav-actions">
     <div class="toggle-wrap" onclick="toggleTheme()" role="button">
@@ -72,7 +72,7 @@
           <li><a href="#">Breadcrumb</a></li>
           <li><a href="dropdown.html">Dropdown</a></li>
           <li><a href="menu.html">Menu</a></li>
-          <li><a href="segmentedcontrol.html">Segmented Control</a></li>
+          <li><a href="segmentedcontrol.html" class="active">Segmented Control</a></li>
           <li><a href="#">Tabs</a></li>
         </ul>
       </div>
@@ -97,7 +97,7 @@
           <li><a href="avatar.html">Avatar</a></li>
           <li><a href="carousel.html">Carousel</a></li>
           <li><a href="fileupload.html">File Upload</a></li>
-          <li><a href="progressbar.html" class="active">Progress Bar</a></li>
+          <li><a href="progressbar.html">Progress Bar</a></li>
           <li><a href="#">Star Rating</a></li>
           <li><a href="#">Timeline</a></li>
         </ul>
@@ -112,9 +112,9 @@
 
       <!-- 1 · DEFINITION -->
       <section class="doc-section" id="definition">
-        <div class="def-eyebrow">Display</div>
-        <h1 class="def-title">Progress Bar</h1>
-        <p class="def-desc">The Progress Bar communicates the status and completion of an ongoing operation. It appears in four statuses — default (idle), uploading, error, and success — and two sizes to suit different layout contexts.</p>
+        <div class="def-eyebrow">Navigation</div>
+        <h1 class="def-title">Segmented Control</h1>
+        <p class="def-desc">A Segmented Control presents a set of mutually exclusive options as a horizontal strip of connected buttons. Selecting an option immediately updates the visible content. It supports 2, 3, or 4 segments.</p>
         <div class="def-tags">
           <span class="tag">Developed</span>
           <span class="tag">Figma</span>
@@ -124,23 +124,30 @@
             <div style="display:flex;flex-direction:column;gap:20px;align-items:flex-start;">
 
               <div style="display:flex;align-items:center;gap:24px;">
-                <div style="font-size:12px;font-weight:700;width:72px;color:var(--text-tertiary)">Default</div>
-                <div class="pb-track"></div>
+                <div style="font-size:12px;font-weight:700;width:80px;color:var(--text-tertiary)">3 segments</div>
+                <div class="sg-group">
+                  <div class="sg-item sg-item--selected">Day</div>
+                  <div class="sg-item">Week</div>
+                  <div class="sg-item">Month</div>
+                </div>
               </div>
 
               <div style="display:flex;align-items:center;gap:24px;">
-                <div style="font-size:12px;font-weight:700;width:72px;color:var(--text-tertiary)">Uploading</div>
-                <div class="pb-track"><div class="pb-fill pb-fill--uploading" style="animation-delay:0.15s"></div></div>
+                <div style="font-size:12px;font-weight:700;width:80px;color:var(--text-tertiary)">2 segments</div>
+                <div class="sg-group">
+                  <div class="sg-item sg-item--selected">Day</div>
+                  <div class="sg-item">Week</div>
+                </div>
               </div>
 
               <div style="display:flex;align-items:center;gap:24px;">
-                <div style="font-size:12px;font-weight:700;width:72px;color:var(--text-tertiary)">Error</div>
-                <div class="pb-track"><div class="pb-fill pb-fill--error" style="animation-delay:0.3s"></div></div>
-              </div>
-
-              <div style="display:flex;align-items:center;gap:24px;">
-                <div style="font-size:12px;font-weight:700;width:72px;color:var(--text-tertiary)">Success</div>
-                <div class="pb-track"><div class="pb-fill pb-fill--success pb-fill--full" style="animation-delay:0.45s"></div></div>
+                <div style="font-size:12px;font-weight:700;width:80px;color:var(--text-tertiary)">4 segments</div>
+                <div class="sg-group">
+                  <div class="sg-item sg-item--selected">Hour</div>
+                  <div class="sg-item">Day</div>
+                  <div class="sg-item">Week</div>
+                  <div class="sg-item">Month</div>
+                </div>
               </div>
 
             </div>
@@ -152,18 +159,22 @@
       <section class="doc-section" id="anatomy">
         <h2 class="section-title">Anatomy</h2>
         <div class="anatomy-wrap">
-          <div class="anatomy-component" style="padding:32px 40px 48px; max-width:320px;">
+          <div class="anatomy-component" style="padding:32px 40px 48px;">
             <div style="position:relative;display:inline-block;">
-              <div class="pb-track" style="width:220px;">
-                <div class="pb-fill pb-fill--uploading" style="animation-delay:0.2s"></div>
+              <div class="sg-group">
+                <div class="sg-item sg-item--selected">Day</div>
+                <div class="sg-item">Week</div>
+                <div class="sg-item">Month</div>
               </div>
-              <span class="callout" style="top:-20px;left:0">1</span>
-              <span class="callout" style="top:-20px;left:88px">2</span>
+              <span class="callout" style="top:-14px;left:8px;">1</span>
+              <span class="callout" style="top:-14px;left:110px;">2</span>
+              <span class="callout" style="bottom:-20px;left:50px;">3</span>
             </div>
           </div>
           <div class="anatomy-legend">
-            <div class="legend-item"><span class="legend-num">1</span>Track (inactive background)</div>
-            <div class="legend-item"><span class="legend-num">2</span>Fill (progress indicator)</div>
+            <div class="legend-item"><span class="legend-num">1</span>Selected segment (active fill, inverse text)</div>
+            <div class="legend-item"><span class="legend-num">2</span>Unselected segment (layer-02 fill, secondary text)</div>
+            <div class="legend-item"><span class="legend-num">3</span>Container (border, 4px radius on outer corners)</div>
           </div>
         </div>
       </section>
@@ -173,120 +184,181 @@
         <h2 class="section-title">Variants</h2>
         <div class="tabs-wrap">
           <div class="tabs">
-            <button class="tab active" onclick="switchTab(this,'v-pb-std')">Default</button>
-            <button class="tab" onclick="switchTab(this,'v-pb-compact')">Compact</button>
+            <button class="tab active" onclick="switchTab(this,'v-sg-3')">3 Segments</button>
+            <button class="tab" onclick="switchTab(this,'v-sg-2')">2 Segments</button>
+            <button class="tab" onclick="switchTab(this,'v-sg-4')">4 Segments</button>
           </div>
         </div>
 
-        <!-- DEFAULT (6px) -->
-        <div class="tab-panel active" id="v-pb-std">
+        <!-- 3 SEGMENTS -->
+        <div class="tab-panel active" id="v-sg-3">
           <div class="state-tab-row">
-            <button class="state-tab-btn active" onclick="switchStateTab(this,'vs-std-idle')">Default</button>
-            <button class="state-tab-btn" onclick="switchStateTab(this,'vs-std-uploading')">Uploading</button>
-            <button class="state-tab-btn" onclick="switchStateTab(this,'vs-std-error')">Error</button>
-            <button class="state-tab-btn" onclick="switchStateTab(this,'vs-std-success')">Success</button>
+            <button class="state-tab-btn active" onclick="switchStateTab(this,'vs-3-default')">Selected</button>
+            <button class="state-tab-btn" onclick="switchStateTab(this,'vs-3-focus')">Focus</button>
           </div>
           <div class="var-panel">
             <div class="var-previews-wrap">
 
-              <div class="state-panel active" id="vs-std-idle">
+              <div class="state-panel active" id="vs-3-default">
                 <div class="var-previews">
-                  <div class="var-preview"><div class="pb-track"></div></div>
-                  <div class="var-preview-dark"><div class="pb-track"></div></div>
+                  <div class="var-preview">
+                    <div class="sg-group">
+                      <div class="sg-item sg-item--selected">Day</div>
+                      <div class="sg-item">Week</div>
+                      <div class="sg-item">Month</div>
+                    </div>
+                  </div>
+                  <div class="var-preview-dark">
+                    <div class="sg-group">
+                      <div class="sg-item sg-item--selected">Day</div>
+                      <div class="sg-item">Week</div>
+                      <div class="sg-item">Month</div>
+                    </div>
+                  </div>
                 </div>
               </div>
 
-              <div class="state-panel" id="vs-std-uploading">
+              <div class="state-panel" id="vs-3-focus">
                 <div class="var-previews">
-                  <div class="var-preview"><div class="pb-track"><div class="pb-fill pb-fill--uploading"></div></div></div>
-                  <div class="var-preview-dark"><div class="pb-track"><div class="pb-fill pb-fill--uploading"></div></div></div>
-                </div>
-              </div>
-
-              <div class="state-panel" id="vs-std-error">
-                <div class="var-previews">
-                  <div class="var-preview"><div class="pb-track"><div class="pb-fill pb-fill--error"></div></div></div>
-                  <div class="var-preview-dark"><div class="pb-track"><div class="pb-fill pb-fill--error"></div></div></div>
-                </div>
-              </div>
-
-              <div class="state-panel" id="vs-std-success">
-                <div class="var-previews">
-                  <div class="var-preview"><div class="pb-track"><div class="pb-fill pb-fill--success pb-fill--full"></div></div></div>
-                  <div class="var-preview-dark"><div class="pb-track"><div class="pb-fill pb-fill--success pb-fill--full"></div></div></div>
+                  <div class="var-preview">
+                    <div class="sg-group">
+                      <div class="sg-item sg-item--focus">Day</div>
+                      <div class="sg-item">Week</div>
+                      <div class="sg-item">Month</div>
+                    </div>
+                  </div>
+                  <div class="var-preview-dark">
+                    <div class="sg-group">
+                      <div class="sg-item sg-item--focus">Day</div>
+                      <div class="sg-item">Week</div>
+                      <div class="sg-item">Month</div>
+                    </div>
+                  </div>
                 </div>
               </div>
 
             </div>
             <div class="var-desc">
-              <div class="var-use-when">Default — 6px</div>
+              <div class="var-use-when">3 segments — use when:</div>
               <ul class="var-use-list">
-                <li>Use in standard layouts where vertical space is available</li>
-                <li>Preferred size for file upload and data transfer contexts</li>
-              </ul>
-              <div class="var-use-when" style="margin-top:16px;">States:</div>
-              <ul class="var-use-list">
-                <li>Default — empty track, operation not yet started</li>
-                <li>Uploading — blue fill at 62% showing active progress</li>
-                <li>Error — red fill at same width showing where it failed</li>
-                <li>Success — green fill spanning full track width</li>
+                <li>Three mutually exclusive options (e.g., Day / Week / Month)</li>
+                <li>The most common count, balancing density and readability</li>
               </ul>
             </div>
           </div>
         </div>
 
-        <!-- COMPACT (4px) -->
-        <div class="tab-panel" id="v-pb-compact">
+        <!-- 2 SEGMENTS -->
+        <div class="tab-panel" id="v-sg-2">
           <div class="state-tab-row">
-            <button class="state-tab-btn active" onclick="switchStateTab(this,'vs-cmp-idle')">Default</button>
-            <button class="state-tab-btn" onclick="switchStateTab(this,'vs-cmp-uploading')">Uploading</button>
-            <button class="state-tab-btn" onclick="switchStateTab(this,'vs-cmp-error')">Error</button>
-            <button class="state-tab-btn" onclick="switchStateTab(this,'vs-cmp-success')">Success</button>
+            <button class="state-tab-btn active" onclick="switchStateTab(this,'vs-2-default')">Selected</button>
+            <button class="state-tab-btn" onclick="switchStateTab(this,'vs-2-focus')">Focus</button>
           </div>
           <div class="var-panel">
             <div class="var-previews-wrap">
 
-              <div class="state-panel active" id="vs-cmp-idle">
+              <div class="state-panel active" id="vs-2-default">
                 <div class="var-previews">
-                  <div class="var-preview"><div class="pb-track pb-track--compact"></div></div>
-                  <div class="var-preview-dark"><div class="pb-track pb-track--compact"></div></div>
+                  <div class="var-preview">
+                    <div class="sg-group">
+                      <div class="sg-item sg-item--selected">Day</div>
+                      <div class="sg-item">Week</div>
+                    </div>
+                  </div>
+                  <div class="var-preview-dark">
+                    <div class="sg-group">
+                      <div class="sg-item sg-item--selected">Day</div>
+                      <div class="sg-item">Week</div>
+                    </div>
+                  </div>
                 </div>
               </div>
 
-              <div class="state-panel" id="vs-cmp-uploading">
+              <div class="state-panel" id="vs-2-focus">
                 <div class="var-previews">
-                  <div class="var-preview"><div class="pb-track pb-track--compact"><div class="pb-fill pb-fill--uploading"></div></div></div>
-                  <div class="var-preview-dark"><div class="pb-track pb-track--compact"><div class="pb-fill pb-fill--uploading"></div></div></div>
-                </div>
-              </div>
-
-              <div class="state-panel" id="vs-cmp-error">
-                <div class="var-previews">
-                  <div class="var-preview"><div class="pb-track pb-track--compact"><div class="pb-fill pb-fill--error"></div></div></div>
-                  <div class="var-preview-dark"><div class="pb-track pb-track--compact"><div class="pb-fill pb-fill--error"></div></div></div>
-                </div>
-              </div>
-
-              <div class="state-panel" id="vs-cmp-success">
-                <div class="var-previews">
-                  <div class="var-preview"><div class="pb-track pb-track--compact"><div class="pb-fill pb-fill--success pb-fill--full"></div></div></div>
-                  <div class="var-preview-dark"><div class="pb-track pb-track--compact"><div class="pb-fill pb-fill--success pb-fill--full"></div></div></div>
+                  <div class="var-preview">
+                    <div class="sg-group">
+                      <div class="sg-item sg-item--focus">Day</div>
+                      <div class="sg-item">Week</div>
+                    </div>
+                  </div>
+                  <div class="var-preview-dark">
+                    <div class="sg-group">
+                      <div class="sg-item sg-item--focus">Day</div>
+                      <div class="sg-item">Week</div>
+                    </div>
+                  </div>
                 </div>
               </div>
 
             </div>
             <div class="var-desc">
-              <div class="var-use-when">Compact — 4px</div>
+              <div class="var-use-when">2 segments — use when:</div>
               <ul class="var-use-list">
-                <li>Use in space-constrained contexts like table rows or sidebars</li>
-                <li>All four statuses behave identically to Default size</li>
+                <li>A simple binary toggle between two views or modes</li>
+                <li>Prefer this over a Switch when both options are equally weighted</li>
               </ul>
-              <div class="var-use-when" style="margin-top:16px;">States:</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- 4 SEGMENTS -->
+        <div class="tab-panel" id="v-sg-4">
+          <div class="state-tab-row">
+            <button class="state-tab-btn active" onclick="switchStateTab(this,'vs-4-default')">Selected</button>
+            <button class="state-tab-btn" onclick="switchStateTab(this,'vs-4-focus')">Focus</button>
+          </div>
+          <div class="var-panel">
+            <div class="var-previews-wrap">
+
+              <div class="state-panel active" id="vs-4-default">
+                <div class="var-previews">
+                  <div class="var-preview">
+                    <div class="sg-group">
+                      <div class="sg-item sg-item--selected">Hour</div>
+                      <div class="sg-item">Day</div>
+                      <div class="sg-item">Week</div>
+                      <div class="sg-item">Month</div>
+                    </div>
+                  </div>
+                  <div class="var-preview-dark">
+                    <div class="sg-group">
+                      <div class="sg-item sg-item--selected">Hour</div>
+                      <div class="sg-item">Day</div>
+                      <div class="sg-item">Week</div>
+                      <div class="sg-item">Month</div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="state-panel" id="vs-4-focus">
+                <div class="var-previews">
+                  <div class="var-preview">
+                    <div class="sg-group">
+                      <div class="sg-item sg-item--focus">Hour</div>
+                      <div class="sg-item">Day</div>
+                      <div class="sg-item">Week</div>
+                      <div class="sg-item">Month</div>
+                    </div>
+                  </div>
+                  <div class="var-preview-dark">
+                    <div class="sg-group">
+                      <div class="sg-item sg-item--focus">Hour</div>
+                      <div class="sg-item">Day</div>
+                      <div class="sg-item">Week</div>
+                      <div class="sg-item">Month</div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+            </div>
+            <div class="var-desc">
+              <div class="var-use-when">4 segments — use when:</div>
               <ul class="var-use-list">
-                <li>Default — empty track, operation not yet started</li>
-                <li>Uploading — blue fill at 62% showing active progress</li>
-                <li>Error — red fill at same width showing where it failed</li>
-                <li>Success — green fill spanning full track width</li>
+                <li>Four distinct options are needed (e.g., Hour / Day / Week / Month)</li>
+                <li>Maximum recommended count — beyond 4, use a Dropdown or Tabs</li>
               </ul>
             </div>
           </div>
@@ -303,28 +375,34 @@
           </thead>
           <tbody>
             <tr>
-              <td class="p-name">status</td>
-              <td class="p-type">"Default" | "Uploading" | "Error" | "Success"</td>
-              <td class="p-def">"Default"</td>
-              <td class="p-desc">Controls the fill colour and completion state</td>
+              <td class="p-name">segmentCount</td>
+              <td class="p-type">"2" | "3" | "4"</td>
+              <td class="p-def">"3"</td>
+              <td class="p-desc">Number of segments rendered in the group</td>
             </tr>
             <tr>
-              <td class="p-name">size</td>
-              <td class="p-type">"Default" | "Compact"</td>
-              <td class="p-def">"Default"</td>
-              <td class="p-desc">Default is 6px tall; Compact is 4px tall</td>
-            </tr>
-            <tr>
-              <td class="p-name">value</td>
+              <td class="p-name">selectedIndex</td>
               <td class="p-type">number</td>
               <td class="p-def">0</td>
-              <td class="p-desc">Percentage of completion (0–100). Drives the fill width</td>
+              <td class="p-desc">Zero-based index of the currently selected segment</td>
             </tr>
             <tr>
-              <td class="p-name">ariaLabel</td>
-              <td class="p-type">string</td>
+              <td class="p-name">labels</td>
+              <td class="p-type">string[]</td>
               <td class="p-def">—</td>
-              <td class="p-desc">Accessible label describing what the bar represents</td>
+              <td class="p-desc">Array of text labels, one per segment</td>
+            </tr>
+            <tr>
+              <td class="p-name">showIcon</td>
+              <td class="p-type">boolean</td>
+              <td class="p-def">false</td>
+              <td class="p-desc">Optionally prepend an icon to each segment label</td>
+            </tr>
+            <tr>
+              <td class="p-name">onChange</td>
+              <td class="p-type">function</td>
+              <td class="p-def">—</td>
+              <td class="p-desc">Callback fired with the newly selected index</td>
             </tr>
           </tbody>
         </table>
@@ -336,7 +414,6 @@
 
         <div class="usage-block">
           <div class="usage-cols">
-
             <div class="usage-card">
               <div class="usage-card-header">
                 <div class="usage-icon do-icon"><i data-lucide="check" style="width:12px;height:12px"></i></div>
@@ -348,7 +425,6 @@
                 <li>Incididunt ut labore et dolore magna</li>
               </ul>
             </div>
-
             <div class="usage-card">
               <div class="usage-card-header">
                 <div class="usage-icon do-icon"><i data-lucide="check" style="width:12px;height:12px"></i></div>
@@ -360,7 +436,6 @@
                 <li>Duis aute irure dolor in reprehenderit</li>
               </ul>
             </div>
-
             <div class="usage-card">
               <div class="usage-card-header">
                 <div class="usage-icon do-icon"><i data-lucide="check" style="width:12px;height:12px"></i></div>
@@ -372,7 +447,6 @@
                 <li>Sed ut perspiciatis unde omnis iste</li>
               </ul>
             </div>
-
             <div class="usage-card">
               <div class="usage-card-header">
                 <div class="usage-icon do-icon"><i data-lucide="check" style="width:12px;height:12px"></i></div>
@@ -384,7 +458,6 @@
                 <li>Ut labore et dolore magnam aliquam</li>
               </ul>
             </div>
-
           </div>
         </div>
 
@@ -392,7 +465,6 @@
 
         <div class="usage-block">
           <div class="usage-cols">
-
             <div class="usage-card">
               <div class="usage-card-header">
                 <div class="usage-icon dont-icon"><i data-lucide="x" style="width:12px;height:12px"></i></div>
@@ -404,7 +476,6 @@
                 <li>Vel illum qui dolorem eum fugiat</li>
               </ul>
             </div>
-
             <div class="usage-card">
               <div class="usage-card-header">
                 <div class="usage-icon dont-icon"><i data-lucide="x" style="width:12px;height:12px"></i></div>
@@ -416,7 +487,6 @@
                 <li>Atque corrupti quos dolores et quas</li>
               </ul>
             </div>
-
             <div class="usage-card">
               <div class="usage-card-header">
                 <div class="usage-icon dont-icon"><i data-lucide="x" style="width:12px;height:12px"></i></div>
@@ -427,7 +497,6 @@
                 <li>Impedit quo minus id quod maxime</li>
               </ul>
             </div>
-
             <div class="usage-card">
               <div class="usage-card-header">
                 <div class="usage-icon dont-icon"><i data-lucide="x" style="width:12px;height:12px"></i></div>
@@ -438,7 +507,6 @@
                 <li>Saepe eveniet ut et voluptates repudiandae</li>
               </ul>
             </div>
-
           </div>
         </div>
       </section>
@@ -454,13 +522,13 @@
             <table class="tokens-table">
               <thead><tr><th>Property</th><th>Token</th><th></th></tr></thead>
               <tbody>
-                <tr><td>Track background</td><td class="t-tok">color/control/track-inactive</td><td class="t-sw"><div class="swatch" style="background:#CDD2D7;"></div></td></tr>
-                <tr><td>Fill — Uploading</td><td class="t-tok">color/status/info/border</td><td class="t-sw"><div class="swatch" style="background:#027CB1;"></div></td></tr>
-                <tr><td>Fill — Error</td><td class="t-tok">color/status/error/border</td><td class="t-sw"><div class="swatch" style="background:#A12F2F;"></div></td></tr>
-                <tr><td>Fill — Success</td><td class="t-tok">color/status/success/border</td><td class="t-sw"><div class="swatch" style="background:#006C21;"></div></td></tr>
-                <tr><td>Height — Default</td><td class="t-tok">spacing/1-5x</td><td class="t-sw"><div style="background:var(--text-tertiary);width:16px;height:16px;border-radius:2px;display:flex;align-items:center;justify-content:center;font-size:10px;color:#fff;font-weight:700;">6</div></td></tr>
-                <tr><td>Height — Compact</td><td class="t-tok">spacing/1x</td><td class="t-sw"><div style="background:var(--text-tertiary);width:16px;height:16px;border-radius:2px;display:flex;align-items:center;justify-content:center;font-size:10px;color:#fff;font-weight:700;">4</div></td></tr>
-                <tr><td>Border radius</td><td class="t-tok">radius/full</td><td class="t-sw"><div style="background:var(--text-tertiary);width:16px;height:16px;border-radius:8px;"></div></td></tr>
+                <tr><td>Unselected fill</td><td class="t-tok">color/surface/layer-02</td><td class="t-sw"><div class="swatch" style="background:#F4F6F8;"></div></td></tr>
+                <tr><td>Selected fill</td><td class="t-tok">color/control/fill-active</td><td class="t-sw"><div class="swatch" style="background:#027CB1;"></div></td></tr>
+                <tr><td>Border</td><td class="t-tok">color/border/interactive</td><td class="t-sw"><div class="swatch" style="background:#CDD2D7;"></div></td></tr>
+                <tr><td>Focus ring</td><td class="t-tok">color/border/focus-ring</td><td class="t-sw"><div class="swatch" style="background:#5ABFE0;"></div></td></tr>
+                <tr><td>Unselected text</td><td class="t-tok">color/text/secondary</td><td class="t-sw"><div class="swatch" style="background:#4B5563;"></div></td></tr>
+                <tr><td>Selected text</td><td class="t-tok">color/text/inverse</td><td class="t-sw"><div class="swatch" style="background:#FFFFFF;border-color:#CDD2D7"></div></td></tr>
+                <tr><td>Border radius</td><td class="t-tok">spacing/1x</td><td class="t-sw"><div style="background:var(--text-tertiary);width:16px;height:16px;border-radius:2px;display:flex;align-items:center;justify-content:center;font-size:10px;color:#fff;font-weight:700;">4</div></td></tr>
               </tbody>
             </table>
           </div>
@@ -471,13 +539,13 @@
             <table class="tokens-table">
               <thead><tr><th>Property</th><th>Token</th><th></th></tr></thead>
               <tbody>
-                <tr><td>Track background</td><td class="t-tok">color/control/track-inactive</td><td class="t-sw"><div class="swatch" style="background:#374151;border-color:rgba(255,255,255,.1)"></div></td></tr>
-                <tr><td>Fill — Uploading</td><td class="t-tok">color/status/info/border</td><td class="t-sw"><div class="swatch" style="background:#8FCBE6;"></div></td></tr>
-                <tr><td>Fill — Error</td><td class="t-tok">color/status/error/border</td><td class="t-sw"><div class="swatch" style="background:#DB3939;"></div></td></tr>
-                <tr><td>Fill — Success</td><td class="t-tok">color/status/success/border</td><td class="t-sw"><div class="swatch" style="background:#4DAD82;"></div></td></tr>
-                <tr><td>Height — Default</td><td class="t-tok">spacing/1-5x</td><td class="t-sw"><div style="background:#6B7280;width:16px;height:16px;border-radius:2px;display:flex;align-items:center;justify-content:center;font-size:10px;color:#fff;font-weight:700;">6</div></td></tr>
-                <tr><td>Height — Compact</td><td class="t-tok">spacing/1x</td><td class="t-sw"><div style="background:#6B7280;width:16px;height:16px;border-radius:2px;display:flex;align-items:center;justify-content:center;font-size:10px;color:#fff;font-weight:700;">4</div></td></tr>
-                <tr><td>Border radius</td><td class="t-tok">radius/full</td><td class="t-sw"><div style="background:#6B7280;width:16px;height:16px;border-radius:8px;"></div></td></tr>
+                <tr><td>Unselected fill</td><td class="t-tok">color/surface/layer-02</td><td class="t-sw"><div class="swatch" style="background:#1E1E1E;border-color:rgba(255,255,255,.1)"></div></td></tr>
+                <tr><td>Selected fill</td><td class="t-tok">color/control/fill-active</td><td class="t-sw"><div class="swatch" style="background:#35A8D6;"></div></td></tr>
+                <tr><td>Border</td><td class="t-tok">color/border/interactive</td><td class="t-sw"><div class="swatch" style="background:#6B7280;"></div></td></tr>
+                <tr><td>Focus ring</td><td class="t-tok">color/border/focus-ring</td><td class="t-sw"><div class="swatch" style="background:#0083BB;"></div></td></tr>
+                <tr><td>Unselected text</td><td class="t-tok">color/text/secondary</td><td class="t-sw"><div class="swatch" style="background:#E5E7EB;"></div></td></tr>
+                <tr><td>Selected text</td><td class="t-tok">color/text/inverse</td><td class="t-sw"><div class="swatch" style="background:#FFFFFF;border-color:rgba(255,255,255,.1)"></div></td></tr>
+                <tr><td>Border radius</td><td class="t-tok">spacing/1x</td><td class="t-sw"><div style="background:#6B7280;width:16px;height:16px;border-radius:2px;display:flex;align-items:center;justify-content:center;font-size:10px;color:#fff;font-weight:700;">4</div></td></tr>
               </tbody>
             </table>
           </div>
@@ -490,16 +558,16 @@
         <h2 class="section-title">Accessibility</h2>
         <ul class="a11y-list">
           <li>
-            <div><strong>Role:</strong> Use <code>role="progressbar"</code> on the track element. Set <code>aria-valuenow</code>, <code>aria-valuemin="0"</code>, and <code>aria-valuemax="100"</code> to communicate the current percentage to screen readers.</div>
+            <div><strong>Role:</strong> Use <code>role="tablist"</code> on the container and <code>role="tab"</code> on each segment. Set <code>aria-selected="true"</code> on the active segment and <code>aria-selected="false"</code> on all others.</div>
           </li>
           <li>
-            <div><strong>Label:</strong> Always provide an <code>aria-label</code> or <code>aria-labelledby</code> that describes what is progressing (e.g., <code>aria-label="Uploading document"</code>). Without a label, screen readers cannot contextualise the bar.</div>
+            <div><strong>Keyboard:</strong> <kbd>Arrow Left/Right</kbd> moves focus between segments and selects the focused one. <kbd>Home</kbd> jumps to the first segment, <kbd>End</kbd> to the last.</div>
           </li>
           <li>
-            <div><strong>Status announcements:</strong> When the status changes to Error or Success, announce the outcome with a live region: <code>aria-live="polite"</code> or <code>role="status"</code> on a nearby text element.</div>
+            <div><strong>Focus ring:</strong> The 1px solid ring + 4px glow is visible in both themes. Ensure focus is never suppressed on keyboard navigation.</div>
           </li>
           <li>
-            <div><strong>Colour independence:</strong> Do not rely on fill colour alone to communicate status. Pair the bar with an adjacent label, icon, or status message (e.g., "Upload failed" or "Upload complete").</div>
+            <div><strong>Colour contrast:</strong> White text (#FFFFFF) on the selected fill (#027CB1 light) meets WCAG AA at 4.6:1. In dark mode the lighter blue (#35A8D6) requires verification against the white text.</div>
           </li>
         </ul>
       </section>
@@ -508,17 +576,17 @@
       <section class="doc-section" id="related">
         <h2 class="section-title">Related Components</h2>
         <div class="related-grid">
-          <a href="fileupload.html" class="related-card">
-            <div class="rc-name">File Upload</div>
-            <div class="rc-desc">The primary context for the Progress Bar — shows upload state inside the file upload component.</div>
+          <a href="#" class="related-card">
+            <div class="rc-name">Tabs</div>
+            <div class="rc-desc">Use Tabs when the options control separate content panels. Segmented Control is for switching a view mode within one panel.</div>
           </a>
-          <a href="alert.html" class="related-card">
-            <div class="rc-name">Alert</div>
-            <div class="rc-desc">Use an Alert to accompany the Error or Success state with a descriptive message.</div>
+          <a href="radiobutton.html" class="related-card">
+            <div class="rc-name">Radio Button</div>
+            <div class="rc-desc">Use Radio Buttons when the options need descriptions or a vertical layout. Segmented Control is compact and horizontal.</div>
           </a>
-          <a href="badge.html" class="related-card">
-            <div class="rc-name">Badge</div>
-            <div class="rc-desc">Use a status Badge alongside the bar to provide a textual label for the current state.</div>
+          <a href="dropdown.html" class="related-card">
+            <div class="rc-name">Dropdown</div>
+            <div class="rc-desc">Use a Dropdown when there are more than 4 options or the labels are too long for inline display.</div>
           </a>
         </div>
       </section>

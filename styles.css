@@ -2354,3 +2354,59 @@ code {
 .var-preview-dark .sr-field--disabled .sr-icon,
 .var-preview-dark .sr-field--disabled .sr-input,
 .var-preview-dark .sr-field--disabled .sr-clear { color: #6B7280; }
+
+/* ─── SG · Segmented Control ───────────────────── */
+.sg-group {
+  display: inline-flex;
+  border: 1px solid var(--border);
+  border-radius: 4px;
+  overflow: visible;
+  width: 300px;
+}
+.sg-item {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 4px;
+  padding: 8px 12px;
+  background: var(--surface-layer02);
+  border-right: 1px solid var(--border);
+  font-size: 14px;
+  line-height: 19px;
+  color: var(--text-secondary);
+  cursor: pointer;
+  position: relative;
+  box-sizing: border-box;
+}
+.sg-item:first-child { border-radius: 3px 0 0 3px; }
+.sg-item:last-child  { border-right: none; border-radius: 0 3px 3px 0; }
+.sg-item--selected {
+  background: var(--action-secondary);
+  color: #FFFFFF;
+  border-color: var(--action-secondary);
+}
+.sg-item--focus {
+  background: var(--action-secondary);
+  color: #FFFFFF;
+  border-color: var(--border-focus);
+  box-shadow: 0 0 0 1px var(--border-focus), 0 0 0 5px rgba(90,191,224,0.35);
+  z-index: 1;
+}
+
+/* Dark theme */
+[data-theme="dark"] .sg-item--focus {
+  box-shadow: 0 0 0 1px #0083BB, 0 0 0 5px rgba(0,131,187,0.35);
+}
+
+/* var-preview hardcoded light */
+.var-preview .sg-group              { border-color: #CDD2D7; }
+.var-preview .sg-item               { background: #F4F6F8; border-color: #CDD2D7; color: #4B5563; }
+.var-preview .sg-item--selected     { background: #027CB1; color: #FFFFFF; border-color: #027CB1; }
+.var-preview .sg-item--focus        { background: #027CB1; color: #FFFFFF; border-color: #5ABFE0; box-shadow: 0 0 0 1px #5ABFE0, 0 0 0 5px rgba(90,191,224,0.35); }
+
+/* var-preview-dark hardcoded dark */
+.var-preview-dark .sg-group          { border-color: #6B7280; }
+.var-preview-dark .sg-item           { background: #1E1E1E; border-color: #6B7280; color: #E5E7EB; }
+.var-preview-dark .sg-item--selected { background: #35A8D6; color: #FFFFFF; border-color: #35A8D6; }
+.var-preview-dark .sg-item--focus    { background: #35A8D6; color: #FFFFFF; border-color: #0083BB; box-shadow: 0 0 0 1px #0083BB, 0 0 0 5px rgba(0,131,187,0.35); }
