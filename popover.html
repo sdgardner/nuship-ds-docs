@@ -1,0 +1,683 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Popover — nuShip Design System</title>
+  <link href="https://fonts.googleapis.com/css2?family=Lato:wght@400;600;700;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="tokens.css">
+  <link rel="stylesheet" href="styles.css">
+  <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.min.js"></script>
+</head>
+<body>
+
+<!-- MOBILE OVERLAY -->
+<div id="navOverlay" class="nav-overlay" onclick="toggleSidebar()"></div>
+
+<!-- TOP NAV -->
+<nav class="topnav">
+  <button class="hamburger" onclick="toggleSidebar()" aria-label="Menu">
+    <i data-lucide="menu" style="width:18px;height:18px;color:var(--text-secondary)"></i>
+  </button>
+  <div class="bc">
+    <a href="index.html">UI Components</a>
+    <i data-lucide="chevron-right" style="width:14px;height:14px;flex-shrink:0"></i>
+    <a href="#">Overlays</a>
+    <i data-lucide="chevron-right" style="width:14px;height:14px;flex-shrink:0"></i>
+    <span class="cur">Popover</span>
+  </div>
+  <div class="nav-actions">
+    <div class="toggle-wrap" onclick="toggleTheme()" role="button">
+      <i data-lucide="moon" style="width:20px;height:20px"></i>
+      <div class="toggle-track"><div class="toggle-thumb"></div></div>
+      <i data-lucide="sun" style="width:20px;height:20px"></i>
+    </div>
+  </div>
+</nav>
+
+<div class="shell">
+
+  <!-- LEFT NAV -->
+  <nav class="left-nav" id="leftNav">
+    <div class="left-nav-inner">
+      <div class="ln-group">
+        <div class="ln-label">Inputs</div>
+        <ul class="ln-list">
+          <li><a href="checkbox.html">Checkbox</a></li>
+          <li><a href="datepicker.html">Date Picker</a></li>
+          <li><a href="numberinput.html">Number Input</a></li>
+          <li><a href="passwordinput.html">Password Input</a></li>
+          <li><a href="#">Radio Button</a></li>
+          <li><a href="#">Search</a></li>
+          <li><a href="#">Select</a></li>
+          <li><a href="#">Slider</a></li>
+          <li><a href="#">Switch</a></li>
+          <li><a href="#">Text Area</a></li>
+          <li><a href="#">Text Input</a></li>
+        </ul>
+      </div>
+      <div class="ln-group">
+        <div class="ln-label">Feedback</div>
+        <ul class="ln-list">
+          <li><a href="alert.html">Alert</a></li>
+          <li><a href="badge.html">Badge</a></li>
+          <li><a href="#">Toast</a></li>
+          <li><a href="#">Tooltip</a></li>
+        </ul>
+      </div>
+      <div class="ln-group">
+        <div class="ln-label">Navigation</div>
+        <ul class="ln-list">
+          <li><a href="accordion.html">Accordion</a></li>
+          <li><a href="#">Breadcrumb</a></li>
+          <li><a href="dropdown.html">Dropdown</a></li>
+          <li><a href="menu.html">Menu</a></li>
+          <li><a href="#">Tabs</a></li>
+        </ul>
+      </div>
+      <div class="ln-group">
+        <div class="ln-label">Actions</div>
+        <ul class="ln-list">
+          <li><a href="button.html">Button</a></li>
+          <li><a href="link.html">Link</a></li>
+          <li><a href="#">Tags</a></li>
+        </ul>
+      </div>
+      <div class="ln-group">
+        <div class="ln-label">Overlays</div>
+        <ul class="ln-list">
+          <li><a href="modal.html">Modal</a></li>
+          <li><a href="popover.html" class="active">Popover</a></li>
+        </ul>
+      </div>
+      <div class="ln-group">
+        <div class="ln-label">Display</div>
+        <ul class="ln-list">
+          <li><a href="avatar.html">Avatar</a></li>
+          <li><a href="carousel.html">Carousel</a></li>
+          <li><a href="fileupload.html">File Upload</a></li>
+          <li><a href="progressbar.html">Progress Bar</a></li>
+          <li><a href="#">Star Rating</a></li>
+          <li><a href="#">Timeline</a></li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <!-- CONTENT -->
+  <div class="content-wrap" id="contentWrap">
+
+    <main class="doc">
+
+      <!-- 1 · DEFINITION -->
+      <section class="doc-section" id="definition">
+        <div class="def-eyebrow">Overlays</div>
+        <h1 class="def-title">Popover</h1>
+        <p class="def-desc">A Popover is a non-modal floating container anchored to a trigger element. It surfaces contextual information, actions, or a short confirmation prompt without navigating away or blocking the full interface.</p>
+        <div class="def-tags">
+          <span class="tag">Developed</span>
+          <span class="tag">Figma</span>
+        </div>
+        <div class="preview-box">
+          <div class="preview-box-inner">
+            <div style="display:flex;gap:48px;align-items:flex-start;flex-wrap:wrap;justify-content:center;">
+
+              <!-- Info -->
+              <div class="po-scene">
+                <div style="font-size:12px;font-weight:700;color:var(--text-tertiary);margin-bottom:4px;">Info</div>
+                <button style="height:32px;padding:0 14px;border-radius:4px;border:1px solid var(--border);background:var(--surface-layer02);font-size:13px;font-weight:700;color:var(--text-primary);display:flex;align-items:center;gap:6px;cursor:pointer;">
+                  <i data-lucide="info" style="width:14px;height:14px;"></i> Details
+                </button>
+                <div class="po-box">
+                  <p class="po-text">Assign to another team member or remove their access from this record entirely.</p>
+                </div>
+              </div>
+
+              <!-- Actions -->
+              <div class="po-scene">
+                <div style="font-size:12px;font-weight:700;color:var(--text-tertiary);margin-bottom:4px;">Actions</div>
+                <button style="height:32px;padding:0 14px;border-radius:4px;border:1px solid var(--border);background:var(--surface-layer02);font-size:13px;font-weight:700;color:var(--text-primary);display:flex;align-items:center;gap:6px;cursor:pointer;">
+                  <i data-lucide="more-horizontal" style="width:14px;height:14px;"></i> More
+                </button>
+                <div class="po-box" style="padding:8px;">
+                  <div class="po-action"><i data-lucide="pencil" style="width:14px;height:14px;margin-right:8px;flex-shrink:0;"></i>Edit record</div>
+                  <div class="po-action"><i data-lucide="copy" style="width:14px;height:14px;margin-right:8px;flex-shrink:0;"></i>Duplicate</div>
+                  <div class="po-action"><i data-lucide="archive" style="width:14px;height:14px;margin-right:8px;flex-shrink:0;"></i>Move to archive</div>
+                  <div style="height:1px;background:var(--border);margin:4px 0;"></div>
+                  <div class="po-action po-action--danger"><i data-lucide="trash-2" style="width:14px;height:14px;margin-right:8px;flex-shrink:0;"></i>Delete</div>
+                </div>
+              </div>
+
+              <!-- Confirm -->
+              <div class="po-scene">
+                <div style="font-size:12px;font-weight:700;color:var(--text-tertiary);margin-bottom:4px;">Confirm</div>
+                <button style="height:32px;padding:0 14px;border-radius:4px;border:1px solid var(--border);background:var(--surface-layer02);font-size:13px;font-weight:700;color:var(--text-primary);display:flex;align-items:center;gap:6px;cursor:pointer;">
+                  <i data-lucide="user-minus" style="width:14px;height:14px;"></i> Remove
+                </button>
+                <div class="po-box">
+                  <p class="po-text" style="margin-bottom:12px;">Remove this member from the project? They will lose all access immediately.</p>
+                  <div class="po-footer">
+                    <div class="po-btn po-btn--ghost">Cancel</div>
+                    <div class="po-btn po-btn--danger">Remove</div>
+                  </div>
+                </div>
+              </div>
+
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- 2 · ANATOMY -->
+      <section class="doc-section" id="anatomy">
+        <h2 class="section-title">Anatomy</h2>
+        <div class="anatomy-wrap">
+          <div class="anatomy-component" style="padding:32px 40px 48px;">
+            <div style="position:relative;display:inline-block;">
+              <!-- Trigger -->
+              <button style="height:32px;padding:0 14px;border-radius:4px;border:1px solid var(--border);background:var(--surface-layer02);font-size:13px;font-weight:700;color:var(--text-primary);display:flex;align-items:center;gap:6px;margin-bottom:8px;">
+                <i data-lucide="more-horizontal" style="width:14px;height:14px;"></i> More
+              </button>
+              <div class="po-box" style="position:relative;width:200px;">
+                <p class="po-text" style="color:var(--text-secondary);font-style:italic;">Content goes here</p>
+              </div>
+              <!-- Callouts -->
+              <span class="callout" style="top:-14px;right:-20px;">1</span>
+              <span class="callout" style="top:60px;right:-20px;">2</span>
+              <span class="callout" style="top:100px;right:-20px;">3</span>
+            </div>
+          </div>
+          <div class="anatomy-legend">
+            <div class="legend-item"><span class="legend-num">1</span>Trigger (external — any element that opens the popover)</div>
+            <div class="legend-item"><span class="legend-num">2</span>Container (surface-layer02, border, 8px radius, level-1 shadow)</div>
+            <div class="legend-item"><span class="legend-num">3</span>Content slot (accepts text, actions, or form controls)</div>
+          </div>
+        </div>
+      </section>
+
+      <!-- 3 · VARIANTS -->
+      <section class="doc-section" id="variants">
+        <h2 class="section-title">Variants</h2>
+        <div class="tabs-wrap">
+          <div class="tabs">
+            <button class="tab active" onclick="switchTab(this,'v-po-info')">Info</button>
+            <button class="tab" onclick="switchTab(this,'v-po-actions')">Actions</button>
+            <button class="tab" onclick="switchTab(this,'v-po-confirm')">Confirm</button>
+          </div>
+        </div>
+
+        <!-- INFO -->
+        <div class="tab-panel active" id="v-po-info">
+          <div class="var-panel">
+            <div class="var-previews-wrap">
+              <div class="var-previews">
+                <div class="var-preview">
+                  <div class="po-scene">
+                    <button style="height:32px;padding:0 14px;border-radius:4px;border:1px solid #CDD2D7;background:#F4F6F8;font-size:13px;font-weight:700;color:#374151;display:flex;align-items:center;gap:6px;cursor:pointer;">
+                      <i data-lucide="info" style="width:14px;height:14px;"></i> Details
+                    </button>
+                    <div class="po-box">
+                      <p class="po-text">Assign to another team member or remove their access from this record entirely.</p>
+                    </div>
+                  </div>
+                </div>
+                <div class="var-preview-dark">
+                  <div class="po-scene">
+                    <button style="height:32px;padding:0 14px;border-radius:4px;border:1px solid #6B7280;background:#1E1E1E;font-size:13px;font-weight:700;color:#FFFFFF;display:flex;align-items:center;gap:6px;cursor:pointer;">
+                      <i data-lucide="info" style="width:14px;height:14px;color:#FFFFFF"></i> Details
+                    </button>
+                    <div class="po-box">
+                      <p class="po-text">Assign to another team member or remove their access from this record entirely.</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="var-desc">
+              <div class="var-use-when">Use when:</div>
+              <ul class="var-use-list">
+                <li>Providing supplementary context without requiring a decision</li>
+                <li>Clarifying a label, value, or field that may be unclear</li>
+                <li>Keeping the main layout uncluttered while still surfacing detail</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <!-- ACTIONS -->
+        <div class="tab-panel" id="v-po-actions">
+          <div class="var-panel">
+            <div class="var-previews-wrap">
+              <div class="var-previews">
+                <div class="var-preview">
+                  <div class="po-scene">
+                    <button style="height:32px;padding:0 14px;border-radius:4px;border:1px solid #CDD2D7;background:#F4F6F8;font-size:13px;font-weight:700;color:#374151;display:flex;align-items:center;gap:6px;cursor:pointer;">
+                      <i data-lucide="more-horizontal" style="width:14px;height:14px;"></i> More
+                    </button>
+                    <div class="po-box" style="padding:8px;">
+                      <div class="po-action"><i data-lucide="pencil" style="width:14px;height:14px;margin-right:8px;flex-shrink:0;"></i>Edit record</div>
+                      <div class="po-action"><i data-lucide="copy" style="width:14px;height:14px;margin-right:8px;flex-shrink:0;"></i>Duplicate</div>
+                      <div class="po-action"><i data-lucide="archive" style="width:14px;height:14px;margin-right:8px;flex-shrink:0;"></i>Move to archive</div>
+                      <div style="height:1px;background:#CDD2D7;margin:4px 0;"></div>
+                      <div class="po-action po-action--danger"><i data-lucide="trash-2" style="width:14px;height:14px;margin-right:8px;flex-shrink:0;"></i>Delete</div>
+                    </div>
+                  </div>
+                </div>
+                <div class="var-preview-dark">
+                  <div class="po-scene">
+                    <button style="height:32px;padding:0 14px;border-radius:4px;border:1px solid #6B7280;background:#1E1E1E;font-size:13px;font-weight:700;color:#FFFFFF;display:flex;align-items:center;gap:6px;cursor:pointer;">
+                      <i data-lucide="more-horizontal" style="width:14px;height:14px;color:#FFFFFF"></i> More
+                    </button>
+                    <div class="po-box" style="padding:8px;">
+                      <div class="po-action"><i data-lucide="pencil" style="width:14px;height:14px;margin-right:8px;flex-shrink:0;"></i>Edit record</div>
+                      <div class="po-action"><i data-lucide="copy" style="width:14px;height:14px;margin-right:8px;flex-shrink:0;"></i>Duplicate</div>
+                      <div class="po-action"><i data-lucide="archive" style="width:14px;height:14px;margin-right:8px;flex-shrink:0;"></i>Move to archive</div>
+                      <div style="height:1px;background:#374151;margin:4px 0;"></div>
+                      <div class="po-action po-action--danger"><i data-lucide="trash-2" style="width:14px;height:14px;margin-right:8px;flex-shrink:0;"></i>Delete</div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="var-desc">
+              <div class="var-use-when">Use when:</div>
+              <ul class="var-use-list">
+                <li>A row or item has multiple operations that don't all fit inline</li>
+                <li>Grouping related actions behind a single "More" trigger</li>
+                <li>Prefer this over a Dropdown when the actions are record-specific</li>
+              </ul>
+              <div class="var-use-when" style="margin-top:16px;">Visual details:</div>
+              <ul class="var-use-list">
+                <li>Actions use reduced padding (8px) to create a denser list</li>
+                <li>Destructive actions appear below a divider, styled in error red</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <!-- CONFIRM -->
+        <div class="tab-panel" id="v-po-confirm">
+          <div class="var-panel">
+            <div class="var-previews-wrap">
+              <div class="var-previews">
+                <div class="var-preview">
+                  <div class="po-scene">
+                    <button style="height:32px;padding:0 14px;border-radius:4px;border:1px solid #CDD2D7;background:#F4F6F8;font-size:13px;font-weight:700;color:#374151;display:flex;align-items:center;gap:6px;cursor:pointer;">
+                      <i data-lucide="user-minus" style="width:14px;height:14px;"></i> Remove
+                    </button>
+                    <div class="po-box">
+                      <p class="po-text" style="margin-bottom:12px;">Remove this member from the project? They will lose all access immediately.</p>
+                      <div class="po-footer">
+                        <div class="po-btn po-btn--ghost">Cancel</div>
+                        <div class="po-btn po-btn--danger">Remove</div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="var-preview-dark">
+                  <div class="po-scene">
+                    <button style="height:32px;padding:0 14px;border-radius:4px;border:1px solid #6B7280;background:#1E1E1E;font-size:13px;font-weight:700;color:#FFFFFF;display:flex;align-items:center;gap:6px;cursor:pointer;">
+                      <i data-lucide="user-minus" style="width:14px;height:14px;color:#FFFFFF"></i> Remove
+                    </button>
+                    <div class="po-box">
+                      <p class="po-text" style="margin-bottom:12px;">Remove this member from the project? They will lose all access immediately.</p>
+                      <div class="po-footer">
+                        <div class="po-btn po-btn--ghost">Cancel</div>
+                        <div class="po-btn po-btn--danger">Remove</div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="var-desc">
+              <div class="var-use-when">Use when:</div>
+              <ul class="var-use-list">
+                <li>An action is destructive or irreversible and needs a quick confirmation</li>
+                <li>The consequence is scoped (e.g., one record or one user) — for broader actions use a Modal</li>
+              </ul>
+              <div class="var-use-when" style="margin-top:16px;">Visual details:</div>
+              <ul class="var-use-list">
+                <li>Short, specific message — one sentence maximum</li>
+                <li>Two equal-width buttons: ghost Cancel and solid danger Confirm</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+      </section>
+
+      <!-- 4 · PROPERTIES -->
+      <section class="doc-section" id="properties">
+        <h2 class="section-title">Properties</h2>
+        <table class="props-table">
+          <thead>
+            <tr><th>Property</th><th>Type</th><th>Default</th><th>Description</th></tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td class="p-name">open</td>
+              <td class="p-type">boolean</td>
+              <td class="p-def">false</td>
+              <td class="p-desc">Controls whether the popover is visible</td>
+            </tr>
+            <tr>
+              <td class="p-name">position</td>
+              <td class="p-type">"top" | "bottom" | "left" | "right" | "auto"</td>
+              <td class="p-def">"bottom"</td>
+              <td class="p-desc">Preferred placement relative to the trigger. <code>auto</code> flips to avoid viewport clipping</td>
+            </tr>
+            <tr>
+              <td class="p-name">offset</td>
+              <td class="p-type">number</td>
+              <td class="p-def">8</td>
+              <td class="p-desc">Gap in pixels between the trigger and the popover container</td>
+            </tr>
+            <tr>
+              <td class="p-name">onClose</td>
+              <td class="p-type">function</td>
+              <td class="p-def">—</td>
+              <td class="p-desc">Callback fired when the popover is dismissed (click outside or Escape key)</td>
+            </tr>
+            <tr>
+              <td class="p-name">ariaLabel</td>
+              <td class="p-type">string</td>
+              <td class="p-def">—</td>
+              <td class="p-desc">Accessible name for the popover region, read by screen readers when it opens</td>
+            </tr>
+          </tbody>
+        </table>
+      </section>
+
+      <!-- 5 · USAGE -->
+      <section class="doc-section" id="usage">
+        <h2 class="section-title">Usage Guidelines</h2>
+
+        <div class="usage-block">
+          <div class="usage-cols">
+
+            <div class="usage-card">
+              <div class="usage-card-header">
+                <div class="usage-icon do-icon"><i data-lucide="check" style="width:12px;height:12px"></i></div>
+                <div class="usage-card-title">Anchor to a specific trigger</div>
+              </div>
+              <ul class="usage-list">
+                <li>Always attach the popover to a visible, interactive element (button, icon, link)</li>
+                <li>The trigger must be perceivable and operable by keyboard</li>
+                <li>Use a clear label or icon that implies more content is available</li>
+              </ul>
+            </div>
+
+            <div class="usage-card">
+              <div class="usage-card-header">
+                <div class="usage-icon do-icon"><i data-lucide="check" style="width:12px;height:12px"></i></div>
+                <div class="usage-card-title">Keep content brief and focused</div>
+              </div>
+              <ul class="usage-list">
+                <li>Limit content to one clearly defined purpose per popover</li>
+                <li>If more than 3–4 short lines of text are needed, consider an inline section or a Modal</li>
+                <li>Avoid nesting interactive components deeper than one level</li>
+              </ul>
+            </div>
+
+            <div class="usage-card">
+              <div class="usage-card-header">
+                <div class="usage-icon do-icon"><i data-lucide="check" style="width:12px;height:12px"></i></div>
+                <div class="usage-card-title">Dismiss on outside click and Escape</div>
+              </div>
+              <ul class="usage-list">
+                <li>Clicking anywhere outside the popover should close it</li>
+                <li>Pressing Escape should always dismiss and return focus to the trigger</li>
+                <li>Closing via a Cancel or secondary action button is also acceptable</li>
+              </ul>
+            </div>
+
+            <div class="usage-card">
+              <div class="usage-card-header">
+                <div class="usage-icon do-icon"><i data-lucide="check" style="width:12px;height:12px"></i></div>
+                <div class="usage-card-title">Use auto-position near viewport edges</div>
+              </div>
+              <ul class="usage-list">
+                <li>Set <code>position="auto"</code> when the trigger may appear near a screen edge</li>
+                <li>The component should flip to avoid clipping without requiring additional logic</li>
+              </ul>
+            </div>
+
+          </div>
+        </div>
+
+        <div class="usage-divider"></div>
+
+        <div class="usage-block">
+          <div class="usage-cols">
+
+            <div class="usage-card">
+              <div class="usage-card-header">
+                <div class="usage-icon dont-icon"><i data-lucide="x" style="width:12px;height:12px"></i></div>
+                <div class="usage-card-title">Don't use for full forms or multi-step flows</div>
+              </div>
+              <ul class="usage-list">
+                <li>Popovers are not suited for forms with more than 2–3 fields</li>
+                <li>Multi-step processes belong in a Modal or a dedicated page</li>
+                <li>Avoid placing required validation inside a popover</li>
+              </ul>
+            </div>
+
+            <div class="usage-card">
+              <div class="usage-card-header">
+                <div class="usage-icon dont-icon"><i data-lucide="x" style="width:12px;height:12px"></i></div>
+                <div class="usage-card-title">Don't stack or nest popovers</div>
+              </div>
+              <ul class="usage-list">
+                <li>Opening a second popover from within a popover creates confusing z-index layering</li>
+                <li>Use a Dropdown or a menu pattern instead when sub-navigation is needed</li>
+              </ul>
+            </div>
+
+            <div class="usage-card">
+              <div class="usage-card-header">
+                <div class="usage-icon dont-icon"><i data-lucide="x" style="width:12px;height:12px"></i></div>
+                <div class="usage-card-title">Don't use as a persistent info panel</div>
+              </div>
+              <ul class="usage-list">
+                <li>Popovers should appear on demand and dismiss after interaction</li>
+                <li>Always-visible supplementary content belongs in the main layout or a sidebar</li>
+              </ul>
+            </div>
+
+            <div class="usage-card">
+              <div class="usage-card-header">
+                <div class="usage-icon dont-icon"><i data-lucide="x" style="width:12px;height:12px"></i></div>
+                <div class="usage-card-title">Don't rely on hover to open</div>
+              </div>
+              <ul class="usage-list">
+                <li>Hover-triggered popovers are inaccessible on touch devices</li>
+                <li>Use click or focus as the trigger; reserve hover for Tooltips only</li>
+              </ul>
+            </div>
+
+          </div>
+        </div>
+      </section>
+
+      <!-- 6 · TOKENS USED -->
+      <section class="doc-section" id="tokens">
+        <h2 class="section-title">Tokens used</h2>
+        <div class="tokens-grid">
+
+          <!-- Light -->
+          <div>
+            <div class="tokens-group-label">Light</div>
+            <table class="tokens-table">
+              <thead><tr><th>Property</th><th>Token</th><th></th></tr></thead>
+              <tbody>
+                <tr><td>Background</td><td class="t-tok">color/surface/layer-02</td><td class="t-sw"><div class="swatch" style="background:#F4F6F8;"></div></td></tr>
+                <tr><td>Border</td><td class="t-tok">color/border/interactive</td><td class="t-sw"><div class="swatch" style="background:#CDD2D7;"></div></td></tr>
+                <tr><td>Border radius</td><td class="t-tok">radius/large</td><td class="t-sw"><div style="background:var(--text-tertiary);width:16px;height:16px;border-radius:2px;display:flex;align-items:center;justify-content:center;font-size:10px;color:#fff;font-weight:700;">8</div></td></tr>
+                <tr><td>Padding</td><td class="t-tok">spacing/4x</td><td class="t-sw"><div style="background:var(--text-tertiary);width:16px;height:16px;border-radius:2px;display:flex;align-items:center;justify-content:center;font-size:10px;color:#fff;font-weight:700;">16</div></td></tr>
+                <tr><td>Shadow</td><td class="t-tok">elevation/light/level-1</td><td class="t-sw"><div style="width:16px;height:16px;border-radius:2px;background:#fff;box-shadow:0px 1px 3px 0px rgba(55,65,80,0.08);border:1px solid #e5e7eb;"></div></td></tr>
+                <tr><td>Danger action text</td><td class="t-tok">color/status/error/border</td><td class="t-sw"><div class="swatch" style="background:#A12F2F;"></div></td></tr>
+              </tbody>
+            </table>
+          </div>
+
+          <!-- Dark -->
+          <div>
+            <div class="tokens-group-label">Dark</div>
+            <table class="tokens-table">
+              <thead><tr><th>Property</th><th>Token</th><th></th></tr></thead>
+              <tbody>
+                <tr><td>Background</td><td class="t-tok">color/surface/layer-02</td><td class="t-sw"><div class="swatch" style="background:#1E1E1E;border-color:rgba(255,255,255,.1)"></div></td></tr>
+                <tr><td>Border</td><td class="t-tok">color/border/interactive</td><td class="t-sw"><div class="swatch" style="background:#6B7280;"></div></td></tr>
+                <tr><td>Border radius</td><td class="t-tok">radius/large</td><td class="t-sw"><div style="background:#6B7280;width:16px;height:16px;border-radius:2px;display:flex;align-items:center;justify-content:center;font-size:10px;color:#fff;font-weight:700;">8</div></td></tr>
+                <tr><td>Padding</td><td class="t-tok">spacing/4x</td><td class="t-sw"><div style="background:#6B7280;width:16px;height:16px;border-radius:2px;display:flex;align-items:center;justify-content:center;font-size:10px;color:#fff;font-weight:700;">16</div></td></tr>
+                <tr><td>Shadow</td><td class="t-tok">elevation/dark/level-1</td><td class="t-sw"><div style="width:16px;height:16px;border-radius:2px;background:#1E1E1E;box-shadow:0px 2px 8px 0px rgba(0,0,0,0.40);border:1px solid rgba(255,255,255,.1);"></div></td></tr>
+                <tr><td>Danger action text</td><td class="t-tok">color/status/error/border</td><td class="t-sw"><div class="swatch" style="background:#DB3939;"></div></td></tr>
+              </tbody>
+            </table>
+          </div>
+
+        </div>
+      </section>
+
+      <!-- 7 · ACCESSIBILITY -->
+      <section class="doc-section" id="accessibility">
+        <h2 class="section-title">Accessibility</h2>
+        <ul class="a11y-list">
+          <li>
+            <div><strong>Role:</strong> Add <code>role="dialog"</code> to the popover container when it contains interactive elements (actions, confirm buttons). For info-only content, <code>role="tooltip"</code> or <code>role="region"</code> is appropriate. Always pair with <code>aria-label</code> or <code>aria-labelledby</code>.</div>
+          </li>
+          <li>
+            <div><strong>Focus management:</strong> When the popover opens and contains interactive elements, move focus to the first focusable element inside it. When it closes, return focus to the trigger element that opened it.</div>
+          </li>
+          <li>
+            <div><strong>Keyboard interaction:</strong> <kbd>Escape</kbd> must close the popover from any point within it. If the popover is a dialog, trap focus inside it while it is open so Tab does not cycle into background content.</div>
+          </li>
+          <li>
+            <div><strong>Trigger state:</strong> Use <code>aria-expanded="true/false"</code> on the trigger element so screen readers announce whether the popover is open or closed.</div>
+          </li>
+          <li>
+            <div><strong>Colour contrast:</strong> Ensure body text inside the popover meets WCAG AA (4.5:1 for small text). The danger action text colour <code>#A12F2F</code> (light) and <code>#E36868</code> (dark) should be verified against the container background on each theme.</div>
+          </li>
+        </ul>
+      </section>
+
+      <!-- 8 · RELATED -->
+      <section class="doc-section" id="related">
+        <h2 class="section-title">Related Components</h2>
+        <div class="related-grid">
+          <a href="modal.html" class="related-card">
+            <div class="rc-name">Modal</div>
+            <div class="rc-desc">Use a Modal when the content or action requires the user's full focus and must block the rest of the interface.</div>
+          </a>
+          <a href="dropdown.html" class="related-card">
+            <div class="rc-name">Dropdown</div>
+            <div class="rc-desc">Use a Dropdown when selecting a value from a predefined list. Popovers are for contextual actions, not selection.</div>
+          </a>
+          <a href="#" class="related-card">
+            <div class="rc-name">Tooltip</div>
+            <div class="rc-desc">Use a Tooltip for a single short label on hover. Popovers are richer and always opened by click or focus.</div>
+          </a>
+        </div>
+      </section>
+
+    </main>
+
+    <!-- RIGHT ANCHOR NAV -->
+    <nav class="right-nav">
+      <div class="rn-label">On this page</div>
+      <ul class="rn-list">
+        <li><a href="#definition"    id="rn-definition">Definition</a></li>
+        <li><a href="#anatomy"       id="rn-anatomy">Anatomy</a></li>
+        <li><a href="#variants"      id="rn-variants">Variants</a></li>
+        <li><a href="#properties"    id="rn-properties">Properties</a></li>
+        <li><a href="#usage"         id="rn-usage">Usage</a></li>
+        <li><a href="#tokens"        id="rn-tokens">Tokens</a></li>
+        <li><a href="#accessibility" id="rn-accessibility">Accessibility</a></li>
+        <li><a href="#related"       id="rn-related">Related</a></li>
+      </ul>
+    </nav>
+
+  </div><!-- /content-wrap -->
+</div><!-- /shell -->
+
+<script>
+  lucide.createIcons();
+
+  const isMobile = () => window.innerWidth <= 768;
+  let sbOpen = !isMobile();
+  if (!sbOpen) document.getElementById('leftNav').classList.add('hidden');
+
+  function toggleSidebar() {
+    sbOpen = !sbOpen;
+    document.getElementById('leftNav').classList.toggle('hidden', !sbOpen);
+    if (!isMobile()) {
+      document.getElementById('contentWrap').style.marginLeft = sbOpen ? 'var(--left-w)' : '0';
+    }
+    document.getElementById('navOverlay').classList.toggle('active', sbOpen && isMobile());
+  }
+
+  function updateTabFade(tabsEl) {
+    const wrap = tabsEl.closest('.tabs-wrap');
+    if (!wrap) return;
+    const atEnd = tabsEl.scrollLeft + tabsEl.clientWidth >= tabsEl.scrollWidth - 2;
+    wrap.classList.toggle('at-end', atEnd);
+  }
+
+  function switchStateTab(btn, panelId) {
+    const tabPanel = btn.closest('.tab-panel');
+    tabPanel.querySelectorAll('.state-tab-btn').forEach(b => b.classList.remove('active'));
+    tabPanel.querySelectorAll('.state-panel').forEach(p => p.classList.remove('active'));
+    btn.classList.add('active');
+    document.getElementById(panelId).classList.add('active');
+    lucide.createIcons();
+  }
+
+  function switchTab(btn, panelId) {
+    btn.closest('.doc-section').querySelectorAll('.tab').forEach(b => b.classList.remove('active'));
+    btn.closest('.doc-section').querySelectorAll('.tab-panel').forEach(p => p.classList.remove('active'));
+    btn.classList.add('active');
+    document.getElementById(panelId).classList.add('active');
+    const tabsEl = btn.closest('.tabs');
+    if (tabsEl) {
+      const tabRight = btn.offsetLeft + btn.offsetWidth;
+      const tabLeft = btn.offsetLeft;
+      if (tabRight > tabsEl.scrollLeft + tabsEl.clientWidth - 56) {
+        tabsEl.scrollLeft = tabRight - tabsEl.clientWidth + 72;
+      } else if (tabLeft < tabsEl.scrollLeft) {
+        tabsEl.scrollLeft = tabLeft;
+      }
+      updateTabFade(tabsEl);
+    }
+    lucide.createIcons();
+  }
+
+  window.addEventListener('load', () => {
+    document.querySelectorAll('.tabs').forEach(tabsEl => {
+      updateTabFade(tabsEl);
+      tabsEl.addEventListener('scroll', () => updateTabFade(tabsEl));
+    });
+  });
+
+  function toggleTheme() {
+    const d = document.documentElement;
+    d.setAttribute('data-theme', d.getAttribute('data-theme') === 'dark' ? 'light' : 'dark');
+  }
+
+  const sections = ['definition','anatomy','variants','properties','usage','tokens','accessibility','related'];
+  const observer = new IntersectionObserver(entries => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        document.querySelectorAll('.rn-list a').forEach(a => a.classList.remove('active'));
+        const link = document.getElementById('rn-' + e.target.id);
+        if (link) link.classList.add('active');
+      }
+    });
+  }, { rootMargin: '-20% 0px -70% 0px' });
+  sections.forEach(id => {
+    const el = document.getElementById(id);
+    if (el) observer.observe(el);
+  });
+</script>
+</body>
+</html>
