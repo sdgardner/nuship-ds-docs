@@ -23,8 +23,9 @@
 
     /* Preview controls row */
     .tm-preview-controls { display:flex; align-items:center; justify-content:space-between; gap:12px; margin-bottom:16px; }
-    .tm-mode-btn { display:inline-flex; align-items:center; gap:6px; font-size:12px; font-weight:700; font-family:inherit; color:var(--text-tertiary); padding:6px 12px; border-radius:4px; border:1px solid var(--border); background:var(--surface-layer01); cursor:pointer; transition:color 120ms; }
-    .tm-mode-btn:hover { color:var(--text-primary); }
+    .tm-mode-toggle { display:inline-flex; align-items:center; gap:8px; cursor:pointer; }
+    .tm-mode-toggle .sw-track { transition:background 150ms; }
+    .tm-mode-label { font-size:12px; font-weight:700; color:var(--text-tertiary); }
 
     /* Variant segmented control */
     .tm-seg { display:inline-flex; border:1px solid var(--border); border-radius:4px; overflow:hidden; }
@@ -551,10 +552,10 @@
                 <button class="tm-seg-item" data-variant="success">Success</button>
                 <button class="tm-seg-item" data-variant="error">Error</button>
               </div>
-              <button class="tm-mode-btn" id="tmModeToggle">
-                <i data-lucide="moon" style="width:14px;height:14px"></i>
-                <span id="tmModeLabel">Light</span>
-              </button>
+              <div class="tm-mode-toggle" id="tmModeToggle">
+                <span class="tm-mode-label" id="tmModeLabel">Light</span>
+                <div class="sw-track sw-track--compact" id="tmModeTrack"><div class="sw-thumb"></div></div>
+              </div>
             </div>
             <div class="tm-preview-card" data-bg="light">
               <div class="tm-preview-inner">
@@ -905,14 +906,18 @@
     });
   });
 
-  // Light/Dark mode toggle
+  // Light/Dark mode toggle via switch
   document.getElementById('tmModeToggle').addEventListener('click', () => {
     tmState.mode = tmState.mode === 'light' ? 'dark' : 'light';
-    const label = document.getElementById('tmModeLabel');
-    const icon = document.querySelector('#tmModeToggle i');
-    label.textContent = tmState.mode === 'light' ? 'Light' : 'Dark';
-    icon.setAttribute('data-lucide', tmState.mode === 'light' ? 'moon' : 'sun');
-    lucide.createIcons();
+    document.getElementById('tmModeLabel').textContent = tmState.mode === 'light' ? 'Light' : 'Dark';
+    const track = document.getElementById('tmModeTrack');
+    if (tmState.mode === 'dark') {
+      track.classList.add('sw-on');
+      track.style.background = '#374151';
+    } else {
+      track.classList.remove('sw-on');
+      track.style.background = '';
+    }
     tmRender();
   });
 
