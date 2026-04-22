@@ -40,6 +40,13 @@
     /* Background/border spotlight uses the alert itself */
     .tm-alert.spotlight-bg { outline:2px solid var(--tm-accent); outline-offset:2px; }
     .tm-alert.spotlight-border { outline:2px dashed var(--tm-accent); outline-offset:2px; }
+    /* Component token spotlights */
+    .tm-alert.spotlight-padding { outline:2px solid #FF4081; outline-offset:-1px; }
+    .tm-alert.spotlight-padding::after { content:'12px'; position:absolute; top:4px; left:4px; font-size:10px; font-family:var(--mono); color:#FF4081; background:rgba(255,255,255,0.9); padding:1px 4px; border-radius:2px; }
+    .tm-alert.spotlight-radius { border-radius:8px; outline:2px solid #FF4081; outline-offset:2px; }
+    .tm-alert.spotlight-radius::after { content:'8px'; position:absolute; top:-16px; left:-2px; font-size:10px; font-family:var(--mono); color:#FF4081; background:rgba(255,255,255,0.9); padding:1px 4px; border-radius:2px; }
+    .tm-alert.spotlight-border-width { outline:2px solid #FF4081; outline-offset:0; }
+    .tm-alert.spotlight-icon-size .tm-alert-icon { outline:2px solid #FF4081; outline-offset:2px; border-radius:3px; }
 
     /* Right: tokens card — scrollable */
     .tm-tokens-card { background:var(--surface-card, #FFFFFF); border:1px solid #E5E7EB; border-radius:8px; box-shadow:none; display:flex; flex-direction:column; max-height:520px; }
@@ -51,7 +58,7 @@
     .tm-row:last-child { border-bottom:none; }
     .tm-row-header { display:flex; align-items:center; gap:14px; margin-bottom:12px; }
     .tm-row-swatch { width:30px; height:30px; border-radius:4px; flex-shrink:0; }
-    .tm-row-label { font-size:16px; font-weight:700; line-height:20px; color:var(--text-secondary); }
+    .tm-row-label { font-size:12px; font-weight:700; line-height:16px; color:var(--text-secondary); letter-spacing:0.02em; }
 
     /* Chain: horizontal pills with arrows */
     .tm-chain-row { display:flex; align-items:center; gap:10px; flex-wrap:wrap; }
@@ -60,8 +67,8 @@
     .tm-chain-arrow svg { width:20px; height:20px; }
 
     /* Hover sync — all rows */
-    .tm-row { cursor:pointer; border-left:3px solid transparent; transition:border-color 120ms, background 120ms; border-radius:0 4px 4px 0; }
-    .tm-row:hover, .tm-row.is-hot { border-left-color:var(--tm-accent); background:var(--surface-layer01-hover); }
+    .tm-row { cursor:pointer; transition:background 120ms; border-radius:4px; padding:16px 12px; margin:0 -12px; }
+    .tm-row:hover, .tm-row.is-hot { background:var(--surface-layer01-hover); }
 
     /* Icon box for component tokens */
     .tm-row-icon { width:30px; height:30px; border-radius:4px; background:var(--surface-layer03); display:flex; align-items:center; justify-content:center; color:#FF4081; flex-shrink:0; }
@@ -825,20 +832,32 @@
     tmCards.innerHTML = html;
 
     // Hover sync: highlight row + spotlight on alert
+    const spotlightClasses = ['has-spotlight','spotlight-bg','spotlight-border','spotlight-padding','spotlight-radius','spotlight-border-width','spotlight-icon-size'];
     function clearSpotlight() {
-      tmAlert.classList.remove('has-spotlight', 'spotlight-bg', 'spotlight-border');
+      spotlightClasses.forEach(c => tmAlert.classList.remove(c));
       tmAlert.querySelectorAll('[data-part]').forEach(p => p.classList.remove('spotlight'));
     }
+
+    // Map component token slots to spotlight classes
+    const compSpotlightMap = {
+      'padding': 'spotlight-padding',
+      'radius': 'spotlight-radius',
+      'border-width': 'spotlight-border-width',
+      'icon-size': 'spotlight-icon-size',
+    };
 
     document.querySelectorAll('.tm-row[data-slot]').forEach(row => {
       const slot = row.dataset.slot;
       row.addEventListener('mouseenter', () => {
         row.classList.add('is-hot');
-        // Spotlight on the alert
+        // Color token spotlight
         if (slot === 'background') {
           tmAlert.classList.add('has-spotlight', 'spotlight-bg');
         } else if (slot === 'border') {
           tmAlert.classList.add('has-spotlight', 'spotlight-border');
+        } else if (compSpotlightMap[slot]) {
+          // Component token spotlight
+          tmAlert.classList.add(compSpotlightMap[slot]);
         } else {
           tmAlert.classList.add('has-spotlight');
           const part = tmAlert.querySelector('[data-part="'+slot+'"]');
