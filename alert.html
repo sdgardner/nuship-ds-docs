@@ -542,21 +542,22 @@
       <section class="doc-section" id="tokens">
         <h2 class="section-title">Token Map</h2>
 
+        <div class="tm-preview-controls">
+          <div class="tm-seg" style="width:300px;">
+            <button class="tm-seg-item tm-seg-item--active" data-variant="info">Information</button>
+            <button class="tm-seg-item" data-variant="success">Success</button>
+            <button class="tm-seg-item" data-variant="error">Error</button>
+          </div>
+          <div class="tm-mode-toggle" id="tmModeToggle">
+            <span class="tm-mode-label" id="tmModeLabel">Light</span>
+            <div class="sw-track sw-track--compact" id="tmModeTrack"><div class="sw-thumb"></div></div>
+          </div>
+        </div>
+
         <div class="tm-map">
 
           <!-- LEFT: Preview -->
           <div>
-            <div class="tm-preview-controls">
-              <div class="tm-seg" style="width:300px;">
-                <button class="tm-seg-item tm-seg-item--active" data-variant="info">Information</button>
-                <button class="tm-seg-item" data-variant="success">Success</button>
-                <button class="tm-seg-item" data-variant="error">Error</button>
-              </div>
-              <div class="tm-mode-toggle" id="tmModeToggle">
-                <span class="tm-mode-label" id="tmModeLabel">Light</span>
-                <div class="sw-track sw-track--compact" id="tmModeTrack"><div class="sw-thumb"></div></div>
-              </div>
-            </div>
             <div class="tm-preview-card" data-bg="light">
               <div class="tm-preview-inner">
                 <div class="tm-alert" id="tmAlert">
