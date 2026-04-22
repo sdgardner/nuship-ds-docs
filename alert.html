@@ -579,9 +579,10 @@
                 <span class="tm-count" id="tmCount"><span id="tmCountNum">10</span> tokens</span>
               </div>
               <p class="tm-tokens-helper">Hover a token to see where it applies on the component.</p>
-              <div class="tm-seg" style="width:300px;margin:0 0 12px;">
+              <div class="tm-seg" style="margin:0 0 12px;">
                 <button class="tm-seg-item tm-seg-item--active" data-tab="color"><i data-lucide="palette" class="tm-seg-icon"></i> Color</button>
                 <button class="tm-seg-item" data-tab="component"><i data-lucide="ruler" class="tm-seg-icon"></i> Component</button>
+                <button class="tm-seg-item" data-tab="typography"><i data-lucide="type" class="tm-seg-icon"></i> Typography</button>
               </div>
             </div>
             <div class="tm-tokens-body" id="tmCards"></div>
@@ -794,7 +795,13 @@
     { role:'Icon size',    component:'alert/icon/size',    primitive:'icon/md',            value:'20px', icon:'scan' },
   ];
 
-  const totalTokens = Object.keys(alertSpec.error).length + componentTokens.length;
+  const typographyTokens = [
+    { role:'Header',      style:'typography/body/medium', font:'Lato', weight:'Bold (700)',    size:'16px', lineHeight:'22px', letterSpacing:'0', icon:'heading' },
+    { role:'Description', style:'typography/body/small',  font:'Lato', weight:'Regular (400)', size:'14px', lineHeight:'19px', letterSpacing:'0', icon:'text' },
+    { role:'Label',       style:'typography/body/label',  font:'Lato', weight:'Bold (700)',    size:'12px', lineHeight:'16px', letterSpacing:'0', icon:'tag' },
+  ];
+
+  const totalTokens = Object.keys(alertSpec.error).length + componentTokens.length + typographyTokens.length;
 
   const tmState = { variant:'info', tab:'color', mode:'light' };
   const tmAlert = document.getElementById('tmAlert');
@@ -839,7 +846,7 @@
           + '<div class="tm-chip" style="font-weight:600">'+m.chain[2]+'</div>'
           + '</div></div>';
       }
-    } else {
+    } else if (tmState.tab === 'component') {
       for (const ct of componentTokens) {
         html += '<div class="tm-row" data-slot="'+ct.role.toLowerCase().replace(/ /g,'-')+'">'
           + '<div class="tm-row-header"><div class="tm-row-icon"><i data-lucide="'+ct.icon+'" style="width:16px;height:16px"></i></div><div class="tm-row-label">'+ct.role+'</div></div>'
@@ -849,6 +856,22 @@
           + '<div class="tm-chip">'+ct.primitive+'</div>'
           + '<div class="tm-chain-arrow">'+arrowSvg+'</div>'
           + '<div class="tm-chip" style="font-weight:600">'+ct.value+'</div>'
+          + '</div></div>';
+      }
+    } else {
+      for (const tt of typographyTokens) {
+        html += '<div class="tm-row" data-slot="'+tt.role.toLowerCase()+'">'
+          + '<div class="tm-row-header"><div class="tm-row-icon"><i data-lucide="'+tt.icon+'" style="width:16px;height:16px"></i></div><div class="tm-row-label">'+tt.role+'</div></div>'
+          + '<div class="tm-chain-row" style="flex-direction:column;align-items:flex-start;gap:6px;">'
+          + '<div style="display:flex;align-items:center;gap:10px;flex-wrap:wrap;">'
+          + '<div class="tm-chip">'+tt.style+'</div>'
+          + '</div>'
+          + '<div style="display:flex;align-items:center;gap:8px;flex-wrap:wrap;font-family:var(--mono);font-size:12px;color:var(--text-tertiary);">'
+          + '<span>'+tt.font+'</span><span>·</span>'
+          + '<span>'+tt.weight+'</span><span>·</span>'
+          + '<span>'+tt.size+' / '+tt.lineHeight+'</span>'
+          + (tt.letterSpacing !== '0' ? '<span>·</span><span>ls: '+tt.letterSpacing+'</span>' : '')
+          + '</div>'
           + '</div></div>';
       }
     }
@@ -861,29 +884,33 @@
       tmAlert.querySelectorAll('[data-part]').forEach(p => p.classList.remove('spotlight'));
     }
 
-    // Map component token slots to spotlight classes
+    // Map slots to spotlight behaviors
     const compSpotlightMap = {
       'padding': 'spotlight-padding',
       'radius': 'spotlight-radius',
       'border-width': 'spotlight-border-width',
       'icon-size': 'spotlight-icon-size',
     };
+    const typoPartMap = {
+      'header': 'headerText',
+      'description': 'descriptionText',
+      'label': 'headerText',
+    };
 
     document.querySelectorAll('.tm-row[data-slot]').forEach(row => {
       const slot = row.dataset.slot;
       row.addEventListener('mouseenter', () => {
         row.classList.add('is-hot');
-        // Color token spotlight
         if (slot === 'background') {
           tmAlert.classList.add('has-spotlight', 'spotlight-bg');
         } else if (slot === 'border') {
           tmAlert.classList.add('has-spotlight', 'spotlight-border');
         } else if (compSpotlightMap[slot]) {
-          // Component token spotlight
           tmAlert.classList.add(compSpotlightMap[slot]);
         } else {
           tmAlert.classList.add('has-spotlight');
-          const part = tmAlert.querySelector('[data-part="'+slot+'"]');
+          const partName = typoPartMap[slot] || slot;
+          const part = tmAlert.querySelector('[data-part="'+partName+'"]');
           if (part) part.classList.add('spotlight');
         }
       });
