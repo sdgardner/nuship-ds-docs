@@ -619,8 +619,8 @@
   // ══════════════════════════════════════════
   // TOKEN MAP
   // ══════════════════════════════════════════
-  const tmColorLight = [{"role":"Track background","token":"color/control/track-inactive","hex":"#CDD2D7"},{"role":"Fill uploading","token":"color/status/info/border","hex":"#027CB1"},{"role":"Fill error","token":"color/status/error/border","hex":"#A12F2F"},{"role":"Fill success","token":"color/status/success/border","hex":"#006C21"}];
-  const tmColorDark = [{"role":"Track background","token":"color/control/track-inactive","hex":"#374151"},{"role":"Fill uploading","token":"color/status/info/border","hex":"#8FCBE6"},{"role":"Fill error","token":"color/status/error/border","hex":"#DB3939"},{"role":"Fill success","token":"color/status/success/border","hex":"#4DAD82"}];
+  const tmColorLight = [{"role":"Track background","token":"color/control/track-inactive","hex":"#CDD2D7","ref":"color/gray/300"},{"role":"Fill uploading","token":"color/status/info/border","hex":"#027CB1","ref":"color/blue/600"},{"role":"Fill error","token":"color/status/error/border","hex":"#A12F2F","ref":"color/red/800"},{"role":"Fill success","token":"color/status/success/border","hex":"#006C21","ref":"color/green/700"}];
+  const tmColorDark = [{"role":"Track background","token":"color/control/track-inactive","hex":"#374151","ref":"color/gray/500"},{"role":"Fill uploading","token":"color/status/info/border","hex":"#8FCBE6","ref":"color/blue/300"},{"role":"Fill error","token":"color/status/error/border","hex":"#DB3939","ref":"color/red/600"},{"role":"Fill success","token":"color/status/success/border","hex":"#4DAD82","ref":"color/green/400"}];
   const tmComponentTokens = [{"role":"Radius","component":"progress-bar/radius","primitive":"radius/full","value":"100px","icon":"square-round-corner"},{"role":"Track height (default)","component":"progress-bar/track/height-default","primitive":"spacing/1-5x","value":"6px","icon":"ruler"},{"role":"Track height (compact)","component":"progress-bar/track/height-compact","primitive":"spacing/1x","value":"4px","icon":"ruler"}];
   const tmTypographyTokens = [];
   const tmTotalTokens = tmColorLight.length + tmComponentTokens.length + tmTypographyTokens.length;
@@ -644,6 +644,8 @@
           + '<div class="tm-row-header"><div class="tm-row-swatch" style="background:'+c.hex+'"></div><div class="tm-row-label">'+c.role+'</div></div>'
           + '<div class="tm-chain-row">'
           + '<div class="tm-chip">'+c.token+'</div>'
+          + '<div class="tm-chain-arrow">'+arrowSvg+'</div>'
+          + '<div class="tm-chip">'+(c.ref||c.token)+'</div>'
           + '<div class="tm-chain-arrow">'+arrowSvg+'</div>'
           + '<div class="tm-chip" style="font-weight:600">'+c.hex+'</div>'
           + '</div></div>';

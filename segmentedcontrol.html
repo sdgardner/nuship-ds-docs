@@ -727,8 +727,8 @@
   // ══════════════════════════════════════════
   // TOKEN MAP
   // ══════════════════════════════════════════
-  const tmColorLight = [{"role":"Unselected fill","token":"color/surface/layer-02","hex":"#F4F6F8"},{"role":"Selected fill","token":"color/control/fill-active","hex":"#027CB1"},{"role":"Border","token":"color/border/interactive","hex":"#CDD2D7"},{"role":"Focus ring","token":"color/border/focus-ring","hex":"#5ABFE0"},{"role":"Unselected text","token":"color/text/secondary","hex":"#4B5563"},{"role":"Selected text","token":"color/text/inverse","hex":"#FFFFFF"}];
-  const tmColorDark = [{"role":"Unselected fill","token":"color/surface/layer-02","hex":"#1E1E1E"},{"role":"Selected fill","token":"color/control/fill-active","hex":"#35A8D6"},{"role":"Border","token":"color/border/interactive","hex":"#6B7280"},{"role":"Focus ring","token":"color/border/focus-ring","hex":"#0083BB"},{"role":"Unselected text","token":"color/text/secondary","hex":"#E5E7EB"},{"role":"Selected text","token":"color/text/inverse","hex":"#FFFFFF"}];
+  const tmColorLight = [{"role":"Unselected fill","token":"color/surface/layer-02","hex":"#F4F6F8","ref":"color/gray/50"},{"role":"Selected fill","token":"color/control/fill-active","hex":"#027CB1","ref":"color/blue/600"},{"role":"Border","token":"color/border/interactive","hex":"#CDD2D7","ref":"color/gray/300"},{"role":"Focus ring","token":"color/border/focus-ring","hex":"#5ABFE0","ref":"color/blue/400"},{"role":"Unselected text","token":"color/text/secondary","hex":"#4B5563","ref":"color/gray/600"},{"role":"Selected text","token":"color/text/inverse","hex":"#FFFFFF","ref":"color/gray/0"}];
+  const tmColorDark = [{"role":"Unselected fill","token":"color/surface/layer-02","hex":"#1E1E1E","ref":"color/gray/950"},{"role":"Selected fill","token":"color/control/fill-active","hex":"#35A8D6","ref":"color/blue/400"},{"role":"Border","token":"color/border/interactive","hex":"#6B7280","ref":"color/gray/500"},{"role":"Focus ring","token":"color/border/focus-ring","hex":"#0083BB","ref":"color/blue/600"},{"role":"Unselected text","token":"color/text/secondary","hex":"#E5E7EB","ref":"color/gray/200"},{"role":"Selected text","token":"color/text/inverse","hex":"#FFFFFF","ref":"color/gray/0"}];
   const tmComponentTokens = [{"role":"Gap","component":"segmented-control/gap","primitive":"spacing/1x","value":"4px","icon":"columns-3"},{"role":"Radius","component":"segmented-control/radius","primitive":"radius/small","value":"4px","icon":"square-round-corner"},{"role":"Padding Y","component":"segmented-control/padding-y","primitive":"spacing/2x","value":"8px","icon":"space"},{"role":"Padding X","component":"segmented-control/padding-x","primitive":"spacing/3x","value":"12px","icon":"space"}];
   const tmTypographyTokens = [{"role":"Label","style":"typography/body/medium","font":"Lato","weight":"Regular (400)","size":"16px","lineHeight":"22px","letterSpacing":"0"}];
   const tmTotalTokens = tmColorLight.length + tmComponentTokens.length + tmTypographyTokens.length;
@@ -752,6 +752,8 @@
           + '<div class="tm-row-header"><div class="tm-row-swatch" style="background:'+c.hex+'"></div><div class="tm-row-label">'+c.role+'</div></div>'
           + '<div class="tm-chain-row">'
           + '<div class="tm-chip">'+c.token+'</div>'
+          + '<div class="tm-chain-arrow">'+arrowSvg+'</div>'
+          + '<div class="tm-chip">'+(c.ref||c.token)+'</div>'
           + '<div class="tm-chain-arrow">'+arrowSvg+'</div>'
           + '<div class="tm-chip" style="font-weight:600">'+c.hex+'</div>'
           + '</div></div>';

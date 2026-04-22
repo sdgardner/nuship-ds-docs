@@ -743,8 +743,8 @@
   // ══════════════════════════════════════════
   // TOKEN MAP
   // ══════════════════════════════════════════
-  const tmColorLight = [{"role":"Trigger label (open)","token":"color/text/button-tertiary/default","hex":"#016692"},{"role":"Trigger label (closed)","token":"color/text/primary","hex":"#374151"},{"role":"Trigger label (disabled)","token":"color/text/disabled","hex":"#9CA3AF"},{"role":"Content text","token":"color/text/primary","hex":"#374151"},{"role":"Container border","token":"color/border/interactive","hex":"#CDD2D7"},{"role":"Focus ring","token":"color/border/focus-ring","hex":"#5ABFE0"}];
-  const tmColorDark = [{"role":"Trigger label (open)","token":"color/text/button-tertiary/default","hex":"#5ABFE0"},{"role":"Trigger label (closed)","token":"color/text/primary","hex":"#FFFFFF"},{"role":"Trigger label (disabled)","token":"color/text/disabled","hex":"#6B7280"},{"role":"Content text","token":"color/text/primary","hex":"#FFFFFF"},{"role":"Container border","token":"color/border/interactive","hex":"#6B7280"},{"role":"Focus ring","token":"color/border/focus-ring","hex":"#0083BB"}];
+  const tmColorLight = [{"role":"Trigger label (open)","token":"color/text/button-tertiary/default","hex":"#016692","ref":"color/blue/700"},{"role":"Trigger label (closed)","token":"color/text/primary","hex":"#374151","ref":"color/gray/700"},{"role":"Trigger label (disabled)","token":"color/text/disabled","hex":"#9CA3AF","ref":"color/gray/400"},{"role":"Content text","token":"color/text/primary","hex":"#374151","ref":"color/gray/700"},{"role":"Container border","token":"color/border/interactive","hex":"#CDD2D7","ref":"color/gray/300"},{"role":"Focus ring","token":"color/border/focus-ring","hex":"#5ABFE0","ref":"color/blue/400"}];
+  const tmColorDark = [{"role":"Trigger label (open)","token":"color/text/button-tertiary/default","hex":"#5ABFE0","ref":"color/blue/400"},{"role":"Trigger label (closed)","token":"color/text/primary","hex":"#FFFFFF","ref":"color/gray/0"},{"role":"Trigger label (disabled)","token":"color/text/disabled","hex":"#6B7280","ref":"color/gray/500"},{"role":"Content text","token":"color/text/primary","hex":"#FFFFFF","ref":"color/gray/0"},{"role":"Container border","token":"color/border/interactive","hex":"#6B7280","ref":"color/gray/500"},{"role":"Focus ring","token":"color/border/focus-ring","hex":"#0083BB","ref":"color/blue/600"}];
   const tmComponentTokens = [{"role":"Padding","component":"accordion/padding","primitive":"spacing/4x","value":"16px","icon":"space"},{"role":"Radius","component":"accordion/radius","primitive":"radius/large","value":"8px","icon":"square-round-corner"},{"role":"Border width","component":"accordion/border-width","primitive":"border-width/thin","value":"1px","icon":"separator-horizontal"},{"role":"Body padding","component":"accordion/body-padding","primitive":"spacing/3x","value":"12px","icon":"space"}];
   const tmTypographyTokens = [{"role":"Trigger label","style":"typography/header/h4","font":"Lato","weight":"Bold (700)","size":"18px","lineHeight":"24px","letterSpacing":"0"},{"role":"Content","style":"typography/body/medium","font":"Lato","weight":"Regular (400)","size":"16px","lineHeight":"22px","letterSpacing":"0"}];
   const tmTotalTokens = tmColorLight.length + tmComponentTokens.length + tmTypographyTokens.length;
@@ -768,6 +768,8 @@
           + '<div class="tm-row-header"><div class="tm-row-swatch" style="background:'+c.hex+'"></div><div class="tm-row-label">'+c.role+'</div></div>'
           + '<div class="tm-chain-row">'
           + '<div class="tm-chip">'+c.token+'</div>'
+          + '<div class="tm-chain-arrow">'+arrowSvg+'</div>'
+          + '<div class="tm-chip">'+(c.ref||c.token)+'</div>'
           + '<div class="tm-chain-arrow">'+arrowSvg+'</div>'
           + '<div class="tm-chip" style="font-weight:600">'+c.hex+'</div>'
           + '</div></div>';

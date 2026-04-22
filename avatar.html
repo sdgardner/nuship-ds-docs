@@ -659,8 +659,8 @@
   // ══════════════════════════════════════════
   // TOKEN MAP
   // ══════════════════════════════════════════
-  const tmColorLight = [{"role":"Background (initials)","token":"color/surface/layer-02","hex":"#F4F6F8"},{"role":"Border","token":"color/border/interactive","hex":"#CDD2D7"},{"role":"Initials text","token":"color/text/primary","hex":"#374151"},{"role":"Badge fill","token":"color/status/online","hex":"#22C55E"},{"role":"Badge border","token":"color/surface/shell","hex":"#FFFFFF"}];
-  const tmColorDark = [{"role":"Background (initials)","token":"color/surface/layer-02","hex":"#1E1E1E"},{"role":"Border","token":"color/border/interactive","hex":"#6B7280"},{"role":"Initials text","token":"color/text/primary","hex":"#FFFFFF"},{"role":"Badge fill","token":"color/status/online","hex":"#22C55E"},{"role":"Badge border","token":"color/surface/shell","hex":"#0A0A0A"}];
+  const tmColorLight = [{"role":"Background (initials)","token":"color/surface/layer-02","hex":"#F4F6F8","ref":"color/gray/50"},{"role":"Border","token":"color/border/interactive","hex":"#CDD2D7","ref":"color/gray/300"},{"role":"Initials text","token":"color/text/primary","hex":"#374151","ref":"color/gray/700"},{"role":"Badge fill","token":"color/status/online","hex":"#22C55E","ref":"color/green/500"},{"role":"Badge border","token":"color/surface/shell","hex":"#FFFFFF","ref":"color/gray/0"}];
+  const tmColorDark = [{"role":"Background (initials)","token":"color/surface/layer-02","hex":"#1E1E1E","ref":"color/gray/950"},{"role":"Border","token":"color/border/interactive","hex":"#6B7280","ref":"color/gray/500"},{"role":"Initials text","token":"color/text/primary","hex":"#FFFFFF","ref":"color/gray/0"},{"role":"Badge fill","token":"color/status/online","hex":"#22C55E","ref":"color/green/400"},{"role":"Badge border","token":"color/surface/shell","hex":"#0A0A0A","ref":"color/gray/950"}];
   const tmComponentTokens = [{"role":"Size xs","component":"avatar/size-xs","primitive":"spacing/6x","value":"24px","icon":"scan"},{"role":"Size sm","component":"avatar/size-sm","primitive":"spacing/8x","value":"32px","icon":"scan"},{"role":"Size md","component":"avatar/size-md","primitive":"spacing/12x","value":"48px","icon":"scan"},{"role":"Size lg","component":"avatar/size-lg","primitive":"spacing/16x","value":"64px","icon":"scan"},{"role":"Size xl","component":"avatar/size-xl","primitive":"spacing/24x","value":"96px","icon":"scan"},{"role":"Size 2xl","component":"avatar/size-2xl","primitive":"spacing/31x","value":"124px","icon":"scan"}];
   const tmTypographyTokens = [{"role":"Initials","style":"typography/body/medium","font":"Lato","weight":"Bold (700)","size":"16px","lineHeight":"22px","letterSpacing":"0"}];
   const tmTotalTokens = tmColorLight.length + tmComponentTokens.length + tmTypographyTokens.length;
@@ -684,6 +684,8 @@
           + '<div class="tm-row-header"><div class="tm-row-swatch" style="background:'+c.hex+'"></div><div class="tm-row-label">'+c.role+'</div></div>'
           + '<div class="tm-chain-row">'
           + '<div class="tm-chip">'+c.token+'</div>'
+          + '<div class="tm-chain-arrow">'+arrowSvg+'</div>'
+          + '<div class="tm-chip">'+(c.ref||c.token)+'</div>'
           + '<div class="tm-chain-arrow">'+arrowSvg+'</div>'
           + '<div class="tm-chip" style="font-weight:600">'+c.hex+'</div>'
           + '</div></div>';

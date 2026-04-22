@@ -819,8 +819,8 @@
   // ══════════════════════════════════════════
   // TOKEN MAP
   // ══════════════════════════════════════════
-  const tmColorLight = [{"role":"Photo border","token":"color/border/interactive","hex":"#CDD2D7"},{"role":"Active dot","token":"color/action/secondary/default","hex":"#027CB1"},{"role":"Inactive dot fill","token":"color/surface/layer-02","hex":"#F4F6F8"},{"role":"Inactive dot border","token":"color/border/interactive","hex":"#CDD2D7"},{"role":"Arrow icon","token":"color/link/surface-01/default","hex":"#016692"},{"role":"Expand button","token":"color/action/secondary/default","hex":"#027CB1"}];
-  const tmColorDark = [{"role":"Photo border","token":"color/border/interactive","hex":"#6B7280"},{"role":"Active dot","token":"color/action/secondary/default","hex":"#35A8D6"},{"role":"Inactive dot fill","token":"color/surface/layer-02","hex":"#1E1E1E"},{"role":"Inactive dot border","token":"color/border/interactive","hex":"#6B7280"},{"role":"Arrow icon","token":"color/link/surface-01/default","hex":"#5ABFE0"},{"role":"Expand button","token":"color/action/secondary/default","hex":"#35A8D6"}];
+  const tmColorLight = [{"role":"Photo border","token":"color/border/interactive","hex":"#CDD2D7","ref":"color/gray/300"},{"role":"Active dot","token":"color/action/secondary/default","hex":"#027CB1","ref":"color/blue/600"},{"role":"Inactive dot fill","token":"color/surface/layer-02","hex":"#F4F6F8","ref":"color/gray/50"},{"role":"Inactive dot border","token":"color/border/interactive","hex":"#CDD2D7","ref":"color/gray/300"},{"role":"Arrow icon","token":"color/link/surface-01/default","hex":"#016692","ref":"color/blue/600"},{"role":"Expand button","token":"color/action/secondary/default","hex":"#027CB1","ref":"color/blue/600"}];
+  const tmColorDark = [{"role":"Photo border","token":"color/border/interactive","hex":"#6B7280","ref":"color/gray/500"},{"role":"Active dot","token":"color/action/secondary/default","hex":"#35A8D6","ref":"color/blue/400"},{"role":"Inactive dot fill","token":"color/surface/layer-02","hex":"#1E1E1E","ref":"color/gray/950"},{"role":"Inactive dot border","token":"color/border/interactive","hex":"#6B7280","ref":"color/gray/500"},{"role":"Arrow icon","token":"color/link/surface-01/default","hex":"#5ABFE0","ref":"color/blue/400"},{"role":"Expand button","token":"color/action/secondary/default","hex":"#35A8D6","ref":"color/blue/400"}];
   const tmComponentTokens = [{"role":"Dot gap","component":"carousel/dot-gap","primitive":"spacing/3x","value":"12px","icon":"columns-3"},{"role":"Nav gap","component":"carousel/nav-gap","primitive":"spacing/4x","value":"16px","icon":"columns-3"}];
   const tmTypographyTokens = [{"role":"Badge","style":"typography/body/label","font":"Lato","weight":"Bold (700)","size":"12px","lineHeight":"16px","letterSpacing":"0"}];
   const tmTotalTokens = tmColorLight.length + tmComponentTokens.length + tmTypographyTokens.length;
@@ -844,6 +844,8 @@
           + '<div class="tm-row-header"><div class="tm-row-swatch" style="background:'+c.hex+'"></div><div class="tm-row-label">'+c.role+'</div></div>'
           + '<div class="tm-chain-row">'
           + '<div class="tm-chip">'+c.token+'</div>'
+          + '<div class="tm-chain-arrow">'+arrowSvg+'</div>'
+          + '<div class="tm-chip">'+(c.ref||c.token)+'</div>'
           + '<div class="tm-chain-arrow">'+arrowSvg+'</div>'
           + '<div class="tm-chip" style="font-weight:600">'+c.hex+'</div>'
           + '</div></div>';

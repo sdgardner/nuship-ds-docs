@@ -681,8 +681,8 @@
   // ══════════════════════════════════════════
   // TOKEN MAP
   // ══════════════════════════════════════════
-  const tmColorLight = [{"role":"Background","token":"color/surface/layer-02","hex":"#F4F6F8"},{"role":"Border","token":"color/border/interactive","hex":"#CDD2D7"},{"role":"Shadow","token":"elevation/light/level-1","hex":"rgba(55,65,80,0.08)"},{"role":"Danger action","token":"color/status/error/border","hex":"#A12F2F"}];
-  const tmColorDark = [{"role":"Background","token":"color/surface/layer-02","hex":"#1E1E1E"},{"role":"Border","token":"color/border/interactive","hex":"#6B7280"},{"role":"Shadow","token":"elevation/dark/level-1","hex":"rgba(0,0,0,0.40)"},{"role":"Danger action","token":"color/status/error/border","hex":"#DB3939"}];
+  const tmColorLight = [{"role":"Background","token":"color/surface/layer-02","hex":"#F4F6F8","ref":"color/gray/50"},{"role":"Border","token":"color/border/interactive","hex":"#CDD2D7","ref":"color/gray/300"},{"role":"Shadow","token":"elevation/light/level-1","hex":"rgba(55,65,80,0.08)","ref":"elevation/light/level-1"},{"role":"Danger action","token":"color/status/error/border","hex":"#A12F2F","ref":"color/red/800"}];
+  const tmColorDark = [{"role":"Background","token":"color/surface/layer-02","hex":"#1E1E1E","ref":"color/gray/950"},{"role":"Border","token":"color/border/interactive","hex":"#6B7280","ref":"color/gray/500"},{"role":"Shadow","token":"elevation/dark/level-1","hex":"rgba(0,0,0,0.40)","ref":"elevation/dark/level-1"},{"role":"Danger action","token":"color/status/error/border","hex":"#DB3939","ref":"color/red/600"}];
   const tmComponentTokens = [{"role":"Padding","component":"popover/padding","primitive":"spacing/4x","value":"16px","icon":"space"}];
   const tmTypographyTokens = [{"role":"Body","style":"typography/body/medium","font":"Lato","weight":"Regular (400)","size":"16px","lineHeight":"22px","letterSpacing":"0"}];
   const tmTotalTokens = tmColorLight.length + tmComponentTokens.length + tmTypographyTokens.length;
@@ -706,6 +706,8 @@
           + '<div class="tm-row-header"><div class="tm-row-swatch" style="background:'+c.hex+'"></div><div class="tm-row-label">'+c.role+'</div></div>'
           + '<div class="tm-chain-row">'
           + '<div class="tm-chip">'+c.token+'</div>'
+          + '<div class="tm-chain-arrow">'+arrowSvg+'</div>'
+          + '<div class="tm-chip">'+(c.ref||c.token)+'</div>'
           + '<div class="tm-chain-arrow">'+arrowSvg+'</div>'
           + '<div class="tm-chip" style="font-weight:600">'+c.hex+'</div>'
           + '</div></div>';

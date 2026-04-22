@@ -758,8 +758,8 @@
   // ══════════════════════════════════════════
   // TOKEN MAP
   // ══════════════════════════════════════════
-  const tmColorLight = [{"role":"Default (surface-01)","token":"color/link/surface-01/default","hex":"#016692"},{"role":"Hover (surface-01)","token":"color/link/surface-01/hover","hex":"#004F70"},{"role":"Pressed (surface-01)","token":"color/link/surface-01/pressed","hex":"#001F33"},{"role":"Disabled","token":"color/link/surface-01/disabled","hex":"#6B7280"},{"role":"Default (card)","token":"color/link/card/default","hex":"#016692"},{"role":"Hover (card)","token":"color/link/card/hover","hex":"#004F70"}];
-  const tmColorDark = [{"role":"Default (surface-01)","token":"color/link/surface-01/default","hex":"#5ABFE0"},{"role":"Hover (surface-01)","token":"color/link/surface-01/hover","hex":"#8FCBE6"},{"role":"Pressed (surface-01)","token":"color/link/surface-01/pressed","hex":"#0083BB"},{"role":"Disabled","token":"color/link/surface-01/disabled","hex":"#6B7280"},{"role":"Default (card)","token":"color/link/card/default","hex":"#35A8D6"},{"role":"Hover (card)","token":"color/link/card/hover","hex":"#5ABFE0"}];
+  const tmColorLight = [{"role":"Default (surface-01)","token":"color/link/surface-01/default","hex":"#016692","ref":"color/blue/600"},{"role":"Hover (surface-01)","token":"color/link/surface-01/hover","hex":"#004F70","ref":"color/link/surface-01/hover"},{"role":"Pressed (surface-01)","token":"color/link/surface-01/pressed","hex":"#001F33","ref":"color/link/surface-01/pressed"},{"role":"Disabled","token":"color/link/surface-01/disabled","hex":"#6B7280","ref":"color/link/surface-01/disabled"},{"role":"Default (card)","token":"color/link/card/default","hex":"#016692","ref":"color/link/card/default"},{"role":"Hover (card)","token":"color/link/card/hover","hex":"#004F70","ref":"color/link/card/hover"}];
+  const tmColorDark = [{"role":"Default (surface-01)","token":"color/link/surface-01/default","hex":"#5ABFE0","ref":"color/blue/400"},{"role":"Hover (surface-01)","token":"color/link/surface-01/hover","hex":"#8FCBE6","ref":"color/link/surface-01/hover"},{"role":"Pressed (surface-01)","token":"color/link/surface-01/pressed","hex":"#0083BB","ref":"color/link/surface-01/pressed"},{"role":"Disabled","token":"color/link/surface-01/disabled","hex":"#6B7280","ref":"color/link/surface-01/disabled"},{"role":"Default (card)","token":"color/link/card/default","hex":"#35A8D6","ref":"color/link/card/default"},{"role":"Hover (card)","token":"color/link/card/hover","hex":"#5ABFE0","ref":"color/link/card/hover"}];
   const tmComponentTokens = [{"role":"Gap","component":"link/gap","primitive":"spacing/1x","value":"4px","icon":"columns-3"}];
   const tmTypographyTokens = [{"role":"Link text","style":"typography/body/medium","font":"Lato","weight":"Bold (700)","size":"16px","lineHeight":"22px","letterSpacing":"0"}];
   const tmTotalTokens = tmColorLight.length + tmComponentTokens.length + tmTypographyTokens.length;
@@ -783,6 +783,8 @@
           + '<div class="tm-row-header"><div class="tm-row-swatch" style="background:'+c.hex+'"></div><div class="tm-row-label">'+c.role+'</div></div>'
           + '<div class="tm-chain-row">'
           + '<div class="tm-chip">'+c.token+'</div>'
+          + '<div class="tm-chain-arrow">'+arrowSvg+'</div>'
+          + '<div class="tm-chip">'+(c.ref||c.token)+'</div>'
           + '<div class="tm-chain-arrow">'+arrowSvg+'</div>'
           + '<div class="tm-chip" style="font-weight:600">'+c.hex+'</div>'
           + '</div></div>';
