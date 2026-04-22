@@ -123,7 +123,7 @@ body {
 /* ─── MAIN DOC ───────────────────────────────────── */
 .doc {
   width: 100%;
-  max-width: 760px;
+  max-width: 960px;
   padding: 40px 48px 80px;
   min-width: 0;
   flex-shrink: 1;
