@@ -1,0 +1,566 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Token Map — nuShip Design System</title>
+  <link href="https://fonts.googleapis.com/css2?family=Lato:wght@400;600;700;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="tokens.css">
+  <link rel="stylesheet" href="styles.css">
+  <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.min.js"></script>
+  <style>
+    /* ── Token map page styles ── */
+    :root {
+      --mono: ui-monospace, "SF Mono", "Menlo", Consolas, monospace;
+      --tm-accent: #0083bb;
+    }
+
+    .tm-desc {
+      font-size: 14px;
+      color: var(--text-secondary);
+      margin: 0 0 24px;
+      max-width: 560px;
+      line-height: 1.5;
+    }
+
+    /* Controls bar */
+    .tm-controls {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      margin-bottom: 20px;
+      flex-wrap: wrap;
+    }
+    .tm-pills {
+      display: inline-flex;
+      padding: 3px;
+      background: var(--surface-layer01);
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      gap: 2px;
+    }
+    .tm-pill {
+      border: 0;
+      background: transparent;
+      font-family: inherit;
+      font-size: 13px;
+      color: var(--text-tertiary);
+      padding: 5px 14px;
+      border-radius: 4px;
+      cursor: pointer;
+      transition: background 120ms, color 120ms;
+    }
+    .tm-pill:hover { color: var(--text-primary); }
+    .tm-pill[aria-pressed="true"] {
+      background: var(--surface-layer02);
+      color: var(--text-primary);
+      box-shadow: inset 0 0 0 1px var(--border);
+    }
+
+    .tm-theme-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 12px;
+      font-family: inherit;
+      color: var(--text-tertiary);
+      padding: 5px 12px;
+      border-radius: 6px;
+      border: 1px solid var(--border);
+      background: var(--surface-layer01);
+      cursor: pointer;
+    }
+    .tm-theme-btn:hover { color: var(--text-primary); }
+
+    /* Split layout */
+    .tm-map {
+      display: grid;
+      grid-template-columns: 1fr 360px;
+      gap: 20px;
+      align-items: start;
+    }
+    @media (max-width: 900px) {
+      .tm-map { grid-template-columns: 1fr; }
+    }
+
+    /* Preview stage */
+    .tm-stage {
+      position: relative;
+      border-radius: 8px;
+      border: 1px solid var(--border);
+      padding: 64px 32px;
+      min-height: 320px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: background 180ms;
+    }
+    .tm-stage[data-bg="light"] { background: #FFFFFF; }
+    .tm-stage[data-bg="dark"]  { background: #0A0A0A; }
+
+    .tm-stage-label {
+      position: absolute;
+      top: 12px;
+      left: 16px;
+      font-size: 11px;
+      font-family: var(--mono);
+      letter-spacing: 0.04em;
+      color: var(--text-tertiary);
+    }
+    .tm-stage[data-bg="dark"] .tm-stage-label { color: #6B7280; }
+
+    /* Alert inside stage */
+    .tm-alert {
+      width: 100%;
+      max-width: 420px;
+      border-radius: 8px;
+      border: 1px solid;
+      padding: 12px;
+      display: grid;
+      grid-template-columns: 20px 1fr 20px;
+      gap: 12px;
+      align-items: start;
+      position: relative;
+      transition: background 180ms, border-color 180ms;
+    }
+    .tm-alert-icon {
+      width: 20px;
+      height: 20px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-top: 1px;
+    }
+    .tm-alert-body { min-width: 0; }
+    .tm-alert-header { font-size: 14px; font-weight: 700; line-height: 1.4; margin: 0 0 2px; }
+    .tm-alert-desc   { font-size: 14px; line-height: 1.4; margin: 0; }
+    .tm-alert-dismiss { width: 20px; height: 20px; display: flex; align-items: center; justify-content: center; cursor: pointer; margin-top: 1px; }
+
+    /* Hoverable slot outlines */
+    [data-slot] {
+      position: relative;
+      cursor: pointer;
+      outline: 2px solid transparent;
+      outline-offset: 3px;
+      border-radius: 3px;
+      transition: outline-color 120ms;
+    }
+    [data-slot].is-hot { outline-color: var(--tm-accent); }
+
+    /* Edge pins for bg & border */
+    .tm-pin {
+      position: absolute;
+      top: -10px;
+      font-size: 10px;
+      font-family: var(--mono);
+      letter-spacing: 0.04em;
+      padding: 2px 8px;
+      border-radius: 10px;
+      background: var(--surface-layer01);
+      border: 1px solid var(--border);
+      color: var(--text-tertiary);
+      cursor: pointer;
+      text-transform: uppercase;
+      transition: color 120ms, border-color 120ms;
+      z-index: 2;
+    }
+    .tm-pin:hover { color: var(--text-primary); border-color: var(--text-tertiary); }
+    .tm-pin.is-hot { color: var(--tm-accent); border-color: var(--tm-accent); }
+    .tm-pin[data-slot="background"] { left: 16px; }
+    .tm-pin[data-slot="border"]     { right: 16px; }
+
+    /* Token cards panel */
+    .tm-cards { display: flex; flex-direction: column; gap: 8px; }
+    .tm-cards-label {
+      font-size: 10px;
+      font-family: var(--mono);
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      color: var(--text-tertiary);
+      margin: 12px 0 4px;
+    }
+    .tm-cards-label:first-child { margin-top: 0; }
+
+    .tm-card {
+      display: grid;
+      grid-template-columns: 28px 1fr;
+      gap: 12px;
+      padding: 12px 14px;
+      background: var(--surface-layer01);
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      cursor: pointer;
+      transition: border-color 120ms;
+    }
+    .tm-card:hover, .tm-card.is-hot { border-color: var(--tm-accent); }
+    .tm-card.is-hot { box-shadow: inset 3px 0 0 var(--tm-accent); padding-left: 11px; }
+
+    .tm-swatch {
+      width: 28px;
+      height: 28px;
+      border-radius: 6px;
+      border: 1px solid var(--border);
+      margin-top: 2px;
+    }
+    .tm-size-box {
+      width: 28px;
+      height: 28px;
+      border-radius: 6px;
+      background: var(--surface-layer03);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 11px;
+      font-weight: 700;
+      font-family: var(--mono);
+      color: var(--text-primary);
+      margin-top: 2px;
+    }
+
+    .tm-role {
+      font-size: 10px;
+      letter-spacing: 0.06em;
+      color: var(--text-tertiary);
+      text-transform: uppercase;
+      margin: 0 0 4px;
+      font-weight: 500;
+    }
+    .tm-chain {
+      font-family: var(--mono);
+      font-size: 12px;
+      line-height: 1.5;
+      color: var(--text-secondary);
+      word-break: break-all;
+    }
+    .tm-arrow { color: var(--text-tertiary); margin: 0 4px; }
+    .tm-hex   { color: var(--text-primary); font-weight: 500; }
+
+    /* Footer meta */
+    .tm-meta {
+      margin-top: 14px;
+      font-size: 12px;
+      color: var(--text-tertiary);
+      display: flex;
+      justify-content: space-between;
+      font-family: var(--mono);
+    }
+  </style>
+</head>
+<body>
+
+<div id="navOverlay" class="nav-overlay" onclick="toggleSidebar()"></div>
+
+<nav class="topnav">
+  <button class="hamburger" onclick="toggleSidebar()" aria-label="Menu"><i data-lucide="menu" style="width:18px;height:18px;color:var(--text-secondary)"></i></button>
+  <div class="bc">
+    <a href="index.html">UI Components</a>
+    <i data-lucide="chevron-right" style="width:14px;height:14px;flex-shrink:0"></i>
+    <span class="cur">Token Map</span>
+  </div>
+  <div class="nav-actions">
+    <div class="toggle-wrap" onclick="togglePageTheme()" role="button">
+      <i data-lucide="moon" style="width:20px;height:20px"></i>
+      <div class="toggle-track"><div class="toggle-thumb"></div></div>
+      <i data-lucide="sun" style="width:20px;height:20px"></i>
+    </div>
+  </div>
+</nav>
+
+<div class="shell">
+  <nav class="left-nav" id="leftNav">
+    <div class="left-nav-inner">
+      <div class="ln-group"><div class="ln-label">Inputs</div><ul class="ln-list">
+        <li><a href="checkbox.html">Checkbox</a></li><li><a href="datepicker.html">Date Picker</a></li><li><a href="numberinput.html">Number Input</a></li><li><a href="passwordinput.html">Password Input</a></li><li><a href="radiobutton.html">Radio Button</a></li><li><a href="search.html">Search</a></li><li><a href="select.html">Select</a></li><li><a href="#">Slider</a></li><li><a href="switch.html">Switch</a></li><li><a href="#">Text Area</a></li><li><a href="#">Text Input</a></li>
+      </ul></div>
+      <div class="ln-group"><div class="ln-label">Feedback</div><ul class="ln-list">
+        <li><a href="alert.html">Alert</a></li><li><a href="badge.html">Badge</a></li><li><a href="#">Toast</a></li><li><a href="#">Tooltip</a></li>
+      </ul></div>
+      <div class="ln-group"><div class="ln-label">Navigation</div><ul class="ln-list">
+        <li><a href="accordion.html">Accordion</a></li><li><a href="#">Breadcrumb</a></li><li><a href="dropdown.html">Dropdown</a></li><li><a href="menu.html">Menu</a></li><li><a href="segmentedcontrol.html">Segmented Control</a></li><li><a href="#">Tabs</a></li>
+      </ul></div>
+      <div class="ln-group"><div class="ln-label">Actions</div><ul class="ln-list">
+        <li><a href="button.html">Button</a></li><li><a href="link.html">Link</a></li><li><a href="#">Tags</a></li>
+      </ul></div>
+      <div class="ln-group"><div class="ln-label">Overlays</div><ul class="ln-list">
+        <li><a href="modal.html">Modal</a></li><li><a href="popover.html">Popover</a></li>
+      </ul></div>
+      <div class="ln-group"><div class="ln-label">Display</div><ul class="ln-list">
+        <li><a href="avatar.html">Avatar</a></li><li><a href="carousel.html">Carousel</a></li><li><a href="fileupload.html">File Upload</a></li><li><a href="progressbar.html">Progress Bar</a></li><li><a href="#">Star Rating</a></li><li><a href="#">Timeline</a></li>
+      </ul></div>
+    </div>
+  </nav>
+
+  <div class="content-wrap" id="contentWrap">
+    <main class="doc">
+
+      <section class="doc-section">
+        <h1 class="def-title">Token Map</h1>
+        <p class="tm-desc">Hover a part of the component to trace its token chain. Tokens resolve from <strong>semantic → primitive → value</strong>. Component tokens (spacing, radius) are shown below.</p>
+
+        <div class="tm-controls">
+          <div class="tm-pills" role="tablist">
+            <button class="tm-pill" data-variant="error" aria-pressed="true">Error</button>
+            <button class="tm-pill" data-variant="success" aria-pressed="false">Success</button>
+            <button class="tm-pill" data-variant="info" aria-pressed="false">Info</button>
+          </div>
+          <button class="tm-theme-btn" id="stageThemeToggle">
+            <i data-lucide="sun" style="width:14px;height:14px"></i>
+            <span id="stageThemeLabel">Light</span>
+          </button>
+        </div>
+
+        <div class="tm-map">
+
+          <!-- STAGE -->
+          <div class="tm-stage" data-bg="light" id="tmStage">
+            <span class="tm-stage-label" id="tmStageLabel">skid-semantic / light</span>
+
+            <div class="tm-alert" id="tmAlert">
+              <span class="tm-pin" data-slot="background">bg</span>
+              <span class="tm-pin" data-slot="border">border</span>
+
+              <span class="tm-alert-icon" data-slot="icon"><i data-lucide="circle-alert" style="width:20px;height:20px"></i></span>
+              <div class="tm-alert-body">
+                <p class="tm-alert-header" data-slot="headerText">Alert Header</p>
+                <p class="tm-alert-desc" data-slot="descriptionText">This is a description of the alert with helpful context for the user.</p>
+              </div>
+              <span class="tm-alert-dismiss" data-slot="dismissIcon"><i data-lucide="x" style="width:16px;height:16px"></i></span>
+            </div>
+          </div>
+
+          <!-- CARDS -->
+          <div id="tmCards"></div>
+
+        </div>
+
+        <div class="tm-meta">
+          <span id="tmTokenCount"></span>
+          <span id="tmPath"></span>
+        </div>
+      </section>
+
+    </main>
+  </div>
+</div>
+
+<script>
+  lucide.createIcons();
+
+  // ── Sidebar boilerplate ──
+  const isMobile = () => window.innerWidth <= 768;
+  let sbOpen = !isMobile();
+  if (!sbOpen) document.getElementById('leftNav').classList.add('hidden');
+  function toggleSidebar() { sbOpen = !sbOpen; document.getElementById('leftNav').classList.toggle('hidden', !sbOpen); if (!isMobile()) document.getElementById('contentWrap').style.marginLeft = sbOpen ? 'var(--left-w)' : '0'; document.getElementById('navOverlay').classList.toggle('active', sbOpen && isMobile()); }
+  function togglePageTheme() { const d = document.documentElement; d.setAttribute('data-theme', d.getAttribute('data-theme') === 'dark' ? 'light' : 'dark'); }
+
+  // ══════════════════════════════════════════════════════
+  // TOKEN DATA — sourced from design token JSON files
+  // ══════════════════════════════════════════════════════
+
+  const primitives = {
+    'color/red/50':   '#FCE8E8',
+    'color/red/100':  '#F8D0D0',
+    'color/red/400':  '#E36868',
+    'color/red/600':  '#DB3939',
+    'color/red/800':  '#A12F2F',
+    'color/red/900':  '#811F1F',
+    'color/green/50':  '#E8F2E8',
+    'color/green/400': '#4DAD82',
+    'color/green/500': '#33A17A',
+    'color/green/700': '#006C21',
+    'color/green/900': '#003322',
+    'color/blue/50':   '#E5EEF5',
+    'color/blue/300':  '#8FCBE6',
+    'color/blue/600':  '#027CB1',
+    'color/blue/900':  '#001F33',
+    'color/gray/0':    '#FFFFFF',
+    'color/gray/200':  '#E5E7EB',
+    'color/gray/500':  '#6B7280',
+    'color/gray/600':  '#4B5563',
+    'color/gray/700':  '#374151',
+  };
+
+  const semantic = {
+    light: {
+      'color/status/error/bg':      { ref: 'color/red/50',    hex: '#FCE8E8' },
+      'color/status/error/border':   { ref: 'color/red/800',   hex: '#A12F2F' },
+      'color/status/error/icon':     { ref: 'color/red/800',   hex: '#A12F2F' },
+      'color/status/success/bg':     { ref: 'color/green/50',  hex: '#E8F2E8' },
+      'color/status/success/border': { ref: 'color/green/700', hex: '#006C21' },
+      'color/status/success/icon':   { ref: 'color/green/700', hex: '#006C21' },
+      'color/status/info/bg':        { ref: 'color/blue/50',   hex: '#E5EEF5' },
+      'color/status/info/border':    { ref: 'color/blue/600',  hex: '#027CB1' },
+      'color/status/info/icon':      { ref: 'color/blue/600',  hex: '#027CB1' },
+      'color/text/primary':          { ref: 'color/gray/700',  hex: '#374151' },
+      'color/text/secondary':        { ref: 'color/gray/600',  hex: '#4B5563' },
+      'color/icon/default':          { ref: 'color/gray/600',  hex: '#4B5563' },
+    },
+    dark: {
+      'color/status/error/bg':      { ref: 'color/red/900',   hex: '#811F1F' },
+      'color/status/error/border':   { ref: 'color/red/600',   hex: '#DB3939' },
+      'color/status/error/icon':     { ref: 'color/red/100',   hex: '#F8D0D0' },
+      'color/status/success/bg':     { ref: 'color/green/900', hex: '#003322' },
+      'color/status/success/border': { ref: 'color/green/400', hex: '#4DAD82' },
+      'color/status/success/icon':   { ref: 'color/green/500', hex: '#33A17A' },
+      'color/status/info/bg':        { ref: 'color/blue/900',  hex: '#001F33' },
+      'color/status/info/border':    { ref: 'color/blue/300',  hex: '#8FCBE6' },
+      'color/status/info/icon':      { ref: 'color/blue/300',  hex: '#8FCBE6' },
+      'color/text/primary':          { ref: 'color/gray/0',    hex: '#FFFFFF' },
+      'color/text/secondary':        { ref: 'color/gray/200',  hex: '#E5E7EB' },
+      'color/icon/default':          { ref: 'color/gray/200',  hex: '#E5E7EB' },
+    },
+  };
+
+  // Component-level specs: slot → { role, token }
+  const alertSpec = {
+    error: {
+      background:      { role: 'Background',     token: 'color/status/error/bg' },
+      border:          { role: 'Border',          token: 'color/status/error/border' },
+      icon:            { role: 'Icon',            token: 'color/status/error/icon' },
+      headerText:      { role: 'Header text',     token: 'color/text/primary' },
+      descriptionText: { role: 'Description',     token: 'color/text/secondary' },
+      dismissIcon:     { role: 'Dismiss icon',    token: 'color/icon/default' },
+    },
+    success: {
+      background:      { role: 'Background',     token: 'color/status/success/bg' },
+      border:          { role: 'Border',          token: 'color/status/success/border' },
+      icon:            { role: 'Icon',            token: 'color/status/success/icon' },
+      headerText:      { role: 'Header text',     token: 'color/text/primary' },
+      descriptionText: { role: 'Description',     token: 'color/text/secondary' },
+      dismissIcon:     { role: 'Dismiss icon',    token: 'color/icon/default' },
+    },
+    info: {
+      background:      { role: 'Background',     token: 'color/status/info/bg' },
+      border:          { role: 'Border',          token: 'color/status/info/border' },
+      icon:            { role: 'Icon',            token: 'color/status/info/icon' },
+      headerText:      { role: 'Header text',     token: 'color/text/primary' },
+      descriptionText: { role: 'Description',     token: 'color/text/secondary' },
+      dismissIcon:     { role: 'Dismiss icon',    token: 'color/icon/default' },
+    },
+  };
+
+  // Component tokens (from component.tokens.json)
+  const componentTokens = [
+    { role: 'Padding',      component: 'alert/padding',      primitive: 'spacing/3x',        value: '12px' },
+    { role: 'Radius',       component: 'alert/radius',       primitive: 'radius/lg',          value: '8px' },
+    { role: 'Border width', component: 'alert/border-width', primitive: 'border-width/thin',  value: '1px' },
+    { role: 'Icon size',    component: 'alert/icon/size',    primitive: 'icon/md',            value: '20px' },
+  ];
+
+  // ── State ──
+  const tmState = { variant: 'error', theme: 'light' };
+
+  // ── Refs ──
+  const tmStage    = document.getElementById('tmStage');
+  const tmAlert    = document.getElementById('tmAlert');
+  const tmCards    = document.getElementById('tmCards');
+
+  // ── Resolve chain ──
+  function resolveChain(tokenName, theme) {
+    const sem = semantic[theme][tokenName];
+    if (!sem) return { chain: [tokenName], hex: tokenName };
+    return {
+      chain: [tokenName, sem.ref, sem.hex],
+      hex: sem.hex,
+    };
+  }
+
+  // ── Render ──
+  function tmRender() {
+    const spec  = alertSpec[tmState.variant];
+    const theme = tmState.theme;
+
+    // Resolve all color slots
+    const resolved = {};
+    for (const [slot, meta] of Object.entries(spec)) {
+      const r = resolveChain(meta.token, theme);
+      resolved[slot] = { ...meta, ...r };
+    }
+
+    // Apply colors to the alert
+    tmAlert.style.background  = resolved.background.hex;
+    tmAlert.style.borderColor = resolved.border.hex;
+    tmAlert.querySelector('[data-slot="icon"]').style.color            = resolved.icon.hex;
+    tmAlert.querySelector('[data-slot="headerText"]').style.color      = resolved.headerText.hex;
+    tmAlert.querySelector('[data-slot="descriptionText"]').style.color = resolved.descriptionText.hex;
+    tmAlert.querySelector('[data-slot="dismissIcon"]').style.color     = resolved.dismissIcon.hex;
+
+    // Stage
+    tmStage.setAttribute('data-bg', theme);
+    document.getElementById('tmStageLabel').textContent = `skid-semantic / ${theme}`;
+    document.getElementById('tmPath').textContent       = `skid-semantic/${theme} · alert.${tmState.variant}`;
+
+    // Build cards
+    let html = '<div class="tm-cards-label">Color tokens</div><div class="tm-cards">';
+    for (const [slot, meta] of Object.entries(resolved)) {
+      const chainHtml = meta.chain.map((node, i) => {
+        return i === meta.chain.length - 1
+          ? `<span class="tm-hex">${node}</span>`
+          : `${node}<span class="tm-arrow">→</span>`;
+      }).join('');
+
+      const borderFix = meta.hex === '#FFFFFF' || meta.hex === '#FCE8E8' || meta.hex === '#E8F2E8' || meta.hex === '#E5EEF5'
+        ? 'border-color:#CDD2D7' : '';
+
+      html += `
+        <div class="tm-card" data-slot="${slot}">
+          <div class="tm-swatch" style="background:${meta.hex};${borderFix}"></div>
+          <div>
+            <p class="tm-role">${meta.role}</p>
+            <div class="tm-chain">${chainHtml}</div>
+          </div>
+        </div>`;
+    }
+    html += '</div>';
+
+    // Component tokens (don't change with theme or variant)
+    html += '<div class="tm-cards-label" style="margin-top:20px;">Component tokens</div><div class="tm-cards">';
+    for (const ct of componentTokens) {
+      html += `
+        <div class="tm-card">
+          <div class="tm-size-box">${parseInt(ct.value)}</div>
+          <div>
+            <p class="tm-role">${ct.role}</p>
+            <div class="tm-chain">${ct.component}<span class="tm-arrow">→</span>${ct.primitive}<span class="tm-arrow">→</span><span class="tm-hex">${ct.value}</span></div>
+          </div>
+        </div>`;
+    }
+    html += '</div>';
+
+    tmCards.innerHTML = html;
+    document.getElementById('tmTokenCount').textContent = `${Object.keys(resolved).length + componentTokens.length} tokens`;
+
+    // Rebind hover sync
+    document.querySelectorAll('[data-slot]').forEach(el => {
+      const slot = el.dataset.slot;
+      el.addEventListener('mouseenter', () => {
+        document.querySelectorAll(`[data-slot="${slot}"]`).forEach(e => e.classList.add('is-hot'));
+      });
+      el.addEventListener('mouseleave', () => {
+        document.querySelectorAll(`[data-slot="${slot}"]`).forEach(e => e.classList.remove('is-hot'));
+      });
+    });
+
+    lucide.createIcons();
+  }
+
+  // ── Controls ──
+  document.querySelectorAll('.tm-pill').forEach(btn => {
+    btn.addEventListener('click', () => {
+      tmState.variant = btn.dataset.variant;
+      document.querySelectorAll('.tm-pill').forEach(b => b.setAttribute('aria-pressed', b === btn ? 'true' : 'false'));
+      tmRender();
+    });
+  });
+
+  document.getElementById('stageThemeToggle').addEventListener('click', () => {
+    tmState.theme = tmState.theme === 'light' ? 'dark' : 'light';
+    document.getElementById('stageThemeLabel').textContent = tmState.theme === 'light' ? 'Light' : 'Dark';
+    tmRender();
+  });
+
+  tmRender();
+</script>
+</body>
+</html>
