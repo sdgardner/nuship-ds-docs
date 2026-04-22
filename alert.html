@@ -51,12 +51,20 @@
     .tm-chain-arrow { color:var(--tm-accent); display:flex; align-items:center; flex-shrink:0; }
     .tm-chain-arrow svg { width:20px; height:20px; }
 
-    /* Hover sync */
-    .tm-row[data-slot] { cursor:pointer; border-left:3px solid transparent; margin-left:-3px; padding-left:3px; transition:border-color 120ms; }
-    .tm-row[data-slot].is-hot { border-left-color:var(--tm-accent); }
+    /* Hover sync — all rows */
+    .tm-row { cursor:pointer; border-left:3px solid transparent; transition:border-color 120ms, background 120ms; border-radius:0 4px 4px 0; }
+    .tm-row:hover, .tm-row.is-hot { border-left-color:var(--tm-accent); background:rgba(0,131,187,0.04); }
 
-    /* Size box for component tokens */
-    .tm-row-size { width:30px; height:30px; border-radius:4px; background:var(--surface-layer03); display:flex; align-items:center; justify-content:center; font-size:12px; font-weight:700; font-family:var(--mono); color:var(--text-primary); flex-shrink:0; }
+    /* Icon box for component tokens */
+    .tm-row-icon { width:30px; height:30px; border-radius:4px; background:var(--surface-layer03); display:flex; align-items:center; justify-content:center; color:var(--text-tertiary); flex-shrink:0; }
+
+    /* Token count badge */
+    .tm-count { display:inline-flex; align-items:center; gap:6px; font-size:12px; font-family:var(--mono); color:var(--text-tertiary); padding:4px 0; }
+    .tm-count-num { font-weight:700; color:var(--text-primary); }
+
+    /* Seg icons */
+    .tm-seg-item { display:inline-flex; align-items:center; justify-content:center; gap:6px; }
+    .tm-seg-icon { width:14px; height:14px; flex-shrink:0; }
   </style>
 </head>
 <body>
@@ -530,10 +538,11 @@
           <!-- RIGHT: Token rows -->
           <div class="tm-tokens-card">
             <div class="tm-tokens-head">
-              <div class="tm-seg" style="width:300px;margin:0 auto 16px;">
-                <button class="tm-seg-item tm-seg-item--active" data-tab="color">Color</button>
-                <button class="tm-seg-item" data-tab="component">Component</button>
+              <div class="tm-seg" style="width:300px;margin:0 auto 12px;">
+                <button class="tm-seg-item tm-seg-item--active" data-tab="color"><i data-lucide="palette" class="tm-seg-icon"></i> Color</button>
+                <button class="tm-seg-item" data-tab="component"><i data-lucide="ruler" class="tm-seg-icon"></i> Component</button>
               </div>
+              <div class="tm-count" id="tmCount"><span class="tm-count-num" id="tmCountNum">10</span> tokens</div>
             </div>
             <div class="tm-tokens-body" id="tmCards"></div>
           </div>
@@ -739,16 +748,21 @@
   };
 
   const componentTokens = [
-    { role:'Padding',      component:'alert/padding',      primitive:'spacing/3x',        value:'12px' },
-    { role:'Radius',       component:'alert/radius',       primitive:'radius/lg',          value:'8px' },
-    { role:'Border width', component:'alert/border-width', primitive:'border-width/thin',  value:'1px' },
-    { role:'Icon size',    component:'alert/icon/size',    primitive:'icon/md',            value:'20px' },
+    { role:'Padding',      component:'alert/padding',      primitive:'spacing/3x',        value:'12px', icon:'space' },
+    { role:'Radius',       component:'alert/radius',       primitive:'radius/lg',          value:'8px',  icon:'square-round-corner' },
+    { role:'Border width', component:'alert/border-width', primitive:'border-width/thin',  value:'1px',  icon:'separator-horizontal' },
+    { role:'Icon size',    component:'alert/icon/size',    primitive:'icon/md',            value:'20px', icon:'scan' },
   ];
+
+  const totalTokens = Object.keys(alertSpec.error).length + componentTokens.length;
 
   const tmState = { variant:'info', tab:'color' };
   const tmAlert = document.getElementById('tmAlert');
   const tmCards = document.getElementById('tmCards');
   const arrowSvg = '<svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="width:20px;height:20px"><circle cx="5" cy="10" r="3"/><path d="M8 10h9m-3-3 3 3-3 3"/></svg>';
+
+  // Set total count
+  document.getElementById('tmCountNum').textContent = totalTokens;
 
   function tmRender() {
     const spec = alertSpec[tmState.variant];
@@ -782,8 +796,8 @@
       }
     } else {
       for (const ct of componentTokens) {
-        html += '<div class="tm-row">'
-          + '<div class="tm-row-header"><div class="tm-row-size">'+parseInt(ct.value)+'</div><div class="tm-row-label">'+ct.role+'</div></div>'
+        html += '<div class="tm-row" data-slot="'+ct.role.toLowerCase().replace(/ /g,'-')+'">'
+          + '<div class="tm-row-header"><div class="tm-row-icon"><i data-lucide="'+ct.icon+'" style="width:16px;height:16px"></i></div><div class="tm-row-label">'+ct.role+'</div></div>'
           + '<div class="tm-chain-row">'
           + '<div class="tm-chip">'+ct.component+'</div>'
           + '<div class="tm-chain-arrow">'+arrowSvg+'</div>'
@@ -794,6 +808,19 @@
       }
     }
     tmCards.innerHTML = html;
+
+    // Hover sync: highlight row ↔ alert slot
+    document.querySelectorAll('.tm-row[data-slot]').forEach(row => {
+      const slot = row.dataset.slot;
+      row.addEventListener('mouseenter', () => {
+        row.classList.add('is-hot');
+        const alertSlot = tmAlert.querySelector('.tm-alert-' + slot) || tmAlert.querySelector('[class*="'+slot+'"]');
+      });
+      row.addEventListener('mouseleave', () => {
+        row.classList.remove('is-hot');
+      });
+    });
+
     lucide.createIcons();
   }
 
