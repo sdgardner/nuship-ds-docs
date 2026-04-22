@@ -9,92 +9,26 @@
   <link rel="stylesheet" href="styles.css">
   <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.min.js"></script>
   <style>
-    :root { --mono: ui-monospace, "SF Mono", "Menlo", Consolas, monospace; --tm-accent: #027CB1; }
-
-    /* Layout */
-    .tm-map { display:grid; grid-template-columns:1fr 1fr; gap:24px; align-items:start; }
-    @media (max-width:960px) { .tm-map { grid-template-columns:1fr; } }
-
-    /* Left: preview card */
-    .tm-preview-card { border:1px solid #E5E7EB; border-radius:6px; padding:0; display:flex; flex-direction:column; overflow:hidden; box-shadow:0 1px 3px rgba(55,65,80,0.08); min-height:520px; transition:background 180ms; }
-    .tm-preview-card[data-bg="light"] { background:#F4F6F8; }
-    .tm-preview-card[data-bg="dark"]  { background:#0A0A0A; }
-    .tm-preview-inner { flex:1; display:flex; align-items:center; justify-content:center; padding:48px 32px; }
-
-    /* Preview controls row */
-    .tm-preview-controls { display:flex; align-items:center; justify-content:space-between; gap:12px; margin-bottom:16px; }
-    .tm-mode-toggle { display:inline-flex; align-items:center; gap:8px; cursor:pointer; }
-    .tm-mode-toggle .sw-track { transition:background 150ms; }
-    .tm-mode-label { font-size:12px; font-weight:700; color:var(--text-secondary); }
-
-    /* Variant segmented control */
-    .tm-seg { display:inline-flex; border:1px solid var(--border); border-radius:4px; overflow:hidden; }
-    .tm-seg-item { flex:1; padding:8px 16px; font-size:14px; font-family:inherit; line-height:19px; text-align:center; border:none; border-right:1px solid var(--border); background:var(--surface-layer02); color:var(--text-secondary); cursor:pointer; white-space:nowrap; }
-    .tm-seg-item:last-child { border-right:none; }
-    .tm-seg-item--active { background:var(--action-secondary); color:#FFFFFF; border-color:var(--action-secondary); }
-
-    /* Alert inside preview */
+    /* Alert-specific token map preview + spotlights */
     .tm-alert { width:100%; max-width:396px; border-radius:8px; border:1px solid; padding:12px; display:grid; grid-template-columns:20px 1fr 20px; gap:12px; align-items:start; transition:background 180ms, border-color 180ms; position:relative; }
     .tm-alert-icon { width:20px; height:20px; display:flex; align-items:center; justify-content:center; margin-top:1px; }
     .tm-alert-body { min-width:0; }
     .tm-alert-header { font-size:16px; font-weight:700; line-height:22px; margin:0 0 4px; }
     .tm-alert-desc   { font-size:14px; line-height:19px; margin:0; }
     .tm-alert-dismiss { width:20px; height:20px; display:flex; align-items:center; justify-content:center; cursor:pointer; margin-top:1px; }
-
-    /* Spotlight: highlight parts of the alert on hover */
     .tm-alert [data-part] { transition:outline-color 150ms, opacity 150ms; outline:2px solid transparent; outline-offset:2px; border-radius:3px; }
     .tm-alert.has-spotlight [data-part] { opacity:0.3; }
     .tm-alert.has-spotlight [data-part].spotlight { opacity:1; outline-color:var(--tm-accent); }
-    /* Background/border spotlight uses the alert itself */
     .tm-alert.spotlight-bg { outline:2px solid var(--tm-accent); outline-offset:2px; }
     .tm-alert.spotlight-border { outline:2px dashed var(--tm-accent); outline-offset:2px; }
-    /* Component token spotlights */
     .tm-alert.spotlight-padding { outline:2px solid #FF4081; outline-offset:-1px; }
     .tm-alert.spotlight-padding::after { content:'12px'; position:absolute; top:4px; left:4px; font-size:10px; font-family:var(--mono); color:#FF4081; background:rgba(255,255,255,0.9); padding:1px 4px; border-radius:2px; }
-    .tm-alert.spotlight-radius { border-radius:8px; outline:2px solid #FF4081; outline-offset:2px; }
+    .tm-alert.spotlight-radius { outline:2px solid #FF4081; outline-offset:2px; }
     .tm-alert.spotlight-radius::after { content:'8px'; position:absolute; top:-16px; left:-2px; font-size:10px; font-family:var(--mono); color:#FF4081; background:rgba(255,255,255,0.9); padding:1px 4px; border-radius:2px; }
     .tm-alert.spotlight-border-width { outline:2px solid #FF4081; outline-offset:0; }
     .tm-alert.spotlight-border-width::after { content:'1px'; position:absolute; top:-16px; right:40px; font-size:10px; font-family:var(--mono); color:#FF4081; background:rgba(255,255,255,0.9); padding:1px 4px; border-radius:2px; font-weight:700; }
     .tm-alert.spotlight-icon-size .tm-alert-icon { outline:2px solid #FF4081; outline-offset:2px; border-radius:3px; }
     .tm-alert.spotlight-icon-size::after { content:'20px'; position:absolute; top:4px; left:38px; font-size:10px; font-family:var(--mono); color:#FF4081; background:rgba(255,255,255,0.9); padding:1px 4px; border-radius:2px; font-weight:700; }
-
-    /* Right: tokens card — same height as preview, scrolls internally */
-    .tm-tokens-card { background:var(--surface-card, #FFFFFF); border:1px solid #E5E7EB; border-radius:8px; box-shadow:none; display:flex; flex-direction:column; height:520px; }
-    .tm-tokens-head { padding:16px 24px 0; flex-shrink:0; }
-    .tm-tokens-body { padding:0 24px 24px; overflow-y:auto; flex:1; min-height:0; }
-
-    /* Token rows */
-    .tm-row { border-bottom:1px solid #E5E7EB; padding:18px 0; }
-    .tm-row:last-child { border-bottom:none; }
-    .tm-row-header { display:flex; align-items:center; gap:14px; margin-bottom:12px; }
-    .tm-row-swatch { width:30px; height:30px; border-radius:4px; flex-shrink:0; }
-    .tm-row-label { font-size:16px; font-weight:700; line-height:20px; color:var(--text-secondary); }
-
-    /* Chain: horizontal pills with arrows */
-    .tm-chain-row { display:flex; align-items:center; gap:10px; flex-wrap:wrap; }
-    .tm-chip { display:inline-flex; align-items:center; justify-content:center; padding:6px 10px; border:1px solid var(--border-strong); border-radius:4px; box-shadow:0 1px 3px rgba(55,65,80,0.08); font-family:var(--mono); font-size:12px; font-weight:400; line-height:16px; color:var(--text-secondary); white-space:nowrap; background:var(--surface-card, #FFFFFF); }
-    .tm-chain-arrow { color:var(--tm-accent); display:flex; align-items:center; flex-shrink:0; }
-    .tm-chain-arrow svg { width:20px; height:20px; }
-
-    /* Hover sync — all rows */
-    .tm-row { cursor:pointer; transition:background 120ms; border-radius:4px; padding:16px 12px; margin:0 -12px; }
-    .tm-row:hover, .tm-row.is-hot { background:var(--surface-layer01-hover); }
-
-    /* Icon box for component tokens */
-    .tm-row-icon { width:30px; height:30px; border-radius:4px; background:#FDE8F0; display:flex; align-items:center; justify-content:center; color:#FF4081; flex-shrink:0; }
-
-    /* Tokens header with count */
-    .tm-tokens-title { display:flex; align-items:baseline; gap:10px; margin:0 0 16px; }
-    .tm-tokens-title h5 { font-size:16px; font-weight:700; line-height:20px; margin:0; color:var(--text-primary); }
-    .tm-tokens-title .tm-count { font-size:12px; font-weight:700; line-height:16px; color:var(--text-tertiary); letter-spacing:0.02em; }
-    .tm-tokens-helper { font-size:12px; font-weight:400; line-height:16px; color:var(--text-secondary); margin:0 0 16px; }
-
-    /* Color swatch icon tint */
-    .tm-row-swatch { border:1px solid rgba(0,0,0,0.08); }
-
-    /* Seg icons */
-    .tm-seg-item { display:inline-flex; align-items:center; justify-content:center; gap:6px; }
-    .tm-seg-icon { width:14px; height:14px; flex-shrink:0; }
   </style>
 </head>
 <body>
