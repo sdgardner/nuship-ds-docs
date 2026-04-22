@@ -26,12 +26,20 @@
     .tm-seg-item--active { background:var(--action-secondary); color:#FFFFFF; border-color:var(--action-secondary); }
 
     /* Alert inside preview */
-    .tm-alert { width:100%; max-width:396px; border-radius:8px; border:1px solid; padding:12px; display:grid; grid-template-columns:20px 1fr 20px; gap:12px; align-items:start; transition:background 180ms, border-color 180ms; }
+    .tm-alert { width:100%; max-width:396px; border-radius:8px; border:1px solid; padding:12px; display:grid; grid-template-columns:20px 1fr 20px; gap:12px; align-items:start; transition:background 180ms, border-color 180ms; position:relative; }
     .tm-alert-icon { width:20px; height:20px; display:flex; align-items:center; justify-content:center; margin-top:1px; }
     .tm-alert-body { min-width:0; }
     .tm-alert-header { font-size:16px; font-weight:700; line-height:22px; margin:0 0 4px; }
     .tm-alert-desc   { font-size:14px; line-height:19px; margin:0; }
     .tm-alert-dismiss { width:20px; height:20px; display:flex; align-items:center; justify-content:center; cursor:pointer; margin-top:1px; }
+
+    /* Spotlight: highlight parts of the alert on hover */
+    .tm-alert [data-part] { transition:outline-color 150ms, opacity 150ms; outline:2px solid transparent; outline-offset:2px; border-radius:3px; }
+    .tm-alert.has-spotlight [data-part] { opacity:0.3; }
+    .tm-alert.has-spotlight [data-part].spotlight { opacity:1; outline-color:var(--tm-accent); }
+    /* Background/border spotlight uses the alert itself */
+    .tm-alert.spotlight-bg { outline:2px solid var(--tm-accent); outline-offset:2px; }
+    .tm-alert.spotlight-border { outline:2px dashed var(--tm-accent); outline-offset:2px; }
 
     /* Right: tokens card — scrollable */
     .tm-tokens-card { background:var(--surface-card, #FFFFFF); border:1px solid #E5E7EB; border-radius:8px; box-shadow:none; display:flex; flex-direction:column; max-height:520px; }
@@ -53,7 +61,7 @@
 
     /* Hover sync — all rows */
     .tm-row { cursor:pointer; border-left:3px solid transparent; transition:border-color 120ms, background 120ms; border-radius:0 4px 4px 0; }
-    .tm-row:hover, .tm-row.is-hot { border-left-color:var(--tm-accent); background:rgba(0,131,187,0.04); }
+    .tm-row:hover, .tm-row.is-hot { border-left-color:var(--tm-accent); background:var(--surface-layer01-hover); }
 
     /* Icon box for component tokens */
     .tm-row-icon { width:30px; height:30px; border-radius:4px; background:var(--surface-layer03); display:flex; align-items:center; justify-content:center; color:#FF4081; flex-shrink:0; }
@@ -528,12 +536,12 @@
             <div class="tm-preview-card">
               <div class="tm-preview-inner">
                 <div class="tm-alert" id="tmAlert">
-                  <span class="tm-alert-icon"><i data-lucide="info" style="width:20px;height:20px"></i></span>
+                  <span class="tm-alert-icon" data-part="icon"><i data-lucide="info" style="width:20px;height:20px"></i></span>
                   <div class="tm-alert-body">
-                    <p class="tm-alert-header">Alert Header</p>
-                    <p class="tm-alert-desc">Descriptive text</p>
+                    <p class="tm-alert-header" data-part="headerText">Alert Header</p>
+                    <p class="tm-alert-desc" data-part="descriptionText">Descriptive text</p>
                   </div>
-                  <span class="tm-alert-dismiss"><i data-lucide="x" style="width:20px;height:20px"></i></span>
+                  <span class="tm-alert-dismiss" data-part="dismissIcon"><i data-lucide="x" style="width:20px;height:20px"></i></span>
                 </div>
               </div>
             </div>
@@ -816,15 +824,30 @@
     }
     tmCards.innerHTML = html;
 
-    // Hover sync: highlight row ↔ alert slot
+    // Hover sync: highlight row + spotlight on alert
+    function clearSpotlight() {
+      tmAlert.classList.remove('has-spotlight', 'spotlight-bg', 'spotlight-border');
+      tmAlert.querySelectorAll('[data-part]').forEach(p => p.classList.remove('spotlight'));
+    }
+
     document.querySelectorAll('.tm-row[data-slot]').forEach(row => {
       const slot = row.dataset.slot;
       row.addEventListener('mouseenter', () => {
         row.classList.add('is-hot');
-        const alertSlot = tmAlert.querySelector('.tm-alert-' + slot) || tmAlert.querySelector('[class*="'+slot+'"]');
+        // Spotlight on the alert
+        if (slot === 'background') {
+          tmAlert.classList.add('has-spotlight', 'spotlight-bg');
+        } else if (slot === 'border') {
+          tmAlert.classList.add('has-spotlight', 'spotlight-border');
+        } else {
+          tmAlert.classList.add('has-spotlight');
+          const part = tmAlert.querySelector('[data-part="'+slot+'"]');
+          if (part) part.classList.add('spotlight');
+        }
       });
       row.addEventListener('mouseleave', () => {
         row.classList.remove('is-hot');
+        clearSpotlight();
       });
     });
 
