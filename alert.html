@@ -8,6 +8,49 @@
   <link rel="stylesheet" href="tokens.css">
   <link rel="stylesheet" href="styles.css">
   <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.min.js"></script>
+  <style>
+    :root { --mono: ui-monospace, "SF Mono", "Menlo", Consolas, monospace; --tm-accent: #0083bb; }
+    .tm-controls { display:flex; align-items:center; justify-content:space-between; gap:12px; margin-bottom:20px; flex-wrap:wrap; }
+    .tm-pills { display:inline-flex; padding:3px; background:var(--surface-layer01); border:1px solid var(--border); border-radius:6px; gap:2px; }
+    .tm-pill { border:0; background:transparent; font-family:inherit; font-size:13px; color:var(--text-tertiary); padding:5px 14px; border-radius:4px; cursor:pointer; transition:background 120ms, color 120ms; }
+    .tm-pill:hover { color:var(--text-primary); }
+    .tm-pill[aria-pressed="true"] { background:var(--surface-layer02); color:var(--text-primary); box-shadow:inset 0 0 0 1px var(--border); }
+    .tm-theme-btn { display:inline-flex; align-items:center; gap:6px; font-size:12px; font-family:inherit; color:var(--text-tertiary); padding:5px 12px; border-radius:6px; border:1px solid var(--border); background:var(--surface-layer01); cursor:pointer; }
+    .tm-theme-btn:hover { color:var(--text-primary); }
+    .tm-map { display:grid; grid-template-columns:1fr 360px; gap:20px; align-items:start; }
+    @media (max-width:900px) { .tm-map { grid-template-columns:1fr; } }
+    .tm-stage { position:relative; border-radius:8px; border:1px solid var(--border); padding:64px 32px; min-height:280px; display:flex; align-items:center; justify-content:center; transition:background 180ms; }
+    .tm-stage[data-bg="light"] { background:#FFFFFF; }
+    .tm-stage[data-bg="dark"]  { background:#0A0A0A; }
+    .tm-stage-label { position:absolute; top:12px; left:16px; font-size:11px; font-family:var(--mono); letter-spacing:0.04em; color:var(--text-tertiary); }
+    .tm-stage[data-bg="dark"] .tm-stage-label { color:#6B7280; }
+    .tm-alert { width:100%; max-width:420px; border-radius:8px; border:1px solid; padding:12px; display:grid; grid-template-columns:20px 1fr 20px; gap:12px; align-items:start; position:relative; transition:background 180ms, border-color 180ms; }
+    .tm-alert-icon { width:20px; height:20px; display:flex; align-items:center; justify-content:center; margin-top:1px; }
+    .tm-alert-body { min-width:0; }
+    .tm-alert-header { font-size:14px; font-weight:700; line-height:1.4; margin:0 0 2px; }
+    .tm-alert-desc   { font-size:14px; line-height:1.4; margin:0; }
+    .tm-alert-dismiss { width:20px; height:20px; display:flex; align-items:center; justify-content:center; cursor:pointer; margin-top:1px; }
+    [data-slot] { position:relative; cursor:pointer; outline:2px solid transparent; outline-offset:3px; border-radius:3px; transition:outline-color 120ms; }
+    [data-slot].is-hot { outline-color:var(--tm-accent); }
+    .tm-pin { position:absolute; top:-10px; font-size:10px; font-family:var(--mono); letter-spacing:0.04em; padding:2px 8px; border-radius:10px; background:var(--surface-layer01); border:1px solid var(--border); color:var(--text-tertiary); cursor:pointer; text-transform:uppercase; transition:color 120ms, border-color 120ms; z-index:2; }
+    .tm-pin:hover { color:var(--text-primary); border-color:var(--text-tertiary); }
+    .tm-pin.is-hot { color:var(--tm-accent); border-color:var(--tm-accent); }
+    .tm-pin[data-slot="background"] { left:16px; }
+    .tm-pin[data-slot="border"]     { right:16px; }
+    .tm-cards { display:flex; flex-direction:column; gap:8px; }
+    .tm-cards-label { font-size:10px; font-family:var(--mono); letter-spacing:0.06em; text-transform:uppercase; color:var(--text-tertiary); margin:12px 0 4px; }
+    .tm-cards-label:first-child { margin-top:0; }
+    .tm-card { display:grid; grid-template-columns:28px 1fr; gap:12px; padding:12px 14px; background:var(--surface-layer01); border:1px solid var(--border); border-radius:6px; cursor:pointer; transition:border-color 120ms; }
+    .tm-card:hover, .tm-card.is-hot { border-color:var(--tm-accent); }
+    .tm-card.is-hot { box-shadow:inset 3px 0 0 var(--tm-accent); padding-left:11px; }
+    .tm-swatch { width:28px; height:28px; border-radius:6px; border:1px solid var(--border); margin-top:2px; }
+    .tm-size-box { width:28px; height:28px; border-radius:6px; background:var(--surface-layer03); display:flex; align-items:center; justify-content:center; font-size:11px; font-weight:700; font-family:var(--mono); color:var(--text-primary); margin-top:2px; }
+    .tm-role { font-size:10px; letter-spacing:0.06em; color:var(--text-tertiary); text-transform:uppercase; margin:0 0 4px; font-weight:500; }
+    .tm-chain { font-family:var(--mono); font-size:12px; line-height:1.5; color:var(--text-secondary); word-break:break-all; }
+    .tm-arrow { color:var(--text-tertiary); margin:0 4px; }
+    .tm-hex   { color:var(--text-primary); font-weight:500; }
+    .tm-meta { margin-top:14px; font-size:12px; color:var(--text-tertiary); display:flex; justify-content:space-between; font-family:var(--mono); }
+  </style>
 </head>
 <body>
 
@@ -450,45 +493,43 @@
         </div>
       </section>
 
-      <!-- 6 · TOKENS USED -->
+      <!-- 6 · TOKEN MAP -->
       <section class="doc-section" id="tokens">
-        <h2 class="section-title">Tokens used</h2>
-        <div class="tokens-grid">
+        <h2 class="section-title">Token Map</h2>
+        <p style="font-size:14px;color:var(--text-secondary);margin:0 0 20px;line-height:1.5;">Hover a part of the component to trace its token chain. Tokens resolve <strong>semantic → primitive → value</strong>.</p>
 
-          <!-- Light -->
-          <div>
-            <div class="tokens-group-label">Light</div>
-            <table class="tokens-table">
-              <thead><tr><th>Property</th><th>Token</th><th></th></tr></thead>
-              <tbody>
-                <tr><td>Error bg</td><td class="t-tok">color/status/error/bg</td><td class="t-sw"><div class="swatch" style="background:#FCE8E8;"></div></td></tr>
-                <tr><td>Error border</td><td class="t-tok">color/status/error/border</td><td class="t-sw"><div class="swatch" style="background:#A12F2F;"></div></td></tr>
-                <tr><td>Success bg</td><td class="t-tok">color/status/success/bg</td><td class="t-sw"><div class="swatch" style="background:#E8F2E8;"></div></td></tr>
-                <tr><td>Success border</td><td class="t-tok">color/status/success/border</td><td class="t-sw"><div class="swatch" style="background:#006C21;"></div></td></tr>
-                <tr><td>Info bg</td><td class="t-tok">color/status/info/bg</td><td class="t-sw"><div class="swatch" style="background:#E5EEF5;"></div></td></tr>
-                <tr><td>Info border</td><td class="t-tok">color/status/info/border</td><td class="t-sw"><div class="swatch" style="background:#027CB1;"></div></td></tr>
-                <tr><td>Text</td><td class="t-tok">color/text/primary</td><td class="t-sw"><div class="swatch" style="background:#374151;"></div></td></tr>
-              </tbody>
-            </table>
+        <div class="tm-controls">
+          <div class="tm-pills" role="tablist">
+            <button class="tm-pill" data-variant="error" aria-pressed="true">Error</button>
+            <button class="tm-pill" data-variant="success" aria-pressed="false">Success</button>
+            <button class="tm-pill" data-variant="info" aria-pressed="false">Info</button>
           </div>
+          <button class="tm-theme-btn" id="stageThemeToggle">
+            <i data-lucide="sun" style="width:14px;height:14px"></i>
+            <span id="stageThemeLabel">Light</span>
+          </button>
+        </div>
 
-          <!-- Dark -->
-          <div>
-            <div class="tokens-group-label">Dark</div>
-            <table class="tokens-table">
-              <thead><tr><th>Property</th><th>Token</th><th></th></tr></thead>
-              <tbody>
-                <tr><td>Error bg</td><td class="t-tok">color/status/error/bg</td><td class="t-sw"><div class="swatch" style="background:#811F1F;border-color:rgba(255,255,255,.1)"></div></td></tr>
-                <tr><td>Error border</td><td class="t-tok">color/status/error/border</td><td class="t-sw"><div class="swatch" style="background:#DB3939;"></div></td></tr>
-                <tr><td>Success bg</td><td class="t-tok">color/status/success/bg</td><td class="t-sw"><div class="swatch" style="background:#003322;border-color:rgba(255,255,255,.1)"></div></td></tr>
-                <tr><td>Success border</td><td class="t-tok">color/status/success/border</td><td class="t-sw"><div class="swatch" style="background:#4DAD82;"></div></td></tr>
-                <tr><td>Info bg</td><td class="t-tok">color/status/info/bg</td><td class="t-sw"><div class="swatch" style="background:#001F33;border-color:rgba(255,255,255,.1)"></div></td></tr>
-                <tr><td>Info border</td><td class="t-tok">color/status/info/border</td><td class="t-sw"><div class="swatch" style="background:#8FCBE6;"></div></td></tr>
-                <tr><td>Text</td><td class="t-tok">color/text/primary</td><td class="t-sw"><div class="swatch" style="background:#FFFFFF;border-color:rgba(0,0,0,.1)"></div></td></tr>
-              </tbody>
-            </table>
+        <div class="tm-map">
+          <div class="tm-stage" data-bg="light" id="tmStage">
+            <span class="tm-stage-label" id="tmStageLabel">skid-semantic / light</span>
+            <div class="tm-alert" id="tmAlert">
+              <span class="tm-pin" data-slot="background">bg</span>
+              <span class="tm-pin" data-slot="border">border</span>
+              <span class="tm-alert-icon" data-slot="icon"><i data-lucide="circle-alert" style="width:20px;height:20px"></i></span>
+              <div class="tm-alert-body">
+                <p class="tm-alert-header" data-slot="headerText">Alert Header</p>
+                <p class="tm-alert-desc" data-slot="descriptionText">This is a description of the alert with helpful context for the user.</p>
+              </div>
+              <span class="tm-alert-dismiss" data-slot="dismissIcon"><i data-lucide="x" style="width:16px;height:16px"></i></span>
+            </div>
           </div>
+          <div id="tmCards"></div>
+        </div>
 
+        <div class="tm-meta">
+          <span id="tmTokenCount"></span>
+          <span id="tmPath"></span>
         </div>
       </section>
 
@@ -627,6 +668,134 @@
     const el = document.getElementById(id);
     if (el) observer.observe(el);
   });
+
+  // ══════════════════════════════════════════
+  // TOKEN MAP
+  // ══════════════════════════════════════════
+  const semantic = {
+    light: {
+      'color/status/error/bg':      { ref:'color/red/50',    hex:'#FCE8E8' },
+      'color/status/error/border':   { ref:'color/red/800',   hex:'#A12F2F' },
+      'color/status/error/icon':     { ref:'color/red/800',   hex:'#A12F2F' },
+      'color/status/success/bg':     { ref:'color/green/50',  hex:'#E8F2E8' },
+      'color/status/success/border': { ref:'color/green/700', hex:'#006C21' },
+      'color/status/success/icon':   { ref:'color/green/700', hex:'#006C21' },
+      'color/status/info/bg':        { ref:'color/blue/50',   hex:'#E5EEF5' },
+      'color/status/info/border':    { ref:'color/blue/600',  hex:'#027CB1' },
+      'color/status/info/icon':      { ref:'color/blue/600',  hex:'#027CB1' },
+      'color/text/primary':          { ref:'color/gray/700',  hex:'#374151' },
+      'color/text/secondary':        { ref:'color/gray/600',  hex:'#4B5563' },
+      'color/icon/default':          { ref:'color/gray/600',  hex:'#4B5563' },
+    },
+    dark: {
+      'color/status/error/bg':      { ref:'color/red/900',   hex:'#811F1F' },
+      'color/status/error/border':   { ref:'color/red/600',   hex:'#DB3939' },
+      'color/status/error/icon':     { ref:'color/red/100',   hex:'#F8D0D0' },
+      'color/status/success/bg':     { ref:'color/green/900', hex:'#003322' },
+      'color/status/success/border': { ref:'color/green/400', hex:'#4DAD82' },
+      'color/status/success/icon':   { ref:'color/green/500', hex:'#33A17A' },
+      'color/status/info/bg':        { ref:'color/blue/900',  hex:'#001F33' },
+      'color/status/info/border':    { ref:'color/blue/300',  hex:'#8FCBE6' },
+      'color/status/info/icon':      { ref:'color/blue/300',  hex:'#8FCBE6' },
+      'color/text/primary':          { ref:'color/gray/0',    hex:'#FFFFFF' },
+      'color/text/secondary':        { ref:'color/gray/200',  hex:'#E5E7EB' },
+      'color/icon/default':          { ref:'color/gray/200',  hex:'#E5E7EB' },
+    },
+  };
+
+  const alertSpec = {
+    error: {
+      background:      { role:'Background',  token:'color/status/error/bg' },
+      border:          { role:'Border',       token:'color/status/error/border' },
+      icon:            { role:'Icon',         token:'color/status/error/icon' },
+      headerText:      { role:'Header text',  token:'color/text/primary' },
+      descriptionText: { role:'Description',  token:'color/text/secondary' },
+      dismissIcon:     { role:'Dismiss icon', token:'color/icon/default' },
+    },
+    success: {
+      background:      { role:'Background',  token:'color/status/success/bg' },
+      border:          { role:'Border',       token:'color/status/success/border' },
+      icon:            { role:'Icon',         token:'color/status/success/icon' },
+      headerText:      { role:'Header text',  token:'color/text/primary' },
+      descriptionText: { role:'Description',  token:'color/text/secondary' },
+      dismissIcon:     { role:'Dismiss icon', token:'color/icon/default' },
+    },
+    info: {
+      background:      { role:'Background',  token:'color/status/info/bg' },
+      border:          { role:'Border',       token:'color/status/info/border' },
+      icon:            { role:'Icon',         token:'color/status/info/icon' },
+      headerText:      { role:'Header text',  token:'color/text/primary' },
+      descriptionText: { role:'Description',  token:'color/text/secondary' },
+      dismissIcon:     { role:'Dismiss icon', token:'color/icon/default' },
+    },
+  };
+
+  const componentTokens = [
+    { role:'Padding',      component:'alert/padding',      primitive:'spacing/3x',        value:'12px' },
+    { role:'Radius',       component:'alert/radius',       primitive:'radius/lg',          value:'8px' },
+    { role:'Border width', component:'alert/border-width', primitive:'border-width/thin',  value:'1px' },
+    { role:'Icon size',    component:'alert/icon/size',    primitive:'icon/md',            value:'20px' },
+  ];
+
+  const tmState = { variant:'error', theme:'light' };
+  const tmAlert = document.getElementById('tmAlert');
+  const tmCards = document.getElementById('tmCards');
+
+  function tmRender() {
+    const spec = alertSpec[tmState.variant];
+    const theme = tmState.theme;
+    const resolved = {};
+    for (const [slot, meta] of Object.entries(spec)) {
+      const sem = semantic[theme][meta.token];
+      resolved[slot] = { ...meta, chain:[meta.token, sem.ref, sem.hex], hex:sem.hex };
+    }
+
+    tmAlert.style.background  = resolved.background.hex;
+    tmAlert.style.borderColor = resolved.border.hex;
+    tmAlert.querySelector('[data-slot="icon"]').style.color            = resolved.icon.hex;
+    tmAlert.querySelector('[data-slot="headerText"]').style.color      = resolved.headerText.hex;
+    tmAlert.querySelector('[data-slot="descriptionText"]').style.color = resolved.descriptionText.hex;
+    tmAlert.querySelector('[data-slot="dismissIcon"]').style.color     = resolved.dismissIcon.hex;
+
+    document.getElementById('tmStage').setAttribute('data-bg', theme);
+    document.getElementById('tmStageLabel').textContent = 'skid-semantic / ' + theme;
+    document.getElementById('tmPath').textContent = 'skid-semantic/' + theme + ' · alert.' + tmState.variant;
+
+    let html = '<div class="tm-cards-label">Color tokens</div><div class="tm-cards">';
+    for (const [slot, m] of Object.entries(resolved)) {
+      const ch = m.chain.map((n,i) => i === m.chain.length-1 ? '<span class="tm-hex">'+n+'</span>' : n+'<span class="tm-arrow">→</span>').join('');
+      const bf = ['#FFFFFF','#FCE8E8','#E8F2E8','#E5EEF5'].includes(m.hex) ? 'border-color:#CDD2D7' : '';
+      html += '<div class="tm-card" data-slot="'+slot+'"><div class="tm-swatch" style="background:'+m.hex+';'+bf+'"></div><div><p class="tm-role">'+m.role+'</p><div class="tm-chain">'+ch+'</div></div></div>';
+    }
+    html += '</div><div class="tm-cards-label" style="margin-top:20px;">Component tokens</div><div class="tm-cards">';
+    for (const ct of componentTokens) {
+      html += '<div class="tm-card"><div class="tm-size-box">'+parseInt(ct.value)+'</div><div><p class="tm-role">'+ct.role+'</p><div class="tm-chain">'+ct.component+'<span class="tm-arrow">→</span>'+ct.primitive+'<span class="tm-arrow">→</span><span class="tm-hex">'+ct.value+'</span></div></div></div>';
+    }
+    html += '</div>';
+    tmCards.innerHTML = html;
+    document.getElementById('tmTokenCount').textContent = (Object.keys(resolved).length + componentTokens.length) + ' tokens';
+
+    document.querySelectorAll('[data-slot]').forEach(el => {
+      const s = el.dataset.slot;
+      el.addEventListener('mouseenter', () => document.querySelectorAll('[data-slot="'+s+'"]').forEach(e => e.classList.add('is-hot')));
+      el.addEventListener('mouseleave', () => document.querySelectorAll('[data-slot="'+s+'"]').forEach(e => e.classList.remove('is-hot')));
+    });
+    lucide.createIcons();
+  }
+
+  document.querySelectorAll('.tm-pill').forEach(btn => {
+    btn.addEventListener('click', () => {
+      tmState.variant = btn.dataset.variant;
+      document.querySelectorAll('.tm-pill').forEach(b => b.setAttribute('aria-pressed', b === btn ? 'true' : 'false'));
+      tmRender();
+    });
+  });
+  document.getElementById('stageThemeToggle').addEventListener('click', () => {
+    tmState.theme = tmState.theme === 'light' ? 'dark' : 'light';
+    document.getElementById('stageThemeLabel').textContent = tmState.theme === 'light' ? 'Light' : 'Dark';
+    tmRender();
+  });
+  tmRender();
 </script>
 </body>
 </html>
