@@ -12,11 +12,11 @@
     :root { --mono: ui-monospace, "SF Mono", "Menlo", Consolas, monospace; --tm-accent: #027CB1; }
 
     /* Layout */
-    .tm-map { display:grid; grid-template-columns:1fr 1fr; gap:24px; align-items:stretch; }
+    .tm-map { display:grid; grid-template-columns:1fr 1fr; gap:24px; align-items:start; }
     @media (max-width:960px) { .tm-map { grid-template-columns:1fr; } }
 
     /* Left: preview card */
-    .tm-preview-card { border:1px solid #E5E7EB; border-radius:6px; padding:0; display:flex; flex-direction:column; overflow:hidden; box-shadow:0 1px 3px rgba(55,65,80,0.08); transition:background 180ms; }
+    .tm-preview-card { border:1px solid #E5E7EB; border-radius:6px; padding:0; display:flex; flex-direction:column; overflow:hidden; box-shadow:0 1px 3px rgba(55,65,80,0.08); min-height:520px; transition:background 180ms; }
     .tm-preview-card[data-bg="light"] { background:#F4F6F8; }
     .tm-preview-card[data-bg="dark"]  { background:#0A0A0A; }
     .tm-preview-inner { flex:1; display:flex; align-items:center; justify-content:center; padding:48px 32px; }
@@ -58,8 +58,8 @@
     .tm-alert.spotlight-icon-size .tm-alert-icon { outline:2px solid #FF4081; outline-offset:2px; border-radius:3px; }
     .tm-alert.spotlight-icon-size::after { content:'20px'; position:absolute; top:4px; left:38px; font-size:10px; font-family:var(--mono); color:#FF4081; background:rgba(255,255,255,0.9); padding:1px 4px; border-radius:2px; font-weight:700; }
 
-    /* Right: tokens card — stretches to match preview */
-    .tm-tokens-card { background:var(--surface-card, #FFFFFF); border:1px solid #E5E7EB; border-radius:8px; box-shadow:none; display:flex; flex-direction:column; }
+    /* Right: tokens card — same height as preview, scrolls internally */
+    .tm-tokens-card { background:var(--surface-card, #FFFFFF); border:1px solid #E5E7EB; border-radius:8px; box-shadow:none; display:flex; flex-direction:column; height:520px; }
     .tm-tokens-head { padding:16px 24px 0; flex-shrink:0; }
     .tm-tokens-body { padding:0 24px 24px; overflow-y:auto; flex:1; min-height:0; }
 
