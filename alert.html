@@ -16,8 +16,15 @@
     @media (max-width:960px) { .tm-map { grid-template-columns:1fr; } }
 
     /* Left: preview card */
-    .tm-preview-card { background:var(--surface-layer02); border:1px solid #E5E7EB; border-radius:6px; padding:0; display:flex; flex-direction:column; overflow:hidden; box-shadow:0 1px 3px rgba(55,65,80,0.08); min-height:480px; }
+    .tm-preview-card { border:1px solid #E5E7EB; border-radius:6px; padding:0; display:flex; flex-direction:column; overflow:hidden; box-shadow:0 1px 3px rgba(55,65,80,0.08); min-height:480px; transition:background 180ms; }
+    .tm-preview-card[data-bg="light"] { background:#F4F6F8; }
+    .tm-preview-card[data-bg="dark"]  { background:#0A0A0A; }
     .tm-preview-inner { flex:1; display:flex; align-items:center; justify-content:center; padding:48px 32px; }
+
+    /* Preview controls row */
+    .tm-preview-controls { display:flex; align-items:center; justify-content:space-between; gap:12px; margin-bottom:16px; }
+    .tm-mode-btn { display:inline-flex; align-items:center; gap:6px; font-size:12px; font-weight:700; font-family:inherit; color:var(--text-tertiary); padding:6px 12px; border-radius:4px; border:1px solid var(--border); background:var(--surface-layer01); cursor:pointer; transition:color 120ms; }
+    .tm-mode-btn:hover { color:var(--text-primary); }
 
     /* Variant segmented control */
     .tm-seg { display:inline-flex; border:1px solid var(--border); border-radius:4px; overflow:hidden; }
@@ -538,12 +545,18 @@
 
           <!-- LEFT: Preview -->
           <div>
-            <div class="tm-seg" style="margin-bottom:16px;width:300px;">
-              <button class="tm-seg-item tm-seg-item--active" data-variant="info">Information</button>
-              <button class="tm-seg-item" data-variant="success">Success</button>
-              <button class="tm-seg-item" data-variant="error">Error</button>
+            <div class="tm-preview-controls">
+              <div class="tm-seg" style="width:300px;">
+                <button class="tm-seg-item tm-seg-item--active" data-variant="info">Information</button>
+                <button class="tm-seg-item" data-variant="success">Success</button>
+                <button class="tm-seg-item" data-variant="error">Error</button>
+              </div>
+              <button class="tm-mode-btn" id="tmModeToggle">
+                <i data-lucide="moon" style="width:14px;height:14px"></i>
+                <span id="tmModeLabel">Light</span>
+              </button>
             </div>
-            <div class="tm-preview-card">
+            <div class="tm-preview-card" data-bg="light">
               <div class="tm-preview-inner">
                 <div class="tm-alert" id="tmAlert">
                   <span class="tm-alert-icon" data-part="icon"><i data-lucide="info" style="width:20px;height:20px"></i></span>
@@ -782,9 +795,10 @@
 
   const totalTokens = Object.keys(alertSpec.error).length + componentTokens.length;
 
-  const tmState = { variant:'info', tab:'color' };
+  const tmState = { variant:'info', tab:'color', mode:'light' };
   const tmAlert = document.getElementById('tmAlert');
   const tmCards = document.getElementById('tmCards');
+  const tmPreviewCard = document.querySelector('.tm-preview-card');
   const arrowSvg = '<svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="width:20px;height:20px"><circle cx="5" cy="10" r="3"/><path d="M8 10h9m-3-3 3 3-3 3"/></svg>';
 
   // Set total count
@@ -792,11 +806,15 @@
 
   function tmRender() {
     const spec = alertSpec[tmState.variant];
+    const theme = tmState.mode;
     const resolved = {};
     for (const [slot, meta] of Object.entries(spec)) {
-      const sem = semantic.light[meta.token];
+      const sem = semantic[theme][meta.token];
       resolved[slot] = { ...meta, chain:[meta.token, sem.ref, sem.hex], hex:sem.hex };
     }
+
+    // Update preview card background
+    tmPreviewCard.setAttribute('data-bg', theme);
 
     // Apply colors to alert preview
     tmAlert.style.background  = resolved.background.hex;
@@ -885,6 +903,17 @@
       btn.classList.add('tm-seg-item--active');
       tmRender();
     });
+  });
+
+  // Light/Dark mode toggle
+  document.getElementById('tmModeToggle').addEventListener('click', () => {
+    tmState.mode = tmState.mode === 'light' ? 'dark' : 'light';
+    const label = document.getElementById('tmModeLabel');
+    const icon = document.querySelector('#tmModeToggle i');
+    label.textContent = tmState.mode === 'light' ? 'Light' : 'Dark';
+    icon.setAttribute('data-lucide', tmState.mode === 'light' ? 'moon' : 'sun');
+    lucide.createIcons();
+    tmRender();
   });
 
   // Color/Component segmented control (right)
