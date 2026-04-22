@@ -643,57 +643,52 @@
         </div>
       </section>
 
-      <!-- 6 · TOKENS -->
-      <section class="doc-section" id="tokens">
-        <h2 class="section-title">Tokens used</h2>
+      <!-- 6 · TOKEN MAP -->
+            <section class="doc-section" id="tokens">
+              <h2 class="section-title">Token Map</h2>
+              <div class="tm-preview-controls">
+                <div class="tm-mode-toggle" id="tmModeToggle">
+                  <span class="tm-mode-label" id="tmModeLabel">Light</span>
+                  <div class="sw-track sw-track--compact" id="tmModeTrack"><div class="sw-thumb"></div></div>
+                </div>
+              </div>
+              <div class="tm-map">
+                <div>
+                  <div class="tm-preview-card" data-bg="light">
+                    <div class="tm-preview-inner">
+      
+                <div class="md-modal" style="position:relative;z-index:auto;box-shadow:none;max-width:320px;">
+                  <div class="md-header">
+                    <div class="md-title-group">
+                      <i data-lucide="info" class="md-icon md-icon--default"></i>
+                      <h3 class="md-title">Confirm action</h3>
+                    </div>
+                    <button class="md-close" aria-label="Close"><i data-lucide="x"></i></button>
+                  </div>
+                  <div class="md-body"><p class="md-desc">Are you sure you want to proceed?</p></div>
+                  <div class="md-footer">
+                    <button class="md-btn-cancel">Cancel</button>
+                    <button class="md-btn-confirm md-btn-confirm--default">Confirm</button>
+                  </div>
+                </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="tm-tokens-card">
+                  <div class="tm-tokens-head">
+                    <div class="tm-tokens-title"><h5>Token list</h5><span class="tm-count"><span id="tmCountNum">0</span> tokens</span></div>
+                    <p class="tm-tokens-helper">Hover a token to see where it applies on the component.</p>
+                    <div class="tm-seg" style="margin:0 0 12px;">
+                      <button class="tm-seg-item tm-seg-item--active" data-tab="color"><i data-lucide="palette" class="tm-seg-icon"></i> Color</button>
+                      <button class="tm-seg-item" data-tab="component"><i data-lucide="ruler" class="tm-seg-icon"></i> Component</button>
+                      <button class="tm-seg-item" data-tab="typography"><i data-lucide="type" class="tm-seg-icon"></i> Typography</button>
+                    </div>
+                  </div>
+                  <div class="tm-tokens-body" id="tmCards"></div>
+                </div>
+              </div>
+            </section>
 
-        <p class="tokens-cat">Container</p>
-        <table class="tokens-table">
-          <thead><tr><th>Element</th><th>Token</th><th></th></tr></thead>
-          <tbody>
-            <tr><td>Background</td><td class="t-tok">--surface-card</td><td class="t-sw"><div class="swatch" style="background:#FFFFFF;border-color:rgba(0,0,0,.1)"></div></td></tr>
-            <tr><td>Shadow</td><td class="t-tok">elevation/light/level-3</td><td class="t-sw"><div class="swatch" style="background:rgba(40,50,65,0.14);border-color:rgba(0,0,0,.1)"></div></td></tr>
-          </tbody>
-        </table>
-
-        <p class="tokens-cat">Intent — Default</p>
-        <table class="tokens-table">
-          <thead><tr><th>Element</th><th>Token</th><th></th></tr></thead>
-          <tbody>
-            <tr><td>Icon color</td><td class="t-tok">--inf-ic</td><td class="t-sw"><div class="swatch" style="background:#027CB1;"></div></td></tr>
-            <tr><td>Confirm button</td><td class="t-tok">--action-secondary</td><td class="t-sw"><div class="swatch" style="background:#027CB1;"></div></td></tr>
-          </tbody>
-        </table>
-
-        <p class="tokens-cat">Intent — Destructive</p>
-        <table class="tokens-table">
-          <thead><tr><th>Element</th><th>Token</th><th></th></tr></thead>
-          <tbody>
-            <tr><td>Icon color</td><td class="t-tok">--err-ic</td><td class="t-sw"><div class="swatch" style="background:#A12F2F;"></div></td></tr>
-            <tr><td>Confirm button</td><td class="t-tok">--action-destructive</td><td class="t-sw"><div class="swatch" style="background:#C63B3B;"></div></td></tr>
-          </tbody>
-        </table>
-
-        <p class="tokens-cat">Intent — Success</p>
-        <table class="tokens-table">
-          <thead><tr><th>Element</th><th>Token</th><th></th></tr></thead>
-          <tbody>
-            <tr><td>Icon color</td><td class="t-tok">--suc-ic</td><td class="t-sw"><div class="swatch" style="background:#006C21;"></div></td></tr>
-            <tr><td>Confirm button</td><td class="t-tok">--action-primary</td><td class="t-sw"><div class="swatch" style="background:#006C21;"></div></td></tr>
-          </tbody>
-        </table>
-
-        <p class="tokens-cat">Text &amp; Actions</p>
-        <table class="tokens-table">
-          <thead><tr><th>Element</th><th>Token</th><th></th></tr></thead>
-          <tbody>
-            <tr><td>Cancel button</td><td class="t-tok">--link-s01-default</td><td class="t-sw"><div class="swatch" style="background:#016692;"></div></td></tr>
-            <tr><td>Title</td><td class="t-tok">--text-primary</td><td class="t-sw"><div class="swatch" style="background:#374151;"></div></td></tr>
-            <tr><td>Body text</td><td class="t-tok">--text-secondary</td><td class="t-sw"><div class="swatch" style="background:#4B5563;"></div></td></tr>
-          </tbody>
-        </table>
-
-      </section>
 
       <!-- 7 · ACCESSIBILITY -->
       <section class="doc-section" id="accessibility">
@@ -834,6 +829,87 @@
       if (target) { e.preventDefault(); target.scrollIntoView({ behavior: 'smooth' }); }
     });
   });
+
+  // ══════════════════════════════════════════
+  // TOKEN MAP
+  // ══════════════════════════════════════════
+  const tmColorLight = [{"role":"Background","token":"color/surface/card","hex":"#FFFFFF"},{"role":"Shadow","token":"elevation/light/level-3","hex":"rgba(40,50,65,0.14)"},{"role":"Icon (default)","token":"color/status/info/icon","hex":"#027CB1"},{"role":"Confirm btn","token":"color/action/secondary/default","hex":"#027CB1"},{"role":"Cancel btn","token":"color/link/surface-01/default","hex":"#016692"},{"role":"Title","token":"color/text/primary","hex":"#374151"},{"role":"Body text","token":"color/text/secondary","hex":"#4B5563"}];
+  const tmColorDark = [{"role":"Background","token":"color/surface/card","hex":"#1E1E1E"},{"role":"Shadow","token":"elevation/dark/level-3","hex":"rgba(0,0,0,0.50)"},{"role":"Icon (default)","token":"color/status/info/icon","hex":"#8FCBE6"},{"role":"Confirm btn","token":"color/action/secondary/default","hex":"#35A8D6"},{"role":"Cancel btn","token":"color/link/surface-01/default","hex":"#5ABFE0"},{"role":"Title","token":"color/text/primary","hex":"#FFFFFF"},{"role":"Body text","token":"color/text/secondary","hex":"#E5E7EB"}];
+  const tmComponentTokens = [{"role":"Padding","component":"modal/padding","primitive":"spacing/6x","value":"24px","icon":"space"},{"role":"Gap","component":"modal/gap","primitive":"spacing/4x","value":"16px","icon":"columns-3"},{"role":"Radius","component":"modal/radius","primitive":"radius/large","value":"8px","icon":"square-round-corner"},{"role":"Body-footer gap","component":"modal/body-footer-gap","primitive":"spacing/8x","value":"32px","icon":"columns-3"}];
+  const tmTypographyTokens = [{"role":"Title","style":"typography/header/h4","font":"Lato","weight":"Bold (700)","size":"18px","lineHeight":"24px","letterSpacing":"0"},{"role":"Body","style":"typography/body/medium","font":"Lato","weight":"Regular (400)","size":"16px","lineHeight":"22px","letterSpacing":"0"}];
+  const tmTotalTokens = tmColorLight.length + tmComponentTokens.length + tmTypographyTokens.length;
+
+  const tmState = { tab:'color', mode:'light' };
+  const tmCards = document.getElementById('tmCards');
+  const tmPreviewCard = document.querySelector('.tm-preview-card');
+  const arrowSvg = '<svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="width:20px;height:20px"><circle cx="5" cy="10" r="3"/><path d="M8 10h9m-3-3 3 3-3 3"/></svg>';
+
+  document.getElementById('tmCountNum').textContent = tmTotalTokens;
+
+  function tmRender() {
+    const theme = tmState.mode;
+    const colors = theme === 'light' ? tmColorLight : tmColorDark;
+    tmPreviewCard.setAttribute('data-bg', theme);
+
+    let html = '';
+    if (tmState.tab === 'color') {
+      for (const c of colors) {
+        html += '<div class="tm-row">'
+          + '<div class="tm-row-header"><div class="tm-row-swatch" style="background:'+c.hex+'"></div><div class="tm-row-label">'+c.role+'</div></div>'
+          + '<div class="tm-chain-row">'
+          + '<div class="tm-chip">'+c.token+'</div>'
+          + '<div class="tm-chain-arrow">'+arrowSvg+'</div>'
+          + '<div class="tm-chip" style="font-weight:600">'+c.hex+'</div>'
+          + '</div></div>';
+      }
+    } else if (tmState.tab === 'component') {
+      for (const ct of tmComponentTokens) {
+        html += '<div class="tm-row">'
+          + '<div class="tm-row-header"><div class="tm-row-icon"><i data-lucide="'+ct.icon+'" style="width:16px;height:16px"></i></div><div class="tm-row-label">'+ct.role+'</div></div>'
+          + '<div class="tm-chain-row">'
+          + '<div class="tm-chip">'+ct.component+'</div>'
+          + '<div class="tm-chain-arrow">'+arrowSvg+'</div>'
+          + '<div class="tm-chip">'+ct.primitive+'</div>'
+          + '<div class="tm-chain-arrow">'+arrowSvg+'</div>'
+          + '<div class="tm-chip" style="font-weight:600">'+ct.value+'</div>'
+          + '</div></div>';
+      }
+    } else {
+      for (const tt of tmTypographyTokens) {
+        html += '<div class="tm-row">'
+          + '<div class="tm-row-header"><div class="tm-row-icon"><i data-lucide="type" style="width:16px;height:16px"></i></div><div class="tm-row-label">'+tt.role+'</div></div>'
+          + '<div class="tm-chain-row" style="flex-direction:column;align-items:flex-start;gap:6px;">'
+          + '<div style="display:flex;align-items:center;gap:10px;flex-wrap:wrap;"><div class="tm-chip">'+tt.style+'</div></div>'
+          + '<div style="display:flex;align-items:center;gap:8px;flex-wrap:wrap;font-family:var(--mono);font-size:12px;color:var(--text-tertiary);">'
+          + '<span>'+tt.font+'</span><span>·</span>'
+          + '<span>'+tt.weight+'</span><span>·</span>'
+          + '<span>'+tt.size+' / '+tt.lineHeight+'</span>'
+          + (tt.letterSpacing !== '0' ? '<span>·</span><span>ls: '+tt.letterSpacing+'</span>' : '')
+          + '</div></div></div>';
+      }
+    }
+    tmCards.innerHTML = html;
+    lucide.createIcons();
+  }
+
+  document.getElementById('tmModeToggle').addEventListener('click', () => {
+    tmState.mode = tmState.mode === 'light' ? 'dark' : 'light';
+    document.getElementById('tmModeLabel').textContent = tmState.mode === 'light' ? 'Light' : 'Dark';
+    const track = document.getElementById('tmModeTrack');
+    if (tmState.mode === 'dark') { track.classList.add('sw-on'); } else { track.classList.remove('sw-on'); }
+    tmRender();
+  });
+
+  document.querySelectorAll('.tm-seg-item[data-tab]').forEach(btn => {
+    btn.addEventListener('click', () => {
+      tmState.tab = btn.dataset.tab;
+      document.querySelectorAll('.tm-seg-item[data-tab]').forEach(b => b.classList.remove('tm-seg-item--active'));
+      btn.classList.add('tm-seg-item--active');
+      tmRender();
+    });
+  });
+
+  tmRender();
 </script>
 </body>
 </html>

@@ -1046,47 +1046,45 @@
         </div>
       </section>
 
-      <!-- 6 · TOKENS -->
-      <section class="doc-section" id="tokens">
-        <h2 class="section-title">Tokens used</h2>
+      <!-- 6 · TOKEN MAP -->
+            <section class="doc-section" id="tokens">
+              <h2 class="section-title">Token Map</h2>
+              <div class="tm-preview-controls">
+                <div class="tm-mode-toggle" id="tmModeToggle">
+                  <span class="tm-mode-label" id="tmModeLabel">Light</span>
+                  <div class="sw-track sw-track--compact" id="tmModeTrack"><div class="sw-thumb"></div></div>
+                </div>
+              </div>
+              <div class="tm-map">
+                <div>
+                  <div class="tm-preview-card" data-bg="light">
+                    <div class="tm-preview-inner">
+      
+                <div class="dp-field" style="max-width:220px;">
+                  <div class="dp-label">Pickup Date</div>
+                  <div class="dp-trigger">
+                    <span class="dp-trigger-text filled">Mar 18, 2026</span>
+                    <i data-lucide="calendar" style="width:16px;height:16px;color:var(--text-secondary);flex-shrink:0;"></i>
+                  </div>
+                </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="tm-tokens-card">
+                  <div class="tm-tokens-head">
+                    <div class="tm-tokens-title"><h5>Token list</h5><span class="tm-count"><span id="tmCountNum">0</span> tokens</span></div>
+                    <p class="tm-tokens-helper">Hover a token to see where it applies on the component.</p>
+                    <div class="tm-seg" style="margin:0 0 12px;">
+                      <button class="tm-seg-item tm-seg-item--active" data-tab="color"><i data-lucide="palette" class="tm-seg-icon"></i> Color</button>
+                      <button class="tm-seg-item" data-tab="component"><i data-lucide="ruler" class="tm-seg-icon"></i> Component</button>
+                      <button class="tm-seg-item" data-tab="typography"><i data-lucide="type" class="tm-seg-icon"></i> Typography</button>
+                    </div>
+                  </div>
+                  <div class="tm-tokens-body" id="tmCards"></div>
+                </div>
+              </div>
+            </section>
 
-        <div class="tokens-grid">
-          <div>
-            <div class="tokens-group-label">Light</div>
-            <table class="tokens-table">
-              <thead><tr><th>Element</th><th>Token</th><th></th></tr></thead>
-              <tbody>
-                <tr><td>Input background</td><td class="t-tok">color/surface/layer-02</td><td class="t-sw"><div class="swatch" style="background:#F4F6F8;"></div></td></tr>
-                <tr><td>Input border</td><td class="t-tok">color/border/interactive</td><td class="t-sw"><div class="swatch" style="background:#CDD2D7;"></div></td></tr>
-                <tr><td>Calendar background</td><td class="t-tok">color/surface/layer-02</td><td class="t-sw"><div class="swatch" style="background:#F4F6F8;"></div></td></tr>
-                <tr><td>Placeholder text</td><td class="t-tok">color/text/tertiary</td><td class="t-sw"><div class="swatch" style="background:#6B7280;"></div></td></tr>
-                <tr><td>Day text</td><td class="t-tok">color/text/primary</td><td class="t-sw"><div class="swatch" style="background:#374151;"></div></td></tr>
-                <tr><td>Disabled day</td><td class="t-tok">color/text/disabled</td><td class="t-sw"><div class="swatch" style="background:#9CA3AF;"></div></td></tr>
-                <tr><td>Selected day fill</td><td class="t-tok">color/action/secondary/default</td><td class="t-sw"><div class="swatch" style="background:#027CB1;"></div></td></tr>
-                <tr><td>Range highlight</td><td class="t-tok">color/control/calendar-range</td><td class="t-sw"><div class="swatch" style="background:#B7DBEE;"></div></td></tr>
-                <tr><td>Footer ghost btn</td><td class="t-tok">color/text/link</td><td class="t-sw"><div class="swatch" style="background:#016692;"></div></td></tr>
-                <tr><td>Footer primary btn</td><td class="t-tok">color/action/secondary/default</td><td class="t-sw"><div class="swatch" style="background:#027CB1;"></div></td></tr>
-              </tbody>
-            </table>
-          </div>
-          <div>
-            <div class="tokens-group-label">Dark</div>
-            <table class="tokens-table">
-              <thead><tr><th>Element</th><th>Token</th><th></th></tr></thead>
-              <tbody>
-                <tr><td>Input background</td><td class="t-tok">color/surface/layer-02</td><td class="t-sw"><div class="swatch" style="background:#1E1E1E;border-color:rgba(255,255,255,.1);"></div></td></tr>
-                <tr><td>Input border</td><td class="t-tok">color/border/interactive</td><td class="t-sw"><div class="swatch" style="background:#374151;"></div></td></tr>
-                <tr><td>Calendar background</td><td class="t-tok">color/surface/layer-02</td><td class="t-sw"><div class="swatch" style="background:#111827;border-color:rgba(255,255,255,.1);"></div></td></tr>
-                <tr><td>Placeholder text</td><td class="t-tok">color/text/tertiary</td><td class="t-sw"><div class="swatch" style="background:#6B7280;"></div></td></tr>
-                <tr><td>Day text</td><td class="t-tok">color/text/primary</td><td class="t-sw"><div class="swatch" style="background:#F3F4F6;border-color:rgba(0,0,0,.1);"></div></td></tr>
-                <tr><td>Disabled day</td><td class="t-tok">color/text/disabled</td><td class="t-sw"><div class="swatch" style="background:#4B5563;"></div></td></tr>
-                <tr><td>Selected day fill</td><td class="t-tok">color/action/secondary/default</td><td class="t-sw"><div class="swatch" style="background:#35A8D6;"></div></td></tr>
-                <tr><td>Range highlight</td><td class="t-tok">color/control/calendar-range</td><td class="t-sw"><div class="swatch" style="background:#1A3A4A;"></div></td></tr>
-              </tbody>
-            </table>
-          </div>
-        </div>
-      </section>
 
       <!-- 7 · ACCESSIBILITY -->
       <section class="doc-section" id="accessibility">
@@ -1245,6 +1243,87 @@
     const el = document.getElementById(id);
     if (el) observer.observe(el);
   });
+
+  // ══════════════════════════════════════════
+  // TOKEN MAP
+  // ══════════════════════════════════════════
+  const tmColorLight = [{"role":"Input background","token":"color/surface/layer-02","hex":"#F4F6F8"},{"role":"Input border","token":"color/border/interactive","hex":"#CDD2D7"},{"role":"Placeholder","token":"color/text/tertiary","hex":"#6B7280"},{"role":"Day text","token":"color/text/primary","hex":"#374151"},{"role":"Disabled day","token":"color/text/disabled","hex":"#9CA3AF"},{"role":"Selected fill","token":"color/action/secondary/default","hex":"#027CB1"},{"role":"Range highlight","token":"color/control/calendar-range","hex":"#B7DBEE"},{"role":"Footer link","token":"color/text/link","hex":"#016692"}];
+  const tmColorDark = [{"role":"Input background","token":"color/surface/layer-02","hex":"#1E1E1E"},{"role":"Input border","token":"color/border/interactive","hex":"#374151"},{"role":"Placeholder","token":"color/text/tertiary","hex":"#6B7280"},{"role":"Day text","token":"color/text/primary","hex":"#F3F4F6"},{"role":"Disabled day","token":"color/text/disabled","hex":"#4B5563"},{"role":"Selected fill","token":"color/action/secondary/default","hex":"#35A8D6"},{"role":"Range highlight","token":"color/control/calendar-range","hex":"#1A3A4A"}];
+  const tmComponentTokens = [{"role":"Gap","component":"datepicker/gap","primitive":"spacing/2x","value":"8px","icon":"columns-3"},{"role":"Radius","component":"datepicker/radius","primitive":"radius/large","value":"8px","icon":"square-round-corner"},{"role":"Padding","component":"datepicker/padding","primitive":"spacing/4x","value":"16px","icon":"space"},{"role":"Cell size","component":"datepicker/cell","primitive":"spacing/8x","value":"32px","icon":"scan"}];
+  const tmTypographyTokens = [{"role":"Value","style":"typography/body/medium","font":"Lato","weight":"Regular (400)","size":"16px","lineHeight":"22px","letterSpacing":"0"},{"role":"Label","style":"typography/body/label","font":"Lato","weight":"Bold (700)","size":"12px","lineHeight":"16px","letterSpacing":"0"}];
+  const tmTotalTokens = tmColorLight.length + tmComponentTokens.length + tmTypographyTokens.length;
+
+  const tmState = { tab:'color', mode:'light' };
+  const tmCards = document.getElementById('tmCards');
+  const tmPreviewCard = document.querySelector('.tm-preview-card');
+  const arrowSvg = '<svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="width:20px;height:20px"><circle cx="5" cy="10" r="3"/><path d="M8 10h9m-3-3 3 3-3 3"/></svg>';
+
+  document.getElementById('tmCountNum').textContent = tmTotalTokens;
+
+  function tmRender() {
+    const theme = tmState.mode;
+    const colors = theme === 'light' ? tmColorLight : tmColorDark;
+    tmPreviewCard.setAttribute('data-bg', theme);
+
+    let html = '';
+    if (tmState.tab === 'color') {
+      for (const c of colors) {
+        html += '<div class="tm-row">'
+          + '<div class="tm-row-header"><div class="tm-row-swatch" style="background:'+c.hex+'"></div><div class="tm-row-label">'+c.role+'</div></div>'
+          + '<div class="tm-chain-row">'
+          + '<div class="tm-chip">'+c.token+'</div>'
+          + '<div class="tm-chain-arrow">'+arrowSvg+'</div>'
+          + '<div class="tm-chip" style="font-weight:600">'+c.hex+'</div>'
+          + '</div></div>';
+      }
+    } else if (tmState.tab === 'component') {
+      for (const ct of tmComponentTokens) {
+        html += '<div class="tm-row">'
+          + '<div class="tm-row-header"><div class="tm-row-icon"><i data-lucide="'+ct.icon+'" style="width:16px;height:16px"></i></div><div class="tm-row-label">'+ct.role+'</div></div>'
+          + '<div class="tm-chain-row">'
+          + '<div class="tm-chip">'+ct.component+'</div>'
+          + '<div class="tm-chain-arrow">'+arrowSvg+'</div>'
+          + '<div class="tm-chip">'+ct.primitive+'</div>'
+          + '<div class="tm-chain-arrow">'+arrowSvg+'</div>'
+          + '<div class="tm-chip" style="font-weight:600">'+ct.value+'</div>'
+          + '</div></div>';
+      }
+    } else {
+      for (const tt of tmTypographyTokens) {
+        html += '<div class="tm-row">'
+          + '<div class="tm-row-header"><div class="tm-row-icon"><i data-lucide="type" style="width:16px;height:16px"></i></div><div class="tm-row-label">'+tt.role+'</div></div>'
+          + '<div class="tm-chain-row" style="flex-direction:column;align-items:flex-start;gap:6px;">'
+          + '<div style="display:flex;align-items:center;gap:10px;flex-wrap:wrap;"><div class="tm-chip">'+tt.style+'</div></div>'
+          + '<div style="display:flex;align-items:center;gap:8px;flex-wrap:wrap;font-family:var(--mono);font-size:12px;color:var(--text-tertiary);">'
+          + '<span>'+tt.font+'</span><span>·</span>'
+          + '<span>'+tt.weight+'</span><span>·</span>'
+          + '<span>'+tt.size+' / '+tt.lineHeight+'</span>'
+          + (tt.letterSpacing !== '0' ? '<span>·</span><span>ls: '+tt.letterSpacing+'</span>' : '')
+          + '</div></div></div>';
+      }
+    }
+    tmCards.innerHTML = html;
+    lucide.createIcons();
+  }
+
+  document.getElementById('tmModeToggle').addEventListener('click', () => {
+    tmState.mode = tmState.mode === 'light' ? 'dark' : 'light';
+    document.getElementById('tmModeLabel').textContent = tmState.mode === 'light' ? 'Light' : 'Dark';
+    const track = document.getElementById('tmModeTrack');
+    if (tmState.mode === 'dark') { track.classList.add('sw-on'); } else { track.classList.remove('sw-on'); }
+    tmRender();
+  });
+
+  document.querySelectorAll('.tm-seg-item[data-tab]').forEach(btn => {
+    btn.addEventListener('click', () => {
+      tmState.tab = btn.dataset.tab;
+      document.querySelectorAll('.tm-seg-item[data-tab]').forEach(b => b.classList.remove('tm-seg-item--active'));
+      btn.classList.add('tm-seg-item--active');
+      tmRender();
+    });
+  });
+
+  tmRender();
 </script>
 </body>
 </html>

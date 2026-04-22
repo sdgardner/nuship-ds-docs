@@ -651,47 +651,48 @@
         </div>
       </section>
 
-      <!-- 6 · TOKENS -->
-      <section class="doc-section" id="tokens">
-        <h2 class="section-title">Tokens used</h2>
+      <!-- 6 · TOKEN MAP -->
+            <section class="doc-section" id="tokens">
+              <h2 class="section-title">Token Map</h2>
+              <div class="tm-preview-controls">
+                <div class="tm-mode-toggle" id="tmModeToggle">
+                  <span class="tm-mode-label" id="tmModeLabel">Light</span>
+                  <div class="sw-track sw-track--compact" id="tmModeTrack"><div class="sw-thumb"></div></div>
+                </div>
+              </div>
+              <div class="tm-map">
+                <div>
+                  <div class="tm-preview-card" data-bg="light">
+                    <div class="tm-preview-inner">
+      
+                <div style="display:flex;flex-direction:column;align-items:center;gap:12px;">
+                  <div style="width:200px;height:120px;border-radius:8px;background:var(--surface-layer02);border:1px solid var(--border);display:flex;align-items:center;justify-content:center;">
+                    <i data-lucide="image" style="width:32px;height:32px;color:var(--text-tertiary)"></i>
+                  </div>
+                  <div style="display:flex;gap:8px;align-items:center;">
+                    <div class="ic-dot ic-dot--default"></div>
+                    <div class="ic-dot ic-dot--active"></div>
+                    <div class="ic-dot ic-dot--default"></div>
+                  </div>
+                </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="tm-tokens-card">
+                  <div class="tm-tokens-head">
+                    <div class="tm-tokens-title"><h5>Token list</h5><span class="tm-count"><span id="tmCountNum">0</span> tokens</span></div>
+                    <p class="tm-tokens-helper">Hover a token to see where it applies on the component.</p>
+                    <div class="tm-seg" style="margin:0 0 12px;">
+                      <button class="tm-seg-item tm-seg-item--active" data-tab="color"><i data-lucide="palette" class="tm-seg-icon"></i> Color</button>
+                      <button class="tm-seg-item" data-tab="component"><i data-lucide="ruler" class="tm-seg-icon"></i> Component</button>
+                      <button class="tm-seg-item" data-tab="typography"><i data-lucide="type" class="tm-seg-icon"></i> Typography</button>
+                    </div>
+                  </div>
+                  <div class="tm-tokens-body" id="tmCards"></div>
+                </div>
+              </div>
+            </section>
 
-        <div class="tokens-grid">
-          <div>
-            <div class="tokens-group-label">Light</div>
-            <table class="tokens-table">
-              <thead><tr><th>Element</th><th>Token</th><th></th></tr></thead>
-              <tbody>
-                <tr><td>Photo border</td><td class="t-tok">color/border/interactive</td><td class="t-sw"><div class="swatch" style="background:#CDD2D7;"></div></td></tr>
-                <tr><td>Active dot</td><td class="t-tok">color/action/secondary/default</td><td class="t-sw"><div class="swatch" style="background:#027CB1;"></div></td></tr>
-                <tr><td>Inactive dot fill</td><td class="t-tok">color/surface/layer-02</td><td class="t-sw"><div class="swatch" style="background:#F4F6F8;"></div></td></tr>
-                <tr><td>Inactive dot border</td><td class="t-tok">color/border/interactive</td><td class="t-sw"><div class="swatch" style="background:#CDD2D7;"></div></td></tr>
-                <tr><td>Arrow icon</td><td class="t-tok">color/link/surface-01/default</td><td class="t-sw"><div class="swatch" style="background:#016692;"></div></td></tr>
-                <tr><td>Expand button</td><td class="t-tok">color/action/secondary/default</td><td class="t-sw"><div class="swatch" style="background:#027CB1;"></div></td></tr>
-                <tr><td>Badge background</td><td class="t-tok">color/badge/standard/bg-outline</td><td class="t-sw"><div class="swatch" style="background:#E5EEF5;"></div></td></tr>
-                <tr><td>Badge border</td><td class="t-tok">color/badge/standard/border</td><td class="t-sw"><div class="swatch" style="background:#027CB1;"></div></td></tr>
-                <tr><td>Badge text</td><td class="t-tok">color/badge/standard/text</td><td class="t-sw"><div class="swatch" style="background:#016692;"></div></td></tr>
-              </tbody>
-            </table>
-          </div>
-          <div>
-            <div class="tokens-group-label">Dark</div>
-            <table class="tokens-table">
-              <thead><tr><th>Element</th><th>Token</th><th></th></tr></thead>
-              <tbody>
-                <tr><td>Photo border</td><td class="t-tok">color/border/interactive</td><td class="t-sw"><div class="swatch" style="background:#6B7280;"></div></td></tr>
-                <tr><td>Active dot</td><td class="t-tok">color/action/secondary/default</td><td class="t-sw"><div class="swatch" style="background:#35A8D6;"></div></td></tr>
-                <tr><td>Inactive dot fill</td><td class="t-tok">color/surface/layer-02</td><td class="t-sw"><div class="swatch" style="background:#1E1E1E;border-color:rgba(255,255,255,.1);"></div></td></tr>
-                <tr><td>Inactive dot border</td><td class="t-tok">color/border/interactive</td><td class="t-sw"><div class="swatch" style="background:#6B7280;"></div></td></tr>
-                <tr><td>Arrow icon</td><td class="t-tok">color/link/surface-01/default</td><td class="t-sw"><div class="swatch" style="background:#5ABFE0;"></div></td></tr>
-                <tr><td>Expand button</td><td class="t-tok">color/action/secondary/default</td><td class="t-sw"><div class="swatch" style="background:#35A8D6;"></div></td></tr>
-                <tr><td>Badge background</td><td class="t-tok">color/badge/standard/bg-outline</td><td class="t-sw"><div class="swatch" style="background:#001F33;border-color:rgba(255,255,255,.1);"></div></td></tr>
-                <tr><td>Badge border</td><td class="t-tok">color/badge/standard/border</td><td class="t-sw"><div class="swatch" style="background:#35A8D6;"></div></td></tr>
-                <tr><td>Badge text</td><td class="t-tok">color/badge/standard/text</td><td class="t-sw"><div class="swatch" style="background:#FFFFFF;border-color:rgba(0,0,0,.1);"></div></td></tr>
-              </tbody>
-            </table>
-          </div>
-        </div>
-      </section>
 
       <!-- 7 · ACCESSIBILITY -->
       <section class="doc-section" id="accessibility">
@@ -814,6 +815,87 @@
       if (target) { e.preventDefault(); target.scrollIntoView({ behavior: 'smooth' }); }
     });
   });
+
+  // ══════════════════════════════════════════
+  // TOKEN MAP
+  // ══════════════════════════════════════════
+  const tmColorLight = [{"role":"Photo border","token":"color/border/interactive","hex":"#CDD2D7"},{"role":"Active dot","token":"color/action/secondary/default","hex":"#027CB1"},{"role":"Inactive dot fill","token":"color/surface/layer-02","hex":"#F4F6F8"},{"role":"Inactive dot border","token":"color/border/interactive","hex":"#CDD2D7"},{"role":"Arrow icon","token":"color/link/surface-01/default","hex":"#016692"},{"role":"Expand button","token":"color/action/secondary/default","hex":"#027CB1"}];
+  const tmColorDark = [{"role":"Photo border","token":"color/border/interactive","hex":"#6B7280"},{"role":"Active dot","token":"color/action/secondary/default","hex":"#35A8D6"},{"role":"Inactive dot fill","token":"color/surface/layer-02","hex":"#1E1E1E"},{"role":"Inactive dot border","token":"color/border/interactive","hex":"#6B7280"},{"role":"Arrow icon","token":"color/link/surface-01/default","hex":"#5ABFE0"},{"role":"Expand button","token":"color/action/secondary/default","hex":"#35A8D6"}];
+  const tmComponentTokens = [{"role":"Dot gap","component":"carousel/dot-gap","primitive":"spacing/3x","value":"12px","icon":"columns-3"},{"role":"Nav gap","component":"carousel/nav-gap","primitive":"spacing/4x","value":"16px","icon":"columns-3"}];
+  const tmTypographyTokens = [{"role":"Badge","style":"typography/body/label","font":"Lato","weight":"Bold (700)","size":"12px","lineHeight":"16px","letterSpacing":"0"}];
+  const tmTotalTokens = tmColorLight.length + tmComponentTokens.length + tmTypographyTokens.length;
+
+  const tmState = { tab:'color', mode:'light' };
+  const tmCards = document.getElementById('tmCards');
+  const tmPreviewCard = document.querySelector('.tm-preview-card');
+  const arrowSvg = '<svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="width:20px;height:20px"><circle cx="5" cy="10" r="3"/><path d="M8 10h9m-3-3 3 3-3 3"/></svg>';
+
+  document.getElementById('tmCountNum').textContent = tmTotalTokens;
+
+  function tmRender() {
+    const theme = tmState.mode;
+    const colors = theme === 'light' ? tmColorLight : tmColorDark;
+    tmPreviewCard.setAttribute('data-bg', theme);
+
+    let html = '';
+    if (tmState.tab === 'color') {
+      for (const c of colors) {
+        html += '<div class="tm-row">'
+          + '<div class="tm-row-header"><div class="tm-row-swatch" style="background:'+c.hex+'"></div><div class="tm-row-label">'+c.role+'</div></div>'
+          + '<div class="tm-chain-row">'
+          + '<div class="tm-chip">'+c.token+'</div>'
+          + '<div class="tm-chain-arrow">'+arrowSvg+'</div>'
+          + '<div class="tm-chip" style="font-weight:600">'+c.hex+'</div>'
+          + '</div></div>';
+      }
+    } else if (tmState.tab === 'component') {
+      for (const ct of tmComponentTokens) {
+        html += '<div class="tm-row">'
+          + '<div class="tm-row-header"><div class="tm-row-icon"><i data-lucide="'+ct.icon+'" style="width:16px;height:16px"></i></div><div class="tm-row-label">'+ct.role+'</div></div>'
+          + '<div class="tm-chain-row">'
+          + '<div class="tm-chip">'+ct.component+'</div>'
+          + '<div class="tm-chain-arrow">'+arrowSvg+'</div>'
+          + '<div class="tm-chip">'+ct.primitive+'</div>'
+          + '<div class="tm-chain-arrow">'+arrowSvg+'</div>'
+          + '<div class="tm-chip" style="font-weight:600">'+ct.value+'</div>'
+          + '</div></div>';
+      }
+    } else {
+      for (const tt of tmTypographyTokens) {
+        html += '<div class="tm-row">'
+          + '<div class="tm-row-header"><div class="tm-row-icon"><i data-lucide="type" style="width:16px;height:16px"></i></div><div class="tm-row-label">'+tt.role+'</div></div>'
+          + '<div class="tm-chain-row" style="flex-direction:column;align-items:flex-start;gap:6px;">'
+          + '<div style="display:flex;align-items:center;gap:10px;flex-wrap:wrap;"><div class="tm-chip">'+tt.style+'</div></div>'
+          + '<div style="display:flex;align-items:center;gap:8px;flex-wrap:wrap;font-family:var(--mono);font-size:12px;color:var(--text-tertiary);">'
+          + '<span>'+tt.font+'</span><span>·</span>'
+          + '<span>'+tt.weight+'</span><span>·</span>'
+          + '<span>'+tt.size+' / '+tt.lineHeight+'</span>'
+          + (tt.letterSpacing !== '0' ? '<span>·</span><span>ls: '+tt.letterSpacing+'</span>' : '')
+          + '</div></div></div>';
+      }
+    }
+    tmCards.innerHTML = html;
+    lucide.createIcons();
+  }
+
+  document.getElementById('tmModeToggle').addEventListener('click', () => {
+    tmState.mode = tmState.mode === 'light' ? 'dark' : 'light';
+    document.getElementById('tmModeLabel').textContent = tmState.mode === 'light' ? 'Light' : 'Dark';
+    const track = document.getElementById('tmModeTrack');
+    if (tmState.mode === 'dark') { track.classList.add('sw-on'); } else { track.classList.remove('sw-on'); }
+    tmRender();
+  });
+
+  document.querySelectorAll('.tm-seg-item[data-tab]').forEach(btn => {
+    btn.addEventListener('click', () => {
+      tmState.tab = btn.dataset.tab;
+      document.querySelectorAll('.tm-seg-item[data-tab]').forEach(b => b.classList.remove('tm-seg-item--active'));
+      btn.classList.add('tm-seg-item--active');
+      tmRender();
+    });
+  });
+
+  tmRender();
 </script>
 </body>
 </html>

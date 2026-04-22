@@ -571,49 +571,54 @@
         </div>
       </section>
 
-      <!-- 6 · TOKENS USED -->
-      <section class="doc-section" id="tokens">
-        <h2 class="section-title">Tokens used</h2>
-        <div class="tokens-grid">
+      <!-- 6 · TOKEN MAP -->
+            <section class="doc-section" id="tokens">
+              <h2 class="section-title">Token Map</h2>
+              <div class="tm-preview-controls">
+                <div class="tm-mode-toggle" id="tmModeToggle">
+                  <span class="tm-mode-label" id="tmModeLabel">Light</span>
+                  <div class="sw-track sw-track--compact" id="tmModeTrack"><div class="sw-thumb"></div></div>
+                </div>
+              </div>
+              <div class="tm-map">
+                <div>
+                  <div class="tm-preview-card" data-bg="light">
+                    <div class="tm-preview-inner">
+      
+                <div style="display:flex;flex-direction:column;gap:12px;">
+                  <div class="rb-wrap rb-wrap--selected">
+                    <div class="rb-circle"><span class="rb-dot"></span></div>
+                    <div class="rb-text">
+                      <div class="rb-label">Option one</div>
+                      <div class="rb-desc">Description text</div>
+                    </div>
+                  </div>
+                  <div class="rb-wrap">
+                    <div class="rb-circle"></div>
+                    <div class="rb-text">
+                      <div class="rb-label">Option two</div>
+                      <div class="rb-desc">Description text</div>
+                    </div>
+                  </div>
+                </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="tm-tokens-card">
+                  <div class="tm-tokens-head">
+                    <div class="tm-tokens-title"><h5>Token list</h5><span class="tm-count"><span id="tmCountNum">0</span> tokens</span></div>
+                    <p class="tm-tokens-helper">Hover a token to see where it applies on the component.</p>
+                    <div class="tm-seg" style="margin:0 0 12px;">
+                      <button class="tm-seg-item tm-seg-item--active" data-tab="color"><i data-lucide="palette" class="tm-seg-icon"></i> Color</button>
+                      <button class="tm-seg-item" data-tab="component"><i data-lucide="ruler" class="tm-seg-icon"></i> Component</button>
+                      <button class="tm-seg-item" data-tab="typography"><i data-lucide="type" class="tm-seg-icon"></i> Typography</button>
+                    </div>
+                  </div>
+                  <div class="tm-tokens-body" id="tmCards"></div>
+                </div>
+              </div>
+            </section>
 
-          <!-- Light -->
-          <div>
-            <div class="tokens-group-label">Light</div>
-            <table class="tokens-table">
-              <thead><tr><th>Property</th><th>Token</th><th></th></tr></thead>
-              <tbody>
-                <tr><td>Circle border</td><td class="t-tok">color/border/interactive</td><td class="t-sw"><div class="swatch" style="background:#CDD2D7;"></div></td></tr>
-                <tr><td>Circle border (hover)</td><td class="t-tok">color/border/strong</td><td class="t-sw"><div class="swatch" style="background:#9CA3AF;"></div></td></tr>
-                <tr><td>Selected border &amp; dot</td><td class="t-tok">color/action/secondary/default</td><td class="t-sw"><div class="swatch" style="background:#027CB1;"></div></td></tr>
-                <tr><td>Focus glow</td><td class="t-tok">glow/focus-glow-light</td><td class="t-sw"><div class="swatch" style="background:rgba(90,191,224,0.35);border-color:rgba(90,191,224,0.5)"></div></td></tr>
-                <tr><td>Disabled border</td><td class="t-tok">color/border/disabled</td><td class="t-sw"><div class="swatch" style="background:#E5E7EB;"></div></td></tr>
-                <tr><td>Label</td><td class="t-tok">color/text/primary</td><td class="t-sw"><div class="swatch" style="background:#374151;"></div></td></tr>
-                <tr><td>Description</td><td class="t-tok">color/text/secondary</td><td class="t-sw"><div class="swatch" style="background:#4B5563;"></div></td></tr>
-                <tr><td>Disabled text</td><td class="t-tok">color/text/disabled</td><td class="t-sw"><div class="swatch" style="background:#9CA3AF;"></div></td></tr>
-              </tbody>
-            </table>
-          </div>
-
-          <!-- Dark -->
-          <div>
-            <div class="tokens-group-label">Dark</div>
-            <table class="tokens-table">
-              <thead><tr><th>Property</th><th>Token</th><th></th></tr></thead>
-              <tbody>
-                <tr><td>Circle border</td><td class="t-tok">color/border/interactive</td><td class="t-sw"><div class="swatch" style="background:#6B7280;"></div></td></tr>
-                <tr><td>Circle border (hover)</td><td class="t-tok">color/border/strong</td><td class="t-sw"><div class="swatch" style="background:#9CA3AF;"></div></td></tr>
-                <tr><td>Selected border &amp; dot</td><td class="t-tok">color/action/secondary/default</td><td class="t-sw"><div class="swatch" style="background:#35A8D6;"></div></td></tr>
-                <tr><td>Focus glow</td><td class="t-tok">glow/focus-glow-dark</td><td class="t-sw"><div class="swatch" style="background:rgba(0,131,187,0.35);border-color:rgba(0,131,187,0.5)"></div></td></tr>
-                <tr><td>Disabled border</td><td class="t-tok">color/border/disabled</td><td class="t-sw"><div class="swatch" style="background:#374151;border-color:rgba(255,255,255,.1)"></div></td></tr>
-                <tr><td>Label</td><td class="t-tok">color/text/primary</td><td class="t-sw"><div class="swatch" style="background:#FFFFFF;"></div></td></tr>
-                <tr><td>Description</td><td class="t-tok">color/text/secondary</td><td class="t-sw"><div class="swatch" style="background:#E5E7EB;"></div></td></tr>
-                <tr><td>Disabled text</td><td class="t-tok">color/text/disabled</td><td class="t-sw"><div class="swatch" style="background:#6B7280;"></div></td></tr>
-              </tbody>
-            </table>
-          </div>
-
-        </div>
-      </section>
 
       <!-- 7 · ACCESSIBILITY -->
       <section class="doc-section" id="accessibility">
@@ -750,6 +755,87 @@
     const el = document.getElementById(id);
     if (el) observer.observe(el);
   });
+
+  // ══════════════════════════════════════════
+  // TOKEN MAP
+  // ══════════════════════════════════════════
+  const tmColorLight = [{"role":"Circle border","token":"color/border/interactive","hex":"#CDD2D7"},{"role":"Circle border hover","token":"color/border/strong","hex":"#9CA3AF"},{"role":"Selected fill","token":"color/action/secondary/default","hex":"#027CB1"},{"role":"Focus glow","token":"glow/focus-glow-light","hex":"rgba(90,191,224,0.35)"},{"role":"Disabled border","token":"color/border/disabled","hex":"#E5E7EB"},{"role":"Label","token":"color/text/primary","hex":"#374151"},{"role":"Description","token":"color/text/secondary","hex":"#4B5563"},{"role":"Disabled text","token":"color/text/disabled","hex":"#9CA3AF"}];
+  const tmColorDark = [{"role":"Circle border","token":"color/border/interactive","hex":"#6B7280"},{"role":"Circle border hover","token":"color/border/strong","hex":"#9CA3AF"},{"role":"Selected fill","token":"color/action/secondary/default","hex":"#35A8D6"},{"role":"Focus glow","token":"glow/focus-glow-dark","hex":"rgba(0,131,187,0.35)"},{"role":"Disabled border","token":"color/border/disabled","hex":"#374151"},{"role":"Label","token":"color/text/primary","hex":"#FFFFFF"},{"role":"Description","token":"color/text/secondary","hex":"#E5E7EB"},{"role":"Disabled text","token":"color/text/disabled","hex":"#6B7280"}];
+  const tmComponentTokens = [{"role":"Size","component":"radio/size","primitive":"icon/md","value":"20px","icon":"scan"},{"role":"Border width","component":"radio/border-width","primitive":"border-width/medium","value":"2px","icon":"separator-horizontal"}];
+  const tmTypographyTokens = [{"role":"Label","style":"typography/body/label","font":"Lato","weight":"Bold (700)","size":"12px","lineHeight":"16px","letterSpacing":"0"},{"role":"Description","style":"typography/body/small","font":"Lato","weight":"Regular (400)","size":"14px","lineHeight":"19px","letterSpacing":"0"}];
+  const tmTotalTokens = tmColorLight.length + tmComponentTokens.length + tmTypographyTokens.length;
+
+  const tmState = { tab:'color', mode:'light' };
+  const tmCards = document.getElementById('tmCards');
+  const tmPreviewCard = document.querySelector('.tm-preview-card');
+  const arrowSvg = '<svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="width:20px;height:20px"><circle cx="5" cy="10" r="3"/><path d="M8 10h9m-3-3 3 3-3 3"/></svg>';
+
+  document.getElementById('tmCountNum').textContent = tmTotalTokens;
+
+  function tmRender() {
+    const theme = tmState.mode;
+    const colors = theme === 'light' ? tmColorLight : tmColorDark;
+    tmPreviewCard.setAttribute('data-bg', theme);
+
+    let html = '';
+    if (tmState.tab === 'color') {
+      for (const c of colors) {
+        html += '<div class="tm-row">'
+          + '<div class="tm-row-header"><div class="tm-row-swatch" style="background:'+c.hex+'"></div><div class="tm-row-label">'+c.role+'</div></div>'
+          + '<div class="tm-chain-row">'
+          + '<div class="tm-chip">'+c.token+'</div>'
+          + '<div class="tm-chain-arrow">'+arrowSvg+'</div>'
+          + '<div class="tm-chip" style="font-weight:600">'+c.hex+'</div>'
+          + '</div></div>';
+      }
+    } else if (tmState.tab === 'component') {
+      for (const ct of tmComponentTokens) {
+        html += '<div class="tm-row">'
+          + '<div class="tm-row-header"><div class="tm-row-icon"><i data-lucide="'+ct.icon+'" style="width:16px;height:16px"></i></div><div class="tm-row-label">'+ct.role+'</div></div>'
+          + '<div class="tm-chain-row">'
+          + '<div class="tm-chip">'+ct.component+'</div>'
+          + '<div class="tm-chain-arrow">'+arrowSvg+'</div>'
+          + '<div class="tm-chip">'+ct.primitive+'</div>'
+          + '<div class="tm-chain-arrow">'+arrowSvg+'</div>'
+          + '<div class="tm-chip" style="font-weight:600">'+ct.value+'</div>'
+          + '</div></div>';
+      }
+    } else {
+      for (const tt of tmTypographyTokens) {
+        html += '<div class="tm-row">'
+          + '<div class="tm-row-header"><div class="tm-row-icon"><i data-lucide="type" style="width:16px;height:16px"></i></div><div class="tm-row-label">'+tt.role+'</div></div>'
+          + '<div class="tm-chain-row" style="flex-direction:column;align-items:flex-start;gap:6px;">'
+          + '<div style="display:flex;align-items:center;gap:10px;flex-wrap:wrap;"><div class="tm-chip">'+tt.style+'</div></div>'
+          + '<div style="display:flex;align-items:center;gap:8px;flex-wrap:wrap;font-family:var(--mono);font-size:12px;color:var(--text-tertiary);">'
+          + '<span>'+tt.font+'</span><span>·</span>'
+          + '<span>'+tt.weight+'</span><span>·</span>'
+          + '<span>'+tt.size+' / '+tt.lineHeight+'</span>'
+          + (tt.letterSpacing !== '0' ? '<span>·</span><span>ls: '+tt.letterSpacing+'</span>' : '')
+          + '</div></div></div>';
+      }
+    }
+    tmCards.innerHTML = html;
+    lucide.createIcons();
+  }
+
+  document.getElementById('tmModeToggle').addEventListener('click', () => {
+    tmState.mode = tmState.mode === 'light' ? 'dark' : 'light';
+    document.getElementById('tmModeLabel').textContent = tmState.mode === 'light' ? 'Light' : 'Dark';
+    const track = document.getElementById('tmModeTrack');
+    if (tmState.mode === 'dark') { track.classList.add('sw-on'); } else { track.classList.remove('sw-on'); }
+    tmRender();
+  });
+
+  document.querySelectorAll('.tm-seg-item[data-tab]').forEach(btn => {
+    btn.addEventListener('click', () => {
+      tmState.tab = btn.dataset.tab;
+      document.querySelectorAll('.tm-seg-item[data-tab]').forEach(b => b.classList.remove('tm-seg-item--active'));
+      btn.classList.add('tm-seg-item--active');
+      tmRender();
+    });
+  });
+
+  tmRender();
 </script>
 </body>
 </html>

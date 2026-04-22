@@ -485,66 +485,44 @@
         </div>
       </section>
 
-      <!-- 6 · TOKENS -->
-      <section class="doc-section" id="tokens">
-        <h2 class="section-title">Tokens used</h2>
+      <!-- 6 · TOKEN MAP -->
+            <section class="doc-section" id="tokens">
+              <h2 class="section-title">Token Map</h2>
+              <div class="tm-preview-controls">
+                <div class="tm-mode-toggle" id="tmModeToggle">
+                  <span class="tm-mode-label" id="tmModeLabel">Light</span>
+                  <div class="sw-track sw-track--compact" id="tmModeTrack"><div class="sw-thumb"></div></div>
+                </div>
+              </div>
+              <div class="tm-map">
+                <div>
+                  <div class="tm-preview-card" data-bg="light">
+                    <div class="tm-preview-inner">
+      
+                <div style="display:flex;gap:8px;align-items:center;flex-wrap:wrap;">
+                  <span class="bdg bdg--blue bdg--outline">Active</span>
+                  <span class="bdg bdg--blue bdg--solid">Active</span>
+                  <span class="bdg bdg--green bdg--outline bdg--lg">Success</span>
+                  <span class="bdg bdg--green bdg--solid bdg--lg">Success</span>
+                </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="tm-tokens-card">
+                  <div class="tm-tokens-head">
+                    <div class="tm-tokens-title"><h5>Token list</h5><span class="tm-count"><span id="tmCountNum">0</span> tokens</span></div>
+                    <p class="tm-tokens-helper">Hover a token to see where it applies on the component.</p>
+                    <div class="tm-seg" style="margin:0 0 12px;">
+                      <button class="tm-seg-item tm-seg-item--active" data-tab="color"><i data-lucide="palette" class="tm-seg-icon"></i> Color</button>
+                      <button class="tm-seg-item" data-tab="component"><i data-lucide="ruler" class="tm-seg-icon"></i> Component</button>
+                      <button class="tm-seg-item" data-tab="typography"><i data-lucide="type" class="tm-seg-icon"></i> Typography</button>
+                    </div>
+                  </div>
+                  <div class="tm-tokens-body" id="tmCards"></div>
+                </div>
+              </div>
+            </section>
 
-        <!-- Color -->
-        <p class="tokens-cat">Color</p>
-        <table class="tokens-table">
-          <thead><tr><th>Element</th><th>Token</th><th></th></tr></thead>
-          <tbody>
-            <tr><td>Standard — background (outline)</td><td class="t-tok">color/badge/standard/bg-outline</td><td class="t-sw"><div class="swatch" style="background:#E5EEF5;"></div></td></tr>
-            <tr><td>Standard — background (solid)</td><td class="t-tok">color/badge/standard/bg-solid</td><td class="t-sw"><div class="swatch" style="background:#027CB1;"></div></td></tr>
-            <tr><td>Standard — border</td><td class="t-tok">color/badge/standard/border</td><td class="t-sw"><div class="swatch" style="background:#027CB1;"></div></td></tr>
-            <tr><td>Positive — background (outline)</td><td class="t-tok">color/badge/positive/bg-outline</td><td class="t-sw"><div class="swatch" style="background:#E8F2E8;"></div></td></tr>
-            <tr><td>Positive — background (solid)</td><td class="t-tok">color/badge/positive/bg-solid</td><td class="t-sw"><div class="swatch" style="background:#00902C;"></div></td></tr>
-            <tr><td>Positive — border</td><td class="t-tok">color/badge/positive/border</td><td class="t-sw"><div class="swatch" style="background:#00902C;"></div></td></tr>
-            <tr><td>Neutral — background (outline)</td><td class="t-tok">color/badge/neutral/bg-outline</td><td class="t-sw"><div class="swatch" style="background:#F0ECF4;"></div></td></tr>
-            <tr><td>Neutral — background (solid)</td><td class="t-tok">color/badge/neutral/bg-solid</td><td class="t-sw"><div class="swatch" style="background:#6D4092;"></div></td></tr>
-            <tr><td>Neutral — border</td><td class="t-tok">color/badge/neutral/border</td><td class="t-sw"><div class="swatch" style="background:#6D4092;"></div></td></tr>
-            <tr><td>Negative — background (outline)</td><td class="t-tok">color/badge/negative/bg-outline</td><td class="t-sw"><div class="swatch" style="background:#FCE8E8;"></div></td></tr>
-            <tr><td>Negative — background (solid)</td><td class="t-tok">color/badge/negative/bg-solid</td><td class="t-sw"><div class="swatch" style="background:#DC4B4B;"></div></td></tr>
-            <tr><td>Negative — border</td><td class="t-tok">color/badge/negative/border</td><td class="t-sw"><div class="swatch" style="background:#DC4B4B;"></div></td></tr>
-            <tr><td>Warning — background (outline)</td><td class="t-tok">color/badge/warning/bg-outline</td><td class="t-sw"><div class="swatch" style="background:#FDF4E8;"></div></td></tr>
-            <tr><td>Warning — background (solid)</td><td class="t-tok">color/badge/warning/bg-solid</td><td class="t-sw"><div class="swatch" style="background:#D37203;"></div></td></tr>
-            <tr><td>Warning — border</td><td class="t-tok">color/badge/warning/border</td><td class="t-sw"><div class="swatch" style="background:#D37203;"></div></td></tr>
-            <tr><td>Label (outline)</td><td class="t-tok">color/text/primary</td><td class="t-sw"><div class="swatch" style="background:#374151;"></div></td></tr>
-            <tr><td>Label (solid)</td><td class="t-tok">color/text/inverse</td><td class="t-sw"><div class="swatch" style="background:#FFFFFF;border-color:rgba(0,0,0,.1);"></div></td></tr>
-          </tbody>
-        </table>
-
-        <!-- Typography -->
-        <p class="tokens-cat">Typography</p>
-        <table class="tokens-table">
-          <thead><tr><th>Element</th><th>Token</th><th>Value</th></tr></thead>
-          <tbody>
-            <tr><td>Label (small)</td><td class="t-tok">typography/badge/small</td><td>Lato Bold, 10px / 18px, 0.35px letter-spacing</td></tr>
-            <tr><td>Label (large)</td><td class="t-tok">typography/badge/large</td><td>Lato Bold, 12px / 18px, 0.35px letter-spacing</td></tr>
-          </tbody>
-        </table>
-
-        <!-- Spacing -->
-        <p class="tokens-cat">Spacing</p>
-        <table class="tokens-table">
-          <thead><tr><th>Element</th><th>Token</th><th>Value</th></tr></thead>
-          <tbody>
-            <tr><td>Horizontal padding</td><td class="t-tok">spacing/2x</td><td>8px</td></tr>
-            <tr><td>Vertical padding (small)</td><td class="t-tok">spacing/0-5x</td><td>2px</td></tr>
-            <tr><td>Vertical padding (large)</td><td class="t-tok">spacing/1x</td><td>4px</td></tr>
-          </tbody>
-        </table>
-
-        <!-- Border Radius -->
-        <p class="tokens-cat">Border Radius</p>
-        <table class="tokens-table">
-          <thead><tr><th>Element</th><th>Token</th><th>Value</th></tr></thead>
-          <tbody>
-            <tr><td>Container</td><td class="t-tok">spacing/0-5x</td><td>2px</td></tr>
-          </tbody>
-        </table>
-
-      </section>
 
       <!-- 7 · ACCESSIBILITY -->
       <section class="doc-section" id="accessibility">
@@ -672,6 +650,87 @@
     const el = document.getElementById(id);
     if (el) observer.observe(el);
   });
+
+  // ══════════════════════════════════════════
+  // TOKEN MAP
+  // ══════════════════════════════════════════
+  const tmColorLight = [{"role":"Standard bg (outline)","token":"color/badge/standard/bg-outline","hex":"#E5EEF5"},{"role":"Standard bg (solid)","token":"color/badge/standard/bg-solid","hex":"#027CB1"},{"role":"Standard border","token":"color/badge/standard/border","hex":"#027CB1"},{"role":"Positive bg (outline)","token":"color/badge/positive/bg-outline","hex":"#E8F2E8"},{"role":"Positive bg (solid)","token":"color/badge/positive/bg-solid","hex":"#00902C"},{"role":"Negative bg (outline)","token":"color/badge/negative/bg-outline","hex":"#FCE8E8"},{"role":"Negative bg (solid)","token":"color/badge/negative/bg-solid","hex":"#DC4B4B"},{"role":"Warning bg (outline)","token":"color/badge/warning/bg-outline","hex":"#FDF4E8"},{"role":"Warning bg (solid)","token":"color/badge/warning/bg-solid","hex":"#D37203"},{"role":"Label (outline)","token":"color/text/primary","hex":"#374151"},{"role":"Label (solid)","token":"color/text/inverse","hex":"#FFFFFF"}];
+  const tmColorDark = [{"role":"Standard bg (outline)","token":"color/badge/standard/bg-outline","hex":"#001F33"},{"role":"Standard bg (solid)","token":"color/badge/standard/bg-solid","hex":"#35A8D6"},{"role":"Standard border","token":"color/badge/standard/border","hex":"#35A8D6"},{"role":"Positive bg (outline)","token":"color/badge/positive/bg-outline","hex":"#003322"},{"role":"Positive bg (solid)","token":"color/badge/positive/bg-solid","hex":"#4DAD82"},{"role":"Negative bg (outline)","token":"color/badge/negative/bg-outline","hex":"#811F1F"},{"role":"Negative bg (solid)","token":"color/badge/negative/bg-solid","hex":"#E36868"},{"role":"Warning bg (outline)","token":"color/badge/warning/bg-outline","hex":"#3D2200"},{"role":"Warning bg (solid)","token":"color/badge/warning/bg-solid","hex":"#E8A34C"},{"role":"Label (outline)","token":"color/text/primary","hex":"#FFFFFF"},{"role":"Label (solid)","token":"color/text/inverse","hex":"#FFFFFF"}];
+  const tmComponentTokens = [{"role":"Radius","component":"badge/radius","primitive":"spacing/0-5x","value":"2px","icon":"square-round-corner"},{"role":"Padding (sm)","component":"badge/padding-sm","primitive":"spacing/0x-2x","value":"0px 8px","icon":"space"},{"role":"Padding (lg)","component":"badge/padding-lg","primitive":"spacing/1x-2x","value":"4px 8px","icon":"space"}];
+  const tmTypographyTokens = [{"role":"Label (small)","style":"typography/badge/small","font":"Lato","weight":"Bold (700)","size":"10px","lineHeight":"18px","letterSpacing":"0.35px"},{"role":"Label (large)","style":"typography/badge/large","font":"Lato","weight":"Bold (700)","size":"12px","lineHeight":"18px","letterSpacing":"0.35px"}];
+  const tmTotalTokens = tmColorLight.length + tmComponentTokens.length + tmTypographyTokens.length;
+
+  const tmState = { tab:'color', mode:'light' };
+  const tmCards = document.getElementById('tmCards');
+  const tmPreviewCard = document.querySelector('.tm-preview-card');
+  const arrowSvg = '<svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="width:20px;height:20px"><circle cx="5" cy="10" r="3"/><path d="M8 10h9m-3-3 3 3-3 3"/></svg>';
+
+  document.getElementById('tmCountNum').textContent = tmTotalTokens;
+
+  function tmRender() {
+    const theme = tmState.mode;
+    const colors = theme === 'light' ? tmColorLight : tmColorDark;
+    tmPreviewCard.setAttribute('data-bg', theme);
+
+    let html = '';
+    if (tmState.tab === 'color') {
+      for (const c of colors) {
+        html += '<div class="tm-row">'
+          + '<div class="tm-row-header"><div class="tm-row-swatch" style="background:'+c.hex+'"></div><div class="tm-row-label">'+c.role+'</div></div>'
+          + '<div class="tm-chain-row">'
+          + '<div class="tm-chip">'+c.token+'</div>'
+          + '<div class="tm-chain-arrow">'+arrowSvg+'</div>'
+          + '<div class="tm-chip" style="font-weight:600">'+c.hex+'</div>'
+          + '</div></div>';
+      }
+    } else if (tmState.tab === 'component') {
+      for (const ct of tmComponentTokens) {
+        html += '<div class="tm-row">'
+          + '<div class="tm-row-header"><div class="tm-row-icon"><i data-lucide="'+ct.icon+'" style="width:16px;height:16px"></i></div><div class="tm-row-label">'+ct.role+'</div></div>'
+          + '<div class="tm-chain-row">'
+          + '<div class="tm-chip">'+ct.component+'</div>'
+          + '<div class="tm-chain-arrow">'+arrowSvg+'</div>'
+          + '<div class="tm-chip">'+ct.primitive+'</div>'
+          + '<div class="tm-chain-arrow">'+arrowSvg+'</div>'
+          + '<div class="tm-chip" style="font-weight:600">'+ct.value+'</div>'
+          + '</div></div>';
+      }
+    } else {
+      for (const tt of tmTypographyTokens) {
+        html += '<div class="tm-row">'
+          + '<div class="tm-row-header"><div class="tm-row-icon"><i data-lucide="type" style="width:16px;height:16px"></i></div><div class="tm-row-label">'+tt.role+'</div></div>'
+          + '<div class="tm-chain-row" style="flex-direction:column;align-items:flex-start;gap:6px;">'
+          + '<div style="display:flex;align-items:center;gap:10px;flex-wrap:wrap;"><div class="tm-chip">'+tt.style+'</div></div>'
+          + '<div style="display:flex;align-items:center;gap:8px;flex-wrap:wrap;font-family:var(--mono);font-size:12px;color:var(--text-tertiary);">'
+          + '<span>'+tt.font+'</span><span>·</span>'
+          + '<span>'+tt.weight+'</span><span>·</span>'
+          + '<span>'+tt.size+' / '+tt.lineHeight+'</span>'
+          + (tt.letterSpacing !== '0' ? '<span>·</span><span>ls: '+tt.letterSpacing+'</span>' : '')
+          + '</div></div></div>';
+      }
+    }
+    tmCards.innerHTML = html;
+    lucide.createIcons();
+  }
+
+  document.getElementById('tmModeToggle').addEventListener('click', () => {
+    tmState.mode = tmState.mode === 'light' ? 'dark' : 'light';
+    document.getElementById('tmModeLabel').textContent = tmState.mode === 'light' ? 'Light' : 'Dark';
+    const track = document.getElementById('tmModeTrack');
+    if (tmState.mode === 'dark') { track.classList.add('sw-on'); } else { track.classList.remove('sw-on'); }
+    tmRender();
+  });
+
+  document.querySelectorAll('.tm-seg-item[data-tab]').forEach(btn => {
+    btn.addEventListener('click', () => {
+      tmState.tab = btn.dataset.tab;
+      document.querySelectorAll('.tm-seg-item[data-tab]').forEach(b => b.classList.remove('tm-seg-item--active'));
+      btn.classList.add('tm-seg-item--active');
+      tmRender();
+    });
+  });
+
+  tmRender();
 </script>
 </body>
 </html>

@@ -3,8 +3,8 @@
   "configurations": [
     {
       "name": "nuship-ds",
-      "runtimeExecutable": "/usr/bin/python3",
-      "runtimeArgs": ["-m", "http.server", "4242"],
+      "runtimeExecutable": "/bin/sh",
+      "runtimeArgs": ["-c", "python3 -m http.server 4242 --directory /Users/sgardner/Desktop/nuship-ds-docs"],
       "port": 4242
     }
   ]

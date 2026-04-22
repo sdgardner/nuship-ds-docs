@@ -596,47 +596,54 @@
         </div>
       </section>
 
-      <!-- 6 · TOKENS -->
-      <section class="doc-section" id="tokens">
-        <h2 class="section-title">Tokens used</h2>
+      <!-- 6 · TOKEN MAP -->
+            <section class="doc-section" id="tokens">
+              <h2 class="section-title">Token Map</h2>
+              <div class="tm-preview-controls">
+                <div class="tm-mode-toggle" id="tmModeToggle">
+                  <span class="tm-mode-label" id="tmModeLabel">Light</span>
+                  <div class="sw-track sw-track--compact" id="tmModeTrack"><div class="sw-thumb"></div></div>
+                </div>
+              </div>
+              <div class="tm-map">
+                <div>
+                  <div class="tm-preview-card" data-bg="light">
+                    <div class="tm-preview-inner">
+      
+                <nav class="mn-menu" style="min-width:180px;position:relative;top:auto;left:auto;" aria-label="Example">
+                  <div class="mn-item">
+                    <div class="mn-item-content">
+                      <i data-lucide="folder-plus" class="mn-icon"></i>
+                      <span class="mn-label">New Folder</span>
+                    </div>
+                    <span class="mn-kbd">Cmd+N</span>
+                  </div>
+                  <div class="mn-divider"></div>
+                  <div class="mn-item mn-item--destructive">
+                    <div class="mn-item-content">
+                      <i data-lucide="trash-2" class="mn-icon"></i>
+                      <span class="mn-label">Delete</span>
+                    </div>
+                  </div>
+                </nav>
+                    </div>
+                  </div>
+                </div>
+                <div class="tm-tokens-card">
+                  <div class="tm-tokens-head">
+                    <div class="tm-tokens-title"><h5>Token list</h5><span class="tm-count"><span id="tmCountNum">0</span> tokens</span></div>
+                    <p class="tm-tokens-helper">Hover a token to see where it applies on the component.</p>
+                    <div class="tm-seg" style="margin:0 0 12px;">
+                      <button class="tm-seg-item tm-seg-item--active" data-tab="color"><i data-lucide="palette" class="tm-seg-icon"></i> Color</button>
+                      <button class="tm-seg-item" data-tab="component"><i data-lucide="ruler" class="tm-seg-icon"></i> Component</button>
+                      <button class="tm-seg-item" data-tab="typography"><i data-lucide="type" class="tm-seg-icon"></i> Typography</button>
+                    </div>
+                  </div>
+                  <div class="tm-tokens-body" id="tmCards"></div>
+                </div>
+              </div>
+            </section>
 
-        <!-- Container -->
-        <div class="tokens-group-label">Container</div>
-        <table class="tokens-table">
-          <thead><tr><th>Element</th><th>Token</th><th style="width:40px;"></th><th>Light</th><th style="width:40px;"></th><th>Dark</th></tr></thead>
-          <tbody>
-            <tr><td>Background</td><td class="t-tok">--surface-layer02</td><td class="t-sw"><div class="swatch" style="background:#F4F6F8;"></div></td><td>#F4F6F8</td><td class="t-sw"><div class="swatch" style="background:#1E1E1E;border-color:rgba(255,255,255,.15);"></div></td><td>#1E1E1E</td></tr>
-            <tr><td>Border</td><td class="t-tok">--border</td><td class="t-sw"><div class="swatch" style="background:#CDD2D7;"></div></td><td>#CDD2D7</td><td class="t-sw"><div class="swatch" style="background:#6B7280;border-color:rgba(255,255,255,.15);"></div></td><td>#6B7280</td></tr>
-            <tr><td>Divider</td><td class="t-tok">--border</td><td class="t-sw"><div class="swatch" style="background:#CDD2D7;"></div></td><td>#CDD2D7</td><td class="t-sw"><div class="swatch" style="background:#6B7280;border-color:rgba(255,255,255,.15);"></div></td><td>#6B7280</td></tr>
-            <tr><td>Shadow</td><td class="t-tok">elevation/light/level-1</td><td class="t-sw"><div class="swatch" style="background:#37415014;"></div></td><td colspan="3">0 1px 3px rgba(55,65,80,0.08)</td></tr>
-          </tbody>
-        </table>
-
-        <!-- Item default -->
-        <div class="tokens-group-label" style="margin-top:16px;">Item — Default</div>
-        <table class="tokens-table">
-          <thead><tr><th>Element</th><th>Token</th><th style="width:40px;"></th><th>Light</th><th style="width:40px;"></th><th>Dark</th></tr></thead>
-          <tbody>
-            <tr><td>Label</td><td class="t-tok">--text-primary</td><td class="t-sw"><div class="swatch" style="background:#374151;"></div></td><td>#374151</td><td class="t-sw"><div class="swatch" style="background:#FFFFFF;border-color:rgba(0,0,0,.1);"></div></td><td>#FFFFFF</td></tr>
-            <tr><td>Icon</td><td class="t-tok">--text-primary</td><td class="t-sw"><div class="swatch" style="background:#374151;"></div></td><td>#374151</td><td class="t-sw"><div class="swatch" style="background:#FFFFFF;border-color:rgba(0,0,0,.1);"></div></td><td>#FFFFFF</td></tr>
-            <tr><td>Keyboard / trailing</td><td class="t-tok">--text-secondary</td><td class="t-sw"><div class="swatch" style="background:#4B5563;"></div></td><td>#4B5563</td><td class="t-sw"><div class="swatch" style="background:#E5E7EB;border-color:rgba(255,255,255,.15);"></div></td><td>#E5E7EB</td></tr>
-            <tr><td>Hover background</td><td class="t-tok">--surface-layer01-hover</td><td class="t-sw"><div class="swatch" style="background:#E5E7EB;"></div></td><td>#E5E7EB</td><td class="t-sw"><div class="swatch" style="background:#1F2937;border-color:rgba(255,255,255,.15);"></div></td><td>#1F2937</td></tr>
-          </tbody>
-        </table>
-
-        <!-- Item states -->
-        <div class="tokens-group-label" style="margin-top:16px;">Item — States &amp; Types</div>
-        <table class="tokens-table">
-          <thead><tr><th>Element</th><th>Token</th><th style="width:40px;"></th><th>Light</th><th style="width:40px;"></th><th>Dark</th></tr></thead>
-          <tbody>
-            <tr><td>Disabled text</td><td class="t-tok">--text-tertiary</td><td class="t-sw"><div class="swatch" style="background:#9CA3AF;"></div></td><td>#9CA3AF</td><td class="t-sw"><div class="swatch" style="background:#CDD2D7;border-color:rgba(255,255,255,.15);"></div></td><td>#CDD2D7</td></tr>
-            <tr><td>Selected label / icon</td><td class="t-tok">--inf-tx</td><td class="t-sw"><div class="swatch" style="background:#027CB1;"></div></td><td>#027CB1</td><td class="t-sw"><div class="swatch" style="background:#8FCBE6;border-color:rgba(255,255,255,.15);"></div></td><td>#8FCBE6</td></tr>
-            <tr><td>Destructive label / icon</td><td class="t-tok">--err-tx</td><td class="t-sw"><div class="swatch" style="background:#A12F2F;"></div></td><td>#A12F2F</td><td class="t-sw"><div class="swatch" style="background:#E36868;border-color:rgba(255,255,255,.15);"></div></td><td>#E36868</td></tr>
-            <tr><td>Destructive hover bg</td><td class="t-tok">--action-destructive</td><td class="t-sw"><div class="swatch" style="background:#C63B3B;"></div></td><td>#C63B3B</td><td class="t-sw"><div class="swatch" style="background:#C63B3B;border-color:rgba(255,255,255,.15);"></div></td><td>#C63B3B</td></tr>
-            <tr><td>Destructive hover text</td><td class="t-tok">—</td><td class="t-sw"><div class="swatch" style="background:#FFFFFF;border-color:rgba(0,0,0,.1);"></div></td><td>#FFFFFF</td><td class="t-sw"><div class="swatch" style="background:#FFFFFF;border-color:rgba(0,0,0,.1);"></div></td><td>#FFFFFF</td></tr>
-          </tbody>
-        </table>
-      </section>
 
       <!-- 7 · ACCESSIBILITY -->
       <section class="doc-section" id="accessibility">
@@ -788,6 +795,87 @@
       if (target) { e.preventDefault(); target.scrollIntoView({ behavior: 'smooth' }); }
     });
   });
+
+  // ══════════════════════════════════════════
+  // TOKEN MAP
+  // ══════════════════════════════════════════
+  const tmColorLight = [{"role":"Background","token":"color/surface/layer-02","hex":"#F4F6F8"},{"role":"Border","token":"color/border/default","hex":"#CDD2D7"},{"role":"Item label","token":"color/text/primary","hex":"#374151"},{"role":"Item icon","token":"color/text/primary","hex":"#374151"},{"role":"Hover bg","token":"color/surface/layer-01/hover","hex":"#E5E7EB"},{"role":"Disabled text","token":"color/text/tertiary","hex":"#9CA3AF"},{"role":"Destructive label","token":"color/status/error/text","hex":"#A12F2F"}];
+  const tmColorDark = [{"role":"Background","token":"color/surface/layer-02","hex":"#1E1E1E"},{"role":"Border","token":"color/border/default","hex":"#6B7280"},{"role":"Item label","token":"color/text/primary","hex":"#FFFFFF"},{"role":"Item icon","token":"color/text/primary","hex":"#FFFFFF"},{"role":"Hover bg","token":"color/surface/layer-01/hover","hex":"#1F2937"},{"role":"Disabled text","token":"color/text/tertiary","hex":"#CDD2D7"},{"role":"Destructive label","token":"color/status/error/text","hex":"#E36868"}];
+  const tmComponentTokens = [{"role":"Radius","component":"menu/radius","primitive":"radius/medium","value":"6px","icon":"square-round-corner"},{"role":"Padding","component":"menu/padding","primitive":"spacing/4x","value":"16px","icon":"space"}];
+  const tmTypographyTokens = [{"role":"Item label","style":"typography/body/medium","font":"Lato","weight":"Regular (400)","size":"16px","lineHeight":"22px","letterSpacing":"0"},{"role":"Keyboard shortcut","style":"typography/body/small","font":"Lato","weight":"Regular (400)","size":"14px","lineHeight":"19px","letterSpacing":"0"}];
+  const tmTotalTokens = tmColorLight.length + tmComponentTokens.length + tmTypographyTokens.length;
+
+  const tmState = { tab:'color', mode:'light' };
+  const tmCards = document.getElementById('tmCards');
+  const tmPreviewCard = document.querySelector('.tm-preview-card');
+  const arrowSvg = '<svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="width:20px;height:20px"><circle cx="5" cy="10" r="3"/><path d="M8 10h9m-3-3 3 3-3 3"/></svg>';
+
+  document.getElementById('tmCountNum').textContent = tmTotalTokens;
+
+  function tmRender() {
+    const theme = tmState.mode;
+    const colors = theme === 'light' ? tmColorLight : tmColorDark;
+    tmPreviewCard.setAttribute('data-bg', theme);
+
+    let html = '';
+    if (tmState.tab === 'color') {
+      for (const c of colors) {
+        html += '<div class="tm-row">'
+          + '<div class="tm-row-header"><div class="tm-row-swatch" style="background:'+c.hex+'"></div><div class="tm-row-label">'+c.role+'</div></div>'
+          + '<div class="tm-chain-row">'
+          + '<div class="tm-chip">'+c.token+'</div>'
+          + '<div class="tm-chain-arrow">'+arrowSvg+'</div>'
+          + '<div class="tm-chip" style="font-weight:600">'+c.hex+'</div>'
+          + '</div></div>';
+      }
+    } else if (tmState.tab === 'component') {
+      for (const ct of tmComponentTokens) {
+        html += '<div class="tm-row">'
+          + '<div class="tm-row-header"><div class="tm-row-icon"><i data-lucide="'+ct.icon+'" style="width:16px;height:16px"></i></div><div class="tm-row-label">'+ct.role+'</div></div>'
+          + '<div class="tm-chain-row">'
+          + '<div class="tm-chip">'+ct.component+'</div>'
+          + '<div class="tm-chain-arrow">'+arrowSvg+'</div>'
+          + '<div class="tm-chip">'+ct.primitive+'</div>'
+          + '<div class="tm-chain-arrow">'+arrowSvg+'</div>'
+          + '<div class="tm-chip" style="font-weight:600">'+ct.value+'</div>'
+          + '</div></div>';
+      }
+    } else {
+      for (const tt of tmTypographyTokens) {
+        html += '<div class="tm-row">'
+          + '<div class="tm-row-header"><div class="tm-row-icon"><i data-lucide="type" style="width:16px;height:16px"></i></div><div class="tm-row-label">'+tt.role+'</div></div>'
+          + '<div class="tm-chain-row" style="flex-direction:column;align-items:flex-start;gap:6px;">'
+          + '<div style="display:flex;align-items:center;gap:10px;flex-wrap:wrap;"><div class="tm-chip">'+tt.style+'</div></div>'
+          + '<div style="display:flex;align-items:center;gap:8px;flex-wrap:wrap;font-family:var(--mono);font-size:12px;color:var(--text-tertiary);">'
+          + '<span>'+tt.font+'</span><span>·</span>'
+          + '<span>'+tt.weight+'</span><span>·</span>'
+          + '<span>'+tt.size+' / '+tt.lineHeight+'</span>'
+          + (tt.letterSpacing !== '0' ? '<span>·</span><span>ls: '+tt.letterSpacing+'</span>' : '')
+          + '</div></div></div>';
+      }
+    }
+    tmCards.innerHTML = html;
+    lucide.createIcons();
+  }
+
+  document.getElementById('tmModeToggle').addEventListener('click', () => {
+    tmState.mode = tmState.mode === 'light' ? 'dark' : 'light';
+    document.getElementById('tmModeLabel').textContent = tmState.mode === 'light' ? 'Light' : 'Dark';
+    const track = document.getElementById('tmModeTrack');
+    if (tmState.mode === 'dark') { track.classList.add('sw-on'); } else { track.classList.remove('sw-on'); }
+    tmRender();
+  });
+
+  document.querySelectorAll('.tm-seg-item[data-tab]').forEach(btn => {
+    btn.addEventListener('click', () => {
+      tmState.tab = btn.dataset.tab;
+      document.querySelectorAll('.tm-seg-item[data-tab]').forEach(b => b.classList.remove('tm-seg-item--active'));
+      btn.classList.add('tm-seg-item--active');
+      tmRender();
+    });
+  });
+
+  tmRender();
 </script>
 </body>
 </html>

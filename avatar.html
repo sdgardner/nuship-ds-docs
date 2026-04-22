@@ -482,45 +482,43 @@
         </div>
       </section>
 
-      <!-- 6 · TOKENS -->
-      <section class="doc-section" id="tokens">
-        <h2 class="section-title">Tokens used</h2>
-        <div class="tokens-grid">
+      <!-- 6 · TOKEN MAP -->
+            <section class="doc-section" id="tokens">
+              <h2 class="section-title">Token Map</h2>
+              <div class="tm-preview-controls">
+                <div class="tm-mode-toggle" id="tmModeToggle">
+                  <span class="tm-mode-label" id="tmModeLabel">Light</span>
+                  <div class="sw-track sw-track--compact" id="tmModeTrack"><div class="sw-thumb"></div></div>
+                </div>
+              </div>
+              <div class="tm-map">
+                <div>
+                  <div class="tm-preview-card" data-bg="light">
+                    <div class="tm-preview-inner">
+      
+                <div style="display:flex;align-items:center;gap:16px;">
+                  <div class="av-wrap"><div class="av av--initials av--sm">TA</div><span class="av-badge"></span></div>
+                  <div class="av-wrap"><div class="av av--initials av--md">TA</div><span class="av-badge"></span></div>
+                  <div class="av-wrap"><div class="av av--initials av--lg">TA</div><span class="av-badge"></span></div>
+                </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="tm-tokens-card">
+                  <div class="tm-tokens-head">
+                    <div class="tm-tokens-title"><h5>Token list</h5><span class="tm-count"><span id="tmCountNum">0</span> tokens</span></div>
+                    <p class="tm-tokens-helper">Hover a token to see where it applies on the component.</p>
+                    <div class="tm-seg" style="margin:0 0 12px;">
+                      <button class="tm-seg-item tm-seg-item--active" data-tab="color"><i data-lucide="palette" class="tm-seg-icon"></i> Color</button>
+                      <button class="tm-seg-item" data-tab="component"><i data-lucide="ruler" class="tm-seg-icon"></i> Component</button>
+                      <button class="tm-seg-item" data-tab="typography"><i data-lucide="type" class="tm-seg-icon"></i> Typography</button>
+                    </div>
+                  </div>
+                  <div class="tm-tokens-body" id="tmCards"></div>
+                </div>
+              </div>
+            </section>
 
-          <!-- Light -->
-          <div>
-            <div class="tokens-group-label">Light</div>
-            <table class="tokens-table">
-              <thead><tr><th>Property</th><th>Token</th><th></th></tr></thead>
-              <tbody>
-                <tr><td>Background (image)</td><td class="t-tok">color/status/info/bg</td><td class="t-sw"><div class="swatch" style="background:#E5EEF5;"></div></td></tr>
-                <tr><td>Background (initials)</td><td class="t-tok">color/surface/layer-02</td><td class="t-sw"><div class="swatch" style="background:#F4F6F8;"></div></td></tr>
-                <tr><td>Border</td><td class="t-tok">color/border/interactive</td><td class="t-sw"><div class="swatch" style="background:#CDD2D7;"></div></td></tr>
-                <tr><td>Initials text</td><td class="t-tok">color/text/primary</td><td class="t-sw"><div class="swatch" style="background:#374151;"></div></td></tr>
-                <tr><td>Badge fill</td><td class="t-tok">—</td><td class="t-sw"><div class="swatch" style="background:#22C55E;"></div></td></tr>
-                <tr><td>Badge border</td><td class="t-tok">color/surface/shell</td><td class="t-sw"><div class="swatch" style="background:#FFFFFF;"></div></td></tr>
-              </tbody>
-            </table>
-          </div>
-
-          <!-- Dark -->
-          <div>
-            <div class="tokens-group-label">Dark</div>
-            <table class="tokens-table">
-              <thead><tr><th>Property</th><th>Token</th><th></th></tr></thead>
-              <tbody>
-                <tr><td>Background (image)</td><td class="t-tok">color/status/info/bg</td><td class="t-sw"><div class="swatch" style="background:#001F33;border-color:rgba(255,255,255,.1)"></div></td></tr>
-                <tr><td>Background (initials)</td><td class="t-tok">color/surface/layer-02</td><td class="t-sw"><div class="swatch" style="background:#1E1E1E;border-color:rgba(255,255,255,.1)"></div></td></tr>
-                <tr><td>Border</td><td class="t-tok">color/border/interactive</td><td class="t-sw"><div class="swatch" style="background:#6B7280;"></div></td></tr>
-                <tr><td>Initials text</td><td class="t-tok">color/text/primary</td><td class="t-sw"><div class="swatch" style="background:#FFFFFF;border-color:rgba(0,0,0,.1)"></div></td></tr>
-                <tr><td>Badge fill</td><td class="t-tok">—</td><td class="t-sw"><div class="swatch" style="background:#22C55E;"></div></td></tr>
-                <tr><td>Badge border</td><td class="t-tok">color/surface/shell</td><td class="t-sw"><div class="swatch" style="background:#0A0A0A;border-color:rgba(255,255,255,.1)"></div></td></tr>
-              </tbody>
-            </table>
-          </div>
-
-        </div>
-      </section>
 
       <!-- 7 · ACCESSIBILITY -->
       <section class="doc-section" id="accessibility">
@@ -657,6 +655,87 @@
     const el = document.getElementById(id);
     if (el) observer.observe(el);
   });
+
+  // ══════════════════════════════════════════
+  // TOKEN MAP
+  // ══════════════════════════════════════════
+  const tmColorLight = [{"role":"Background (initials)","token":"color/surface/layer-02","hex":"#F4F6F8"},{"role":"Border","token":"color/border/interactive","hex":"#CDD2D7"},{"role":"Initials text","token":"color/text/primary","hex":"#374151"},{"role":"Badge fill","token":"color/status/online","hex":"#22C55E"},{"role":"Badge border","token":"color/surface/shell","hex":"#FFFFFF"}];
+  const tmColorDark = [{"role":"Background (initials)","token":"color/surface/layer-02","hex":"#1E1E1E"},{"role":"Border","token":"color/border/interactive","hex":"#6B7280"},{"role":"Initials text","token":"color/text/primary","hex":"#FFFFFF"},{"role":"Badge fill","token":"color/status/online","hex":"#22C55E"},{"role":"Badge border","token":"color/surface/shell","hex":"#0A0A0A"}];
+  const tmComponentTokens = [{"role":"Size xs","component":"avatar/size-xs","primitive":"spacing/6x","value":"24px","icon":"scan"},{"role":"Size sm","component":"avatar/size-sm","primitive":"spacing/8x","value":"32px","icon":"scan"},{"role":"Size md","component":"avatar/size-md","primitive":"spacing/12x","value":"48px","icon":"scan"},{"role":"Size lg","component":"avatar/size-lg","primitive":"spacing/16x","value":"64px","icon":"scan"},{"role":"Size xl","component":"avatar/size-xl","primitive":"spacing/24x","value":"96px","icon":"scan"},{"role":"Size 2xl","component":"avatar/size-2xl","primitive":"spacing/31x","value":"124px","icon":"scan"}];
+  const tmTypographyTokens = [{"role":"Initials","style":"typography/body/medium","font":"Lato","weight":"Bold (700)","size":"16px","lineHeight":"22px","letterSpacing":"0"}];
+  const tmTotalTokens = tmColorLight.length + tmComponentTokens.length + tmTypographyTokens.length;
+
+  const tmState = { tab:'color', mode:'light' };
+  const tmCards = document.getElementById('tmCards');
+  const tmPreviewCard = document.querySelector('.tm-preview-card');
+  const arrowSvg = '<svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="width:20px;height:20px"><circle cx="5" cy="10" r="3"/><path d="M8 10h9m-3-3 3 3-3 3"/></svg>';
+
+  document.getElementById('tmCountNum').textContent = tmTotalTokens;
+
+  function tmRender() {
+    const theme = tmState.mode;
+    const colors = theme === 'light' ? tmColorLight : tmColorDark;
+    tmPreviewCard.setAttribute('data-bg', theme);
+
+    let html = '';
+    if (tmState.tab === 'color') {
+      for (const c of colors) {
+        html += '<div class="tm-row">'
+          + '<div class="tm-row-header"><div class="tm-row-swatch" style="background:'+c.hex+'"></div><div class="tm-row-label">'+c.role+'</div></div>'
+          + '<div class="tm-chain-row">'
+          + '<div class="tm-chip">'+c.token+'</div>'
+          + '<div class="tm-chain-arrow">'+arrowSvg+'</div>'
+          + '<div class="tm-chip" style="font-weight:600">'+c.hex+'</div>'
+          + '</div></div>';
+      }
+    } else if (tmState.tab === 'component') {
+      for (const ct of tmComponentTokens) {
+        html += '<div class="tm-row">'
+          + '<div class="tm-row-header"><div class="tm-row-icon"><i data-lucide="'+ct.icon+'" style="width:16px;height:16px"></i></div><div class="tm-row-label">'+ct.role+'</div></div>'
+          + '<div class="tm-chain-row">'
+          + '<div class="tm-chip">'+ct.component+'</div>'
+          + '<div class="tm-chain-arrow">'+arrowSvg+'</div>'
+          + '<div class="tm-chip">'+ct.primitive+'</div>'
+          + '<div class="tm-chain-arrow">'+arrowSvg+'</div>'
+          + '<div class="tm-chip" style="font-weight:600">'+ct.value+'</div>'
+          + '</div></div>';
+      }
+    } else {
+      for (const tt of tmTypographyTokens) {
+        html += '<div class="tm-row">'
+          + '<div class="tm-row-header"><div class="tm-row-icon"><i data-lucide="type" style="width:16px;height:16px"></i></div><div class="tm-row-label">'+tt.role+'</div></div>'
+          + '<div class="tm-chain-row" style="flex-direction:column;align-items:flex-start;gap:6px;">'
+          + '<div style="display:flex;align-items:center;gap:10px;flex-wrap:wrap;"><div class="tm-chip">'+tt.style+'</div></div>'
+          + '<div style="display:flex;align-items:center;gap:8px;flex-wrap:wrap;font-family:var(--mono);font-size:12px;color:var(--text-tertiary);">'
+          + '<span>'+tt.font+'</span><span>·</span>'
+          + '<span>'+tt.weight+'</span><span>·</span>'
+          + '<span>'+tt.size+' / '+tt.lineHeight+'</span>'
+          + (tt.letterSpacing !== '0' ? '<span>·</span><span>ls: '+tt.letterSpacing+'</span>' : '')
+          + '</div></div></div>';
+      }
+    }
+    tmCards.innerHTML = html;
+    lucide.createIcons();
+  }
+
+  document.getElementById('tmModeToggle').addEventListener('click', () => {
+    tmState.mode = tmState.mode === 'light' ? 'dark' : 'light';
+    document.getElementById('tmModeLabel').textContent = tmState.mode === 'light' ? 'Light' : 'Dark';
+    const track = document.getElementById('tmModeTrack');
+    if (tmState.mode === 'dark') { track.classList.add('sw-on'); } else { track.classList.remove('sw-on'); }
+    tmRender();
+  });
+
+  document.querySelectorAll('.tm-seg-item[data-tab]').forEach(btn => {
+    btn.addEventListener('click', () => {
+      tmState.tab = btn.dataset.tab;
+      document.querySelectorAll('.tm-seg-item[data-tab]').forEach(b => b.classList.remove('tm-seg-item--active'));
+      btn.classList.add('tm-seg-item--active');
+      tmRender();
+    });
+  });
+
+  tmRender();
 </script>
 </body>
 </html>
