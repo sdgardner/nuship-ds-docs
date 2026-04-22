@@ -2565,6 +2565,7 @@ code {
 .tm-row-swatch { width:30px; height:30px; border-radius:4px; flex-shrink:0; border:1px solid rgba(0,0,0,0.08); }
 .tm-row-label { font-size:16px; font-weight:700; line-height:20px; color:var(--text-secondary); }
 .tm-row-icon { width:30px; height:30px; border-radius:4px; background:#FDE8F0; display:flex; align-items:center; justify-content:center; color:#FF4081; flex-shrink:0; }
+[data-theme="dark"] .tm-row-icon { background:#400025; color:#F86F9B; }
 .tm-chain-row { display:flex; align-items:center; gap:10px; flex-wrap:wrap; }
 .tm-chip { display:inline-flex; align-items:center; justify-content:center; padding:6px 10px; border:1px solid var(--border-strong); border-radius:4px; box-shadow:0 1px 3px rgba(55,65,80,0.08); font-family:var(--mono); font-size:12px; font-weight:400; line-height:16px; color:var(--text-secondary); white-space:nowrap; background:var(--surface-card, #FFFFFF); }
 .tm-chain-arrow { color:var(--tm-accent); display:flex; align-items:center; flex-shrink:0; }
