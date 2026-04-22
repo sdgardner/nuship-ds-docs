@@ -9,47 +9,54 @@
   <link rel="stylesheet" href="styles.css">
   <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.min.js"></script>
   <style>
-    :root { --mono: ui-monospace, "SF Mono", "Menlo", Consolas, monospace; --tm-accent: #0083bb; }
-    .tm-controls { display:flex; align-items:center; justify-content:space-between; gap:12px; margin-bottom:20px; flex-wrap:wrap; }
-    .tm-pills { display:inline-flex; padding:3px; background:var(--surface-layer01); border:1px solid var(--border); border-radius:6px; gap:2px; }
-    .tm-pill { border:0; background:transparent; font-family:inherit; font-size:13px; color:var(--text-tertiary); padding:5px 14px; border-radius:4px; cursor:pointer; transition:background 120ms, color 120ms; }
-    .tm-pill:hover { color:var(--text-primary); }
-    .tm-pill[aria-pressed="true"] { background:var(--surface-layer02); color:var(--text-primary); box-shadow:inset 0 0 0 1px var(--border); }
-    .tm-theme-btn { display:inline-flex; align-items:center; gap:6px; font-size:12px; font-family:inherit; color:var(--text-tertiary); padding:5px 12px; border-radius:6px; border:1px solid var(--border); background:var(--surface-layer01); cursor:pointer; }
-    .tm-theme-btn:hover { color:var(--text-primary); }
-    .tm-map { display:grid; grid-template-columns:1fr 360px; gap:20px; align-items:start; }
-    @media (max-width:900px) { .tm-map { grid-template-columns:1fr; } }
-    .tm-stage { position:relative; border-radius:8px; border:1px solid var(--border); padding:64px 32px; min-height:280px; display:flex; align-items:center; justify-content:center; transition:background 180ms; }
-    .tm-stage[data-bg="light"] { background:#FFFFFF; }
-    .tm-stage[data-bg="dark"]  { background:#0A0A0A; }
-    .tm-stage-label { position:absolute; top:12px; left:16px; font-size:11px; font-family:var(--mono); letter-spacing:0.04em; color:var(--text-tertiary); }
-    .tm-stage[data-bg="dark"] .tm-stage-label { color:#6B7280; }
-    .tm-alert { width:100%; max-width:420px; border-radius:8px; border:1px solid; padding:12px; display:grid; grid-template-columns:20px 1fr 20px; gap:12px; align-items:start; position:relative; transition:background 180ms, border-color 180ms; }
+    :root { --mono: ui-monospace, "SF Mono", "Menlo", Consolas, monospace; --tm-accent: #027CB1; }
+
+    /* Layout */
+    .tm-map { display:grid; grid-template-columns:1fr 1fr; gap:20px; align-items:start; }
+    @media (max-width:960px) { .tm-map { grid-template-columns:1fr; } }
+
+    /* Left: preview card */
+    .tm-preview-card { background:var(--surface-layer02); border:1px solid #E5E7EB; border-radius:6px; padding:0; display:flex; flex-direction:column; overflow:hidden; box-shadow:0 1px 3px rgba(55,65,80,0.08); }
+    .tm-preview-inner { flex:1; display:flex; align-items:center; justify-content:center; padding:48px 32px; }
+
+    /* Variant segmented control */
+    .tm-seg { display:inline-flex; border:1px solid var(--border); border-radius:4px; overflow:hidden; }
+    .tm-seg-item { flex:1; padding:8px 16px; font-size:14px; font-family:inherit; line-height:19px; text-align:center; border:none; border-right:1px solid var(--border); background:var(--surface-layer02); color:var(--text-secondary); cursor:pointer; white-space:nowrap; }
+    .tm-seg-item:last-child { border-right:none; }
+    .tm-seg-item--active { background:var(--action-secondary); color:#FFFFFF; border-color:var(--action-secondary); }
+
+    /* Alert inside preview */
+    .tm-alert { width:100%; max-width:396px; border-radius:8px; border:1px solid; padding:12px; display:grid; grid-template-columns:20px 1fr 20px; gap:12px; align-items:start; transition:background 180ms, border-color 180ms; }
     .tm-alert-icon { width:20px; height:20px; display:flex; align-items:center; justify-content:center; margin-top:1px; }
     .tm-alert-body { min-width:0; }
-    .tm-alert-header { font-size:14px; font-weight:700; line-height:1.4; margin:0 0 2px; }
-    .tm-alert-desc   { font-size:14px; line-height:1.4; margin:0; }
+    .tm-alert-header { font-size:16px; font-weight:700; line-height:22px; margin:0 0 4px; }
+    .tm-alert-desc   { font-size:14px; line-height:19px; margin:0; }
     .tm-alert-dismiss { width:20px; height:20px; display:flex; align-items:center; justify-content:center; cursor:pointer; margin-top:1px; }
-    [data-slot] { position:relative; cursor:pointer; outline:2px solid transparent; outline-offset:3px; border-radius:3px; transition:outline-color 120ms; }
-    [data-slot].is-hot { outline-color:var(--tm-accent); }
-    .tm-pin { position:absolute; top:-10px; font-size:10px; font-family:var(--mono); letter-spacing:0.04em; padding:2px 8px; border-radius:10px; background:var(--surface-layer01); border:1px solid var(--border); color:var(--text-tertiary); cursor:pointer; text-transform:uppercase; transition:color 120ms, border-color 120ms; z-index:2; }
-    .tm-pin:hover { color:var(--text-primary); border-color:var(--text-tertiary); }
-    .tm-pin.is-hot { color:var(--tm-accent); border-color:var(--tm-accent); }
-    .tm-pin[data-slot="background"] { left:16px; }
-    .tm-pin[data-slot="border"]     { right:16px; }
-    .tm-cards { display:flex; flex-direction:column; gap:8px; }
-    .tm-cards-label { font-size:10px; font-family:var(--mono); letter-spacing:0.06em; text-transform:uppercase; color:var(--text-tertiary); margin:12px 0 4px; }
-    .tm-cards-label:first-child { margin-top:0; }
-    .tm-card { display:grid; grid-template-columns:28px 1fr; gap:12px; padding:12px 14px; background:var(--surface-layer01); border:1px solid var(--border); border-radius:6px; cursor:pointer; transition:border-color 120ms; }
-    .tm-card:hover, .tm-card.is-hot { border-color:var(--tm-accent); }
-    .tm-card.is-hot { box-shadow:inset 3px 0 0 var(--tm-accent); padding-left:11px; }
-    .tm-swatch { width:28px; height:28px; border-radius:6px; border:1px solid var(--border); margin-top:2px; }
-    .tm-size-box { width:28px; height:28px; border-radius:6px; background:var(--surface-layer03); display:flex; align-items:center; justify-content:center; font-size:11px; font-weight:700; font-family:var(--mono); color:var(--text-primary); margin-top:2px; }
-    .tm-role { font-size:10px; letter-spacing:0.06em; color:var(--text-tertiary); text-transform:uppercase; margin:0 0 4px; font-weight:500; }
-    .tm-chain { font-family:var(--mono); font-size:12px; line-height:1.5; color:var(--text-secondary); word-break:break-all; }
-    .tm-arrow { color:var(--text-tertiary); margin:0 4px; }
-    .tm-hex   { color:var(--text-primary); font-weight:500; }
-    .tm-meta { margin-top:14px; font-size:12px; color:var(--text-tertiary); display:flex; justify-content:space-between; font-family:var(--mono); }
+
+    /* Right: tokens card */
+    .tm-tokens-card { background:var(--surface-card, #FFFFFF); border:1px solid #E5E7EB; border-radius:8px; box-shadow:none; overflow:hidden; }
+    .tm-tokens-head { padding:16px 24px 0; }
+    .tm-tokens-body { padding:0 24px 24px; }
+
+    /* Token rows */
+    .tm-row { border-bottom:1px solid #E5E7EB; padding:18px 0; }
+    .tm-row:last-child { border-bottom:none; }
+    .tm-row-header { display:flex; align-items:center; gap:14px; margin-bottom:12px; }
+    .tm-row-swatch { width:30px; height:30px; border-radius:4px; flex-shrink:0; }
+    .tm-row-label { font-size:16px; font-weight:700; line-height:20px; color:var(--text-secondary); }
+
+    /* Chain: horizontal pills with arrows */
+    .tm-chain-row { display:flex; align-items:center; gap:10px; flex-wrap:wrap; }
+    .tm-chip { display:inline-flex; align-items:center; justify-content:center; padding:8px 10px; border:1px solid var(--border-strong); border-radius:4px; box-shadow:0 1px 3px rgba(55,65,80,0.08); font-family:var(--mono); font-size:13px; line-height:19px; color:var(--text-primary); white-space:nowrap; background:var(--surface-card, #FFFFFF); }
+    .tm-chain-arrow { color:var(--tm-accent); display:flex; align-items:center; flex-shrink:0; }
+    .tm-chain-arrow svg { width:20px; height:20px; }
+
+    /* Hover sync */
+    .tm-row[data-slot] { cursor:pointer; border-left:3px solid transparent; margin-left:-3px; padding-left:3px; transition:border-color 120ms; }
+    .tm-row[data-slot].is-hot { border-left-color:var(--tm-accent); }
+
+    /* Size box for component tokens */
+    .tm-row-size { width:30px; height:30px; border-radius:4px; background:var(--surface-layer03); display:flex; align-items:center; justify-content:center; font-size:12px; font-weight:700; font-family:var(--mono); color:var(--text-primary); flex-shrink:0; }
   </style>
 </head>
 <body>
@@ -496,40 +503,41 @@
       <!-- 6 · TOKEN MAP -->
       <section class="doc-section" id="tokens">
         <h2 class="section-title">Token Map</h2>
-        <p style="font-size:14px;color:var(--text-secondary);margin:0 0 20px;line-height:1.5;">Hover a part of the component to trace its token chain. Tokens resolve <strong>semantic → primitive → value</strong>.</p>
-
-        <div class="tm-controls">
-          <div class="tm-pills" role="tablist">
-            <button class="tm-pill" data-variant="error" aria-pressed="true">Error</button>
-            <button class="tm-pill" data-variant="success" aria-pressed="false">Success</button>
-            <button class="tm-pill" data-variant="info" aria-pressed="false">Info</button>
-          </div>
-          <button class="tm-theme-btn" id="stageThemeToggle">
-            <i data-lucide="sun" style="width:14px;height:14px"></i>
-            <span id="stageThemeLabel">Light</span>
-          </button>
-        </div>
 
         <div class="tm-map">
-          <div class="tm-stage" data-bg="light" id="tmStage">
-            <span class="tm-stage-label" id="tmStageLabel">skid-semantic / light</span>
-            <div class="tm-alert" id="tmAlert">
-              <span class="tm-pin" data-slot="background">bg</span>
-              <span class="tm-pin" data-slot="border">border</span>
-              <span class="tm-alert-icon" data-slot="icon"><i data-lucide="circle-alert" style="width:20px;height:20px"></i></span>
-              <div class="tm-alert-body">
-                <p class="tm-alert-header" data-slot="headerText">Alert Header</p>
-                <p class="tm-alert-desc" data-slot="descriptionText">This is a description of the alert with helpful context for the user.</p>
+
+          <!-- LEFT: Preview -->
+          <div>
+            <div class="tm-seg" style="margin-bottom:16px;width:300px;">
+              <button class="tm-seg-item tm-seg-item--active" data-variant="info">Information</button>
+              <button class="tm-seg-item" data-variant="success">Success</button>
+              <button class="tm-seg-item" data-variant="error">Error</button>
+            </div>
+            <div class="tm-preview-card">
+              <div class="tm-preview-inner">
+                <div class="tm-alert" id="tmAlert">
+                  <span class="tm-alert-icon"><i data-lucide="info" style="width:20px;height:20px"></i></span>
+                  <div class="tm-alert-body">
+                    <p class="tm-alert-header">Alert Header</p>
+                    <p class="tm-alert-desc">Descriptive text</p>
+                  </div>
+                  <span class="tm-alert-dismiss"><i data-lucide="x" style="width:20px;height:20px"></i></span>
+                </div>
               </div>
-              <span class="tm-alert-dismiss" data-slot="dismissIcon"><i data-lucide="x" style="width:16px;height:16px"></i></span>
             </div>
           </div>
-          <div id="tmCards"></div>
-        </div>
 
-        <div class="tm-meta">
-          <span id="tmTokenCount"></span>
-          <span id="tmPath"></span>
+          <!-- RIGHT: Token rows -->
+          <div class="tm-tokens-card">
+            <div class="tm-tokens-head">
+              <div class="tm-seg" style="width:300px;margin:0 auto 16px;">
+                <button class="tm-seg-item tm-seg-item--active" data-tab="color">Color</button>
+                <button class="tm-seg-item" data-tab="component">Component</button>
+              </div>
+            </div>
+            <div class="tm-tokens-body" id="tmCards"></div>
+          </div>
+
         </div>
       </section>
 
@@ -737,64 +745,78 @@
     { role:'Icon size',    component:'alert/icon/size',    primitive:'icon/md',            value:'20px' },
   ];
 
-  const tmState = { variant:'error', theme:'light' };
+  const tmState = { variant:'info', tab:'color' };
   const tmAlert = document.getElementById('tmAlert');
   const tmCards = document.getElementById('tmCards');
+  const arrowSvg = '<svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="width:20px;height:20px"><circle cx="5" cy="10" r="3"/><path d="M8 10h9m-3-3 3 3-3 3"/></svg>';
 
   function tmRender() {
     const spec = alertSpec[tmState.variant];
-    const theme = tmState.theme;
     const resolved = {};
     for (const [slot, meta] of Object.entries(spec)) {
-      const sem = semantic[theme][meta.token];
+      const sem = semantic.light[meta.token];
       resolved[slot] = { ...meta, chain:[meta.token, sem.ref, sem.hex], hex:sem.hex };
     }
 
+    // Apply colors to alert preview
     tmAlert.style.background  = resolved.background.hex;
     tmAlert.style.borderColor = resolved.border.hex;
-    tmAlert.querySelector('[data-slot="icon"]').style.color            = resolved.icon.hex;
-    tmAlert.querySelector('[data-slot="headerText"]').style.color      = resolved.headerText.hex;
-    tmAlert.querySelector('[data-slot="descriptionText"]').style.color = resolved.descriptionText.hex;
-    tmAlert.querySelector('[data-slot="dismissIcon"]').style.color     = resolved.dismissIcon.hex;
+    tmAlert.querySelector('.tm-alert-icon').style.color    = resolved.icon.hex;
+    tmAlert.querySelector('.tm-alert-header').style.color   = resolved.headerText.hex;
+    tmAlert.querySelector('.tm-alert-desc').style.color     = resolved.descriptionText.hex;
+    tmAlert.querySelector('.tm-alert-dismiss').style.color  = resolved.dismissIcon.hex;
 
-    document.getElementById('tmStage').setAttribute('data-bg', theme);
-    document.getElementById('tmStageLabel').textContent = 'skid-semantic / ' + theme;
-    document.getElementById('tmPath').textContent = 'skid-semantic/' + theme + ' · alert.' + tmState.variant;
-
-    let html = '<div class="tm-cards-label">Color tokens</div><div class="tm-cards">';
-    for (const [slot, m] of Object.entries(resolved)) {
-      const ch = m.chain.map((n,i) => i === m.chain.length-1 ? '<span class="tm-hex">'+n+'</span>' : n+'<span class="tm-arrow">→</span>').join('');
-      const bf = ['#FFFFFF','#FCE8E8','#E8F2E8','#E5EEF5'].includes(m.hex) ? 'border-color:#CDD2D7' : '';
-      html += '<div class="tm-card" data-slot="'+slot+'"><div class="tm-swatch" style="background:'+m.hex+';'+bf+'"></div><div><p class="tm-role">'+m.role+'</p><div class="tm-chain">'+ch+'</div></div></div>';
+    // Build cards based on active tab
+    let html = '';
+    if (tmState.tab === 'color') {
+      for (const [slot, m] of Object.entries(resolved)) {
+        html += '<div class="tm-row" data-slot="'+slot+'">'
+          + '<div class="tm-row-header"><div class="tm-row-swatch" style="background:'+m.hex+'"></div><div class="tm-row-label">'+m.role+'</div></div>'
+          + '<div class="tm-chain-row">'
+          + '<div class="tm-chip">'+m.chain[0]+'</div>'
+          + '<div class="tm-chain-arrow">'+arrowSvg+'</div>'
+          + '<div class="tm-chip">'+m.chain[1]+'</div>'
+          + '<div class="tm-chain-arrow">'+arrowSvg+'</div>'
+          + '<div class="tm-chip" style="font-weight:600">'+m.chain[2]+'</div>'
+          + '</div></div>';
+      }
+    } else {
+      for (const ct of componentTokens) {
+        html += '<div class="tm-row">'
+          + '<div class="tm-row-header"><div class="tm-row-size">'+parseInt(ct.value)+'</div><div class="tm-row-label">'+ct.role+'</div></div>'
+          + '<div class="tm-chain-row">'
+          + '<div class="tm-chip">'+ct.component+'</div>'
+          + '<div class="tm-chain-arrow">'+arrowSvg+'</div>'
+          + '<div class="tm-chip">'+ct.primitive+'</div>'
+          + '<div class="tm-chain-arrow">'+arrowSvg+'</div>'
+          + '<div class="tm-chip" style="font-weight:600">'+ct.value+'</div>'
+          + '</div></div>';
+      }
     }
-    html += '</div><div class="tm-cards-label" style="margin-top:20px;">Component tokens</div><div class="tm-cards">';
-    for (const ct of componentTokens) {
-      html += '<div class="tm-card"><div class="tm-size-box">'+parseInt(ct.value)+'</div><div><p class="tm-role">'+ct.role+'</p><div class="tm-chain">'+ct.component+'<span class="tm-arrow">→</span>'+ct.primitive+'<span class="tm-arrow">→</span><span class="tm-hex">'+ct.value+'</span></div></div></div>';
-    }
-    html += '</div>';
     tmCards.innerHTML = html;
-    document.getElementById('tmTokenCount').textContent = (Object.keys(resolved).length + componentTokens.length) + ' tokens';
-
-    document.querySelectorAll('[data-slot]').forEach(el => {
-      const s = el.dataset.slot;
-      el.addEventListener('mouseenter', () => document.querySelectorAll('[data-slot="'+s+'"]').forEach(e => e.classList.add('is-hot')));
-      el.addEventListener('mouseleave', () => document.querySelectorAll('[data-slot="'+s+'"]').forEach(e => e.classList.remove('is-hot')));
-    });
     lucide.createIcons();
   }
 
-  document.querySelectorAll('.tm-pill').forEach(btn => {
+  // Variant segmented control (left)
+  document.querySelectorAll('.tm-seg-item[data-variant]').forEach(btn => {
     btn.addEventListener('click', () => {
       tmState.variant = btn.dataset.variant;
-      document.querySelectorAll('.tm-pill').forEach(b => b.setAttribute('aria-pressed', b === btn ? 'true' : 'false'));
+      document.querySelectorAll('.tm-seg-item[data-variant]').forEach(b => b.classList.remove('tm-seg-item--active'));
+      btn.classList.add('tm-seg-item--active');
       tmRender();
     });
   });
-  document.getElementById('stageThemeToggle').addEventListener('click', () => {
-    tmState.theme = tmState.theme === 'light' ? 'dark' : 'light';
-    document.getElementById('stageThemeLabel').textContent = tmState.theme === 'light' ? 'Light' : 'Dark';
-    tmRender();
+
+  // Color/Component segmented control (right)
+  document.querySelectorAll('.tm-seg-item[data-tab]').forEach(btn => {
+    btn.addEventListener('click', () => {
+      tmState.tab = btn.dataset.tab;
+      document.querySelectorAll('.tm-seg-item[data-tab]').forEach(b => b.classList.remove('tm-seg-item--active'));
+      btn.classList.add('tm-seg-item--active');
+      tmRender();
+    });
   });
+
   tmRender();
 </script>
 </body>
