@@ -11,12 +11,12 @@
   <style>
     :root { --mono: ui-monospace, "SF Mono", "Menlo", Consolas, monospace; --tm-accent: #027CB1; }
 
-    /* Layout */
-    .tm-map { display:grid; grid-template-columns:1fr 1fr; gap:20px; align-items:start; }
-    @media (max-width:960px) { .tm-map { grid-template-columns:1fr; } }
+    /* Layout — wider, break out of doc max-width */
+    .tm-map { display:grid; grid-template-columns:1fr 1fr; gap:24px; align-items:start; margin-left:-40px; margin-right:-40px; }
+    @media (max-width:960px) { .tm-map { grid-template-columns:1fr; margin-left:0; margin-right:0; } }
 
     /* Left: preview card */
-    .tm-preview-card { background:var(--surface-layer02); border:1px solid #E5E7EB; border-radius:6px; padding:0; display:flex; flex-direction:column; overflow:hidden; box-shadow:0 1px 3px rgba(55,65,80,0.08); }
+    .tm-preview-card { background:var(--surface-layer02); border:1px solid #E5E7EB; border-radius:6px; padding:0; display:flex; flex-direction:column; overflow:hidden; box-shadow:0 1px 3px rgba(55,65,80,0.08); min-height:480px; }
     .tm-preview-inner { flex:1; display:flex; align-items:center; justify-content:center; padding:48px 32px; }
 
     /* Variant segmented control */
@@ -33,10 +33,10 @@
     .tm-alert-desc   { font-size:14px; line-height:19px; margin:0; }
     .tm-alert-dismiss { width:20px; height:20px; display:flex; align-items:center; justify-content:center; cursor:pointer; margin-top:1px; }
 
-    /* Right: tokens card */
-    .tm-tokens-card { background:var(--surface-card, #FFFFFF); border:1px solid #E5E7EB; border-radius:8px; box-shadow:none; overflow:hidden; }
-    .tm-tokens-head { padding:16px 24px 0; }
-    .tm-tokens-body { padding:0 24px 24px; }
+    /* Right: tokens card — scrollable */
+    .tm-tokens-card { background:var(--surface-card, #FFFFFF); border:1px solid #E5E7EB; border-radius:8px; box-shadow:none; display:flex; flex-direction:column; max-height:520px; }
+    .tm-tokens-head { padding:16px 24px 0; flex-shrink:0; }
+    .tm-tokens-body { padding:0 24px 24px; overflow-y:auto; flex:1; min-height:0; }
 
     /* Token rows */
     .tm-row { border-bottom:1px solid #E5E7EB; padding:18px 0; }
