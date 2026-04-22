@@ -73,12 +73,13 @@
     .tm-row:hover, .tm-row.is-hot { background:var(--surface-layer01-hover); }
 
     /* Icon box for component tokens */
-    .tm-row-icon { width:30px; height:30px; border-radius:4px; background:var(--surface-layer03); display:flex; align-items:center; justify-content:center; color:#FF4081; flex-shrink:0; }
+    .tm-row-icon { width:30px; height:30px; border-radius:4px; background:#FDE8F0; display:flex; align-items:center; justify-content:center; color:#FF4081; flex-shrink:0; }
 
     /* Tokens header with count */
     .tm-tokens-title { display:flex; align-items:baseline; gap:10px; margin:0 0 16px; }
     .tm-tokens-title h5 { font-size:16px; font-weight:700; line-height:20px; margin:0; color:var(--text-primary); }
     .tm-tokens-title .tm-count { font-size:12px; font-weight:700; line-height:16px; color:var(--text-tertiary); letter-spacing:0.02em; }
+    .tm-tokens-helper { font-size:14px; line-height:19px; color:var(--text-secondary); margin:0 0 16px; }
 
     /* Color swatch icon tint */
     .tm-row-swatch { border:1px solid rgba(0,0,0,0.08); }
@@ -563,6 +564,7 @@
                 <h5>Token list</h5>
                 <span class="tm-count" id="tmCount"><span id="tmCountNum">10</span> tokens</span>
               </div>
+              <p class="tm-tokens-helper">Hover a token to see where it applies on the component.</p>
               <div class="tm-seg" style="width:300px;margin:0 0 12px;">
                 <button class="tm-seg-item tm-seg-item--active" data-tab="color"><i data-lucide="palette" class="tm-seg-icon"></i> Color</button>
                 <button class="tm-seg-item" data-tab="component"><i data-lucide="ruler" class="tm-seg-icon"></i> Component</button>
