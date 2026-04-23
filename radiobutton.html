@@ -788,9 +788,9 @@
       'disabled-text':['label','desc'],'size':['circle'],'border-width':['circle'],
     };
   function slug(s){ return s.toLowerCase().replace(/[^a-z0-9]+/g,'-').replace(/-+$/,''); }
-  function clearSpotlight(){ if(tmPreview){spotlightClasses.forEach(c=>tmPreview.classList.remove(c)); tmPreview.querySelectorAll('[data-part]').forEach(p=>p.classList.remove('spotlight'));} }
   const compSpotlightMap = {'size':'spotlight-size','border-width':'spotlight-border-width'};
   const spotlightClasses = ['has-spotlight','spotlight-size','spotlight-border-width'];
+  function clearSpotlight(){ if(tmPreview){spotlightClasses.forEach(c=>tmPreview.classList.remove(c)); tmPreview.querySelectorAll('[data-part]').forEach(p=>p.classList.remove('spotlight'));} }
   function spotlight(sl){
     if(!tmPreview) return;
     // Component tokens → CSS class with magenta outline + callout

@@ -824,9 +824,9 @@
   const tmPreview = document.getElementById('tmPreview');
   const partMap = {};
   function slug(s){ return s.toLowerCase().replace(/[^a-z0-9]+/g,'-').replace(/-+$/,''); }
-  function clearSpotlight(){ if(tmPreview){spotlightClasses.forEach(c=>tmPreview.classList.remove(c)); tmPreview.querySelectorAll('[data-part]').forEach(p=>p.classList.remove('spotlight'));} }
   const compSpotlightMap = {'radius':'spotlight-radius','padding':'spotlight-padding'};
   const spotlightClasses = ['has-spotlight','spotlight-radius','spotlight-padding'];
+  function clearSpotlight(){ if(tmPreview){spotlightClasses.forEach(c=>tmPreview.classList.remove(c)); tmPreview.querySelectorAll('[data-part]').forEach(p=>p.classList.remove('spotlight'));} }
   function spotlight(sl){
     if(!tmPreview) return;
     // Component tokens → CSS class with magenta outline + callout
