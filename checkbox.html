@@ -685,19 +685,19 @@
                   <div class="tm-preview-card" data-bg="light">
                     <div class="tm-preview-inner">
       
-                <div style="display:flex;flex-direction:column;gap:12px;">
+                <div id="tmPreview" class="tm-preview" style="display:flex;flex-direction:column;gap:12px;">
                   <div class="cb-item">
-                    <div class="cb-box cb-box--checked"></div>
+                    <div class="cb-box cb-box--checked" data-part="fill-checked"></div>
                     <div class="cb-text">
-                      <div class="cb-label">Checked</div>
-                      <div class="cb-desc">Optional description</div>
+                      <div class="cb-label" data-part="label-text">Checked</div>
+                      <div class="cb-desc" data-part="helper-text">Optional description</div>
                     </div>
                   </div>
                   <div class="cb-item">
-                    <div class="cb-box"></div>
+                    <div class="cb-box" data-part="border-default"></div>
                     <div class="cb-text">
-                      <div class="cb-label">Unchecked</div>
-                      <div class="cb-desc">Optional description</div>
+                      <div class="cb-label" data-part="label-text-2">Unchecked</div>
+                      <div class="cb-desc" data-part="helper-text-2">Optional description</div>
                     </div>
                   </div>
                 </div>
@@ -869,18 +869,77 @@
   const tmPreviewCard = document.querySelector('.tm-preview-card');
   const arrowSvg = '<svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="width:20px;height:20px"><circle cx="5" cy="10" r="3"/><path d="M8 10h9m-3-3 3 3-3 3"/></svg>';
   document.getElementById('tmCountNum').textContent = tmTotalTokens;
+  const tmPreview = document.getElementById('tmPreview');
+
+  // Slot-to-part mapping for spotlight
+  const slotToPartMap = {
+    'border-default': ['border-default'],
+    'border-focus': ['border-default','fill-checked'],
+    'border-error': ['border-default'],
+    'border-disabled': ['border-default'],
+    'fill-checked': ['fill-checked'],
+    'hover-background': ['border-default','fill-checked'],
+    'focus-shadow': ['border-default','fill-checked'],
+    'label-text': ['label-text','label-text-2'],
+    'helper-text': ['helper-text','helper-text-2'],
+    'disabled-text': ['label-text','label-text-2','helper-text','helper-text-2'],
+    'error-text': ['helper-text','helper-text-2'],
+    // Component tokens
+    'size': ['border-default','fill-checked'],
+    'border-width': ['border-default','fill-checked'],
+    'radius': ['border-default','fill-checked'],
+    'gap': [],
+    // Typography
+    'label': ['label-text','label-text-2'],
+    'description': ['helper-text','helper-text-2'],
+  };
+
+  function slugify(str) { return str.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/-+$/,''); }
+
+  function clearSpotlight() {
+    tmPreview.classList.remove('has-spotlight');
+    tmPreview.querySelectorAll('[data-part]').forEach(p => p.classList.remove('spotlight'));
+  }
+
+  function applySpotlight(slug) {
+    const parts = slotToPartMap[slug];
+    if (!parts || parts.length === 0) return;
+    tmPreview.classList.add('has-spotlight');
+    parts.forEach(p => {
+      const el = tmPreview.querySelector('[data-part="'+p+'"]');
+      if (el) el.classList.add('spotlight');
+    });
+  }
+
+  function bindSpotlight() {
+    document.querySelectorAll('.tm-row[data-slot]').forEach(row => {
+      row.addEventListener('mouseenter', () => { row.classList.add('is-hot'); applySpotlight(row.dataset.slot); });
+      row.addEventListener('mouseleave', () => { row.classList.remove('is-hot'); clearSpotlight(); });
+    });
+  }
+
   function tmRender() {
     const colors = tmState.mode === 'light' ? tmColorLight : tmColorDark;
     tmPreviewCard.setAttribute('data-bg', tmState.mode);
     let html = '';
     if (tmState.tab === 'color') {
-      for (const c of colors) { html += '<div class="tm-row"><div class="tm-row-header"><div class="tm-row-swatch" style="background:'+c.hex+'"></div><div class="tm-row-label">'+c.role+'</div></div><div class="tm-chain-row"><div class="tm-chip">'+c.token+'</div><div class="tm-chain-arrow">'+arrowSvg+'</div><div class="tm-chip" style="font-weight:600">'+c.hex+'</div></div></div>'; }
+      for (const c of colors) {
+        const slug = slugify(c.role);
+        html += '<div class="tm-row" data-slot="'+slug+'"><div class="tm-row-header"><div class="tm-row-swatch" style="background:'+c.hex+'"></div><div class="tm-row-label">'+c.role+'</div></div><div class="tm-chain-row"><div class="tm-chip">'+c.token+'</div><div class="tm-chain-arrow">'+arrowSvg+'</div><div class="tm-chip">'+(c.ref||c.token)+'</div><div class="tm-chain-arrow">'+arrowSvg+'</div><div class="tm-chip" style="font-weight:600">'+c.hex+'</div></div></div>';
+      }
     } else if (tmState.tab === 'component') {
-      for (const ct of tmComponentTokens) { html += '<div class="tm-row"><div class="tm-row-header"><div class="tm-row-icon"><i data-lucide="'+ct.icon+'" style="width:16px;height:16px"></i></div><div class="tm-row-label">'+ct.role+'</div></div><div class="tm-chain-row"><div class="tm-chip">'+ct.component+'</div><div class="tm-chain-arrow">'+arrowSvg+'</div><div class="tm-chip">'+ct.primitive+'</div><div class="tm-chain-arrow">'+arrowSvg+'</div><div class="tm-chip" style="font-weight:600">'+ct.value+'</div></div></div>'; }
+      for (const ct of tmComponentTokens) {
+        const slug = slugify(ct.role);
+        html += '<div class="tm-row" data-slot="'+slug+'"><div class="tm-row-header"><div class="tm-row-icon"><i data-lucide="'+ct.icon+'" style="width:16px;height:16px"></i></div><div class="tm-row-label">'+ct.role+'</div></div><div class="tm-chain-row"><div class="tm-chip">'+ct.component+'</div><div class="tm-chain-arrow">'+arrowSvg+'</div><div class="tm-chip">'+ct.primitive+'</div><div class="tm-chain-arrow">'+arrowSvg+'</div><div class="tm-chip" style="font-weight:600">'+ct.value+'</div></div></div>';
+      }
     } else {
-      for (const tt of tmTypographyTokens) { html += '<div class="tm-row"><div class="tm-row-header"><div class="tm-row-icon"><i data-lucide="type" style="width:16px;height:16px"></i></div><div class="tm-row-label">'+tt.role+'</div></div><div class="tm-chain-row" style="flex-direction:column;align-items:flex-start;gap:6px;"><div style="display:flex;align-items:center;gap:10px;flex-wrap:wrap;"><div class="tm-chip">'+tt.style+'</div></div><div style="display:flex;align-items:center;gap:8px;flex-wrap:wrap;font-family:var(--mono);font-size:12px;color:var(--text-tertiary);"><span>'+tt.font+'</span><span>\u00b7</span><span>'+tt.weight+'</span><span>\u00b7</span><span>'+tt.size+' / '+tt.lineHeight+'</span>'+(tt.letterSpacing!=='0'?'<span>\u00b7</span><span>ls: '+tt.letterSpacing+'</span>':'')+'</div></div></div>'; }
+      for (const tt of tmTypographyTokens) {
+        const slug = slugify(tt.role);
+        html += '<div class="tm-row" data-slot="'+slug+'"><div class="tm-row-header"><div class="tm-row-icon"><i data-lucide="type" style="width:16px;height:16px"></i></div><div class="tm-row-label">'+tt.role+'</div></div><div class="tm-chain-row" style="flex-direction:column;align-items:flex-start;gap:6px;"><div style="display:flex;align-items:center;gap:10px;flex-wrap:wrap;"><div class="tm-chip">'+tt.style+'</div></div><div style="display:flex;align-items:center;gap:8px;flex-wrap:wrap;font-family:var(--mono);font-size:12px;color:var(--text-tertiary);"><span>'+tt.font+'</span><span>\u00b7</span><span>'+tt.weight+'</span><span>\u00b7</span><span>'+tt.size+' / '+tt.lineHeight+'</span>'+(tt.letterSpacing!=='0'?'<span>\u00b7</span><span>ls: '+tt.letterSpacing+'</span>':'')+'</div></div></div>';
+      }
     }
     tmCards.innerHTML = html;
+    bindSpotlight();
     lucide.createIcons();
   }
   document.getElementById('tmModeToggle').addEventListener('click', () => {
@@ -899,10 +958,6 @@
     });
   });
   tmRender();
-
-  // ══════════════════════════════════════════
-  // TOKEN MAP
-  // ══════════════════════════════════════════
 </script>
 </body>
 </html>
