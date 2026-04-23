@@ -8,6 +8,20 @@
   <link rel="stylesheet" href="tokens.css">
   <link rel="stylesheet" href="styles.css">
   <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.min.js"></script>
+  <style>
+    /* Checkbox token map spotlights */
+    #tmPreview.spotlight-bg .cb-box { outline:2px solid var(--tm-accent); outline-offset:2px; border-radius:4px; }
+    #tmPreview.spotlight-border { } /* handled via data-part */
+    #tmPreview.spotlight-size .cb-box { outline:2px solid #FF4081; outline-offset:2px; border-radius:4px; }
+    #tmPreview.spotlight-size::after { content:'20px'; position:absolute; top:2px; left:2px; font-size:10px; font-family:var(--mono); color:#FF4081; background:rgba(255,255,255,0.9); padding:1px 4px; border-radius:2px; font-weight:700; }
+    #tmPreview.spotlight-border-width .cb-box { outline:2px solid #FF4081; outline-offset:0; border-radius:4px; }
+    #tmPreview.spotlight-border-width::after { content:'2px'; position:absolute; top:-16px; left:2px; font-size:10px; font-family:var(--mono); color:#FF4081; background:rgba(255,255,255,0.9); padding:1px 4px; border-radius:2px; font-weight:700; }
+    #tmPreview.spotlight-radius .cb-box { outline:2px solid #FF4081; outline-offset:2px; border-radius:4px; }
+    #tmPreview.spotlight-radius::after { content:'4px'; position:absolute; top:-16px; right:auto; left:24px; font-size:10px; font-family:var(--mono); color:#FF4081; background:rgba(255,255,255,0.9); padding:1px 4px; border-radius:2px; font-weight:700; }
+    #tmPreview.spotlight-gap { outline:2px solid #FF4081; outline-offset:-1px; border-radius:4px; }
+    #tmPreview.spotlight-gap::after { content:'12px'; position:absolute; top:12px; left:28px; font-size:10px; font-family:var(--mono); color:#FF4081; background:rgba(255,255,255,0.9); padding:1px 4px; border-radius:2px; font-weight:700; }
+    #tmPreview { position:relative; }
+  </style>
 </head>
 <body>
 
@@ -871,19 +885,35 @@
   document.getElementById('tmCountNum').textContent = tmTotalTokens;
   const tmPreview = document.getElementById('tmPreview');
 
-  // Spotlight: slot → data-part names
-  const partMap = {
+  // Spotlight mappings
+  const colorPartMap = {
     'border-default':['box','box2'], 'border-focus':['box','box2'], 'border-error':['box','box2'],
     'border-disabled':['box','box2'], 'fill-checked':['box'], 'hover-background':['box','box2'],
     'focus-shadow':['box','box2'], 'label-text':['label','label2'], 'helper-text':['desc','desc2'],
     'disabled-text':['label','label2','desc','desc2'], 'error-text':['desc','desc2'],
-    'size':['box','box2'], 'border-width':['box','box2'], 'radius':['box','box2'], 'gap':[],
-    'label':['label','label2'], 'description':['desc','desc2'],
   };
+  const compSpotlightMap = {
+    'size':'spotlight-size', 'border-width':'spotlight-border-width',
+    'radius':'spotlight-radius', 'gap':'spotlight-gap',
+  };
+  const typoPartMap = { 'label':['label','label2'], 'description':['desc','desc2'] };
+  const spotlightClasses = ['has-spotlight','spotlight-bg','spotlight-size','spotlight-border-width','spotlight-radius','spotlight-gap'];
+
   function slug(s){ return s.toLowerCase().replace(/[^a-z0-9]+/g,'-').replace(/-+$/,''); }
-  function clearSpotlight(){ tmPreview.classList.remove('has-spotlight'); tmPreview.querySelectorAll('[data-part]').forEach(p=>p.classList.remove('spotlight')); }
+  function clearSpotlight(){
+    spotlightClasses.forEach(c=>tmPreview.classList.remove(c));
+    tmPreview.querySelectorAll('[data-part]').forEach(p=>p.classList.remove('spotlight'));
+  }
   function spotlight(sl){
-    const parts=partMap[sl]; if(!parts||!parts.length) return;
+    // Component tokens → CSS class with magenta outline + callout
+    if(compSpotlightMap[sl]){ tmPreview.classList.add(compSpotlightMap[sl]); return; }
+    // Background → solid outline on boxes
+    if(sl==='fill-checked'||sl==='hover-background'){
+      tmPreview.classList.add('has-spotlight','spotlight-bg'); return;
+    }
+    // Border tokens → dashed outline via data-part highlight
+    const parts = colorPartMap[sl] || typoPartMap[sl];
+    if(!parts||!parts.length) return;
     tmPreview.classList.add('has-spotlight');
     parts.forEach(p=>{ const el=tmPreview.querySelector('[data-part="'+p+'"]'); if(el) el.classList.add('spotlight'); });
   }
