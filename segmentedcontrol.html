@@ -126,8 +126,8 @@
               <div style="display:flex;align-items:center;gap:24px;">
                 <div style="font-size:12px;font-weight:700;width:80px;color:var(--text-tertiary)">3 segments</div>
                 <div class="sg-group">
-                  <div class="sg-item sg-item--selected">Day</div>
-                  <div class="sg-item">Week</div>
+                  <div class="sg-item sg-item--selected" data-part="selected">Day</div>
+                  <div class="sg-item" data-part="unselected">Week</div>
                   <div class="sg-item">Month</div>
                 </div>
               </div>
@@ -564,7 +564,7 @@
                   <div class="tm-preview-card" data-bg="light">
                     <div class="tm-preview-inner">
       
-                <div class="sg-group">
+                <div id="tmPreview" class="tm-preview sg-group">
                   <div class="sg-item sg-item--selected">Day</div>
                   <div class="sg-item">Week</div>
                   <div class="sg-item">Month</div>
@@ -740,6 +740,21 @@
 
   document.getElementById('tmCountNum').textContent = tmTotalTokens;
 
+
+  const tmPreview = document.getElementById('tmPreview');
+  const partMap = {
+      'unselected-fill':['unselected'],'selected-fill':['selected'],'border':['selected','unselected'],
+      'focus-ring':['selected'],'unselected-text':['unselected'],'selected-text':['selected'],
+      'gap':[],'radius':['selected','unselected'],'padding':['selected','unselected'],
+    };
+  function slug(s){ return s.toLowerCase().replace(/[^a-z0-9]+/g,'-').replace(/-+$/,''); }
+  function clearSpotlight(){ if(tmPreview){tmPreview.classList.remove('has-spotlight'); tmPreview.querySelectorAll('[data-part]').forEach(p=>p.classList.remove('spotlight'));} }
+  function spotlight(sl){
+    if(!tmPreview) return;
+    const parts=partMap[sl]; if(!parts||!parts.length) return;
+    tmPreview.classList.add('has-spotlight');
+    parts.forEach(p=>{ const el=tmPreview.querySelector('[data-part="'+p+'"]'); if(el) el.classList.add('spotlight'); });
+  }
   function tmRender() {
     const theme = tmState.mode;
     const colors = theme === 'light' ? tmColorLight : tmColorDark;
@@ -785,6 +800,12 @@
       }
     }
     tmCards.innerHTML = html;
+    // Bind spotlight
+    document.querySelectorAll('.tm-row[data-slot]').forEach(row=>{
+      const sl=row.dataset.slot;
+      row.addEventListener('mouseenter',()=>{ row.classList.add('is-hot'); spotlight(sl); });
+      row.addEventListener('mouseleave',()=>{ row.classList.remove('is-hot'); clearSpotlight(); });
+    });
     lucide.createIcons();
   }
 

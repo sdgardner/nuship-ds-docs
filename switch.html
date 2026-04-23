@@ -70,7 +70,7 @@
 
               <div class="sw-row" style="width:300px;">
                 <div class="sw-label-stack"><div class="sw-label">Email notifications</div><div class="sw-desc">Receive alerts for new shipments</div></div>
-                <div class="sw-track"><div class="sw-thumb"></div></div>
+                <div class="sw-track"><div class="sw-thumb" data-part="thumb"></div></div>
               </div>
 
               <div class="sw-row" style="width:300px;">
@@ -284,7 +284,7 @@
                     <div class="tm-preview-inner">
       
                 <div style="display:flex;gap:24px;align-items:center;">
-                  <div class="sw-track"><div class="sw-thumb"></div></div>
+                  <div id="tmPreview" class="tm-preview sw-track"><div class="sw-thumb"></div></div>
                   <div class="sw-track sw-on"><div class="sw-thumb"></div></div>
                 </div>
                     </div>
@@ -376,6 +376,24 @@
 
   document.getElementById('tmCountNum').textContent = tmTotalTokens;
 
+
+  const tmPreview = document.getElementById('tmPreview');
+  const partMap = {
+      'track-off':['field'],'track-on':['field'],'track-disabled-off':['field'],
+      'track-disabled-on':['field'],'thumb':['thumb'],'focus-ring':['field'],
+      'hover-halo':['thumb'],'label':['label'],'description':['desc'],
+      'disabled-text':['label','desc'],
+      'track-width':['field'],'track-height':['field'],'track-radius':['field'],
+      'thumb-size':['thumb'],'gap':[],
+    };
+  function slug(s){ return s.toLowerCase().replace(/[^a-z0-9]+/g,'-').replace(/-+$/,''); }
+  function clearSpotlight(){ if(tmPreview){tmPreview.classList.remove('has-spotlight'); tmPreview.querySelectorAll('[data-part]').forEach(p=>p.classList.remove('spotlight'));} }
+  function spotlight(sl){
+    if(!tmPreview) return;
+    const parts=partMap[sl]; if(!parts||!parts.length) return;
+    tmPreview.classList.add('has-spotlight');
+    parts.forEach(p=>{ const el=tmPreview.querySelector('[data-part="'+p+'"]'); if(el) el.classList.add('spotlight'); });
+  }
   function tmRender() {
     const theme = tmState.mode;
     const colors = theme === 'light' ? tmColorLight : tmColorDark;
@@ -421,6 +439,12 @@
       }
     }
     tmCards.innerHTML = html;
+    // Bind spotlight
+    document.querySelectorAll('.tm-row[data-slot]').forEach(row=>{
+      const sl=row.dataset.slot;
+      row.addEventListener('mouseenter',()=>{ row.classList.add('is-hot'); spotlight(sl); });
+      row.addEventListener('mouseleave',()=>{ row.classList.remove('is-hot'); clearSpotlight(); });
+    });
     lucide.createIcons();
   }
 

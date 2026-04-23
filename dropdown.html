@@ -864,7 +864,7 @@
               <div class="tm-map">
                 <div>
                   <div class="tm-preview-card" data-bg="light">
-                    <div class="tm-preview-inner">
+                    <div class="tm-preview-inner"><div id="tmPreview" class="tm-preview">
       
                 <div class="sl-field" style="width:100%;max-width:260px;">
                   <div class="sl-label">Maker</div>
@@ -1061,6 +1061,23 @@
 
   document.getElementById('tmCountNum').textContent = tmTotalTokens;
 
+
+  const tmPreview = document.getElementById('tmPreview');
+  const partMap = {
+      'field-background':['trigger'],'border':['trigger'],'border-hover':['trigger'],
+      'focus-ring':['trigger'],'error-border':['trigger'],'label':['label'],
+      'placeholder':['placeholder'],'value':['value'],'chevron':['chevron'],
+      'tag-bg':['tag'],'tag-label':['tag'],'helper':['helper'],'disabled-text':[],
+      'padding':['trigger'],'gap':[],'radius':['trigger'],'border-width':['trigger'],
+    };
+  function slug(s){ return s.toLowerCase().replace(/[^a-z0-9]+/g,'-').replace(/-+$/,''); }
+  function clearSpotlight(){ if(tmPreview){tmPreview.classList.remove('has-spotlight'); tmPreview.querySelectorAll('[data-part]').forEach(p=>p.classList.remove('spotlight'));} }
+  function spotlight(sl){
+    if(!tmPreview) return;
+    const parts=partMap[sl]; if(!parts||!parts.length) return;
+    tmPreview.classList.add('has-spotlight');
+    parts.forEach(p=>{ const el=tmPreview.querySelector('[data-part="'+p+'"]'); if(el) el.classList.add('spotlight'); });
+  }
   function tmRender() {
     const theme = tmState.mode;
     const colors = theme === 'light' ? tmColorLight : tmColorDark;
@@ -1106,6 +1123,12 @@
       }
     }
     tmCards.innerHTML = html;
+    // Bind spotlight
+    document.querySelectorAll('.tm-row[data-slot]').forEach(row=>{
+      const sl=row.dataset.slot;
+      row.addEventListener('mouseenter',()=>{ row.classList.add('is-hot'); spotlight(sl); });
+      row.addEventListener('mouseleave',()=>{ row.classList.remove('is-hot'); clearSpotlight(); });
+    });
     lucide.createIcons();
   }
 

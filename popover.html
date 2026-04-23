@@ -130,7 +130,7 @@
                   <i data-lucide="info" style="width:14px;height:14px;"></i> Details
                 </button>
                 <div class="po-box">
-                  <p class="po-text">Assign to another team member or remove their access from this record entirely.</p>
+                  <p class="po-text" data-part="text">Assign to another team member or remove their access from this record entirely.</p>
                 </div>
               </div>
 
@@ -517,8 +517,8 @@
                   <div class="tm-preview-card" data-bg="light">
                     <div class="tm-preview-inner">
       
-                <div class="po-box" style="position:relative;top:auto;left:auto;display:block;">
-                  <p class="po-text">Assign to another team member or remove their access from this record entirely.</p>
+                <div id="tmPreview" class="tm-preview po-box" data-part="field" style="position:relative;top:auto;left:auto;display:block;">
+                  <p class="po-text" data-part="text">Assign to another team member or remove their access from this record entirely.</p>
                 </div>
                     </div>
                   </div>
@@ -694,6 +694,21 @@
 
   document.getElementById('tmCountNum').textContent = tmTotalTokens;
 
+
+  const tmPreview = document.getElementById('tmPreview');
+  const partMap = {
+      'background':['field'],'border':['field'],'text':['text'],
+      'shadow':['field'],'danger-action-text':['text'],
+      'padding':['field'],
+    };
+  function slug(s){ return s.toLowerCase().replace(/[^a-z0-9]+/g,'-').replace(/-+$/,''); }
+  function clearSpotlight(){ if(tmPreview){tmPreview.classList.remove('has-spotlight'); tmPreview.querySelectorAll('[data-part]').forEach(p=>p.classList.remove('spotlight'));} }
+  function spotlight(sl){
+    if(!tmPreview) return;
+    const parts=partMap[sl]; if(!parts||!parts.length) return;
+    tmPreview.classList.add('has-spotlight');
+    parts.forEach(p=>{ const el=tmPreview.querySelector('[data-part="'+p+'"]'); if(el) el.classList.add('spotlight'); });
+  }
   function tmRender() {
     const theme = tmState.mode;
     const colors = theme === 'light' ? tmColorLight : tmColorDark;
@@ -739,6 +754,12 @@
       }
     }
     tmCards.innerHTML = html;
+    // Bind spotlight
+    document.querySelectorAll('.tm-row[data-slot]').forEach(row=>{
+      const sl=row.dataset.slot;
+      row.addEventListener('mouseenter',()=>{ row.classList.add('is-hot'); spotlight(sl); });
+      row.addEventListener('mouseleave',()=>{ row.classList.remove('is-hot'); clearSpotlight(); });
+    });
     lucide.createIcons();
   }
 

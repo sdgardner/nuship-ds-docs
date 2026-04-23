@@ -122,16 +122,16 @@
         <div class="preview-box">
           <div class="preview-box-inner">
             <div class="sl-field">
-              <div class="sl-label">Maker</div>
+              <div class="sl-label" data-part="label">Maker</div>
               <div class="sl-focus-wrap">
-                <div class="sl-trigger">
+                <div class="sl-trigger" data-part="trigger">
                   <div class="sl-left">
-                    <div class="sl-placeholder">Select option</div>
+                    <div class="sl-placeholder" data-part="placeholder">Select option</div>
                   </div>
-                  <div class="sl-chevron"><i data-lucide="chevron-down" style="width:20px;height:20px"></i></div>
+                  <div class="sl-chevron" data-part="chevron"><i data-lucide="chevron-down" style="width:20px;height:20px"></i></div>
                 </div>
               </div>
-              <div class="sl-helper">This is helper text</div>
+              <div class="sl-helper" data-part="helper">This is helper text</div>
             </div>
           </div>
         </div>
@@ -420,7 +420,7 @@
                   <div class="tm-preview-card" data-bg="light">
                     <div class="tm-preview-inner">
       
-                <div class="sl-field">
+                <div id="tmPreview" class="tm-preview sl-field">
                   <div class="sl-label">Maker</div>
                   <div class="sl-focus-wrap">
                     <div class="sl-trigger">
@@ -572,6 +572,23 @@
 
   document.getElementById('tmCountNum').textContent = tmTotalTokens;
 
+
+  const tmPreview = document.getElementById('tmPreview');
+  const partMap = {
+      'field-background':['trigger'],'border':['trigger'],'border-hover':['trigger'],
+      'focus-ring':['trigger'],'error-border':['trigger'],'placeholder':['placeholder'],
+      'label':['label'],'helper':['helper'],'chevron':['chevron'],
+      'disabled-border':['trigger'],'disabled-text':['label','placeholder','chevron','helper'],
+      'padding':['trigger'],'gap':[],
+    };
+  function slug(s){ return s.toLowerCase().replace(/[^a-z0-9]+/g,'-').replace(/-+$/,''); }
+  function clearSpotlight(){ if(tmPreview){tmPreview.classList.remove('has-spotlight'); tmPreview.querySelectorAll('[data-part]').forEach(p=>p.classList.remove('spotlight'));} }
+  function spotlight(sl){
+    if(!tmPreview) return;
+    const parts=partMap[sl]; if(!parts||!parts.length) return;
+    tmPreview.classList.add('has-spotlight');
+    parts.forEach(p=>{ const el=tmPreview.querySelector('[data-part="'+p+'"]'); if(el) el.classList.add('spotlight'); });
+  }
   function tmRender() {
     const theme = tmState.mode;
     const colors = theme === 'light' ? tmColorLight : tmColorDark;
@@ -617,6 +634,12 @@
       }
     }
     tmCards.innerHTML = html;
+    // Bind spotlight
+    document.querySelectorAll('.tm-row[data-slot]').forEach(row=>{
+      const sl=row.dataset.slot;
+      row.addEventListener('mouseenter',()=>{ row.classList.add('is-hot'); spotlight(sl); });
+      row.addEventListener('mouseleave',()=>{ row.classList.remove('is-hot'); clearSpotlight(); });
+    });
     lucide.createIcons();
   }
 

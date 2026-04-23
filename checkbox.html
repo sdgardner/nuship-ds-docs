@@ -687,17 +687,17 @@
       
                 <div id="tmPreview" class="tm-preview" style="display:flex;flex-direction:column;gap:12px;">
                   <div class="cb-item">
-                    <div class="cb-box cb-box--checked" data-part="fill-checked"></div>
+                    <div class="cb-box cb-box--checked" data-part="box"></div>
                     <div class="cb-text">
-                      <div class="cb-label" data-part="label-text">Checked</div>
-                      <div class="cb-desc" data-part="helper-text">Optional description</div>
+                      <div class="cb-label" data-part="label">Checked</div>
+                      <div class="cb-desc" data-part="desc">Optional description</div>
                     </div>
                   </div>
                   <div class="cb-item">
-                    <div class="cb-box" data-part="border-default"></div>
+                    <div class="cb-box" data-part="box2"></div>
                     <div class="cb-text">
-                      <div class="cb-label" data-part="label-text-2">Unchecked</div>
-                      <div class="cb-desc" data-part="helper-text-2">Optional description</div>
+                      <div class="cb-label" data-part="label2">Unchecked</div>
+                      <div class="cb-desc" data-part="desc2">Optional description</div>
                     </div>
                   </div>
                 </div>
@@ -871,88 +871,63 @@
   document.getElementById('tmCountNum').textContent = tmTotalTokens;
   const tmPreview = document.getElementById('tmPreview');
 
-  // Slot-to-part mapping for spotlight
-  const slotToPartMap = {
-    'border-default': ['border-default'],
-    'border-focus': ['border-default','fill-checked'],
-    'border-error': ['border-default'],
-    'border-disabled': ['border-default'],
-    'fill-checked': ['fill-checked'],
-    'hover-background': ['border-default','fill-checked'],
-    'focus-shadow': ['border-default','fill-checked'],
-    'label-text': ['label-text','label-text-2'],
-    'helper-text': ['helper-text','helper-text-2'],
-    'disabled-text': ['label-text','label-text-2','helper-text','helper-text-2'],
-    'error-text': ['helper-text','helper-text-2'],
-    // Component tokens
-    'size': ['border-default','fill-checked'],
-    'border-width': ['border-default','fill-checked'],
-    'radius': ['border-default','fill-checked'],
-    'gap': [],
-    // Typography
-    'label': ['label-text','label-text-2'],
-    'description': ['helper-text','helper-text-2'],
+  // Spotlight: slot → data-part names
+  const partMap = {
+    'border-default':['box','box2'], 'border-focus':['box','box2'], 'border-error':['box','box2'],
+    'border-disabled':['box','box2'], 'fill-checked':['box'], 'hover-background':['box','box2'],
+    'focus-shadow':['box','box2'], 'label-text':['label','label2'], 'helper-text':['desc','desc2'],
+    'disabled-text':['label','label2','desc','desc2'], 'error-text':['desc','desc2'],
+    'size':['box','box2'], 'border-width':['box','box2'], 'radius':['box','box2'], 'gap':[],
+    'label':['label','label2'], 'description':['desc','desc2'],
   };
-
-  function slugify(str) { return str.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/-+$/,''); }
-
-  function clearSpotlight() {
-    tmPreview.classList.remove('has-spotlight');
-    tmPreview.querySelectorAll('[data-part]').forEach(p => p.classList.remove('spotlight'));
-  }
-
-  function applySpotlight(slug) {
-    const parts = slotToPartMap[slug];
-    if (!parts || parts.length === 0) return;
+  function slug(s){ return s.toLowerCase().replace(/[^a-z0-9]+/g,'-').replace(/-+$/,''); }
+  function clearSpotlight(){ tmPreview.classList.remove('has-spotlight'); tmPreview.querySelectorAll('[data-part]').forEach(p=>p.classList.remove('spotlight')); }
+  function spotlight(sl){
+    const parts=partMap[sl]; if(!parts||!parts.length) return;
     tmPreview.classList.add('has-spotlight');
-    parts.forEach(p => {
-      const el = tmPreview.querySelector('[data-part="'+p+'"]');
-      if (el) el.classList.add('spotlight');
-    });
-  }
-
-  function bindSpotlight() {
-    document.querySelectorAll('.tm-row[data-slot]').forEach(row => {
-      row.addEventListener('mouseenter', () => { row.classList.add('is-hot'); applySpotlight(row.dataset.slot); });
-      row.addEventListener('mouseleave', () => { row.classList.remove('is-hot'); clearSpotlight(); });
-    });
+    parts.forEach(p=>{ const el=tmPreview.querySelector('[data-part="'+p+'"]'); if(el) el.classList.add('spotlight'); });
   }
 
   function tmRender() {
-    const colors = tmState.mode === 'light' ? tmColorLight : tmColorDark;
+    const colors = tmState.mode==='light' ? tmColorLight : tmColorDark;
     tmPreviewCard.setAttribute('data-bg', tmState.mode);
     let html = '';
-    if (tmState.tab === 'color') {
+    if (tmState.tab==='color') {
       for (const c of colors) {
-        const slug = slugify(c.role);
-        html += '<div class="tm-row" data-slot="'+slug+'"><div class="tm-row-header"><div class="tm-row-swatch" style="background:'+c.hex+'"></div><div class="tm-row-label">'+c.role+'</div></div><div class="tm-chain-row"><div class="tm-chip">'+c.token+'</div><div class="tm-chain-arrow">'+arrowSvg+'</div><div class="tm-chip">'+(c.ref||c.token)+'</div><div class="tm-chain-arrow">'+arrowSvg+'</div><div class="tm-chip" style="font-weight:600">'+c.hex+'</div></div></div>';
+        const s=slug(c.role);
+        html+='<div class="tm-row" data-slot="'+s+'"><div class="tm-row-header"><div class="tm-row-swatch" style="background:'+c.hex+'"></div><div class="tm-row-label">'+c.role+'</div></div><div class="tm-chain-row"><div class="tm-chip">'+c.token+'</div><div class="tm-chain-arrow">'+arrowSvg+'</div><div class="tm-chip">'+(c.ref||c.token)+'</div><div class="tm-chain-arrow">'+arrowSvg+'</div><div class="tm-chip" style="font-weight:600">'+c.hex+'</div></div></div>';
       }
-    } else if (tmState.tab === 'component') {
+    } else if (tmState.tab==='component') {
       for (const ct of tmComponentTokens) {
-        const slug = slugify(ct.role);
-        html += '<div class="tm-row" data-slot="'+slug+'"><div class="tm-row-header"><div class="tm-row-icon"><i data-lucide="'+ct.icon+'" style="width:16px;height:16px"></i></div><div class="tm-row-label">'+ct.role+'</div></div><div class="tm-chain-row"><div class="tm-chip">'+ct.component+'</div><div class="tm-chain-arrow">'+arrowSvg+'</div><div class="tm-chip">'+ct.primitive+'</div><div class="tm-chain-arrow">'+arrowSvg+'</div><div class="tm-chip" style="font-weight:600">'+ct.value+'</div></div></div>';
+        const s=slug(ct.role);
+        html+='<div class="tm-row" data-slot="'+s+'"><div class="tm-row-header"><div class="tm-row-icon"><i data-lucide="'+ct.icon+'" style="width:16px;height:16px"></i></div><div class="tm-row-label">'+ct.role+'</div></div><div class="tm-chain-row"><div class="tm-chip">'+ct.component+'</div><div class="tm-chain-arrow">'+arrowSvg+'</div><div class="tm-chip">'+ct.primitive+'</div><div class="tm-chain-arrow">'+arrowSvg+'</div><div class="tm-chip" style="font-weight:600">'+ct.value+'</div></div></div>';
       }
     } else {
       for (const tt of tmTypographyTokens) {
-        const slug = slugify(tt.role);
-        html += '<div class="tm-row" data-slot="'+slug+'"><div class="tm-row-header"><div class="tm-row-icon"><i data-lucide="type" style="width:16px;height:16px"></i></div><div class="tm-row-label">'+tt.role+'</div></div><div class="tm-chain-row" style="flex-direction:column;align-items:flex-start;gap:6px;"><div style="display:flex;align-items:center;gap:10px;flex-wrap:wrap;"><div class="tm-chip">'+tt.style+'</div></div><div style="display:flex;align-items:center;gap:8px;flex-wrap:wrap;font-family:var(--mono);font-size:12px;color:var(--text-tertiary);"><span>'+tt.font+'</span><span>\u00b7</span><span>'+tt.weight+'</span><span>\u00b7</span><span>'+tt.size+' / '+tt.lineHeight+'</span>'+(tt.letterSpacing!=='0'?'<span>\u00b7</span><span>ls: '+tt.letterSpacing+'</span>':'')+'</div></div></div>';
+        const s=slug(tt.role);
+        html+='<div class="tm-row" data-slot="'+s+'"><div class="tm-row-header"><div class="tm-row-icon"><i data-lucide="type" style="width:16px;height:16px"></i></div><div class="tm-row-label">'+tt.role+'</div></div><div class="tm-chain-row" style="flex-direction:column;align-items:flex-start;gap:6px;"><div style="display:flex;align-items:center;gap:10px;flex-wrap:wrap;"><div class="tm-chip">'+tt.style+'</div></div><div style="display:flex;align-items:center;gap:8px;flex-wrap:wrap;font-family:var(--mono);font-size:12px;color:var(--text-tertiary);"><span>'+tt.font+'</span><span>·</span><span>'+tt.weight+'</span><span>·</span><span>'+tt.size+' / '+tt.lineHeight+'</span>'+(tt.letterSpacing!=='0'?'<span>·</span><span>ls: '+tt.letterSpacing+'</span>':'')+'</div></div></div>';
       }
     }
     tmCards.innerHTML = html;
-    bindSpotlight();
+    // Bind spotlight hover
+    document.querySelectorAll('.tm-row[data-slot]').forEach(row=>{
+      const sl=row.dataset.slot;
+      row.addEventListener('mouseenter',()=>{ row.classList.add('is-hot'); spotlight(sl); });
+      row.addEventListener('mouseleave',()=>{ row.classList.remove('is-hot'); clearSpotlight(); });
+    });
     lucide.createIcons();
   }
   document.getElementById('tmModeToggle').addEventListener('click', () => {
-    tmState.mode = tmState.mode === 'light' ? 'dark' : 'light';
-    document.getElementById('tmModeLabel').textContent = tmState.mode === 'light' ? 'Light' : 'Dark';
+    tmState.mode = tmState.mode==='light' ? 'dark' : 'light';
+    document.getElementById('tmModeLabel').textContent = tmState.mode==='light' ? 'Light' : 'Dark';
     const track = document.getElementById('tmModeTrack');
-    if (tmState.mode === 'dark') { track.classList.add('sw-on'); } else { track.classList.remove('sw-on'); }
+    if (tmState.mode==='dark') { track.classList.add('sw-on'); } else { track.classList.remove('sw-on'); }
     tmRender();
   });
-  document.querySelectorAll('.tm-seg-item[data-tab]').forEach(btn => {
-    btn.addEventListener('click', () => {
-      tmState.tab = btn.dataset.tab;
-      document.querySelectorAll('.tm-seg-item[data-tab]').forEach(b => b.classList.remove('tm-seg-item--active'));
+  document.querySelectorAll('.tm-seg-item[data-tab]').forEach(btn=>{
+    btn.addEventListener('click',()=>{
+      tmState.tab=btn.dataset.tab;
+      document.querySelectorAll('.tm-seg-item[data-tab]').forEach(b=>b.classList.remove('tm-seg-item--active'));
       btn.classList.add('tm-seg-item--active');
       tmRender();
     });

@@ -126,9 +126,9 @@
               <div style="display:flex;align-items:center;gap:24px;">
                 <div style="font-size:12px;font-weight:700;width:72px;color:var(--text-tertiary)">Expanded</div>
                 <div class="sr-field">
-                  <div class="sr-icon"><i data-lucide="search" style="width:18px;height:18px"></i></div>
-                  <div class="sr-input">Search booked shipments</div>
-                  <div class="sr-clear"><i data-lucide="x-circle" style="width:18px;height:18px"></i></div>
+                  <div class="sr-icon" data-part="icon"><i data-lucide="search" style="width:18px;height:18px"></i></div>
+                  <div class="sr-input" data-part="input">Search booked shipments</div>
+                  <div class="sr-clear" data-part="clear"><i data-lucide="x-circle" style="width:18px;height:18px"></i></div>
                 </div>
               </div>
 
@@ -514,7 +514,7 @@
                   <div class="tm-preview-card" data-bg="light">
                     <div class="tm-preview-inner">
       
-                <div class="sr-field">
+                <div id="tmPreview" class="tm-preview sr-field">
                   <div class="sr-icon"><i data-lucide="search" style="width:18px;height:18px"></i></div>
                   <div class="sr-input">Search booked shipments</div>
                   <div class="sr-clear"><i data-lucide="x-circle" style="width:18px;height:18px"></i></div>
@@ -690,6 +690,24 @@
 
   document.getElementById('tmCountNum').textContent = tmTotalTokens;
 
+
+  const tmPreview = document.getElementById('tmPreview');
+  const partMap = {
+      'field-background':['field'],'border-default':['field'],'border-hover':['field'],
+      'focus-ring':['field'],'focus-glow':['field'],'placeholder':['input'],
+      'value-text':['input'],'icon-colour':['icon','clear'],'disabled-text':['input','icon','clear'],
+      'disabled-border':['field'],'padding':['field'],'gap':[],'radius':['field'],
+      'border-width':['field'],'icon-size':['icon','clear'],
+      'placeholder-1':['input'],'value':['input'],
+    };
+  function slug(s){ return s.toLowerCase().replace(/[^a-z0-9]+/g,'-').replace(/-+$/,''); }
+  function clearSpotlight(){ if(tmPreview){tmPreview.classList.remove('has-spotlight'); tmPreview.querySelectorAll('[data-part]').forEach(p=>p.classList.remove('spotlight'));} }
+  function spotlight(sl){
+    if(!tmPreview) return;
+    const parts=partMap[sl]; if(!parts||!parts.length) return;
+    tmPreview.classList.add('has-spotlight');
+    parts.forEach(p=>{ const el=tmPreview.querySelector('[data-part="'+p+'"]'); if(el) el.classList.add('spotlight'); });
+  }
   function tmRender() {
     const theme = tmState.mode;
     const colors = theme === 'light' ? tmColorLight : tmColorDark;
@@ -735,6 +753,12 @@
       }
     }
     tmCards.innerHTML = html;
+    // Bind spotlight
+    document.querySelectorAll('.tm-row[data-slot]').forEach(row=>{
+      const sl=row.dataset.slot;
+      row.addEventListener('mouseenter',()=>{ row.classList.add('is-hot'); spotlight(sl); });
+      row.addEventListener('mouseleave',()=>{ row.classList.remove('is-hot'); clearSpotlight(); });
+    });
     lucide.createIcons();
   }
 
