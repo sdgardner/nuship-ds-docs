@@ -8,6 +8,14 @@
   <link rel="stylesheet" href="tokens.css">
   <link rel="stylesheet" href="styles.css">
   <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.min.js"></script>
+  <style>
+    /* badge component token spotlights */
+    #tmPreview { position:relative; }
+    #tmPreview.spotlight-radius { outline:2px solid #FF4081; outline-offset:2px; border-radius:2px; }
+    #tmPreview.spotlight-radius::after { content:'2px'; position:absolute; top:-16px; left:-2px; font-size:10px; font-family:var(--mono); color:#FF4081; background:rgba(255,255,255,0.9); padding:1px 4px; border-radius:2px; font-weight:700; }
+    #tmPreview.spotlight-padding { outline:2px solid #FF4081; outline-offset:-1px; }
+    #tmPreview.spotlight-padding::after { content:'0×8px'; position:absolute; top:50%; left:4px; transform:translateY(-50%); font-size:10px; font-family:var(--mono); color:#FF4081; background:rgba(255,255,255,0.9); padding:1px 4px; border-radius:2px; font-weight:700; }
+  </style>
 </head>
 <body>
 
@@ -674,9 +682,14 @@
       'radius':['field'],'padding':['field'],
     };
   function slug(s){ return s.toLowerCase().replace(/[^a-z0-9]+/g,'-').replace(/-+$/,''); }
-  function clearSpotlight(){ if(tmPreview){tmPreview.classList.remove('has-spotlight'); tmPreview.querySelectorAll('[data-part]').forEach(p=>p.classList.remove('spotlight'));} }
+  function clearSpotlight(){ if(tmPreview){spotlightClasses.forEach(c=>tmPreview.classList.remove(c)); tmPreview.querySelectorAll('[data-part]').forEach(p=>p.classList.remove('spotlight'));} }
+  const compSpotlightMap = {'radius':'spotlight-radius','padding':'spotlight-padding'};
+  const spotlightClasses = ['has-spotlight','spotlight-radius','spotlight-padding'];
   function spotlight(sl){
     if(!tmPreview) return;
+    // Component tokens → CSS class with magenta outline + callout
+    if(compSpotlightMap[sl]){ tmPreview.classList.add(compSpotlightMap[sl]); return; }
+    // Color/typo tokens → data-part highlight
     const parts=partMap[sl]; if(!parts||!parts.length) return;
     tmPreview.classList.add('has-spotlight');
     parts.forEach(p=>{ const el=tmPreview.querySelector('[data-part="'+p+'"]'); if(el) el.classList.add('spotlight'); });

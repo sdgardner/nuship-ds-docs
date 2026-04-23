@@ -8,6 +8,9 @@
   <link rel="stylesheet" href="tokens.css">
   <link rel="stylesheet" href="styles.css">
   <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.min.js"></script>
+  <style>
+    /* carousel component token spotlights */#tmPreview { position:relative; }
+  </style>
 </head>
 <body>
 
@@ -836,9 +839,14 @@
   const tmPreview = document.getElementById('tmPreview');
   const partMap = {};
   function slug(s){ return s.toLowerCase().replace(/[^a-z0-9]+/g,'-').replace(/-+$/,''); }
-  function clearSpotlight(){ if(tmPreview){tmPreview.classList.remove('has-spotlight'); tmPreview.querySelectorAll('[data-part]').forEach(p=>p.classList.remove('spotlight'));} }
+  function clearSpotlight(){ if(tmPreview){spotlightClasses.forEach(c=>tmPreview.classList.remove(c)); tmPreview.querySelectorAll('[data-part]').forEach(p=>p.classList.remove('spotlight'));} }
+  const compSpotlightMap = {'dot-gap':'spotlight-dot-gap','nav-gap':'spotlight-nav-gap'};
+  const spotlightClasses = ['has-spotlight','spotlight-dot-gap','spotlight-nav-gap'];
   function spotlight(sl){
     if(!tmPreview) return;
+    // Component tokens → CSS class with magenta outline + callout
+    if(compSpotlightMap[sl]){ tmPreview.classList.add(compSpotlightMap[sl]); return; }
+    // Color/typo tokens → data-part highlight
     const parts=partMap[sl]; if(!parts||!parts.length) return;
     tmPreview.classList.add('has-spotlight');
     parts.forEach(p=>{ const el=tmPreview.querySelector('[data-part="'+p+'"]'); if(el) el.classList.add('spotlight'); });
