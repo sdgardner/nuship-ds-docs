@@ -1061,9 +1061,9 @@
                     <div class="tm-preview-inner"><div id="tmPreview" class="tm-preview">
       
                 <div class="dp-field" style="max-width:220px;">
-                  <div class="dp-label">Pickup Date</div>
-                  <div class="dp-trigger">
-                    <span class="dp-trigger-text filled">Mar 18, 2026</span>
+                  <div class="dp-label" data-part="label">Pickup Date</div>
+                  <div class="dp-trigger" data-part="trigger">
+                    <span class="dp-trigger-text filled" data-part="text">Mar 18, 2026</span>
                     <i data-lucide="calendar" style="width:16px;height:16px;color:var(--text-secondary);flex-shrink:0;"></i>
                   </div>
                 </div>
@@ -1262,7 +1262,13 @@
 
 
   const tmPreview = document.getElementById('tmPreview');
-  const partMap = {};
+  const partMap = {
+    'input-background':['trigger'],'input-border':['trigger'],'placeholder':['text'],
+    'day-text':['text'],'disabled-day':['text'],'selected-fill':['trigger'],
+    'range-highlight':['trigger'],'footer-link':['text'],
+    'gap':[],'radius':['trigger'],'padding':['trigger'],'cell-size':['trigger'],
+    'value':['text'],'label':['label'],
+  };
   function slug(s){ return s.toLowerCase().replace(/[^a-z0-9]+/g,'-').replace(/-+$/,''); }
   function clearSpotlight(){ if(tmPreview){tmPreview.classList.remove('has-spotlight'); tmPreview.querySelectorAll('[data-part]').forEach(p=>p.classList.remove('spotlight'));} }
   function spotlight(sl){
@@ -1272,51 +1278,26 @@
     parts.forEach(p=>{ const el=tmPreview.querySelector('[data-part="'+p+'"]'); if(el) el.classList.add('spotlight'); });
   }
   function tmRender() {
-    const theme = tmState.mode;
-    const colors = theme === 'light' ? tmColorLight : tmColorDark;
-    tmPreviewCard.setAttribute('data-bg', theme);
-
+    const colors = tmState.mode === 'light' ? tmColorLight : tmColorDark;
+    tmPreviewCard.setAttribute('data-bg', tmState.mode);
     let html = '';
     if (tmState.tab === 'color') {
       for (const c of colors) {
-        html += '<div class="tm-row">'
-          + '<div class="tm-row-header"><div class="tm-row-swatch" style="background:'+c.hex+'"></div><div class="tm-row-label">'+c.role+'</div></div>'
-          + '<div class="tm-chain-row">'
-          + '<div class="tm-chip">'+c.token+'</div>'
-          + '<div class="tm-chain-arrow">'+arrowSvg+'</div>'
-          + '<div class="tm-chip">'+(c.ref||c.token)+'</div>'
-          + '<div class="tm-chain-arrow">'+arrowSvg+'</div>'
-          + '<div class="tm-chip" style="font-weight:600">'+c.hex+'</div>'
-          + '</div></div>';
+        const s = slug(c.role);
+        html += '<div class="tm-row" data-slot="'+s+'"><div class="tm-row-header"><div class="tm-row-swatch" style="background:'+c.hex+'"></div><div class="tm-row-label">'+c.role+'</div></div><div class="tm-chain-row"><div class="tm-chip">'+c.token+'</div><div class="tm-chain-arrow">'+arrowSvg+'</div><div class="tm-chip">'+(c.ref||c.token)+'</div><div class="tm-chain-arrow">'+arrowSvg+'</div><div class="tm-chip" style="font-weight:600">'+c.hex+'</div></div></div>';
       }
     } else if (tmState.tab === 'component') {
       for (const ct of tmComponentTokens) {
-        html += '<div class="tm-row">'
-          + '<div class="tm-row-header"><div class="tm-row-icon"><i data-lucide="'+ct.icon+'" style="width:16px;height:16px"></i></div><div class="tm-row-label">'+ct.role+'</div></div>'
-          + '<div class="tm-chain-row">'
-          + '<div class="tm-chip">'+ct.component+'</div>'
-          + '<div class="tm-chain-arrow">'+arrowSvg+'</div>'
-          + '<div class="tm-chip">'+ct.primitive+'</div>'
-          + '<div class="tm-chain-arrow">'+arrowSvg+'</div>'
-          + '<div class="tm-chip" style="font-weight:600">'+ct.value+'</div>'
-          + '</div></div>';
+        const s = slug(ct.role);
+        html += '<div class="tm-row" data-slot="'+s+'"><div class="tm-row-header"><div class="tm-row-icon"><i data-lucide="'+ct.icon+'" style="width:16px;height:16px"></i></div><div class="tm-row-label">'+ct.role+'</div></div><div class="tm-chain-row"><div class="tm-chip">'+ct.component+'</div><div class="tm-chain-arrow">'+arrowSvg+'</div><div class="tm-chip">'+ct.primitive+'</div><div class="tm-chain-arrow">'+arrowSvg+'</div><div class="tm-chip" style="font-weight:600">'+ct.value+'</div></div></div>';
       }
     } else {
       for (const tt of tmTypographyTokens) {
-        html += '<div class="tm-row">'
-          + '<div class="tm-row-header"><div class="tm-row-icon"><i data-lucide="type" style="width:16px;height:16px"></i></div><div class="tm-row-label">'+tt.role+'</div></div>'
-          + '<div class="tm-chain-row" style="flex-direction:column;align-items:flex-start;gap:6px;">'
-          + '<div style="display:flex;align-items:center;gap:10px;flex-wrap:wrap;"><div class="tm-chip">'+tt.style+'</div></div>'
-          + '<div style="display:flex;align-items:center;gap:8px;flex-wrap:wrap;font-family:var(--mono);font-size:12px;color:var(--text-tertiary);">'
-          + '<span>'+tt.font+'</span><span>·</span>'
-          + '<span>'+tt.weight+'</span><span>·</span>'
-          + '<span>'+tt.size+' / '+tt.lineHeight+'</span>'
-          + (tt.letterSpacing !== '0' ? '<span>·</span><span>ls: '+tt.letterSpacing+'</span>' : '')
-          + '</div></div></div>';
+        const s = slug(tt.role);
+        html += '<div class="tm-row" data-slot="'+s+'"><div class="tm-row-header"><div class="tm-row-icon"><i data-lucide="type" style="width:16px;height:16px"></i></div><div class="tm-row-label">'+tt.role+'</div></div><div class="tm-chain-row" style="flex-direction:column;align-items:flex-start;gap:6px;"><div style="display:flex;align-items:center;gap:10px;flex-wrap:wrap;"><div class="tm-chip">'+tt.style+'</div></div><div style="display:flex;align-items:center;gap:8px;flex-wrap:wrap;font-family:var(--mono);font-size:12px;color:var(--text-tertiary);"><span>'+tt.font+'</span><span>·</span><span>'+tt.weight+'</span><span>·</span><span>'+tt.size+' / '+tt.lineHeight+'</span>'+(tt.letterSpacing!=='0'?'<span>·</span><span>ls: '+tt.letterSpacing+'</span>':'')+'</div></div></div>';
       }
     }
     tmCards.innerHTML = html;
-    // Bind spotlight
     document.querySelectorAll('.tm-row[data-slot]').forEach(row=>{
       const sl=row.dataset.slot;
       row.addEventListener('mouseenter',()=>{ row.classList.add('is-hot'); spotlight(sl); });
