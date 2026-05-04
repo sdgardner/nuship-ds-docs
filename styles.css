@@ -2655,6 +2655,8 @@ code {
    Text Input  (ti-*)
    ───────────────────────────────────────────── */
 .ti-wrap  { display:flex; flex-direction:column; gap:8px; width:100%; max-width:320px; }
+.var-preview .ti-wrap,
+.var-preview-dark .ti-wrap { max-width:none; }
 .ti-label { font-size:12px; font-weight:700; line-height:16px; color:var(--text-primary); }
 .ti-field { background:var(--surface-layer02); border:1px solid var(--border); border-radius:4px; padding:12px; display:flex; align-items:center; gap:8px; width:100%; box-sizing:border-box; position:relative; transition:border-color 0.1s, box-shadow 0.1s; }
 .ti-icon  { width:20px; height:20px; flex-shrink:0; color:var(--text-secondary); display:flex; align-items:center; justify-content:center; }
