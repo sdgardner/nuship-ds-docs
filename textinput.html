@@ -207,6 +207,7 @@
       <section class="doc-section" id="variants">
         <h2 class="section-title">States</h2>
 
+        <div class="tab-panel active" id="ti-states">
         <div class="state-tab-row">
           <button class="state-tab-btn active" onclick="switchStateTab(this,'vs-default')">Default</button>
           <button class="state-tab-btn" onclick="switchStateTab(this,'vs-hover')">Hover</button>
@@ -415,6 +416,7 @@
 
           </div>
         </div>
+        </div><!-- /.tab-panel -->
       </section>
 
       <!-- 4 · PROPERTIES -->
@@ -585,18 +587,18 @@
 
     </main>
 
-    <!-- PAGE NAV (right) -->
-    <nav class="page-nav">
-      <div class="page-nav-title">On this page</div>
-      <ul class="page-nav-list">
-        <li><a href="#definition" class="page-nav-link active">Definition</a></li>
-        <li><a href="#anatomy" class="page-nav-link">Anatomy</a></li>
-        <li><a href="#variants" class="page-nav-link">States</a></li>
-        <li><a href="#properties" class="page-nav-link">Properties</a></li>
-        <li><a href="#usage" class="page-nav-link">Usage</a></li>
-        <li><a href="#tokens" class="page-nav-link">Tokens</a></li>
-        <li><a href="#accessibility" class="page-nav-link">Accessibility</a></li>
-        <li><a href="#related" class="page-nav-link">Related</a></li>
+    <!-- RIGHT ANCHOR NAV -->
+    <nav class="right-nav">
+      <div class="rn-label">On this page</div>
+      <ul class="rn-list">
+        <li><a href="#definition"    id="rn-definition">Definition</a></li>
+        <li><a href="#anatomy"       id="rn-anatomy">Anatomy</a></li>
+        <li><a href="#variants"      id="rn-variants">States</a></li>
+        <li><a href="#properties"    id="rn-properties">Properties</a></li>
+        <li><a href="#usage"         id="rn-usage">Usage</a></li>
+        <li><a href="#tokens"        id="rn-tokens">Tokens</a></li>
+        <li><a href="#accessibility" id="rn-accessibility">Accessibility</a></li>
+        <li><a href="#related"       id="rn-related">Related</a></li>
       </ul>
     </nav>
 
@@ -604,10 +606,49 @@
 </div><!-- /.shell -->
 
 <script>
-  /* ── shared nav / theme ── */
-  function toggleSidebar(){document.getElementById('leftNav').classList.toggle('open');document.getElementById('navOverlay').classList.toggle('active');}
-  function toggleTheme(){const h=document.documentElement;const t=h.getAttribute('data-theme')==='dark'?'light':'dark';h.setAttribute('data-theme',t);}
-  function switchStateTab(btn,id){document.querySelectorAll('.state-tab-btn').forEach(b=>b.classList.remove('active'));btn.classList.add('active');document.querySelectorAll('.state-panel').forEach(p=>p.classList.remove('active'));document.getElementById(id).classList.add('active');}
+  lucide.createIcons();
+
+  const isMobile = () => window.innerWidth <= 768;
+  let sbOpen = !isMobile();
+  if (!sbOpen) document.getElementById('leftNav').classList.add('hidden');
+
+  function toggleSidebar() {
+    sbOpen = !sbOpen;
+    document.getElementById('leftNav').classList.toggle('hidden', !sbOpen);
+    if (!isMobile()) {
+      document.getElementById('contentWrap').style.marginLeft = sbOpen ? 'var(--left-w)' : '0';
+    }
+    document.getElementById('navOverlay').classList.toggle('active', sbOpen && isMobile());
+  }
+
+  function toggleTheme() {
+    const d = document.documentElement;
+    d.setAttribute('data-theme', d.getAttribute('data-theme') === 'dark' ? 'light' : 'dark');
+  }
+
+  function switchStateTab(btn, panelId) {
+    const tabPanel = btn.closest('.tab-panel');
+    tabPanel.querySelectorAll('.state-tab-btn').forEach(b => b.classList.remove('active'));
+    tabPanel.querySelectorAll('.state-panel').forEach(p => p.classList.remove('active'));
+    btn.classList.add('active');
+    document.getElementById(panelId).classList.add('active');
+    lucide.createIcons();
+  }
+
+  const sections = ['definition','anatomy','variants','properties','usage','tokens','accessibility','related'];
+  const observer = new IntersectionObserver(entries => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        document.querySelectorAll('.rn-list a').forEach(a => a.classList.remove('active'));
+        const link = document.getElementById('rn-' + e.target.id);
+        if (link) link.classList.add('active');
+      }
+    });
+  }, { rootMargin: '-20% 0px -70% 0px' });
+  sections.forEach(id => {
+    const el = document.getElementById(id);
+    if (el) observer.observe(el);
+  });
 
   /* ── token data ── */
   const tmColorLight = [
@@ -767,14 +808,6 @@
   });
 
   tmRender();
-
-  /* ── page-nav active tracking ── */
-  const sections = document.querySelectorAll('section[id]');
-  const navLinks = document.querySelectorAll('.page-nav-link');
-  const io = new IntersectionObserver(entries=>{
-    entries.forEach(e=>{ if(e.isIntersecting){ navLinks.forEach(l=>l.classList.remove('active')); const a=document.querySelector('.page-nav-link[href="#'+e.target.id+'"]'); if(a) a.classList.add('active'); } });
-  },{rootMargin:'-20% 0px -70% 0px'});
-  sections.forEach(s=>io.observe(s));
 </script>
 </body>
 </html>
