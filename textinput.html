@@ -444,25 +444,59 @@
 
       <!-- 5 · USAGE -->
       <section class="doc-section" id="usage">
-        <h2 class="section-title">Usage</h2>
-        <div class="usage-grid">
-          <div class="usage-card usage-do">
-            <div class="usage-label">Do</div>
-            <ul>
-              <li>Use a concise, descriptive label that clearly identifies the expected input.</li>
-              <li>Use placeholder text as an example, not a substitute for the label.</li>
-              <li>Use the leading icon to reinforce the input's purpose (e.g., a search icon for search, a map pin for location).</li>
-              <li>Show a helper text below the field to explain format requirements upfront.</li>
-            </ul>
+        <h2 class="section-title">Usage Guidelines</h2>
+
+        <div class="usage-block">
+          <div class="usage-cols">
+            <div class="usage-card">
+              <div class="usage-card-header">
+                <div class="usage-icon do-icon"><i data-lucide="check" style="width:12px;height:12px"></i></div>
+                <div class="usage-card-title">Use a clear, concise label</div>
+              </div>
+              <ul class="usage-list">
+                <li>Use a label that clearly identifies the expected input</li>
+                <li>Use placeholder text as an example, not a substitute for the label</li>
+                <li>Show helper text below the field to explain format requirements upfront</li>
+              </ul>
+            </div>
+            <div class="usage-card">
+              <div class="usage-card-header">
+                <div class="usage-icon do-icon"><i data-lucide="check" style="width:12px;height:12px"></i></div>
+                <div class="usage-card-title">Use icons intentionally</div>
+              </div>
+              <ul class="usage-list">
+                <li>Use a leading icon to reinforce the input's purpose (e.g., map pin for location)</li>
+                <li>Keep icons decorative — if they convey meaning, provide an accessible label</li>
+                <li>Never use leading and trailing icons simultaneously as it clutters the field</li>
+              </ul>
+            </div>
           </div>
-          <div class="usage-card usage-dont">
-            <div class="usage-label">Don't</div>
-            <ul>
-              <li>Don't rely solely on placeholder text to communicate what the field requires — it disappears when typing begins.</li>
-              <li>Don't use disabled for fields that might become relevant; prefer read-only so screen readers can still access the value.</li>
-              <li>Don't show an error until after the user has had a chance to interact with the field (validate on blur or submit).</li>
-              <li>Don't use two icons simultaneously (leading and trailing) as this clutters the field.</li>
-            </ul>
+        </div>
+
+        <div class="usage-divider"></div>
+
+        <div class="usage-block">
+          <div class="usage-cols">
+            <div class="usage-card">
+              <div class="usage-card-header">
+                <div class="usage-icon dont-icon"><i data-lucide="x" style="width:12px;height:12px"></i></div>
+                <div class="usage-card-title">Don't rely on placeholder text</div>
+              </div>
+              <ul class="usage-list">
+                <li>Don't use placeholder text as a label — it disappears when typing begins</li>
+                <li>Don't use disabled for fields that might become relevant; prefer read-only</li>
+              </ul>
+            </div>
+            <div class="usage-card">
+              <div class="usage-card-header">
+                <div class="usage-icon dont-icon"><i data-lucide="x" style="width:12px;height:12px"></i></div>
+                <div class="usage-card-title">Don't trigger errors prematurely</div>
+              </div>
+              <ul class="usage-list">
+                <li>Don't show an error until after the user has had a chance to interact (validate on blur or submit)</li>
+                <li>Don't show an error state without a clear, actionable error message</li>
+              </ul>
+            </div>
           </div>
         </div>
       </section>
@@ -521,7 +555,7 @@
                 </button>
               </div>
             </div>
-            <div class="tm-cards" id="tmCards"></div>
+            <div class="tm-tokens-body" id="tmCards"></div>
           </div>
         </div>
       </section>
@@ -529,64 +563,47 @@
       <!-- 7 · ACCESSIBILITY -->
       <section class="doc-section" id="accessibility">
         <h2 class="section-title">Accessibility</h2>
-        <div class="a11y-list">
-          <div class="a11y-item">
-            <div class="a11y-icon"><i data-lucide="keyboard" style="width:18px;height:18px;"></i></div>
-            <div>
-              <strong>Keyboard support</strong>
-              <p>The field is fully reachable via Tab. Users can type directly when focused. Escape should clear or blur the field in most implementations.</p>
-            </div>
-          </div>
-          <div class="a11y-item">
-            <div class="a11y-icon"><i data-lucide="ear" style="width:18px;height:18px;"></i></div>
-            <div>
-              <strong>Screen reader</strong>
-              <p>Pair the visible label with <code>for</code>/<code>id</code> attributes on the underlying <code>&lt;input&gt;</code>. Use <code>aria-describedby</code> to associate helper and error messages.</p>
-            </div>
-          </div>
-          <div class="a11y-item">
-            <div class="a11y-icon"><i data-lucide="alert-triangle" style="width:18px;height:18px;"></i></div>
-            <div>
-              <strong>Error announcement</strong>
-              <p>When the error state activates, ensure the error message is surfaced via <code>aria-live="polite"</code> or <code>role="alert"</code> so screen reader users are notified immediately.</p>
-            </div>
-          </div>
-          <div class="a11y-item">
-            <div class="a11y-icon"><i data-lucide="eye" style="width:18px;height:18px;"></i></div>
-            <div>
-              <strong>Icons</strong>
-              <p>Decorative icons should have <code>aria-hidden="true"</code>. If an icon conveys meaning (e.g., a clear button), provide an accessible label via <code>aria-label</code>.</p>
-            </div>
-          </div>
-          <div class="a11y-item">
-            <div class="a11y-icon"><i data-lucide="contrast" style="width:18px;height:18px;"></i></div>
-            <div>
-              <strong>Contrast</strong>
-              <p>Both placeholder and value text meet WCAG AA contrast requirements against the field background in light and dark modes.</p>
-            </div>
-          </div>
-        </div>
+        <ul class="a11y-list">
+          <li>
+            <div><strong>Label association:</strong> Always connect the label to the input using <code>for</code>/<code>id</code> pairing or <code>aria-labelledby</code>. Never rely on placeholder text alone.</div>
+          </li>
+          <li>
+            <div><strong>Helper &amp; error messages:</strong> Link helper and error text to the field via <code>aria-describedby</code> and set <code>aria-invalid="true"</code> on the input when in an error state.</div>
+          </li>
+          <li>
+            <div><strong>Error announcement:</strong> Ensure error messages are surfaced via <code>aria-live="polite"</code> or <code>role="alert"</code> so screen reader users are notified immediately.</div>
+          </li>
+          <li>
+            <div><strong>Icons:</strong> Decorative icons should have <code>aria-hidden="true"</code>. If an icon conveys meaning (e.g., a clear button), provide an accessible label via <code>aria-label</code>.</div>
+          </li>
+          <li>
+            <div><strong>Keyboard:</strong> The field must be reachable via <code>Tab</code>. Users can type directly when focused. Escape should clear or blur the field in most implementations.</div>
+          </li>
+          <li>
+            <div><strong>Contrast:</strong> Both placeholder and value text meet WCAG AA contrast requirements against the field background in light and dark modes.</div>
+          </li>
+        </ul>
       </section>
 
       <!-- 8 · RELATED -->
       <section class="doc-section" id="related">
-        <h2 class="section-title">Related</h2>
+        <h2 class="section-title">Related Components</h2>
         <div class="related-grid">
           <a href="textarea.html" class="related-card">
-            <div class="related-icon"><i data-lucide="align-left" style="width:20px;height:20px;"></i></div>
-            <div><strong>Text Area</strong><p>Multi-line text input for longer freeform content.</p></div>
+            <div class="rc-name">Text Area</div>
+            <div class="rc-desc">Multi-line text input for longer freeform content.</div>
           </a>
           <a href="search.html" class="related-card">
-            <div class="related-icon"><i data-lucide="search" style="width:20px;height:20px;"></i></div>
-            <div><strong>Search</strong><p>Specialised input with a search icon and clear action.</p></div>
+            <div class="rc-name">Search</div>
+            <div class="rc-desc">Specialised input with a search icon and clear action.</div>
           </a>
           <a href="select.html" class="related-card">
-            <div class="related-icon"><i data-lucide="chevrons-up-down" style="width:20px;height:20px;"></i></div>
-            <div><strong>Select</strong><p>Dropdown input for choosing from a predefined list.</p></div>
+            <div class="rc-name">Select</div>
+            <div class="rc-desc">Dropdown input for choosing from a predefined list.</div>
           </a>
           <a href="numberinput.html" class="related-card">
-            <div class="related-icon"><i data-lucide="hash" style="width:20px;height:20px;"></i></div>
-            <div><strong>Number Input</strong><p>Numeric field with increment and decrement controls.</p></div>
+            <div class="rc-name">Number Input</div>
+            <div class="rc-desc">Numeric field with increment and decrement controls.</div>
           </a>
         </div>
       </section>
