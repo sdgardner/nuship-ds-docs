@@ -10,16 +10,19 @@
   <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.min.js"></script>
   <style>
     /* switch component token spotlights */
-    #tmPreview { position:relative; }
-    #tmPreview.spotlight-track-width { outline:2px solid #FF4081; outline-offset:2px; border-radius:100px; }
+    #tmPreview { position:relative; display:flex; gap:24px; align-items:center; }
+    #tmPreview [data-part] { transition:outline-color 150ms, opacity 150ms; outline:2px solid transparent; outline-offset:2px; border-radius:100px; }
+    #tmPreview.has-spotlight [data-part] { opacity:0.3; }
+    #tmPreview.has-spotlight [data-part].spotlight { opacity:1; outline-color:var(--tm-accent); }
+    #tmPreview.spotlight-thumb .sw-thumb { outline:2px solid var(--tm-accent); outline-offset:2px; border-radius:50%; }
+    #tmPreview.spotlight-track-width [data-part] { outline:2px solid #FF4081; outline-offset:2px; border-radius:100px; }
     #tmPreview.spotlight-track-width::after { content:'44px'; position:absolute; top:-16px; left:0; font-size:10px; font-family:var(--mono); color:#FF4081; background:rgba(255,255,255,0.9); padding:1px 4px; border-radius:2px; font-weight:700; }
-    #tmPreview.spotlight-track-height { outline:2px solid #FF4081; outline-offset:2px; border-radius:100px; }
-    #tmPreview.spotlight-track-height::after { content:'24px'; position:absolute; top:50%; right:-32px; transform:translateY(-50%); font-size:10px; font-family:var(--mono); color:#FF4081; background:rgba(255,255,255,0.9); padding:1px 4px; border-radius:2px; font-weight:700; }
-    #tmPreview.spotlight-track-radius { outline:2px solid #FF4081; outline-offset:2px; border-radius:100px; }
+    #tmPreview.spotlight-track-height [data-part] { outline:2px solid #FF4081; outline-offset:2px; border-radius:100px; }
+    #tmPreview.spotlight-track-height::after { content:'24px'; position:absolute; top:50%; right:-36px; transform:translateY(-50%); font-size:10px; font-family:var(--mono); color:#FF4081; background:rgba(255,255,255,0.9); padding:1px 4px; border-radius:2px; font-weight:700; }
+    #tmPreview.spotlight-track-radius [data-part] { outline:2px solid #FF4081; outline-offset:2px; border-radius:100px; }
     #tmPreview.spotlight-track-radius::after { content:'100px'; position:absolute; top:-16px; right:0; font-size:10px; font-family:var(--mono); color:#FF4081; background:rgba(255,255,255,0.9); padding:1px 4px; border-radius:2px; font-weight:700; }
-    #tmPreview.spotlight-thumb-size [data-part="thumb"] { outline:2px solid #FF4081; outline-offset:2px; border-radius:50%; }
+    #tmPreview.spotlight-thumb-size .sw-thumb { outline:2px solid #FF4081; outline-offset:2px; border-radius:50%; }
     #tmPreview.spotlight-thumb-size::after { content:'20px'; position:absolute; top:-16px; left:0; font-size:10px; font-family:var(--mono); color:#FF4081; background:rgba(255,255,255,0.9); padding:1px 4px; border-radius:2px; font-weight:700; }
-    #tmPreview.spotlight-gap { outline:2px solid #FF4081; outline-offset:8px; border-radius:100px; }
     #tmPreview.spotlight-gap::after { content:'12px'; position:absolute; top:50%; left:-40px; transform:translateY(-50%); font-size:10px; font-family:var(--mono); color:#FF4081; background:rgba(255,255,255,0.9); padding:1px 4px; border-radius:2px; font-weight:700; }
   </style>
 </head>
@@ -297,9 +300,9 @@
                   <div class="tm-preview-card" data-bg="light">
                     <div class="tm-preview-inner">
       
-                <div style="display:flex;gap:24px;align-items:center;">
-                  <div id="tmPreview" class="tm-preview sw-track"><div class="sw-thumb" data-part="thumb"></div></div>
-                  <div class="sw-track sw-on"><div class="sw-thumb"></div></div>
+                <div id="tmPreview" class="tm-preview">
+                  <div class="sw-track" data-part="track-off"><div class="sw-thumb"></div></div>
+                  <div class="sw-track sw-on" data-part="track-on"><div class="sw-thumb"></div></div>
                 </div>
                     </div>
                   </div>
@@ -392,24 +395,27 @@
 
 
   const tmPreview = document.getElementById('tmPreview');
-  const partMap = {
-      'track-off':['field'],'track-on':['field'],'track-disabled-off':['field'],
-      'track-disabled-on':['field'],'thumb':['thumb'],'focus-ring':['field'],
-      'hover-halo':['thumb'],'label':['label'],'description':['desc'],
-      'disabled-text':['label','desc'],
-      'track-width':['field'],'track-height':['field'],'track-radius':['field'],
-      'thumb-size':['thumb'],'gap':[],
-    };
   function slug(s){ return s.toLowerCase().replace(/[^a-z0-9]+/g,'-').replace(/-+$/,''); }
+
+  // Component dimension tokens → magenta callout only
   const compSpotlightMap = {'track-width':'spotlight-track-width','track-height':'spotlight-track-height','track-radius':'spotlight-track-radius','thumb-size':'spotlight-thumb-size','gap':'spotlight-gap'};
-  const spotlightClasses = ['has-spotlight','spotlight-track-width','spotlight-track-height','spotlight-track-radius','spotlight-thumb-size','spotlight-gap'];
-  function clearSpotlight(){ if(tmPreview){spotlightClasses.forEach(c=>tmPreview.classList.remove(c)); tmPreview.querySelectorAll('[data-part]').forEach(p=>p.classList.remove('spotlight'));} }
+  // Thumb tokens → outline .sw-thumb elements via CSS class (no data-part to avoid nesting issues)
+  const thumbSlots = new Set(['thumb','hover-halo']);
+  // Track-level tokens → has-spotlight + highlight the specific track data-part
+  const partSlots = {
+    'track-off':['track-off'], 'track-on':['track-on'],
+    'track-disabled-off':['track-off'], 'track-disabled-on':['track-on'],
+    'focus-ring':['track-off','track-on'],
+  };
+
+  const spotlightClasses = ['has-spotlight','spotlight-thumb','spotlight-track-width','spotlight-track-height','spotlight-track-radius','spotlight-thumb-size','spotlight-gap'];
+  function clearSpotlight(){ if(tmPreview){ spotlightClasses.forEach(c=>tmPreview.classList.remove(c)); tmPreview.querySelectorAll('[data-part]').forEach(p=>p.classList.remove('spotlight')); } }
   function spotlight(sl){
     if(!tmPreview) return;
-    // Component tokens → CSS class with magenta outline + callout
     if(compSpotlightMap[sl]){ tmPreview.classList.add(compSpotlightMap[sl]); return; }
-    // Color/typo tokens → data-part highlight
-    const parts=partMap[sl]; if(!parts||!parts.length) return;
+    if(thumbSlots.has(sl)){ tmPreview.classList.add('spotlight-thumb'); return; }
+    const parts = partSlots[sl];
+    if(!parts) return;
     tmPreview.classList.add('has-spotlight');
     parts.forEach(p=>{ const el=tmPreview.querySelector('[data-part="'+p+'"]'); if(el) el.classList.add('spotlight'); });
   }
@@ -420,8 +426,8 @@
 
     let html = '';
     if (tmState.tab === 'color') {
-      for (const c of colors) {
-        html += '<div class="tm-row">'
+      for (const c of colors) { const s = slug(c.role);
+        html += '<div class="tm-row" data-slot="'+s+'">'
           + '<div class="tm-row-header"><div class="tm-row-swatch" style="background:'+c.hex+'"></div><div class="tm-row-label">'+c.role+'</div></div>'
           + '<div class="tm-chain-row">'
           + '<div class="tm-chip">'+c.token+'</div>'
@@ -432,8 +438,8 @@
           + '</div></div>';
       }
     } else if (tmState.tab === 'component') {
-      for (const ct of tmComponentTokens) {
-        html += '<div class="tm-row">'
+      for (const ct of tmComponentTokens) { const s = slug(ct.role);
+        html += '<div class="tm-row" data-slot="'+s+'">'
           + '<div class="tm-row-header"><div class="tm-row-icon"><i data-lucide="'+ct.icon+'" style="width:16px;height:16px"></i></div><div class="tm-row-label">'+ct.role+'</div></div>'
           + '<div class="tm-chain-row">'
           + '<div class="tm-chip">'+ct.component+'</div>'
@@ -444,8 +450,8 @@
           + '</div></div>';
       }
     } else {
-      for (const tt of tmTypographyTokens) {
-        html += '<div class="tm-row">'
+      for (const tt of tmTypographyTokens) { const s = slug(tt.role);
+        html += '<div class="tm-row" data-slot="'+s+'">'
           + '<div class="tm-row-header"><div class="tm-row-icon"><i data-lucide="type" style="width:16px;height:16px"></i></div><div class="tm-row-label">'+tt.role+'</div></div>'
           + '<div class="tm-chain-row" style="flex-direction:column;align-items:flex-start;gap:6px;">'
           + '<div style="display:flex;align-items:center;gap:10px;flex-wrap:wrap;"><div class="tm-chip">'+tt.style+'</div></div>'

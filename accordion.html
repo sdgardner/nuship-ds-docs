@@ -11,13 +11,17 @@
   <style>
     /* accordion component token spotlights */
     #tmPreview { position:relative; }
-    #tmPreview.spotlight-padding { outline:2px solid #FF4081; outline-offset:-1px; border-radius:8px; }
+    #tmPreview [data-part] { transition:outline-color 150ms, opacity 150ms; outline:2px solid transparent; outline-offset:2px; border-radius:3px; }
+    #tmPreview.has-spotlight [data-part] { opacity:0.3; }
+    #tmPreview.has-spotlight [data-part].spotlight { opacity:1; outline-color:var(--tm-accent); }
+    #tmPreview.spotlight-container .ac { outline:2px solid var(--tm-accent); outline-offset:2px; border-radius:8px; }
+    #tmPreview.spotlight-padding .ac-trigger { outline:2px solid #FF4081; outline-offset:-1px; border-radius:8px 8px 0 0; }
     #tmPreview.spotlight-padding::after { content:'16px'; position:absolute; top:4px; left:4px; font-size:10px; font-family:var(--mono); color:#FF4081; background:rgba(255,255,255,0.9); padding:1px 4px; border-radius:2px; font-weight:700; }
-    #tmPreview.spotlight-radius { outline:2px solid #FF4081; outline-offset:2px; border-radius:8px; }
+    #tmPreview.spotlight-radius .ac { outline:2px solid #FF4081; outline-offset:2px; border-radius:8px; }
     #tmPreview.spotlight-radius::after { content:'8px'; position:absolute; top:-16px; left:-2px; font-size:10px; font-family:var(--mono); color:#FF4081; background:rgba(255,255,255,0.9); padding:1px 4px; border-radius:2px; font-weight:700; }
-    #tmPreview.spotlight-border-width { outline:2px solid #FF4081; outline-offset:0; border-radius:8px; }
+    #tmPreview.spotlight-border-width .ac { outline:2px solid #FF4081; outline-offset:0; border-radius:8px; }
     #tmPreview.spotlight-border-width::after { content:'1px'; position:absolute; top:-16px; right:4px; font-size:10px; font-family:var(--mono); color:#FF4081; background:rgba(255,255,255,0.9); padding:1px 4px; border-radius:2px; font-weight:700; }
-    #tmPreview.spotlight-body-padding { outline:2px solid #FF4081; outline-offset:-1px; border-radius:4px; }
+    #tmPreview.spotlight-body-padding .ac-content { outline:2px solid #FF4081; outline-offset:-1px; border-radius:4px; }
     #tmPreview.spotlight-body-padding::after { content:'12px'; position:absolute; bottom:4px; left:4px; font-size:10px; font-family:var(--mono); color:#FF4081; background:rgba(255,255,255,0.9); padding:1px 4px; border-radius:2px; font-weight:700; }
   </style>
 </head>
@@ -545,26 +549,24 @@
               <div class="tm-map">
                 <div>
                   <div class="tm-preview-card" data-bg="light">
-                    <div class="tm-preview-inner"><div id="tmPreview" class="tm-preview">
-      
-                <div style="display:flex;flex-direction:column;gap:8px;width:100%;max-width:300px;">
-                  <div class="ac ac--open" style="pointer-events:none;">
-                    <div class="ac-trigger">
-                      <span class="ac-label">Shipping info</span>
-                      <span class="ac-chevron"><i data-lucide="chevron-down" style="width:16px;height:16px;"></i></span>
+                    <div class="tm-preview-inner">
+                      <div id="tmPreview" class="tm-preview" style="display:flex;flex-direction:column;gap:8px;width:100%;max-width:300px;">
+                        <div class="ac ac--open" style="pointer-events:none;">
+                          <div class="ac-trigger">
+                            <span class="ac-label" data-part="label-open">Shipping info</span>
+                            <span class="ac-chevron"><i data-lucide="chevron-down" style="width:16px;height:16px;"></i></span>
+                          </div>
+                          <div class="ac-content" data-part="content">Standard delivery is 3-5 business days.</div>
+                        </div>
+                        <div class="ac ac--closed" style="pointer-events:none;">
+                          <div class="ac-trigger">
+                            <span class="ac-label" data-part="label-closed">Returns</span>
+                            <span class="ac-chevron"><i data-lucide="chevron-down" style="width:16px;height:16px;"></i></span>
+                          </div>
+                        </div>
+                      </div>
                     </div>
-                    <div class="ac-content">Standard delivery is 3-5 business days.</div>
                   </div>
-                  <div class="ac ac--closed" style="pointer-events:none;">
-                    <div class="ac-trigger">
-                      <span class="ac-label">Returns</span>
-                      <span class="ac-chevron"><i data-lucide="chevron-down" style="width:16px;height:16px;"></i></span>
-                    </div>
-                  </div>
-                </div>
-                    </div>
-                  </div>
-                    </div>
                 </div>
                 <div class="tm-tokens-card">
                   <div class="tm-tokens-head">
@@ -771,22 +773,29 @@
 
 
   const tmPreview = document.getElementById('tmPreview');
-  const partMap = {
-      'trigger-label--open-':[],'trigger-label--closed-':[],'trigger-label--disabled-':[],
-      'content-text':[],'container-border':[],'focus-ring':[],
-      'padding':[],'radius':[],'border-width':[],'body-padding':[],
-      'trigger-label':[],'content':[],
-    };
   function slug(s){ return s.toLowerCase().replace(/[^a-z0-9]+/g,'-').replace(/-+$/,''); }
+
+  // Container-level tokens → teal outline on both .ac elements
+  const containerSlots = new Set(['container-border','focus-ring']);
+  // Component dimension tokens → magenta callout
   const compSpotlightMap = {'padding':'spotlight-padding','radius':'spotlight-radius','border-width':'spotlight-border-width','body-padding':'spotlight-body-padding'};
-  const spotlightClasses = ['has-spotlight','spotlight-padding','spotlight-radius','spotlight-border-width','spotlight-body-padding'];
-  function clearSpotlight(){ if(tmPreview){spotlightClasses.forEach(c=>tmPreview.classList.remove(c)); tmPreview.querySelectorAll('[data-part]').forEach(p=>p.classList.remove('spotlight'));} }
+  // Part-level tokens → dim others, highlight specific part
+  const partSlots = {
+    'trigger-label-open':   ['label-open'],
+    'trigger-label-closed': ['label-closed'],
+    'content-text':         ['content'],
+    'trigger-label':        ['label-open','label-closed'],
+    'content':              ['content'],
+  };
+
+  const spotlightClasses = ['has-spotlight','spotlight-container','spotlight-padding','spotlight-radius','spotlight-border-width','spotlight-body-padding'];
+  function clearSpotlight(){ if(tmPreview){ spotlightClasses.forEach(c=>tmPreview.classList.remove(c)); tmPreview.querySelectorAll('[data-part]').forEach(p=>p.classList.remove('spotlight')); } }
   function spotlight(sl){
     if(!tmPreview) return;
-    // Component tokens → CSS class with magenta outline + callout
     if(compSpotlightMap[sl]){ tmPreview.classList.add(compSpotlightMap[sl]); return; }
-    // Color/typo tokens → data-part highlight
-    const parts=partMap[sl]; if(!parts||!parts.length) return;
+    if(containerSlots.has(sl)){ tmPreview.classList.add('spotlight-container'); return; }
+    const parts = partSlots[sl];
+    if(!parts) return;
     tmPreview.classList.add('has-spotlight');
     parts.forEach(p=>{ const el=tmPreview.querySelector('[data-part="'+p+'"]'); if(el) el.classList.add('spotlight'); });
   }

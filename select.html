@@ -11,7 +11,11 @@
   <style>
     /* select component token spotlights */
     #tmPreview { position:relative; }
-    #tmPreview.spotlight-padding [data-part="trigger"] { outline:2px solid #FF4081; outline-offset:-1px; border-radius:4px; }
+    #tmPreview [data-part] { transition:outline-color 150ms, opacity 150ms; outline:2px solid transparent; outline-offset:2px; border-radius:3px; }
+    #tmPreview.has-spotlight [data-part] { opacity:0.3; }
+    #tmPreview.has-spotlight [data-part].spotlight { opacity:1; outline-color:var(--tm-accent); }
+    #tmPreview.spotlight-trigger .sl-trigger { outline:2px solid var(--tm-accent); outline-offset:2px; border-radius:4px; }
+    #tmPreview.spotlight-padding .sl-trigger { outline:2px solid #FF4081; outline-offset:-1px; border-radius:4px; }
     #tmPreview.spotlight-padding::after { content:'12px'; position:absolute; top:28px; left:4px; font-size:10px; font-family:var(--mono); color:#FF4081; background:rgba(255,255,255,0.9); padding:1px 4px; border-radius:2px; font-weight:700; }
     #tmPreview.spotlight-gap { outline:2px solid #FF4081; outline-offset:4px; border-radius:4px; }
     #tmPreview.spotlight-gap::after { content:'8px'; position:absolute; top:-20px; left:50%; font-size:10px; font-family:var(--mono); color:#FF4081; background:rgba(255,255,255,0.9); padding:1px 4px; border-radius:2px; font-weight:700; }
@@ -431,7 +435,7 @@
                 <div id="tmPreview" class="tm-preview sl-field">
                   <div class="sl-label" data-part="label">Maker</div>
                   <div class="sl-focus-wrap">
-                    <div class="sl-trigger" data-part="trigger">
+                    <div class="sl-trigger">
                       <div class="sl-left">
                         <div class="sl-placeholder" data-part="placeholder">Select option</div>
                       </div>
@@ -582,23 +586,26 @@
 
 
   const tmPreview = document.getElementById('tmPreview');
-  const partMap = {
-      'field-background':['trigger'],'border':['trigger'],'border-hover':['trigger'],
-      'focus-ring':['trigger'],'error-border':['trigger'],'placeholder':['placeholder'],
-      'label':['label'],'helper':['helper'],'chevron':['chevron'],
-      'disabled-border':['trigger'],'disabled-text':['label','placeholder','chevron','helper'],
-      'padding':['trigger'],'gap':[],
-    };
   function slug(s){ return s.toLowerCase().replace(/[^a-z0-9]+/g,'-').replace(/-+$/,''); }
+
+  // Trigger-level color tokens → outline .sl-trigger, dim other parts
+  const triggerSlots = new Set(['field-background','border','border-hover','focus-ring','error-border','disabled-border']);
+  // Component dimension tokens → magenta callout only
   const compSpotlightMap = {'padding':'spotlight-padding','gap':'spotlight-gap'};
-  const spotlightClasses = ['has-spotlight','spotlight-padding','spotlight-gap'];
-  function clearSpotlight(){ if(tmPreview){spotlightClasses.forEach(c=>tmPreview.classList.remove(c)); tmPreview.querySelectorAll('[data-part]').forEach(p=>p.classList.remove('spotlight'));} }
+  // Part-level tokens → dim others, highlight this part
+  const partSlots = {
+    'label':['label'], 'placeholder':['placeholder'], 'helper':['helper'],
+    'value':['placeholder'], 'chevron':['chevron'],
+  };
+
+  const spotlightClasses = ['has-spotlight','spotlight-trigger','spotlight-padding','spotlight-gap'];
+  function clearSpotlight(){ if(tmPreview){ spotlightClasses.forEach(c=>tmPreview.classList.remove(c)); tmPreview.querySelectorAll('[data-part]').forEach(p=>p.classList.remove('spotlight')); } }
   function spotlight(sl){
     if(!tmPreview) return;
-    // Component tokens → CSS class with magenta outline + callout
     if(compSpotlightMap[sl]){ tmPreview.classList.add(compSpotlightMap[sl]); return; }
-    // Color/typo tokens → data-part highlight
-    const parts=partMap[sl]; if(!parts||!parts.length) return;
+    if(triggerSlots.has(sl)){ tmPreview.classList.add('has-spotlight','spotlight-trigger'); return; }
+    const parts = partSlots[sl];
+    if(!parts) return;
     tmPreview.classList.add('has-spotlight');
     parts.forEach(p=>{ const el=tmPreview.querySelector('[data-part="'+p+'"]'); if(el) el.classList.add('spotlight'); });
   }
@@ -609,8 +616,8 @@
 
     let html = '';
     if (tmState.tab === 'color') {
-      for (const c of colors) {
-        html += '<div class="tm-row">'
+      for (const c of colors) { const s = slug(c.role);
+        html += '<div class="tm-row" data-slot="'+s+'">'
           + '<div class="tm-row-header"><div class="tm-row-swatch" style="background:'+c.hex+'"></div><div class="tm-row-label">'+c.role+'</div></div>'
           + '<div class="tm-chain-row">'
           + '<div class="tm-chip">'+c.token+'</div>'
@@ -621,8 +628,8 @@
           + '</div></div>';
       }
     } else if (tmState.tab === 'component') {
-      for (const ct of tmComponentTokens) {
-        html += '<div class="tm-row">'
+      for (const ct of tmComponentTokens) { const s = slug(ct.role);
+        html += '<div class="tm-row" data-slot="'+s+'">'
           + '<div class="tm-row-header"><div class="tm-row-icon"><i data-lucide="'+ct.icon+'" style="width:16px;height:16px"></i></div><div class="tm-row-label">'+ct.role+'</div></div>'
           + '<div class="tm-chain-row">'
           + '<div class="tm-chip">'+ct.component+'</div>'
@@ -633,8 +640,8 @@
           + '</div></div>';
       }
     } else {
-      for (const tt of tmTypographyTokens) {
-        html += '<div class="tm-row">'
+      for (const tt of tmTypographyTokens) { const s = slug(tt.role);
+        html += '<div class="tm-row" data-slot="'+s+'">'
           + '<div class="tm-row-header"><div class="tm-row-icon"><i data-lucide="type" style="width:16px;height:16px"></i></div><div class="tm-row-label">'+tt.role+'</div></div>'
           + '<div class="tm-chain-row" style="flex-direction:column;align-items:flex-start;gap:6px;">'
           + '<div style="display:flex;align-items:center;gap:10px;flex-wrap:wrap;"><div class="tm-chip">'+tt.style+'</div></div>'

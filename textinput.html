@@ -1,0 +1,780 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Text Input — nuShip Design System</title>
+  <link href="https://fonts.googleapis.com/css2?family=Lato:wght@400;600;700;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="tokens.css">
+  <link rel="stylesheet" href="styles.css">
+  <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.min.js"></script>
+  <style>
+    /* text input token spotlights */
+    #tmPreview { position:relative; }
+    #tmPreview [data-part] { transition:outline-color 150ms, opacity 150ms; outline:2px solid transparent; outline-offset:2px; border-radius:3px; }
+    #tmPreview.has-spotlight [data-part] { opacity:0.3; }
+    #tmPreview.has-spotlight [data-part].spotlight { opacity:1; outline-color:var(--tm-accent); }
+    #tmPreview.spotlight-field .ti-field { outline:2px solid var(--tm-accent); outline-offset:2px; border-radius:4px; }
+    #tmPreview.spotlight-padding .ti-field { outline:2px solid #FF4081; outline-offset:-1px; border-radius:4px; }
+    #tmPreview.spotlight-padding::after { content:'12px'; position:absolute; top:14px; right:-32px; font-size:10px; font-family:var(--mono); color:#FF4081; background:rgba(255,255,255,0.9); padding:1px 4px; border-radius:2px; font-weight:700; }
+    #tmPreview.spotlight-gap .ti-field { outline:2px solid #FF4081; outline-offset:-1px; border-radius:4px; }
+    #tmPreview.spotlight-gap::after { content:'8px'; position:absolute; top:14px; left:44px; font-size:10px; font-family:var(--mono); color:#FF4081; background:rgba(255,255,255,0.9); padding:1px 4px; border-radius:2px; font-weight:700; }
+    #tmPreview.spotlight-radius .ti-field { outline:2px solid #FF4081; outline-offset:2px; border-radius:4px; }
+    #tmPreview.spotlight-radius::after { content:'4px'; position:absolute; top:10px; left:-28px; font-size:10px; font-family:var(--mono); color:#FF4081; background:rgba(255,255,255,0.9); padding:1px 4px; border-radius:2px; font-weight:700; }
+    #tmPreview.spotlight-border-width .ti-field { outline:2px solid #FF4081; outline-offset:2px; border-radius:4px; }
+    #tmPreview.spotlight-border-width::after { content:'1px'; position:absolute; top:10px; right:-28px; font-size:10px; font-family:var(--mono); color:#FF4081; background:rgba(255,255,255,0.9); padding:1px 4px; border-radius:2px; font-weight:700; }
+    #tmPreview.spotlight-icon-size [data-part="icon"] { outline:2px solid #FF4081; outline-offset:2px; border-radius:3px; }
+    #tmPreview.spotlight-icon-size::after { content:'20px'; position:absolute; top:10px; left:52px; font-size:10px; font-family:var(--mono); color:#FF4081; background:rgba(255,255,255,0.9); padding:1px 4px; border-radius:2px; font-weight:700; }
+    /* Isolate preview from global dark mode */
+    .tm-preview-card[data-bg="light"] .ti-field   { background:#F4F6F8; border-color:#CDD2D7; }
+    .tm-preview-card[data-bg="light"] .ti-label   { color:#374151; }
+    .tm-preview-card[data-bg="light"] .ti-input   { color:#6B7280; }
+    .tm-preview-card[data-bg="light"] .ti-helper  { color:#4B5563; }
+    .tm-preview-card[data-bg="light"] .ti-icon    { color:#6B7280; }
+    .tm-preview-card[data-bg="dark"] .ti-field    { background:#1E1E1E; border-color:#6B7280; }
+    .tm-preview-card[data-bg="dark"] .ti-label    { color:#F3F4F6; }
+    .tm-preview-card[data-bg="dark"] .ti-input    { color:#9CA3AF; }
+    .tm-preview-card[data-bg="dark"] .ti-helper   { color:#9CA3AF; }
+    .tm-preview-card[data-bg="dark"] .ti-icon     { color:#9CA3AF; }
+  </style>
+</head>
+<body>
+
+<!-- MOBILE OVERLAY -->
+<div id="navOverlay" class="nav-overlay" onclick="toggleSidebar()"></div>
+
+<!-- TOP NAV -->
+<nav class="topnav">
+  <button class="hamburger" onclick="toggleSidebar()" aria-label="Menu">
+    <i data-lucide="menu" style="width:18px;height:18px;color:var(--text-secondary)"></i>
+  </button>
+  <div class="bc">
+    <a href="index.html">UI Components</a>
+    <i data-lucide="chevron-right" style="width:14px;height:14px;flex-shrink:0"></i>
+    <a href="#">Inputs</a>
+    <i data-lucide="chevron-right" style="width:14px;height:14px;flex-shrink:0"></i>
+    <span class="cur">Text Input</span>
+  </div>
+  <div class="nav-actions">
+    <div class="toggle-wrap" onclick="toggleTheme()" role="button">
+      <i data-lucide="moon" style="width:20px;height:20px"></i>
+      <div class="toggle-track"><div class="toggle-thumb"></div></div>
+      <i data-lucide="sun" style="width:20px;height:20px"></i>
+    </div>
+  </div>
+</nav>
+
+<div class="shell">
+
+  <!-- LEFT NAV -->
+  <nav class="left-nav" id="leftNav">
+    <div class="left-nav-inner">
+      <div class="ln-group">
+        <div class="ln-label">Inputs</div>
+        <ul class="ln-list">
+          <li><a href="checkbox.html">Checkbox</a></li>
+          <li><a href="datepicker.html">Date Picker</a></li>
+          <li><a href="numberinput.html">Number Input</a></li>
+          <li><a href="passwordinput.html">Password Input</a></li>
+          <li><a href="radiobutton.html">Radio Button</a></li>
+          <li><a href="search.html">Search</a></li>
+          <li><a href="select.html">Select</a></li>
+          <li><a href="#">Slider</a></li>
+          <li><a href="switch.html">Switch</a></li>
+          <li><a href="textarea.html">Text Area</a></li>
+          <li><a href="textinput.html" class="active">Text Input</a></li>
+        </ul>
+      </div>
+      <div class="ln-group">
+        <div class="ln-label">Feedback</div>
+        <ul class="ln-list">
+          <li><a href="alert.html">Alert</a></li>
+          <li><a href="badge.html">Badge</a></li>
+          <li><a href="#">Toast</a></li>
+          <li><a href="#">Tooltip</a></li>
+        </ul>
+      </div>
+      <div class="ln-group">
+        <div class="ln-label">Navigation</div>
+        <ul class="ln-list">
+          <li><a href="accordion.html">Accordion</a></li>
+          <li><a href="#">Breadcrumb</a></li>
+          <li><a href="dropdown.html">Dropdown</a></li>
+          <li><a href="menu.html">Menu</a></li>
+          <li><a href="segmentedcontrol.html">Segmented Control</a></li>
+          <li><a href="#">Tabs</a></li>
+        </ul>
+      </div>
+      <div class="ln-group">
+        <div class="ln-label">Actions</div>
+        <ul class="ln-list">
+          <li><a href="button.html">Button</a></li>
+          <li><a href="link.html">Link</a></li>
+          <li><a href="#">Tags</a></li>
+        </ul>
+      </div>
+      <div class="ln-group">
+        <div class="ln-label">Overlays</div>
+        <ul class="ln-list">
+          <li><a href="modal.html">Modal</a></li>
+          <li><a href="popover.html">Popover</a></li>
+        </ul>
+      </div>
+      <div class="ln-group">
+        <div class="ln-label">Display</div>
+        <ul class="ln-list">
+          <li><a href="avatar.html">Avatar</a></li>
+          <li><a href="carousel.html">Carousel</a></li>
+          <li><a href="fileupload.html">File Upload</a></li>
+          <li><a href="progressbar.html">Progress Bar</a></li>
+          <li><a href="#">Star Rating</a></li>
+          <li><a href="#">Timeline</a></li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <!-- CONTENT -->
+  <div class="content-wrap" id="contentWrap">
+
+    <main class="doc">
+
+      <!-- 1 · DEFINITION -->
+      <section class="doc-section" id="definition">
+        <div class="def-eyebrow">Inputs</div>
+        <h1 class="def-title">Text Input</h1>
+        <p class="def-desc">The Text Input is a single-line field for short freeform content such as names, addresses, and codes. It supports a label, optional leading or trailing icon, helper text, and multiple interaction states including error and read-only.</p>
+        <div class="def-tags">
+          <span class="tag">Developed</span>
+          <span class="tag">Figma</span>
+        </div>
+        <div class="preview-box">
+          <div class="preview-box-inner">
+            <div style="display:flex;gap:32px;flex-wrap:wrap;align-items:flex-start;">
+              <div class="ti-wrap" style="width:260px;">
+                <span class="ti-label">Pick-up location</span>
+                <div class="ti-field">
+                  <span class="ti-icon"><i data-lucide="map-pin" style="width:16px;height:16px;"></i></span>
+                  <div class="ti-input">Enter city or zip code</div>
+                </div>
+                <p class="ti-helper">This is helper text</p>
+              </div>
+              <div class="ti-wrap ti-wrap--focus" style="width:260px;">
+                <span class="ti-label">Pick-up location</span>
+                <div class="ti-field">
+                  <span class="ti-icon"><i data-lucide="map-pin" style="width:16px;height:16px;"></i></span>
+                  <div class="ti-input ti-input--value">Brisbane Airport, QLD 4008</div>
+                </div>
+                <p class="ti-helper">This is helper text</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- 2 · ANATOMY -->
+      <section class="doc-section" id="anatomy">
+        <h2 class="section-title">Anatomy</h2>
+        <div class="anatomy-wrap">
+          <div class="anatomy-component" style="padding:32px 48px 48px;">
+            <div style="position:relative;display:inline-block;width:280px;">
+              <div class="ti-wrap" style="pointer-events:none;">
+                <span class="ti-label">Pick-up location</span>
+                <div class="ti-field">
+                  <span class="ti-icon"><i data-lucide="map-pin" style="width:16px;height:16px;"></i></span>
+                  <div class="ti-input">Enter city or zip code</div>
+                </div>
+                <p class="ti-helper">This is helper text</p>
+              </div>
+              <span class="callout" style="top:-8px;left:8px;">1</span>
+              <span class="callout" style="top:20px;left:-16px;">2</span>
+              <span class="callout" style="top:20px;left:18px;">3</span>
+              <span class="callout" style="top:20px;right:-16px;">4</span>
+              <span class="callout" style="bottom:22px;left:-16px;">5</span>
+            </div>
+          </div>
+          <div class="anatomy-legend">
+            <div class="legend-item"><span class="legend-num">1</span>Label (12px Lato Bold, required)</div>
+            <div class="legend-item"><span class="legend-num">2</span>Input container (border + background)</div>
+            <div class="legend-item"><span class="legend-num">3</span>Leading icon (optional, 20×20px)</div>
+            <div class="legend-item"><span class="legend-num">4</span>Trailing icon (optional, 20×20px)</div>
+            <div class="legend-item"><span class="legend-num">5</span>Helper / error text (14px Lato Regular)</div>
+          </div>
+        </div>
+      </section>
+
+      <!-- 3 · STATES -->
+      <section class="doc-section" id="variants">
+        <h2 class="section-title">States</h2>
+
+        <div class="state-tab-row">
+          <button class="state-tab-btn active" onclick="switchStateTab(this,'vs-default')">Default</button>
+          <button class="state-tab-btn" onclick="switchStateTab(this,'vs-hover')">Hover</button>
+          <button class="state-tab-btn" onclick="switchStateTab(this,'vs-focus')">Focus</button>
+          <button class="state-tab-btn" onclick="switchStateTab(this,'vs-active')">Active</button>
+          <button class="state-tab-btn" onclick="switchStateTab(this,'vs-disabled')">Disabled</button>
+          <button class="state-tab-btn" onclick="switchStateTab(this,'vs-error')">Error</button>
+          <button class="state-tab-btn" onclick="switchStateTab(this,'vs-readonly')">Read only</button>
+        </div>
+
+        <div class="var-panel">
+          <div class="var-previews-wrap">
+
+            <!-- Default -->
+            <div class="state-panel active" id="vs-default">
+              <div class="var-previews">
+                <div class="var-preview">
+                  <div class="ti-wrap" style="width:260px;">
+                    <span class="ti-label">Pick-up location</span>
+                    <div class="ti-field">
+                      <span class="ti-icon"><i data-lucide="map-pin" style="width:16px;height:16px;"></i></span>
+                      <div class="ti-input">Enter city or zip code</div>
+                    </div>
+                    <p class="ti-helper">This is helper text</p>
+                  </div>
+                </div>
+                <div class="var-preview-dark" data-theme="dark">
+                  <div class="ti-wrap" style="width:260px;">
+                    <span class="ti-label">Pick-up location</span>
+                    <div class="ti-field">
+                      <span class="ti-icon"><i data-lucide="map-pin" style="width:16px;height:16px;"></i></span>
+                      <div class="ti-input">Enter city or zip code</div>
+                    </div>
+                    <p class="ti-helper">This is helper text</p>
+                  </div>
+                </div>
+              </div>
+              <p class="var-desc">The default state renders with a subtle border and placeholder text. No interaction has occurred.</p>
+            </div>
+
+            <!-- Hover -->
+            <div class="state-panel" id="vs-hover">
+              <div class="var-previews">
+                <div class="var-preview">
+                  <div class="ti-wrap ti-wrap--hover" style="width:260px;">
+                    <span class="ti-label">Pick-up location</span>
+                    <div class="ti-field">
+                      <span class="ti-icon"><i data-lucide="map-pin" style="width:16px;height:16px;"></i></span>
+                      <div class="ti-input">Enter city or zip code</div>
+                    </div>
+                    <p class="ti-helper">This is helper text</p>
+                  </div>
+                </div>
+                <div class="var-preview-dark" data-theme="dark">
+                  <div class="ti-wrap ti-wrap--hover" style="width:260px;">
+                    <span class="ti-label">Pick-up location</span>
+                    <div class="ti-field">
+                      <span class="ti-icon"><i data-lucide="map-pin" style="width:16px;height:16px;"></i></span>
+                      <div class="ti-input">Enter city or zip code</div>
+                    </div>
+                    <p class="ti-helper">This is helper text</p>
+                  </div>
+                </div>
+              </div>
+              <p class="var-desc">On hover the border darkens to provide a clear affordance that the field is interactive.</p>
+            </div>
+
+            <!-- Focus -->
+            <div class="state-panel" id="vs-focus">
+              <div class="var-previews">
+                <div class="var-preview">
+                  <div class="ti-wrap ti-wrap--focus" style="width:260px;">
+                    <span class="ti-label">Pick-up location</span>
+                    <div class="ti-field">
+                      <span class="ti-icon"><i data-lucide="map-pin" style="width:16px;height:16px;"></i></span>
+                      <div class="ti-input">Enter city or zip code</div>
+                    </div>
+                    <p class="ti-helper">This is helper text</p>
+                  </div>
+                </div>
+                <div class="var-preview-dark" data-theme="dark">
+                  <div class="ti-wrap ti-wrap--focus" style="width:260px;">
+                    <span class="ti-label">Pick-up location</span>
+                    <div class="ti-field">
+                      <span class="ti-icon"><i data-lucide="map-pin" style="width:16px;height:16px;"></i></span>
+                      <div class="ti-input">Enter city or zip code</div>
+                    </div>
+                    <p class="ti-helper">This is helper text</p>
+                  </div>
+                </div>
+              </div>
+              <p class="var-desc">Focus shows a teal border and a soft glow ring, giving a clear keyboard-accessible signal.</p>
+            </div>
+
+            <!-- Active -->
+            <div class="state-panel" id="vs-active">
+              <div class="var-previews">
+                <div class="var-preview">
+                  <div class="ti-wrap ti-wrap--active" style="width:260px;">
+                    <span class="ti-label">Pick-up location</span>
+                    <div class="ti-field">
+                      <span class="ti-icon"><i data-lucide="map-pin" style="width:16px;height:16px;"></i></span>
+                      <div class="ti-input ti-input--value">Brisbane Airport, QLD 4008</div>
+                    </div>
+                    <p class="ti-helper">This is helper text</p>
+                  </div>
+                </div>
+                <div class="var-preview-dark" data-theme="dark">
+                  <div class="ti-wrap ti-wrap--active" style="width:260px;">
+                    <span class="ti-label">Pick-up location</span>
+                    <div class="ti-field">
+                      <span class="ti-icon"><i data-lucide="map-pin" style="width:16px;height:16px;"></i></span>
+                      <div class="ti-input ti-input--value">Brisbane Airport, QLD 4008</div>
+                    </div>
+                    <p class="ti-helper">This is helper text</p>
+                  </div>
+                </div>
+              </div>
+              <p class="var-desc">Active state shows the field is focused and contains a typed value. Focus ring remains visible.</p>
+            </div>
+
+            <!-- Disabled -->
+            <div class="state-panel" id="vs-disabled">
+              <div class="var-previews">
+                <div class="var-preview">
+                  <div class="ti-wrap ti-wrap--disabled" style="width:260px;">
+                    <span class="ti-label">Pick-up location</span>
+                    <div class="ti-field">
+                      <span class="ti-icon"><i data-lucide="map-pin" style="width:16px;height:16px;"></i></span>
+                      <div class="ti-input">Enter city or zip code</div>
+                    </div>
+                    <p class="ti-helper">This is helper text</p>
+                  </div>
+                </div>
+                <div class="var-preview-dark" data-theme="dark">
+                  <div class="ti-wrap ti-wrap--disabled" style="width:260px;">
+                    <span class="ti-label">Pick-up location</span>
+                    <div class="ti-field">
+                      <span class="ti-icon"><i data-lucide="map-pin" style="width:16px;height:16px;"></i></span>
+                      <div class="ti-input">Enter city or zip code</div>
+                    </div>
+                    <p class="ti-helper">This is helper text</p>
+                  </div>
+                </div>
+              </div>
+              <p class="var-desc">Disabled fields are visually muted and cannot receive focus or input. Use sparingly — prefer read-only if the value is relevant.</p>
+            </div>
+
+            <!-- Error -->
+            <div class="state-panel" id="vs-error">
+              <div class="var-previews">
+                <div class="var-preview">
+                  <div class="ti-wrap ti-wrap--error" style="width:260px;">
+                    <span class="ti-label">Post code</span>
+                    <div class="ti-field">
+                      <div class="ti-input ti-input--value" style="color:#A12F2F;">31</div>
+                    </div>
+                    <div class="ti-error">
+                      <i data-lucide="alert-circle" style="width:16px;height:16px;flex-shrink:0;"></i>
+                      Five-digit zip code required
+                    </div>
+                  </div>
+                </div>
+                <div class="var-preview-dark" data-theme="dark">
+                  <div class="ti-wrap ti-wrap--error" style="width:260px;">
+                    <span class="ti-label">Post code</span>
+                    <div class="ti-field">
+                      <div class="ti-input ti-input--value" style="color:#E36868;">31</div>
+                    </div>
+                    <div class="ti-error" style="color:#E36868;">
+                      <i data-lucide="alert-circle" style="width:16px;height:16px;flex-shrink:0;"></i>
+                      Five-digit zip code required
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <p class="var-desc">Error state highlights the field in red and shows an inline message beneath the field. Always provide a clear, actionable error message.</p>
+            </div>
+
+            <!-- Read only -->
+            <div class="state-panel" id="vs-readonly">
+              <div class="var-previews">
+                <div class="var-preview">
+                  <div class="ti-wrap ti-wrap--readonly" style="width:260px;">
+                    <span class="ti-label">Pick-up location</span>
+                    <div class="ti-field">
+                      <span class="ti-icon"><i data-lucide="map-pin" style="width:16px;height:16px;"></i></span>
+                      <div class="ti-input ti-input--value">Brisbane Airport, QLD 4008</div>
+                    </div>
+                    <p class="ti-helper">This is helper text</p>
+                  </div>
+                </div>
+                <div class="var-preview-dark" data-theme="dark">
+                  <div class="ti-wrap ti-wrap--readonly" style="width:260px;">
+                    <span class="ti-label">Pick-up location</span>
+                    <div class="ti-field">
+                      <span class="ti-icon"><i data-lucide="map-pin" style="width:16px;height:16px;"></i></span>
+                      <div class="ti-input ti-input--value">Brisbane Airport, QLD 4008</div>
+                    </div>
+                    <p class="ti-helper">This is helper text</p>
+                  </div>
+                </div>
+              </div>
+              <p class="var-desc">Read-only fields display existing values that cannot be edited. Unlike disabled, read-only fields are still accessible to screen readers and can receive focus.</p>
+            </div>
+
+          </div>
+        </div>
+      </section>
+
+      <!-- 4 · PROPERTIES -->
+      <section class="doc-section" id="properties">
+        <h2 class="section-title">Properties</h2>
+        <table class="prop-table">
+          <thead><tr><th>Prop</th><th>Values</th><th>Default</th><th>Description</th></tr></thead>
+          <tbody>
+            <tr><td>state</td><td>Default · Hover · Focus · Active · Disabled · Error · Read-only</td><td>Default</td><td>Visual interaction state of the field.</td></tr>
+            <tr><td>iconPosition</td><td>None · Leading · Trailing</td><td>None</td><td>Places an icon to the left or right of the input text.</td></tr>
+            <tr><td>label</td><td>string</td><td>—</td><td>Required label shown above the field.</td></tr>
+            <tr><td>placeholder</td><td>string</td><td>—</td><td>Hint text shown when the field has no value.</td></tr>
+            <tr><td>value</td><td>string</td><td>—</td><td>Current value displayed in the field.</td></tr>
+            <tr><td>helperText</td><td>string</td><td>—</td><td>Optional supporting text shown beneath the field.</td></tr>
+            <tr><td>errorMessage</td><td>string</td><td>—</td><td>Validation message shown in the error state.</td></tr>
+          </tbody>
+        </table>
+      </section>
+
+      <!-- 5 · USAGE -->
+      <section class="doc-section" id="usage">
+        <h2 class="section-title">Usage</h2>
+        <div class="usage-grid">
+          <div class="usage-card usage-do">
+            <div class="usage-label">Do</div>
+            <ul>
+              <li>Use a concise, descriptive label that clearly identifies the expected input.</li>
+              <li>Use placeholder text as an example, not a substitute for the label.</li>
+              <li>Use the leading icon to reinforce the input's purpose (e.g., a search icon for search, a map pin for location).</li>
+              <li>Show a helper text below the field to explain format requirements upfront.</li>
+            </ul>
+          </div>
+          <div class="usage-card usage-dont">
+            <div class="usage-label">Don't</div>
+            <ul>
+              <li>Don't rely solely on placeholder text to communicate what the field requires — it disappears when typing begins.</li>
+              <li>Don't use disabled for fields that might become relevant; prefer read-only so screen readers can still access the value.</li>
+              <li>Don't show an error until after the user has had a chance to interact with the field (validate on blur or submit).</li>
+              <li>Don't use two icons simultaneously (leading and trailing) as this clutters the field.</li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      <!-- 6 · TOKEN MAP -->
+      <section class="doc-section" id="tokens">
+        <h2 class="section-title">Token Map</h2>
+
+        <div class="tm-preview-controls">
+          <div class="tm-mode-toggle" id="tmModeToggle">
+            <span class="tm-mode-label" id="tmModeLabel">Light</span>
+            <div class="sw-track sw-track--compact" id="tmModeTrack"><div class="sw-thumb"></div></div>
+          </div>
+        </div>
+
+        <div class="tm-map">
+
+          <!-- LEFT: Preview -->
+          <div>
+            <div class="tm-preview-card" data-bg="light">
+              <div class="tm-preview-inner">
+                <div id="tmPreview" class="ti-wrap tm-preview" style="width:220px;">
+                  <span class="ti-label" data-part="label">Pick-up location</span>
+                  <div class="ti-field">
+                    <span class="ti-icon" data-part="icon">
+                      <i data-lucide="map-pin" style="width:16px;height:16px;"></i>
+                    </span>
+                    <div class="ti-input" data-part="input">Enter city or zip code</div>
+                  </div>
+                  <p class="ti-helper" data-part="helper">This is helper text</p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- RIGHT: Token rows -->
+          <div class="tm-tokens-card">
+            <div class="tm-tokens-head">
+              <div class="tm-tokens-title">
+                <h5>Token list</h5>
+                <span class="tm-count" id="tmCount"><span id="tmCountNum">0</span> tokens</span>
+              </div>
+              <p class="tm-tokens-helper">Hover a token to see where it applies on the component.</p>
+              <div class="tm-seg" style="margin:0 0 12px;">
+                <button class="tm-seg-item tm-seg-item--active" data-tab="color">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" data-lucide="palette" aria-hidden="true" class="lucide lucide-palette" style="width:14px;height:14px;flex-shrink:0"><circle cx="13.5" cy="6.5" r=".5" fill="currentColor"/><circle cx="17.5" cy="10.5" r=".5" fill="currentColor"/><circle cx="8.5" cy="7.5" r=".5" fill="currentColor"/><circle cx="6.5" cy="12.5" r=".5" fill="currentColor"/><path d="M12 2C6.5 2 2 6.5 2 12s4.5 10 10 10c.926 0 1.648-.746 1.648-1.688 0-.437-.18-.835-.437-1.125-.29-.289-.438-.652-.438-1.125a1.64 1.64 0 0 1 1.668-1.668h1.996c3.051 0 5.555-2.503 5.555-5.554C21.965 6.012 17.461 2 12 2z"/></svg>
+                  Color
+                </button>
+                <button class="tm-seg-item" data-tab="component">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" data-lucide="box" aria-hidden="true" style="width:14px;height:14px;flex-shrink:0"><path d="M21 8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16Z"/><path d="m3.3 7 8.7 5 8.7-5"/><path d="M12 22V12"/></svg>
+                  Component
+                </button>
+                <button class="tm-seg-item" data-tab="typography">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" data-lucide="type" aria-hidden="true" style="width:14px;height:14px;flex-shrink:0"><polyline points="4 7 4 4 20 4 20 7"/><line x1="9" x2="15" y1="20" y2="20"/><line x1="12" x2="12" y1="4" y2="20"/></svg>
+                  Typography
+                </button>
+              </div>
+            </div>
+            <div class="tm-cards" id="tmCards"></div>
+          </div>
+        </div>
+      </section>
+
+      <!-- 7 · ACCESSIBILITY -->
+      <section class="doc-section" id="accessibility">
+        <h2 class="section-title">Accessibility</h2>
+        <div class="a11y-list">
+          <div class="a11y-item">
+            <div class="a11y-icon"><i data-lucide="keyboard" style="width:18px;height:18px;"></i></div>
+            <div>
+              <strong>Keyboard support</strong>
+              <p>The field is fully reachable via Tab. Users can type directly when focused. Escape should clear or blur the field in most implementations.</p>
+            </div>
+          </div>
+          <div class="a11y-item">
+            <div class="a11y-icon"><i data-lucide="ear" style="width:18px;height:18px;"></i></div>
+            <div>
+              <strong>Screen reader</strong>
+              <p>Pair the visible label with <code>for</code>/<code>id</code> attributes on the underlying <code>&lt;input&gt;</code>. Use <code>aria-describedby</code> to associate helper and error messages.</p>
+            </div>
+          </div>
+          <div class="a11y-item">
+            <div class="a11y-icon"><i data-lucide="alert-triangle" style="width:18px;height:18px;"></i></div>
+            <div>
+              <strong>Error announcement</strong>
+              <p>When the error state activates, ensure the error message is surfaced via <code>aria-live="polite"</code> or <code>role="alert"</code> so screen reader users are notified immediately.</p>
+            </div>
+          </div>
+          <div class="a11y-item">
+            <div class="a11y-icon"><i data-lucide="eye" style="width:18px;height:18px;"></i></div>
+            <div>
+              <strong>Icons</strong>
+              <p>Decorative icons should have <code>aria-hidden="true"</code>. If an icon conveys meaning (e.g., a clear button), provide an accessible label via <code>aria-label</code>.</p>
+            </div>
+          </div>
+          <div class="a11y-item">
+            <div class="a11y-icon"><i data-lucide="contrast" style="width:18px;height:18px;"></i></div>
+            <div>
+              <strong>Contrast</strong>
+              <p>Both placeholder and value text meet WCAG AA contrast requirements against the field background in light and dark modes.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- 8 · RELATED -->
+      <section class="doc-section" id="related">
+        <h2 class="section-title">Related</h2>
+        <div class="related-grid">
+          <a href="textarea.html" class="related-card">
+            <div class="related-icon"><i data-lucide="align-left" style="width:20px;height:20px;"></i></div>
+            <div><strong>Text Area</strong><p>Multi-line text input for longer freeform content.</p></div>
+          </a>
+          <a href="search.html" class="related-card">
+            <div class="related-icon"><i data-lucide="search" style="width:20px;height:20px;"></i></div>
+            <div><strong>Search</strong><p>Specialised input with a search icon and clear action.</p></div>
+          </a>
+          <a href="select.html" class="related-card">
+            <div class="related-icon"><i data-lucide="chevrons-up-down" style="width:20px;height:20px;"></i></div>
+            <div><strong>Select</strong><p>Dropdown input for choosing from a predefined list.</p></div>
+          </a>
+          <a href="numberinput.html" class="related-card">
+            <div class="related-icon"><i data-lucide="hash" style="width:20px;height:20px;"></i></div>
+            <div><strong>Number Input</strong><p>Numeric field with increment and decrement controls.</p></div>
+          </a>
+        </div>
+      </section>
+
+    </main>
+
+    <!-- PAGE NAV (right) -->
+    <nav class="page-nav">
+      <div class="page-nav-title">On this page</div>
+      <ul class="page-nav-list">
+        <li><a href="#definition" class="page-nav-link active">Definition</a></li>
+        <li><a href="#anatomy" class="page-nav-link">Anatomy</a></li>
+        <li><a href="#variants" class="page-nav-link">States</a></li>
+        <li><a href="#properties" class="page-nav-link">Properties</a></li>
+        <li><a href="#usage" class="page-nav-link">Usage</a></li>
+        <li><a href="#tokens" class="page-nav-link">Tokens</a></li>
+        <li><a href="#accessibility" class="page-nav-link">Accessibility</a></li>
+        <li><a href="#related" class="page-nav-link">Related</a></li>
+      </ul>
+    </nav>
+
+  </div><!-- /.content-wrap -->
+</div><!-- /.shell -->
+
+<script>
+  /* ── shared nav / theme ── */
+  function toggleSidebar(){document.getElementById('leftNav').classList.toggle('open');document.getElementById('navOverlay').classList.toggle('active');}
+  function toggleTheme(){const h=document.documentElement;const t=h.getAttribute('data-theme')==='dark'?'light':'dark';h.setAttribute('data-theme',t);}
+  function switchStateTab(btn,id){document.querySelectorAll('.state-tab-btn').forEach(b=>b.classList.remove('active'));btn.classList.add('active');document.querySelectorAll('.state-panel').forEach(p=>p.classList.remove('active'));document.getElementById(id).classList.add('active');}
+
+  /* ── token data ── */
+  const tmColorLight = [
+    {role:'Background',     token:'input/background',     ref:'color/surface/layer-02',    hex:'#F4F6F8'},
+    {role:'Border',         token:'input/border',         ref:'color/border/interactive',  hex:'#CDD2D7'},
+    {role:'Border Hover',   token:'input/border-hover',   ref:'color/border/hover',        hex:'#6B7280'},
+    {role:'Focus Ring',     token:'input/focus-ring',     ref:'color/border/focus-ring',   hex:'#5ABFE0'},
+    {role:'Focus Glow',     token:'input/focus-glow',     ref:'color/effect/focus-glow',   hex:'rgba(90,191,224,0.35)'},
+    {role:'Error Border',   token:'input/error-border',   ref:'color/border/error',        hex:'#A12F2F'},
+    {role:'Label',          token:'input/label',          ref:'color/text/label',          hex:'#374151'},
+    {role:'Placeholder',    token:'input/placeholder',    ref:'color/text/placeholder',    hex:'#6B7280'},
+    {role:'Value Text',     token:'input/value',          ref:'color/text/primary',        hex:'#374151'},
+    {role:'Helper',         token:'input/helper',         ref:'color/text/helper',         hex:'#4B5563'},
+    {role:'Icon',           token:'input/icon',           ref:'color/text/secondary',      hex:'#6B7280'},
+    {role:'Disabled Border',token:'input/disabled-border',ref:'color/border/disabled',     hex:'#E5E7EB'},
+  ];
+  const tmColorDark = [
+    {role:'Background',     token:'input/background',     ref:'color/surface/layer-02',    hex:'#1E1E1E'},
+    {role:'Border',         token:'input/border',         ref:'color/border/interactive',  hex:'#4B5563'},
+    {role:'Border Hover',   token:'input/border-hover',   ref:'color/border/hover',        hex:'#9CA3AF'},
+    {role:'Focus Ring',     token:'input/focus-ring',     ref:'color/border/focus-ring',   hex:'#0083BB'},
+    {role:'Focus Glow',     token:'input/focus-glow',     ref:'color/effect/focus-glow',   hex:'rgba(0,131,187,0.35)'},
+    {role:'Error Border',   token:'input/error-border',   ref:'color/border/error',        hex:'#DB3939'},
+    {role:'Label',          token:'input/label',          ref:'color/text/label',          hex:'#F3F4F6'},
+    {role:'Placeholder',    token:'input/placeholder',    ref:'color/text/placeholder',    hex:'#9CA3AF'},
+    {role:'Value Text',     token:'input/value',          ref:'color/text/primary',        hex:'#FFFFFF'},
+    {role:'Helper',         token:'input/helper',         ref:'color/text/helper',         hex:'#9CA3AF'},
+    {role:'Icon',           token:'input/icon',           ref:'color/text/secondary',      hex:'#9CA3AF'},
+    {role:'Disabled Border',token:'input/disabled-border',ref:'color/border/disabled',     hex:'#374151'},
+  ];
+  const tmComponentTokens = [
+    {role:'Padding',      icon:'move-horizontal', component:'input/padding',      primitive:'spacing/3x',  value:'12px'},
+    {role:'Gap',          icon:'space-between',   component:'input/gap',          primitive:'spacing/2x',  value:'8px'},
+    {role:'Radius',       icon:'radius',          component:'input/radius',       primitive:'radius/sm',   value:'4px'},
+    {role:'Border Width', icon:'minus',           component:'input/border-width', primitive:'border/thin', value:'1px'},
+    {role:'Icon Size',    icon:'maximize',        component:'input/icon-size',    primitive:'size/icon-md',value:'20px'},
+  ];
+  const tmTypographyTokens = [
+    {role:'Label',       style:'typography/body/label', font:'Lato', weight:'Bold (700)',    size:'12px', lineHeight:'16px', letterSpacing:'0'},
+    {role:'Placeholder', style:'typography/body/medium',font:'Lato', weight:'Regular (400)', size:'16px', lineHeight:'22px', letterSpacing:'0'},
+    {role:'Value',       style:'typography/body/medium',font:'Lato', weight:'Regular (400)', size:'16px', lineHeight:'22px', letterSpacing:'0'},
+    {role:'Helper',      style:'typography/body/small', font:'Lato', weight:'Regular (400)', size:'14px', lineHeight:'19px', letterSpacing:'0'},
+  ];
+
+  const tmTotalTokens = tmColorLight.length + tmComponentTokens.length + tmTypographyTokens.length;
+  const tmState = { tab:'color', mode:'light' };
+  const tmCards = document.getElementById('tmCards');
+  const tmPreviewCard = document.querySelector('.tm-preview-card');
+  const arrowSvg = '<svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="width:20px;height:20px"><circle cx="5" cy="10" r="3"/><path d="M8 10h9m-3-3 3 3-3 3"/></svg>';
+
+  document.getElementById('tmCountNum').textContent = tmTotalTokens;
+
+  const tmPreview = document.getElementById('tmPreview');
+  function slug(s){ return s.toLowerCase().replace(/[^a-z0-9]+/g,'-').replace(/-+$/,''); }
+
+  /* Field-level tokens → outline .ti-field */
+  const fieldSlots = new Set(['background','border','border-hover','focus-ring','focus-glow','error-border','disabled-border']);
+  /* Component tokens → magenta callout */
+  const compSpotlightMap = {
+    'padding':      'spotlight-padding',
+    'gap':          'spotlight-gap',
+    'radius':       'spotlight-radius',
+    'border-width': 'spotlight-border-width',
+    'icon-size':    'spotlight-icon-size',
+  };
+  /* Part-level tokens → dim others, highlight part */
+  const partSlots = {
+    'label':       ['label'],
+    'placeholder': ['input'],
+    'value':       ['input'],
+    'value-text':  ['input'],
+    'helper':      ['helper'],
+    'icon':        ['icon'],
+  };
+
+  const spotlightClasses = ['has-spotlight','spotlight-field','spotlight-padding','spotlight-gap','spotlight-radius','spotlight-border-width','spotlight-icon-size'];
+  function clearSpotlight(){ if(tmPreview){ spotlightClasses.forEach(c=>tmPreview.classList.remove(c)); tmPreview.querySelectorAll('[data-part]').forEach(p=>p.classList.remove('spotlight')); } }
+  function spotlight(sl){
+    if(!tmPreview) return;
+    if(compSpotlightMap[sl]){ tmPreview.classList.add(compSpotlightMap[sl]); return; }
+    if(fieldSlots.has(sl)){ tmPreview.classList.add('has-spotlight','spotlight-field'); return; }
+    const parts = partSlots[sl];
+    if(!parts) return;
+    tmPreview.classList.add('has-spotlight');
+    parts.forEach(p=>{ const el=tmPreview.querySelector('[data-part="'+p+'"]'); if(el) el.classList.add('spotlight'); });
+  }
+
+  function tmRender() {
+    const theme = tmState.mode;
+    const colors = theme === 'light' ? tmColorLight : tmColorDark;
+    tmPreviewCard.setAttribute('data-bg', theme);
+
+    let html = '';
+    if (tmState.tab === 'color') {
+      for (const c of colors) { const s = slug(c.role);
+        html += '<div class="tm-row" data-slot="'+s+'">'
+          + '<div class="tm-row-header"><div class="tm-row-swatch" style="background:'+c.hex+'"></div><div class="tm-row-label">'+c.role+'</div></div>'
+          + '<div class="tm-chain-row">'
+          + '<div class="tm-chip">'+c.token+'</div>'
+          + '<div class="tm-chain-arrow">'+arrowSvg+'</div>'
+          + '<div class="tm-chip">'+(c.ref||c.token)+'</div>'
+          + '<div class="tm-chain-arrow">'+arrowSvg+'</div>'
+          + '<div class="tm-chip" style="font-weight:600">'+c.hex+'</div>'
+          + '</div></div>';
+      }
+    } else if (tmState.tab === 'component') {
+      for (const ct of tmComponentTokens) { const s = slug(ct.role);
+        html += '<div class="tm-row" data-slot="'+s+'">'
+          + '<div class="tm-row-header"><div class="tm-row-icon"><i data-lucide="'+ct.icon+'" style="width:16px;height:16px"></i></div><div class="tm-row-label">'+ct.role+'</div></div>'
+          + '<div class="tm-chain-row">'
+          + '<div class="tm-chip">'+ct.component+'</div>'
+          + '<div class="tm-chain-arrow">'+arrowSvg+'</div>'
+          + '<div class="tm-chip">'+ct.primitive+'</div>'
+          + '<div class="tm-chain-arrow">'+arrowSvg+'</div>'
+          + '<div class="tm-chip" style="font-weight:600">'+ct.value+'</div>'
+          + '</div></div>';
+      }
+    } else {
+      for (const tt of tmTypographyTokens) { const s = slug(tt.role);
+        html += '<div class="tm-row" data-slot="'+s+'">'
+          + '<div class="tm-row-header"><div class="tm-row-icon"><i data-lucide="type" style="width:16px;height:16px"></i></div><div class="tm-row-label">'+tt.role+'</div></div>'
+          + '<div class="tm-chain-row" style="flex-direction:column;align-items:flex-start;gap:6px;">'
+          + '<div style="display:flex;align-items:center;gap:10px;flex-wrap:wrap;"><div class="tm-chip">'+tt.style+'</div></div>'
+          + '<div style="display:flex;align-items:center;gap:8px;flex-wrap:wrap;font-family:var(--mono);font-size:12px;color:var(--text-tertiary);">'
+          + '<span>'+tt.font+'</span><span>·</span>'
+          + '<span>'+tt.weight+'</span><span>·</span>'
+          + '<span>'+tt.size+' / '+tt.lineHeight+'</span>'
+          + (tt.letterSpacing !== '0' ? '<span>·</span><span>ls: '+tt.letterSpacing+'</span>' : '')
+          + '</div></div></div>';
+      }
+    }
+    tmCards.innerHTML = html;
+
+    document.querySelectorAll('.tm-row[data-slot]').forEach(row => {
+      const sl = row.dataset.slot;
+      row.addEventListener('mouseenter', () => { row.classList.add('is-hot'); spotlight(sl); });
+      row.addEventListener('mouseleave', () => { row.classList.remove('is-hot'); clearSpotlight(); });
+    });
+    lucide.createIcons();
+  }
+
+  document.getElementById('tmModeToggle').addEventListener('click', () => {
+    tmState.mode = tmState.mode === 'light' ? 'dark' : 'light';
+    document.getElementById('tmModeLabel').textContent = tmState.mode === 'light' ? 'Light' : 'Dark';
+    const track = document.getElementById('tmModeTrack');
+    if (tmState.mode === 'dark') { track.classList.add('sw-on'); } else { track.classList.remove('sw-on'); }
+    tmRender();
+  });
+
+  document.querySelectorAll('.tm-seg-item[data-tab]').forEach(btn => {
+    btn.addEventListener('click', () => {
+      tmState.tab = btn.dataset.tab;
+      document.querySelectorAll('.tm-seg-item[data-tab]').forEach(b => b.classList.remove('tm-seg-item--active'));
+      btn.classList.add('tm-seg-item--active');
+      tmRender();
+    });
+  });
+
+  tmRender();
+
+  /* ── page-nav active tracking ── */
+  const sections = document.querySelectorAll('section[id]');
+  const navLinks = document.querySelectorAll('.page-nav-link');
+  const io = new IntersectionObserver(entries=>{
+    entries.forEach(e=>{ if(e.isIntersecting){ navLinks.forEach(l=>l.classList.remove('active')); const a=document.querySelector('.page-nav-link[href="#'+e.target.id+'"]'); if(a) a.classList.add('active'); } });
+  },{rootMargin:'-20% 0px -70% 0px'});
+  sections.forEach(s=>io.observe(s));
+</script>
+</body>
+</html>

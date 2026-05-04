@@ -1,0 +1,855 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Text Area — nuShip Design System</title>
+  <link href="https://fonts.googleapis.com/css2?family=Lato:wght@400;600;700;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="tokens.css">
+  <link rel="stylesheet" href="styles.css">
+  <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.min.js"></script>
+  <style>
+    /* textarea component token spotlights */
+    #tmPreview { position:relative; }
+    #tmPreview [data-part] { transition:outline-color 150ms, opacity 150ms; outline:2px solid transparent; outline-offset:2px; border-radius:3px; }
+    #tmPreview.has-spotlight [data-part] { opacity:0.3; }
+    #tmPreview.has-spotlight [data-part].spotlight { opacity:1; outline-color:var(--tm-accent); }
+    #tmPreview.spotlight-field .ta-field { outline:2px solid var(--tm-accent); outline-offset:2px; border-radius:4px; }
+    #tmPreview.spotlight-padding-y .ta-field { outline:2px solid #FF4081; outline-offset:-1px; border-radius:4px; }
+    #tmPreview.spotlight-padding-y::after { content:'16px'; position:absolute; top:38px; left:4px; font-size:10px; font-family:var(--mono); color:#FF4081; background:rgba(255,255,255,0.9); padding:1px 4px; border-radius:2px; font-weight:700; }
+    #tmPreview.spotlight-padding-x .ta-field { outline:2px solid #FF4081; outline-offset:-1px; border-radius:4px; }
+    #tmPreview.spotlight-padding-x::after { content:'12px'; position:absolute; top:38px; right:4px; font-size:10px; font-family:var(--mono); color:#FF4081; background:rgba(255,255,255,0.9); padding:1px 4px; border-radius:2px; font-weight:700; }
+    #tmPreview.spotlight-radius .ta-field { outline:2px solid #FF4081; outline-offset:2px; border-radius:4px; }
+    #tmPreview.spotlight-radius::after { content:'4px'; position:absolute; top:22px; left:-2px; font-size:10px; font-family:var(--mono); color:#FF4081; background:rgba(255,255,255,0.9); padding:1px 4px; border-radius:2px; font-weight:700; }
+    #tmPreview.spotlight-gap::after { content:'8px'; position:absolute; top:-16px; left:50%; font-size:10px; font-family:var(--mono); color:#FF4081; background:rgba(255,255,255,0.9); padding:1px 4px; border-radius:2px; font-weight:700; }
+    /* Isolate preview from global dark mode */
+    .tm-preview-card[data-bg="light"] .ta-field  { background:#F4F6F8; border-color:#CDD2D7; }
+    .tm-preview-card[data-bg="light"] .ta-label  { color:#374151; }
+    .tm-preview-card[data-bg="light"] .ta-input  { color:#6B7280; }
+    .tm-preview-card[data-bg="light"] .ta-count,
+    .tm-preview-card[data-bg="light"] .ta-helper { color:#4B5563; }
+    .tm-preview-card[data-bg="dark"] .ta-field   { background:#1E1E1E; border-color:#6B7280; }
+    .tm-preview-card[data-bg="dark"] .ta-label   { color:#F3F4F6; }
+    .tm-preview-card[data-bg="dark"] .ta-input   { color:#9CA3AF; }
+    .tm-preview-card[data-bg="dark"] .ta-count,
+    .tm-preview-card[data-bg="dark"] .ta-helper  { color:#9CA3AF; }
+  </style>
+</head>
+<body>
+
+<!-- MOBILE OVERLAY -->
+<div id="navOverlay" class="nav-overlay" onclick="toggleSidebar()"></div>
+
+<!-- TOP NAV -->
+<nav class="topnav">
+  <button class="hamburger" onclick="toggleSidebar()" aria-label="Menu">
+    <i data-lucide="menu" style="width:18px;height:18px;color:var(--text-secondary)"></i>
+  </button>
+  <div class="bc">
+    <a href="index.html">UI Components</a>
+    <i data-lucide="chevron-right" style="width:14px;height:14px;flex-shrink:0"></i>
+    <a href="#">Inputs</a>
+    <i data-lucide="chevron-right" style="width:14px;height:14px;flex-shrink:0"></i>
+    <span class="cur">Text Area</span>
+  </div>
+  <div class="nav-actions">
+    <div class="toggle-wrap" onclick="toggleTheme()" role="button">
+      <i data-lucide="moon" style="width:20px;height:20px"></i>
+      <div class="toggle-track"><div class="toggle-thumb"></div></div>
+      <i data-lucide="sun" style="width:20px;height:20px"></i>
+    </div>
+  </div>
+</nav>
+
+<div class="shell">
+
+  <!-- LEFT NAV -->
+  <nav class="left-nav" id="leftNav">
+    <div class="left-nav-inner">
+      <div class="ln-group">
+        <div class="ln-label">Inputs</div>
+        <ul class="ln-list">
+          <li><a href="checkbox.html">Checkbox</a></li>
+          <li><a href="datepicker.html">Date Picker</a></li>
+          <li><a href="numberinput.html">Number Input</a></li>
+          <li><a href="passwordinput.html">Password Input</a></li>
+          <li><a href="radiobutton.html">Radio Button</a></li>
+          <li><a href="search.html">Search</a></li>
+          <li><a href="select.html">Select</a></li>
+          <li><a href="#">Slider</a></li>
+          <li><a href="switch.html">Switch</a></li>
+          <li><a href="textarea.html" class="active">Text Area</a></li>
+          <li><a href="textinput.html">Text Input</a></li>
+        </ul>
+      </div>
+      <div class="ln-group">
+        <div class="ln-label">Feedback</div>
+        <ul class="ln-list">
+          <li><a href="alert.html">Alert</a></li>
+          <li><a href="badge.html">Badge</a></li>
+          <li><a href="#">Toast</a></li>
+          <li><a href="#">Tooltip</a></li>
+        </ul>
+      </div>
+      <div class="ln-group">
+        <div class="ln-label">Navigation</div>
+        <ul class="ln-list">
+          <li><a href="accordion.html">Accordion</a></li>
+          <li><a href="#">Breadcrumb</a></li>
+          <li><a href="dropdown.html">Dropdown</a></li>
+          <li><a href="menu.html">Menu</a></li>
+          <li><a href="segmentedcontrol.html">Segmented Control</a></li>
+          <li><a href="#">Tabs</a></li>
+        </ul>
+      </div>
+      <div class="ln-group">
+        <div class="ln-label">Actions</div>
+        <ul class="ln-list">
+          <li><a href="button.html">Button</a></li>
+          <li><a href="link.html">Link</a></li>
+          <li><a href="#">Tags</a></li>
+        </ul>
+      </div>
+      <div class="ln-group">
+        <div class="ln-label">Overlays</div>
+        <ul class="ln-list">
+          <li><a href="modal.html">Modal</a></li>
+          <li><a href="popover.html">Popover</a></li>
+        </ul>
+      </div>
+      <div class="ln-group">
+        <div class="ln-label">Display</div>
+        <ul class="ln-list">
+          <li><a href="avatar.html">Avatar</a></li>
+          <li><a href="carousel.html">Carousel</a></li>
+          <li><a href="fileupload.html">File Upload</a></li>
+          <li><a href="progressbar.html">Progress Bar</a></li>
+          <li><a href="#">Star Rating</a></li>
+          <li><a href="#">Timeline</a></li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <!-- CONTENT -->
+  <div class="content-wrap" id="contentWrap">
+
+    <main class="doc">
+
+      <!-- 1 · DEFINITION -->
+      <section class="doc-section" id="definition">
+        <div class="def-eyebrow">Inputs</div>
+        <h1 class="def-title">Text Area</h1>
+        <p class="def-desc">The Text Area is a multi-line text input for longer freeform content such as notes, instructions, or descriptions. It supports a label, optional character counter, helper text, and multiple interaction states including error and read-only.</p>
+        <div class="def-tags">
+          <span class="tag">Developed</span>
+          <span class="tag">Figma</span>
+        </div>
+        <div class="preview-box">
+          <div class="preview-box-inner">
+            <div style="display:flex;gap:32px;flex-wrap:wrap;align-items:flex-start;">
+              <div class="ta-wrap" style="width:280px;">
+                <div class="ta-header">
+                  <span class="ta-label">Additional Information</span>
+                  <span class="ta-count">0/100</span>
+                </div>
+                <div class="ta-field" style="min-height:96px;">
+                  <div class="ta-input">Enter specific parking or drop-off guidance</div>
+                </div>
+                <p class="ta-helper">This is helper text</p>
+              </div>
+              <div class="ta-wrap ta-wrap--focus" style="width:280px;">
+                <div class="ta-header">
+                  <span class="ta-label">Additional Information</span>
+                  <span class="ta-count">0/100</span>
+                </div>
+                <div class="ta-field" style="min-height:96px;">
+                  <div class="ta-input ta-input--value">Park along the south fence by the loading area. Please leave space for other carriers to pass.</div>
+                </div>
+                <p class="ta-helper">This is helper text</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- 2 · ANATOMY -->
+      <section class="doc-section" id="anatomy">
+        <h2 class="section-title">Anatomy</h2>
+        <div class="anatomy-wrap">
+          <div class="anatomy-component" style="padding:32px 40px 48px;">
+            <div style="position:relative;display:inline-block;width:280px;">
+              <div class="ta-wrap" style="pointer-events:none;">
+                <div class="ta-header">
+                  <span class="ta-label">Additional Information</span>
+                  <span class="ta-count">0/100</span>
+                </div>
+                <div class="ta-field" style="min-height:96px;">
+                  <div class="ta-input">Enter specific parking or drop-off guidance</div>
+                </div>
+                <p class="ta-helper">This is helper text</p>
+              </div>
+              <span class="callout" style="top:-8px;left:20px;">1</span>
+              <span class="callout" style="top:-8px;right:20px;">2</span>
+              <span class="callout" style="top:36px;left:-16px;">3</span>
+              <span class="callout" style="top:60px;left:32px;">4</span>
+              <span class="callout" style="bottom:26px;left:-16px;">5</span>
+            </div>
+          </div>
+          <div class="anatomy-legend">
+            <div class="legend-item"><span class="legend-num">1</span>Label (12px Lato Bold, required)</div>
+            <div class="legend-item"><span class="legend-num">2</span>Character counter (12px Lato Regular, optional)</div>
+            <div class="legend-item"><span class="legend-num">3</span>Input container (border + background)</div>
+            <div class="legend-item"><span class="legend-num">4</span>Input text area (placeholder or value)</div>
+            <div class="legend-item"><span class="legend-num">5</span>Helper / error text (14px Lato Regular)</div>
+          </div>
+        </div>
+      </section>
+
+      <!-- 3 · VARIANTS / STATES -->
+      <section class="doc-section" id="variants">
+        <h2 class="section-title">States</h2>
+
+        <div class="state-tab-row">
+          <button class="state-tab-btn active" onclick="switchStateTab(this,'vs-default')">Default</button>
+          <button class="state-tab-btn" onclick="switchStateTab(this,'vs-hover')">Hover</button>
+          <button class="state-tab-btn" onclick="switchStateTab(this,'vs-focus')">Focus</button>
+          <button class="state-tab-btn" onclick="switchStateTab(this,'vs-active')">Active</button>
+          <button class="state-tab-btn" onclick="switchStateTab(this,'vs-disabled')">Disabled</button>
+          <button class="state-tab-btn" onclick="switchStateTab(this,'vs-error')">Error</button>
+          <button class="state-tab-btn" onclick="switchStateTab(this,'vs-error-limit')">Error limit</button>
+          <button class="state-tab-btn" onclick="switchStateTab(this,'vs-readonly')">Read only</button>
+        </div>
+
+        <div class="var-panel">
+          <div class="var-previews-wrap">
+
+            <!-- Default -->
+            <div class="state-panel active" id="vs-default">
+              <div class="var-previews">
+                <div class="var-preview">
+                  <div class="ta-wrap" style="width:280px;">
+                    <div class="ta-header"><span class="ta-label">Additional Information</span><span class="ta-count">0/100</span></div>
+                    <div class="ta-field" style="min-height:96px;"><div class="ta-input">Enter specific parking or drop-off guidance</div></div>
+                    <p class="ta-helper">This is helper text</p>
+                  </div>
+                </div>
+                <div class="var-preview-dark" data-theme="dark">
+                  <div class="ta-wrap" style="width:280px;">
+                    <div class="ta-header"><span class="ta-label">Additional Information</span><span class="ta-count">0/100</span></div>
+                    <div class="ta-field" style="min-height:96px;"><div class="ta-input">Enter specific parking or drop-off guidance</div></div>
+                    <p class="ta-helper">This is helper text</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Hover -->
+            <div class="state-panel" id="vs-hover">
+              <div class="var-previews">
+                <div class="var-preview">
+                  <div class="ta-wrap ta-wrap--hover" style="width:280px;">
+                    <div class="ta-header"><span class="ta-label">Additional Information</span><span class="ta-count">0/100</span></div>
+                    <div class="ta-field" style="min-height:96px;"><div class="ta-input">Enter specific parking or drop-off guidance</div></div>
+                    <p class="ta-helper">This is helper text</p>
+                  </div>
+                </div>
+                <div class="var-preview-dark" data-theme="dark">
+                  <div class="ta-wrap ta-wrap--hover" style="width:280px;">
+                    <div class="ta-header"><span class="ta-label">Additional Information</span><span class="ta-count">0/100</span></div>
+                    <div class="ta-field" style="min-height:96px;"><div class="ta-input">Enter specific parking or drop-off guidance</div></div>
+                    <p class="ta-helper">This is helper text</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Focus -->
+            <div class="state-panel" id="vs-focus">
+              <div class="var-previews">
+                <div class="var-preview">
+                  <div class="ta-wrap ta-wrap--focus" style="width:280px;">
+                    <div class="ta-header"><span class="ta-label">Additional Information</span><span class="ta-count">0/100</span></div>
+                    <div class="ta-field" style="min-height:96px;"><div class="ta-input">Enter specific parking or drop-off guidance</div></div>
+                    <p class="ta-helper">This is helper text</p>
+                  </div>
+                </div>
+                <div class="var-preview-dark" data-theme="dark">
+                  <div class="ta-wrap ta-wrap--focus" style="width:280px;">
+                    <div class="ta-header"><span class="ta-label">Additional Information</span><span class="ta-count">0/100</span></div>
+                    <div class="ta-field" style="min-height:96px;"><div class="ta-input">Enter specific parking or drop-off guidance</div></div>
+                    <p class="ta-helper">This is helper text</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Active -->
+            <div class="state-panel" id="vs-active">
+              <div class="var-previews">
+                <div class="var-preview">
+                  <div class="ta-wrap ta-wrap--focus" style="width:280px;">
+                    <div class="ta-header"><span class="ta-label">Additional Information</span><span class="ta-count">94/100</span></div>
+                    <div class="ta-field" style="min-height:96px;"><div class="ta-input ta-input--value">Park along the south fence by the loading area. Please leave space for other carriers to pass.</div></div>
+                    <p class="ta-helper">This is helper text</p>
+                  </div>
+                </div>
+                <div class="var-preview-dark" data-theme="dark">
+                  <div class="ta-wrap ta-wrap--focus" style="width:280px;">
+                    <div class="ta-header"><span class="ta-label">Additional Information</span><span class="ta-count">94/100</span></div>
+                    <div class="ta-field" style="min-height:96px;"><div class="ta-input ta-input--value">Park along the south fence by the loading area. Please leave space for other carriers to pass.</div></div>
+                    <p class="ta-helper">This is helper text</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Disabled -->
+            <div class="state-panel" id="vs-disabled">
+              <div class="var-previews">
+                <div class="var-preview">
+                  <div class="ta-wrap ta-wrap--disabled" style="width:280px;">
+                    <div class="ta-header"><span class="ta-label">Additional Information</span><span class="ta-count">94/100</span></div>
+                    <div class="ta-field" style="min-height:96px;"><div class="ta-input">Enter specific parking or drop-off guidance</div></div>
+                    <p class="ta-helper">This is helper text</p>
+                  </div>
+                </div>
+                <div class="var-preview-dark" data-theme="dark">
+                  <div class="ta-wrap ta-wrap--disabled" style="width:280px;">
+                    <div class="ta-header"><span class="ta-label">Additional Information</span><span class="ta-count">94/100</span></div>
+                    <div class="ta-field" style="min-height:96px;"><div class="ta-input">Enter specific parking or drop-off guidance</div></div>
+                    <p class="ta-helper">This is helper text</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Error -->
+            <div class="state-panel" id="vs-error">
+              <div class="var-previews">
+                <div class="var-preview">
+                  <div class="ta-wrap ta-wrap--error" style="width:280px;">
+                    <div class="ta-header"><span class="ta-label">Additional Information</span></div>
+                    <div class="ta-field" style="min-height:96px;"><div class="ta-input ta-input--value">Park along the south fence by the loading area. Please leave space for other carriers to pass.</div></div>
+                    <div class="ta-error-msg"><i data-lucide="alert-circle" style="width:16px;height:16px;flex-shrink:0"></i>Error message goes here</div>
+                  </div>
+                </div>
+                <div class="var-preview-dark" data-theme="dark">
+                  <div class="ta-wrap ta-wrap--error" style="width:280px;">
+                    <div class="ta-header"><span class="ta-label">Additional Information</span></div>
+                    <div class="ta-field" style="min-height:96px;"><div class="ta-input ta-input--value">Park along the south fence by the loading area. Please leave space for other carriers to pass.</div></div>
+                    <div class="ta-error-msg"><i data-lucide="alert-circle" style="width:16px;height:16px;flex-shrink:0"></i>Error message goes here</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Error limit -->
+            <div class="state-panel" id="vs-error-limit">
+              <div class="var-previews">
+                <div class="var-preview">
+                  <div class="ta-wrap ta-wrap--error-limit" style="width:280px;">
+                    <div class="ta-header"><span class="ta-label">Additional Information</span><span class="ta-count ta-count--error">94/100</span></div>
+                    <div class="ta-field" style="min-height:96px;"><div class="ta-input ta-input--value">Park along the south fence by the loading area. Please leave space for other carriers to pass.</div></div>
+                    <div class="ta-error-msg"><i data-lucide="alert-circle" style="width:16px;height:16px;flex-shrink:0"></i>You've reached the maximum character limit.</div>
+                  </div>
+                </div>
+                <div class="var-preview-dark" data-theme="dark">
+                  <div class="ta-wrap ta-wrap--error-limit" style="width:280px;">
+                    <div class="ta-header"><span class="ta-label">Additional Information</span><span class="ta-count ta-count--error">94/100</span></div>
+                    <div class="ta-field" style="min-height:96px;"><div class="ta-input ta-input--value">Park along the south fence by the loading area. Please leave space for other carriers to pass.</div></div>
+                    <div class="ta-error-msg"><i data-lucide="alert-circle" style="width:16px;height:16px;flex-shrink:0"></i>You've reached the maximum character limit.</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Read only -->
+            <div class="state-panel" id="vs-readonly">
+              <div class="var-previews">
+                <div class="var-preview">
+                  <div class="ta-wrap ta-wrap--readonly" style="width:280px;">
+                    <div class="ta-header"><span class="ta-label">Additional Information</span><span class="ta-count">94/100</span></div>
+                    <div class="ta-field" style="min-height:96px;"><div class="ta-input">No special handling instructions were provided beyond standard procedure.</div></div>
+                    <p class="ta-helper">This is helper text</p>
+                  </div>
+                </div>
+                <div class="var-preview-dark" data-theme="dark">
+                  <div class="ta-wrap ta-wrap--readonly" style="width:280px;">
+                    <div class="ta-header"><span class="ta-label">Additional Information</span><span class="ta-count">94/100</span></div>
+                    <div class="ta-field" style="min-height:96px;"><div class="ta-input">No special handling instructions were provided beyond standard procedure.</div></div>
+                    <p class="ta-helper">This is helper text</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+          </div><!-- /var-previews-wrap -->
+
+          <div class="var-desc">
+            <div class="var-use-when">States</div>
+            <ul class="var-use-list">
+              <li><strong>Default</strong> — empty field waiting for input</li>
+              <li><strong>Hover</strong> — cursor over the field, border darkens</li>
+              <li><strong>Focus</strong> — field is focused, teal ring appears</li>
+              <li><strong>Active</strong> — user is typing, value is present</li>
+              <li><strong>Disabled</strong> — field is not interactive</li>
+              <li><strong>Error</strong> — validation failed, red border and message</li>
+              <li><strong>Error Limit</strong> — character limit reached</li>
+              <li><strong>Read Only</strong> — value shown but not editable</li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      <!-- 4 · PROPERTIES -->
+      <section class="doc-section" id="properties">
+        <h2 class="section-title">Properties</h2>
+        <table class="props-table">
+          <thead>
+            <tr><th>Property</th><th>Type</th><th>Default</th><th>Description</th></tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td class="p-name">label</td>
+              <td class="p-type">string</td>
+              <td class="p-def">—</td>
+              <td class="p-desc">Label text displayed above the field</td>
+            </tr>
+            <tr>
+              <td class="p-name">placeholder</td>
+              <td class="p-type">string</td>
+              <td class="p-def">—</td>
+              <td class="p-desc">Hint text shown when the field is empty</td>
+            </tr>
+            <tr>
+              <td class="p-name">value</td>
+              <td class="p-type">string</td>
+              <td class="p-def">""</td>
+              <td class="p-desc">Current text content of the field</td>
+            </tr>
+            <tr>
+              <td class="p-name">helperText</td>
+              <td class="p-type">string</td>
+              <td class="p-def">—</td>
+              <td class="p-desc">Hint or instruction below the field</td>
+            </tr>
+            <tr>
+              <td class="p-name">errorMessage</td>
+              <td class="p-type">string</td>
+              <td class="p-def">—</td>
+              <td class="p-desc">Validation message shown in error state</td>
+            </tr>
+            <tr>
+              <td class="p-name">maxLength</td>
+              <td class="p-type">number</td>
+              <td class="p-def">—</td>
+              <td class="p-desc">Maximum characters allowed; shows counter when set</td>
+            </tr>
+            <tr>
+              <td class="p-name">state</td>
+              <td class="p-type">"default" | "hover" | "focus" | "error" | "disabled" | "readonly"</td>
+              <td class="p-def">"default"</td>
+              <td class="p-desc">Visual and interactive state of the field</td>
+            </tr>
+            <tr>
+              <td class="p-name">resizable</td>
+              <td class="p-type">boolean</td>
+              <td class="p-def">true</td>
+              <td class="p-desc">Whether the user can resize the textarea vertically</td>
+            </tr>
+          </tbody>
+        </table>
+      </section>
+
+      <!-- 5 · USAGE -->
+      <section class="doc-section" id="usage">
+        <h2 class="section-title">Usage Guidelines</h2>
+
+        <div class="usage-block">
+          <div class="usage-cols">
+            <div class="usage-card">
+              <div class="usage-card-header">
+                <div class="usage-icon do-icon"><i data-lucide="check" style="width:12px;height:12px"></i></div>
+                <div class="usage-card-title">Use for multi-line input</div>
+              </div>
+              <ul class="usage-list">
+                <li>Use when the user needs to enter more than a single line of text</li>
+                <li>Good for notes, instructions, comments, and descriptions</li>
+                <li>Set a <code>maxLength</code> and show the counter for inputs with known limits</li>
+              </ul>
+            </div>
+            <div class="usage-card">
+              <div class="usage-card-header">
+                <div class="usage-icon do-icon"><i data-lucide="check" style="width:12px;height:12px"></i></div>
+                <div class="usage-card-title">Provide helpful context</div>
+              </div>
+              <ul class="usage-list">
+                <li>Always include a label — never rely on placeholder text alone</li>
+                <li>Use helper text to set expectations (format, limits, examples)</li>
+                <li>Show error messages inline, directly below the field</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <div class="usage-divider"></div>
+
+        <div class="usage-block">
+          <div class="usage-cols">
+            <div class="usage-card">
+              <div class="usage-card-header">
+                <div class="usage-icon dont-icon"><i data-lucide="x" style="width:12px;height:12px"></i></div>
+                <div class="usage-card-title">Don't use for short inputs</div>
+              </div>
+              <ul class="usage-list">
+                <li>Don't use a Text Area for single-word or single-line inputs — use Text Input instead</li>
+                <li>Avoid using it for structured data like dates, phone numbers, or amounts</li>
+              </ul>
+            </div>
+            <div class="usage-card">
+              <div class="usage-card-header">
+                <div class="usage-icon dont-icon"><i data-lucide="x" style="width:12px;height:12px"></i></div>
+                <div class="usage-card-title">Don't leave errors unresolved</div>
+              </div>
+              <ul class="usage-list">
+                <li>Don't show an error state without a clear, actionable error message</li>
+                <li>Avoid triggering errors before the user has finished typing</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- 6 · TOKEN MAP -->
+      <section class="doc-section" id="tokens">
+        <h2 class="section-title">Token Map</h2>
+
+        <div class="tm-preview-controls">
+          <div class="tm-mode-toggle" id="tmModeToggle">
+            <span class="tm-mode-label" id="tmModeLabel">Light</span>
+            <div class="sw-track sw-track--compact" id="tmModeTrack"><div class="sw-thumb"></div></div>
+          </div>
+        </div>
+
+        <div class="tm-map">
+
+          <!-- LEFT: Preview -->
+          <div>
+            <div class="tm-preview-card" data-bg="light">
+              <div class="tm-preview-inner">
+                <div id="tmPreview" class="ta-wrap tm-preview" style="width:240px;">
+                  <div class="ta-header">
+                    <span class="ta-label" data-part="label">Additional Information</span>
+                    <span class="ta-count" data-part="count">0/100</span>
+                  </div>
+                  <div class="ta-field">
+                    <div class="ta-input" data-part="input">Enter specific parking or drop-off guidance</div>
+                  </div>
+                  <p class="ta-helper" data-part="helper">This is helper text</p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- RIGHT: Token rows -->
+          <div class="tm-tokens-card">
+            <div class="tm-tokens-head">
+              <div class="tm-tokens-title">
+                <h5>Token list</h5>
+                <span class="tm-count" id="tmCount"><span id="tmCountNum">0</span> tokens</span>
+              </div>
+              <p class="tm-tokens-helper">Hover a token to see where it applies on the component.</p>
+              <div class="tm-seg" style="margin:0 0 12px;">
+                <button class="tm-seg-item tm-seg-item--active" data-tab="color"><i data-lucide="palette" class="tm-seg-icon"></i> Color</button>
+                <button class="tm-seg-item" data-tab="component"><i data-lucide="ruler" class="tm-seg-icon"></i> Component</button>
+                <button class="tm-seg-item" data-tab="typography"><i data-lucide="type" class="tm-seg-icon"></i> Typography</button>
+              </div>
+            </div>
+            <div class="tm-tokens-body" id="tmCards"></div>
+          </div>
+
+        </div>
+      </section>
+
+      <!-- 7 · ACCESSIBILITY -->
+      <section class="doc-section" id="accessibility">
+        <h2 class="section-title">Accessibility</h2>
+        <ul class="a11y-list">
+          <li>
+            <div><strong>Label association:</strong> Always connect the label to the textarea using <code>for</code> / <code>id</code> pairing or <code>aria-labelledby</code>. Never rely on placeholder text alone.</div>
+          </li>
+          <li>
+            <div><strong>Character counter:</strong> Announce counter changes with <code>aria-live="polite"</code> so screen reader users hear updates as they type.</div>
+          </li>
+          <li>
+            <div><strong>Error messages:</strong> Link the error message to the field via <code>aria-describedby</code> and set <code>aria-invalid="true"</code> on the textarea when in an error state.</div>
+          </li>
+          <li>
+            <div><strong>Keyboard:</strong> The field must be reachable via <code>Tab</code>. Avoid trapping focus — <code>Tab</code> within a textarea should insert a tab character only if explicitly required.</div>
+          </li>
+          <li>
+            <div><strong>Read only:</strong> Use <code>readonly</code> attribute rather than <code>disabled</code> when the value is meaningful but not editable, so it remains selectable and copyable.</div>
+          </li>
+        </ul>
+      </section>
+
+      <!-- 8 · RELATED -->
+      <section class="doc-section" id="related">
+        <h2 class="section-title">Related Components</h2>
+        <div class="related-grid">
+          <a href="#" class="related-card">
+            <div class="rc-name">Text Input</div>
+            <div class="rc-desc">Single-line text entry. Use when content fits on one line.</div>
+          </a>
+          <a href="search.html" class="related-card">
+            <div class="rc-name">Search</div>
+            <div class="rc-desc">Specialised text input with icon and clear button for filtering records.</div>
+          </a>
+          <a href="select.html" class="related-card">
+            <div class="rc-name">Select</div>
+            <div class="rc-desc">Dropdown for choosing from a fixed set of options instead of free text.</div>
+          </a>
+        </div>
+      </section>
+
+    </main>
+
+    <!-- RIGHT ANCHOR NAV -->
+    <nav class="right-nav">
+      <div class="rn-label">On this page</div>
+      <ul class="rn-list">
+        <li><a href="#definition"    id="rn-definition">Definition</a></li>
+        <li><a href="#anatomy"       id="rn-anatomy">Anatomy</a></li>
+        <li><a href="#variants"      id="rn-variants">States</a></li>
+        <li><a href="#properties"    id="rn-properties">Properties</a></li>
+        <li><a href="#usage"         id="rn-usage">Usage</a></li>
+        <li><a href="#tokens"        id="rn-tokens">Tokens</a></li>
+        <li><a href="#accessibility" id="rn-accessibility">Accessibility</a></li>
+        <li><a href="#related"       id="rn-related">Related</a></li>
+      </ul>
+    </nav>
+
+  </div><!-- /content-wrap -->
+</div><!-- /shell -->
+
+<script>
+  lucide.createIcons();
+
+  const isMobile = () => window.innerWidth <= 768;
+  let sbOpen = !isMobile();
+  if (!sbOpen) document.getElementById('leftNav').classList.add('hidden');
+
+  function toggleSidebar() {
+    sbOpen = !sbOpen;
+    document.getElementById('leftNav').classList.toggle('hidden', !sbOpen);
+    if (!isMobile()) {
+      document.getElementById('contentWrap').style.marginLeft = sbOpen ? 'var(--left-w)' : '0';
+    }
+    document.getElementById('navOverlay').classList.toggle('active', sbOpen && isMobile());
+  }
+
+  function toggleTheme() {
+    const d = document.documentElement;
+    d.setAttribute('data-theme', d.getAttribute('data-theme') === 'dark' ? 'light' : 'dark');
+  }
+
+  function switchStateTab(btn, panelId) {
+    const wrap = btn.closest('.var-panel') || btn.closest('.tab-panel') || btn.parentElement.parentElement;
+    btn.closest('.state-tab-row').querySelectorAll('.state-tab-btn').forEach(b => b.classList.remove('active'));
+    document.querySelectorAll('.state-panel').forEach(p => p.classList.remove('active'));
+    btn.classList.add('active');
+    document.getElementById(panelId).classList.add('active');
+    lucide.createIcons();
+  }
+
+  function switchTab(btn, panelId) {
+    btn.closest('.doc-section').querySelectorAll('.tab').forEach(b => b.classList.remove('active'));
+    btn.closest('.doc-section').querySelectorAll('.tab-panel').forEach(p => p.classList.remove('active'));
+    btn.classList.add('active');
+    document.getElementById(panelId).classList.add('active');
+    lucide.createIcons();
+  }
+
+  function updateTabFade(tabsEl) {
+    const wrap = tabsEl.closest('.tabs-wrap');
+    if (!wrap) return;
+    const atEnd = tabsEl.scrollLeft + tabsEl.clientWidth >= tabsEl.scrollWidth - 2;
+    wrap.classList.toggle('at-end', atEnd);
+  }
+
+  window.addEventListener('load', () => {
+    document.querySelectorAll('.tabs').forEach(tabsEl => {
+      updateTabFade(tabsEl);
+      tabsEl.addEventListener('scroll', () => updateTabFade(tabsEl));
+    });
+  });
+
+  const sections = ['definition','anatomy','variants','properties','usage','tokens','accessibility','related'];
+  const observer = new IntersectionObserver(entries => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        document.querySelectorAll('.rn-list a').forEach(a => a.classList.remove('active'));
+        const link = document.getElementById('rn-' + e.target.id);
+        if (link) link.classList.add('active');
+      }
+    });
+  }, { rootMargin: '-20% 0px -70% 0px' });
+  sections.forEach(id => { const el = document.getElementById(id); if (el) observer.observe(el); });
+
+  // ══════════════════════════════════════════
+  // TOKEN MAP
+  // ══════════════════════════════════════════
+  const tmColorLight = [
+    {"role":"Background",     "token":"color/surface/layer-02",     "hex":"#F4F6F8",              "ref":"color/gray/50"},
+    {"role":"Border",         "token":"color/border/interactive",   "hex":"#CDD2D7",              "ref":"color/gray/300"},
+    {"role":"Border hover",   "token":"color/border/hover",         "hex":"#6B7280",              "ref":"color/gray/500"},
+    {"role":"Focus ring",     "token":"color/border/focus-ring",    "hex":"#5ABFE0",              "ref":"color/blue/400"},
+    {"role":"Focus glow",     "token":"color/blue/400-35",          "hex":"rgba(90,191,224,0.35)","ref":"color/blue/400 @ 35%"},
+    {"role":"Error border",   "token":"color/border/error",         "hex":"#A12F2F",              "ref":"color/red/800"},
+    {"role":"Label",          "token":"color/text/label",           "hex":"#374151",              "ref":"color/gray/700"},
+    {"role":"Placeholder",    "token":"color/text/placeholder",     "hex":"#6B7280",              "ref":"color/gray/500"},
+    {"role":"Value text",     "token":"color/text/primary",         "hex":"#374151",              "ref":"color/gray/700"},
+    {"role":"Helper",         "token":"color/text/helper",          "hex":"#4B5563",              "ref":"color/gray/600"},
+    {"role":"Disabled border","token":"color/border/disabled",      "hex":"#E5E7EB",              "ref":"color/gray/200"}
+  ];
+  const tmColorDark = [
+    {"role":"Background",     "token":"color/surface/layer-02",     "hex":"#1E1E1E",              "ref":"color/gray/950"},
+    {"role":"Border",         "token":"color/border/interactive",   "hex":"#6B7280",              "ref":"color/gray/500"},
+    {"role":"Border hover",   "token":"color/border/hover",         "hex":"#9CA3AF",              "ref":"color/gray/400"},
+    {"role":"Focus ring",     "token":"color/border/focus-ring",    "hex":"#0083BB",              "ref":"color/blue/600"},
+    {"role":"Focus glow",     "token":"color/blue/400-35",          "hex":"rgba(0,131,187,0.35)", "ref":"color/blue/600 @ 35%"},
+    {"role":"Error border",   "token":"color/border/error",         "hex":"#DB3939",              "ref":"color/red/600"},
+    {"role":"Label",          "token":"color/text/label",           "hex":"#F3F4F6",              "ref":"color/gray/0"},
+    {"role":"Placeholder",    "token":"color/text/placeholder",     "hex":"#9CA3AF",              "ref":"color/gray/400"},
+    {"role":"Value text",     "token":"color/text/primary",         "hex":"#FFFFFF",              "ref":"color/gray/0"},
+    {"role":"Helper",         "token":"color/text/helper",          "hex":"#9CA3AF",              "ref":"color/gray/200"},
+    {"role":"Disabled border","token":"color/border/disabled",      "hex":"#374151",              "ref":"color/gray/700"}
+  ];
+  const tmComponentTokens = [
+    {"role":"Padding Y",    "component":"textarea/padding/y",  "primitive":"spacing/4x",          "value":"16px","icon":"space"},
+    {"role":"Padding X",    "component":"textarea/padding/x",  "primitive":"spacing/3x",          "value":"12px","icon":"space"},
+    {"role":"Radius",       "component":"input-field/radius",  "primitive":"radius/small",        "value":"4px", "icon":"square-round-corner"},
+    {"role":"Gap",          "component":"input-field/gap",     "primitive":"spacing/2x",          "value":"8px", "icon":"columns-3"}
+  ];
+  const tmTypographyTokens = [
+    {"role":"Label",      "style":"typography/body/label",     "font":"Lato","weight":"Bold (700)",   "size":"12px","lineHeight":"16px","letterSpacing":"0"},
+    {"role":"Placeholder","style":"typography/body/small",     "font":"Lato","weight":"Regular (400)","size":"14px","lineHeight":"19px","letterSpacing":"0"},
+    {"role":"Value",      "style":"typography/body/small",     "font":"Lato","weight":"Regular (400)","size":"14px","lineHeight":"19px","letterSpacing":"0"},
+    {"role":"Helper",     "style":"typography/body/small",     "font":"Lato","weight":"Regular (400)","size":"14px","lineHeight":"19px","letterSpacing":"0"},
+    {"role":"Char count", "style":"typography/data/cell-label","font":"Lato","weight":"Regular (400)","size":"12px","lineHeight":"16px","letterSpacing":"0.5px"}
+  ];
+  const tmTotalTokens = tmColorLight.length + tmComponentTokens.length + tmTypographyTokens.length;
+
+  const tmState = { tab:'color', mode:'light' };
+  const tmCards = document.getElementById('tmCards');
+  const tmPreviewCard = document.querySelector('.tm-preview-card');
+  const arrowSvg = '<svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="width:20px;height:20px"><circle cx="5" cy="10" r="3"/><path d="M8 10h9m-3-3 3 3-3 3"/></svg>';
+
+  document.getElementById('tmCountNum').textContent = tmTotalTokens;
+
+  const tmPreview = document.getElementById('tmPreview');
+  function slug(s){ return s.toLowerCase().replace(/[^a-z0-9]+/g,'-').replace(/-+$/,''); }
+
+  // Field-level tokens → outline .ta-field
+  const fieldSlots = new Set(['background','border','border-hover','focus-ring','focus-glow','error-border','disabled-border']);
+  // Component dimension tokens → magenta callout
+  const compSpotlightMap = {'padding-y':'spotlight-padding-y','padding-x':'spotlight-padding-x','radius':'spotlight-radius','gap':'spotlight-gap'};
+  // Part-level tokens → dim others, highlight part
+  const partSlots = {
+    'label':       ['label'],
+    'placeholder': ['input'],
+    'value-text':  ['input'],
+    'helper':      ['helper'],
+    'placeholder-typo': ['input'],
+    'value':       ['input'],
+    'char-count':  ['count'],
+  };
+
+  const spotlightClasses = ['has-spotlight','spotlight-field','spotlight-padding-y','spotlight-padding-x','spotlight-radius','spotlight-gap'];
+  function clearSpotlight(){ if(tmPreview){ spotlightClasses.forEach(c=>tmPreview.classList.remove(c)); tmPreview.querySelectorAll('[data-part]').forEach(p=>p.classList.remove('spotlight')); } }
+  function spotlight(sl){
+    if(!tmPreview) return;
+    if(compSpotlightMap[sl]){ tmPreview.classList.add(compSpotlightMap[sl]); return; }
+    if(fieldSlots.has(sl)){ tmPreview.classList.add('has-spotlight','spotlight-field'); return; }
+    const parts = partSlots[sl];
+    if(!parts) return;
+    tmPreview.classList.add('has-spotlight');
+    parts.forEach(p=>{ const el=tmPreview.querySelector('[data-part="'+p+'"]'); if(el) el.classList.add('spotlight'); });
+  }
+
+  function tmRender() {
+    const theme = tmState.mode;
+    const colors = theme === 'light' ? tmColorLight : tmColorDark;
+    tmPreviewCard.setAttribute('data-bg', theme);
+
+    let html = '';
+    if (tmState.tab === 'color') {
+      for (const c of colors) { const s = slug(c.role);
+        html += '<div class="tm-row" data-slot="'+s+'">'
+          + '<div class="tm-row-header"><div class="tm-row-swatch" style="background:'+c.hex+'"></div><div class="tm-row-label">'+c.role+'</div></div>'
+          + '<div class="tm-chain-row">'
+          + '<div class="tm-chip">'+c.token+'</div>'
+          + '<div class="tm-chain-arrow">'+arrowSvg+'</div>'
+          + '<div class="tm-chip">'+(c.ref||c.token)+'</div>'
+          + '<div class="tm-chain-arrow">'+arrowSvg+'</div>'
+          + '<div class="tm-chip" style="font-weight:600">'+c.hex+'</div>'
+          + '</div></div>';
+      }
+    } else if (tmState.tab === 'component') {
+      for (const ct of tmComponentTokens) { const s = slug(ct.role);
+        html += '<div class="tm-row" data-slot="'+s+'">'
+          + '<div class="tm-row-header"><div class="tm-row-icon"><i data-lucide="'+ct.icon+'" style="width:16px;height:16px"></i></div><div class="tm-row-label">'+ct.role+'</div></div>'
+          + '<div class="tm-chain-row">'
+          + '<div class="tm-chip">'+ct.component+'</div>'
+          + '<div class="tm-chain-arrow">'+arrowSvg+'</div>'
+          + '<div class="tm-chip">'+ct.primitive+'</div>'
+          + '<div class="tm-chain-arrow">'+arrowSvg+'</div>'
+          + '<div class="tm-chip" style="font-weight:600">'+ct.value+'</div>'
+          + '</div></div>';
+      }
+    } else {
+      for (const tt of tmTypographyTokens) { const s = slug(tt.role);
+        html += '<div class="tm-row" data-slot="'+s+'">'
+          + '<div class="tm-row-header"><div class="tm-row-icon"><i data-lucide="type" style="width:16px;height:16px"></i></div><div class="tm-row-label">'+tt.role+'</div></div>'
+          + '<div class="tm-chain-row" style="flex-direction:column;align-items:flex-start;gap:6px;">'
+          + '<div style="display:flex;align-items:center;gap:10px;flex-wrap:wrap;"><div class="tm-chip">'+tt.style+'</div></div>'
+          + '<div style="display:flex;align-items:center;gap:8px;flex-wrap:wrap;font-family:var(--mono);font-size:12px;color:var(--text-tertiary);">'
+          + '<span>'+tt.font+'</span><span>·</span>'
+          + '<span>'+tt.weight+'</span><span>·</span>'
+          + '<span>'+tt.size+' / '+tt.lineHeight+'</span>'
+          + (tt.letterSpacing !== '0' ? '<span>·</span><span>ls: '+tt.letterSpacing+'</span>' : '')
+          + '</div></div></div>';
+      }
+    }
+    tmCards.innerHTML = html;
+
+    document.querySelectorAll('.tm-row[data-slot]').forEach(row => {
+      const sl = row.dataset.slot;
+      row.addEventListener('mouseenter', () => { row.classList.add('is-hot'); spotlight(sl); });
+      row.addEventListener('mouseleave', () => { row.classList.remove('is-hot'); clearSpotlight(); });
+    });
+    lucide.createIcons();
+  }
+
+  document.getElementById('tmModeToggle').addEventListener('click', () => {
+    tmState.mode = tmState.mode === 'light' ? 'dark' : 'light';
+    document.getElementById('tmModeLabel').textContent = tmState.mode === 'light' ? 'Light' : 'Dark';
+    const track = document.getElementById('tmModeTrack');
+    if (tmState.mode === 'dark') { track.classList.add('sw-on'); } else { track.classList.remove('sw-on'); }
+    tmRender();
+  });
+
+  document.querySelectorAll('.tm-seg-item[data-tab]').forEach(btn => {
+    btn.addEventListener('click', () => {
+      tmState.tab = btn.dataset.tab;
+      document.querySelectorAll('.tm-seg-item[data-tab]').forEach(b => b.classList.remove('tm-seg-item--active'));
+      btn.classList.add('tm-seg-item--active');
+      tmRender();
+    });
+  });
+
+  tmRender();
+</script>
+</body>
+</html>

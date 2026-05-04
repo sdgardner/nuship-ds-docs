@@ -11,10 +11,13 @@
   <style>
     /* badge component token spotlights */
     #tmPreview { position:relative; }
-    #tmPreview.spotlight-radius { outline:2px solid #FF4081; outline-offset:2px; border-radius:2px; }
+    #tmPreview [data-part] { transition:outline-color 150ms, opacity 150ms; outline:2px solid transparent; outline-offset:2px; border-radius:2px; }
+    #tmPreview.has-spotlight [data-part] { opacity:0.3; }
+    #tmPreview.has-spotlight [data-part].spotlight { opacity:1; outline-color:var(--tm-accent); }
+    #tmPreview.spotlight-radius [data-part] { outline:2px solid #FF4081; outline-offset:2px; border-radius:2px; }
     #tmPreview.spotlight-radius::after { content:'2px'; position:absolute; top:-16px; left:-2px; font-size:10px; font-family:var(--mono); color:#FF4081; background:rgba(255,255,255,0.9); padding:1px 4px; border-radius:2px; font-weight:700; }
-    #tmPreview.spotlight-padding { outline:2px solid #FF4081; outline-offset:-1px; }
-    #tmPreview.spotlight-padding::after { content:'0×8px'; position:absolute; top:50%; left:4px; transform:translateY(-50%); font-size:10px; font-family:var(--mono); color:#FF4081; background:rgba(255,255,255,0.9); padding:1px 4px; border-radius:2px; font-weight:700; }
+    #tmPreview.spotlight-padding-sm [data-part] { outline:2px solid #FF4081; outline-offset:-1px; }
+    #tmPreview.spotlight-padding-sm::after { content:'0×8px'; position:absolute; top:-16px; left:0; font-size:10px; font-family:var(--mono); color:#FF4081; background:rgba(255,255,255,0.9); padding:1px 4px; border-radius:2px; font-weight:700; }
   </style>
 </head>
 <body>
@@ -505,17 +508,19 @@
               <div class="tm-map">
                 <div>
                   <div class="tm-preview-card" data-bg="light">
-                    <div class="tm-preview-inner"><div id="tmPreview" class="tm-preview">
-      
-                <div style="display:flex;gap:8px;align-items:center;flex-wrap:wrap;">
-                  <span class="bdg bdg--blue bdg--outline">Active</span>
-                  <span class="bdg bdg--blue bdg--solid">Active</span>
-                  <span class="bdg bdg--green bdg--outline bdg--lg">Success</span>
-                  <span class="bdg bdg--green bdg--solid bdg--lg">Success</span>
-                </div>
+                    <div class="tm-preview-inner">
+                      <div id="tmPreview" class="tm-preview" style="display:flex;gap:8px;align-items:center;flex-wrap:wrap;">
+                        <span class="bdg bdg--blue bdg--outline" data-part="standard-outline">Standard</span>
+                        <span class="bdg bdg--blue bdg--solid" data-part="standard-solid">Standard</span>
+                        <span class="bdg bdg--green bdg--outline" data-part="positive-outline">Positive</span>
+                        <span class="bdg bdg--green bdg--solid" data-part="positive-solid">Positive</span>
+                        <span class="bdg bdg--red bdg--outline" data-part="negative-outline">Negative</span>
+                        <span class="bdg bdg--red bdg--solid" data-part="negative-solid">Negative</span>
+                        <span class="bdg bdg--orange bdg--outline" data-part="warning-outline">Warning</span>
+                        <span class="bdg bdg--orange bdg--solid" data-part="warning-solid">Warning</span>
+                      </div>
                     </div>
                   </div>
-                    </div>
                 </div>
                 <div class="tm-tokens-card">
                   <div class="tm-tokens-head">
@@ -678,20 +683,31 @@
 
 
   const tmPreview = document.getElementById('tmPreview');
-  const partMap = {
-      'background':['field'],'border':['field'],'text':['text'],'icon':['icon'],
-      'radius':['field'],'padding':['field'],
-    };
   function slug(s){ return s.toLowerCase().replace(/[^a-z0-9]+/g,'-').replace(/-+$/,''); }
-  const compSpotlightMap = {'radius':'spotlight-radius','padding':'spotlight-padding'};
-  const spotlightClasses = ['has-spotlight','spotlight-radius','spotlight-padding'];
-  function clearSpotlight(){ if(tmPreview){spotlightClasses.forEach(c=>tmPreview.classList.remove(c)); tmPreview.querySelectorAll('[data-part]').forEach(p=>p.classList.remove('spotlight'));} }
+
+  const compSpotlightMap = {'radius':'spotlight-radius','padding-sm':'spotlight-padding-sm'};
+  const partSlots = {
+    'standard-bg-outline':  ['standard-outline'],
+    'standard-bg-solid':    ['standard-solid'],
+    'standard-border':      ['standard-outline'],
+    'positive-bg-outline':  ['positive-outline'],
+    'positive-bg-solid':    ['positive-solid'],
+    'negative-bg-outline':  ['negative-outline'],
+    'negative-bg-solid':    ['negative-solid'],
+    'warning-bg-outline':   ['warning-outline'],
+    'warning-bg-solid':     ['warning-solid'],
+    'label-outline':        ['standard-outline','positive-outline','negative-outline','warning-outline'],
+    'label-solid':          ['standard-solid','positive-solid','negative-solid','warning-solid'],
+    'label-small':          ['standard-outline','standard-solid','positive-outline','positive-solid','negative-outline','negative-solid','warning-outline','warning-solid'],
+  };
+
+  const spotlightClasses = ['has-spotlight','spotlight-radius','spotlight-padding-sm'];
+  function clearSpotlight(){ if(tmPreview){ spotlightClasses.forEach(c=>tmPreview.classList.remove(c)); tmPreview.querySelectorAll('[data-part]').forEach(p=>p.classList.remove('spotlight')); } }
   function spotlight(sl){
     if(!tmPreview) return;
-    // Component tokens → CSS class with magenta outline + callout
     if(compSpotlightMap[sl]){ tmPreview.classList.add(compSpotlightMap[sl]); return; }
-    // Color/typo tokens → data-part highlight
-    const parts=partMap[sl]; if(!parts||!parts.length) return;
+    const parts = partSlots[sl];
+    if(!parts) return;
     tmPreview.classList.add('has-spotlight');
     parts.forEach(p=>{ const el=tmPreview.querySelector('[data-part="'+p+'"]'); if(el) el.classList.add('spotlight'); });
   }
