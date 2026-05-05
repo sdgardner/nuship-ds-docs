@@ -16,6 +16,7 @@
     /* Compact preview card height for the slider (component is short) */
     .tm-map .tm-preview-card { min-height:240px; }
     .tm-map .tm-preview-inner { padding:40px 32px; }
+    @media (max-width:600px) { .tm-map .tm-preview-inner { padding:24px 16px; } }
     #tmPreview.has-spotlight [data-part] { opacity:0.3; }
     #tmPreview.has-spotlight [data-part].spotlight { opacity:1; outline-color:var(--tm-accent); }
     #tmPreview.spotlight-field .sl-field { outline:2px solid var(--tm-accent); outline-offset:4px; border-radius:4px; }
@@ -496,7 +497,7 @@
           <div>
             <div class="tm-preview-card" data-bg="light">
               <div class="tm-preview-inner">
-                <div id="tmPreview" class="sl-wrap tm-preview" style="width:220px;">
+                <div id="tmPreview" class="sl-wrap tm-preview" style="width:100%; max-width:220px;">
                   <span class="sl-label" data-part="label">Volume</span>
                   <div class="sl-field" style="--pos:50%">
                     <div class="sl-badge" data-part="badge">50</div>
