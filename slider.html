@@ -1,0 +1,792 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Slider — nuShip Design System</title>
+  <link href="https://fonts.googleapis.com/css2?family=Lato:wght@400;600;700;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="tokens.css">
+  <link rel="stylesheet" href="styles.css">
+  <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.min.js"></script>
+  <style>
+    /* slider token spotlights */
+    #tmPreview { position:relative; }
+    #tmPreview [data-part] { transition:outline-color 150ms, opacity 150ms; outline:2px solid transparent; outline-offset:2px; border-radius:3px; }
+    #tmPreview.has-spotlight [data-part] { opacity:0.3; }
+    #tmPreview.has-spotlight [data-part].spotlight { opacity:1; outline-color:var(--tm-accent); }
+    #tmPreview.spotlight-field .sl-field { outline:2px solid var(--tm-accent); outline-offset:4px; border-radius:4px; }
+    /* Component spotlights */
+    #tmPreview.spotlight-track-height .sl-track,
+    #tmPreview.spotlight-track-height .sl-fill { outline:2px solid #FF4081; outline-offset:3px; border-radius:2px; }
+    #tmPreview.spotlight-track-height::after { content:'4px'; position:absolute; top:46px; right:-28px; font-size:10px; font-family:var(--mono); color:#FF4081; background:rgba(255,255,255,0.9); padding:1px 4px; border-radius:2px; font-weight:700; }
+    #tmPreview.spotlight-thumb-size .sl-thumb { outline:2px solid #FF4081; outline-offset:3px; border-radius:50%; }
+    #tmPreview.spotlight-thumb-size::after { content:'24px'; position:absolute; top:35px; right:-32px; font-size:10px; font-family:var(--mono); color:#FF4081; background:rgba(255,255,255,0.9); padding:1px 4px; border-radius:2px; font-weight:700; }
+    #tmPreview.spotlight-badge-radius .sl-badge { outline:2px solid #FF4081; outline-offset:2px; border-radius:4px; }
+    #tmPreview.spotlight-badge-radius::after { content:'4px'; position:absolute; top:5px; right:-28px; font-size:10px; font-family:var(--mono); color:#FF4081; background:rgba(255,255,255,0.9); padding:1px 4px; border-radius:2px; font-weight:700; }
+    /* Isolate token map preview from global dark mode */
+    .tm-preview-card[data-bg="light"] .sl-track  { background:#CDD2D7; }
+    .tm-preview-card[data-bg="light"] .sl-fill   { background:#027CB1; }
+    .tm-preview-card[data-bg="light"] .sl-thumb  { background:#FFFFFF; box-shadow:0 1px 3px rgba(55,65,80,0.20), 0 0 0 1px rgba(55,65,80,0.10); }
+    .tm-preview-card[data-bg="light"] .sl-badge  { background:#027CB1; color:#FFFFFF; }
+    .tm-preview-card[data-bg="light"] .sl-badge::after { border-top-color:#027CB1; }
+    .tm-preview-card[data-bg="light"] .sl-label  { color:#374151; }
+    .tm-preview-card[data-bg="light"] .sl-min,
+    .tm-preview-card[data-bg="light"] .sl-max    { color:#4B5563; }
+    .tm-preview-card[data-bg="dark"] .sl-track   { background:#4B5563; }
+    .tm-preview-card[data-bg="dark"] .sl-fill    { background:#027CB1; }
+    .tm-preview-card[data-bg="dark"] .sl-thumb   { background:#FFFFFF; box-shadow:0 1px 3px rgba(0,0,0,0.3); }
+    .tm-preview-card[data-bg="dark"] .sl-badge   { background:#027CB1; color:#FFFFFF; }
+    .tm-preview-card[data-bg="dark"] .sl-badge::after { border-top-color:#027CB1; }
+    .tm-preview-card[data-bg="dark"] .sl-label   { color:#F3F4F6; }
+    .tm-preview-card[data-bg="dark"] .sl-min,
+    .tm-preview-card[data-bg="dark"] .sl-max     { color:#9CA3AF; }
+  </style>
+</head>
+<body>
+
+<!-- MOBILE OVERLAY -->
+<div id="navOverlay" class="nav-overlay" onclick="toggleSidebar()"></div>
+
+<!-- TOP NAV -->
+<nav class="topnav">
+  <button class="hamburger" onclick="toggleSidebar()" aria-label="Menu">
+    <i data-lucide="menu" style="width:18px;height:18px;color:var(--text-secondary)"></i>
+  </button>
+  <div class="bc">
+    <a href="index.html">UI Components</a>
+    <i data-lucide="chevron-right" style="width:14px;height:14px;flex-shrink:0"></i>
+    <a href="#">Inputs</a>
+    <i data-lucide="chevron-right" style="width:14px;height:14px;flex-shrink:0"></i>
+    <span class="cur">Slider</span>
+  </div>
+  <div class="nav-actions">
+    <div class="toggle-wrap" onclick="toggleTheme()" role="button">
+      <i data-lucide="moon" style="width:20px;height:20px"></i>
+      <div class="toggle-track"><div class="toggle-thumb"></div></div>
+      <i data-lucide="sun" style="width:20px;height:20px"></i>
+    </div>
+  </div>
+</nav>
+
+<div class="shell">
+
+  <!-- LEFT NAV -->
+  <nav class="left-nav" id="leftNav">
+    <div class="left-nav-inner">
+      <div class="ln-group">
+        <div class="ln-label">Inputs</div>
+        <ul class="ln-list">
+          <li><a href="checkbox.html">Checkbox</a></li>
+          <li><a href="datepicker.html">Date Picker</a></li>
+          <li><a href="numberinput.html">Number Input</a></li>
+          <li><a href="passwordinput.html">Password Input</a></li>
+          <li><a href="radiobutton.html">Radio Button</a></li>
+          <li><a href="search.html">Search</a></li>
+          <li><a href="select.html">Select</a></li>
+          <li><a href="slider.html" class="active">Slider</a></li>
+          <li><a href="switch.html">Switch</a></li>
+          <li><a href="textarea.html">Text Area</a></li>
+          <li><a href="textinput.html">Text Input</a></li>
+        </ul>
+      </div>
+      <div class="ln-group">
+        <div class="ln-label">Feedback</div>
+        <ul class="ln-list">
+          <li><a href="alert.html">Alert</a></li>
+          <li><a href="badge.html">Badge</a></li>
+          <li><a href="#">Toast</a></li>
+          <li><a href="#">Tooltip</a></li>
+        </ul>
+      </div>
+      <div class="ln-group">
+        <div class="ln-label">Navigation</div>
+        <ul class="ln-list">
+          <li><a href="accordion.html">Accordion</a></li>
+          <li><a href="#">Breadcrumb</a></li>
+          <li><a href="dropdown.html">Dropdown</a></li>
+          <li><a href="menu.html">Menu</a></li>
+          <li><a href="segmentedcontrol.html">Segmented Control</a></li>
+          <li><a href="#">Tabs</a></li>
+        </ul>
+      </div>
+      <div class="ln-group">
+        <div class="ln-label">Actions</div>
+        <ul class="ln-list">
+          <li><a href="button.html">Button</a></li>
+          <li><a href="link.html">Link</a></li>
+          <li><a href="#">Tags</a></li>
+        </ul>
+      </div>
+      <div class="ln-group">
+        <div class="ln-label">Overlays</div>
+        <ul class="ln-list">
+          <li><a href="modal.html">Modal</a></li>
+          <li><a href="popover.html">Popover</a></li>
+        </ul>
+      </div>
+      <div class="ln-group">
+        <div class="ln-label">Display</div>
+        <ul class="ln-list">
+          <li><a href="avatar.html">Avatar</a></li>
+          <li><a href="carousel.html">Carousel</a></li>
+          <li><a href="fileupload.html">File Upload</a></li>
+          <li><a href="progressbar.html">Progress Bar</a></li>
+          <li><a href="#">Star Rating</a></li>
+          <li><a href="#">Timeline</a></li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <!-- CONTENT -->
+  <div class="content-wrap" id="contentWrap">
+
+    <main class="doc">
+
+      <!-- 1 · DEFINITION -->
+      <section class="doc-section" id="definition">
+        <div class="def-eyebrow">Inputs</div>
+        <h1 class="def-title">Slider</h1>
+        <p class="def-desc">The Slider lets users select a value from a continuous range by dragging a thumb along a track. It displays the current value in a badge above the thumb and supports optional min/max labels, a label, and multiple interaction states.</p>
+        <div class="def-tags">
+          <span class="tag">Developed</span>
+          <span class="tag">Figma</span>
+        </div>
+        <div class="preview-box">
+          <div class="preview-box-inner">
+            <div style="display:flex;gap:48px;flex-wrap:wrap;align-items:flex-start;">
+              <div class="sl-wrap" style="width:260px;">
+                <span class="sl-label">Volume</span>
+                <div class="sl-field" style="--pos:30%">
+                  <div class="sl-badge">30</div>
+                  <div class="sl-track"></div>
+                  <div class="sl-fill"></div>
+                  <div class="sl-thumb"></div>
+                </div>
+                <div class="sl-minmax"><span class="sl-min">0</span><span class="sl-max">100</span></div>
+              </div>
+              <div class="sl-wrap sl-wrap--focus" style="width:260px;">
+                <span class="sl-label">Brightness</span>
+                <div class="sl-field" style="--pos:70%">
+                  <div class="sl-badge">70</div>
+                  <div class="sl-track"></div>
+                  <div class="sl-fill"></div>
+                  <div class="sl-thumb"></div>
+                </div>
+                <div class="sl-minmax"><span class="sl-min">0</span><span class="sl-max">100</span></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- 2 · ANATOMY -->
+      <section class="doc-section" id="anatomy">
+        <h2 class="section-title">Anatomy</h2>
+        <div class="anatomy-wrap">
+          <div class="anatomy-component" style="padding:32px 56px 40px;">
+            <div style="position:relative;display:inline-block;width:260px;">
+              <div class="sl-wrap" style="pointer-events:none;">
+                <span class="sl-label">Volume</span>
+                <div class="sl-field" style="--pos:50%">
+                  <div class="sl-badge">50</div>
+                  <div class="sl-track"></div>
+                  <div class="sl-fill"></div>
+                  <div class="sl-thumb"></div>
+                </div>
+                <div class="sl-minmax"><span class="sl-min">0</span><span class="sl-max">100</span></div>
+              </div>
+              <!-- callouts -->
+              <span class="callout" style="top:-8px;left:8px;">1</span>
+              <span class="callout" style="top:12px;left:50%;transform:translateX(-50%);">2</span>
+              <span class="callout" style="top:42px;left:-16px;">3</span>
+              <span class="callout" style="top:42px;left:123px;">4</span>
+              <span class="callout" style="top:42px;right:-16px;">5</span>
+              <span class="callout" style="bottom:14px;left:-16px;">6</span>
+            </div>
+          </div>
+          <div class="anatomy-legend">
+            <div class="legend-item"><span class="legend-num">1</span>Label (12px Lato Bold, optional)</div>
+            <div class="legend-item"><span class="legend-num">2</span>Value badge (current value, 14px Lato Regular)</div>
+            <div class="legend-item"><span class="legend-num">3</span>Filled track (active range, 4px)</div>
+            <div class="legend-item"><span class="legend-num">4</span>Thumb (draggable handle, 24px circle)</div>
+            <div class="legend-item"><span class="legend-num">5</span>Inactive track (remaining range, 4px)</div>
+            <div class="legend-item"><span class="legend-num">6</span>Min / Max labels (12px Lato Bold, optional)</div>
+          </div>
+        </div>
+      </section>
+
+      <!-- 3 · STATES -->
+      <section class="doc-section" id="variants">
+        <h2 class="section-title">States</h2>
+
+        <div class="state-tab-row">
+          <button class="state-tab-btn active" onclick="switchStateTab(this,'vs-default')">Default</button>
+          <button class="state-tab-btn" onclick="switchStateTab(this,'vs-hover')">Hover</button>
+          <button class="state-tab-btn" onclick="switchStateTab(this,'vs-focus')">Focus</button>
+          <button class="state-tab-btn" onclick="switchStateTab(this,'vs-active')">Active</button>
+          <button class="state-tab-btn" onclick="switchStateTab(this,'vs-disabled')">Disabled</button>
+        </div>
+
+        <div class="var-panel">
+          <div class="var-previews-wrap">
+
+            <!-- Default -->
+            <div class="state-panel active" id="vs-default">
+              <div class="var-previews">
+                <div class="var-preview">
+                  <div class="sl-wrap" style="width:260px;">
+                    <span class="sl-label">Volume</span>
+                    <div class="sl-field" style="--pos:50%">
+                      <div class="sl-badge">50</div>
+                      <div class="sl-track"></div>
+                      <div class="sl-fill"></div>
+                      <div class="sl-thumb"></div>
+                    </div>
+                    <div class="sl-minmax"><span class="sl-min">0</span><span class="sl-max">100</span></div>
+                  </div>
+                </div>
+                <div class="var-preview-dark" data-theme="dark">
+                  <div class="sl-wrap" style="width:260px;">
+                    <span class="sl-label">Volume</span>
+                    <div class="sl-field" style="--pos:50%">
+                      <div class="sl-badge">50</div>
+                      <div class="sl-track"></div>
+                      <div class="sl-fill"></div>
+                      <div class="sl-thumb"></div>
+                    </div>
+                    <div class="sl-minmax"><span class="sl-min">0</span><span class="sl-max">100</span></div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Hover -->
+            <div class="state-panel" id="vs-hover">
+              <div class="var-previews">
+                <div class="var-preview">
+                  <div class="sl-wrap sl-wrap--hover" style="width:260px;">
+                    <span class="sl-label">Volume</span>
+                    <div class="sl-field" style="--pos:50%">
+                      <div class="sl-badge">50</div>
+                      <div class="sl-track"></div>
+                      <div class="sl-fill"></div>
+                      <div class="sl-thumb"></div>
+                    </div>
+                    <div class="sl-minmax"><span class="sl-min">0</span><span class="sl-max">100</span></div>
+                  </div>
+                </div>
+                <div class="var-preview-dark" data-theme="dark">
+                  <div class="sl-wrap sl-wrap--hover" style="width:260px;">
+                    <span class="sl-label">Volume</span>
+                    <div class="sl-field" style="--pos:50%">
+                      <div class="sl-badge">50</div>
+                      <div class="sl-track"></div>
+                      <div class="sl-fill"></div>
+                      <div class="sl-thumb"></div>
+                    </div>
+                    <div class="sl-minmax"><span class="sl-min">0</span><span class="sl-max">100</span></div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Focus -->
+            <div class="state-panel" id="vs-focus">
+              <div class="var-previews">
+                <div class="var-preview">
+                  <div class="sl-wrap sl-wrap--focus" style="width:260px;">
+                    <span class="sl-label">Volume</span>
+                    <div class="sl-field" style="--pos:50%">
+                      <div class="sl-badge">50</div>
+                      <div class="sl-track"></div>
+                      <div class="sl-fill"></div>
+                      <div class="sl-thumb"></div>
+                    </div>
+                    <div class="sl-minmax"><span class="sl-min">0</span><span class="sl-max">100</span></div>
+                  </div>
+                </div>
+                <div class="var-preview-dark" data-theme="dark">
+                  <div class="sl-wrap sl-wrap--focus" style="width:260px;">
+                    <span class="sl-label">Volume</span>
+                    <div class="sl-field" style="--pos:50%">
+                      <div class="sl-badge">50</div>
+                      <div class="sl-track"></div>
+                      <div class="sl-fill"></div>
+                      <div class="sl-thumb"></div>
+                    </div>
+                    <div class="sl-minmax"><span class="sl-min">0</span><span class="sl-max">100</span></div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Active (dragging) -->
+            <div class="state-panel" id="vs-active">
+              <div class="var-previews">
+                <div class="var-preview">
+                  <div class="sl-wrap sl-wrap--active" style="width:260px;">
+                    <span class="sl-label">Volume</span>
+                    <div class="sl-field" style="--pos:66%">
+                      <div class="sl-badge">66</div>
+                      <div class="sl-track"></div>
+                      <div class="sl-fill"></div>
+                      <div class="sl-thumb"></div>
+                    </div>
+                    <div class="sl-minmax"><span class="sl-min">0</span><span class="sl-max">100</span></div>
+                  </div>
+                </div>
+                <div class="var-preview-dark" data-theme="dark">
+                  <div class="sl-wrap sl-wrap--active" style="width:260px;">
+                    <span class="sl-label">Volume</span>
+                    <div class="sl-field" style="--pos:66%">
+                      <div class="sl-badge">66</div>
+                      <div class="sl-track"></div>
+                      <div class="sl-fill"></div>
+                      <div class="sl-thumb"></div>
+                    </div>
+                    <div class="sl-minmax"><span class="sl-min">0</span><span class="sl-max">100</span></div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Disabled -->
+            <div class="state-panel" id="vs-disabled">
+              <div class="var-previews">
+                <div class="var-preview">
+                  <div class="sl-wrap sl-wrap--disabled" style="width:260px;">
+                    <span class="sl-label">Volume</span>
+                    <div class="sl-field" style="--pos:50%">
+                      <div class="sl-badge">50</div>
+                      <div class="sl-track"></div>
+                      <div class="sl-fill"></div>
+                      <div class="sl-thumb"></div>
+                    </div>
+                    <div class="sl-minmax"><span class="sl-min">0</span><span class="sl-max">100</span></div>
+                  </div>
+                </div>
+                <div class="var-preview-dark" data-theme="dark">
+                  <div class="sl-wrap sl-wrap--disabled" style="width:260px;">
+                    <span class="sl-label">Volume</span>
+                    <div class="sl-field" style="--pos:50%">
+                      <div class="sl-badge">50</div>
+                      <div class="sl-track"></div>
+                      <div class="sl-fill"></div>
+                      <div class="sl-thumb"></div>
+                    </div>
+                    <div class="sl-minmax"><span class="sl-min">0</span><span class="sl-max">100</span></div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+          </div><!-- /var-previews-wrap -->
+
+          <div class="var-desc">
+            <div class="var-use-when">States</div>
+            <ul class="var-use-list">
+              <li><strong>Default</strong> — slider at rest, value badge visible above thumb</li>
+              <li><strong>Hover</strong> — cursor over the thumb, shadow deepens</li>
+              <li><strong>Focus</strong> — thumb receives keyboard focus, teal glow ring appears</li>
+              <li><strong>Active</strong> — user is dragging, thumb grows slightly</li>
+              <li><strong>Disabled</strong> — slider is not interactive, all elements muted</li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      <!-- 4 · PROPERTIES -->
+      <section class="doc-section" id="properties">
+        <h2 class="section-title">Properties</h2>
+        <table class="props-table">
+          <thead>
+            <tr><th>Property</th><th>Type</th><th>Default</th><th>Description</th></tr>
+          </thead>
+          <tbody>
+            <tr><td class="p-name">value</td><td class="p-type">number</td><td class="p-def">50</td><td class="p-desc">Current position of the thumb expressed as a number between min and max.</td></tr>
+            <tr><td class="p-name">min</td><td class="p-type">number</td><td class="p-def">0</td><td class="p-desc">Minimum selectable value.</td></tr>
+            <tr><td class="p-name">max</td><td class="p-type">number</td><td class="p-def">100</td><td class="p-desc">Maximum selectable value.</td></tr>
+            <tr><td class="p-name">step</td><td class="p-type">number</td><td class="p-def">1</td><td class="p-desc">Increment between selectable values.</td></tr>
+            <tr><td class="p-name">showValue</td><td class="p-type">boolean</td><td class="p-def">true</td><td class="p-desc">Show the value badge above the thumb.</td></tr>
+            <tr><td class="p-name">showMinMax</td><td class="p-type">boolean</td><td class="p-def">true</td><td class="p-desc">Show min and max labels below the track.</td></tr>
+            <tr><td class="p-name">label</td><td class="p-type">string</td><td class="p-def">—</td><td class="p-desc">Optional label shown above the slider.</td></tr>
+            <tr><td class="p-name">state</td><td class="p-type">string</td><td class="p-def">"Default"</td><td class="p-desc">Visual interaction state: Default · Hover · Focus · Active · Disabled.</td></tr>
+          </tbody>
+        </table>
+      </section>
+
+      <!-- 5 · USAGE -->
+      <section class="doc-section" id="usage">
+        <h2 class="section-title">Usage Guidelines</h2>
+
+        <div class="usage-block">
+          <div class="usage-cols">
+            <div class="usage-card">
+              <div class="usage-card-header">
+                <div class="usage-icon do-icon"><i data-lucide="check" style="width:12px;height:12px"></i></div>
+                <div class="usage-card-title">Use for continuous range selection</div>
+              </div>
+              <ul class="usage-list">
+                <li>Use when the user needs to select a value from a continuous range (volume, brightness, price)</li>
+                <li>Show the value badge so users can see the precise value while dragging</li>
+                <li>Include min/max labels to communicate the full range at a glance</li>
+              </ul>
+            </div>
+            <div class="usage-card">
+              <div class="usage-card-header">
+                <div class="usage-icon do-icon"><i data-lucide="check" style="width:12px;height:12px"></i></div>
+                <div class="usage-card-title">Provide enough track width</div>
+              </div>
+              <ul class="usage-list">
+                <li>Give the slider sufficient horizontal space so users can make fine adjustments comfortably</li>
+                <li>Use a step value that reflects the precision the user actually needs</li>
+                <li>Add a label when the slider's purpose is not immediately obvious from context</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <div class="usage-divider"></div>
+
+        <div class="usage-block">
+          <div class="usage-cols">
+            <div class="usage-card">
+              <div class="usage-card-header">
+                <div class="usage-icon dont-icon"><i data-lucide="x" style="width:12px;height:12px"></i></div>
+                <div class="usage-card-title">Don't use for precise numeric entry</div>
+              </div>
+              <ul class="usage-list">
+                <li>Don't use a slider when the user needs to enter a specific number — use Number Input instead</li>
+                <li>Don't use for selecting from a finite list of named options — use Select or Radio Buttons</li>
+              </ul>
+            </div>
+            <div class="usage-card">
+              <div class="usage-card-header">
+                <div class="usage-icon dont-icon"><i data-lucide="x" style="width:12px;height:12px"></i></div>
+                <div class="usage-card-title">Don't omit feedback</div>
+              </div>
+              <ul class="usage-list">
+                <li>Don't hide the value badge when precision matters — users need to see what they are setting</li>
+                <li>Don't disable a slider without explaining why the setting is unavailable</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- 6 · TOKEN MAP -->
+      <section class="doc-section" id="tokens">
+        <h2 class="section-title">Token Map</h2>
+
+        <div class="tm-preview-controls">
+          <div class="tm-mode-toggle" id="tmModeToggle">
+            <span class="tm-mode-label" id="tmModeLabel">Light</span>
+            <div class="sw-track sw-track--compact" id="tmModeTrack"><div class="sw-thumb"></div></div>
+          </div>
+        </div>
+
+        <div class="tm-map">
+
+          <!-- LEFT: Preview -->
+          <div>
+            <div class="tm-preview-card" data-bg="light">
+              <div class="tm-preview-inner">
+                <div id="tmPreview" class="sl-wrap tm-preview" style="width:220px;">
+                  <span class="sl-label" data-part="label">Volume</span>
+                  <div class="sl-field" style="--pos:50%">
+                    <div class="sl-badge" data-part="badge">50</div>
+                    <div class="sl-track" data-part="track"></div>
+                    <div class="sl-fill"  data-part="fill"></div>
+                    <div class="sl-thumb" data-part="thumb"></div>
+                  </div>
+                  <div class="sl-minmax">
+                    <span class="sl-min" data-part="min">0</span>
+                    <span class="sl-max" data-part="max">100</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- RIGHT: Token rows -->
+          <div class="tm-tokens-card">
+            <div class="tm-tokens-head">
+              <div class="tm-tokens-title">
+                <h5>Token list</h5>
+                <span class="tm-count" id="tmCount"><span id="tmCountNum">0</span> tokens</span>
+              </div>
+              <p class="tm-tokens-helper">Hover a token to see where it applies on the component.</p>
+              <div class="tm-seg" style="margin:0 0 12px;">
+                <button class="tm-seg-item tm-seg-item--active" data-tab="color"><i data-lucide="palette" class="tm-seg-icon"></i> Color</button>
+                <button class="tm-seg-item" data-tab="component"><i data-lucide="ruler" class="tm-seg-icon"></i> Component</button>
+                <button class="tm-seg-item" data-tab="typography"><i data-lucide="type" class="tm-seg-icon"></i> Typography</button>
+              </div>
+            </div>
+            <div class="tm-tokens-body" id="tmCards"></div>
+          </div>
+
+        </div>
+      </section>
+
+      <!-- 7 · ACCESSIBILITY -->
+      <section class="doc-section" id="accessibility">
+        <h2 class="section-title">Accessibility</h2>
+        <ul class="a11y-list">
+          <li>
+            <div><strong>ARIA role:</strong> Implement as <code>role="slider"</code> with <code>aria-valuenow</code>, <code>aria-valuemin</code>, and <code>aria-valuemax</code> so screen readers announce the current position.</div>
+          </li>
+          <li>
+            <div><strong>Label association:</strong> Always associate a visible label using <code>aria-labelledby</code> or <code>aria-label</code> so screen reader users understand what is being controlled.</div>
+          </li>
+          <li>
+            <div><strong>Keyboard support:</strong> <code>Tab</code> moves focus to the thumb. Arrow keys (<code>←</code> / <code>→</code>) adjust the value by one step. <code>Home</code> / <code>End</code> jump to min / max.</div>
+          </li>
+          <li>
+            <div><strong>Value announcement:</strong> Update <code>aria-valuenow</code> as the value changes so screen reader users hear the new value without delay.</div>
+          </li>
+          <li>
+            <div><strong>Focus visibility:</strong> The teal focus ring must be clearly visible. Do not suppress the focus indicator for keyboard users.</div>
+          </li>
+          <li>
+            <div><strong>Contrast:</strong> The filled track and value badge meet WCAG AA contrast requirements against both light and dark surface backgrounds.</div>
+          </li>
+        </ul>
+      </section>
+
+      <!-- 8 · RELATED -->
+      <section class="doc-section" id="related">
+        <h2 class="section-title">Related Components</h2>
+        <div class="related-grid">
+          <a href="numberinput.html" class="related-card">
+            <div class="rc-name">Number Input</div>
+            <div class="rc-desc">Precise numeric entry with increment and decrement controls.</div>
+          </a>
+          <a href="switch.html" class="related-card">
+            <div class="rc-name">Switch</div>
+            <div class="rc-desc">Binary on/off toggle for a single setting.</div>
+          </a>
+          <a href="progressbar.html" class="related-card">
+            <div class="rc-name">Progress Bar</div>
+            <div class="rc-desc">Visual indicator of progress — not interactive.</div>
+          </a>
+        </div>
+      </section>
+
+    </main>
+
+    <!-- RIGHT ANCHOR NAV -->
+    <nav class="right-nav">
+      <div class="rn-label">On this page</div>
+      <ul class="rn-list">
+        <li><a href="#definition"    id="rn-definition">Definition</a></li>
+        <li><a href="#anatomy"       id="rn-anatomy">Anatomy</a></li>
+        <li><a href="#variants"      id="rn-variants">States</a></li>
+        <li><a href="#properties"    id="rn-properties">Properties</a></li>
+        <li><a href="#usage"         id="rn-usage">Usage</a></li>
+        <li><a href="#tokens"        id="rn-tokens">Tokens</a></li>
+        <li><a href="#accessibility" id="rn-accessibility">Accessibility</a></li>
+        <li><a href="#related"       id="rn-related">Related</a></li>
+      </ul>
+    </nav>
+
+  </div><!-- /.content-wrap -->
+</div><!-- /.shell -->
+
+<script>
+  lucide.createIcons();
+
+  const isMobile = () => window.innerWidth <= 768;
+  let sbOpen = !isMobile();
+  if (!sbOpen) document.getElementById('leftNav').classList.add('hidden');
+
+  function toggleSidebar() {
+    sbOpen = !sbOpen;
+    document.getElementById('leftNav').classList.toggle('hidden', !sbOpen);
+    if (!isMobile()) {
+      document.getElementById('contentWrap').style.marginLeft = sbOpen ? 'var(--left-w)' : '0';
+    }
+    document.getElementById('navOverlay').classList.toggle('active', sbOpen && isMobile());
+  }
+
+  function toggleTheme() {
+    const d = document.documentElement;
+    d.setAttribute('data-theme', d.getAttribute('data-theme') === 'dark' ? 'light' : 'dark');
+  }
+
+  function switchStateTab(btn, panelId) {
+    const wrap = btn.closest('.var-panel') || btn.closest('.tab-panel') || btn.parentElement.parentElement;
+    btn.closest('.state-tab-row').querySelectorAll('.state-tab-btn').forEach(b => b.classList.remove('active'));
+    document.querySelectorAll('.state-panel').forEach(p => p.classList.remove('active'));
+    btn.classList.add('active');
+    document.getElementById(panelId).classList.add('active');
+    lucide.createIcons();
+  }
+
+  const sections = ['definition','anatomy','variants','properties','usage','tokens','accessibility','related'];
+  const observer = new IntersectionObserver(entries => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        document.querySelectorAll('.rn-list a').forEach(a => a.classList.remove('active'));
+        const link = document.getElementById('rn-' + e.target.id);
+        if (link) link.classList.add('active');
+      }
+    });
+  }, { rootMargin: '-20% 0px -70% 0px' });
+  sections.forEach(id => {
+    const el = document.getElementById(id);
+    if (el) observer.observe(el);
+  });
+
+  /* ── token data ── */
+  const tmColorLight = [
+    {role:'Track Inactive',   token:'slider/track-inactive', ref:'color/border/interactive',      hex:'#CDD2D7'},
+    {role:'Track Active',     token:'slider/track-active',   ref:'color/action/secondary/default', hex:'#027CB1'},
+    {role:'Thumb',            token:'slider/thumb',          ref:'color/surface/card',             hex:'#FFFFFF'},
+    {role:'Badge Background', token:'slider/badge-bg',       ref:'color/action/secondary/default', hex:'#027CB1'},
+    {role:'Badge Text',       token:'slider/badge-text',     ref:'color/text/inverse',             hex:'#FFFFFF'},
+    {role:'Label',            token:'slider/label',          ref:'color/text/label',               hex:'#374151'},
+    {role:'Range Labels',     token:'slider/range-label',    ref:'color/text/secondary',           hex:'#4B5563'},
+    {role:'Focus Glow',       token:'slider/focus-glow',     ref:'color/effect/focus-glow',        hex:'rgba(90,191,224,0.35)'},
+  ];
+  const tmColorDark = [
+    {role:'Track Inactive',   token:'slider/track-inactive', ref:'color/border/interactive',      hex:'#4B5563'},
+    {role:'Track Active',     token:'slider/track-active',   ref:'color/action/secondary/default', hex:'#027CB1'},
+    {role:'Thumb',            token:'slider/thumb',          ref:'color/surface/card',             hex:'#FFFFFF'},
+    {role:'Badge Background', token:'slider/badge-bg',       ref:'color/action/secondary/default', hex:'#027CB1'},
+    {role:'Badge Text',       token:'slider/badge-text',     ref:'color/text/inverse',             hex:'#FFFFFF'},
+    {role:'Label',            token:'slider/label',          ref:'color/text/label',               hex:'#F3F4F6'},
+    {role:'Range Labels',     token:'slider/range-label',    ref:'color/text/secondary',           hex:'#9CA3AF'},
+    {role:'Focus Glow',       token:'slider/focus-glow',     ref:'color/effect/focus-glow',        hex:'rgba(0,131,187,0.35)'},
+  ];
+  const tmComponentTokens = [
+    {role:'Track Height', icon:'minus',    component:'slider/track-height', primitive:'spacing/1x',     value:'4px'},
+    {role:'Thumb Size',   icon:'maximize', component:'slider/thumb-size',   primitive:'size/control-md', value:'24px'},
+    {role:'Badge Radius', icon:'radius',   component:'slider/badge-radius', primitive:'radius/sm',       value:'4px'},
+  ];
+  const tmTypographyTokens = [
+    {role:'Label',        style:'typography/body/label',           font:'Lato', weight:'Bold (700)',    size:'12px', lineHeight:'16px', letterSpacing:'0'},
+    {role:'Badge Value',  style:'typography/link/standalone-small',font:'Lato', weight:'Regular (400)', size:'14px', lineHeight:'19px', letterSpacing:'0'},
+    {role:'Range Labels', style:'typography/body/label',           font:'Lato', weight:'Bold (700)',    size:'12px', lineHeight:'16px', letterSpacing:'0'},
+  ];
+
+  const tmTotalTokens = tmColorLight.length + tmComponentTokens.length + tmTypographyTokens.length;
+  const tmState = { tab:'color', mode:'light' };
+  const tmCards = document.getElementById('tmCards');
+  const tmPreviewCard = document.querySelector('.tm-preview-card');
+  const arrowSvg = '<svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="width:20px;height:20px"><circle cx="5" cy="10" r="3"/><path d="M8 10h9m-3-3 3 3-3 3"/></svg>';
+
+  document.getElementById('tmCountNum').textContent = tmTotalTokens;
+
+  const tmPreview = document.getElementById('tmPreview');
+  function slug(s){ return s.toLowerCase().replace(/[^a-z0-9]+/g,'-').replace(/-+$/,''); }
+
+  /* Field-level tokens → outline .sl-field */
+  const fieldSlots = new Set(['focus-glow']);
+  /* Component tokens → magenta callout */
+  const compSpotlightMap = {
+    'track-height': 'spotlight-track-height',
+    'thumb-size':   'spotlight-thumb-size',
+    'badge-radius': 'spotlight-badge-radius',
+  };
+  /* Part-level tokens → dim others, highlight part */
+  const partSlots = {
+    'track-inactive': ['track'],
+    'track-active':   ['fill'],
+    'thumb':          ['thumb'],
+    'badge-bg':       ['badge'],
+    'badge-background':['badge'],
+    'badge-text':     ['badge'],
+    'label':          ['label'],
+    'range-label':    ['min','max'],
+    'range-labels':   ['min','max'],
+    'badge-value':    ['badge'],
+  };
+
+  const spotlightClasses = ['has-spotlight','spotlight-field','spotlight-track-height','spotlight-thumb-size','spotlight-badge-radius'];
+  function clearSpotlight(){ if(tmPreview){ spotlightClasses.forEach(c=>tmPreview.classList.remove(c)); tmPreview.querySelectorAll('[data-part]').forEach(p=>p.classList.remove('spotlight')); } }
+  function spotlight(sl){
+    if(!tmPreview) return;
+    if(compSpotlightMap[sl]){ tmPreview.classList.add(compSpotlightMap[sl]); return; }
+    if(fieldSlots.has(sl)){ tmPreview.classList.add('has-spotlight','spotlight-field'); return; }
+    const parts = partSlots[sl];
+    if(!parts) return;
+    tmPreview.classList.add('has-spotlight');
+    parts.forEach(p=>{ const el=tmPreview.querySelector('[data-part="'+p+'"]'); if(el) el.classList.add('spotlight'); });
+  }
+
+  function tmRender() {
+    const theme = tmState.mode;
+    const colors = theme === 'light' ? tmColorLight : tmColorDark;
+    tmPreviewCard.setAttribute('data-bg', theme);
+
+    let html = '';
+    if (tmState.tab === 'color') {
+      for (const c of colors) { const s = slug(c.role);
+        html += '<div class="tm-row" data-slot="'+s+'">'
+          + '<div class="tm-row-header"><div class="tm-row-swatch" style="background:'+c.hex+(c.hex.startsWith('rgba')?';border:1px solid var(--border)':'')+'" ></div><div class="tm-row-label">'+c.role+'</div></div>'
+          + '<div class="tm-chain-row">'
+          + '<div class="tm-chip">'+c.token+'</div>'
+          + '<div class="tm-chain-arrow">'+arrowSvg+'</div>'
+          + '<div class="tm-chip">'+(c.ref||c.token)+'</div>'
+          + '<div class="tm-chain-arrow">'+arrowSvg+'</div>'
+          + '<div class="tm-chip" style="font-weight:600">'+c.hex+'</div>'
+          + '</div></div>';
+      }
+    } else if (tmState.tab === 'component') {
+      for (const ct of tmComponentTokens) { const s = slug(ct.role);
+        html += '<div class="tm-row" data-slot="'+s+'">'
+          + '<div class="tm-row-header"><div class="tm-row-icon"><i data-lucide="'+ct.icon+'" style="width:16px;height:16px"></i></div><div class="tm-row-label">'+ct.role+'</div></div>'
+          + '<div class="tm-chain-row">'
+          + '<div class="tm-chip">'+ct.component+'</div>'
+          + '<div class="tm-chain-arrow">'+arrowSvg+'</div>'
+          + '<div class="tm-chip">'+ct.primitive+'</div>'
+          + '<div class="tm-chain-arrow">'+arrowSvg+'</div>'
+          + '<div class="tm-chip" style="font-weight:600">'+ct.value+'</div>'
+          + '</div></div>';
+      }
+    } else {
+      for (const tt of tmTypographyTokens) { const s = slug(tt.role);
+        html += '<div class="tm-row" data-slot="'+s+'">'
+          + '<div class="tm-row-header"><div class="tm-row-icon"><i data-lucide="type" style="width:16px;height:16px"></i></div><div class="tm-row-label">'+tt.role+'</div></div>'
+          + '<div class="tm-chain-row" style="flex-direction:column;align-items:flex-start;gap:6px;">'
+          + '<div style="display:flex;align-items:center;gap:10px;flex-wrap:wrap;"><div class="tm-chip">'+tt.style+'</div></div>'
+          + '<div style="display:flex;align-items:center;gap:8px;flex-wrap:wrap;font-family:var(--mono);font-size:12px;color:var(--text-tertiary);">'
+          + '<span>'+tt.font+'</span><span>·</span>'
+          + '<span>'+tt.weight+'</span><span>·</span>'
+          + '<span>'+tt.size+' / '+tt.lineHeight+'</span>'
+          + (tt.letterSpacing !== '0' ? '<span>·</span><span>ls: '+tt.letterSpacing+'</span>' : '')
+          + '</div></div></div>';
+      }
+    }
+    tmCards.innerHTML = html;
+
+    document.querySelectorAll('.tm-row[data-slot]').forEach(row => {
+      const sl = row.dataset.slot;
+      row.addEventListener('mouseenter', () => { row.classList.add('is-hot'); spotlight(sl); });
+      row.addEventListener('mouseleave', () => { row.classList.remove('is-hot'); clearSpotlight(); });
+    });
+    lucide.createIcons();
+  }
+
+  document.getElementById('tmModeToggle').addEventListener('click', () => {
+    tmState.mode = tmState.mode === 'light' ? 'dark' : 'light';
+    document.getElementById('tmModeLabel').textContent = tmState.mode === 'light' ? 'Light' : 'Dark';
+    const track = document.getElementById('tmModeTrack');
+    if (tmState.mode === 'dark') { track.classList.add('sw-on'); } else { track.classList.remove('sw-on'); }
+    tmRender();
+  });
+
+  document.querySelectorAll('.tm-seg-item[data-tab]').forEach(btn => {
+    btn.addEventListener('click', () => {
+      tmState.tab = btn.dataset.tab;
+      document.querySelectorAll('.tm-seg-item[data-tab]').forEach(b => b.classList.remove('tm-seg-item--active'));
+      btn.classList.add('tm-seg-item--active');
+      tmRender();
+    });
+  });
+
+  tmRender();
+</script>
+</body>
+</html>
