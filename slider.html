@@ -12,6 +12,10 @@
     /* slider token spotlights */
     #tmPreview { position:relative; }
     #tmPreview [data-part] { transition:outline-color 150ms, opacity 150ms; outline:2px solid transparent; outline-offset:2px; border-radius:3px; }
+    #tmPreview [data-part="thumb"] { border-radius:50%; }
+    /* Compact preview card height for the slider (component is short) */
+    .tm-map .tm-preview-card { min-height:240px; }
+    .tm-map .tm-preview-inner { padding:40px 32px; }
     #tmPreview.has-spotlight [data-part] { opacity:0.3; }
     #tmPreview.has-spotlight [data-part].spotlight { opacity:1; outline-color:var(--tm-accent); }
     #tmPreview.spotlight-field .sl-field { outline:2px solid var(--tm-accent); outline-offset:4px; border-radius:4px; }
