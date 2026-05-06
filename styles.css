@@ -2534,6 +2534,58 @@ code {
 .var-preview-dark .sw-row--disabled .sw-label,
 .var-preview-dark .sw-row--disabled .sw-desc { color: #6B7280; }
 
+/* ─── TB · Tabs ─────────────────────────────────── */
+/* Horizontal Underline */
+.tb-underline { display:inline-flex; border-bottom:1px solid var(--border); }
+.tb-ul-item { display:flex; align-items:center; gap:8px; padding:12px 16px; font-size:16px; line-height:22px; color:var(--text-primary); border-bottom:1px solid transparent; margin-bottom:-1px; cursor:pointer; white-space:nowrap; position:relative; }
+.tb-ul-item--active { border-bottom:3px solid var(--action-secondary); margin-bottom:-1px; font-weight:400; }
+.tb-ul-item--hover { border-bottom-color:#016692; }
+.tb-ul-item--disabled { color:var(--text-disabled); border-bottom-color:var(--border-disabled); cursor:not-allowed; }
+.tb-ul-item--focus { box-shadow:0 0 0 1px var(--border-focus), 0 0 0 5px rgba(90,191,224,0.35); border-radius:4px; }
+.tb-badge { display:inline-flex; align-items:center; padding:0 8px; background:var(--action-secondary); border-radius:2px; font-size:10px; font-weight:700; line-height:18px; color:#FFFFFF; letter-spacing:0.35px; text-transform:uppercase; }
+.tb-ul-icon { width:20px; height:20px; flex-shrink:0; color:var(--text-secondary); }
+
+/* Horizontal Contained */
+.tb-contained { display:inline-flex; }
+.tb-ct-item { display:flex; align-items:center; justify-content:center; gap:8px; padding:16px; font-size:16px; line-height:22px; color:var(--text-primary); border:1px solid var(--border); border-right:none; cursor:pointer; white-space:nowrap; background:var(--surface-layer01); }
+.tb-ct-item:last-child { border-right:1px solid var(--border); }
+.tb-ct-item--selected { background:#E5EEF5; border-bottom:3px solid var(--action-secondary); color:#004F70; }
+.tb-ct-item--hover { background:#B7DBEE; }
+.tb-ct-item--disabled { background:#EFF1F3; color:var(--text-disabled); border-color:var(--border-disabled); cursor:not-allowed; }
+.tb-ct-item--focus { box-shadow:0 0 0 1px var(--border-focus), 0 0 0 5px rgba(90,191,224,0.35); border-radius:0; position:relative; z-index:1; }
+
+/* Vertical */
+.tb-vertical { display:flex; flex-direction:column; border-left:1px solid var(--border); }
+.tb-vt-item { display:flex; align-items:center; gap:8px; padding:6px 0 6px 16px; font-size:14px; line-height:19px; color:var(--text-secondary); border-left:1px solid transparent; margin-left:-1px; cursor:pointer; white-space:nowrap; }
+.tb-vt-item--selected { border-left-color:#016692; color:var(--action-secondary); }
+.tb-vt-item--hover { border-left-color:#016692; }
+.tb-vt-item--disabled { color:var(--text-disabled); border-left-color:var(--border-disabled); cursor:not-allowed; }
+.tb-vt-item--focus { box-shadow:0 0 0 1px var(--border-focus), 0 0 0 5px rgba(90,191,224,0.35); border-radius:4px; margin-left:16px; padding-left:8px; }
+.tb-vt-icon { width:20px; height:20px; flex-shrink:0; }
+
+/* var-preview light */
+.var-preview .tb-ul-item--active { border-bottom-color:#027CB1; }
+.var-preview .tb-badge { background:#027CB1; }
+.var-preview .tb-ct-item--selected { background:#E5EEF5; border-bottom-color:#027CB1; color:#004F70; }
+.var-preview .tb-ct-item--hover { background:#B7DBEE; }
+.var-preview .tb-vt-item--selected { border-left-color:#016692; color:#027CB1; }
+
+/* var-preview-dark */
+.var-preview-dark .tb-underline { border-color:#6B7280; }
+.var-preview-dark .tb-ul-item { color:#FFFFFF; }
+.var-preview-dark .tb-ul-item--active { border-bottom-color:#5ABFE0; }
+.var-preview-dark .tb-ul-item--disabled { color:#6B7280; border-bottom-color:#374151; }
+.var-preview-dark .tb-badge { background:#35A8D6; }
+.var-preview-dark .tb-contained { }
+.var-preview-dark .tb-ct-item { background:#0A0A0A; border-color:#6B7280; color:#FFFFFF; }
+.var-preview-dark .tb-ct-item--selected { background:#001F33; border-bottom-color:#5ABFE0; color:#8FCBE6; }
+.var-preview-dark .tb-ct-item--hover { background:#1A3A4A; }
+.var-preview-dark .tb-ct-item--disabled { background:#1F2937; color:#6B7280; border-color:#374151; }
+.var-preview-dark .tb-vertical { border-color:#6B7280; }
+.var-preview-dark .tb-vt-item { color:#E5E7EB; }
+.var-preview-dark .tb-vt-item--selected { border-left-color:#5ABFE0; color:#5ABFE0; }
+.var-preview-dark .tb-vt-item--disabled { color:#6B7280; border-left-color:#374151; }
+
 /* ─── TM · Token Map (shared) ──────────────────── */
 :root { --mono: ui-monospace, "SF Mono", "Menlo", Consolas, monospace; --tm-accent: #027CB1; }
 .tm-map { display:grid; grid-template-columns:1fr 1fr; gap:24px; align-items:start; }
@@ -2775,3 +2827,100 @@ code {
 .var-preview-dark .sl-wrap--disabled .sl-badge::after { border-top-color:#374151; }
 .var-preview-dark .sl-wrap--disabled .sl-label { color:#6B7280; }
 .var-preview-dark .sl-wrap--disabled .sl-min, .var-preview-dark .sl-wrap--disabled .sl-max { color:#6B7280; }
+
+/* ── Tabs Component ──────────────────────────────────────────── */
+
+/* ── Shared tab-badge ── */
+.tab-badge { display:inline-flex; align-items:center; justify-content:center; font-size:10px; font-weight:700; line-height:18px; letter-spacing:0.35px; text-transform:uppercase; font-family:var(--font); background:#027CB1; color:#FFFFFF; padding:0 8px; border-radius:2px; white-space:nowrap; }
+
+/* ── Underline Tabs (tu-*) ──
+   Figma: active text = text-primary (#374151) — same as default.
+   Only the 3px bottom border distinguishes the active tab. ── */
+.tu-bar { display:flex; align-items:flex-end; border-bottom:1px solid var(--border); gap:0; }
+.tu-item { position:relative; display:flex; align-items:center; gap:8px; padding:12px 16px; font-size:16px; font-weight:400; line-height:22px; font-family:var(--font); color:var(--text-primary); cursor:pointer; border-bottom:3px solid transparent; margin-bottom:-1px; white-space:nowrap; transition:color 0.15s, border-color 0.15s; }
+.tu-item:hover { border-bottom-color:var(--border); }
+.tu-item--active { border-bottom-color:var(--action-secondary); }
+.tu-item--disabled { color:var(--text-disabled); border-bottom-color:transparent; cursor:not-allowed; pointer-events:none; }
+.tu-item-icon { width:20px; height:20px; flex-shrink:0; }
+/* var-preview light — hardcoded to isolate from global theme */
+.var-preview .tu-bar { border-bottom-color:#CDD2D7; }
+.var-preview .tu-item { color:#374151; border-bottom-color:transparent; }
+.var-preview .tu-item:hover { border-bottom-color:#CDD2D7; }
+.var-preview .tu-item--active { color:#374151; border-bottom-color:#027CB1; }
+.var-preview .tu-item--disabled { color:#9CA3AF; border-bottom-color:transparent; }
+/* var-preview-dark */
+.var-preview-dark .tu-bar { border-bottom-color:#4B5563; }
+.var-preview-dark .tu-item { color:#F3F4F6; border-bottom-color:transparent; }
+.var-preview-dark .tu-item:hover { border-bottom-color:#4B5563; }
+.var-preview-dark .tu-item--active { color:#F3F4F6; border-bottom-color:#027CB1; }
+.var-preview-dark .tu-item--disabled { color:#6B7280; border-bottom-color:transparent; }
+
+/* ── Contained Tabs (tc-*) ──
+   Figma: icon = 18px; selected text = #004F70; default bg = #F9FAFB.
+   Items have border-top + border-right (+ border-left on first).
+   Non-selected items also have border-bottom 1px; selected has 3px blue.
+   margin-bottom:-1px lets selected tab's 3px border overlap the bar's 1px. ── */
+.tc-bar { display:flex; align-items:stretch; border-bottom:1px solid var(--border); gap:0; }
+.tc-item { position:relative; display:flex; align-items:center; gap:8px; padding:12px 16px; font-size:16px; font-weight:400; line-height:22px; font-family:var(--font); color:var(--text-primary); cursor:pointer; background:#F9FAFB; border-top:1px solid var(--border); border-right:1px solid var(--border); border-bottom:1px solid var(--border); margin-bottom:0; white-space:nowrap; transition:background 0.15s, color 0.15s; }
+.tc-item:first-child { border-left:1px solid var(--border); }
+.tc-item:hover { background:var(--surface); }
+.tc-item--selected { background:#E5EEF5; color:#004F70; border-bottom:3px solid #027CB1; margin-bottom:-1px; }
+.tc-item--disabled { color:var(--text-disabled); background:#EFF1F3; border-color:#E5E7EB; cursor:not-allowed; pointer-events:none; }
+.tc-item-icon { width:20px; height:20px; flex-shrink:0; }
+/* var-preview light */
+.var-preview .tc-bar { border-bottom-color:#CDD2D7; }
+.var-preview .tc-item { background:#F9FAFB; color:#374151; border-color:#CDD2D7; }
+.var-preview .tc-item:hover { background:#F3F4F6; }
+.var-preview .tc-item--selected { background:#E5EEF5; color:#004F70; border-color:#CDD2D7; border-bottom-color:#027CB1; border-bottom-width:3px; }
+.var-preview .tc-item--disabled { background:#EFF1F3; color:#9CA3AF; border-color:#E5E7EB; }
+/* var-preview-dark */
+.var-preview-dark .tc-bar { border-bottom-color:#374151; }
+.var-preview-dark .tc-item { background:#1F2937; color:#F3F4F6; border-color:#374151; }
+.var-preview-dark .tc-item:hover { background:#374151; }
+.var-preview-dark .tc-item--selected { background:#0F2E3E; color:#5ABFE0; border-color:#374151; border-bottom-color:#027CB1; border-bottom-width:3px; }
+.var-preview-dark .tc-item--disabled { background:#111827; color:#6B7280; border-color:#1F2937; }
+
+/* ── Vertical Tabs (tv-*) ──
+   Figma: icon = 24px; font = 14px; selected text = #027CB1.
+   Left border (1px) on container, selected item overrides with 2px blue. ── */
+.tv-bar { display:flex; flex-direction:column; gap:0; border-right:1px solid var(--border); padding:4px 0; min-width:160px; }
+.tv-item { display:flex; align-items:center; gap:8px; padding:6px 16px; font-size:14px; font-weight:400; line-height:19px; font-family:var(--font); color:var(--text-secondary); cursor:pointer; border-left:2px solid transparent; margin-left:-1px; white-space:nowrap; transition:color 0.15s, border-color 0.15s, background 0.15s; }
+.tv-item:hover { color:var(--text-primary); background:var(--surface-hover); }
+.tv-item--selected { color:#027CB1; border-left-color:#027CB1; font-weight:400; }
+.tv-item--disabled { color:var(--text-disabled); cursor:not-allowed; pointer-events:none; }
+.tv-item-icon { width:20px; height:20px; flex-shrink:0; }
+/* var-preview light */
+.var-preview .tv-bar { border-right-color:#CDD2D7; }
+.var-preview .tv-item { color:#4B5563; border-left-color:transparent; }
+.var-preview .tv-item:hover { color:#374151; background:#F3F4F6; }
+.var-preview .tv-item--selected { color:#027CB1; border-left-color:#027CB1; }
+.var-preview .tv-item--disabled { color:#9CA3AF; }
+/* var-preview-dark */
+.var-preview-dark .tv-bar { border-right-color:#374151; }
+.var-preview-dark .tv-item { color:#9CA3AF; border-left-color:transparent; }
+.var-preview-dark .tv-item:hover { color:#F3F4F6; background:#1F2937; }
+.var-preview-dark .tv-item--selected { color:#5ABFE0; border-left-color:#027CB1; }
+.var-preview-dark .tv-item--disabled { color:#6B7280; }
+
+/* ── tm-preview-card isolation ── */
+/* Underline */
+.tm-preview-card[data-bg="light"] .tu-bar { border-bottom-color:#CDD2D7; }
+.tm-preview-card[data-bg="light"] .tu-item { color:#374151; border-bottom-color:transparent; }
+.tm-preview-card[data-bg="light"] .tu-item--active { color:#374151; border-bottom-color:#027CB1; }
+.tm-preview-card[data-bg="dark"] .tu-bar { border-bottom-color:#4B5563; }
+.tm-preview-card[data-bg="dark"] .tu-item { color:#F3F4F6; border-bottom-color:transparent; }
+.tm-preview-card[data-bg="dark"] .tu-item--active { color:#F3F4F6; border-bottom-color:#027CB1; }
+/* Contained */
+.tm-preview-card[data-bg="light"] .tc-bar { border-bottom-color:#CDD2D7; }
+.tm-preview-card[data-bg="light"] .tc-item { background:#F9FAFB; color:#374151; border-color:#CDD2D7; }
+.tm-preview-card[data-bg="light"] .tc-item--selected { background:#E5EEF5; color:#004F70; border-color:#CDD2D7; border-bottom-color:#027CB1; border-bottom-width:3px; }
+.tm-preview-card[data-bg="dark"] .tc-bar { border-bottom-color:#374151; }
+.tm-preview-card[data-bg="dark"] .tc-item { background:#1F2937; color:#F3F4F6; border-color:#374151; }
+.tm-preview-card[data-bg="dark"] .tc-item--selected { background:#0F2E3E; color:#5ABFE0; border-color:#374151; border-bottom-color:#027CB1; border-bottom-width:3px; }
+/* Vertical */
+.tm-preview-card[data-bg="light"] .tv-bar { border-right-color:#CDD2D7; }
+.tm-preview-card[data-bg="light"] .tv-item { color:#4B5563; border-left-color:transparent; }
+.tm-preview-card[data-bg="light"] .tv-item--selected { color:#027CB1; border-left-color:#027CB1; }
+.tm-preview-card[data-bg="dark"] .tv-bar { border-right-color:#374151; }
+.tm-preview-card[data-bg="dark"] .tv-item { color:#9CA3AF; border-left-color:transparent; }
+.tm-preview-card[data-bg="dark"] .tv-item--selected { color:#5ABFE0; border-left-color:#027CB1; }
