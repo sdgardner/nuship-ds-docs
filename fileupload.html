@@ -17,6 +17,9 @@
     #tmPreview.spotlight-dropzone-gap::after { content:'16px'; position:absolute; top:-20px; left:50%; font-size:10px; font-family:var(--mono); color:#FF4081; background:rgba(255,255,255,0.9); padding:1px 4px; border-radius:2px; font-weight:700; }
     #tmPreview.spotlight-dropzone-padding { outline:2px solid #FF4081; outline-offset:-1px; border-radius:8px; }
     #tmPreview.spotlight-dropzone-padding::after { content:'40×32px'; position:absolute; top:4px; left:4px; font-size:10px; font-family:var(--mono); color:#FF4081; background:rgba(255,255,255,0.9); padding:1px 4px; border-radius:2px; font-weight:700; }
+    #tmPreview [data-part] { transition:outline-color 150ms, opacity 150ms; outline:2px solid transparent; outline-offset:2px; border-radius:3px; }
+    #tmPreview.has-spotlight [data-part] { opacity:0.3; }
+    #tmPreview.has-spotlight [data-part].spotlight { opacity:1; outline-color:var(--tm-accent); }
   </style>
 </head>
 <body>
@@ -64,6 +67,7 @@
           <li><a href="switch.html">Switch</a></li>
           <li><a href="#">Text Area</a></li>
           <li><a href="#">Text Input</a></li>
+          <li><a href="tile.html">Tile</a></li>
         </ul>
       </div>
       <div class="ln-group">
@@ -931,14 +935,14 @@
                   <div class="tm-preview-card" data-bg="light">
                     <div class="tm-preview-inner"><div id="tmPreview" class="tm-preview">
       
-                <div class="fuz-zone fuz-zone--empty" style="max-width:280px;">
+                <div class="fuz-zone fuz-zone--empty" data-part="zone" style="max-width:280px;">
                   <div class="fuz-content">
                     <div class="fuz-icon"><i data-lucide="upload"></i></div>
                     <div class="fuz-text">
-                      <span class="fuz-title">Drag files here</span>
-                      <span class="fuz-subtitle">or click to browse</span>
+                      <span class="fuz-title" data-part="headline">Drag files here</span>
+                      <span class="fuz-subtitle" data-part="subtext">or click to browse</span>
                     </div>
-                    <button class="fuz-btn">Browse Files</button>
+                    <button class="fuz-btn" data-part="button">Browse Files</button>
                   </div>
                 </div>
                     </div>
@@ -1107,7 +1111,17 @@
 
 
   const tmPreview = document.getElementById('tmPreview');
-  const partMap = {};
+  const partMap = {
+    'zone-background':['zone'],
+    'zone-border-default':['zone'],
+    'zone-border-uploading':['zone'],
+    'zone-border-error':['zone'],
+    'headline-text':['headline'],
+    'sub-text':['subtext'],
+    'browse-button':['button'],
+    'error-summary':['zone'],
+    'headline':['headline'],
+  };
   function slug(s){ return s.toLowerCase().replace(/[^a-z0-9]+/g,'-').replace(/-+$/,''); }
   const compSpotlightMap = {'radius':'spotlight-radius','dropzone-gap':'spotlight-dropzone-gap','dropzone-padding':'spotlight-dropzone-padding'};
   const spotlightClasses = ['has-spotlight','spotlight-radius','spotlight-dropzone-gap','spotlight-dropzone-padding'];

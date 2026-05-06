@@ -9,7 +9,11 @@
   <link rel="stylesheet" href="styles.css">
   <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.min.js"></script>
   <style>
-    /* carousel component token spotlights */#tmPreview { position:relative; }
+    /* carousel component token spotlights */
+    #tmPreview { position:relative; }
+    #tmPreview [data-part] { transition:outline-color 150ms, opacity 150ms; outline:2px solid transparent; outline-offset:2px; border-radius:3px; }
+    #tmPreview.has-spotlight [data-part] { opacity:0.3; }
+    #tmPreview.has-spotlight [data-part].spotlight { opacity:1; outline-color:var(--tm-accent); }
   </style>
 </head>
 <body>
@@ -57,6 +61,7 @@
           <li><a href="switch.html">Switch</a></li>
           <li><a href="#">Text Area</a></li>
           <li><a href="#">Text Input</a></li>
+          <li><a href="tile.html">Tile</a></li>
         </ul>
       </div>
       <div class="ln-group">
@@ -669,13 +674,13 @@
                     <div class="tm-preview-inner"><div id="tmPreview" class="tm-preview">
       
                 <div style="display:flex;flex-direction:column;align-items:center;gap:12px;">
-                  <div style="width:200px;height:120px;border-radius:8px;background:var(--surface-layer02);border:1px solid var(--border);display:flex;align-items:center;justify-content:center;">
+                  <div data-part="photo" style="width:200px;height:120px;border-radius:8px;background:var(--surface-layer02);border:1px solid var(--border);display:flex;align-items:center;justify-content:center;">
                     <i data-lucide="image" style="width:32px;height:32px;color:var(--text-tertiary)"></i>
                   </div>
                   <div style="display:flex;gap:8px;align-items:center;">
-                    <div class="ic-dot ic-dot--default"></div>
-                    <div class="ic-dot ic-dot--active"></div>
-                    <div class="ic-dot ic-dot--default"></div>
+                    <div class="ic-dot ic-dot--default" data-part="inactive-dot"></div>
+                    <div class="ic-dot ic-dot--active" data-part="active-dot"></div>
+                    <div class="ic-dot ic-dot--default" data-part="inactive-dot"></div>
                   </div>
                 </div>
                     </div>
@@ -838,7 +843,15 @@
 
 
   const tmPreview = document.getElementById('tmPreview');
-  const partMap = {};
+  const partMap = {
+    'photo-border':['photo'],
+    'active-dot':['active-dot'],
+    'inactive-dot-fill':['inactive-dot'],
+    'inactive-dot-border':['inactive-dot'],
+    'arrow-icon':['photo'],
+    'expand-button':['photo'],
+    'badge':['photo'],
+  };
   function slug(s){ return s.toLowerCase().replace(/[^a-z0-9]+/g,'-').replace(/-+$/,''); }
   const compSpotlightMap = {'dot-gap':'spotlight-dot-gap','nav-gap':'spotlight-nav-gap'};
   const spotlightClasses = ['has-spotlight','spotlight-dot-gap','spotlight-nav-gap'];

@@ -19,6 +19,9 @@
     #tmPreview.spotlight-radius::after { content:'8px'; position:absolute; top:-16px; left:-2px; font-size:10px; font-family:var(--mono); color:#FF4081; background:rgba(255,255,255,0.9); padding:1px 4px; border-radius:2px; font-weight:700; }
     #tmPreview.spotlight-body-footer-gap { outline:2px solid #FF4081; outline-offset:8px; border-radius:8px; }
     #tmPreview.spotlight-body-footer-gap::after { content:'32px'; position:absolute; bottom:-20px; left:50%; font-size:10px; font-family:var(--mono); color:#FF4081; background:rgba(255,255,255,0.9); padding:1px 4px; border-radius:2px; font-weight:700; }
+    #tmPreview [data-part] { transition:outline-color 150ms, opacity 150ms; outline:2px solid transparent; outline-offset:2px; border-radius:3px; }
+    #tmPreview.has-spotlight [data-part] { opacity:0.3; }
+    #tmPreview.has-spotlight [data-part].spotlight { opacity:1; outline-color:var(--tm-accent); }
   </style>
 </head>
 <body>
@@ -66,6 +69,7 @@
           <li><a href="switch.html">Switch</a></li>
           <li><a href="#">Text Area</a></li>
           <li><a href="#">Text Input</a></li>
+          <li><a href="tile.html">Tile</a></li>
         </ul>
       </div>
       <div class="ln-group">
@@ -669,15 +673,15 @@
                   <div class="tm-preview-card" data-bg="light">
                     <div class="tm-preview-inner"><div id="tmPreview" class="tm-preview">
       
-                <div class="md-modal" style="position:relative;z-index:auto;box-shadow:none;max-width:320px;">
-                  <div class="md-header">
+                <div class="md-modal" data-part="field" style="position:relative;z-index:auto;box-shadow:none;max-width:320px;">
+                  <div class="md-header" data-part="header">
                     <div class="md-title-group">
-                      <i data-lucide="info" class="md-icon md-icon--default"></i>
+                      <i data-lucide="info" class="md-icon md-icon--default" data-part="icon"></i>
                       <h3 class="md-title">Confirm action</h3>
                     </div>
                     <button class="md-close" aria-label="Close"><i data-lucide="x"></i></button>
                   </div>
-                  <div class="md-body"><p class="md-desc">Are you sure you want to proceed?</p></div>
+                  <div class="md-body" data-part="body"><p class="md-desc">Are you sure you want to proceed?</p></div>
                   <div class="md-footer">
                     <button class="md-btn-cancel">Cancel</button>
                     <button class="md-btn-confirm md-btn-confirm--default">Confirm</button>

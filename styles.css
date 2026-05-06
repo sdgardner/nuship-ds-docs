@@ -2586,6 +2586,55 @@ code {
 .var-preview-dark .tb-vt-item--selected { border-left-color:#5ABFE0; color:#5ABFE0; }
 .var-preview-dark .tb-vt-item--disabled { color:#6B7280; border-left-color:#374151; }
 
+/* ─── TL · Tile ─────────────────────────────────── */
+.tl-tile { width:140px; height:160px; border:1px solid var(--border); border-radius:4px; background:var(--surface-layer02); padding:12px; display:flex; gap:12px; flex-direction:column; align-items:flex-start; cursor:pointer; position:relative; transition:border-color .12s, box-shadow .12s; }
+.tl-tile--selected { border-color:var(--action-secondary); border-width:2px; padding:11px; }
+.tl-tile--hover { border-color:var(--action-sec-hover, #016692); }
+.tl-tile--focus { border-color:var(--border-focus); box-shadow:0 0 0 4px rgba(90,191,224,.35); }
+.tl-tile--disabled { border-color:var(--border-disabled); background:var(--surface-layer01); cursor:not-allowed; }
+.tl-radio { width:18px; height:18px; flex-shrink:0; border-radius:50%; border:2px solid #9CA3AF; position:relative; box-sizing:border-box; }
+.tl-radio--selected { border-color:var(--action-secondary); }
+.tl-radio--selected::after { content:''; position:absolute; top:50%; left:50%; transform:translate(-50%,-50%); width:8px; height:8px; border-radius:50%; background:var(--action-secondary); }
+.tl-radio--disabled { border-color:var(--border-disabled); }
+.tl-checkbox { width:18px; height:18px; flex-shrink:0; border-radius:4px; border:2px solid #9CA3AF; display:flex; align-items:center; justify-content:center; box-sizing:border-box; }
+.tl-checkbox--selected { border-color:var(--action-secondary); background:var(--action-secondary); }
+.tl-checkbox--selected::after { content:''; display:block; width:10px; height:6px; border-left:2px solid #fff; border-bottom:2px solid #fff; transform:rotate(-45deg) translateY(-1px); }
+.tl-checkbox--disabled { border-color:var(--border-disabled); }
+.tl-label { font-size:14px; font-weight:600; line-height:19px; color:var(--text-primary); }
+.tl-label--disabled { color:var(--text-disabled); }
+.tl-icon { width:24px; height:24px; color:var(--text-secondary); }
+.tl-icon--disabled { color:var(--text-disabled); }
+
+/* var-preview light */
+.var-preview .tl-tile { border-color:#CDD2D7; background:#F4F6F8; }
+.var-preview .tl-tile--selected { border-color:#027CB1; }
+.var-preview .tl-tile--hover { border-color:#016692; }
+.var-preview .tl-tile--focus { border-color:#5ABFE0; box-shadow:0 0 0 4px rgba(90,191,224,.35); }
+.var-preview .tl-tile--disabled { border-color:#E5E7EB; background:#F9FAFB; }
+.var-preview .tl-radio { border-color:#9CA3AF; }
+.var-preview .tl-radio--selected { border-color:#027CB1; }
+.var-preview .tl-radio--selected::after { background:#027CB1; }
+.var-preview .tl-checkbox--selected { border-color:#027CB1; background:#027CB1; }
+.var-preview .tl-label { color:#374151; }
+.var-preview .tl-label--disabled { color:#9CA3AF; }
+.var-preview .tl-icon { color:#4B5563; }
+.var-preview .tl-icon--disabled { color:#9CA3AF; }
+
+/* var-preview-dark */
+.var-preview-dark .tl-tile { border-color:#6B7280; background:#1E1E1E; }
+.var-preview-dark .tl-tile--selected { border-color:#35A8D6; }
+.var-preview-dark .tl-tile--hover { border-color:#5ABFE0; }
+.var-preview-dark .tl-tile--focus { border-color:#0083BB; box-shadow:0 0 0 4px rgba(90,191,224,.35); }
+.var-preview-dark .tl-tile--disabled { border-color:#374151; background:#0A0A0A; }
+.var-preview-dark .tl-radio { border-color:#9CA3AF; }
+.var-preview-dark .tl-radio--selected { border-color:#35A8D6; }
+.var-preview-dark .tl-radio--selected::after { background:#35A8D6; }
+.var-preview-dark .tl-checkbox--selected { border-color:#35A8D6; background:#35A8D6; }
+.var-preview-dark .tl-label { color:#FFFFFF; }
+.var-preview-dark .tl-label--disabled { color:#6B7280; }
+.var-preview-dark .tl-icon { color:#E5E7EB; }
+.var-preview-dark .tl-icon--disabled { color:#6B7280; }
+
 /* ─── TM · Token Map (shared) ──────────────────── */
 :root { --mono: ui-monospace, "SF Mono", "Menlo", Consolas, monospace; --tm-accent: #027CB1; }
 .tm-map { display:grid; grid-template-columns:1fr 1fr; gap:24px; align-items:start; }

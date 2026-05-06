@@ -9,7 +9,11 @@
   <link rel="stylesheet" href="styles.css">
   <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.min.js"></script>
   <style>
-    /* avatar component token spotlights */#tmPreview { position:relative; }
+    /* avatar component token spotlights */
+    #tmPreview { position:relative; }
+    #tmPreview [data-part] { transition:outline-color 150ms, opacity 150ms; outline:2px solid transparent; outline-offset:2px; border-radius:3px; }
+    #tmPreview.has-spotlight [data-part] { opacity:0.3; }
+    #tmPreview.has-spotlight [data-part].spotlight { opacity:1; outline-color:var(--tm-accent); }
   </style>
 </head>
 <body>
@@ -57,6 +61,7 @@
           <li><a href="switch.html">Switch</a></li>
           <li><a href="#">Text Area</a></li>
           <li><a href="#">Text Input</a></li>
+          <li><a href="tile.html">Tile</a></li>
         </ul>
       </div>
       <div class="ln-group">
@@ -501,7 +506,7 @@
       
                 <div style="display:flex;align-items:center;gap:16px;">
                   <div class="av-wrap"><div class="av av--initials av--sm">TA</div><span class="av-badge"></span></div>
-                  <div class="av-wrap"><div class="av av--initials av--md">TA</div><span class="av-badge"></span></div>
+                  <div class="av-wrap"><div class="av av--initials av--md" data-part="avatar">TA</div><span class="av-badge" data-part="badge"></span></div>
                   <div class="av-wrap"><div class="av av--initials av--lg">TA</div><span class="av-badge"></span></div>
                 </div>
                     </div>
@@ -679,11 +684,11 @@
 
   const tmPreview = document.getElementById('tmPreview');
   const partMap = {
-      'background--initials-':[],'border':[],'initials-text':[],'badge-fill':[],'badge-border':[],
+      'background-initials':['avatar'],'border':['avatar'],'initials-text':['avatar'],'badge-fill':['badge'],'badge-border':['badge'],'initials':['avatar'],
     };
   function slug(s){ return s.toLowerCase().replace(/[^a-z0-9]+/g,'-').replace(/-+$/,''); }
-  const compSpotlightMap = {'size--sm-':'spotlight-size--sm-','size--md-':'spotlight-size--md-','size--lg-':'spotlight-size--lg-','indicator--sm-':'spotlight-indicator--sm-','indicator--md-':'spotlight-indicator--md-','indicator--lg-':'spotlight-indicator--lg-'};
-  const spotlightClasses = ['has-spotlight','spotlight-size--sm-','spotlight-size--md-','spotlight-size--lg-','spotlight-indicator--sm-','spotlight-indicator--md-','spotlight-indicator--lg-'];
+  const compSpotlightMap = {'size-xs':'spotlight-size-xs','size-sm':'spotlight-size-sm','size-md':'spotlight-size-md','size-lg':'spotlight-size-lg','size-xl':'spotlight-size-xl','size-2xl':'spotlight-size-2xl'};
+  const spotlightClasses = ['has-spotlight','spotlight-size-xs','spotlight-size-sm','spotlight-size-md','spotlight-size-lg','spotlight-size-xl','spotlight-size-2xl'];
   function clearSpotlight(){ if(tmPreview){spotlightClasses.forEach(c=>tmPreview.classList.remove(c)); tmPreview.querySelectorAll('[data-part]').forEach(p=>p.classList.remove('spotlight'));} }
   function spotlight(sl){
     if(!tmPreview) return;

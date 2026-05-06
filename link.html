@@ -13,6 +13,9 @@
     #tmPreview { position:relative; }
     #tmPreview.spotlight-gap { outline:2px solid #FF4081; outline-offset:4px; border-radius:2px; }
     #tmPreview.spotlight-gap::after { content:'4px'; position:absolute; top:-16px; left:50%; font-size:10px; font-family:var(--mono); color:#FF4081; background:rgba(255,255,255,0.9); padding:1px 4px; border-radius:2px; font-weight:700; }
+    #tmPreview [data-part] { transition:outline-color 150ms, opacity 150ms; outline:2px solid transparent; outline-offset:2px; border-radius:3px; }
+    #tmPreview.has-spotlight [data-part] { opacity:0.3; }
+    #tmPreview.has-spotlight [data-part].spotlight { opacity:1; outline-color:var(--tm-accent); }
   </style>
 </head>
 <body>
@@ -60,6 +63,7 @@
           <li><a href="switch.html">Switch</a></li>
           <li><a href="#">Text Area</a></li>
           <li><a href="#">Text Input</a></li>
+          <li><a href="tile.html">Tile</a></li>
         </ul>
       </div>
       <div class="ln-group">
@@ -581,7 +585,7 @@
                     <div class="tm-preview-inner"><div id="tmPreview" class="tm-preview">
       
                 <div style="display:flex;flex-direction:column;gap:8px;align-items:flex-start;">
-                  <a href="#" class="lk lk--md lk--s01" onclick="return false;">
+                  <a href="#" class="lk lk--md lk--s01" data-part="link" onclick="return false;">
                     Standalone link
                     <i data-lucide="arrow-right" class="lk-icon"></i>
                   </a>
@@ -780,7 +784,15 @@
 
 
   const tmPreview = document.getElementById('tmPreview');
-  const partMap = {};
+  const partMap = {
+    'default-surface-01':['link'],
+    'hover-surface-01':['link'],
+    'pressed-surface-01':['link'],
+    'disabled':['link'],
+    'default-card':['link'],
+    'hover-card':['link'],
+    'link-text':['link'],
+  };
   function slug(s){ return s.toLowerCase().replace(/[^a-z0-9]+/g,'-').replace(/-+$/,''); }
   const compSpotlightMap = {'gap':'spotlight-gap'};
   const spotlightClasses = ['has-spotlight','spotlight-gap'];

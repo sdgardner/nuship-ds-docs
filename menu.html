@@ -15,6 +15,9 @@
     #tmPreview.spotlight-radius::after { content:'6px'; position:absolute; top:-16px; left:-2px; font-size:10px; font-family:var(--mono); color:#FF4081; background:rgba(255,255,255,0.9); padding:1px 4px; border-radius:2px; font-weight:700; }
     #tmPreview.spotlight-padding { outline:2px solid #FF4081; outline-offset:-1px; border-radius:6px; }
     #tmPreview.spotlight-padding::after { content:'16×16px'; position:absolute; top:4px; left:4px; font-size:10px; font-family:var(--mono); color:#FF4081; background:rgba(255,255,255,0.9); padding:1px 4px; border-radius:2px; font-weight:700; }
+    #tmPreview [data-part] { transition:outline-color 150ms, opacity 150ms; outline:2px solid transparent; outline-offset:2px; border-radius:3px; }
+    #tmPreview.has-spotlight [data-part] { opacity:0.3; }
+    #tmPreview.has-spotlight [data-part].spotlight { opacity:1; outline-color:var(--tm-accent); }
   </style>
 </head>
 <body>
@@ -62,6 +65,7 @@
           <li><a href="switch.html">Switch</a></li>
           <li><a href="#">Text Area</a></li>
           <li><a href="#">Text Input</a></li>
+          <li><a href="tile.html">Tile</a></li>
         </ul>
       </div>
       <div class="ln-group">
@@ -618,11 +622,11 @@
                   <div class="tm-preview-card" data-bg="light">
                     <div class="tm-preview-inner"><div id="tmPreview" class="tm-preview">
       
-                <nav class="mn-menu" style="min-width:180px;position:relative;top:auto;left:auto;" aria-label="Example">
-                  <div class="mn-item">
+                <nav class="mn-menu" data-part="container" style="min-width:180px;position:relative;top:auto;left:auto;" aria-label="Example">
+                  <div class="mn-item" data-part="item">
                     <div class="mn-item-content">
-                      <i data-lucide="folder-plus" class="mn-icon"></i>
-                      <span class="mn-label">New Folder</span>
+                      <i data-lucide="folder-plus" class="mn-icon" data-part="icon"></i>
+                      <span class="mn-label" data-part="label">New Folder</span>
                     </div>
                     <span class="mn-kbd">Cmd+N</span>
                   </div>
@@ -630,7 +634,7 @@
                   <div class="mn-item mn-item--destructive">
                     <div class="mn-item-content">
                       <i data-lucide="trash-2" class="mn-icon"></i>
-                      <span class="mn-label">Delete</span>
+                      <span class="mn-label" data-part="destructive-label">Delete</span>
                     </div>
                   </div>
                 </nav>
@@ -823,7 +827,17 @@
 
 
   const tmPreview = document.getElementById('tmPreview');
-  const partMap = {};
+  const partMap = {
+    'background':['container'],
+    'border':['container'],
+    'item-label':['label'],
+    'item-icon':['icon'],
+    'hover-bg':['item'],
+    'disabled-text':['label'],
+    'destructive-label':['destructive-label'],
+    'item-label-1':['label'],
+    'keyboard-shortcut':['label'],
+  };
   function slug(s){ return s.toLowerCase().replace(/[^a-z0-9]+/g,'-').replace(/-+$/,''); }
   const compSpotlightMap = {'radius':'spotlight-radius','padding':'spotlight-padding'};
   const spotlightClasses = ['has-spotlight','spotlight-radius','spotlight-padding'];
