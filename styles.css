@@ -2635,6 +2635,42 @@ code {
 .var-preview-dark .tl-icon { color:#E5E7EB; }
 .var-preview-dark .tl-icon--disabled { color:#6B7280; }
 
+/* ─── TS · Toast ────────────────────────────────── */
+.ts-toast { display:flex; align-items:center; gap:12px; min-width:0; width:100%; padding:12px; border-radius:8px; border:1px solid; box-shadow:0 2px 6px rgba(45,55,70,0.12), 0 4px 10px rgba(55,65,80,0.08); color:#FFFFFF; box-sizing:border-box; }
+.ts-toast-icon { width:24px; height:24px; flex-shrink:0; color:#FFFFFF; }
+.ts-toast-content { display:flex; flex-direction:column; gap:4px; flex:1; min-width:0; }
+.ts-toast-header { font-size:16px; font-weight:700; line-height:22px; color:#FFFFFF; }
+.ts-toast-desc { font-size:14px; font-weight:400; line-height:19px; color:#FFFFFF; }
+.ts-toast-link { font-size:14px; line-height:19px; color:#FFFFFF; text-decoration:underline; padding:0 12px; cursor:pointer; flex-shrink:0; }
+.ts-toast-close { background:none; border:none; padding:0; cursor:pointer; color:#FFFFFF; flex-shrink:0; display:flex; align-items:center; justify-content:center; width:20px; height:20px; opacity:.85; transition:opacity .15s; }
+.ts-toast-close:hover { opacity:1; }
+.ts-toast-close i { width:20px; height:20px; }
+.ts-toast--error   { background:#A12F2F; border-color:#A12F2F; }
+.ts-toast--success { background:#006C21; border-color:#006C21; }
+.ts-toast--info    { background:#027CB1; border-color:#027CB1; }
+.ts-toast--warning { background:#A85A02; border-color:#A85A02; }
+
+/* var-preview overrides — toasts keep solid status fills in both themes,
+   only the surrounding card surface changes via tm-preview-card[data-bg] */
+.var-preview .ts-toast--error,
+.var-preview-dark .ts-toast--error   { background:#A12F2F; border-color:#A12F2F; }
+.var-preview .ts-toast--success,
+.var-preview-dark .ts-toast--success { background:#006C21; border-color:#006C21; }
+.var-preview .ts-toast--info,
+.var-preview-dark .ts-toast--info    { background:#027CB1; border-color:#027CB1; }
+.var-preview .ts-toast--warning,
+.var-preview-dark .ts-toast--warning { background:#A85A02; border-color:#A85A02; }
+.var-preview .ts-toast-header,
+.var-preview .ts-toast-desc,
+.var-preview .ts-toast-link,
+.var-preview-dark .ts-toast-header,
+.var-preview-dark .ts-toast-desc,
+.var-preview-dark .ts-toast-link { color:#FFFFFF; }
+.var-preview .ts-toast-icon,
+.var-preview-dark .ts-toast-icon { color:#FFFFFF; }
+.var-preview .ts-toast-close,
+.var-preview-dark .ts-toast-close { color:#FFFFFF; }
+
 /* ─── TM · Token Map (shared) ──────────────────── */
 :root { --mono: ui-monospace, "SF Mono", "Menlo", Consolas, monospace; --tm-accent: #027CB1; }
 .tm-map { display:grid; grid-template-columns:1fr 1fr; gap:24px; align-items:start; }
