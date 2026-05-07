@@ -2679,6 +2679,78 @@ code {
 .var-preview-dark .ts-toast--info    { background:#8FCBE6; border-color:#8FCBE6; color:#1F2937; }
 .var-preview-dark .ts-toast--warning { background:#E49A35; border-color:#E49A35; color:#1F2937; }
 
+/* ─── TT · Tooltip ──────────────────────────────── */
+.tt-tooltip { position:relative; display:inline-flex; align-items:center; gap:8px; background:#F9FAFB; border-radius:8px; box-shadow:0 4px 8px rgba(40,50,65,0.14), 0 6px 12px rgba(55,65,80,0.10); box-sizing:border-box; color:#374151; font-family:'Lato', sans-serif; }
+.tt-tooltip--simple { padding:8px 12px; }
+.tt-tooltip--simple.tt-tooltip--lg { padding:8px 12px; }
+.tt-tooltip--simple .tt-tooltip-text { font-size:14px; font-weight:400; line-height:19px; color:#374151; white-space:nowrap; }
+.tt-tooltip--simple.tt-tooltip--lg .tt-tooltip-text { font-size:16px; line-height:22px; }
+.tt-tooltip--descriptive { padding:12px 16px; width:320px; align-items:flex-start; }
+.tt-tooltip--descriptive .tt-tooltip-content { display:flex; flex-direction:column; gap:8px; flex:1; min-width:0; }
+.tt-tooltip--descriptive .tt-tooltip-header { font-size:14px; font-weight:700; line-height:20px; color:#374151; }
+.tt-tooltip--descriptive .tt-tooltip-body { font-size:14px; font-weight:400; line-height:19px; color:#4B5563; }
+.tt-tooltip--descriptive.tt-tooltip--lg .tt-tooltip-header { font-size:16px; line-height:20px; }
+.tt-tooltip--descriptive.tt-tooltip--lg .tt-tooltip-body { font-size:16px; line-height:22px; }
+.tt-tooltip-close { background:none; border:none; padding:0; cursor:pointer; color:#374151; flex-shrink:0; display:flex; align-items:center; justify-content:center; width:14px; height:14px; opacity:.85; transition:opacity .15s; }
+.tt-tooltip-close i { width:14px; height:14px; }
+.tt-tooltip--lg .tt-tooltip-close { width:16px; height:16px; }
+.tt-tooltip--lg .tt-tooltip-close i { width:16px; height:16px; }
+.tt-tooltip-close:hover { opacity:1; }
+/* Arrow tips — sharp CSS triangles */
+.tt-tooltip::after {
+  content:''; position:absolute; width:0; height:0;
+  border-left:10px solid transparent; border-right:10px solid transparent;
+  border-top:12px solid transparent; border-bottom:12px solid transparent;
+}
+.tt-tooltip--bottom::after { top:100%; left:24px; border-top-color:#F9FAFB; border-bottom:0; }
+.tt-tooltip--up::after     { bottom:100%; left:24px; border-bottom-color:#F9FAFB; border-top:0; }
+.tt-tooltip--right::after  { left:100%; top:50%; transform:translateY(-50%); border-left:12px solid #F9FAFB; border-right:0; border-top:10px solid transparent; border-bottom:10px solid transparent; }
+.tt-tooltip--left::after   { right:100%; top:50%; transform:translateY(-50%); border-right:12px solid #F9FAFB; border-left:0; border-top:10px solid transparent; border-bottom:10px solid transparent; }
+
+/* Dark mode */
+[data-theme="dark"] .tt-tooltip { background:#1E1E1E; color:#FFFFFF; box-shadow:0 4px 8px rgba(0,0,0,0.4), 0 6px 12px rgba(0,0,0,0.3); }
+[data-theme="dark"] .tt-tooltip--simple .tt-tooltip-text,
+[data-theme="dark"] .tt-tooltip--descriptive .tt-tooltip-header { color:#FFFFFF; }
+[data-theme="dark"] .tt-tooltip--descriptive .tt-tooltip-body { color:#E5E7EB; }
+[data-theme="dark"] .tt-tooltip-close { color:#FFFFFF; }
+[data-theme="dark"] .tt-tooltip--bottom::after { border-top-color:#1E1E1E; }
+[data-theme="dark"] .tt-tooltip--up::after     { border-bottom-color:#1E1E1E; }
+[data-theme="dark"] .tt-tooltip--right::after  { border-left-color:#1E1E1E; }
+[data-theme="dark"] .tt-tooltip--left::after   { border-right-color:#1E1E1E; }
+
+/* var-preview = light, var-preview-dark = dark — isolated from global theme */
+.var-preview .tt-tooltip { background:#F9FAFB; color:#374151; }
+.var-preview .tt-tooltip--simple .tt-tooltip-text,
+.var-preview .tt-tooltip--descriptive .tt-tooltip-header { color:#374151; }
+.var-preview .tt-tooltip--descriptive .tt-tooltip-body { color:#4B5563; }
+.var-preview .tt-tooltip-close { color:#374151; }
+.var-preview .tt-tooltip--bottom::after { border-top-color:#F9FAFB; }
+.var-preview .tt-tooltip--up::after     { border-bottom-color:#F9FAFB; }
+.var-preview .tt-tooltip--right::after  { border-left-color:#F9FAFB; }
+.var-preview .tt-tooltip--left::after   { border-right-color:#F9FAFB; }
+
+.var-preview-dark .tt-tooltip { background:#1E1E1E; color:#FFFFFF; }
+.var-preview-dark .tt-tooltip--simple .tt-tooltip-text,
+.var-preview-dark .tt-tooltip--descriptive .tt-tooltip-header { color:#FFFFFF; }
+.var-preview-dark .tt-tooltip--descriptive .tt-tooltip-body { color:#E5E7EB; }
+.var-preview-dark .tt-tooltip-close { color:#FFFFFF; }
+.var-preview-dark .tt-tooltip--bottom::after { border-top-color:#1E1E1E; }
+.var-preview-dark .tt-tooltip--up::after     { border-bottom-color:#1E1E1E; }
+.var-preview-dark .tt-tooltip--right::after  { border-left-color:#1E1E1E; }
+.var-preview-dark .tt-tooltip--left::after   { border-right-color:#1E1E1E; }
+
+/* Token-map preview — its own data-bg toggle wins over global theme */
+.tm-preview-card[data-bg="light"] .tt-tooltip { background:#F9FAFB; color:#374151; }
+.tm-preview-card[data-bg="light"] .tt-tooltip-header { color:#374151; }
+.tm-preview-card[data-bg="light"] .tt-tooltip-body { color:#4B5563; }
+.tm-preview-card[data-bg="light"] .tt-tooltip-close { color:#374151; }
+.tm-preview-card[data-bg="light"] .tt-tooltip--bottom::after { border-top-color:#F9FAFB; }
+.tm-preview-card[data-bg="dark"] .tt-tooltip { background:#1E1E1E; color:#FFFFFF; }
+.tm-preview-card[data-bg="dark"] .tt-tooltip-header { color:#FFFFFF; }
+.tm-preview-card[data-bg="dark"] .tt-tooltip-body { color:#E5E7EB; }
+.tm-preview-card[data-bg="dark"] .tt-tooltip-close { color:#FFFFFF; }
+.tm-preview-card[data-bg="dark"] .tt-tooltip--bottom::after { border-top-color:#1E1E1E; }
+
 /* ─── TM · Token Map (shared) ──────────────────── */
 :root { --mono: ui-monospace, "SF Mono", "Menlo", Consolas, monospace; --tm-accent: #027CB1; }
 .tm-map { display:grid; grid-template-columns:1fr 1fr; gap:24px; align-items:start; }
