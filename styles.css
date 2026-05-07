@@ -2751,6 +2751,92 @@ code {
 .tm-preview-card[data-bg="dark"] .tt-tooltip-close { color:#FFFFFF; }
 .tm-preview-card[data-bg="dark"] .tt-tooltip--bottom::after { border-top-color:#1E1E1E; }
 
+/* ─── SI · Step Indicator ───────────────────────── */
+.si-stepper { display:inline-flex; gap:8px; align-items:center; }
+.si-stepper--labeled { gap:4px; align-items:flex-start; }
+
+/* Dot variant */
+.si-dot { padding:8px; display:flex; align-items:center; justify-content:center; }
+.si-dot--active { padding:8px 2px; }
+.si-dot::before { content:''; display:block; width:8px; height:8px; border-radius:50%; background:#9CA3AF; }
+.si-dot--completed::before { background:#0083BB; }
+.si-dot--active::before { width:20px; height:8px; border-radius:4px; background:#0083BB; }
+
+/* Labeled variant */
+.si-step { display:flex; flex-direction:column; align-items:center; gap:6px; }
+.si-step-circle { width:32px; height:32px; border-radius:100px; display:flex; align-items:center; justify-content:center; font-family:'Lato', sans-serif; font-size:12px; font-weight:700; line-height:16px; box-sizing:border-box; flex-shrink:0; }
+.si-step-circle--upcoming { border:1px solid #CDD2D7; background:transparent; color:#4B5563; }
+.si-step-circle--active { background:#0083BB; color:#FFFFFF; }
+.si-step-circle--completed { background:#0083BB; color:#FFFFFF; }
+.si-step-label { font-family:'Lato', sans-serif; font-size:12px; font-weight:700; line-height:16px; color:#4B5563; white-space:nowrap; }
+.si-step-label--active, .si-step-label--completed { color:#0083BB; }
+
+.si-connector { width:28px; height:2px; border-radius:100px; background:#CDD2D7; margin-top:15px; flex-shrink:0; }
+.si-connector--filled { background:#0083BB; }
+
+/* Dark mode */
+[data-theme="dark"] .si-dot::before { background:#6B7280; }
+[data-theme="dark"] .si-dot--completed::before,
+[data-theme="dark"] .si-dot--active::before { background:#5ABFE0; }
+[data-theme="dark"] .si-step-circle--upcoming { border-color:#6B7280; color:#E5E7EB; }
+[data-theme="dark"] .si-step-circle--active,
+[data-theme="dark"] .si-step-circle--completed { background:#5ABFE0; color:#0A0A0A; }
+[data-theme="dark"] .si-step-label { color:#E5E7EB; }
+[data-theme="dark"] .si-step-label--active,
+[data-theme="dark"] .si-step-label--completed { color:#5ABFE0; }
+[data-theme="dark"] .si-connector { background:#6B7280; }
+[data-theme="dark"] .si-connector--filled { background:#5ABFE0; }
+
+/* var-preview = light, var-preview-dark = dark — isolated swatches */
+.var-preview .si-dot::before { background:#9CA3AF; }
+.var-preview .si-dot--completed::before,
+.var-preview .si-dot--active::before { background:#0083BB; }
+.var-preview .si-step-circle--upcoming { border-color:#CDD2D7; color:#4B5563; background:transparent; }
+.var-preview .si-step-circle--active,
+.var-preview .si-step-circle--completed { background:#0083BB; color:#FFFFFF; }
+.var-preview .si-step-label { color:#4B5563; }
+.var-preview .si-step-label--active,
+.var-preview .si-step-label--completed { color:#0083BB; }
+.var-preview .si-connector { background:#CDD2D7; }
+.var-preview .si-connector--filled { background:#0083BB; }
+
+.var-preview-dark .si-dot::before { background:#6B7280; }
+.var-preview-dark .si-dot--completed::before,
+.var-preview-dark .si-dot--active::before { background:#5ABFE0; }
+.var-preview-dark .si-step-circle--upcoming { border-color:#6B7280; color:#E5E7EB; background:transparent; }
+.var-preview-dark .si-step-circle--active,
+.var-preview-dark .si-step-circle--completed { background:#5ABFE0; color:#0A0A0A; }
+.var-preview-dark .si-step-label { color:#E5E7EB; }
+.var-preview-dark .si-step-label--active,
+.var-preview-dark .si-step-label--completed { color:#5ABFE0; }
+.var-preview-dark .si-connector { background:#6B7280; }
+.var-preview-dark .si-connector--filled { background:#5ABFE0; }
+
+/* Token-map preview — its own data-bg toggle wins over global theme */
+.tm-preview-card[data-bg="light"] .si-dot::before { background:#9CA3AF; }
+.tm-preview-card[data-bg="light"] .si-dot--completed::before,
+.tm-preview-card[data-bg="light"] .si-dot--active::before { background:#0083BB; }
+.tm-preview-card[data-bg="light"] .si-step-circle--upcoming { border-color:#CDD2D7; color:#4B5563; background:transparent; }
+.tm-preview-card[data-bg="light"] .si-step-circle--active,
+.tm-preview-card[data-bg="light"] .si-step-circle--completed { background:#0083BB; color:#FFFFFF; }
+.tm-preview-card[data-bg="light"] .si-step-label { color:#4B5563; }
+.tm-preview-card[data-bg="light"] .si-step-label--active,
+.tm-preview-card[data-bg="light"] .si-step-label--completed { color:#0083BB; }
+.tm-preview-card[data-bg="light"] .si-connector { background:#CDD2D7; }
+.tm-preview-card[data-bg="light"] .si-connector--filled { background:#0083BB; }
+
+.tm-preview-card[data-bg="dark"] .si-dot::before { background:#6B7280; }
+.tm-preview-card[data-bg="dark"] .si-dot--completed::before,
+.tm-preview-card[data-bg="dark"] .si-dot--active::before { background:#5ABFE0; }
+.tm-preview-card[data-bg="dark"] .si-step-circle--upcoming { border-color:#6B7280; color:#E5E7EB; background:transparent; }
+.tm-preview-card[data-bg="dark"] .si-step-circle--active,
+.tm-preview-card[data-bg="dark"] .si-step-circle--completed { background:#5ABFE0; color:#0A0A0A; }
+.tm-preview-card[data-bg="dark"] .si-step-label { color:#E5E7EB; }
+.tm-preview-card[data-bg="dark"] .si-step-label--active,
+.tm-preview-card[data-bg="dark"] .si-step-label--completed { color:#5ABFE0; }
+.tm-preview-card[data-bg="dark"] .si-connector { background:#6B7280; }
+.tm-preview-card[data-bg="dark"] .si-connector--filled { background:#5ABFE0; }
+
 /* ─── TM · Token Map (shared) ──────────────────── */
 :root { --mono: ui-monospace, "SF Mono", "Menlo", Consolas, monospace; --tm-accent: #027CB1; }
 .tm-map { display:grid; grid-template-columns:1fr 1fr; gap:24px; align-items:start; }

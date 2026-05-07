@@ -1,0 +1,825 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Step Indicator — nuShip Design System</title>
+  <link href="https://fonts.googleapis.com/css2?family=Lato:wght@400;600;700;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="tokens.css">
+  <link rel="stylesheet" href="styles.css">
+  <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.min.js"></script>
+  <script src="nav-scroll.js" defer></script>
+  <style>
+    /* Step Indicator token map spotlights */
+    #tmPreview { position:relative; min-height:140px; display:flex; align-items:center; justify-content:center; }
+    #tmPreview.spotlight-circle-size .si-step-circle { outline:2px solid #FF4081; outline-offset:2px; border-radius:100px; }
+    #tmPreview.spotlight-circle-size::after { content:'32px'; position:absolute; top:-16px; left:50%; transform:translateX(-50%); font-size:10px; font-family:var(--mono); color:#FF4081; background:rgba(255,255,255,0.95); padding:1px 4px; border-radius:2px; font-weight:700; }
+    #tmPreview.spotlight-step-gap { outline:2px solid #FF4081; outline-offset:6px; border-radius:4px; }
+    #tmPreview.spotlight-step-gap::after { content:'32px'; position:absolute; top:-22px; right:0; font-size:10px; font-family:var(--mono); color:#FF4081; background:rgba(255,255,255,0.95); padding:1px 4px; border-radius:2px; font-weight:700; }
+    #tmPreview.spotlight-label-gap { outline:2px solid #FF4081; outline-offset:2px; border-radius:4px; }
+    #tmPreview.spotlight-label-gap::after { content:'6px'; position:absolute; bottom:-18px; left:50%; transform:translateX(-50%); font-size:10px; font-family:var(--mono); color:#FF4081; background:rgba(255,255,255,0.95); padding:1px 4px; border-radius:2px; font-weight:700; }
+    #tmPreview.spotlight-connector .si-connector { outline:2px solid #FF4081; outline-offset:2px; }
+    #tmPreview.spotlight-connector::after { content:'28×2px'; position:absolute; top:-16px; left:50%; transform:translateX(-50%); font-size:10px; font-family:var(--mono); color:#FF4081; background:rgba(255,255,255,0.95); padding:1px 4px; border-radius:2px; font-weight:700; }
+  </style>
+</head>
+<body>
+
+<div id="navOverlay" class="nav-overlay" onclick="toggleSidebar()"></div>
+
+<nav class="topnav">
+  <button class="hamburger" onclick="toggleSidebar()" aria-label="Menu">
+    <i data-lucide="menu" style="width:18px;height:18px;color:var(--text-secondary)"></i>
+  </button>
+  <div class="bc">
+    <a href="index.html">UI Components</a>
+    <i data-lucide="chevron-right" style="width:14px;height:14px;flex-shrink:0"></i>
+    <a href="#">Navigation</a>
+    <i data-lucide="chevron-right" style="width:14px;height:14px;flex-shrink:0"></i>
+    <span class="cur">Step Indicator</span>
+  </div>
+  <div class="nav-actions">
+    <div class="toggle-wrap" onclick="toggleTheme()" role="button">
+      <i data-lucide="moon" style="width:20px;height:20px"></i>
+      <div class="toggle-track"><div class="toggle-thumb"></div></div>
+      <i data-lucide="sun" style="width:20px;height:20px"></i>
+    </div>
+  </div>
+</nav>
+
+<div class="shell">
+
+  <nav class="left-nav" id="leftNav">
+    <div class="left-nav-inner">
+      <div class="ln-group">
+        <div class="ln-label">Inputs</div>
+        <ul class="ln-list">
+          <li><a href="checkbox.html">Checkbox</a></li>
+          <li><a href="datepicker.html">Date Picker</a></li>
+          <li><a href="numberinput.html">Number Input</a></li>
+          <li><a href="passwordinput.html">Password Input</a></li>
+          <li><a href="radiobutton.html">Radio Button</a></li>
+          <li><a href="search.html">Search</a></li>
+          <li><a href="select.html">Select</a></li>
+          <li><a href="slider.html">Slider</a></li>
+          <li><a href="switch.html">Switch</a></li>
+          <li><a href="textarea.html">Text Area</a></li>
+          <li><a href="textinput.html">Text Input</a></li>
+          <li><a href="tile.html">Tile</a></li>
+        </ul>
+      </div>
+      <div class="ln-group">
+        <div class="ln-label">Feedback</div>
+        <ul class="ln-list">
+          <li><a href="alert.html">Alert</a></li>
+          <li><a href="badge.html">Badge</a></li>
+          <li><a href="toast.html">Toast</a></li>
+          <li><a href="tooltip.html">Tooltip</a></li>
+        </ul>
+      </div>
+      <div class="ln-group">
+        <div class="ln-label">Navigation</div>
+        <ul class="ln-list">
+          <li><a href="accordion.html">Accordion</a></li>
+          <li><a href="#">Breadcrumb</a></li>
+          <li><a href="dropdown.html">Dropdown</a></li>
+          <li><a href="menu.html">Menu</a></li>
+          <li><a href="segmentedcontrol.html">Segmented Control</a></li>
+          <li><a href="stepindicator.html" class="active">Step Indicator</a></li>
+          <li><a href="tabs.html">Tabs</a></li>
+        </ul>
+      </div>
+      <div class="ln-group">
+        <div class="ln-label">Actions</div>
+        <ul class="ln-list">
+          <li><a href="button.html">Button</a></li>
+          <li><a href="link.html">Link</a></li>
+          <li><a href="#">Tags</a></li>
+        </ul>
+      </div>
+      <div class="ln-group">
+        <div class="ln-label">Overlays</div>
+        <ul class="ln-list">
+          <li><a href="modal.html">Modal</a></li>
+          <li><a href="popover.html">Popover</a></li>
+        </ul>
+      </div>
+      <div class="ln-group">
+        <div class="ln-label">Display</div>
+        <ul class="ln-list">
+          <li><a href="avatar.html">Avatar</a></li>
+          <li><a href="carousel.html">Carousel</a></li>
+          <li><a href="fileupload.html">File Upload</a></li>
+          <li><a href="progressbar.html">Progress Bar</a></li>
+          <li><a href="#">Star Rating</a></li>
+          <li><a href="#">Timeline</a></li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <div class="content-wrap" id="contentWrap">
+
+    <main class="doc">
+
+      <!-- 1 · DEFINITION -->
+      <section class="doc-section" id="definition">
+        <div class="def-eyebrow">Navigation</div>
+        <h1 class="def-title">Step Indicator</h1>
+        <p class="def-desc">Step indicators show progress through a sequence of steps in a multi-step flow. Two layouts are available — Dot for compact, decorative use and Labeled for clear, numbered steppers with descriptive titles. Each step has three states: completed, active, and upcoming.</p>
+        <div class="def-tags">
+          <span class="tag">Developed</span>
+          <span class="tag">Figma</span>
+        </div>
+        <div class="preview-box">
+          <div class="preview-box-inner">
+            <div style="display:flex;flex-direction:column;gap:48px;align-items:center;padding:32px 0;">
+
+              <div class="si-stepper">
+                <div class="si-dot si-dot--completed"></div>
+                <div class="si-dot si-dot--active"></div>
+                <div class="si-dot si-dot--upcoming"></div>
+                <div class="si-dot si-dot--upcoming"></div>
+              </div>
+
+              <div class="si-stepper si-stepper--labeled">
+                <div class="si-step">
+                  <div class="si-step-circle si-step-circle--completed"><i data-lucide="check" style="width:14px;height:14px"></i></div>
+                  <div class="si-step-label si-step-label--completed">Step 1</div>
+                </div>
+                <div class="si-connector si-connector--filled"></div>
+                <div class="si-step">
+                  <div class="si-step-circle si-step-circle--active">2</div>
+                  <div class="si-step-label si-step-label--active">Step 2</div>
+                </div>
+                <div class="si-connector"></div>
+                <div class="si-step">
+                  <div class="si-step-circle si-step-circle--upcoming">3</div>
+                  <div class="si-step-label si-step-label--upcoming">Step 3</div>
+                </div>
+              </div>
+
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- 2 · ANATOMY -->
+      <section class="doc-section" id="anatomy">
+        <h2 class="section-title">Anatomy</h2>
+        <div class="anatomy-wrap">
+          <div class="anatomy-component" style="padding:48px 0;max-width:380px;">
+            <div style="position:relative;display:inline-block;">
+              <div class="si-stepper si-stepper--labeled">
+                <div class="si-step">
+                  <div class="si-step-circle si-step-circle--completed"><i data-lucide="check" style="width:14px;height:14px"></i></div>
+                  <div class="si-step-label si-step-label--completed">Step 1</div>
+                </div>
+                <div class="si-connector si-connector--filled"></div>
+                <div class="si-step">
+                  <div class="si-step-circle si-step-circle--active">2</div>
+                  <div class="si-step-label si-step-label--active">Step 2</div>
+                </div>
+                <div class="si-connector"></div>
+                <div class="si-step">
+                  <div class="si-step-circle si-step-circle--upcoming">3</div>
+                  <div class="si-step-label si-step-label--upcoming">Step 3</div>
+                </div>
+              </div>
+              <span class="callout" style="top:-4px;left:8px;">1</span>
+              <span class="callout" style="top:-4px;left:60px;">2</span>
+              <span class="callout" style="top:38px;left:18px;">3</span>
+              <span class="callout" style="top:8px;left:96px;">4</span>
+            </div>
+          </div>
+          <div class="anatomy-legend">
+            <div class="legend-item"><span class="legend-num">1</span>Step indicator (circle)</div>
+            <div class="legend-item"><span class="legend-num">2</span>Step content (number, check, or icon)</div>
+            <div class="legend-item"><span class="legend-num">3</span>Step label</div>
+            <div class="legend-item"><span class="legend-num">4</span>Connector (filled = completed, gray = upcoming)</div>
+          </div>
+        </div>
+      </section>
+
+      <!-- 3 · VARIANTS -->
+      <section class="doc-section" id="variants">
+        <h2 class="section-title">Variants</h2>
+        <div class="tabs-wrap">
+          <div class="tabs">
+            <button class="tab active" onclick="switchTab(this,'v-dot')">Dot</button>
+            <button class="tab" onclick="switchTab(this,'v-labeled')">Labeled</button>
+          </div>
+        </div>
+
+        <!-- DOT -->
+        <div class="tab-panel active" id="v-dot">
+          <div class="state-tab-row">
+            <button class="state-tab-btn active" onclick="switchStateTab(this,'vs-dot-default')">Default</button>
+            <button class="state-tab-btn" onclick="switchStateTab(this,'vs-dot-states')">States</button>
+          </div>
+          <div class="var-panel">
+            <div class="var-previews-wrap">
+
+              <div class="state-panel active" id="vs-dot-default">
+                <div class="var-previews">
+                  <div class="var-preview" style="padding:48px 24px;">
+                    <div class="si-stepper">
+                      <div class="si-dot si-dot--completed"></div>
+                      <div class="si-dot si-dot--active"></div>
+                      <div class="si-dot si-dot--upcoming"></div>
+                      <div class="si-dot si-dot--upcoming"></div>
+                    </div>
+                  </div>
+                  <div class="var-preview-dark" style="padding:48px 24px;">
+                    <div class="si-stepper">
+                      <div class="si-dot si-dot--completed"></div>
+                      <div class="si-dot si-dot--active"></div>
+                      <div class="si-dot si-dot--upcoming"></div>
+                      <div class="si-dot si-dot--upcoming"></div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="state-panel" id="vs-dot-states">
+                <div class="var-previews">
+                  <div class="var-preview" style="padding:48px 24px;">
+                    <div style="display:flex;flex-direction:column;gap:32px;align-items:flex-start;">
+                      <div style="display:flex;align-items:center;gap:16px;">
+                        <div style="font-size:12px;font-weight:700;color:var(--text-tertiary);width:80px;">Completed</div>
+                        <div class="si-dot si-dot--completed"></div>
+                      </div>
+                      <div style="display:flex;align-items:center;gap:16px;">
+                        <div style="font-size:12px;font-weight:700;color:var(--text-tertiary);width:80px;">Active</div>
+                        <div class="si-dot si-dot--active"></div>
+                      </div>
+                      <div style="display:flex;align-items:center;gap:16px;">
+                        <div style="font-size:12px;font-weight:700;color:var(--text-tertiary);width:80px;">Upcoming</div>
+                        <div class="si-dot si-dot--upcoming"></div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="var-preview-dark" style="padding:48px 24px;">
+                    <div style="display:flex;flex-direction:column;gap:32px;align-items:flex-start;">
+                      <div style="display:flex;align-items:center;gap:16px;">
+                        <div style="font-size:12px;font-weight:700;color:#9CA3AF;width:80px;">Completed</div>
+                        <div class="si-dot si-dot--completed"></div>
+                      </div>
+                      <div style="display:flex;align-items:center;gap:16px;">
+                        <div style="font-size:12px;font-weight:700;color:#9CA3AF;width:80px;">Active</div>
+                        <div class="si-dot si-dot--active"></div>
+                      </div>
+                      <div style="display:flex;align-items:center;gap:16px;">
+                        <div style="font-size:12px;font-weight:700;color:#9CA3AF;width:80px;">Upcoming</div>
+                        <div class="si-dot si-dot--upcoming"></div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+            </div>
+            <div class="var-desc">
+              <div class="var-use-when">Dot — use when:</div>
+              <ul class="var-use-list">
+                <li>You need a compact, decorative progress indicator</li>
+                <li>Step labels would crowd the layout (e.g. carousel pagination, onboarding pips)</li>
+                <li>Active step extends to a 20×8 pill; others are 8×8 circles</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <!-- LABELED -->
+        <div class="tab-panel" id="v-labeled">
+          <div class="state-tab-row">
+            <button class="state-tab-btn active" onclick="switchStateTab(this,'vs-lb-default')">Default</button>
+            <button class="state-tab-btn" onclick="switchStateTab(this,'vs-lb-states')">States</button>
+          </div>
+          <div class="var-panel">
+            <div class="var-previews-wrap">
+
+              <div class="state-panel active" id="vs-lb-default">
+                <div class="var-previews">
+                  <div class="var-preview" style="padding:48px 24px;">
+                    <div class="si-stepper si-stepper--labeled">
+                      <div class="si-step">
+                        <div class="si-step-circle si-step-circle--completed"><i data-lucide="check" style="width:14px;height:14px"></i></div>
+                        <div class="si-step-label si-step-label--completed">Step 1</div>
+                      </div>
+                      <div class="si-connector si-connector--filled"></div>
+                      <div class="si-step">
+                        <div class="si-step-circle si-step-circle--active">2</div>
+                        <div class="si-step-label si-step-label--active">Step 2</div>
+                      </div>
+                      <div class="si-connector"></div>
+                      <div class="si-step">
+                        <div class="si-step-circle si-step-circle--upcoming">3</div>
+                        <div class="si-step-label si-step-label--upcoming">Step 3</div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="var-preview-dark" style="padding:48px 24px;">
+                    <div class="si-stepper si-stepper--labeled">
+                      <div class="si-step">
+                        <div class="si-step-circle si-step-circle--completed"><i data-lucide="check" style="width:14px;height:14px"></i></div>
+                        <div class="si-step-label si-step-label--completed">Step 1</div>
+                      </div>
+                      <div class="si-connector si-connector--filled"></div>
+                      <div class="si-step">
+                        <div class="si-step-circle si-step-circle--active">2</div>
+                        <div class="si-step-label si-step-label--active">Step 2</div>
+                      </div>
+                      <div class="si-connector"></div>
+                      <div class="si-step">
+                        <div class="si-step-circle si-step-circle--upcoming">3</div>
+                        <div class="si-step-label si-step-label--upcoming">Step 3</div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="state-panel" id="vs-lb-states">
+                <div class="var-previews">
+                  <div class="var-preview" style="padding:32px 24px;">
+                    <div style="display:flex;flex-direction:column;gap:32px;align-items:flex-start;">
+                      <div style="display:flex;align-items:center;gap:24px;">
+                        <div style="font-size:12px;font-weight:700;color:var(--text-tertiary);width:80px;">Completed</div>
+                        <div class="si-step">
+                          <div class="si-step-circle si-step-circle--completed"><i data-lucide="check" style="width:14px;height:14px"></i></div>
+                          <div class="si-step-label si-step-label--completed">Step 1</div>
+                        </div>
+                      </div>
+                      <div style="display:flex;align-items:center;gap:24px;">
+                        <div style="font-size:12px;font-weight:700;color:var(--text-tertiary);width:80px;">Active</div>
+                        <div class="si-step">
+                          <div class="si-step-circle si-step-circle--active">2</div>
+                          <div class="si-step-label si-step-label--active">Step 2</div>
+                        </div>
+                      </div>
+                      <div style="display:flex;align-items:center;gap:24px;">
+                        <div style="font-size:12px;font-weight:700;color:var(--text-tertiary);width:80px;">Upcoming</div>
+                        <div class="si-step">
+                          <div class="si-step-circle si-step-circle--upcoming">3</div>
+                          <div class="si-step-label si-step-label--upcoming">Step 3</div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="var-preview-dark" style="padding:32px 24px;">
+                    <div style="display:flex;flex-direction:column;gap:32px;align-items:flex-start;">
+                      <div style="display:flex;align-items:center;gap:24px;">
+                        <div style="font-size:12px;font-weight:700;color:#9CA3AF;width:80px;">Completed</div>
+                        <div class="si-step">
+                          <div class="si-step-circle si-step-circle--completed"><i data-lucide="check" style="width:14px;height:14px"></i></div>
+                          <div class="si-step-label si-step-label--completed">Step 1</div>
+                        </div>
+                      </div>
+                      <div style="display:flex;align-items:center;gap:24px;">
+                        <div style="font-size:12px;font-weight:700;color:#9CA3AF;width:80px;">Active</div>
+                        <div class="si-step">
+                          <div class="si-step-circle si-step-circle--active">2</div>
+                          <div class="si-step-label si-step-label--active">Step 2</div>
+                        </div>
+                      </div>
+                      <div style="display:flex;align-items:center;gap:24px;">
+                        <div style="font-size:12px;font-weight:700;color:#9CA3AF;width:80px;">Upcoming</div>
+                        <div class="si-step">
+                          <div class="si-step-circle si-step-circle--upcoming">3</div>
+                          <div class="si-step-label si-step-label--upcoming">Step 3</div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+            </div>
+            <div class="var-desc">
+              <div class="var-use-when">Labeled — use when:</div>
+              <ul class="var-use-list">
+                <li>The user needs to know exactly which step they are on and what each step is</li>
+                <li>Multi-step forms, checkout flows, onboarding wizards</li>
+                <li>Completed steps show a check; active and upcoming show the step number</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+      </section>
+
+      <!-- 4 · PROPERTIES -->
+      <section class="doc-section" id="properties">
+        <h2 class="section-title">Properties</h2>
+        <table class="props-table">
+          <thead>
+            <tr><th>Property</th><th>Type</th><th>Default</th><th>Description</th></tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td class="p-name">type</td>
+              <td class="p-type">"dot" | "labeled"</td>
+              <td class="p-def">"dot"</td>
+              <td class="p-desc">Compact dot pagination vs full numbered stepper</td>
+            </tr>
+            <tr>
+              <td class="p-name">steps</td>
+              <td class="p-type">Step[]</td>
+              <td class="p-def">—</td>
+              <td class="p-desc">Array of steps with optional labels</td>
+            </tr>
+            <tr>
+              <td class="p-name">currentStep</td>
+              <td class="p-type">number</td>
+              <td class="p-def">0</td>
+              <td class="p-desc">Zero-based index of the active step</td>
+            </tr>
+            <tr>
+              <td class="p-name">showLabels</td>
+              <td class="p-type">boolean</td>
+              <td class="p-def">true</td>
+              <td class="p-desc">Toggles step labels (labeled type only)</td>
+            </tr>
+            <tr>
+              <td class="p-name">orientation</td>
+              <td class="p-type">"horizontal" | "vertical"</td>
+              <td class="p-def">"horizontal"</td>
+              <td class="p-desc">Layout direction of the stepper</td>
+            </tr>
+            <tr>
+              <td class="p-name">onStepClick</td>
+              <td class="p-type">function</td>
+              <td class="p-def">—</td>
+              <td class="p-desc">Callback fired when a completed step is clicked</td>
+            </tr>
+          </tbody>
+        </table>
+      </section>
+
+      <!-- 5 · USAGE -->
+      <section class="doc-section" id="usage">
+        <h2 class="section-title">Usage Guidelines</h2>
+
+        <div class="usage-block">
+          <div class="usage-cols">
+            <div class="usage-card">
+              <div class="usage-card-header">
+                <div class="usage-icon do-icon"><i data-lucide="check" style="width:12px;height:12px"></i></div>
+                <div class="usage-card-title">Lorem ipsum dolor sit amet</div>
+              </div>
+              <ul class="usage-list">
+                <li>Lorem ipsum dolor sit amet consectetur</li>
+                <li>Adipiscing elit sed do eiusmod tempor</li>
+                <li>Incididunt ut labore et dolore magna</li>
+              </ul>
+            </div>
+            <div class="usage-card">
+              <div class="usage-card-header">
+                <div class="usage-icon do-icon"><i data-lucide="check" style="width:12px;height:12px"></i></div>
+                <div class="usage-card-title">Ut enim ad minim veniam</div>
+              </div>
+              <ul class="usage-list">
+                <li>Quis nostrud exercitation ullamco laboris</li>
+                <li>Nisi ut aliquip ex ea commodo consequat</li>
+                <li>Duis aute irure dolor in reprehenderit</li>
+              </ul>
+            </div>
+            <div class="usage-card">
+              <div class="usage-card-header">
+                <div class="usage-icon do-icon"><i data-lucide="check" style="width:12px;height:12px"></i></div>
+                <div class="usage-card-title">Excepteur sint occaecat</div>
+              </div>
+              <ul class="usage-list">
+                <li>Non proident sunt in culpa qui officia</li>
+                <li>Deserunt mollit anim id est laborum</li>
+                <li>Sed ut perspiciatis unde omnis iste</li>
+              </ul>
+            </div>
+            <div class="usage-card">
+              <div class="usage-card-header">
+                <div class="usage-icon do-icon"><i data-lucide="check" style="width:12px;height:12px"></i></div>
+                <div class="usage-card-title">Nemo enim ipsam voluptatem</div>
+              </div>
+              <ul class="usage-list">
+                <li>Quia voluptas sit aspernatur aut odit</li>
+                <li>Neque porro quisquam est qui dolorem</li>
+                <li>Ut labore et dolore magnam aliquam</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <div class="usage-divider"></div>
+
+        <div class="usage-block">
+          <div class="usage-cols">
+            <div class="usage-card">
+              <div class="usage-card-header">
+                <div class="usage-icon dont-icon"><i data-lucide="x" style="width:12px;height:12px"></i></div>
+                <div class="usage-card-title">Quis autem vel eum iure</div>
+              </div>
+              <ul class="usage-list">
+                <li>Reprehenderit qui in ea voluptate velit</li>
+                <li>Esse quam nihil molestiae consequatur</li>
+                <li>Vel illum qui dolorem eum fugiat</li>
+              </ul>
+            </div>
+            <div class="usage-card">
+              <div class="usage-card-header">
+                <div class="usage-icon dont-icon"><i data-lucide="x" style="width:12px;height:12px"></i></div>
+                <div class="usage-card-title">At vero eos et accusamus</div>
+              </div>
+              <ul class="usage-list">
+                <li>Et iusto odio dignissimos ducimus qui</li>
+                <li>Blanditiis praesentium voluptatum deleniti</li>
+                <li>Atque corrupti quos dolores et quas</li>
+              </ul>
+            </div>
+            <div class="usage-card">
+              <div class="usage-card-header">
+                <div class="usage-icon dont-icon"><i data-lucide="x" style="width:12px;height:12px"></i></div>
+                <div class="usage-card-title">Nam libero tempore soluta</div>
+              </div>
+              <ul class="usage-list">
+                <li>Nobis est eligendi optio cumque nihil</li>
+                <li>Impedit quo minus id quod maxime</li>
+              </ul>
+            </div>
+            <div class="usage-card">
+              <div class="usage-card-header">
+                <div class="usage-icon dont-icon"><i data-lucide="x" style="width:12px;height:12px"></i></div>
+                <div class="usage-card-title">Temporibus autem quibusdam</div>
+              </div>
+              <ul class="usage-list">
+                <li>Et aut officiis debitis aut rerum necessitatibus</li>
+                <li>Saepe eveniet ut et voluptates repudiandae</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- 6 · TOKEN MAP -->
+      <section class="doc-section" id="tokens">
+        <h2 class="section-title">Token Map</h2>
+        <div class="tm-preview-controls">
+          <div class="tm-mode-toggle" id="tmModeToggle">
+            <span class="tm-mode-label" id="tmModeLabel">Light</span>
+            <div class="sw-track sw-track--compact" id="tmModeTrack"><div class="sw-thumb"></div></div>
+          </div>
+        </div>
+        <div class="tm-map">
+          <div>
+            <div class="tm-preview-card" data-bg="light">
+              <div class="tm-preview-inner">
+                <div id="tmPreview" class="tm-preview">
+                  <div class="si-stepper si-stepper--labeled">
+                    <div class="si-step">
+                      <div class="si-step-circle si-step-circle--completed" data-part="completed"><i data-lucide="check" style="width:14px;height:14px"></i></div>
+                      <div class="si-step-label si-step-label--completed" data-part="label-comp">Step 1</div>
+                    </div>
+                    <div class="si-connector si-connector--filled" data-part="connector-filled"></div>
+                    <div class="si-step">
+                      <div class="si-step-circle si-step-circle--active" data-part="active">2</div>
+                      <div class="si-step-label si-step-label--active" data-part="label-act">Step 2</div>
+                    </div>
+                    <div class="si-connector" data-part="connector"></div>
+                    <div class="si-step">
+                      <div class="si-step-circle si-step-circle--upcoming" data-part="upcoming">3</div>
+                      <div class="si-step-label si-step-label--upcoming" data-part="label-up">Step 3</div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="tm-tokens-card">
+            <div class="tm-tokens-head">
+              <div class="tm-tokens-title"><h5>Token list</h5><span class="tm-count"><span id="tmCountNum">0</span> tokens</span></div>
+              <p class="tm-tokens-helper">Hover a token to see where it applies on the component.</p>
+              <div class="tm-seg" style="margin:0 0 12px;">
+                <button class="tm-seg-item tm-seg-item--active" data-tab="color"><i data-lucide="palette" class="tm-seg-icon"></i> Color</button>
+                <button class="tm-seg-item" data-tab="component"><i data-lucide="ruler" class="tm-seg-icon"></i> Component</button>
+                <button class="tm-seg-item" data-tab="typography"><i data-lucide="type" class="tm-seg-icon"></i> Typography</button>
+              </div>
+            </div>
+            <div class="tm-tokens-body" id="tmCards"></div>
+          </div>
+        </div>
+      </section>
+
+      <!-- 7 · ACCESSIBILITY -->
+      <section class="doc-section" id="accessibility">
+        <h2 class="section-title">Accessibility</h2>
+        <ul class="a11y-list">
+          <li>
+            <div><strong>ARIA:</strong> Use <code>role="list"</code> on the stepper and <code>role="listitem"</code> on each step. The active step should carry <code>aria-current="step"</code>; completed steps should have an accessible name like "Step 1, completed".</div>
+          </li>
+          <li>
+            <div><strong>Keyboard:</strong> Completed steps should be focusable so users can revisit them via <kbd>Tab</kbd> + <kbd>Enter</kbd>. Active and upcoming steps stay non-interactive.</div>
+          </li>
+          <li>
+            <div><strong>Don't rely on colour alone:</strong> Pair colour state with shape (filled circle, check icon, outline) so colour-blind users can still distinguish completed, active, and upcoming.</div>
+          </li>
+          <li>
+            <div><strong>Contrast:</strong> Active blue (#0083BB) on white meets WCAG AA. Verify the upcoming gray (#4B5563) on white at 7:1. In dark mode use the inverse — light text on a dark surface.</div>
+          </li>
+        </ul>
+      </section>
+
+      <!-- 8 · RELATED -->
+      <section class="doc-section" id="related">
+        <h2 class="section-title">Related Components</h2>
+        <div class="related-grid">
+          <a href="progressbar.html" class="related-card">
+            <div class="rc-name">Progress Bar</div>
+            <div class="rc-desc">Use Progress Bar for continuous progress that doesn't have discrete labelled steps.</div>
+          </a>
+          <a href="tabs.html" class="related-card">
+            <div class="rc-name">Tabs</div>
+            <div class="rc-desc">Use Tabs to switch between independent panels of content. Step Indicator is for sequential flows.</div>
+          </a>
+          <a href="segmentedcontrol.html" class="related-card">
+            <div class="rc-name">Segmented Control</div>
+            <div class="rc-desc">Use Segmented Control for switching a view mode within a single panel rather than progressing through steps.</div>
+          </a>
+        </div>
+      </section>
+
+    </main>
+
+    <nav class="right-nav">
+      <div class="rn-label">On this page</div>
+      <ul class="rn-list">
+        <li><a href="#definition"    id="rn-definition">Definition</a></li>
+        <li><a href="#anatomy"       id="rn-anatomy">Anatomy</a></li>
+        <li><a href="#variants"      id="rn-variants">Variants</a></li>
+        <li><a href="#properties"    id="rn-properties">Properties</a></li>
+        <li><a href="#usage"         id="rn-usage">Usage</a></li>
+        <li><a href="#tokens"        id="rn-tokens">Tokens</a></li>
+        <li><a href="#accessibility" id="rn-accessibility">Accessibility</a></li>
+        <li><a href="#related"       id="rn-related">Related</a></li>
+      </ul>
+    </nav>
+
+  </div>
+</div>
+
+<script>
+  lucide.createIcons();
+
+  const isMobile = () => window.innerWidth <= 768;
+  let sbOpen = !isMobile();
+  if (!sbOpen) document.getElementById('leftNav').classList.add('hidden');
+
+  function toggleSidebar() {
+    sbOpen = !sbOpen;
+    document.getElementById('leftNav').classList.toggle('hidden', !sbOpen);
+    if (!isMobile()) {
+      document.getElementById('contentWrap').style.marginLeft = sbOpen ? 'var(--left-w)' : '0';
+    }
+    document.getElementById('navOverlay').classList.toggle('active', sbOpen && isMobile());
+  }
+
+  function updateTabFade(tabsEl) {
+    const wrap = tabsEl.closest('.tabs-wrap');
+    if (!wrap) return;
+    const atEnd = tabsEl.scrollLeft + tabsEl.clientWidth >= tabsEl.scrollWidth - 2;
+    wrap.classList.toggle('at-end', atEnd);
+  }
+
+  function switchStateTab(btn, panelId) {
+    const wrap = btn.closest('.tab-panel');
+    wrap.querySelectorAll('.state-tab-btn').forEach(t => t.classList.remove('active'));
+    wrap.querySelectorAll('.state-panel').forEach(p => p.classList.remove('active'));
+    btn.classList.add('active');
+    document.getElementById(panelId).classList.add('active');
+    lucide.createIcons();
+  }
+
+  function switchTab(btn, panelId) {
+    btn.closest('.doc-section').querySelectorAll('.tab').forEach(b => b.classList.remove('active'));
+    btn.closest('.doc-section').querySelectorAll('.tab-panel').forEach(p => p.classList.remove('active'));
+    btn.classList.add('active');
+    document.getElementById(panelId).classList.add('active');
+    const tabsEl = btn.closest('.tabs');
+    if (tabsEl) updateTabFade(tabsEl);
+    lucide.createIcons();
+  }
+
+  window.addEventListener('load', () => {
+    document.querySelectorAll('.tabs').forEach(tabsEl => {
+      updateTabFade(tabsEl);
+      tabsEl.addEventListener('scroll', () => updateTabFade(tabsEl));
+    });
+  });
+
+  function toggleTheme() {
+    const d = document.documentElement;
+    d.setAttribute('data-theme', d.getAttribute('data-theme') === 'dark' ? 'light' : 'dark');
+  }
+
+  const sections = ['definition','anatomy','variants','properties','usage','tokens','accessibility','related'];
+  const observer = new IntersectionObserver(entries => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        document.querySelectorAll('.rn-list a').forEach(a => a.classList.remove('active'));
+        const link = document.getElementById('rn-' + e.target.id);
+        if (link) link.classList.add('active');
+      }
+    });
+  }, { rootMargin: '-20% 0px -70% 0px' });
+  sections.forEach(id => {
+    const el = document.getElementById(id);
+    if (el) observer.observe(el);
+  });
+
+  // ══════════════════════════════════════════
+  // TOKEN MAP
+  // ══════════════════════════════════════════
+  const tmColorLight = [{"role":"Active fill","token":"color/icon/loading","hex":"#0083BB","ref":"color/blue/600"},{"role":"Completed fill","token":"color/icon/loading","hex":"#0083BB","ref":"color/blue/600"},{"role":"Upcoming border","token":"color/border/interactive","hex":"#CDD2D7","ref":"color/gray/300"},{"role":"Upcoming text","token":"color/text/secondary","hex":"#4B5563","ref":"color/gray/600"},{"role":"Active label","token":"color/text/loading","hex":"#0083BB","ref":"color/blue/600"},{"role":"Inverse text","token":"color/text/inverse","hex":"#FFFFFF","ref":"color/gray/0"},{"role":"Upcoming dot","token":"color/icon/button-disabled","hex":"#9CA3AF","ref":"color/gray/400"}];
+  const tmColorDark = [{"role":"Active fill","token":"color/icon/loading","hex":"#5ABFE0","ref":"color/blue/400"},{"role":"Completed fill","token":"color/icon/loading","hex":"#5ABFE0","ref":"color/blue/400"},{"role":"Upcoming border","token":"color/border/interactive","hex":"#6B7280","ref":"color/gray/500"},{"role":"Upcoming text","token":"color/text/secondary","hex":"#E5E7EB","ref":"color/gray/200"},{"role":"Active label","token":"color/text/loading","hex":"#5ABFE0","ref":"color/blue/400"},{"role":"Inverse text","token":"color/text/inverse","hex":"#0A0A0A","ref":"color/neutral/950"},{"role":"Upcoming dot","token":"color/icon/button-disabled","hex":"#6B7280","ref":"color/gray/500"}];
+  const tmComponentTokens = [{"role":"Circle size","component":"step-indicator/circle/size","primitive":"size/8x","value":"32px","icon":"scan"},{"role":"Step gap (labeled)","component":"step-indicator/labeled/gap","primitive":"spacing/8x","value":"32px","icon":"columns-3"},{"role":"Label gap","component":"step-indicator/label/gap","primitive":"spacing/1-5x","value":"6px","icon":"columns-3"},{"role":"Connector","component":"step-indicator/connector/size","primitive":"—","value":"28×2px","icon":"separator-horizontal"},{"role":"Active dot","component":"step-indicator/dot/active","primitive":"radius/sm","value":"20×8 / 4px","icon":"scan"}];
+  const tmTypographyTokens = [{"role":"Step label","style":"typography/body/label","font":"Lato","weight":"Bold (700)","size":"12px","lineHeight":"16px","letterSpacing":"0"},{"role":"Step number","style":"typography/body/label","font":"Lato","weight":"Bold (700)","size":"12px","lineHeight":"16px","letterSpacing":"0"}];
+  const tmTotalTokens = tmColorLight.length + tmComponentTokens.length + tmTypographyTokens.length;
+  const tmState = { tab:'color', mode:'light' };
+  const tmCards = document.getElementById('tmCards');
+  const tmPreviewCard = document.querySelector('.tm-preview-card');
+  const arrowSvg = '<svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="width:20px;height:20px"><circle cx="5" cy="10" r="3"/><path d="M8 10h9m-3-3 3 3-3 3"/></svg>';
+  document.getElementById('tmCountNum').textContent = tmTotalTokens;
+  const tmPreview = document.getElementById('tmPreview');
+
+  const colorPartMap = {
+    'active-fill':['active'], 'completed-fill':['completed'],
+    'upcoming-border':['upcoming'], 'upcoming-text':['upcoming','label-up'],
+    'active-label':['label-act','label-comp'], 'inverse-text':['active','completed'],
+    'upcoming-dot':['upcoming'],
+  };
+  const compSpotlightMap = {
+    'circle-size':'spotlight-circle-size', 'step-gap-labeled':'spotlight-step-gap',
+    'label-gap':'spotlight-label-gap', 'connector':'spotlight-connector',
+    'active-dot':'spotlight-circle-size',
+  };
+  const typoPartMap = { 'step-label':['label-comp','label-act','label-up'], 'step-number':['active','upcoming'] };
+  const spotlightClasses = ['has-spotlight','spotlight-circle-size','spotlight-step-gap','spotlight-label-gap','spotlight-connector'];
+
+  function slug(s){ return s.toLowerCase().replace(/[^a-z0-9]+/g,'-').replace(/-+$/,''); }
+  function clearSpotlight(){
+    spotlightClasses.forEach(c=>tmPreview.classList.remove(c));
+    tmPreview.querySelectorAll('[data-part]').forEach(p=>p.classList.remove('spotlight'));
+  }
+  function spotlight(sl){
+    if(compSpotlightMap[sl]){ tmPreview.classList.add(compSpotlightMap[sl]); return; }
+    const parts = colorPartMap[sl] || typoPartMap[sl];
+    if(!parts||!parts.length) return;
+    tmPreview.classList.add('has-spotlight');
+    parts.forEach(p=>{ const el=tmPreview.querySelector('[data-part="'+p+'"]'); if(el) el.classList.add('spotlight'); });
+  }
+
+  function tmRender() {
+    const colors = tmState.mode==='light' ? tmColorLight : tmColorDark;
+    tmPreviewCard.setAttribute('data-bg', tmState.mode);
+    let html = '';
+    if (tmState.tab==='color') {
+      for (const c of colors) {
+        const s=slug(c.role);
+        html+='<div class="tm-row" data-slot="'+s+'"><div class="tm-row-header"><div class="tm-row-swatch" style="background:'+c.hex+'"></div><div class="tm-row-label">'+c.role+'</div></div><div class="tm-chain-row"><div class="tm-chip">'+c.token+'</div><div class="tm-chain-arrow">'+arrowSvg+'</div><div class="tm-chip">'+(c.ref||c.token)+'</div><div class="tm-chain-arrow">'+arrowSvg+'</div><div class="tm-chip" style="font-weight:600">'+c.hex+'</div></div></div>';
+      }
+    } else if (tmState.tab==='component') {
+      for (const ct of tmComponentTokens) {
+        const s=slug(ct.role);
+        html+='<div class="tm-row" data-slot="'+s+'"><div class="tm-row-header"><div class="tm-row-icon"><i data-lucide="'+ct.icon+'" style="width:16px;height:16px"></i></div><div class="tm-row-label">'+ct.role+'</div></div><div class="tm-chain-row"><div class="tm-chip">'+ct.component+'</div><div class="tm-chain-arrow">'+arrowSvg+'</div><div class="tm-chip">'+ct.primitive+'</div><div class="tm-chain-arrow">'+arrowSvg+'</div><div class="tm-chip" style="font-weight:600">'+ct.value+'</div></div></div>';
+      }
+    } else {
+      for (const tt of tmTypographyTokens) {
+        const s=slug(tt.role);
+        html+='<div class="tm-row" data-slot="'+s+'"><div class="tm-row-header"><div class="tm-row-icon"><i data-lucide="type" style="width:16px;height:16px"></i></div><div class="tm-row-label">'+tt.role+'</div></div><div class="tm-chain-row" style="flex-direction:column;align-items:flex-start;gap:6px;"><div style="display:flex;align-items:center;gap:10px;flex-wrap:wrap;"><div class="tm-chip">'+tt.style+'</div></div><div style="display:flex;align-items:center;gap:8px;flex-wrap:wrap;font-family:var(--mono);font-size:12px;color:var(--text-tertiary);"><span>'+tt.font+'</span><span>&middot;</span><span>'+tt.weight+'</span><span>&middot;</span><span>'+tt.size+' / '+tt.lineHeight+'</span>'+(tt.letterSpacing!=='0'?'<span>&middot;</span><span>ls: '+tt.letterSpacing+'</span>':'')+'</div></div></div>';
+      }
+    }
+    tmCards.innerHTML = html;
+    document.querySelectorAll('.tm-row[data-slot]').forEach(row=>{
+      const sl=row.dataset.slot;
+      row.addEventListener('mouseenter',()=>{ row.classList.add('is-hot'); spotlight(sl); });
+      row.addEventListener('mouseleave',()=>{ row.classList.remove('is-hot'); clearSpotlight(); });
+    });
+    lucide.createIcons();
+  }
+  document.getElementById('tmModeToggle').addEventListener('click', () => {
+    tmState.mode = tmState.mode==='light' ? 'dark' : 'light';
+    document.getElementById('tmModeLabel').textContent = tmState.mode==='light' ? 'Light' : 'Dark';
+    const track = document.getElementById('tmModeTrack');
+    if (tmState.mode==='dark') { track.classList.add('sw-on'); } else { track.classList.remove('sw-on'); }
+    tmRender();
+  });
+  document.querySelectorAll('.tm-seg-item[data-tab]').forEach(btn=>{
+    btn.addEventListener('click',()=>{
+      tmState.tab=btn.dataset.tab;
+      document.querySelectorAll('.tm-seg-item[data-tab]').forEach(b=>b.classList.remove('tm-seg-item--active'));
+      btn.classList.add('tm-seg-item--active');
+      tmRender();
+    });
+  });
+  tmRender();
+</script>
+</body>
+</html>
