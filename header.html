@@ -1,0 +1,768 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Header — nuShip Design System</title>
+  <link href="https://fonts.googleapis.com/css2?family=Lato:wght@400;600;700;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="tokens.css">
+  <link rel="stylesheet" href="styles.css">
+  <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.min.js"></script>
+  <script src="nav-scroll.js" defer></script>
+  <style>
+    /* Header token map spotlights */
+    #tmPreview { position:relative; min-height:120px; display:block; padding:0; }
+    #tmPreview.spotlight-padding-x .hd-header { outline:2px solid #FF4081; outline-offset:-1px; }
+    #tmPreview.spotlight-padding-x::after { content:'24px'; position:absolute; top:50%; left:6px; transform:translateY(-50%); font-size:10px; font-family:var(--mono); color:#FF4081; background:rgba(255,255,255,0.95); padding:1px 4px; border-radius:2px; font-weight:700; z-index:2; }
+    #tmPreview.spotlight-padding-y .hd-header { outline:2px solid #FF4081; outline-offset:-1px; }
+    #tmPreview.spotlight-padding-y::after { content:'12px'; position:absolute; top:6px; left:50%; transform:translateX(-50%); font-size:10px; font-family:var(--mono); color:#FF4081; background:rgba(255,255,255,0.95); padding:1px 4px; border-radius:2px; font-weight:700; z-index:2; }
+    #tmPreview.spotlight-height .hd-header { outline:2px solid #FF4081; outline-offset:0; }
+    #tmPreview.spotlight-height::after { content:'77px'; position:absolute; top:50%; right:6px; transform:translateY(-50%); font-size:10px; font-family:var(--mono); color:#FF4081; background:rgba(255,255,255,0.95); padding:1px 4px; border-radius:2px; font-weight:700; z-index:2; }
+    #tmPreview.spotlight-gap { outline:2px solid #FF4081; outline-offset:2px; border-radius:4px; }
+    #tmPreview.spotlight-gap::after { content:'24px'; position:absolute; top:-16px; left:50%; transform:translateX(-50%); font-size:10px; font-family:var(--mono); color:#FF4081; background:rgba(255,255,255,0.95); padding:1px 4px; border-radius:2px; font-weight:700; z-index:2; }
+  </style>
+</head>
+<body>
+
+<div id="navOverlay" class="nav-overlay" onclick="toggleSidebar()"></div>
+
+<nav class="topnav">
+  <button class="hamburger" onclick="toggleSidebar()" aria-label="Menu">
+    <i data-lucide="menu" style="width:18px;height:18px;color:var(--text-secondary)"></i>
+  </button>
+  <div class="bc">
+    <a href="index.html">UI Components</a>
+    <i data-lucide="chevron-right" style="width:14px;height:14px;flex-shrink:0"></i>
+    <a href="#">Layout</a>
+    <i data-lucide="chevron-right" style="width:14px;height:14px;flex-shrink:0"></i>
+    <span class="cur">Header</span>
+  </div>
+  <div class="nav-actions">
+    <div class="toggle-wrap" onclick="toggleTheme()" role="button">
+      <i data-lucide="moon" style="width:20px;height:20px"></i>
+      <div class="toggle-track"><div class="toggle-thumb"></div></div>
+      <i data-lucide="sun" style="width:20px;height:20px"></i>
+    </div>
+  </div>
+</nav>
+
+<div class="shell">
+
+  <nav class="left-nav" id="leftNav">
+    <div class="left-nav-inner">
+      <div class="ln-group">
+        <div class="ln-label">Inputs</div>
+        <ul class="ln-list">
+          <li><a href="checkbox.html">Checkbox</a></li>
+          <li><a href="datepicker.html">Date Picker</a></li>
+          <li><a href="numberinput.html">Number Input</a></li>
+          <li><a href="passwordinput.html">Password Input</a></li>
+          <li><a href="radiobutton.html">Radio Button</a></li>
+          <li><a href="search.html">Search</a></li>
+          <li><a href="select.html">Select</a></li>
+          <li><a href="slider.html">Slider</a></li>
+          <li><a href="switch.html">Switch</a></li>
+          <li><a href="textarea.html">Text Area</a></li>
+          <li><a href="textinput.html">Text Input</a></li>
+          <li><a href="tile.html">Tile</a></li>
+        </ul>
+      </div>
+      <div class="ln-group">
+        <div class="ln-label">Feedback</div>
+        <ul class="ln-list">
+          <li><a href="alert.html">Alert</a></li>
+          <li><a href="badge.html">Badge</a></li>
+          <li><a href="toast.html">Toast</a></li>
+          <li><a href="tooltip.html">Tooltip</a></li>
+        </ul>
+      </div>
+      <div class="ln-group">
+        <div class="ln-label">Navigation</div>
+        <ul class="ln-list">
+          <li><a href="accordion.html">Accordion</a></li>
+          <li><a href="dropdown.html">Dropdown</a></li>
+          <li><a href="menu.html">Menu</a></li>
+          <li><a href="segmentedcontrol.html">Segmented Control</a></li>
+          <li><a href="stepindicator.html">Step Indicator</a></li>
+          <li><a href="tabs.html">Tabs</a></li>
+        </ul>
+      </div>
+      <div class="ln-group">
+        <div class="ln-label">Actions</div>
+        <ul class="ln-list">
+          <li><a href="button.html">Button</a></li>
+          <li><a href="link.html">Link</a></li>
+          <li><a href="#">Tags</a></li>
+        </ul>
+      </div>
+      <div class="ln-group">
+        <div class="ln-label">Overlays</div>
+        <ul class="ln-list">
+          <li><a href="modal.html">Modal</a></li>
+          <li><a href="popover.html">Popover</a></li>
+        </ul>
+      </div>
+      <div class="ln-group">
+        <div class="ln-label">Layout</div>
+        <ul class="ln-list">
+          <li><a href="header.html" class="active">Header</a></li>
+          <li><a href="footer.html">Footer</a></li>
+        </ul>
+      </div>
+      <div class="ln-group">
+        <div class="ln-label">Display</div>
+        <ul class="ln-list">
+          <li><a href="avatar.html">Avatar</a></li>
+          <li><a href="carousel.html">Carousel</a></li>
+          <li><a href="fileupload.html">File Upload</a></li>
+          <li><a href="progressbar.html">Progress Bar</a></li>
+          <li><a href="starrating.html">Star Rating</a></li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <div class="content-wrap" id="contentWrap">
+
+    <main class="doc">
+
+      <!-- 1 · DEFINITION -->
+      <section class="doc-section" id="definition">
+        <div class="def-eyebrow">Layout</div>
+        <h1 class="def-title">Header</h1>
+        <p class="def-desc">The Header anchors the top of every page with the uShip logo, primary navigation, and user controls. Three variants are available: Shipper for buyer-side flows, Carrier for service-provider flows, and Simple for marketing or signed-out states.</p>
+        <div class="def-tags">
+          <span class="tag">Developed</span>
+          <span class="tag">Figma</span>
+        </div>
+        <div class="preview-box">
+          <div class="preview-box-inner" style="padding:0;">
+            <div style="display:flex;flex-direction:column;gap:16px;width:100%;">
+
+              <div class="hd-header">
+                <div class="hd-left">
+                  <div class="hd-logo">u<span class="hd-logo-mark">Sh</span>ip</div>
+                  <div class="hd-nav">
+                    <div class="hd-nav-item"><i data-lucide="box"></i><span>My Shipments</span></div>
+                    <div class="hd-nav-item"><i data-lucide="arrow-big-right"></i><span>Ship</span></div>
+                  </div>
+                </div>
+                <div class="hd-right">
+                  <div class="hd-user">
+                    <div class="hd-avatar hd-avatar--empty"><i data-lucide="user"></i></div>
+                    <div class="hd-name">Shipper Name</div>
+                    <i data-lucide="chevron-down" class="hd-chevron"></i>
+                  </div>
+                  <div class="hd-divider"></div>
+                  <i data-lucide="circle-help" class="hd-help"></i>
+                </div>
+              </div>
+
+              <div class="hd-header">
+                <div class="hd-left">
+                  <div class="hd-logo">u<span class="hd-logo-mark">Sh</span>ip</div>
+                  <div class="hd-nav">
+                    <div class="hd-nav-item"><i data-lucide="search"></i><span>Find Shipments</span></div>
+                    <div class="hd-nav-item"><i data-lucide="circle-dollar-sign"></i><span>My Quotes</span></div>
+                    <div class="hd-nav-item"><i data-lucide="box"></i><span>My Shipments</span></div>
+                  </div>
+                </div>
+                <div class="hd-right">
+                  <div class="hd-user">
+                    <div class="hd-avatar hd-avatar--filled" style="background:#E5EEF5;font-weight:700;color:#374151;">EC</div>
+                    <div class="hd-name">Carrier Name</div>
+                    <i data-lucide="chevron-down" class="hd-chevron"></i>
+                  </div>
+                  <div class="hd-divider"></div>
+                  <i data-lucide="circle-help" class="hd-help"></i>
+                </div>
+              </div>
+
+              <div class="hd-header">
+                <div class="hd-left">
+                  <div class="hd-logo">u<span class="hd-logo-mark">Sh</span>ip</div>
+                </div>
+                <div class="hd-right">
+                  <i data-lucide="circle-help" class="hd-help"></i>
+                </div>
+              </div>
+
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- 2 · ANATOMY -->
+      <section class="doc-section" id="anatomy">
+        <h2 class="section-title">Anatomy</h2>
+        <div class="anatomy-wrap">
+          <div class="anatomy-component" style="padding:32px 0;max-width:100%;">
+            <div style="position:relative;">
+              <div class="hd-header">
+                <div class="hd-left">
+                  <div class="hd-logo">u<span class="hd-logo-mark">Sh</span>ip</div>
+                  <div class="hd-nav">
+                    <div class="hd-nav-item"><i data-lucide="box"></i><span>My Shipments</span></div>
+                    <div class="hd-nav-item"><i data-lucide="arrow-big-right"></i><span>Ship</span></div>
+                  </div>
+                </div>
+                <div class="hd-right">
+                  <div class="hd-user">
+                    <div class="hd-avatar hd-avatar--empty"><i data-lucide="user"></i></div>
+                    <div class="hd-name">Shipper Name</div>
+                    <i data-lucide="chevron-down" class="hd-chevron"></i>
+                  </div>
+                  <div class="hd-divider"></div>
+                  <i data-lucide="circle-help" class="hd-help"></i>
+                </div>
+              </div>
+              <span class="callout" style="top:18px;left:36px;">1</span>
+              <span class="callout" style="top:22px;left:122px;">2</span>
+              <span class="callout" style="top:18px;right:142px;left:auto;transform:none;">3</span>
+              <span class="callout" style="top:22px;right:18px;left:auto;transform:none;">4</span>
+            </div>
+          </div>
+          <div class="anatomy-legend">
+            <div class="legend-item"><span class="legend-num">1</span>uShip logo (links to home)</div>
+            <div class="legend-item"><span class="legend-num">2</span>Primary nav tabs (with icons)</div>
+            <div class="legend-item"><span class="legend-num">3</span>User menu (avatar + name + chevron)</div>
+            <div class="legend-item"><span class="legend-num">4</span>Help icon</div>
+          </div>
+        </div>
+      </section>
+
+      <!-- 3 · VARIANTS -->
+      <section class="doc-section" id="variants">
+        <h2 class="section-title">Variants</h2>
+        <div class="tabs-wrap">
+          <div class="tabs">
+            <button class="tab active" onclick="switchTab(this,'v-shipper')">Shipper</button>
+            <button class="tab" onclick="switchTab(this,'v-carrier')">Carrier</button>
+            <button class="tab" onclick="switchTab(this,'v-simple')">Simple</button>
+          </div>
+        </div>
+
+        <div class="tab-panel active" id="v-shipper">
+          <div class="var-panel">
+            <div class="var-previews-wrap">
+              <div class="var-previews">
+                <div class="var-preview" style="padding:0;">
+                  <div class="hd-header" style="width:100%;">
+                    <div class="hd-left">
+                      <div class="hd-logo">u<span class="hd-logo-mark">Sh</span>ip</div>
+                      <div class="hd-nav">
+                        <div class="hd-nav-item"><i data-lucide="box"></i><span>My Shipments</span></div>
+                        <div class="hd-nav-item"><i data-lucide="arrow-big-right"></i><span>Ship</span></div>
+                      </div>
+                    </div>
+                    <div class="hd-right">
+                      <div class="hd-user">
+                        <div class="hd-avatar hd-avatar--empty"><i data-lucide="user"></i></div>
+                        <div class="hd-name">Shipper Name</div>
+                        <i data-lucide="chevron-down" class="hd-chevron"></i>
+                      </div>
+                      <div class="hd-divider"></div>
+                      <i data-lucide="circle-help" class="hd-help"></i>
+                    </div>
+                  </div>
+                </div>
+                <div class="var-preview-dark" style="padding:0;">
+                  <div class="hd-header" style="width:100%;">
+                    <div class="hd-left">
+                      <div class="hd-logo">u<span class="hd-logo-mark">Sh</span>ip</div>
+                      <div class="hd-nav">
+                        <div class="hd-nav-item"><i data-lucide="box"></i><span>My Shipments</span></div>
+                        <div class="hd-nav-item"><i data-lucide="arrow-big-right"></i><span>Ship</span></div>
+                      </div>
+                    </div>
+                    <div class="hd-right">
+                      <div class="hd-user">
+                        <div class="hd-avatar hd-avatar--empty"><i data-lucide="user"></i></div>
+                        <div class="hd-name">Shipper Name</div>
+                        <i data-lucide="chevron-down" class="hd-chevron"></i>
+                      </div>
+                      <div class="hd-divider"></div>
+                      <i data-lucide="circle-help" class="hd-help"></i>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="var-desc">
+              <div class="var-use-when">Shipper — use when:</div>
+              <ul class="var-use-list">
+                <li>The user is shipping goods (buyer-side flows)</li>
+                <li>Two primary tabs: <code>My Shipments</code> and <code>Ship</code></li>
+                <li>Avatar shows generic user icon when no profile photo is set</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <div class="tab-panel" id="v-carrier">
+          <div class="var-panel">
+            <div class="var-previews-wrap">
+              <div class="var-previews">
+                <div class="var-preview" style="padding:0;">
+                  <div class="hd-header" style="width:100%;">
+                    <div class="hd-left">
+                      <div class="hd-logo">u<span class="hd-logo-mark">Sh</span>ip</div>
+                      <div class="hd-nav">
+                        <div class="hd-nav-item"><i data-lucide="search"></i><span>Find Shipments</span></div>
+                        <div class="hd-nav-item"><i data-lucide="circle-dollar-sign"></i><span>My Quotes</span></div>
+                        <div class="hd-nav-item"><i data-lucide="box"></i><span>My Shipments</span></div>
+                      </div>
+                    </div>
+                    <div class="hd-right">
+                      <div class="hd-user">
+                        <div class="hd-avatar hd-avatar--filled" style="background:#E5EEF5;font-weight:700;color:#374151;">EC</div>
+                        <div class="hd-name">Carrier Name</div>
+                        <i data-lucide="chevron-down" class="hd-chevron"></i>
+                      </div>
+                      <div class="hd-divider"></div>
+                      <i data-lucide="circle-help" class="hd-help"></i>
+                    </div>
+                  </div>
+                </div>
+                <div class="var-preview-dark" style="padding:0;">
+                  <div class="hd-header" style="width:100%;">
+                    <div class="hd-left">
+                      <div class="hd-logo">u<span class="hd-logo-mark">Sh</span>ip</div>
+                      <div class="hd-nav">
+                        <div class="hd-nav-item"><i data-lucide="search"></i><span>Find Shipments</span></div>
+                        <div class="hd-nav-item"><i data-lucide="circle-dollar-sign"></i><span>My Quotes</span></div>
+                        <div class="hd-nav-item"><i data-lucide="box"></i><span>My Shipments</span></div>
+                      </div>
+                    </div>
+                    <div class="hd-right">
+                      <div class="hd-user">
+                        <div class="hd-avatar hd-avatar--filled" style="background:#001F33;font-weight:700;color:#FFFFFF;">EC</div>
+                        <div class="hd-name">Carrier Name</div>
+                        <i data-lucide="chevron-down" class="hd-chevron"></i>
+                      </div>
+                      <div class="hd-divider"></div>
+                      <i data-lucide="circle-help" class="hd-help"></i>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="var-desc">
+              <div class="var-use-when">Carrier — use when:</div>
+              <ul class="var-use-list">
+                <li>The user is moving goods (service-provider flows)</li>
+                <li>Three primary tabs: <code>Find Shipments</code>, <code>My Quotes</code>, <code>My Shipments</code></li>
+                <li>Avatar uses initials or photo on a tinted blue background</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <div class="tab-panel" id="v-simple">
+          <div class="var-panel">
+            <div class="var-previews-wrap">
+              <div class="var-previews">
+                <div class="var-preview" style="padding:0;">
+                  <div class="hd-header" style="width:100%;">
+                    <div class="hd-left">
+                      <div class="hd-logo">u<span class="hd-logo-mark">Sh</span>ip</div>
+                    </div>
+                    <div class="hd-right">
+                      <i data-lucide="circle-help" class="hd-help"></i>
+                    </div>
+                  </div>
+                </div>
+                <div class="var-preview-dark" style="padding:0;">
+                  <div class="hd-header" style="width:100%;">
+                    <div class="hd-left">
+                      <div class="hd-logo">u<span class="hd-logo-mark">Sh</span>ip</div>
+                    </div>
+                    <div class="hd-right">
+                      <i data-lucide="circle-help" class="hd-help"></i>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="var-desc">
+              <div class="var-use-when">Simple — use when:</div>
+              <ul class="var-use-list">
+                <li>Logged-out, marketing, or onboarding pages where nav and user menu would distract</li>
+                <li>Only the logo and a help icon are shown</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- 4 · PROPERTIES -->
+      <section class="doc-section" id="properties">
+        <h2 class="section-title">Properties</h2>
+        <table class="props-table">
+          <thead>
+            <tr><th>Property</th><th>Type</th><th>Default</th><th>Description</th></tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td class="p-name">variant</td>
+              <td class="p-type">"shipper" | "carrier" | "simple"</td>
+              <td class="p-def">"shipper"</td>
+              <td class="p-desc">Layout preset matching the user's role</td>
+            </tr>
+            <tr>
+              <td class="p-name">user</td>
+              <td class="p-type">User | null</td>
+              <td class="p-def">—</td>
+              <td class="p-desc">Current user (drives avatar + name)</td>
+            </tr>
+            <tr>
+              <td class="p-name">navItems</td>
+              <td class="p-type">NavItem[]</td>
+              <td class="p-def">—</td>
+              <td class="p-desc">Tab definitions (label, icon, href)</td>
+            </tr>
+            <tr>
+              <td class="p-name">showHelp</td>
+              <td class="p-type">boolean</td>
+              <td class="p-def">true</td>
+              <td class="p-desc">Whether to render the help icon on the right</td>
+            </tr>
+            <tr>
+              <td class="p-name">onLogoClick</td>
+              <td class="p-type">function</td>
+              <td class="p-def">—</td>
+              <td class="p-desc">Callback when the logo is activated (defaults to home)</td>
+            </tr>
+          </tbody>
+        </table>
+      </section>
+
+      <!-- 5 · USAGE -->
+      <section class="doc-section" id="usage">
+        <h2 class="section-title">Usage Guidelines</h2>
+
+        <div class="usage-block">
+          <div class="usage-cols">
+            <div class="usage-card">
+              <div class="usage-card-header">
+                <div class="usage-icon do-icon"><i data-lucide="check" style="width:12px;height:12px"></i></div>
+                <div class="usage-card-title">Lorem ipsum dolor sit amet</div>
+              </div>
+              <ul class="usage-list">
+                <li>Lorem ipsum dolor sit amet consectetur</li>
+                <li>Adipiscing elit sed do eiusmod tempor</li>
+                <li>Incididunt ut labore et dolore magna</li>
+              </ul>
+            </div>
+            <div class="usage-card">
+              <div class="usage-card-header">
+                <div class="usage-icon do-icon"><i data-lucide="check" style="width:12px;height:12px"></i></div>
+                <div class="usage-card-title">Ut enim ad minim veniam</div>
+              </div>
+              <ul class="usage-list">
+                <li>Quis nostrud exercitation ullamco laboris</li>
+                <li>Nisi ut aliquip ex ea commodo consequat</li>
+              </ul>
+            </div>
+            <div class="usage-card">
+              <div class="usage-card-header">
+                <div class="usage-icon do-icon"><i data-lucide="check" style="width:12px;height:12px"></i></div>
+                <div class="usage-card-title">Excepteur sint occaecat</div>
+              </div>
+              <ul class="usage-list">
+                <li>Non proident sunt in culpa qui officia</li>
+                <li>Deserunt mollit anim id est laborum</li>
+              </ul>
+            </div>
+            <div class="usage-card">
+              <div class="usage-card-header">
+                <div class="usage-icon do-icon"><i data-lucide="check" style="width:12px;height:12px"></i></div>
+                <div class="usage-card-title">Nemo enim ipsam voluptatem</div>
+              </div>
+              <ul class="usage-list">
+                <li>Quia voluptas sit aspernatur aut odit</li>
+                <li>Neque porro quisquam est qui dolorem</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <div class="usage-divider"></div>
+
+        <div class="usage-block">
+          <div class="usage-cols">
+            <div class="usage-card">
+              <div class="usage-card-header">
+                <div class="usage-icon dont-icon"><i data-lucide="x" style="width:12px;height:12px"></i></div>
+                <div class="usage-card-title">Quis autem vel eum iure</div>
+              </div>
+              <ul class="usage-list">
+                <li>Reprehenderit qui in ea voluptate velit</li>
+                <li>Esse quam nihil molestiae consequatur</li>
+              </ul>
+            </div>
+            <div class="usage-card">
+              <div class="usage-card-header">
+                <div class="usage-icon dont-icon"><i data-lucide="x" style="width:12px;height:12px"></i></div>
+                <div class="usage-card-title">At vero eos et accusamus</div>
+              </div>
+              <ul class="usage-list">
+                <li>Et iusto odio dignissimos ducimus qui</li>
+                <li>Blanditiis praesentium voluptatum deleniti</li>
+              </ul>
+            </div>
+            <div class="usage-card">
+              <div class="usage-card-header">
+                <div class="usage-icon dont-icon"><i data-lucide="x" style="width:12px;height:12px"></i></div>
+                <div class="usage-card-title">Nam libero tempore soluta</div>
+              </div>
+              <ul class="usage-list">
+                <li>Nobis est eligendi optio cumque nihil</li>
+                <li>Impedit quo minus id quod maxime</li>
+              </ul>
+            </div>
+            <div class="usage-card">
+              <div class="usage-card-header">
+                <div class="usage-icon dont-icon"><i data-lucide="x" style="width:12px;height:12px"></i></div>
+                <div class="usage-card-title">Temporibus autem quibusdam</div>
+              </div>
+              <ul class="usage-list">
+                <li>Et aut officiis debitis aut rerum necessitatibus</li>
+                <li>Saepe eveniet ut et voluptates repudiandae</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- 6 · TOKEN MAP -->
+      <section class="doc-section" id="tokens">
+        <h2 class="section-title">Token Map</h2>
+        <div class="tm-preview-controls">
+          <div class="tm-mode-toggle" id="tmModeToggle">
+            <span class="tm-mode-label" id="tmModeLabel">Light</span>
+            <div class="sw-track sw-track--compact" id="tmModeTrack"><div class="sw-thumb"></div></div>
+          </div>
+        </div>
+        <div class="tm-map">
+          <div>
+            <div class="tm-preview-card" data-bg="light">
+              <div class="tm-preview-inner" style="padding:0;align-items:stretch;">
+                <div id="tmPreview" class="tm-preview" style="width:100%;">
+                  <div class="hd-header" data-part="header">
+                    <div class="hd-left">
+                      <div class="hd-logo" data-part="logo">u<span class="hd-logo-mark">Sh</span>ip</div>
+                      <div class="hd-nav">
+                        <div class="hd-nav-item" data-part="nav"><i data-lucide="box"></i><span>My Shipments</span></div>
+                      </div>
+                    </div>
+                    <div class="hd-right">
+                      <i data-lucide="circle-help" class="hd-help" data-part="help"></i>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="tm-tokens-card">
+            <div class="tm-tokens-head">
+              <div class="tm-tokens-title"><h5>Token list</h5><span class="tm-count"><span id="tmCountNum">0</span> tokens</span></div>
+              <p class="tm-tokens-helper">Hover a token to see where it applies on the component.</p>
+              <div class="tm-seg" style="margin:0 0 12px;">
+                <button class="tm-seg-item tm-seg-item--active" data-tab="color"><i data-lucide="palette" class="tm-seg-icon"></i> Color</button>
+                <button class="tm-seg-item" data-tab="component"><i data-lucide="ruler" class="tm-seg-icon"></i> Component</button>
+                <button class="tm-seg-item" data-tab="typography"><i data-lucide="type" class="tm-seg-icon"></i> Typography</button>
+              </div>
+            </div>
+            <div class="tm-tokens-body" id="tmCards"></div>
+          </div>
+        </div>
+      </section>
+
+      <!-- 7 · ACCESSIBILITY -->
+      <section class="doc-section" id="accessibility">
+        <h2 class="section-title">Accessibility</h2>
+        <ul class="a11y-list">
+          <li>
+            <div><strong>Landmark:</strong> Wrap the header in <code>&lt;header role="banner"&gt;</code> and the nav in <code>&lt;nav aria-label="Primary"&gt;</code> so assistive tech can jump to it directly.</div>
+          </li>
+          <li>
+            <div><strong>Keyboard:</strong> Logo, each nav tab, the user menu trigger, and the help icon must all be reachable in tab order. <kbd>Enter</kbd> activates them; <kbd>Esc</kbd> closes any opened menu.</div>
+          </li>
+          <li>
+            <div><strong>Skip link:</strong> Render a "Skip to main content" link as the first focusable element so keyboard users can bypass the nav.</div>
+          </li>
+          <li>
+            <div><strong>Contrast:</strong> Tab text (#374151 on white) and the link blue (#016692) both clear WCAG AA. Verify the equivalent dark-mode tokens before shipping.</div>
+          </li>
+        </ul>
+      </section>
+
+      <!-- 8 · RELATED -->
+      <section class="doc-section" id="related">
+        <h2 class="section-title">Related Components</h2>
+        <div class="related-grid">
+          <a href="footer.html" class="related-card">
+            <div class="rc-name">Footer</div>
+            <div class="rc-desc">The bottom companion to Header — copyright line plus link rail.</div>
+          </a>
+          <a href="tabs.html" class="related-card">
+            <div class="rc-name">Tabs</div>
+            <div class="rc-desc">Header nav reuses the same icon-label-tab spacing as the Tabs component.</div>
+          </a>
+          <a href="avatar.html" class="related-card">
+            <div class="rc-name">Avatar</div>
+            <div class="rc-desc">The user menu uses the Avatar component for image, initials, or empty states.</div>
+          </a>
+        </div>
+      </section>
+
+    </main>
+
+    <nav class="right-nav">
+      <div class="rn-label">On this page</div>
+      <ul class="rn-list">
+        <li><a href="#definition"    id="rn-definition">Definition</a></li>
+        <li><a href="#anatomy"       id="rn-anatomy">Anatomy</a></li>
+        <li><a href="#variants"      id="rn-variants">Variants</a></li>
+        <li><a href="#properties"    id="rn-properties">Properties</a></li>
+        <li><a href="#usage"         id="rn-usage">Usage</a></li>
+        <li><a href="#tokens"        id="rn-tokens">Tokens</a></li>
+        <li><a href="#accessibility" id="rn-accessibility">Accessibility</a></li>
+        <li><a href="#related"       id="rn-related">Related</a></li>
+      </ul>
+    </nav>
+
+  </div>
+</div>
+
+<script>
+  lucide.createIcons();
+
+  const isMobile = () => window.innerWidth <= 768;
+  let sbOpen = !isMobile();
+  if (!sbOpen) document.getElementById('leftNav').classList.add('hidden');
+
+  function toggleSidebar() {
+    sbOpen = !sbOpen;
+    document.getElementById('leftNav').classList.toggle('hidden', !sbOpen);
+    if (!isMobile()) document.getElementById('contentWrap').style.marginLeft = sbOpen ? 'var(--left-w)' : '0';
+    document.getElementById('navOverlay').classList.toggle('active', sbOpen && isMobile());
+  }
+  function updateTabFade(tabsEl) {
+    const wrap = tabsEl.closest('.tabs-wrap'); if (!wrap) return;
+    const atEnd = tabsEl.scrollLeft + tabsEl.clientWidth >= tabsEl.scrollWidth - 2;
+    wrap.classList.toggle('at-end', atEnd);
+  }
+  function switchTab(btn, panelId) {
+    btn.closest('.doc-section').querySelectorAll('.tab').forEach(b => b.classList.remove('active'));
+    btn.closest('.doc-section').querySelectorAll('.tab-panel').forEach(p => p.classList.remove('active'));
+    btn.classList.add('active');
+    document.getElementById(panelId).classList.add('active');
+    const tabsEl = btn.closest('.tabs'); if (tabsEl) updateTabFade(tabsEl);
+    lucide.createIcons();
+  }
+  window.addEventListener('load', () => {
+    document.querySelectorAll('.tabs').forEach(tabsEl => { updateTabFade(tabsEl); tabsEl.addEventListener('scroll', () => updateTabFade(tabsEl)); });
+  });
+  function toggleTheme() {
+    const d = document.documentElement;
+    d.setAttribute('data-theme', d.getAttribute('data-theme') === 'dark' ? 'light' : 'dark');
+  }
+
+  const sections = ['definition','anatomy','variants','properties','usage','tokens','accessibility','related'];
+  const observer = new IntersectionObserver(entries => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        document.querySelectorAll('.rn-list a').forEach(a => a.classList.remove('active'));
+        const link = document.getElementById('rn-' + e.target.id); if (link) link.classList.add('active');
+      }
+    });
+  }, { rootMargin: '-20% 0px -70% 0px' });
+  sections.forEach(id => { const el = document.getElementById(id); if (el) observer.observe(el); });
+
+  // ══════════════════════════════════════════
+  // TOKEN MAP
+  // ══════════════════════════════════════════
+  const tmColorLight = [{"role":"Surface","token":"color/surface/shell","hex":"#FFFFFF","ref":"color/gray/0"},{"role":"Border bottom","token":"color/border/interactive","hex":"#CDD2D7","ref":"color/gray/300"},{"role":"Logo","token":"color/icon/info","hex":"#027CB1","ref":"color/blue/600"},{"role":"Nav text","token":"color/text/primary","hex":"#374151","ref":"color/gray/700"},{"role":"Nav icon","token":"color/icon/info","hex":"#027CB1","ref":"color/blue/600"},{"role":"User name","token":"color/text/primary","hex":"#374151","ref":"color/gray/700"},{"role":"Help icon","token":"color/text/primary","hex":"#374151","ref":"color/gray/700"}];
+  const tmColorDark = [{"role":"Surface","token":"color/surface/shell","hex":"#0A0A0A","ref":"color/neutral/950"},{"role":"Border bottom","token":"color/border/interactive","hex":"#6B7280","ref":"color/gray/500"},{"role":"Logo","token":"color/icon/info","hex":"#5ABFE0","ref":"color/blue/400"},{"role":"Nav text","token":"color/text/primary","hex":"#FFFFFF","ref":"color/gray/0"},{"role":"Nav icon","token":"color/icon/info","hex":"#5ABFE0","ref":"color/blue/400"},{"role":"User name","token":"color/text/primary","hex":"#FFFFFF","ref":"color/gray/0"},{"role":"Help icon","token":"color/text/primary","hex":"#FFFFFF","ref":"color/gray/0"}];
+  const tmComponentTokens = [{"role":"Padding X","component":"header/padding/x","primitive":"spacing/6x","value":"24px","icon":"space"},{"role":"Padding Y","component":"header/padding/y","primitive":"spacing/3x","value":"12px","icon":"space"},{"role":"Height","component":"header/height","primitive":"—","value":"77px","icon":"separator-horizontal"},{"role":"Gap (left)","component":"header/gap","primitive":"spacing/6x","value":"24px","icon":"columns-3"},{"role":"Avatar size","component":"avatar/md/size","primitive":"size/12x","value":"48px","icon":"scan"}];
+  const tmTypographyTokens = [{"role":"Nav label","style":"typography/body/medium","font":"Lato","weight":"Regular (400)","size":"16px","lineHeight":"22px","letterSpacing":"0"},{"role":"User name","style":"typography/body/small (bold)","font":"Lato","weight":"Bold (700)","size":"14px","lineHeight":"19px","letterSpacing":"0"}];
+  const tmTotalTokens = tmColorLight.length + tmComponentTokens.length + tmTypographyTokens.length;
+  const tmState = { tab:'color', mode:'light' };
+  const tmCards = document.getElementById('tmCards');
+  const tmPreviewCard = document.querySelector('.tm-preview-card');
+  const arrowSvg = '<svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="width:20px;height:20px"><circle cx="5" cy="10" r="3"/><path d="M8 10h9m-3-3 3 3-3 3"/></svg>';
+  document.getElementById('tmCountNum').textContent = tmTotalTokens;
+  const tmPreview = document.getElementById('tmPreview');
+
+  const colorPartMap = {
+    'surface':['header'], 'border-bottom':['header'], 'logo':['logo'],
+    'nav-text':['nav'], 'nav-icon':['nav'], 'user-name':['nav'], 'help-icon':['help'],
+  };
+  const compSpotlightMap = {
+    'padding-x':'spotlight-padding-x', 'padding-y':'spotlight-padding-y',
+    'height':'spotlight-height', 'gap-left':'spotlight-gap', 'avatar-size':'spotlight-gap',
+  };
+  const typoPartMap = { 'nav-label':['nav'], 'user-name':['nav'] };
+  const spotlightClasses = ['has-spotlight','spotlight-padding-x','spotlight-padding-y','spotlight-height','spotlight-gap'];
+
+  function slug(s){ return s.toLowerCase().replace(/[^a-z0-9]+/g,'-').replace(/-+$/,''); }
+  function clearSpotlight(){
+    spotlightClasses.forEach(c=>tmPreview.classList.remove(c));
+    tmPreview.querySelectorAll('[data-part]').forEach(p=>p.classList.remove('spotlight'));
+  }
+  function spotlight(sl){
+    if(compSpotlightMap[sl]){ tmPreview.classList.add(compSpotlightMap[sl]); return; }
+    const parts = colorPartMap[sl] || typoPartMap[sl];
+    if(!parts||!parts.length) return;
+    tmPreview.classList.add('has-spotlight');
+    parts.forEach(p=>{ const el=tmPreview.querySelector('[data-part="'+p+'"]'); if(el) el.classList.add('spotlight'); });
+  }
+  function tmRender() {
+    const colors = tmState.mode==='light' ? tmColorLight : tmColorDark;
+    tmPreviewCard.setAttribute('data-bg', tmState.mode);
+    let html = '';
+    if (tmState.tab==='color') {
+      for (const c of colors) {
+        const s=slug(c.role);
+        html+='<div class="tm-row" data-slot="'+s+'"><div class="tm-row-header"><div class="tm-row-swatch" style="background:'+c.hex+'"></div><div class="tm-row-label">'+c.role+'</div></div><div class="tm-chain-row"><div class="tm-chip">'+c.token+'</div><div class="tm-chain-arrow">'+arrowSvg+'</div><div class="tm-chip">'+(c.ref||c.token)+'</div><div class="tm-chain-arrow">'+arrowSvg+'</div><div class="tm-chip" style="font-weight:600">'+c.hex+'</div></div></div>';
+      }
+    } else if (tmState.tab==='component') {
+      for (const ct of tmComponentTokens) {
+        const s=slug(ct.role);
+        html+='<div class="tm-row" data-slot="'+s+'"><div class="tm-row-header"><div class="tm-row-icon"><i data-lucide="'+ct.icon+'" style="width:16px;height:16px"></i></div><div class="tm-row-label">'+ct.role+'</div></div><div class="tm-chain-row"><div class="tm-chip">'+ct.component+'</div><div class="tm-chain-arrow">'+arrowSvg+'</div><div class="tm-chip">'+ct.primitive+'</div><div class="tm-chain-arrow">'+arrowSvg+'</div><div class="tm-chip" style="font-weight:600">'+ct.value+'</div></div></div>';
+      }
+    } else {
+      for (const tt of tmTypographyTokens) {
+        const s=slug(tt.role);
+        html+='<div class="tm-row" data-slot="'+s+'"><div class="tm-row-header"><div class="tm-row-icon"><i data-lucide="type" style="width:16px;height:16px"></i></div><div class="tm-row-label">'+tt.role+'</div></div><div class="tm-chain-row" style="flex-direction:column;align-items:flex-start;gap:6px;"><div style="display:flex;align-items:center;gap:10px;flex-wrap:wrap;"><div class="tm-chip">'+tt.style+'</div></div><div style="display:flex;align-items:center;gap:8px;flex-wrap:wrap;font-family:var(--mono);font-size:12px;color:var(--text-tertiary);"><span>'+tt.font+'</span><span>&middot;</span><span>'+tt.weight+'</span><span>&middot;</span><span>'+tt.size+' / '+tt.lineHeight+'</span>'+(tt.letterSpacing!=='0'?'<span>&middot;</span><span>ls: '+tt.letterSpacing+'</span>':'')+'</div></div></div>';
+      }
+    }
+    tmCards.innerHTML = html;
+    document.querySelectorAll('.tm-row[data-slot]').forEach(row=>{
+      const sl=row.dataset.slot;
+      row.addEventListener('mouseenter',()=>{ row.classList.add('is-hot'); spotlight(sl); });
+      row.addEventListener('mouseleave',()=>{ row.classList.remove('is-hot'); clearSpotlight(); });
+    });
+    lucide.createIcons();
+  }
+  document.getElementById('tmModeToggle').addEventListener('click', () => {
+    tmState.mode = tmState.mode==='light' ? 'dark' : 'light';
+    document.getElementById('tmModeLabel').textContent = tmState.mode==='light' ? 'Light' : 'Dark';
+    const track = document.getElementById('tmModeTrack');
+    if (tmState.mode==='dark') track.classList.add('sw-on'); else track.classList.remove('sw-on');
+    tmRender();
+  });
+  document.querySelectorAll('.tm-seg-item[data-tab]').forEach(btn=>{
+    btn.addEventListener('click',()=>{
+      tmState.tab=btn.dataset.tab;
+      document.querySelectorAll('.tm-seg-item[data-tab]').forEach(b=>b.classList.remove('tm-seg-item--active'));
+      btn.classList.add('tm-seg-item--active');
+      tmRender();
+    });
+  });
+  tmRender();
+</script>
+</body>
+</html>
