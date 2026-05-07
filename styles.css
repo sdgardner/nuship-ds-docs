@@ -2837,6 +2837,23 @@ code {
 .tm-preview-card[data-bg="dark"] .si-connector { background:#6B7280; }
 .tm-preview-card[data-bg="dark"] .si-connector--filled { background:#5ABFE0; }
 
+/* ─── SR · Star Rating ──────────────────────────── */
+.sr-rating { display:inline-flex; gap:4px; align-items:center; color:#027CB1; }
+.sr-star { position:relative; display:inline-block; width:24px; height:24px; flex-shrink:0; color:inherit; }
+.sr-star svg { position:absolute; inset:0; width:100%; height:100%; pointer-events:none; }
+.sr-star-base { stroke:currentColor; stroke-width:2; fill:transparent; }
+.sr-star-fill { stroke:currentColor; stroke-width:2; fill:currentColor; clip-path:inset(0 100% 0 0); }
+.sr-star--full .sr-star-fill { clip-path:inset(0 0 0 0); }
+.sr-star--half .sr-star-fill { clip-path:inset(0 50% 0 0); }
+
+[data-theme="dark"] .sr-rating { color:#5ABFE0; }
+
+.var-preview .sr-rating { color:#027CB1; }
+.var-preview-dark .sr-rating { color:#5ABFE0; }
+
+.tm-preview-card[data-bg="light"] .sr-rating { color:#027CB1; }
+.tm-preview-card[data-bg="dark"] .sr-rating { color:#5ABFE0; }
+
 /* ─── TM · Token Map (shared) ──────────────────── */
 :root { --mono: ui-monospace, "SF Mono", "Menlo", Consolas, monospace; --tm-accent: #027CB1; }
 .tm-map { display:grid; grid-template-columns:1fr 1fr; gap:24px; align-items:start; }

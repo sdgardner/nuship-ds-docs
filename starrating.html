@@ -1,0 +1,786 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Star Rating — nuShip Design System</title>
+  <link href="https://fonts.googleapis.com/css2?family=Lato:wght@400;600;700;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="tokens.css">
+  <link rel="stylesheet" href="styles.css">
+  <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.min.js"></script>
+  <script src="nav-scroll.js" defer></script>
+  <style>
+    /* Star Rating token map spotlights */
+    #tmPreview { position:relative; min-height:120px; display:flex; align-items:center; justify-content:center; }
+    #tmPreview.spotlight-icon-size .sr-star { outline:2px solid #FF4081; outline-offset:2px; border-radius:4px; }
+    #tmPreview.spotlight-icon-size::after { content:'24px'; position:absolute; top:-16px; left:0; font-size:10px; font-family:var(--mono); color:#FF4081; background:rgba(255,255,255,0.95); padding:1px 4px; border-radius:2px; font-weight:700; }
+    #tmPreview.spotlight-gap { outline:2px solid #FF4081; outline-offset:2px; border-radius:4px; }
+    #tmPreview.spotlight-gap::after { content:'4px'; position:absolute; top:-16px; right:0; font-size:10px; font-family:var(--mono); color:#FF4081; background:rgba(255,255,255,0.95); padding:1px 4px; border-radius:2px; font-weight:700; }
+    #tmPreview.spotlight-border-width .sr-star { outline:2px solid #FF4081; outline-offset:0; }
+    #tmPreview.spotlight-border-width::after { content:'2px'; position:absolute; bottom:-18px; left:0; font-size:10px; font-family:var(--mono); color:#FF4081; background:rgba(255,255,255,0.95); padding:1px 4px; border-radius:2px; font-weight:700; }
+  </style>
+</head>
+<body>
+
+<!-- Reusable star SVG defs -->
+<svg width="0" height="0" style="position:absolute;" aria-hidden="true">
+  <defs>
+    <symbol id="sr-star-shape" viewBox="0 0 24 24">
+      <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"
+               stroke-linecap="round" stroke-linejoin="round" />
+    </symbol>
+  </defs>
+</svg>
+
+<div id="navOverlay" class="nav-overlay" onclick="toggleSidebar()"></div>
+
+<nav class="topnav">
+  <button class="hamburger" onclick="toggleSidebar()" aria-label="Menu">
+    <i data-lucide="menu" style="width:18px;height:18px;color:var(--text-secondary)"></i>
+  </button>
+  <div class="bc">
+    <a href="index.html">UI Components</a>
+    <i data-lucide="chevron-right" style="width:14px;height:14px;flex-shrink:0"></i>
+    <a href="#">Display</a>
+    <i data-lucide="chevron-right" style="width:14px;height:14px;flex-shrink:0"></i>
+    <span class="cur">Star Rating</span>
+  </div>
+  <div class="nav-actions">
+    <div class="toggle-wrap" onclick="toggleTheme()" role="button">
+      <i data-lucide="moon" style="width:20px;height:20px"></i>
+      <div class="toggle-track"><div class="toggle-thumb"></div></div>
+      <i data-lucide="sun" style="width:20px;height:20px"></i>
+    </div>
+  </div>
+</nav>
+
+<div class="shell">
+
+  <nav class="left-nav" id="leftNav">
+    <div class="left-nav-inner">
+      <div class="ln-group">
+        <div class="ln-label">Inputs</div>
+        <ul class="ln-list">
+          <li><a href="checkbox.html">Checkbox</a></li>
+          <li><a href="datepicker.html">Date Picker</a></li>
+          <li><a href="numberinput.html">Number Input</a></li>
+          <li><a href="passwordinput.html">Password Input</a></li>
+          <li><a href="radiobutton.html">Radio Button</a></li>
+          <li><a href="search.html">Search</a></li>
+          <li><a href="select.html">Select</a></li>
+          <li><a href="slider.html">Slider</a></li>
+          <li><a href="switch.html">Switch</a></li>
+          <li><a href="textarea.html">Text Area</a></li>
+          <li><a href="textinput.html">Text Input</a></li>
+          <li><a href="tile.html">Tile</a></li>
+        </ul>
+      </div>
+      <div class="ln-group">
+        <div class="ln-label">Feedback</div>
+        <ul class="ln-list">
+          <li><a href="alert.html">Alert</a></li>
+          <li><a href="badge.html">Badge</a></li>
+          <li><a href="toast.html">Toast</a></li>
+          <li><a href="tooltip.html">Tooltip</a></li>
+        </ul>
+      </div>
+      <div class="ln-group">
+        <div class="ln-label">Navigation</div>
+        <ul class="ln-list">
+          <li><a href="accordion.html">Accordion</a></li>
+          <li><a href="dropdown.html">Dropdown</a></li>
+          <li><a href="menu.html">Menu</a></li>
+          <li><a href="segmentedcontrol.html">Segmented Control</a></li>
+          <li><a href="stepindicator.html">Step Indicator</a></li>
+          <li><a href="tabs.html">Tabs</a></li>
+        </ul>
+      </div>
+      <div class="ln-group">
+        <div class="ln-label">Actions</div>
+        <ul class="ln-list">
+          <li><a href="button.html">Button</a></li>
+          <li><a href="link.html">Link</a></li>
+          <li><a href="#">Tags</a></li>
+        </ul>
+      </div>
+      <div class="ln-group">
+        <div class="ln-label">Overlays</div>
+        <ul class="ln-list">
+          <li><a href="modal.html">Modal</a></li>
+          <li><a href="popover.html">Popover</a></li>
+        </ul>
+      </div>
+      <div class="ln-group">
+        <div class="ln-label">Display</div>
+        <ul class="ln-list">
+          <li><a href="avatar.html">Avatar</a></li>
+          <li><a href="carousel.html">Carousel</a></li>
+          <li><a href="fileupload.html">File Upload</a></li>
+          <li><a href="progressbar.html">Progress Bar</a></li>
+          <li><a href="starrating.html" class="active">Star Rating</a></li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <div class="content-wrap" id="contentWrap">
+
+    <main class="doc">
+
+      <!-- 1 · DEFINITION -->
+      <section class="doc-section" id="definition">
+        <div class="def-eyebrow">Display</div>
+        <h1 class="def-title">Star Rating</h1>
+        <p class="def-desc">Star Rating is a five-star scale for displaying or capturing user satisfaction, review scores, or quality ratings. Each star can be empty, half-filled, or full, supporting fractional values like 3.5 out of 5.</p>
+        <div class="def-tags">
+          <span class="tag">Developed</span>
+          <span class="tag">Figma</span>
+        </div>
+        <div class="preview-box">
+          <div class="preview-box-inner">
+            <div style="display:flex;flex-direction:column;gap:24px;align-items:flex-start;padding:24px 0;">
+
+              <div style="display:flex;align-items:center;gap:24px;">
+                <div style="font-size:12px;font-weight:700;width:80px;color:var(--text-tertiary)">No Rating</div>
+                <div class="sr-rating">
+                  <span class="sr-star sr-star--empty"><svg class="sr-star-base"><use href="#sr-star-shape"/></svg><svg class="sr-star-fill"><use href="#sr-star-shape"/></svg></span>
+                  <span class="sr-star sr-star--empty"><svg class="sr-star-base"><use href="#sr-star-shape"/></svg><svg class="sr-star-fill"><use href="#sr-star-shape"/></svg></span>
+                  <span class="sr-star sr-star--empty"><svg class="sr-star-base"><use href="#sr-star-shape"/></svg><svg class="sr-star-fill"><use href="#sr-star-shape"/></svg></span>
+                  <span class="sr-star sr-star--empty"><svg class="sr-star-base"><use href="#sr-star-shape"/></svg><svg class="sr-star-fill"><use href="#sr-star-shape"/></svg></span>
+                  <span class="sr-star sr-star--empty"><svg class="sr-star-base"><use href="#sr-star-shape"/></svg><svg class="sr-star-fill"><use href="#sr-star-shape"/></svg></span>
+                </div>
+              </div>
+
+              <div style="display:flex;align-items:center;gap:24px;">
+                <div style="font-size:12px;font-weight:700;width:80px;color:var(--text-tertiary)">3.5 / 5</div>
+                <div class="sr-rating">
+                  <span class="sr-star sr-star--full"><svg class="sr-star-base"><use href="#sr-star-shape"/></svg><svg class="sr-star-fill"><use href="#sr-star-shape"/></svg></span>
+                  <span class="sr-star sr-star--full"><svg class="sr-star-base"><use href="#sr-star-shape"/></svg><svg class="sr-star-fill"><use href="#sr-star-shape"/></svg></span>
+                  <span class="sr-star sr-star--full"><svg class="sr-star-base"><use href="#sr-star-shape"/></svg><svg class="sr-star-fill"><use href="#sr-star-shape"/></svg></span>
+                  <span class="sr-star sr-star--half"><svg class="sr-star-base"><use href="#sr-star-shape"/></svg><svg class="sr-star-fill"><use href="#sr-star-shape"/></svg></span>
+                  <span class="sr-star sr-star--empty"><svg class="sr-star-base"><use href="#sr-star-shape"/></svg><svg class="sr-star-fill"><use href="#sr-star-shape"/></svg></span>
+                </div>
+              </div>
+
+              <div style="display:flex;align-items:center;gap:24px;">
+                <div style="font-size:12px;font-weight:700;width:80px;color:var(--text-tertiary)">5 / 5</div>
+                <div class="sr-rating">
+                  <span class="sr-star sr-star--full"><svg class="sr-star-base"><use href="#sr-star-shape"/></svg><svg class="sr-star-fill"><use href="#sr-star-shape"/></svg></span>
+                  <span class="sr-star sr-star--full"><svg class="sr-star-base"><use href="#sr-star-shape"/></svg><svg class="sr-star-fill"><use href="#sr-star-shape"/></svg></span>
+                  <span class="sr-star sr-star--full"><svg class="sr-star-base"><use href="#sr-star-shape"/></svg><svg class="sr-star-fill"><use href="#sr-star-shape"/></svg></span>
+                  <span class="sr-star sr-star--full"><svg class="sr-star-base"><use href="#sr-star-shape"/></svg><svg class="sr-star-fill"><use href="#sr-star-shape"/></svg></span>
+                  <span class="sr-star sr-star--full"><svg class="sr-star-base"><use href="#sr-star-shape"/></svg><svg class="sr-star-fill"><use href="#sr-star-shape"/></svg></span>
+                </div>
+              </div>
+
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- 2 · ANATOMY -->
+      <section class="doc-section" id="anatomy">
+        <h2 class="section-title">Anatomy</h2>
+        <div class="anatomy-wrap">
+          <div class="anatomy-component" style="padding:32px 0;max-width:340px;">
+            <div style="position:relative;display:inline-block;">
+              <div class="sr-rating">
+                <span class="sr-star sr-star--full"><svg class="sr-star-base"><use href="#sr-star-shape"/></svg><svg class="sr-star-fill"><use href="#sr-star-shape"/></svg></span>
+                <span class="sr-star sr-star--full"><svg class="sr-star-base"><use href="#sr-star-shape"/></svg><svg class="sr-star-fill"><use href="#sr-star-shape"/></svg></span>
+                <span class="sr-star sr-star--full"><svg class="sr-star-base"><use href="#sr-star-shape"/></svg><svg class="sr-star-fill"><use href="#sr-star-shape"/></svg></span>
+                <span class="sr-star sr-star--half"><svg class="sr-star-base"><use href="#sr-star-shape"/></svg><svg class="sr-star-fill"><use href="#sr-star-shape"/></svg></span>
+                <span class="sr-star sr-star--empty"><svg class="sr-star-base"><use href="#sr-star-shape"/></svg><svg class="sr-star-fill"><use href="#sr-star-shape"/></svg></span>
+              </div>
+              <span class="callout" style="top:-2px;left:6px;">1</span>
+              <span class="callout" style="top:-2px;left:90px;">2</span>
+              <span class="callout" style="top:-2px;left:146px;">3</span>
+              <span class="callout" style="bottom:-22px;left:14px;">4</span>
+            </div>
+          </div>
+          <div class="anatomy-legend">
+            <div class="legend-item"><span class="legend-num">1</span>Filled star (counted toward rating)</div>
+            <div class="legend-item"><span class="legend-num">2</span>Half-filled star (50% rating)</div>
+            <div class="legend-item"><span class="legend-num">3</span>Empty star (outline only)</div>
+            <div class="legend-item"><span class="legend-num">4</span>Star group (5 stars at <code>4px</code> gap)</div>
+          </div>
+        </div>
+      </section>
+
+      <!-- 3 · VARIANTS -->
+      <section class="doc-section" id="variants">
+        <h2 class="section-title">Variants</h2>
+        <div class="tabs-wrap">
+          <div class="tabs">
+            <button class="tab active" onclick="switchTab(this,'v-states')">States</button>
+            <button class="tab" onclick="switchTab(this,'v-fractional')">Fractional</button>
+          </div>
+        </div>
+
+        <!-- STATES -->
+        <div class="tab-panel active" id="v-states">
+          <div class="state-tab-row">
+            <button class="state-tab-btn active" onclick="switchStateTab(this,'vs-st-empty')">Empty</button>
+            <button class="state-tab-btn" onclick="switchStateTab(this,'vs-st-half')">Half</button>
+            <button class="state-tab-btn" onclick="switchStateTab(this,'vs-st-full')">Full</button>
+          </div>
+          <div class="var-panel">
+            <div class="var-previews-wrap">
+
+              <div class="state-panel active" id="vs-st-empty">
+                <div class="var-previews">
+                  <div class="var-preview" style="padding:32px;">
+                    <div class="sr-rating">
+                      <span class="sr-star sr-star--empty"><svg class="sr-star-base"><use href="#sr-star-shape"/></svg><svg class="sr-star-fill"><use href="#sr-star-shape"/></svg></span>
+                      <span class="sr-star sr-star--empty"><svg class="sr-star-base"><use href="#sr-star-shape"/></svg><svg class="sr-star-fill"><use href="#sr-star-shape"/></svg></span>
+                      <span class="sr-star sr-star--empty"><svg class="sr-star-base"><use href="#sr-star-shape"/></svg><svg class="sr-star-fill"><use href="#sr-star-shape"/></svg></span>
+                      <span class="sr-star sr-star--empty"><svg class="sr-star-base"><use href="#sr-star-shape"/></svg><svg class="sr-star-fill"><use href="#sr-star-shape"/></svg></span>
+                      <span class="sr-star sr-star--empty"><svg class="sr-star-base"><use href="#sr-star-shape"/></svg><svg class="sr-star-fill"><use href="#sr-star-shape"/></svg></span>
+                    </div>
+                  </div>
+                  <div class="var-preview-dark" style="padding:32px;">
+                    <div class="sr-rating">
+                      <span class="sr-star sr-star--empty"><svg class="sr-star-base"><use href="#sr-star-shape"/></svg><svg class="sr-star-fill"><use href="#sr-star-shape"/></svg></span>
+                      <span class="sr-star sr-star--empty"><svg class="sr-star-base"><use href="#sr-star-shape"/></svg><svg class="sr-star-fill"><use href="#sr-star-shape"/></svg></span>
+                      <span class="sr-star sr-star--empty"><svg class="sr-star-base"><use href="#sr-star-shape"/></svg><svg class="sr-star-fill"><use href="#sr-star-shape"/></svg></span>
+                      <span class="sr-star sr-star--empty"><svg class="sr-star-base"><use href="#sr-star-shape"/></svg><svg class="sr-star-fill"><use href="#sr-star-shape"/></svg></span>
+                      <span class="sr-star sr-star--empty"><svg class="sr-star-base"><use href="#sr-star-shape"/></svg><svg class="sr-star-fill"><use href="#sr-star-shape"/></svg></span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="state-panel" id="vs-st-half">
+                <div class="var-previews">
+                  <div class="var-preview" style="padding:32px;">
+                    <div class="sr-rating">
+                      <span class="sr-star sr-star--half"><svg class="sr-star-base"><use href="#sr-star-shape"/></svg><svg class="sr-star-fill"><use href="#sr-star-shape"/></svg></span>
+                      <span class="sr-star sr-star--half"><svg class="sr-star-base"><use href="#sr-star-shape"/></svg><svg class="sr-star-fill"><use href="#sr-star-shape"/></svg></span>
+                      <span class="sr-star sr-star--half"><svg class="sr-star-base"><use href="#sr-star-shape"/></svg><svg class="sr-star-fill"><use href="#sr-star-shape"/></svg></span>
+                      <span class="sr-star sr-star--half"><svg class="sr-star-base"><use href="#sr-star-shape"/></svg><svg class="sr-star-fill"><use href="#sr-star-shape"/></svg></span>
+                      <span class="sr-star sr-star--half"><svg class="sr-star-base"><use href="#sr-star-shape"/></svg><svg class="sr-star-fill"><use href="#sr-star-shape"/></svg></span>
+                    </div>
+                  </div>
+                  <div class="var-preview-dark" style="padding:32px;">
+                    <div class="sr-rating">
+                      <span class="sr-star sr-star--half"><svg class="sr-star-base"><use href="#sr-star-shape"/></svg><svg class="sr-star-fill"><use href="#sr-star-shape"/></svg></span>
+                      <span class="sr-star sr-star--half"><svg class="sr-star-base"><use href="#sr-star-shape"/></svg><svg class="sr-star-fill"><use href="#sr-star-shape"/></svg></span>
+                      <span class="sr-star sr-star--half"><svg class="sr-star-base"><use href="#sr-star-shape"/></svg><svg class="sr-star-fill"><use href="#sr-star-shape"/></svg></span>
+                      <span class="sr-star sr-star--half"><svg class="sr-star-base"><use href="#sr-star-shape"/></svg><svg class="sr-star-fill"><use href="#sr-star-shape"/></svg></span>
+                      <span class="sr-star sr-star--half"><svg class="sr-star-base"><use href="#sr-star-shape"/></svg><svg class="sr-star-fill"><use href="#sr-star-shape"/></svg></span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="state-panel" id="vs-st-full">
+                <div class="var-previews">
+                  <div class="var-preview" style="padding:32px;">
+                    <div class="sr-rating">
+                      <span class="sr-star sr-star--full"><svg class="sr-star-base"><use href="#sr-star-shape"/></svg><svg class="sr-star-fill"><use href="#sr-star-shape"/></svg></span>
+                      <span class="sr-star sr-star--full"><svg class="sr-star-base"><use href="#sr-star-shape"/></svg><svg class="sr-star-fill"><use href="#sr-star-shape"/></svg></span>
+                      <span class="sr-star sr-star--full"><svg class="sr-star-base"><use href="#sr-star-shape"/></svg><svg class="sr-star-fill"><use href="#sr-star-shape"/></svg></span>
+                      <span class="sr-star sr-star--full"><svg class="sr-star-base"><use href="#sr-star-shape"/></svg><svg class="sr-star-fill"><use href="#sr-star-shape"/></svg></span>
+                      <span class="sr-star sr-star--full"><svg class="sr-star-base"><use href="#sr-star-shape"/></svg><svg class="sr-star-fill"><use href="#sr-star-shape"/></svg></span>
+                    </div>
+                  </div>
+                  <div class="var-preview-dark" style="padding:32px;">
+                    <div class="sr-rating">
+                      <span class="sr-star sr-star--full"><svg class="sr-star-base"><use href="#sr-star-shape"/></svg><svg class="sr-star-fill"><use href="#sr-star-shape"/></svg></span>
+                      <span class="sr-star sr-star--full"><svg class="sr-star-base"><use href="#sr-star-shape"/></svg><svg class="sr-star-fill"><use href="#sr-star-shape"/></svg></span>
+                      <span class="sr-star sr-star--full"><svg class="sr-star-base"><use href="#sr-star-shape"/></svg><svg class="sr-star-fill"><use href="#sr-star-shape"/></svg></span>
+                      <span class="sr-star sr-star--full"><svg class="sr-star-base"><use href="#sr-star-shape"/></svg><svg class="sr-star-fill"><use href="#sr-star-shape"/></svg></span>
+                      <span class="sr-star sr-star--full"><svg class="sr-star-base"><use href="#sr-star-shape"/></svg><svg class="sr-star-fill"><use href="#sr-star-shape"/></svg></span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+            </div>
+            <div class="var-desc">
+              <div class="var-use-when">Star states:</div>
+              <ul class="var-use-list">
+                <li>Empty — outline only with 2px stroke; counted as 0</li>
+                <li>Half — left half filled; counted as 0.5</li>
+                <li>Full — solid fill with stroke; counted as 1</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <!-- FRACTIONAL -->
+        <div class="tab-panel" id="v-fractional">
+          <div class="var-panel">
+            <div class="var-previews-wrap">
+              <div class="var-previews">
+                <div class="var-preview" style="padding:32px;">
+                  <div style="display:flex;flex-direction:column;gap:18px;align-items:flex-start;">
+                    <div style="display:flex;align-items:center;gap:16px;"><span style="font-size:12px;font-weight:700;width:36px;color:var(--text-tertiary)">1.0</span><div class="sr-rating">
+                      <span class="sr-star sr-star--full"><svg class="sr-star-base"><use href="#sr-star-shape"/></svg><svg class="sr-star-fill"><use href="#sr-star-shape"/></svg></span>
+                      <span class="sr-star sr-star--empty"><svg class="sr-star-base"><use href="#sr-star-shape"/></svg><svg class="sr-star-fill"><use href="#sr-star-shape"/></svg></span>
+                      <span class="sr-star sr-star--empty"><svg class="sr-star-base"><use href="#sr-star-shape"/></svg><svg class="sr-star-fill"><use href="#sr-star-shape"/></svg></span>
+                      <span class="sr-star sr-star--empty"><svg class="sr-star-base"><use href="#sr-star-shape"/></svg><svg class="sr-star-fill"><use href="#sr-star-shape"/></svg></span>
+                      <span class="sr-star sr-star--empty"><svg class="sr-star-base"><use href="#sr-star-shape"/></svg><svg class="sr-star-fill"><use href="#sr-star-shape"/></svg></span>
+                    </div></div>
+                    <div style="display:flex;align-items:center;gap:16px;"><span style="font-size:12px;font-weight:700;width:36px;color:var(--text-tertiary)">2.5</span><div class="sr-rating">
+                      <span class="sr-star sr-star--full"><svg class="sr-star-base"><use href="#sr-star-shape"/></svg><svg class="sr-star-fill"><use href="#sr-star-shape"/></svg></span>
+                      <span class="sr-star sr-star--full"><svg class="sr-star-base"><use href="#sr-star-shape"/></svg><svg class="sr-star-fill"><use href="#sr-star-shape"/></svg></span>
+                      <span class="sr-star sr-star--half"><svg class="sr-star-base"><use href="#sr-star-shape"/></svg><svg class="sr-star-fill"><use href="#sr-star-shape"/></svg></span>
+                      <span class="sr-star sr-star--empty"><svg class="sr-star-base"><use href="#sr-star-shape"/></svg><svg class="sr-star-fill"><use href="#sr-star-shape"/></svg></span>
+                      <span class="sr-star sr-star--empty"><svg class="sr-star-base"><use href="#sr-star-shape"/></svg><svg class="sr-star-fill"><use href="#sr-star-shape"/></svg></span>
+                    </div></div>
+                    <div style="display:flex;align-items:center;gap:16px;"><span style="font-size:12px;font-weight:700;width:36px;color:var(--text-tertiary)">4.0</span><div class="sr-rating">
+                      <span class="sr-star sr-star--full"><svg class="sr-star-base"><use href="#sr-star-shape"/></svg><svg class="sr-star-fill"><use href="#sr-star-shape"/></svg></span>
+                      <span class="sr-star sr-star--full"><svg class="sr-star-base"><use href="#sr-star-shape"/></svg><svg class="sr-star-fill"><use href="#sr-star-shape"/></svg></span>
+                      <span class="sr-star sr-star--full"><svg class="sr-star-base"><use href="#sr-star-shape"/></svg><svg class="sr-star-fill"><use href="#sr-star-shape"/></svg></span>
+                      <span class="sr-star sr-star--full"><svg class="sr-star-base"><use href="#sr-star-shape"/></svg><svg class="sr-star-fill"><use href="#sr-star-shape"/></svg></span>
+                      <span class="sr-star sr-star--empty"><svg class="sr-star-base"><use href="#sr-star-shape"/></svg><svg class="sr-star-fill"><use href="#sr-star-shape"/></svg></span>
+                    </div></div>
+                    <div style="display:flex;align-items:center;gap:16px;"><span style="font-size:12px;font-weight:700;width:36px;color:var(--text-tertiary)">4.5</span><div class="sr-rating">
+                      <span class="sr-star sr-star--full"><svg class="sr-star-base"><use href="#sr-star-shape"/></svg><svg class="sr-star-fill"><use href="#sr-star-shape"/></svg></span>
+                      <span class="sr-star sr-star--full"><svg class="sr-star-base"><use href="#sr-star-shape"/></svg><svg class="sr-star-fill"><use href="#sr-star-shape"/></svg></span>
+                      <span class="sr-star sr-star--full"><svg class="sr-star-base"><use href="#sr-star-shape"/></svg><svg class="sr-star-fill"><use href="#sr-star-shape"/></svg></span>
+                      <span class="sr-star sr-star--full"><svg class="sr-star-base"><use href="#sr-star-shape"/></svg><svg class="sr-star-fill"><use href="#sr-star-shape"/></svg></span>
+                      <span class="sr-star sr-star--half"><svg class="sr-star-base"><use href="#sr-star-shape"/></svg><svg class="sr-star-fill"><use href="#sr-star-shape"/></svg></span>
+                    </div></div>
+                  </div>
+                </div>
+                <div class="var-preview-dark" style="padding:32px;">
+                  <div style="display:flex;flex-direction:column;gap:18px;align-items:flex-start;">
+                    <div style="display:flex;align-items:center;gap:16px;"><span style="font-size:12px;font-weight:700;width:36px;color:#9CA3AF">1.0</span><div class="sr-rating">
+                      <span class="sr-star sr-star--full"><svg class="sr-star-base"><use href="#sr-star-shape"/></svg><svg class="sr-star-fill"><use href="#sr-star-shape"/></svg></span>
+                      <span class="sr-star sr-star--empty"><svg class="sr-star-base"><use href="#sr-star-shape"/></svg><svg class="sr-star-fill"><use href="#sr-star-shape"/></svg></span>
+                      <span class="sr-star sr-star--empty"><svg class="sr-star-base"><use href="#sr-star-shape"/></svg><svg class="sr-star-fill"><use href="#sr-star-shape"/></svg></span>
+                      <span class="sr-star sr-star--empty"><svg class="sr-star-base"><use href="#sr-star-shape"/></svg><svg class="sr-star-fill"><use href="#sr-star-shape"/></svg></span>
+                      <span class="sr-star sr-star--empty"><svg class="sr-star-base"><use href="#sr-star-shape"/></svg><svg class="sr-star-fill"><use href="#sr-star-shape"/></svg></span>
+                    </div></div>
+                    <div style="display:flex;align-items:center;gap:16px;"><span style="font-size:12px;font-weight:700;width:36px;color:#9CA3AF">2.5</span><div class="sr-rating">
+                      <span class="sr-star sr-star--full"><svg class="sr-star-base"><use href="#sr-star-shape"/></svg><svg class="sr-star-fill"><use href="#sr-star-shape"/></svg></span>
+                      <span class="sr-star sr-star--full"><svg class="sr-star-base"><use href="#sr-star-shape"/></svg><svg class="sr-star-fill"><use href="#sr-star-shape"/></svg></span>
+                      <span class="sr-star sr-star--half"><svg class="sr-star-base"><use href="#sr-star-shape"/></svg><svg class="sr-star-fill"><use href="#sr-star-shape"/></svg></span>
+                      <span class="sr-star sr-star--empty"><svg class="sr-star-base"><use href="#sr-star-shape"/></svg><svg class="sr-star-fill"><use href="#sr-star-shape"/></svg></span>
+                      <span class="sr-star sr-star--empty"><svg class="sr-star-base"><use href="#sr-star-shape"/></svg><svg class="sr-star-fill"><use href="#sr-star-shape"/></svg></span>
+                    </div></div>
+                    <div style="display:flex;align-items:center;gap:16px;"><span style="font-size:12px;font-weight:700;width:36px;color:#9CA3AF">4.0</span><div class="sr-rating">
+                      <span class="sr-star sr-star--full"><svg class="sr-star-base"><use href="#sr-star-shape"/></svg><svg class="sr-star-fill"><use href="#sr-star-shape"/></svg></span>
+                      <span class="sr-star sr-star--full"><svg class="sr-star-base"><use href="#sr-star-shape"/></svg><svg class="sr-star-fill"><use href="#sr-star-shape"/></svg></span>
+                      <span class="sr-star sr-star--full"><svg class="sr-star-base"><use href="#sr-star-shape"/></svg><svg class="sr-star-fill"><use href="#sr-star-shape"/></svg></span>
+                      <span class="sr-star sr-star--full"><svg class="sr-star-base"><use href="#sr-star-shape"/></svg><svg class="sr-star-fill"><use href="#sr-star-shape"/></svg></span>
+                      <span class="sr-star sr-star--empty"><svg class="sr-star-base"><use href="#sr-star-shape"/></svg><svg class="sr-star-fill"><use href="#sr-star-shape"/></svg></span>
+                    </div></div>
+                    <div style="display:flex;align-items:center;gap:16px;"><span style="font-size:12px;font-weight:700;width:36px;color:#9CA3AF">4.5</span><div class="sr-rating">
+                      <span class="sr-star sr-star--full"><svg class="sr-star-base"><use href="#sr-star-shape"/></svg><svg class="sr-star-fill"><use href="#sr-star-shape"/></svg></span>
+                      <span class="sr-star sr-star--full"><svg class="sr-star-base"><use href="#sr-star-shape"/></svg><svg class="sr-star-fill"><use href="#sr-star-shape"/></svg></span>
+                      <span class="sr-star sr-star--full"><svg class="sr-star-base"><use href="#sr-star-shape"/></svg><svg class="sr-star-fill"><use href="#sr-star-shape"/></svg></span>
+                      <span class="sr-star sr-star--full"><svg class="sr-star-base"><use href="#sr-star-shape"/></svg><svg class="sr-star-fill"><use href="#sr-star-shape"/></svg></span>
+                      <span class="sr-star sr-star--half"><svg class="sr-star-base"><use href="#sr-star-shape"/></svg><svg class="sr-star-fill"><use href="#sr-star-shape"/></svg></span>
+                    </div></div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="var-desc">
+              <div class="var-use-when">Fractional ratings — use when:</div>
+              <ul class="var-use-list">
+                <li>Showing aggregated review scores like 3.7 or 4.2</li>
+                <li>Round to the nearest <code>0.5</code> increment for half-star precision</li>
+                <li>Pair with a numeric label for screen readers and exact values</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+      </section>
+
+      <!-- 4 · PROPERTIES -->
+      <section class="doc-section" id="properties">
+        <h2 class="section-title">Properties</h2>
+        <table class="props-table">
+          <thead>
+            <tr><th>Property</th><th>Type</th><th>Default</th><th>Description</th></tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td class="p-name">value</td>
+              <td class="p-type">number</td>
+              <td class="p-def">0</td>
+              <td class="p-desc">Current rating value, rounded to the nearest 0.5</td>
+            </tr>
+            <tr>
+              <td class="p-name">max</td>
+              <td class="p-type">number</td>
+              <td class="p-def">5</td>
+              <td class="p-desc">Total number of stars to render</td>
+            </tr>
+            <tr>
+              <td class="p-name">readOnly</td>
+              <td class="p-type">boolean</td>
+              <td class="p-def">true</td>
+              <td class="p-desc">Whether users can change the rating by clicking</td>
+            </tr>
+            <tr>
+              <td class="p-name">size</td>
+              <td class="p-type">number</td>
+              <td class="p-def">24</td>
+              <td class="p-desc">Star icon size in pixels</td>
+            </tr>
+            <tr>
+              <td class="p-name">precision</td>
+              <td class="p-type">"half" | "full"</td>
+              <td class="p-def">"half"</td>
+              <td class="p-desc">Whether half-star values are allowed</td>
+            </tr>
+            <tr>
+              <td class="p-name">onChange</td>
+              <td class="p-type">function</td>
+              <td class="p-def">—</td>
+              <td class="p-desc">Callback fired with the new rating value</td>
+            </tr>
+          </tbody>
+        </table>
+      </section>
+
+      <!-- 5 · USAGE -->
+      <section class="doc-section" id="usage">
+        <h2 class="section-title">Usage Guidelines</h2>
+
+        <div class="usage-block">
+          <div class="usage-cols">
+            <div class="usage-card">
+              <div class="usage-card-header">
+                <div class="usage-icon do-icon"><i data-lucide="check" style="width:12px;height:12px"></i></div>
+                <div class="usage-card-title">Lorem ipsum dolor sit amet</div>
+              </div>
+              <ul class="usage-list">
+                <li>Lorem ipsum dolor sit amet consectetur</li>
+                <li>Adipiscing elit sed do eiusmod tempor</li>
+                <li>Incididunt ut labore et dolore magna</li>
+              </ul>
+            </div>
+            <div class="usage-card">
+              <div class="usage-card-header">
+                <div class="usage-icon do-icon"><i data-lucide="check" style="width:12px;height:12px"></i></div>
+                <div class="usage-card-title">Ut enim ad minim veniam</div>
+              </div>
+              <ul class="usage-list">
+                <li>Quis nostrud exercitation ullamco laboris</li>
+                <li>Nisi ut aliquip ex ea commodo consequat</li>
+                <li>Duis aute irure dolor in reprehenderit</li>
+              </ul>
+            </div>
+            <div class="usage-card">
+              <div class="usage-card-header">
+                <div class="usage-icon do-icon"><i data-lucide="check" style="width:12px;height:12px"></i></div>
+                <div class="usage-card-title">Excepteur sint occaecat</div>
+              </div>
+              <ul class="usage-list">
+                <li>Non proident sunt in culpa qui officia</li>
+                <li>Deserunt mollit anim id est laborum</li>
+                <li>Sed ut perspiciatis unde omnis iste</li>
+              </ul>
+            </div>
+            <div class="usage-card">
+              <div class="usage-card-header">
+                <div class="usage-icon do-icon"><i data-lucide="check" style="width:12px;height:12px"></i></div>
+                <div class="usage-card-title">Nemo enim ipsam voluptatem</div>
+              </div>
+              <ul class="usage-list">
+                <li>Quia voluptas sit aspernatur aut odit</li>
+                <li>Neque porro quisquam est qui dolorem</li>
+                <li>Ut labore et dolore magnam aliquam</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <div class="usage-divider"></div>
+
+        <div class="usage-block">
+          <div class="usage-cols">
+            <div class="usage-card">
+              <div class="usage-card-header">
+                <div class="usage-icon dont-icon"><i data-lucide="x" style="width:12px;height:12px"></i></div>
+                <div class="usage-card-title">Quis autem vel eum iure</div>
+              </div>
+              <ul class="usage-list">
+                <li>Reprehenderit qui in ea voluptate velit</li>
+                <li>Esse quam nihil molestiae consequatur</li>
+                <li>Vel illum qui dolorem eum fugiat</li>
+              </ul>
+            </div>
+            <div class="usage-card">
+              <div class="usage-card-header">
+                <div class="usage-icon dont-icon"><i data-lucide="x" style="width:12px;height:12px"></i></div>
+                <div class="usage-card-title">At vero eos et accusamus</div>
+              </div>
+              <ul class="usage-list">
+                <li>Et iusto odio dignissimos ducimus qui</li>
+                <li>Blanditiis praesentium voluptatum deleniti</li>
+                <li>Atque corrupti quos dolores et quas</li>
+              </ul>
+            </div>
+            <div class="usage-card">
+              <div class="usage-card-header">
+                <div class="usage-icon dont-icon"><i data-lucide="x" style="width:12px;height:12px"></i></div>
+                <div class="usage-card-title">Nam libero tempore soluta</div>
+              </div>
+              <ul class="usage-list">
+                <li>Nobis est eligendi optio cumque nihil</li>
+                <li>Impedit quo minus id quod maxime</li>
+              </ul>
+            </div>
+            <div class="usage-card">
+              <div class="usage-card-header">
+                <div class="usage-icon dont-icon"><i data-lucide="x" style="width:12px;height:12px"></i></div>
+                <div class="usage-card-title">Temporibus autem quibusdam</div>
+              </div>
+              <ul class="usage-list">
+                <li>Et aut officiis debitis aut rerum necessitatibus</li>
+                <li>Saepe eveniet ut et voluptates repudiandae</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- 6 · TOKEN MAP -->
+      <section class="doc-section" id="tokens">
+        <h2 class="section-title">Token Map</h2>
+        <div class="tm-preview-controls">
+          <div class="tm-mode-toggle" id="tmModeToggle">
+            <span class="tm-mode-label" id="tmModeLabel">Light</span>
+            <div class="sw-track sw-track--compact" id="tmModeTrack"><div class="sw-thumb"></div></div>
+          </div>
+        </div>
+        <div class="tm-map">
+          <div>
+            <div class="tm-preview-card" data-bg="light">
+              <div class="tm-preview-inner">
+                <div id="tmPreview" class="tm-preview">
+                  <div class="sr-rating">
+                    <span class="sr-star sr-star--full" data-part="full"><svg class="sr-star-base"><use href="#sr-star-shape"/></svg><svg class="sr-star-fill"><use href="#sr-star-shape"/></svg></span>
+                    <span class="sr-star sr-star--full" data-part="full2"><svg class="sr-star-base"><use href="#sr-star-shape"/></svg><svg class="sr-star-fill"><use href="#sr-star-shape"/></svg></span>
+                    <span class="sr-star sr-star--full" data-part="full3"><svg class="sr-star-base"><use href="#sr-star-shape"/></svg><svg class="sr-star-fill"><use href="#sr-star-shape"/></svg></span>
+                    <span class="sr-star sr-star--half" data-part="half"><svg class="sr-star-base"><use href="#sr-star-shape"/></svg><svg class="sr-star-fill"><use href="#sr-star-shape"/></svg></span>
+                    <span class="sr-star sr-star--empty" data-part="empty"><svg class="sr-star-base"><use href="#sr-star-shape"/></svg><svg class="sr-star-fill"><use href="#sr-star-shape"/></svg></span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="tm-tokens-card">
+            <div class="tm-tokens-head">
+              <div class="tm-tokens-title"><h5>Token list</h5><span class="tm-count"><span id="tmCountNum">0</span> tokens</span></div>
+              <p class="tm-tokens-helper">Hover a token to see where it applies on the component.</p>
+              <div class="tm-seg" style="margin:0 0 12px;">
+                <button class="tm-seg-item tm-seg-item--active" data-tab="color"><i data-lucide="palette" class="tm-seg-icon"></i> Color</button>
+                <button class="tm-seg-item" data-tab="component"><i data-lucide="ruler" class="tm-seg-icon"></i> Component</button>
+              </div>
+            </div>
+            <div class="tm-tokens-body" id="tmCards"></div>
+          </div>
+        </div>
+      </section>
+
+      <!-- 7 · ACCESSIBILITY -->
+      <section class="doc-section" id="accessibility">
+        <h2 class="section-title">Accessibility</h2>
+        <ul class="a11y-list">
+          <li>
+            <div><strong>ARIA:</strong> Wrap the rating in <code>role="img"</code> with an <code>aria-label</code> like "4.5 out of 5 stars" so screen readers announce the score, not five separate stars. For interactive ratings use <code>role="radiogroup"</code>.</div>
+          </li>
+          <li>
+            <div><strong>Keyboard:</strong> When interactive, support <kbd>Arrow Left/Right</kbd> to decrement/increment and <kbd>Home</kbd> / <kbd>End</kbd> to jump to 0 or max. Show focus outline on the active star.</div>
+          </li>
+          <li>
+            <div><strong>Don't rely on color alone:</strong> Pair the rating with a numeric value or text label so users with low vision or color-blindness can still understand the score.</div>
+          </li>
+          <li>
+            <div><strong>Touch targets:</strong> Each star must have at least a 24×24 hit area when interactive. Add invisible padding around the icon if needed.</div>
+          </li>
+        </ul>
+      </section>
+
+      <!-- 8 · RELATED -->
+      <section class="doc-section" id="related">
+        <h2 class="section-title">Related Components</h2>
+        <div class="related-grid">
+          <a href="progressbar.html" class="related-card">
+            <div class="rc-name">Progress Bar</div>
+            <div class="rc-desc">Use Progress Bar for continuous percentage progress rather than discrete star scores.</div>
+          </a>
+          <a href="badge.html" class="related-card">
+            <div class="rc-name">Badge</div>
+            <div class="rc-desc">Use a Badge for compact numeric scores (e.g. "4.5") next to other content.</div>
+          </a>
+          <a href="slider.html" class="related-card">
+            <div class="rc-name">Slider</div>
+            <div class="rc-desc">Use Slider for continuous numeric input rather than a 5-step scale.</div>
+          </a>
+        </div>
+      </section>
+
+    </main>
+
+    <nav class="right-nav">
+      <div class="rn-label">On this page</div>
+      <ul class="rn-list">
+        <li><a href="#definition"    id="rn-definition">Definition</a></li>
+        <li><a href="#anatomy"       id="rn-anatomy">Anatomy</a></li>
+        <li><a href="#variants"      id="rn-variants">Variants</a></li>
+        <li><a href="#properties"    id="rn-properties">Properties</a></li>
+        <li><a href="#usage"         id="rn-usage">Usage</a></li>
+        <li><a href="#tokens"        id="rn-tokens">Tokens</a></li>
+        <li><a href="#accessibility" id="rn-accessibility">Accessibility</a></li>
+        <li><a href="#related"       id="rn-related">Related</a></li>
+      </ul>
+    </nav>
+
+  </div>
+</div>
+
+<script>
+  lucide.createIcons();
+
+  const isMobile = () => window.innerWidth <= 768;
+  let sbOpen = !isMobile();
+  if (!sbOpen) document.getElementById('leftNav').classList.add('hidden');
+
+  function toggleSidebar() {
+    sbOpen = !sbOpen;
+    document.getElementById('leftNav').classList.toggle('hidden', !sbOpen);
+    if (!isMobile()) {
+      document.getElementById('contentWrap').style.marginLeft = sbOpen ? 'var(--left-w)' : '0';
+    }
+    document.getElementById('navOverlay').classList.toggle('active', sbOpen && isMobile());
+  }
+
+  function updateTabFade(tabsEl) {
+    const wrap = tabsEl.closest('.tabs-wrap');
+    if (!wrap) return;
+    const atEnd = tabsEl.scrollLeft + tabsEl.clientWidth >= tabsEl.scrollWidth - 2;
+    wrap.classList.toggle('at-end', atEnd);
+  }
+
+  function switchStateTab(btn, panelId) {
+    const wrap = btn.closest('.tab-panel');
+    wrap.querySelectorAll('.state-tab-btn').forEach(t => t.classList.remove('active'));
+    wrap.querySelectorAll('.state-panel').forEach(p => p.classList.remove('active'));
+    btn.classList.add('active');
+    document.getElementById(panelId).classList.add('active');
+    lucide.createIcons();
+  }
+
+  function switchTab(btn, panelId) {
+    btn.closest('.doc-section').querySelectorAll('.tab').forEach(b => b.classList.remove('active'));
+    btn.closest('.doc-section').querySelectorAll('.tab-panel').forEach(p => p.classList.remove('active'));
+    btn.classList.add('active');
+    document.getElementById(panelId).classList.add('active');
+    const tabsEl = btn.closest('.tabs');
+    if (tabsEl) updateTabFade(tabsEl);
+    lucide.createIcons();
+  }
+
+  window.addEventListener('load', () => {
+    document.querySelectorAll('.tabs').forEach(tabsEl => {
+      updateTabFade(tabsEl);
+      tabsEl.addEventListener('scroll', () => updateTabFade(tabsEl));
+    });
+  });
+
+  function toggleTheme() {
+    const d = document.documentElement;
+    d.setAttribute('data-theme', d.getAttribute('data-theme') === 'dark' ? 'light' : 'dark');
+  }
+
+  const sections = ['definition','anatomy','variants','properties','usage','tokens','accessibility','related'];
+  const observer = new IntersectionObserver(entries => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        document.querySelectorAll('.rn-list a').forEach(a => a.classList.remove('active'));
+        const link = document.getElementById('rn-' + e.target.id);
+        if (link) link.classList.add('active');
+      }
+    });
+  }, { rootMargin: '-20% 0px -70% 0px' });
+  sections.forEach(id => {
+    const el = document.getElementById(id);
+    if (el) observer.observe(el);
+  });
+
+  // ══════════════════════════════════════════
+  // TOKEN MAP
+  // ══════════════════════════════════════════
+  const tmColorLight = [{"role":"Star fill / stroke","token":"color/icon/info","hex":"#027CB1","ref":"color/blue/600"}];
+  const tmColorDark = [{"role":"Star fill / stroke","token":"color/icon/info","hex":"#5ABFE0","ref":"color/blue/400"}];
+  const tmComponentTokens = [{"role":"Icon size","component":"star-rating/icon/size","primitive":"icon/lg","value":"24px","icon":"scan"},{"role":"Border width","component":"star-rating/border-width","primitive":"border-width/medium","value":"2px","icon":"separator-horizontal"},{"role":"Gap","component":"star-rating/gap","primitive":"spacing/1x","value":"4px","icon":"columns-3"}];
+  const tmTotalTokens = tmColorLight.length + tmComponentTokens.length;
+  const tmState = { tab:'color', mode:'light' };
+  const tmCards = document.getElementById('tmCards');
+  const tmPreviewCard = document.querySelector('.tm-preview-card');
+  const arrowSvg = '<svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="width:20px;height:20px"><circle cx="5" cy="10" r="3"/><path d="M8 10h9m-3-3 3 3-3 3"/></svg>';
+  document.getElementById('tmCountNum').textContent = tmTotalTokens;
+  const tmPreview = document.getElementById('tmPreview');
+
+  const colorPartMap = {
+    'star-fill-stroke':['full','full2','full3','half','empty'],
+  };
+  const compSpotlightMap = {
+    'icon-size':'spotlight-icon-size', 'border-width':'spotlight-border-width', 'gap':'spotlight-gap',
+  };
+  const spotlightClasses = ['has-spotlight','spotlight-icon-size','spotlight-border-width','spotlight-gap'];
+
+  function slug(s){ return s.toLowerCase().replace(/[^a-z0-9]+/g,'-').replace(/-+$/,''); }
+  function clearSpotlight(){
+    spotlightClasses.forEach(c=>tmPreview.classList.remove(c));
+    tmPreview.querySelectorAll('[data-part]').forEach(p=>p.classList.remove('spotlight'));
+  }
+  function spotlight(sl){
+    if(compSpotlightMap[sl]){ tmPreview.classList.add(compSpotlightMap[sl]); return; }
+    const parts = colorPartMap[sl];
+    if(!parts||!parts.length) return;
+    tmPreview.classList.add('has-spotlight');
+    parts.forEach(p=>{ const el=tmPreview.querySelector('[data-part="'+p+'"]'); if(el) el.classList.add('spotlight'); });
+  }
+
+  function tmRender() {
+    const colors = tmState.mode==='light' ? tmColorLight : tmColorDark;
+    tmPreviewCard.setAttribute('data-bg', tmState.mode);
+    let html = '';
+    if (tmState.tab==='color') {
+      for (const c of colors) {
+        const s=slug(c.role);
+        html+='<div class="tm-row" data-slot="'+s+'"><div class="tm-row-header"><div class="tm-row-swatch" style="background:'+c.hex+'"></div><div class="tm-row-label">'+c.role+'</div></div><div class="tm-chain-row"><div class="tm-chip">'+c.token+'</div><div class="tm-chain-arrow">'+arrowSvg+'</div><div class="tm-chip">'+(c.ref||c.token)+'</div><div class="tm-chain-arrow">'+arrowSvg+'</div><div class="tm-chip" style="font-weight:600">'+c.hex+'</div></div></div>';
+      }
+    } else {
+      for (const ct of tmComponentTokens) {
+        const s=slug(ct.role);
+        html+='<div class="tm-row" data-slot="'+s+'"><div class="tm-row-header"><div class="tm-row-icon"><i data-lucide="'+ct.icon+'" style="width:16px;height:16px"></i></div><div class="tm-row-label">'+ct.role+'</div></div><div class="tm-chain-row"><div class="tm-chip">'+ct.component+'</div><div class="tm-chain-arrow">'+arrowSvg+'</div><div class="tm-chip">'+ct.primitive+'</div><div class="tm-chain-arrow">'+arrowSvg+'</div><div class="tm-chip" style="font-weight:600">'+ct.value+'</div></div></div>';
+      }
+    }
+    tmCards.innerHTML = html;
+    document.querySelectorAll('.tm-row[data-slot]').forEach(row=>{
+      const sl=row.dataset.slot;
+      row.addEventListener('mouseenter',()=>{ row.classList.add('is-hot'); spotlight(sl); });
+      row.addEventListener('mouseleave',()=>{ row.classList.remove('is-hot'); clearSpotlight(); });
+    });
+    lucide.createIcons();
+  }
+  document.getElementById('tmModeToggle').addEventListener('click', () => {
+    tmState.mode = tmState.mode==='light' ? 'dark' : 'light';
+    document.getElementById('tmModeLabel').textContent = tmState.mode==='light' ? 'Light' : 'Dark';
+    const track = document.getElementById('tmModeTrack');
+    if (tmState.mode==='dark') { track.classList.add('sw-on'); } else { track.classList.remove('sw-on'); }
+    tmRender();
+  });
+  document.querySelectorAll('.tm-seg-item[data-tab]').forEach(btn=>{
+    btn.addEventListener('click',()=>{
+      tmState.tab=btn.dataset.tab;
+      document.querySelectorAll('.tm-seg-item[data-tab]').forEach(b=>b.classList.remove('tm-seg-item--active'));
+      btn.classList.add('tm-seg-item--active');
+      tmRender();
+    });
+  });
+  tmRender();
+</script>
+</body>
+</html>
