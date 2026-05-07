@@ -2656,6 +2656,17 @@ code {
 [data-theme="dark"] .ts-toast--info    { background:#8FCBE6; border-color:#8FCBE6; color:#1F2937; }
 [data-theme="dark"] .ts-toast--warning { background:#E49A35; border-color:#E49A35; color:#1F2937; }
 
+/* Token-map preview is theme-isolated — its own data-bg toggle wins
+   over the global [data-theme="dark"] cascade. */
+.tm-preview-card[data-bg="light"] .ts-toast--error   { background:#A12F2F; border-color:#A12F2F; color:#FFFFFF; }
+.tm-preview-card[data-bg="light"] .ts-toast--success { background:#006C21; border-color:#006C21; color:#FFFFFF; }
+.tm-preview-card[data-bg="light"] .ts-toast--info    { background:#027CB1; border-color:#027CB1; color:#FFFFFF; }
+.tm-preview-card[data-bg="light"] .ts-toast--warning { background:#A85A02; border-color:#A85A02; color:#FFFFFF; }
+.tm-preview-card[data-bg="dark"]  .ts-toast--error   { background:#E36868; border-color:#E36868; color:#1F2937; }
+.tm-preview-card[data-bg="dark"]  .ts-toast--success { background:#4DAD82; border-color:#4DAD82; color:#1F2937; }
+.tm-preview-card[data-bg="dark"]  .ts-toast--info    { background:#8FCBE6; border-color:#8FCBE6; color:#1F2937; }
+.tm-preview-card[data-bg="dark"]  .ts-toast--warning { background:#E49A35; border-color:#E49A35; color:#1F2937; }
+
 /* var-preview = light theme swatch */
 .var-preview .ts-toast--error   { background:#A12F2F; border-color:#A12F2F; color:#FFFFFF; }
 .var-preview .ts-toast--success { background:#006C21; border-color:#006C21; color:#FFFFFF; }
