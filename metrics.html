@@ -3,21 +3,23 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Skeleton — nuShip Design System</title>
+  <title>Metrics — nuShip Design System</title>
   <link href="https://fonts.googleapis.com/css2?family=Lato:wght@400;600;700;900&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="tokens.css">
   <link rel="stylesheet" href="styles.css">
   <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.min.js"></script>
   <script src="nav-scroll.js" defer></script>
   <style>
-    /* Skeleton token map spotlights */
+    /* Metrics token map spotlights */
     #tmPreview { position:relative; min-height:160px; display:flex; align-items:center; justify-content:center; padding:0 16px; }
-    #tmPreview.spotlight-text-radius .sk-line { outline:2px solid #FF4081; outline-offset:2px; }
-    #tmPreview.spotlight-text-radius::after { content:'2px'; position:absolute; top:-16px; left:16px; font-size:10px; font-family:var(--mono); color:#FF4081; background:rgba(255,255,255,0.95); padding:1px 4px; border-radius:2px; font-weight:700; }
-    #tmPreview.spotlight-area-radius .sk-area { outline:2px solid #FF4081; outline-offset:2px; }
-    #tmPreview.spotlight-area-radius::after { content:'6px'; position:absolute; top:-16px; right:16px; font-size:10px; font-family:var(--mono); color:#FF4081; background:rgba(255,255,255,0.95); padding:1px 4px; border-radius:2px; font-weight:700; }
-    #tmPreview.spotlight-text-gap .sk-text { outline:2px solid #FF4081; outline-offset:2px; border-radius:4px; }
-    #tmPreview.spotlight-text-gap::after { content:'16px'; position:absolute; top:50%; left:50%; transform:translate(-50%,-50%); font-size:10px; font-family:var(--mono); color:#FF4081; background:rgba(255,255,255,0.95); padding:1px 4px; border-radius:2px; font-weight:700; }
+    #tmPreview.spotlight-padding .met-card { outline:2px solid #FF4081; outline-offset:-1px; border-radius:8px; }
+    #tmPreview.spotlight-padding::after { content:'24px'; position:absolute; top:50%; left:6px; transform:translateY(-50%); font-size:10px; font-family:var(--mono); color:#FF4081; background:rgba(255,255,255,0.95); padding:1px 4px; border-radius:2px; font-weight:700; z-index:2; }
+    #tmPreview.spotlight-radius .met-card { outline:2px solid #FF4081; outline-offset:2px; }
+    #tmPreview.spotlight-radius::after { content:'8px'; position:absolute; top:-16px; left:0; font-size:10px; font-family:var(--mono); color:#FF4081; background:rgba(255,255,255,0.95); padding:1px 4px; border-radius:2px; font-weight:700; }
+    #tmPreview.spotlight-gap .met-card { outline:2px solid #FF4081; outline-offset:-1px; border-radius:8px; }
+    #tmPreview.spotlight-gap::after { content:'12px'; position:absolute; top:50%; right:6px; transform:translateY(-50%); font-size:10px; font-family:var(--mono); color:#FF4081; background:rgba(255,255,255,0.95); padding:1px 4px; border-radius:2px; font-weight:700; z-index:2; }
+    #tmPreview.spotlight-stat-gap .met-stat { outline:2px solid #FF4081; outline-offset:2px; border-radius:4px; }
+    #tmPreview.spotlight-stat-gap::after { content:'4px'; position:absolute; bottom:-18px; left:50%; transform:translateX(-50%); font-size:10px; font-family:var(--mono); color:#FF4081; background:rgba(255,255,255,0.95); padding:1px 4px; border-radius:2px; font-weight:700; }
   </style>
 </head>
 <body>
@@ -33,7 +35,7 @@
     <i data-lucide="chevron-right" style="width:14px;height:14px;flex-shrink:0"></i>
     <a href="#">Display</a>
     <i data-lucide="chevron-right" style="width:14px;height:14px;flex-shrink:0"></i>
-    <span class="cur">Skeleton</span>
+    <span class="cur">Metrics</span>
   </div>
   <div class="nav-actions">
     <div class="toggle-wrap" onclick="toggleTheme()" role="button">
@@ -114,9 +116,9 @@
           <li><a href="avatar.html">Avatar</a></li>
           <li><a href="carousel.html">Carousel</a></li>
           <li><a href="fileupload.html">File Upload</a></li>
-          <li><a href="metrics.html">Metrics</a></li>
+          <li><a href="metrics.html" class="active">Metrics</a></li>
           <li><a href="progressbar.html">Progress Bar</a></li>
-          <li><a href="skeleton.html" class="active">Skeleton</a></li>
+          <li><a href="skeleton.html">Skeleton</a></li>
           <li><a href="starrating.html">Star Rating</a></li>
         </ul>
       </div>
@@ -130,24 +132,31 @@
       <!-- 1 · DEFINITION -->
       <section class="doc-section" id="definition">
         <div class="def-eyebrow">Display</div>
-        <h1 class="def-title">Skeleton</h1>
-        <p class="def-desc">Skeletons are placeholder shapes that hold the position of content while it loads, with a subtle shimmer animation that signals progress without distracting the user. Two variants are available — Text for paragraph or label placeholders and Area for rectangular blocks like cards, images, or media regions.</p>
+        <h1 class="def-title">Metrics</h1>
+        <p class="def-desc">Metric cards surface a single key number alongside a brief title and a percentage delta. The delta colour signals direction — green for an increase and red for a decrease — so the trend reads at a glance.</p>
         <div class="def-tags">
           <span class="tag">Developed</span>
           <span class="tag">Figma</span>
         </div>
         <div class="preview-box">
           <div class="preview-box-inner">
-            <div style="display:flex;flex-direction:column;gap:32px;width:100%;padding:24px 0;">
+            <div style="display:flex;flex-wrap:wrap;gap:24px;justify-content:center;padding:24px;">
 
-              <div class="sk-text" style="width:100%;">
-                <div class="sk-line"></div>
-                <div class="sk-line" style="width:70%;"></div>
-                <div class="sk-line"></div>
-                <div class="sk-line" style="width:50%;"></div>
+              <div class="met-card">
+                <div class="met-title">Metric Title</div>
+                <div class="met-stat">
+                  <div class="met-value">1234.00</div>
+                  <div class="met-delta met-delta--up">+ 15%</div>
+                </div>
               </div>
 
-              <div class="sk-area" style="width:100%;height:96px;"></div>
+              <div class="met-card">
+                <div class="met-title">Metric Title</div>
+                <div class="met-stat">
+                  <div class="met-value">1234.00</div>
+                  <div class="met-delta met-delta--down">- 15%</div>
+                </div>
+              </div>
 
             </div>
           </div>
@@ -158,25 +167,26 @@
       <section class="doc-section" id="anatomy">
         <h2 class="section-title">Anatomy</h2>
         <div class="anatomy-wrap">
-          <div class="anatomy-component" style="padding:32px 0;max-width:440px;">
-            <div style="position:relative;">
-              <div class="sk-text" style="width:100%;">
-                <div class="sk-line"></div>
-                <div class="sk-line" style="width:70%;"></div>
-                <div class="sk-line"></div>
+          <div class="anatomy-component" style="padding:32px 0;max-width:280px;">
+            <div style="position:relative;display:inline-block;">
+              <div class="met-card">
+                <div class="met-title">Metric Title</div>
+                <div class="met-stat">
+                  <div class="met-value">1234.00</div>
+                  <div class="met-delta met-delta--up">+ 15%</div>
+                </div>
               </div>
-              <div class="sk-area" style="width:100%;height:64px;margin-top:24px;"></div>
-              <span class="callout" style="top:2px;left:-4px;">1</span>
-              <span class="callout" style="top:18px;left:-4px;">2</span>
-              <span class="callout" style="bottom:32px;left:-4px;">3</span>
-              <span class="callout" style="top:8px;right:-4px;left:auto;transform:none;">4</span>
+              <span class="callout" style="top:-4px;left:-4px;">1</span>
+              <span class="callout" style="top:14px;left:14px;">2</span>
+              <span class="callout" style="top:50px;left:14px;">3</span>
+              <span class="callout" style="bottom:14px;left:14px;">4</span>
             </div>
           </div>
           <div class="anatomy-legend">
-            <div class="legend-item"><span class="legend-num">1</span>Track (base color)</div>
-            <div class="legend-item"><span class="legend-num">2</span>Shimmer highlight (sweeps left → right)</div>
-            <div class="legend-item"><span class="legend-num">3</span>Text line (2px radius)</div>
-            <div class="legend-item"><span class="legend-num">4</span>Area block (6px radius)</div>
+            <div class="legend-item"><span class="legend-num">1</span>Card surface (white, 8px radius, drop shadow)</div>
+            <div class="legend-item"><span class="legend-num">2</span>Title (Lato Bold 16/20, secondary text)</div>
+            <div class="legend-item"><span class="legend-num">3</span>Value (large display number)</div>
+            <div class="legend-item"><span class="legend-num">4</span>Delta (green up, red down)</div>
           </div>
         </div>
       </section>
@@ -186,109 +196,78 @@
         <h2 class="section-title">Variants</h2>
         <div class="tabs-wrap">
           <div class="tabs">
-            <button class="tab active" onclick="switchTab(this,'v-text')">Text</button>
-            <button class="tab" onclick="switchTab(this,'v-area')">Area</button>
-            <button class="tab" onclick="switchTab(this,'v-composed')">Composed</button>
+            <button class="tab active" onclick="switchTab(this,'v-up')">Increasing</button>
+            <button class="tab" onclick="switchTab(this,'v-down')">Decreasing</button>
           </div>
         </div>
 
-        <!-- TEXT -->
-        <div class="tab-panel active" id="v-text">
+        <!-- INCREASING -->
+        <div class="tab-panel active" id="v-up">
           <div class="var-panel">
             <div class="var-previews-wrap">
               <div class="var-previews">
-                <div class="var-preview" style="padding:32px 24px;">
-                  <div class="sk-text" style="width:100%;">
-                    <div class="sk-line"></div>
-                    <div class="sk-line" style="width:70%;"></div>
-                    <div class="sk-line"></div>
-                    <div class="sk-line" style="width:50%;"></div>
-                  </div>
-                </div>
-                <div class="var-preview-dark" style="padding:32px 24px;">
-                  <div class="sk-text" style="width:100%;">
-                    <div class="sk-line"></div>
-                    <div class="sk-line" style="width:70%;"></div>
-                    <div class="sk-line"></div>
-                    <div class="sk-line" style="width:50%;"></div>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div class="var-desc">
-              <div class="var-use-when">Text — use when:</div>
-              <ul class="var-use-list">
-                <li>Reserving space for a paragraph, label, or list of strings</li>
-                <li>Each line uses <code>2px</code> radius and a <code>16px</code> gap below</li>
-                <li>Vary line widths (50%, 70%, 100%) so the placeholder reads as natural prose</li>
-              </ul>
-            </div>
-          </div>
-        </div>
-
-        <!-- AREA -->
-        <div class="tab-panel" id="v-area">
-          <div class="var-panel">
-            <div class="var-previews-wrap">
-              <div class="var-previews">
-                <div class="var-preview" style="padding:32px 24px;">
-                  <div style="display:flex;flex-direction:column;gap:16px;width:100%;">
-                    <div class="sk-area" style="width:100%;height:96px;"></div>
-                    <div class="sk-area" style="width:140px;height:140px;border-radius:50%;align-self:center;"></div>
-                  </div>
-                </div>
-                <div class="var-preview-dark" style="padding:32px 24px;">
-                  <div style="display:flex;flex-direction:column;gap:16px;width:100%;">
-                    <div class="sk-area" style="width:100%;height:96px;"></div>
-                    <div class="sk-area" style="width:140px;height:140px;border-radius:50%;align-self:center;"></div>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div class="var-desc">
-              <div class="var-use-when">Area — use when:</div>
-              <ul class="var-use-list">
-                <li>Reserving space for a card, image, media block, or icon</li>
-                <li>Default <code>6px</code> radius; override to <code>50%</code> for circular avatars</li>
-                <li>Set explicit width and height to match the real content's footprint</li>
-              </ul>
-            </div>
-          </div>
-        </div>
-
-        <!-- COMPOSED -->
-        <div class="tab-panel" id="v-composed">
-          <div class="var-panel">
-            <div class="var-previews-wrap">
-              <div class="var-previews">
-                <div class="var-preview" style="padding:24px;">
-                  <div style="display:flex;gap:16px;align-items:flex-start;width:100%;">
-                    <div class="sk-area" style="width:48px;height:48px;border-radius:50%;flex-shrink:0;"></div>
-                    <div class="sk-text" style="flex:1;">
-                      <div class="sk-line" style="width:60%;"></div>
-                      <div class="sk-line"></div>
-                      <div class="sk-line" style="width:80%;"></div>
+                <div class="var-preview" style="padding:32px;">
+                  <div class="met-card">
+                    <div class="met-title">Metric Title</div>
+                    <div class="met-stat">
+                      <div class="met-value">1234.00</div>
+                      <div class="met-delta met-delta--up">+ 15%</div>
                     </div>
                   </div>
                 </div>
-                <div class="var-preview-dark" style="padding:24px;">
-                  <div style="display:flex;gap:16px;align-items:flex-start;width:100%;">
-                    <div class="sk-area" style="width:48px;height:48px;border-radius:50%;flex-shrink:0;"></div>
-                    <div class="sk-text" style="flex:1;">
-                      <div class="sk-line" style="width:60%;"></div>
-                      <div class="sk-line"></div>
-                      <div class="sk-line" style="width:80%;"></div>
+                <div class="var-preview-dark" style="padding:32px;">
+                  <div class="met-card">
+                    <div class="met-title">Metric Title</div>
+                    <div class="met-stat">
+                      <div class="met-value">1234.00</div>
+                      <div class="met-delta met-delta--up">+ 15%</div>
                     </div>
                   </div>
                 </div>
               </div>
             </div>
             <div class="var-desc">
-              <div class="var-use-when">Composed — use when:</div>
+              <div class="var-use-when">Increasing — use when:</div>
               <ul class="var-use-list">
-                <li>Mirroring a real layout (e.g. avatar + name + body) so the load-in is seamless</li>
-                <li>Combine Area and Text primitives — keep widths and gaps consistent with the final UI</li>
-                <li>The shimmer animations stay in sync because they share a single keyframe timing</li>
+                <li>The metric trended upward over the comparison window</li>
+                <li>Delta uses <code>color/status/success/text</code> (<code>#006C21</code>) and a <code>+</code> prefix</li>
+                <li>Apply to "good" metrics like revenue, completion rate, or active users</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <!-- DECREASING -->
+        <div class="tab-panel" id="v-down">
+          <div class="var-panel">
+            <div class="var-previews-wrap">
+              <div class="var-previews">
+                <div class="var-preview" style="padding:32px;">
+                  <div class="met-card">
+                    <div class="met-title">Metric Title</div>
+                    <div class="met-stat">
+                      <div class="met-value">1234.00</div>
+                      <div class="met-delta met-delta--down">- 15%</div>
+                    </div>
+                  </div>
+                </div>
+                <div class="var-preview-dark" style="padding:32px;">
+                  <div class="met-card">
+                    <div class="met-title">Metric Title</div>
+                    <div class="met-stat">
+                      <div class="met-value">1234.00</div>
+                      <div class="met-delta met-delta--down">- 15%</div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="var-desc">
+              <div class="var-use-when">Decreasing — use when:</div>
+              <ul class="var-use-list">
+                <li>The metric trended downward over the comparison window</li>
+                <li>Delta uses <code>color/status/error/text</code> (<code>#A12F2F</code>) and a <code>−</code> prefix</li>
+                <li>Direction colour is semantic — flip to green if "down" is the desired outcome (e.g. churn, latency)</li>
               </ul>
             </div>
           </div>
@@ -305,40 +284,40 @@
           </thead>
           <tbody>
             <tr>
-              <td class="p-name">variant</td>
-              <td class="p-type">"text" | "area"</td>
-              <td class="p-def">"area"</td>
-              <td class="p-desc">Shape preset — pill-shaped text line or rounded block</td>
+              <td class="p-name">title</td>
+              <td class="p-type">string</td>
+              <td class="p-def">—</td>
+              <td class="p-desc">Short label describing what the metric measures</td>
             </tr>
             <tr>
-              <td class="p-name">width</td>
+              <td class="p-name">value</td>
               <td class="p-type">string | number</td>
-              <td class="p-def">"100%"</td>
-              <td class="p-desc">Width of the placeholder (px or %)</td>
+              <td class="p-def">—</td>
+              <td class="p-desc">The headline number (already formatted)</td>
             </tr>
             <tr>
-              <td class="p-name">height</td>
-              <td class="p-type">string | number</td>
-              <td class="p-def">"1em" / —</td>
-              <td class="p-desc">Height of the placeholder. Defaults match the variant.</td>
-            </tr>
-            <tr>
-              <td class="p-name">lines</td>
+              <td class="p-name">delta</td>
               <td class="p-type">number</td>
-              <td class="p-def">3</td>
-              <td class="p-desc">Number of text lines (text variant only)</td>
+              <td class="p-def">—</td>
+              <td class="p-desc">Percent change vs the previous period</td>
             </tr>
             <tr>
-              <td class="p-name">radius</td>
-              <td class="p-type">string | number</td>
-              <td class="p-def">"2" / "6"</td>
-              <td class="p-desc">Border-radius. Override for circles or custom shapes.</td>
+              <td class="p-name">direction</td>
+              <td class="p-type">"up" | "down" | "auto"</td>
+              <td class="p-def">"auto"</td>
+              <td class="p-desc">Force a direction or derive from the sign of <code>delta</code></td>
             </tr>
             <tr>
-              <td class="p-name">animate</td>
-              <td class="p-type">boolean</td>
-              <td class="p-def">true</td>
-              <td class="p-desc">Whether to run the shimmer animation</td>
+              <td class="p-name">positiveIs</td>
+              <td class="p-type">"good" | "bad"</td>
+              <td class="p-def">"good"</td>
+              <td class="p-desc">Whether an increase is desirable. Flips delta colours when set to <code>"bad"</code> (e.g. churn metrics).</td>
+            </tr>
+            <tr>
+              <td class="p-name">format</td>
+              <td class="p-type">function</td>
+              <td class="p-def">—</td>
+              <td class="p-desc">Optional formatter for the displayed value (currency, locale, etc.)</td>
             </tr>
           </tbody>
         </table>
@@ -455,13 +434,13 @@
           <div>
             <div class="tm-preview-card" data-bg="light">
               <div class="tm-preview-inner">
-                <div id="tmPreview" class="tm-preview" style="width:100%;">
-                  <div style="display:flex;flex-direction:column;gap:16px;width:100%;max-width:360px;">
-                    <div class="sk-text" data-part="text">
-                      <div class="sk-line" data-part="line1"></div>
-                      <div class="sk-line" data-part="line2" style="width:70%;"></div>
+                <div id="tmPreview" class="tm-preview">
+                  <div class="met-card" data-part="card">
+                    <div class="met-title" data-part="title">Metric Title</div>
+                    <div class="met-stat" data-part="stat">
+                      <div class="met-value" data-part="value">1234.00</div>
+                      <div class="met-delta met-delta--up" data-part="delta">+ 15%</div>
                     </div>
-                    <div class="sk-area" data-part="area" style="width:100%;height:48px;"></div>
                   </div>
                 </div>
               </div>
@@ -474,6 +453,7 @@
               <div class="tm-seg" style="margin:0 0 12px;">
                 <button class="tm-seg-item tm-seg-item--active" data-tab="color"><i data-lucide="palette" class="tm-seg-icon"></i> Color</button>
                 <button class="tm-seg-item" data-tab="component"><i data-lucide="ruler" class="tm-seg-icon"></i> Component</button>
+                <button class="tm-seg-item" data-tab="typography"><i data-lucide="type" class="tm-seg-icon"></i> Typography</button>
               </div>
             </div>
             <div class="tm-tokens-body" id="tmCards"></div>
@@ -486,16 +466,16 @@
         <h2 class="section-title">Accessibility</h2>
         <ul class="a11y-list">
           <li>
-            <div><strong>ARIA:</strong> Wrap the skeleton group in <code>role="status"</code> with <code>aria-busy="true"</code> and <code>aria-live="polite"</code> so screen readers announce the loading state without dumping the placeholder shapes.</div>
+            <div><strong>Don't rely on colour alone:</strong> The delta uses both colour (green/red) and a <code>+</code>/<code>−</code> prefix so users with low vision or colour-blindness still get the trend.</div>
           </li>
           <li>
-            <div><strong>Hide decorations from AT:</strong> Each individual shape should have <code>aria-hidden="true"</code>. The visible "Loading…" announcement comes from the wrapping live region, not the skeleton bars themselves.</div>
+            <div><strong>Screen reader announcement:</strong> Compose a single accessible label like <code>"Metric Title: 1234, up 15%"</code> on the wrapping element so the card reads as one coherent statement, not three disjoint values.</div>
           </li>
           <li>
-            <div><strong>Reduced motion:</strong> Honor <code>prefers-reduced-motion</code> by disabling the shimmer keyframes — the static gray track is still a valid loading indicator.</div>
+            <div><strong>Number formatting:</strong> Display values with appropriate locale formatting (thousands separators, currency symbols). For long numbers, abbreviate (e.g. 1.2M) but keep the full value in the accessible label.</div>
           </li>
           <li>
-            <div><strong>Don't show forever:</strong> If a request takes longer than ~10s, replace the skeleton with a fallback message so users aren't stuck staring at an animation.</div>
+            <div><strong>Direction semantics:</strong> Up isn't always good. Flip the colour mapping for metrics where a decrease is desirable (churn, errors, p95 latency).</div>
           </li>
         </ul>
       </section>
@@ -504,13 +484,17 @@
       <section class="doc-section" id="related">
         <h2 class="section-title">Related Components</h2>
         <div class="related-grid">
+          <a href="badge.html" class="related-card">
+            <div class="rc-name">Badge</div>
+            <div class="rc-desc">Use Badge for compact inline status labels. Metrics is for dashboard-style stat cards.</div>
+          </a>
           <a href="progressbar.html" class="related-card">
             <div class="rc-name">Progress Bar</div>
-            <div class="rc-desc">Use Progress Bar when you can report deterministic progress. Skeleton is for indeterminate loading.</div>
+            <div class="rc-desc">Use Progress Bar to show completion against a target. Metrics shows discrete period-over-period change.</div>
           </a>
           <a href="alert.html" class="related-card">
             <div class="rc-name">Alert</div>
-            <div class="rc-desc">Use Alert to surface a fallback message after a long-running load fails or stalls.</div>
+            <div class="rc-desc">Use Alert for notifications about a metric crossing a threshold rather than the metric itself.</div>
           </a>
         </div>
       </section>
@@ -582,10 +566,11 @@
   // ══════════════════════════════════════════
   // TOKEN MAP
   // ══════════════════════════════════════════
-  const tmColorLight = [{"role":"Track","token":"color/surface/skeleton/track","hex":"#CDD2D7","ref":"color/gray/300"},{"role":"Highlight","token":"color/surface/skeleton/highlight","hex":"#E5E7EB","ref":"color/gray/200"}];
-  const tmColorDark = [{"role":"Track","token":"color/surface/skeleton/track","hex":"#374151","ref":"color/gray/700"},{"role":"Highlight","token":"color/surface/skeleton/highlight","hex":"#4B5563","ref":"color/gray/600"}];
-  const tmComponentTokens = [{"role":"Text radius","component":"skeleton/radius/text","primitive":"radius/xs","value":"2px","icon":"square-round-corner"},{"role":"Area radius","component":"skeleton/radius/area","primitive":"radius/sm","value":"6px","icon":"square-round-corner"},{"role":"Text gap","component":"skeleton/text/gap","primitive":"spacing/4x","value":"16px","icon":"columns-3"}];
-  const tmTotalTokens = tmColorLight.length + tmComponentTokens.length;
+  const tmColorLight = [{"role":"Card surface","token":"color/surface/card","hex":"#FFFFFF","ref":"color/gray/0"},{"role":"Title","token":"color/text/secondary","hex":"#4B5563","ref":"color/gray/600"},{"role":"Value","token":"color/text/primary","hex":"#374151","ref":"color/gray/700"},{"role":"Delta up","token":"color/status/success/text","hex":"#006C21","ref":"color/green/800"},{"role":"Delta down","token":"color/status/error/text","hex":"#A12F2F","ref":"color/red/800"}];
+  const tmColorDark = [{"role":"Card surface","token":"color/surface/card","hex":"#1E1E1E","ref":"color/neutral/900"},{"role":"Title","token":"color/text/secondary","hex":"#E5E7EB","ref":"color/gray/200"},{"role":"Value","token":"color/text/primary","hex":"#FFFFFF","ref":"color/gray/0"},{"role":"Delta up","token":"color/status/success/text","hex":"#4DAD82","ref":"color/green/400"},{"role":"Delta down","token":"color/status/error/text","hex":"#E36868","ref":"color/red/400"}];
+  const tmComponentTokens = [{"role":"Padding","component":"metrics/padding","primitive":"spacing/6x","value":"24px","icon":"space"},{"role":"Border radius","component":"radius/lg","primitive":"radius/lg","value":"8px","icon":"square-round-corner"},{"role":"Group gap","component":"metrics/gap","primitive":"spacing/3x","value":"12px","icon":"columns-3"},{"role":"Stat gap","component":"metrics/stat/gap","primitive":"spacing/1x","value":"4px","icon":"columns-3"}];
+  const tmTypographyTokens = [{"role":"Title","style":"typography/header/h5","font":"Lato","weight":"Bold (700)","size":"16px","lineHeight":"20px","letterSpacing":"0"},{"role":"Value","style":"display/large","font":"Lato","weight":"Bold (700)","size":"36px","lineHeight":"40px","letterSpacing":"-0.5px"},{"role":"Delta","style":"typography/helper/bold","font":"Lato","weight":"Bold (700)","size":"12px","lineHeight":"16px","letterSpacing":"0"}];
+  const tmTotalTokens = tmColorLight.length + tmComponentTokens.length + tmTypographyTokens.length;
   const tmState = { tab:'color', mode:'light' };
   const tmCards = document.getElementById('tmCards');
   const tmPreviewCard = document.querySelector('.tm-preview-card');
@@ -594,12 +579,15 @@
   const tmPreview = document.getElementById('tmPreview');
 
   const colorPartMap = {
-    'track':['line1','line2','area'], 'highlight':['line1','line2','area'],
+    'card-surface':['card'], 'title':['title'], 'value':['value'],
+    'delta-up':['delta'], 'delta-down':['delta'],
   };
   const compSpotlightMap = {
-    'text-radius':'spotlight-text-radius', 'area-radius':'spotlight-area-radius', 'text-gap':'spotlight-text-gap',
+    'padding':'spotlight-padding', 'border-radius':'spotlight-radius',
+    'group-gap':'spotlight-gap', 'stat-gap':'spotlight-stat-gap',
   };
-  const spotlightClasses = ['has-spotlight','spotlight-text-radius','spotlight-area-radius','spotlight-text-gap'];
+  const typoPartMap = { 'title':['title'], 'value':['value'], 'delta':['delta'] };
+  const spotlightClasses = ['has-spotlight','spotlight-padding','spotlight-radius','spotlight-gap','spotlight-stat-gap'];
 
   function slug(s){ return s.toLowerCase().replace(/[^a-z0-9]+/g,'-').replace(/-+$/,''); }
   function clearSpotlight(){
@@ -608,12 +596,11 @@
   }
   function spotlight(sl){
     if(compSpotlightMap[sl]){ tmPreview.classList.add(compSpotlightMap[sl]); return; }
-    const parts = colorPartMap[sl];
+    const parts = colorPartMap[sl] || typoPartMap[sl];
     if(!parts||!parts.length) return;
     tmPreview.classList.add('has-spotlight');
     parts.forEach(p=>{ const el=tmPreview.querySelector('[data-part="'+p+'"]'); if(el) el.classList.add('spotlight'); });
   }
-
   function tmRender() {
     const colors = tmState.mode==='light' ? tmColorLight : tmColorDark;
     tmPreviewCard.setAttribute('data-bg', tmState.mode);
@@ -623,10 +610,15 @@
         const s=slug(c.role);
         html+='<div class="tm-row" data-slot="'+s+'"><div class="tm-row-header"><div class="tm-row-swatch" style="background:'+c.hex+'"></div><div class="tm-row-label">'+c.role+'</div></div><div class="tm-chain-row"><div class="tm-chip">'+c.token+'</div><div class="tm-chain-arrow">'+arrowSvg+'</div><div class="tm-chip">'+(c.ref||c.token)+'</div><div class="tm-chain-arrow">'+arrowSvg+'</div><div class="tm-chip" style="font-weight:600">'+c.hex+'</div></div></div>';
       }
-    } else {
+    } else if (tmState.tab==='component') {
       for (const ct of tmComponentTokens) {
         const s=slug(ct.role);
         html+='<div class="tm-row" data-slot="'+s+'"><div class="tm-row-header"><div class="tm-row-icon"><i data-lucide="'+ct.icon+'" style="width:16px;height:16px"></i></div><div class="tm-row-label">'+ct.role+'</div></div><div class="tm-chain-row"><div class="tm-chip">'+ct.component+'</div><div class="tm-chain-arrow">'+arrowSvg+'</div><div class="tm-chip">'+ct.primitive+'</div><div class="tm-chain-arrow">'+arrowSvg+'</div><div class="tm-chip" style="font-weight:600">'+ct.value+'</div></div></div>';
+      }
+    } else {
+      for (const tt of tmTypographyTokens) {
+        const s=slug(tt.role);
+        html+='<div class="tm-row" data-slot="'+s+'"><div class="tm-row-header"><div class="tm-row-icon"><i data-lucide="type" style="width:16px;height:16px"></i></div><div class="tm-row-label">'+tt.role+'</div></div><div class="tm-chain-row" style="flex-direction:column;align-items:flex-start;gap:6px;"><div style="display:flex;align-items:center;gap:10px;flex-wrap:wrap;"><div class="tm-chip">'+tt.style+'</div></div><div style="display:flex;align-items:center;gap:8px;flex-wrap:wrap;font-family:var(--mono);font-size:12px;color:var(--text-tertiary);"><span>'+tt.font+'</span><span>&middot;</span><span>'+tt.weight+'</span><span>&middot;</span><span>'+tt.size+' / '+tt.lineHeight+'</span></div></div></div>';
       }
     }
     tmCards.innerHTML = html;

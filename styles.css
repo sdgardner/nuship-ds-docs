@@ -3082,6 +3082,46 @@ code {
 .tm-preview-card[data-bg="dark"] .pg-ellipsis { color:#FFFFFF; background:transparent; }
 .tm-preview-card[data-bg="dark"] .pg-arrow { background:#1E1E1E; border-color:#6B7280; color:#E5E7EB; }
 
+/* ─── MET · Metrics ─────────────────────────────── */
+.met-card { display:flex; flex-direction:column; gap:12px; background:#FFFFFF; padding:24px; border-radius:8px; box-shadow:0 2px 6px rgba(45,55,70,0.12), 0 4px 10px rgba(55,65,80,0.08); min-width:171px; box-sizing:border-box; font-family:'Lato', sans-serif; }
+.met-title { font-size:16px; font-weight:700; line-height:20px; color:#4B5563; }
+.met-stat { display:flex; flex-direction:column; gap:4px; }
+.met-value { font-size:36px; font-weight:700; line-height:40px; color:#374151; letter-spacing:-0.5px; }
+.met-delta { font-size:12px; font-weight:700; line-height:16px; }
+.met-delta--up { color:#006C21; }
+.met-delta--down { color:#A12F2F; }
+
+/* Dark mode */
+[data-theme="dark"] .met-card { background:#1E1E1E; box-shadow:0 4px 8px rgba(0,0,0,0.4), 0 6px 12px rgba(0,0,0,0.3); }
+[data-theme="dark"] .met-title { color:#E5E7EB; }
+[data-theme="dark"] .met-value { color:#FFFFFF; }
+[data-theme="dark"] .met-delta--up { color:#4DAD82; }
+[data-theme="dark"] .met-delta--down { color:#E36868; }
+
+/* var-preview swatches */
+.var-preview .met-card { background:#FFFFFF; }
+.var-preview .met-title { color:#4B5563; }
+.var-preview .met-value { color:#374151; }
+.var-preview .met-delta--up { color:#006C21; }
+.var-preview .met-delta--down { color:#A12F2F; }
+.var-preview-dark .met-card { background:#1E1E1E; }
+.var-preview-dark .met-title { color:#E5E7EB; }
+.var-preview-dark .met-value { color:#FFFFFF; }
+.var-preview-dark .met-delta--up { color:#4DAD82; }
+.var-preview-dark .met-delta--down { color:#E36868; }
+
+/* Token-map preview */
+.tm-preview-card[data-bg="light"] .met-card { background:#FFFFFF; }
+.tm-preview-card[data-bg="light"] .met-title { color:#4B5563; }
+.tm-preview-card[data-bg="light"] .met-value { color:#374151; }
+.tm-preview-card[data-bg="light"] .met-delta--up { color:#006C21; }
+.tm-preview-card[data-bg="light"] .met-delta--down { color:#A12F2F; }
+.tm-preview-card[data-bg="dark"] .met-card { background:#1E1E1E; }
+.tm-preview-card[data-bg="dark"] .met-title { color:#E5E7EB; }
+.tm-preview-card[data-bg="dark"] .met-value { color:#FFFFFF; }
+.tm-preview-card[data-bg="dark"] .met-delta--up { color:#4DAD82; }
+.tm-preview-card[data-bg="dark"] .met-delta--down { color:#E36868; }
+
 /* ─── TM · Token Map (shared) ──────────────────── */
 :root { --mono: ui-monospace, "SF Mono", "Menlo", Consolas, monospace; --tm-accent: #027CB1; }
 .tm-map { display:grid; grid-template-columns:1fr 1fr; gap:24px; align-items:start; }
