@@ -199,23 +199,28 @@ body {
 .doc-section:last-child { border-bottom: none; margin-bottom: 0; padding-bottom: 0; }
 
 .section-title {
-  font-size: 24px; font-weight: 700; line-height: 30px;
-  color: var(--text-primary); margin-bottom: 28px;
+  /* typography/header/h3 — 22 / 28 Lato Bold */
+  font-size: 22px; font-weight: 700; line-height: 28px;
+  color: var(--text-primary); margin-bottom: 24px;
 }
 
 /* ─── DEFINITION / HERO ──────────────────────────── */
 .def-eyebrow {
-  font-size: 12px; font-weight: 700;
+  /* typography/helper/bold — 12 / 16 Lato Bold (with tracking + uppercase) */
+  font-size: 12px; font-weight: 700; line-height: 16px;
   letter-spacing: 1px; text-transform: uppercase;
   color: var(--text-tertiary); margin-bottom: 12px;
 }
 .def-title {
-  font-size: 48px; font-weight: 700;
-  letter-spacing: -0.5px; line-height: 56px; margin-bottom: 20px;
+  /* typography/header/h1 — 32 / 40 Lato Bold */
+  font-size: 32px; font-weight: 700;
+  letter-spacing: 0; line-height: 40px; margin-bottom: 16px;
 }
 .def-desc {
-  font-size: 16px; color: var(--text-secondary);
-  line-height: 1.625; margin-bottom: 24px;
+  /* typography/body/medium — 16 / 22 Lato Regular */
+  font-size: 16px; font-weight: 400; line-height: 22px;
+  color: var(--text-secondary);
+  margin-bottom: 24px;
   max-width: 640px;
 }
 .def-tags { display: flex; gap: 8px; margin-bottom: 32px; }
