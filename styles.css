@@ -3122,6 +3122,18 @@ code {
 .tm-preview-card[data-bg="dark"] .met-delta--up { color:#4DAD82; }
 .tm-preview-card[data-bg="dark"] .met-delta--down { color:#E36868; }
 
+/* ─── DV · Divider ──────────────────────────────── */
+.dv-divider { background:#CDD2D7; border:0; margin:0; padding:0; flex-shrink:0; }
+.dv-divider--h { height:1px; width:100%; }
+.dv-divider--v { width:1px; height:auto; align-self:stretch; min-height:24px; }
+.dv-divider--inset { width:calc(100% - 32px); margin:0 16px; }
+
+[data-theme="dark"] .dv-divider { background:#6B7280; }
+.var-preview .dv-divider { background:#CDD2D7; }
+.var-preview-dark .dv-divider { background:#6B7280; }
+.tm-preview-card[data-bg="light"] .dv-divider { background:#CDD2D7; }
+.tm-preview-card[data-bg="dark"] .dv-divider { background:#6B7280; }
+
 /* ─── TM · Token Map (shared) ──────────────────── */
 :root { --mono: ui-monospace, "SF Mono", "Menlo", Consolas, monospace; --tm-accent: #027CB1; }
 .tm-map { display:grid; grid-template-columns:1fr 1fr; gap:24px; align-items:start; }

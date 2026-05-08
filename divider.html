@@ -3,21 +3,24 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Pagination — nuShip Design System</title>
+  <title>Divider — nuShip Design System</title>
   <link href="https://fonts.googleapis.com/css2?family=Lato:wght@400;600;700;900&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="tokens.css">
   <link rel="stylesheet" href="styles.css">
   <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.min.js"></script>
   <script src="nav-scroll.js" defer></script>
   <style>
-    /* Pagination token map spotlights */
-    #tmPreview { position:relative; min-height:100px; display:flex; align-items:center; justify-content:center; }
-    #tmPreview.spotlight-padding .pg-num, #tmPreview.spotlight-padding .pg-arrow { outline:2px solid #FF4081; outline-offset:0; }
-    #tmPreview.spotlight-padding::after { content:'6px'; position:absolute; top:-16px; left:50%; transform:translateX(-50%); font-size:10px; font-family:var(--mono); color:#FF4081; background:rgba(255,255,255,0.95); padding:1px 4px; border-radius:2px; font-weight:700; }
-    #tmPreview.spotlight-radius .pg-num, #tmPreview.spotlight-radius .pg-arrow { outline:2px solid #FF4081; outline-offset:2px; }
-    #tmPreview.spotlight-radius::after { content:'4px'; position:absolute; top:-16px; left:0; font-size:10px; font-family:var(--mono); color:#FF4081; background:rgba(255,255,255,0.95); padding:1px 4px; border-radius:2px; font-weight:700; }
-    #tmPreview.spotlight-gap { outline:2px solid #FF4081; outline-offset:6px; border-radius:4px; }
-    #tmPreview.spotlight-gap::after { content:'8px'; position:absolute; top:-22px; right:0; font-size:10px; font-family:var(--mono); color:#FF4081; background:rgba(255,255,255,0.95); padding:1px 4px; border-radius:2px; font-weight:700; }
+    /* Divider token map spotlights */
+    #tmPreview { position:relative; min-height:160px; display:flex; align-items:center; justify-content:center; padding:0 24px; }
+    #tmPreview.spotlight-color .dv-divider { outline:3px solid #FF4081; outline-offset:6px; border-radius:4px; }
+    #tmPreview.spotlight-color::after { content:'#CDD2D7'; position:absolute; top:50%; right:24px; transform:translateY(-50%); font-size:10px; font-family:var(--mono); color:#FF4081; background:rgba(255,255,255,0.95); padding:1px 4px; border-radius:2px; font-weight:700; }
+    #tmPreview.spotlight-thickness .dv-divider { outline:3px solid #FF4081; outline-offset:6px; border-radius:4px; }
+    #tmPreview.spotlight-thickness::after { content:'1px'; position:absolute; top:50%; left:24px; transform:translateY(-50%); font-size:10px; font-family:var(--mono); color:#FF4081; background:rgba(255,255,255,0.95); padding:1px 4px; border-radius:2px; font-weight:700; }
+    /* Demo "row" so the divider always has surrounding content for context */
+    .dv-demo-row { display:flex; flex-direction:column; gap:12px; width:100%; max-width:340px; }
+    .dv-demo-row .dv-demo-line { font-size:14px; color:var(--text-secondary); line-height:1.5; }
+    .dv-demo-col-row { display:flex; gap:16px; align-items:center; min-height:48px; }
+    .dv-demo-col { flex:1; font-size:14px; color:var(--text-secondary); }
   </style>
 </head>
 <body>
@@ -31,9 +34,9 @@
   <div class="bc">
     <a href="index.html">UI Components</a>
     <i data-lucide="chevron-right" style="width:14px;height:14px;flex-shrink:0"></i>
-    <a href="#">Navigation</a>
+    <a href="#">Display</a>
     <i data-lucide="chevron-right" style="width:14px;height:14px;flex-shrink:0"></i>
-    <span class="cur">Pagination</span>
+    <span class="cur">Divider</span>
   </div>
   <div class="nav-actions">
     <div class="toggle-wrap" onclick="toggleTheme()" role="button">
@@ -80,7 +83,7 @@
           <li><a href="accordion.html">Accordion</a></li>
           <li><a href="dropdown.html">Dropdown</a></li>
           <li><a href="menu.html">Menu</a></li>
-          <li><a href="pagination.html" class="active">Pagination</a></li>
+          <li><a href="pagination.html">Pagination</a></li>
           <li><a href="segmentedcontrol.html">Segmented Control</a></li>
           <li><a href="stepindicator.html">Step Indicator</a></li>
           <li><a href="tabs.html">Tabs</a></li>
@@ -113,7 +116,7 @@
         <ul class="ln-list">
           <li><a href="avatar.html">Avatar</a></li>
           <li><a href="carousel.html">Carousel</a></li>
-          <li><a href="divider.html">Divider</a></li>
+          <li><a href="divider.html" class="active">Divider</a></li>
           <li><a href="fileupload.html">File Upload</a></li>
           <li><a href="metrics.html">Metrics</a></li>
           <li><a href="progressbar.html">Progress Bar</a></li>
@@ -130,35 +133,33 @@
 
       <!-- 1 · DEFINITION -->
       <section class="doc-section" id="definition">
-        <div class="def-eyebrow">Navigation</div>
-        <h1 class="def-title">Pagination</h1>
-        <p class="def-desc">Pagination breaks long lists or tables into navigable pages. The component combines previous/next chevrons, page-number tiles, and optional ellipsis to skip large gaps. The active page wears a blue border so it's always clear where you are in the set.</p>
+        <div class="def-eyebrow">Display</div>
+        <h1 class="def-title">Divider</h1>
+        <p class="def-desc">A 1px hairline that separates content into related groups. Dividers exist purely as a visual cue — they carry no semantic meaning, so reach for spacing first and only add a divider when whitespace alone isn't enough to communicate the break.</p>
         <div class="def-tags">
           <span class="tag">Developed</span>
           <span class="tag">Figma</span>
         </div>
         <div class="preview-box">
           <div class="preview-box-inner">
-            <div style="display:flex;flex-direction:column;gap:24px;align-items:center;padding:24px 0;">
+            <div style="display:flex;flex-direction:column;gap:32px;align-items:center;padding:24px;">
 
-              <div class="pg-pagination">
-                <button class="pg-arrow" disabled aria-label="Previous"><i data-lucide="chevron-left"></i></button>
-                <button class="pg-num">1</button>
-                <button class="pg-num pg-num--active" aria-current="page">2</button>
-                <span class="pg-ellipsis">…</span>
-                <button class="pg-num">9</button>
-                <button class="pg-num">10</button>
-                <button class="pg-arrow" aria-label="Next"><i data-lucide="chevron-right"></i></button>
+              <!-- Horizontal between rows -->
+              <div class="dv-demo-row">
+                <div class="dv-demo-line"><strong style="color:var(--text-primary)">Account</strong> · billing details</div>
+                <hr class="dv-divider dv-divider--h">
+                <div class="dv-demo-line"><strong style="color:var(--text-primary)">Notifications</strong> · email + push</div>
+                <hr class="dv-divider dv-divider--h">
+                <div class="dv-demo-line"><strong style="color:var(--text-primary)">Privacy</strong> · who can see what</div>
               </div>
 
-              <div class="pg-pagination">
-                <button class="pg-arrow" aria-label="Previous"><i data-lucide="chevron-left"></i></button>
-                <button class="pg-num">3</button>
-                <button class="pg-num">4</button>
-                <button class="pg-num pg-num--active" aria-current="page">5</button>
-                <button class="pg-num">6</button>
-                <button class="pg-num">7</button>
-                <button class="pg-arrow" aria-label="Next"><i data-lucide="chevron-right"></i></button>
+              <!-- Vertical between inline items -->
+              <div class="dv-demo-col-row" style="max-width:340px;">
+                <div class="dv-demo-col" style="text-align:right;"><strong style="color:var(--text-primary)">USD</strong></div>
+                <div class="dv-divider dv-divider--v"></div>
+                <div class="dv-demo-col"><strong style="color:var(--text-primary)">EUR</strong></div>
+                <div class="dv-divider dv-divider--v"></div>
+                <div class="dv-demo-col"><strong style="color:var(--text-primary)">GBP</strong></div>
               </div>
 
             </div>
@@ -171,28 +172,19 @@
         <h2 class="section-title">Anatomy</h2>
         <div class="anatomy-wrap">
           <div class="anatomy-component" style="padding:32px 0;max-width:340px;">
-            <div style="position:relative;display:inline-block;">
-              <div class="pg-pagination">
-                <button class="pg-arrow" aria-label="Previous"><i data-lucide="chevron-left"></i></button>
-                <button class="pg-num">1</button>
-                <button class="pg-num pg-num--active" aria-current="page">2</button>
-                <span class="pg-ellipsis">…</span>
-                <button class="pg-num">9</button>
-                <button class="pg-arrow" aria-label="Next"><i data-lucide="chevron-right"></i></button>
+            <div style="position:relative;">
+              <div class="dv-demo-row">
+                <div class="dv-demo-line">Item above the rule</div>
+                <hr class="dv-divider dv-divider--h">
+                <div class="dv-demo-line">Item below the rule</div>
               </div>
-              <span class="callout" style="top:-4px;left:8px;">1</span>
-              <span class="callout" style="top:-4px;left:88px;">2</span>
-              <span class="callout" style="top:-4px;left:128px;">3</span>
-              <span class="callout" style="top:-4px;left:168px;">4</span>
-              <span class="callout" style="top:-4px;right:8px;left:auto;transform:none;">5</span>
+              <span class="callout" style="top:36px;left:-4px;">1</span>
+              <span class="callout" style="top:36px;right:-4px;left:auto;transform:none;">2</span>
             </div>
           </div>
           <div class="anatomy-legend">
-            <div class="legend-item"><span class="legend-num">1</span>Previous chevron (with border)</div>
-            <div class="legend-item"><span class="legend-num">2</span>Page number tile</div>
-            <div class="legend-item"><span class="legend-num">3</span>Active page (blue border)</div>
-            <div class="legend-item"><span class="legend-num">4</span>Ellipsis (skips a gap)</div>
-            <div class="legend-item"><span class="legend-num">5</span>Next chevron</div>
+            <div class="legend-item"><span class="legend-num">1</span>Hairline (1px tall, full available width)</div>
+            <div class="legend-item"><span class="legend-num">2</span>Border colour <code>#CDD2D7</code> (color/border/interactive)</div>
           </div>
         </div>
       </section>
@@ -202,175 +194,103 @@
         <h2 class="section-title">Variants</h2>
         <div class="tabs-wrap">
           <div class="tabs">
-            <button class="tab active" onclick="switchTab(this,'v-arrows')">Arrows</button>
-            <button class="tab" onclick="switchTab(this,'v-numbers')">Numbers</button>
-            <button class="tab" onclick="switchTab(this,'v-full')">Full</button>
+            <button class="tab active" onclick="switchTab(this,'v-horizontal')">Horizontal</button>
+            <button class="tab" onclick="switchTab(this,'v-vertical')">Vertical</button>
+            <button class="tab" onclick="switchTab(this,'v-inset')">Inset</button>
           </div>
         </div>
 
-        <!-- ARROWS -->
-        <div class="tab-panel active" id="v-arrows">
-          <div class="state-tab-row">
-            <button class="state-tab-btn active" onclick="switchStateTab(this,'vs-ar-default')">Default</button>
-            <button class="state-tab-btn" onclick="switchStateTab(this,'vs-ar-hover')">Hover</button>
-            <button class="state-tab-btn" onclick="switchStateTab(this,'vs-ar-disabled')">Disabled</button>
-          </div>
-          <div class="var-panel">
-            <div class="var-previews-wrap">
-
-              <div class="state-panel active" id="vs-ar-default">
-                <div class="var-previews">
-                  <div class="var-preview" style="padding:32px;">
-                    <div class="pg-pagination">
-                      <button class="pg-arrow" aria-label="Previous"><i data-lucide="chevron-left"></i></button>
-                      <button class="pg-arrow" aria-label="Next"><i data-lucide="chevron-right"></i></button>
-                    </div>
-                  </div>
-                  <div class="var-preview-dark" style="padding:32px;">
-                    <div class="pg-pagination">
-                      <button class="pg-arrow" aria-label="Previous"><i data-lucide="chevron-left"></i></button>
-                      <button class="pg-arrow" aria-label="Next"><i data-lucide="chevron-right"></i></button>
-                    </div>
-                  </div>
-                </div>
-              </div>
-
-              <div class="state-panel" id="vs-ar-hover">
-                <div class="var-previews">
-                  <div class="var-preview" style="padding:32px;">
-                    <div class="pg-pagination">
-                      <button class="pg-arrow pg-state-hover" aria-label="Previous"><i data-lucide="chevron-left"></i></button>
-                      <button class="pg-arrow pg-state-hover" aria-label="Next"><i data-lucide="chevron-right"></i></button>
-                    </div>
-                  </div>
-                  <div class="var-preview-dark" style="padding:32px;">
-                    <div class="pg-pagination">
-                      <button class="pg-arrow pg-state-hover" aria-label="Previous"><i data-lucide="chevron-left"></i></button>
-                      <button class="pg-arrow pg-state-hover" aria-label="Next"><i data-lucide="chevron-right"></i></button>
-                    </div>
-                  </div>
-                </div>
-              </div>
-
-              <div class="state-panel" id="vs-ar-disabled">
-                <div class="var-previews">
-                  <div class="var-preview" style="padding:32px;">
-                    <div class="pg-pagination">
-                      <button class="pg-arrow" disabled aria-label="Previous"><i data-lucide="chevron-left"></i></button>
-                      <button class="pg-arrow" disabled aria-label="Next"><i data-lucide="chevron-right"></i></button>
-                    </div>
-                  </div>
-                  <div class="var-preview-dark" style="padding:32px;">
-                    <div class="pg-pagination">
-                      <button class="pg-arrow" disabled aria-label="Previous"><i data-lucide="chevron-left"></i></button>
-                      <button class="pg-arrow" disabled aria-label="Next"><i data-lucide="chevron-right"></i></button>
-                    </div>
-                  </div>
-                </div>
-              </div>
-
-            </div>
-            <div class="var-desc">
-              <div class="var-use-when">Arrows — use when:</div>
-              <ul class="var-use-list">
-                <li>You only need step-by-step "Previous / Next" navigation</li>
-                <li>Default has a 1px <code>#CDD2D7</code> border with a dark gray icon</li>
-                <li>Disable the chevron at the start/end of the range to communicate the boundary</li>
-              </ul>
-            </div>
-          </div>
-        </div>
-
-        <!-- NUMBERS -->
-        <div class="tab-panel" id="v-numbers">
-          <div class="state-tab-row">
-            <button class="state-tab-btn active" onclick="switchStateTab(this,'vs-nm-default')">Default</button>
-            <button class="state-tab-btn" onclick="switchStateTab(this,'vs-nm-active')">Active</button>
-            <button class="state-tab-btn" onclick="switchStateTab(this,'vs-nm-hover')">Hover</button>
-          </div>
-          <div class="var-panel">
-            <div class="var-previews-wrap">
-
-              <div class="state-panel active" id="vs-nm-default">
-                <div class="var-previews">
-                  <div class="var-preview" style="padding:32px;">
-                    <button class="pg-num">1</button>
-                  </div>
-                  <div class="var-preview-dark" style="padding:32px;">
-                    <button class="pg-num">1</button>
-                  </div>
-                </div>
-              </div>
-
-              <div class="state-panel" id="vs-nm-active">
-                <div class="var-previews">
-                  <div class="var-preview" style="padding:32px;">
-                    <button class="pg-num pg-num--active" aria-current="page">1</button>
-                  </div>
-                  <div class="var-preview-dark" style="padding:32px;">
-                    <button class="pg-num pg-num--active" aria-current="page">1</button>
-                  </div>
-                </div>
-              </div>
-
-              <div class="state-panel" id="vs-nm-hover">
-                <div class="var-previews">
-                  <div class="var-preview" style="padding:32px;">
-                    <button class="pg-num pg-state-hover">1</button>
-                  </div>
-                  <div class="var-preview-dark" style="padding:32px;">
-                    <button class="pg-num pg-state-hover">1</button>
-                  </div>
-                </div>
-              </div>
-
-            </div>
-            <div class="var-desc">
-              <div class="var-use-when">Numbers — use when:</div>
-              <ul class="var-use-list">
-                <li>Pages 1–N can be addressed directly</li>
-                <li>Active page wears a 1px <code>#027CB1</code> border; default and hover have no border</li>
-                <li>Apply <code>aria-current="page"</code> to the active tile</li>
-              </ul>
-            </div>
-          </div>
-        </div>
-
-        <!-- FULL -->
-        <div class="tab-panel" id="v-full">
+        <!-- HORIZONTAL -->
+        <div class="tab-panel active" id="v-horizontal">
           <div class="var-panel">
             <div class="var-previews-wrap">
               <div class="var-previews">
                 <div class="var-preview" style="padding:32px;">
-                  <div class="pg-pagination">
-                    <button class="pg-arrow" disabled aria-label="Previous"><i data-lucide="chevron-left"></i></button>
-                    <button class="pg-num">1</button>
-                    <button class="pg-num pg-num--active" aria-current="page">2</button>
-                    <span class="pg-ellipsis">…</span>
-                    <button class="pg-num">9</button>
-                    <button class="pg-num">10</button>
-                    <button class="pg-arrow" aria-label="Next"><i data-lucide="chevron-right"></i></button>
+                  <div class="dv-demo-row">
+                    <div class="dv-demo-line">Section above</div>
+                    <hr class="dv-divider dv-divider--h">
+                    <div class="dv-demo-line">Section below</div>
                   </div>
                 </div>
                 <div class="var-preview-dark" style="padding:32px;">
-                  <div class="pg-pagination">
-                    <button class="pg-arrow" disabled aria-label="Previous"><i data-lucide="chevron-left"></i></button>
-                    <button class="pg-num">1</button>
-                    <button class="pg-num pg-num--active" aria-current="page">2</button>
-                    <span class="pg-ellipsis">…</span>
-                    <button class="pg-num">9</button>
-                    <button class="pg-num">10</button>
-                    <button class="pg-arrow" aria-label="Next"><i data-lucide="chevron-right"></i></button>
+                  <div class="dv-demo-row">
+                    <div class="dv-demo-line" style="color:#E5E7EB;">Section above</div>
+                    <hr class="dv-divider dv-divider--h">
+                    <div class="dv-demo-line" style="color:#E5E7EB;">Section below</div>
                   </div>
                 </div>
               </div>
             </div>
             <div class="var-desc">
-              <div class="var-use-when">Full — use when:</div>
+              <div class="var-use-when">Horizontal — use when:</div>
               <ul class="var-use-list">
-                <li>The page count is large enough to need ellipsis to skip a middle range</li>
-                <li>Always show the first and last page so users know the total scope</li>
-                <li>Prev/Next chevrons disable at the start/end of the set</li>
+                <li>Splitting a vertical stack of related content groups</li>
+                <li>Apply with <code>&lt;hr&gt;</code> for native screen-reader support</li>
+                <li>Span the full available width unless the inset variant fits better</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <!-- VERTICAL -->
+        <div class="tab-panel" id="v-vertical">
+          <div class="var-panel">
+            <div class="var-previews-wrap">
+              <div class="var-previews">
+                <div class="var-preview" style="padding:32px;">
+                  <div class="dv-demo-col-row" style="max-width:280px;">
+                    <div class="dv-demo-col" style="text-align:right;">Left</div>
+                    <div class="dv-divider dv-divider--v"></div>
+                    <div class="dv-demo-col">Right</div>
+                  </div>
+                </div>
+                <div class="var-preview-dark" style="padding:32px;">
+                  <div class="dv-demo-col-row" style="max-width:280px;">
+                    <div class="dv-demo-col" style="color:#E5E7EB;text-align:right;">Left</div>
+                    <div class="dv-divider dv-divider--v"></div>
+                    <div class="dv-demo-col" style="color:#E5E7EB;">Right</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="var-desc">
+              <div class="var-use-when">Vertical — use when:</div>
+              <ul class="var-use-list">
+                <li>Splitting inline items in a horizontal row (e.g. button toolbar, breadcrumb)</li>
+                <li>Set <code>aria-orientation="vertical"</code> if the divider has interactive siblings</li>
+                <li>Match the height of the surrounding content via <code>align-self:stretch</code></li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <!-- INSET -->
+        <div class="tab-panel" id="v-inset">
+          <div class="var-panel">
+            <div class="var-previews-wrap">
+              <div class="var-previews">
+                <div class="var-preview" style="padding:32px;">
+                  <div class="dv-demo-row">
+                    <div class="dv-demo-line">Section above</div>
+                    <hr class="dv-divider dv-divider--h dv-divider--inset">
+                    <div class="dv-demo-line">Section below</div>
+                  </div>
+                </div>
+                <div class="var-preview-dark" style="padding:32px;">
+                  <div class="dv-demo-row">
+                    <div class="dv-demo-line" style="color:#E5E7EB;">Section above</div>
+                    <hr class="dv-divider dv-divider--h dv-divider--inset">
+                    <div class="dv-demo-line" style="color:#E5E7EB;">Section below</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="var-desc">
+              <div class="var-use-when">Inset — use when:</div>
+              <ul class="var-use-list">
+                <li>The divider sits inside a list item or card and shouldn't reach the edge</li>
+                <li>Default inset is <code>16px</code> on each side; override per layout</li>
+                <li>Useful for menus, dropdowns, and any list with leading icons</li>
               </ul>
             </div>
           </div>
@@ -387,40 +307,28 @@
           </thead>
           <tbody>
             <tr>
-              <td class="p-name">currentPage</td>
-              <td class="p-type">number</td>
-              <td class="p-def">1</td>
-              <td class="p-desc">1-based index of the active page</td>
+              <td class="p-name">orientation</td>
+              <td class="p-type">"horizontal" | "vertical"</td>
+              <td class="p-def">"horizontal"</td>
+              <td class="p-desc">Direction of the rule</td>
             </tr>
             <tr>
-              <td class="p-name">totalPages</td>
-              <td class="p-type">number</td>
-              <td class="p-def">—</td>
-              <td class="p-desc">Total number of pages in the set</td>
+              <td class="p-name">inset</td>
+              <td class="p-type">number | string</td>
+              <td class="p-def">0</td>
+              <td class="p-desc">Indent on each end (px or token like <code>spacing/4x</code>)</td>
             </tr>
             <tr>
-              <td class="p-name">siblingCount</td>
-              <td class="p-type">number</td>
-              <td class="p-def">1</td>
-              <td class="p-desc">Number of page tiles to show on each side of the active page before collapsing into an ellipsis</td>
-            </tr>
-            <tr>
-              <td class="p-name">showArrows</td>
+              <td class="p-name">decorative</td>
               <td class="p-type">boolean</td>
               <td class="p-def">true</td>
-              <td class="p-desc">Whether to show Previous / Next chevrons</td>
+              <td class="p-desc">Whether the divider is purely visual. Set to <code>false</code> on semantic section breaks.</td>
             </tr>
             <tr>
-              <td class="p-name">showFirstLast</td>
-              <td class="p-type">boolean</td>
-              <td class="p-def">true</td>
-              <td class="p-desc">Whether to always show page 1 and the final page</td>
-            </tr>
-            <tr>
-              <td class="p-name">onPageChange</td>
-              <td class="p-type">function</td>
-              <td class="p-def">—</td>
-              <td class="p-desc">Callback fired with the new page number</td>
+              <td class="p-name">as</td>
+              <td class="p-type">"hr" | "div" | "span"</td>
+              <td class="p-def">"hr"</td>
+              <td class="p-desc">Element used to render the divider. Use <code>&lt;hr&gt;</code> for horizontal, <code>&lt;div role="separator"&gt;</code> for vertical.</td>
             </tr>
           </tbody>
         </table>
@@ -537,14 +445,11 @@
           <div>
             <div class="tm-preview-card" data-bg="light">
               <div class="tm-preview-inner">
-                <div id="tmPreview" class="tm-preview">
-                  <div class="pg-pagination">
-                    <button class="pg-arrow" data-part="arrow" aria-label="Previous"><i data-lucide="chevron-left"></i></button>
-                    <button class="pg-num" data-part="num">1</button>
-                    <button class="pg-num pg-num--active" data-part="active" aria-current="page">2</button>
-                    <span class="pg-ellipsis" data-part="ellipsis">…</span>
-                    <button class="pg-num" data-part="num2">9</button>
-                    <button class="pg-arrow" data-part="arrow2" aria-label="Next"><i data-lucide="chevron-right"></i></button>
+                <div id="tmPreview" class="tm-preview" style="width:100%;">
+                  <div class="dv-demo-row" style="max-width:300px;">
+                    <div class="dv-demo-line" data-part="above">Item above</div>
+                    <hr class="dv-divider dv-divider--h" data-part="divider">
+                    <div class="dv-demo-line" data-part="below">Item below</div>
                   </div>
                 </div>
               </div>
@@ -557,7 +462,6 @@
               <div class="tm-seg" style="margin:0 0 12px;">
                 <button class="tm-seg-item tm-seg-item--active" data-tab="color"><i data-lucide="palette" class="tm-seg-icon"></i> Color</button>
                 <button class="tm-seg-item" data-tab="component"><i data-lucide="ruler" class="tm-seg-icon"></i> Component</button>
-                <button class="tm-seg-item" data-tab="typography"><i data-lucide="type" class="tm-seg-icon"></i> Typography</button>
               </div>
             </div>
             <div class="tm-tokens-body" id="tmCards"></div>
@@ -570,16 +474,16 @@
         <h2 class="section-title">Accessibility</h2>
         <ul class="a11y-list">
           <li>
-            <div><strong>ARIA:</strong> Wrap the group in <code>&lt;nav aria-label="Pagination"&gt;</code>. Mark the active tile with <code>aria-current="page"</code> and give the chevrons accessible labels like "Previous page".</div>
+            <div><strong>Semantic vs decorative:</strong> Use <code>&lt;hr&gt;</code> when the divider marks a meaningful section break (it's announced as "horizontal separator"). For purely decorative cases, use <code>&lt;div role="presentation"&gt;</code> so screen readers don't pause on it.</div>
           </li>
           <li>
-            <div><strong>Keyboard:</strong> Every page tile and chevron must be reachable in tab order. Disabled chevrons should be skipped via the native <code>disabled</code> attribute.</div>
+            <div><strong>Vertical orientation:</strong> If you need a vertical divider in a toolbar, use <code>&lt;div role="separator" aria-orientation="vertical"&gt;</code>.</div>
           </li>
           <li>
-            <div><strong>Don't rely on color alone:</strong> The active tile uses both a blue border and the <code>aria-current</code> attribute, so screen readers and color-blind users still know which page is active.</div>
+            <div><strong>Contrast vs decoration:</strong> The hairline doesn't need to meet 4.5:1 since it carries no information — but make sure it's visible on whatever surface it lives on (use <code>color/border/interactive</code> on light, swap to a lighter neutral on dark).</div>
           </li>
           <li>
-            <div><strong>Touch targets:</strong> Minimum 32×32 hit area meets WCAG; pad surrounding elements to keep adjacent tiles from triggering accidental taps.</div>
+            <div><strong>Don't overuse:</strong> Reach for spacing tokens first. A divider on every break creates visual noise; reserve them for places where whitespace alone reads ambiguously.</div>
           </li>
         </ul>
       </section>
@@ -588,17 +492,17 @@
       <section class="doc-section" id="related">
         <h2 class="section-title">Related Components</h2>
         <div class="related-grid">
-          <a href="stepindicator.html" class="related-card">
-            <div class="rc-name">Step Indicator</div>
-            <div class="rc-desc">Use Step Indicator for sequential wizard flows. Pagination is for paged data tables and lists.</div>
+          <a href="header.html" class="related-card">
+            <div class="rc-name">Header</div>
+            <div class="rc-desc">The Header has its own dedicated 53px vertical divider between the user menu and help icon.</div>
           </a>
-          <a href="tabs.html" class="related-card">
-            <div class="rc-name">Tabs</div>
-            <div class="rc-desc">Use Tabs to switch between independent panels. Pagination addresses pages of the same content.</div>
+          <a href="footer.html" class="related-card">
+            <div class="rc-name">Footer</div>
+            <div class="rc-desc">The Footer carries a top border using the same color/border/interactive token.</div>
           </a>
-          <a href="button.html" class="related-card">
-            <div class="rc-name">Button</div>
-            <div class="rc-desc">Pagination tiles are styled buttons — use the Button component for stand-alone actions.</div>
+          <a href="menu.html" class="related-card">
+            <div class="rc-name">Menu</div>
+            <div class="rc-desc">Menu items can be grouped using the inset divider variant.</div>
           </a>
         </div>
       </section>
@@ -640,14 +544,6 @@
     const atEnd = tabsEl.scrollLeft + tabsEl.clientWidth >= tabsEl.scrollWidth - 2;
     wrap.classList.toggle('at-end', atEnd);
   }
-  function switchStateTab(btn, panelId) {
-    const wrap = btn.closest('.tab-panel');
-    wrap.querySelectorAll('.state-tab-btn').forEach(t => t.classList.remove('active'));
-    wrap.querySelectorAll('.state-panel').forEach(p => p.classList.remove('active'));
-    btn.classList.add('active');
-    document.getElementById(panelId).classList.add('active');
-    lucide.createIcons();
-  }
   function switchTab(btn, panelId) {
     btn.closest('.doc-section').querySelectorAll('.tab').forEach(b => b.classList.remove('active'));
     btn.closest('.doc-section').querySelectorAll('.tab-panel').forEach(p => p.classList.remove('active'));
@@ -678,11 +574,10 @@
   // ══════════════════════════════════════════
   // TOKEN MAP
   // ══════════════════════════════════════════
-  const tmColorLight = [{"role":"Item surface","token":"color/surface/layer-01","hex":"#F9FAFB","ref":"color/gray/50"},{"role":"Hover surface","token":"color/surface/layer-01/hover","hex":"#E5E7EB","ref":"color/gray/200"},{"role":"Text","token":"color/text/primary","hex":"#374151","ref":"color/gray/700"},{"role":"Active border","token":"color/tabs/contained/border/active","hex":"#027CB1","ref":"color/blue/600"},{"role":"Default border","token":"color/border/interactive","hex":"#CDD2D7","ref":"color/gray/300"},{"role":"Disabled border","token":"color/border/disabled","hex":"#E5E7EB","ref":"color/gray/200"},{"role":"Icon","token":"color/icon/default","hex":"#4B5563","ref":"color/gray/600"},{"role":"Disabled icon","token":"color/icon/button-disabled","hex":"#9CA3AF","ref":"color/gray/400"}];
-  const tmColorDark = [{"role":"Item surface","token":"color/surface/layer-01","hex":"#1E1E1E","ref":"color/neutral/900"},{"role":"Hover surface","token":"color/surface/layer-01/hover","hex":"#374151","ref":"color/gray/700"},{"role":"Text","token":"color/text/primary","hex":"#FFFFFF","ref":"color/gray/0"},{"role":"Active border","token":"color/tabs/contained/border/active","hex":"#5ABFE0","ref":"color/blue/400"},{"role":"Default border","token":"color/border/interactive","hex":"#6B7280","ref":"color/gray/500"},{"role":"Disabled border","token":"color/border/disabled","hex":"#374151","ref":"color/gray/700"},{"role":"Icon","token":"color/icon/default","hex":"#E5E7EB","ref":"color/gray/200"},{"role":"Disabled icon","token":"color/icon/button-disabled","hex":"#6B7280","ref":"color/gray/500"}];
-  const tmComponentTokens = [{"role":"Item padding","component":"pagination/item/padding","primitive":"spacing/1-5x","value":"6px","icon":"space"},{"role":"Item radius","component":"pagination/item/radius","primitive":"radius/sm","value":"4px","icon":"square-round-corner"},{"role":"Group gap","component":"pagination/group/gap","primitive":"spacing/2x","value":"8px","icon":"columns-3"},{"role":"Icon size","component":"icon/md","primitive":"icon/md","value":"20px","icon":"scan"}];
-  const tmTypographyTokens = [{"role":"Page number","style":"typography/data/table-header","font":"Lato","weight":"Bold (700)","size":"14px","lineHeight":"20px","letterSpacing":"0"}];
-  const tmTotalTokens = tmColorLight.length + tmComponentTokens.length + tmTypographyTokens.length;
+  const tmColorLight = [{"role":"Hairline","token":"color/border/interactive","hex":"#CDD2D7","ref":"color/gray/300"}];
+  const tmColorDark = [{"role":"Hairline","token":"color/border/interactive","hex":"#6B7280","ref":"color/gray/500"}];
+  const tmComponentTokens = [{"role":"Thickness","component":"divider/thickness","primitive":"border-width/thin","value":"1px","icon":"separator-horizontal"},{"role":"Inset (optional)","component":"divider/inset","primitive":"spacing/4x","value":"16px","icon":"space"}];
+  const tmTotalTokens = tmColorLight.length + tmComponentTokens.length;
   const tmState = { tab:'color', mode:'light' };
   const tmCards = document.getElementById('tmCards');
   const tmPreviewCard = document.querySelector('.tm-preview-card');
@@ -690,22 +585,9 @@
   document.getElementById('tmCountNum').textContent = tmTotalTokens;
   const tmPreview = document.getElementById('tmPreview');
 
-  const colorPartMap = {
-    'item-surface':['num','active','num2','arrow','arrow2'],
-    'hover-surface':[],
-    'text':['num','active','num2','ellipsis'],
-    'active-border':['active'],
-    'default-border':['arrow','arrow2'],
-    'disabled-border':[],
-    'icon':['arrow','arrow2'],
-    'disabled-icon':[],
-  };
-  const compSpotlightMap = {
-    'item-padding':'spotlight-padding', 'item-radius':'spotlight-radius',
-    'group-gap':'spotlight-gap', 'icon-size':'spotlight-padding',
-  };
-  const typoPartMap = { 'page-number':['num','active','num2'] };
-  const spotlightClasses = ['has-spotlight','spotlight-padding','spotlight-radius','spotlight-gap'];
+  const colorPartMap = { 'hairline':['divider'] };
+  const compSpotlightMap = { 'thickness':'spotlight-thickness', 'inset-optional':'spotlight-color' };
+  const spotlightClasses = ['has-spotlight','spotlight-color','spotlight-thickness'];
 
   function slug(s){ return s.toLowerCase().replace(/[^a-z0-9]+/g,'-').replace(/-+$/,''); }
   function clearSpotlight(){
@@ -714,11 +596,12 @@
   }
   function spotlight(sl){
     if(compSpotlightMap[sl]){ tmPreview.classList.add(compSpotlightMap[sl]); return; }
-    const parts = colorPartMap[sl] || typoPartMap[sl];
+    const parts = colorPartMap[sl];
     if(!parts||!parts.length) return;
     tmPreview.classList.add('has-spotlight');
     parts.forEach(p=>{ const el=tmPreview.querySelector('[data-part="'+p+'"]'); if(el) el.classList.add('spotlight'); });
   }
+
   function tmRender() {
     const colors = tmState.mode==='light' ? tmColorLight : tmColorDark;
     tmPreviewCard.setAttribute('data-bg', tmState.mode);
@@ -728,15 +611,10 @@
         const s=slug(c.role);
         html+='<div class="tm-row" data-slot="'+s+'"><div class="tm-row-header"><div class="tm-row-swatch" style="background:'+c.hex+'"></div><div class="tm-row-label">'+c.role+'</div></div><div class="tm-chain-row"><div class="tm-chip">'+c.token+'</div><div class="tm-chain-arrow">'+arrowSvg+'</div><div class="tm-chip">'+(c.ref||c.token)+'</div><div class="tm-chain-arrow">'+arrowSvg+'</div><div class="tm-chip" style="font-weight:600">'+c.hex+'</div></div></div>';
       }
-    } else if (tmState.tab==='component') {
+    } else {
       for (const ct of tmComponentTokens) {
         const s=slug(ct.role);
         html+='<div class="tm-row" data-slot="'+s+'"><div class="tm-row-header"><div class="tm-row-icon"><i data-lucide="'+ct.icon+'" style="width:16px;height:16px"></i></div><div class="tm-row-label">'+ct.role+'</div></div><div class="tm-chain-row"><div class="tm-chip">'+ct.component+'</div><div class="tm-chain-arrow">'+arrowSvg+'</div><div class="tm-chip">'+ct.primitive+'</div><div class="tm-chain-arrow">'+arrowSvg+'</div><div class="tm-chip" style="font-weight:600">'+ct.value+'</div></div></div>';
-      }
-    } else {
-      for (const tt of tmTypographyTokens) {
-        const s=slug(tt.role);
-        html+='<div class="tm-row" data-slot="'+s+'"><div class="tm-row-header"><div class="tm-row-icon"><i data-lucide="type" style="width:16px;height:16px"></i></div><div class="tm-row-label">'+tt.role+'</div></div><div class="tm-chain-row" style="flex-direction:column;align-items:flex-start;gap:6px;"><div style="display:flex;align-items:center;gap:10px;flex-wrap:wrap;"><div class="tm-chip">'+tt.style+'</div></div><div style="display:flex;align-items:center;gap:8px;flex-wrap:wrap;font-family:var(--mono);font-size:12px;color:var(--text-tertiary);"><span>'+tt.font+'</span><span>&middot;</span><span>'+tt.weight+'</span><span>&middot;</span><span>'+tt.size+' / '+tt.lineHeight+'</span></div></div></div>';
       }
     }
     tmCards.innerHTML = html;
