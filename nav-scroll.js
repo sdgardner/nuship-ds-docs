@@ -2,8 +2,67 @@
   const SCROLL_KEY = 'leftNavScrollTop';
   const COLLAPSE_PREFIX = 'lnGroup:';
 
-  function getNav() { return document.getElementById('leftNav'); }
+  // ── Nav data ────────────────────────────────────────────
+  const designSystemItems = [
+    { name: "What's new",        href: '#' },
+    { name: 'Design principles', href: '#' },
+    { name: 'Accessibility',     href: '#' },
+    { name: 'Content guidelines',href: '#' },
+  ];
 
+  const webTokensItems = [
+    { name: 'Foundations', href: 'tokens.html' },
+    { name: 'Color',       href: '#' },
+    { name: 'Typography',  href: '#' },
+    { name: 'Spacing',     href: '#' },
+    { name: 'Radius',      href: '#' },
+    { name: 'Elevation',   href: '#' },
+  ];
+
+  // All 39 components A-Z
+  const componentItems = [
+    { name: 'Accordion',         href: 'accordion.html' },
+    { name: 'Alert',             href: 'alert.html' },
+    { name: 'Avatar',            href: 'avatar.html' },
+    { name: 'Badge',             href: 'badge.html' },
+    { name: 'Button',            href: 'button.html' },
+    { name: 'Carousel',          href: 'carousel.html' },
+    { name: 'Checkbox',          href: 'checkbox.html' },
+    { name: 'Date Picker',       href: 'datepicker.html' },
+    { name: 'Divider',           href: 'divider.html' },
+    { name: 'Dropdown',          href: 'dropdown.html' },
+    { name: 'File Row',          href: 'filerow.html' },
+    { name: 'File Upload',       href: 'fileupload.html' },
+    { name: 'Footer',            href: 'footer.html' },
+    { name: 'Header',            href: 'header.html' },
+    { name: 'Link',              href: 'link.html' },
+    { name: 'Menu',              href: 'menu.html' },
+    { name: 'Metrics',           href: 'metrics.html' },
+    { name: 'Modal',             href: 'modal.html' },
+    { name: 'Number Input',      href: 'numberinput.html' },
+    { name: 'Pagination',        href: 'pagination.html' },
+    { name: 'Password Input',    href: 'passwordinput.html' },
+    { name: 'Popover',           href: 'popover.html' },
+    { name: 'Progress Bar',      href: 'progressbar.html' },
+    { name: 'Radio Button',      href: 'radiobutton.html' },
+    { name: 'Search',            href: 'search.html' },
+    { name: 'Segmented Control', href: 'segmentedcontrol.html' },
+    { name: 'Select',            href: 'select.html' },
+    { name: 'Skeleton',          href: 'skeleton.html' },
+    { name: 'Slider',            href: 'slider.html' },
+    { name: 'Star Rating',       href: 'starrating.html' },
+    { name: 'Step Indicator',    href: 'stepindicator.html' },
+    { name: 'Switch',            href: 'switch.html' },
+    { name: 'Tabs',              href: 'tabs.html' },
+    { name: 'Tag',               href: 'tag.html' },
+    { name: 'Text Area',         href: 'textarea.html' },
+    { name: 'Text Input',        href: 'textinput.html' },
+    { name: 'Tile',              href: 'tile.html' },
+    { name: 'Toast',             href: 'toast.html' },
+    { name: 'Tooltip',           href: 'tooltip.html' },
+  ];
+
+  function getNav() { return document.getElementById('leftNav'); }
   function slug(s) { return s.toLowerCase().replace(/\s+/g, '-'); }
 
   // ── 1 · Save & restore scroll position across page navigation ──
@@ -26,10 +85,14 @@
     }, { capture: true });
   }
 
-  // ── 2 · Inject search field at top of nav ──
-  function buildSearch(inner) {
-    if (inner.querySelector('.ln-search')) return null;
+  // ── 2 · Rebuild nav HTML with new Fluent-style structure ──
+  function currentPage() {
+    const path = window.location.pathname;
+    const file = path.substring(path.lastIndexOf('/') + 1) || 'index.html';
+    return file.toLowerCase();
+  }
 
+  function buildSearchEl() {
     const wrap = document.createElement('div');
     wrap.className = 'ln-search';
     wrap.innerHTML =
@@ -38,56 +101,76 @@
       '</svg>' +
       '<input type="search" class="ln-search-input" placeholder="Search components" autocomplete="off" aria-label="Search components">' +
       '<span class="ln-search-shortcut">/</span>';
-    inner.insertBefore(wrap, inner.firstChild);
-    return wrap.querySelector('.ln-search-input');
+    return wrap;
   }
 
-  // ── 3 · Make groups collapsible with persisted state ──
-  function enhanceGroups(inner) {
-    const groups = inner.querySelectorAll('.ln-group');
-    groups.forEach(group => {
-      const label = group.querySelector('.ln-label');
-      const list = group.querySelector('.ln-list');
-      if (!label || !list || label.dataset.enhanced === '1') return;
+  function buildGroup(label, items, currentFile) {
+    const group = document.createElement('div');
+    group.className = 'ln-group';
 
-      const labelText = label.textContent.trim();
-      const key = COLLAPSE_PREFIX + slug(labelText);
+    const labelEl = document.createElement('div');
+    labelEl.className = 'ln-label';
+    labelEl.setAttribute('role', 'button');
+    labelEl.setAttribute('tabindex', '0');
+    labelEl.innerHTML =
+      '<svg class="ln-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">' +
+        '<path d="m6 9 6 6 6-6"/>' +
+      '</svg>' +
+      '<span class="ln-label-text">' + label + '</span>';
+    group.appendChild(labelEl);
 
-      label.dataset.enhanced = '1';
-      label.innerHTML =
-        '<svg class="ln-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">' +
-          '<path d="m6 9 6 6 6-6"/>' +
-        '</svg>' +
-        '<span class="ln-label-text">' + labelText + '</span>';
-      label.setAttribute('role', 'button');
-      label.setAttribute('tabindex', '0');
-      label.setAttribute('aria-expanded', 'true');
-
-      // Restore persisted state — but don't collapse a group containing the active item
-      const containsActive = !!group.querySelector('a.active');
-      const persisted = localStorage.getItem(key);
-      if (persisted === 'collapsed' && !containsActive) {
-        group.classList.add('ln-group--collapsed');
-        label.setAttribute('aria-expanded', 'false');
+    const list = document.createElement('ul');
+    list.className = 'ln-list';
+    let hasActive = false;
+    items.forEach(item => {
+      const li = document.createElement('li');
+      const a = document.createElement('a');
+      a.href = item.href;
+      a.textContent = item.name;
+      const itemFile = (item.href.split('/').pop() || '').toLowerCase();
+      if (itemFile && itemFile === currentFile) {
+        a.classList.add('active');
+        hasActive = true;
       }
-
-      const toggle = () => {
-        const collapsed = group.classList.toggle('ln-group--collapsed');
-        label.setAttribute('aria-expanded', collapsed ? 'false' : 'true');
-        localStorage.setItem(key, collapsed ? 'collapsed' : 'open');
-      };
-
-      label.addEventListener('click', toggle);
-      label.addEventListener('keydown', (e) => {
-        if (e.key === 'Enter' || e.key === ' ') {
-          e.preventDefault();
-          toggle();
-        }
-      });
+      li.appendChild(a);
+      list.appendChild(li);
     });
+    group.appendChild(list);
+
+    // Persisted collapse state — but keep open if active item lives here
+    const key = COLLAPSE_PREFIX + slug(label);
+    const persisted = localStorage.getItem(key);
+    if (persisted === 'collapsed' && !hasActive) {
+      group.classList.add('ln-group--collapsed');
+      labelEl.setAttribute('aria-expanded', 'false');
+    } else {
+      labelEl.setAttribute('aria-expanded', 'true');
+    }
+
+    const toggle = () => {
+      const collapsed = group.classList.toggle('ln-group--collapsed');
+      labelEl.setAttribute('aria-expanded', collapsed ? 'false' : 'true');
+      localStorage.setItem(key, collapsed ? 'collapsed' : 'open');
+    };
+    labelEl.addEventListener('click', toggle);
+    labelEl.addEventListener('keydown', (e) => {
+      if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); toggle(); }
+    });
+
+    return group;
   }
 
-  // ── 4 · Search filter (auto-expands groups with matches) ──
+  function buildNav(inner) {
+    const file = currentPage();
+    inner.innerHTML = '';
+    inner.appendChild(buildSearchEl());
+    inner.appendChild(buildGroup('Design system', designSystemItems, file));
+    inner.appendChild(buildGroup('Web tokens',    webTokensItems,    file));
+    inner.appendChild(buildGroup('Components',    componentItems,    file));
+    return inner.querySelector('.ln-search-input');
+  }
+
+  // ── 3 · Search filter with auto-expand on match ──
   function bindSearch(input, inner) {
     if (!input) return;
     let emptyMsg = null;
@@ -97,19 +180,15 @@
       const groups = inner.querySelectorAll('.ln-group');
 
       if (!q) {
-        // Reset to persisted collapsed/open state
         groups.forEach(group => {
           group.classList.remove('ln-group--hidden');
           group.querySelectorAll('.ln-list li').forEach(li => { li.style.display = ''; });
-          const label = group.querySelector('.ln-label');
-          const labelText = label ? label.querySelector('.ln-label-text')?.textContent.trim() : '';
+          const label = group.querySelector('.ln-label-text');
+          const labelText = label ? label.textContent.trim() : '';
           const persisted = localStorage.getItem(COLLAPSE_PREFIX + slug(labelText));
           const containsActive = !!group.querySelector('a.active');
           if (persisted === 'collapsed' && !containsActive) {
             group.classList.add('ln-group--collapsed');
-          } else {
-            group.classList.remove('ln-group--collapsed');
-            // Only re-collapse if user had it collapsed and doesn't contain active
           }
         });
         if (emptyMsg) { emptyMsg.remove(); emptyMsg = null; }
@@ -139,7 +218,7 @@
         if (!emptyMsg) {
           emptyMsg = document.createElement('div');
           emptyMsg.className = 'ln-empty';
-          emptyMsg.textContent = 'No components match';
+          emptyMsg.textContent = 'No matches';
           inner.appendChild(emptyMsg);
         }
       } else if (emptyMsg) {
@@ -150,7 +229,6 @@
 
     input.addEventListener('input', (e) => applyFilter(e.target.value));
 
-    // ── Global "/" shortcut to focus search ──
     document.addEventListener('keydown', (e) => {
       if (e.key === '/' && !e.metaKey && !e.ctrlKey && !e.altKey) {
         const tag = (e.target.tagName || '').toLowerCase();
@@ -167,10 +245,9 @@
     const inner = nav.querySelector('.left-nav-inner');
     if (!inner) return;
 
+    const input = buildNav(inner);
     restoreScroll();
     bindScrollSave();
-    const input = buildSearch(inner);
-    enhanceGroups(inner);
     bindSearch(input, inner);
   }
 
