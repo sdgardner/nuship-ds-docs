@@ -2859,8 +2859,13 @@ code {
 .hd-header { display:flex; align-items:center; justify-content:space-between; gap:24px; background:#FFFFFF; border-bottom:1px solid #CDD2D7; padding:12px 24px; min-height:77px; box-sizing:border-box; width:100%; min-width:800px; font-family:'Lato', sans-serif; }
 .hd-left { display:flex; align-items:center; gap:24px; min-width:0; flex-shrink:0; }
 .hd-right { display:flex; align-items:center; gap:24px; flex-shrink:0; }
-.hd-logo { width:70px; height:36px; flex-shrink:0; display:block; }
-.hd-logo img { width:100%; height:100%; object-fit:contain; display:block; }
+.hd-logo { width:70px; height:36px; flex-shrink:0; display:block; background-color:#027CB1; -webkit-mask:url('assets/uship-logo.svg') center/contain no-repeat; mask:url('assets/uship-logo.svg') center/contain no-repeat; }
+.hd-logo img { display:none; } /* legacy fallback — masked div renders the logo via SVG mask */
+[data-theme="dark"] .hd-logo { background-color:#5ABFE0; }
+.var-preview .hd-logo { background-color:#027CB1; }
+.var-preview-dark .hd-logo { background-color:#5ABFE0; }
+.tm-preview-card[data-bg="light"] .hd-logo { background-color:#027CB1; }
+.tm-preview-card[data-bg="dark"] .hd-logo { background-color:#5ABFE0; }
 .hd-nav { display:flex; align-items:center; gap:12px; }
 .hd-nav--carrier { gap:8px; }
 .hd-nav-item { display:flex; align-items:center; gap:8px; padding:12px 16px; font-size:16px; line-height:22px; color:#374151; cursor:pointer; white-space:nowrap; border-radius:4px; transition:background .12s; }
