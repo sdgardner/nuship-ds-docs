@@ -3134,6 +3134,81 @@ code {
 .tm-preview-card[data-bg="light"] .dv-divider { background:#CDD2D7; }
 .tm-preview-card[data-bg="dark"] .dv-divider { background:#6B7280; }
 
+/* ─── FR · File Row ─────────────────────────────── */
+.fr-row { display:flex; align-items:center; gap:12px; background:#FFFFFF; border:1px solid #CDD2D7; border-radius:8px; padding:12px 16px; box-shadow:0 1px 3px rgba(55,65,80,0.08); width:100%; max-width:420px; box-sizing:border-box; font-family:'Lato', sans-serif; }
+.fr-icon { display:flex; align-items:center; justify-content:center; width:44px; height:44px; padding:8px; border:2px solid #027CB1; border-radius:8px; flex-shrink:0; box-sizing:border-box; }
+.fr-icon i, .fr-icon svg { width:24px; height:24px; color:#027CB1; }
+.fr-icon--success { border-color:#006C21; }
+.fr-icon--success i, .fr-icon--success svg { color:#006C21; }
+.fr-icon--error { border-color:#A12F2F; }
+.fr-icon--error i, .fr-icon--error svg { color:#A12F2F; }
+.fr-body { display:flex; flex-direction:column; gap:6px; flex:1; min-width:0; }
+.fr-label-row { display:flex; align-items:center; justify-content:space-between; gap:12px; font-size:14px; line-height:19px; color:#4B5563; }
+.fr-name { white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }
+.fr-percent { color:#4B5563; flex-shrink:0; }
+.fr-percent--success { color:#006C21; }
+.fr-percent--error { color:#A12F2F; }
+.fr-progress { width:100%; }
+.fr-status-row { display:flex; align-items:center; justify-content:space-between; gap:12px; font-size:12px; line-height:16px; color:#9CA3AF; }
+.fr-status { white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }
+.fr-status--success { color:#006C21; }
+.fr-status--error { color:#A12F2F; }
+.fr-size { flex-shrink:0; }
+.fr-action { background:none; border:none; padding:0; cursor:pointer; color:#4B5563; flex-shrink:0; display:flex; align-items:center; justify-content:center; width:24px; height:24px; opacity:.85; transition:opacity .15s; }
+.fr-action i, .fr-action svg { width:24px; height:24px; }
+.fr-action:hover { opacity:1; }
+.fr-action--error { color:#A12F2F; opacity:1; }
+.fr-action-icon { width:24px; height:24px; flex-shrink:0; }
+.fr-action-icon--success { color:#006C21; }
+
+/* Dark mode */
+[data-theme="dark"] .fr-row { background:#1E1E1E; border-color:#6B7280; box-shadow:0 1px 3px rgba(0,0,0,0.4); }
+[data-theme="dark"] .fr-icon { border-color:#5ABFE0; }
+[data-theme="dark"] .fr-icon i, [data-theme="dark"] .fr-icon svg { color:#5ABFE0; }
+[data-theme="dark"] .fr-icon--success { border-color:#4DAD82; }
+[data-theme="dark"] .fr-icon--success i, [data-theme="dark"] .fr-icon--success svg { color:#4DAD82; }
+[data-theme="dark"] .fr-icon--error { border-color:#E36868; }
+[data-theme="dark"] .fr-icon--error i, [data-theme="dark"] .fr-icon--error svg { color:#E36868; }
+[data-theme="dark"] .fr-label-row, [data-theme="dark"] .fr-percent { color:#E5E7EB; }
+[data-theme="dark"] .fr-percent--success, [data-theme="dark"] .fr-status--success { color:#4DAD82; }
+[data-theme="dark"] .fr-percent--error, [data-theme="dark"] .fr-status--error { color:#E36868; }
+[data-theme="dark"] .fr-action { color:#E5E7EB; }
+[data-theme="dark"] .fr-action--error { color:#E36868; }
+[data-theme="dark"] .fr-action-icon--success { color:#4DAD82; }
+
+/* var-preview swatches */
+.var-preview .fr-row { background:#FFFFFF; border-color:#CDD2D7; }
+.var-preview .fr-icon { border-color:#027CB1; } .var-preview .fr-icon i, .var-preview .fr-icon svg { color:#027CB1; }
+.var-preview .fr-icon--success { border-color:#006C21; } .var-preview .fr-icon--success i, .var-preview .fr-icon--success svg { color:#006C21; }
+.var-preview .fr-icon--error { border-color:#A12F2F; } .var-preview .fr-icon--error i, .var-preview .fr-icon--error svg { color:#A12F2F; }
+.var-preview .fr-label-row, .var-preview .fr-percent { color:#4B5563; }
+.var-preview .fr-percent--success, .var-preview .fr-status--success { color:#006C21; }
+.var-preview .fr-percent--error, .var-preview .fr-status--error { color:#A12F2F; }
+.var-preview .fr-action { color:#4B5563; }
+.var-preview .fr-action--error { color:#A12F2F; }
+.var-preview .fr-action-icon--success { color:#006C21; }
+
+.var-preview-dark .fr-row { background:#1E1E1E; border-color:#6B7280; }
+.var-preview-dark .fr-icon { border-color:#5ABFE0; } .var-preview-dark .fr-icon i, .var-preview-dark .fr-icon svg { color:#5ABFE0; }
+.var-preview-dark .fr-icon--success { border-color:#4DAD82; } .var-preview-dark .fr-icon--success i, .var-preview-dark .fr-icon--success svg { color:#4DAD82; }
+.var-preview-dark .fr-icon--error { border-color:#E36868; } .var-preview-dark .fr-icon--error i, .var-preview-dark .fr-icon--error svg { color:#E36868; }
+.var-preview-dark .fr-label-row, .var-preview-dark .fr-percent { color:#E5E7EB; }
+.var-preview-dark .fr-percent--success, .var-preview-dark .fr-status--success { color:#4DAD82; }
+.var-preview-dark .fr-percent--error, .var-preview-dark .fr-status--error { color:#E36868; }
+.var-preview-dark .fr-action { color:#E5E7EB; }
+.var-preview-dark .fr-action--error { color:#E36868; }
+.var-preview-dark .fr-action-icon--success { color:#4DAD82; }
+
+/* Token-map preview */
+.tm-preview-card[data-bg="light"] .fr-row { background:#FFFFFF; border-color:#CDD2D7; }
+.tm-preview-card[data-bg="light"] .fr-icon { border-color:#027CB1; } .tm-preview-card[data-bg="light"] .fr-icon i, .tm-preview-card[data-bg="light"] .fr-icon svg { color:#027CB1; }
+.tm-preview-card[data-bg="light"] .fr-label-row, .tm-preview-card[data-bg="light"] .fr-percent { color:#4B5563; }
+.tm-preview-card[data-bg="light"] .fr-action { color:#4B5563; }
+.tm-preview-card[data-bg="dark"] .fr-row { background:#1E1E1E; border-color:#6B7280; }
+.tm-preview-card[data-bg="dark"] .fr-icon { border-color:#5ABFE0; } .tm-preview-card[data-bg="dark"] .fr-icon i, .tm-preview-card[data-bg="dark"] .fr-icon svg { color:#5ABFE0; }
+.tm-preview-card[data-bg="dark"] .fr-label-row, .tm-preview-card[data-bg="dark"] .fr-percent { color:#E5E7EB; }
+.tm-preview-card[data-bg="dark"] .fr-action { color:#E5E7EB; }
+
 /* ─── TM · Token Map (shared) ──────────────────── */
 :root { --mono: ui-monospace, "SF Mono", "Menlo", Consolas, monospace; --tm-accent: #027CB1; }
 .tm-map { display:grid; grid-template-columns:1fr 1fr; gap:24px; align-items:start; }
