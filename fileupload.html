@@ -204,6 +204,7 @@
           <div class="tabs">
             <button class="tab active" onclick="switchTab(this,'v-empty')">Empty</button>
             <button class="tab" onclick="switchTab(this,'v-filled')">With files</button>
+            <button class="tab" onclick="switchTab(this,'v-compact')">Compact</button>
           </div>
         </div>
 
@@ -747,6 +748,149 @@
                 <li>Uploading — solid blue border; rows show mixed per-file states; warning footer text; Add More button</li>
                 <li>Complete — solid green border; all rows green; "N files uploaded" summary; Add More button</li>
                 <li>Error — solid red border; failed rows shown in red; error count summary; Retry Failed button</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <!-- ── COMPACT ── -->
+        <div class="tab-panel" id="v-compact">
+          <div class="state-tab-row">
+            <button class="state-tab-btn active" onclick="switchStateTab(this,'vs-c-def')">Default</button>
+            <button class="state-tab-btn" onclick="switchStateTab(this,'vs-c-hov')">Hover</button>
+            <button class="state-tab-btn" onclick="switchStateTab(this,'vs-c-sel')">Selected</button>
+            <button class="state-tab-btn" onclick="switchStateTab(this,'vs-c-err')">Error</button>
+            <button class="state-tab-btn" onclick="switchStateTab(this,'vs-c-dis')">Disabled</button>
+          </div>
+          <div class="var-panel">
+            <div class="var-previews-wrap">
+
+              <div class="state-panel active" id="vs-c-def">
+                <div class="var-previews">
+                  <div class="var-preview" style="padding:32px;">
+                    <div class="fuc-row">
+                      <i data-lucide="upload" class="fuc-icon"></i>
+                      <div class="fuc-body">
+                        <div class="fuc-title">Upload file</div>
+                        <div class="fuc-helper">JPG, PNG, or PDF • max 10 MB</div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="var-preview-dark" style="padding:32px;">
+                    <div class="fuc-row">
+                      <i data-lucide="upload" class="fuc-icon"></i>
+                      <div class="fuc-body">
+                        <div class="fuc-title">Upload file</div>
+                        <div class="fuc-helper">JPG, PNG, or PDF • max 10 MB</div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="state-panel" id="vs-c-hov">
+                <div class="var-previews">
+                  <div class="var-preview" style="padding:32px;">
+                    <div class="fuc-row fuc-row--hover">
+                      <i data-lucide="upload" class="fuc-icon"></i>
+                      <div class="fuc-body">
+                        <div class="fuc-title">Upload file</div>
+                        <div class="fuc-helper">JPG, PNG, or PDF • max 10 MB</div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="var-preview-dark" style="padding:32px;">
+                    <div class="fuc-row fuc-row--hover">
+                      <i data-lucide="upload" class="fuc-icon"></i>
+                      <div class="fuc-body">
+                        <div class="fuc-title">Upload file</div>
+                        <div class="fuc-helper">JPG, PNG, or PDF • max 10 MB</div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="state-panel" id="vs-c-sel">
+                <div class="var-previews">
+                  <div class="var-preview" style="padding:32px;">
+                    <div class="fuc-row">
+                      <i data-lucide="file-check-2" class="fuc-icon fuc-icon--selected"></i>
+                      <div class="fuc-body">
+                        <div class="fuc-title">shipment_photo.jpg</div>
+                        <div class="fuc-helper">2.4 MB</div>
+                      </div>
+                      <button class="fuc-dismiss" aria-label="Remove"><i data-lucide="x"></i></button>
+                    </div>
+                  </div>
+                  <div class="var-preview-dark" style="padding:32px;">
+                    <div class="fuc-row">
+                      <i data-lucide="file-check-2" class="fuc-icon fuc-icon--selected"></i>
+                      <div class="fuc-body">
+                        <div class="fuc-title">shipment_photo.jpg</div>
+                        <div class="fuc-helper">2.4 MB</div>
+                      </div>
+                      <button class="fuc-dismiss" aria-label="Remove"><i data-lucide="x"></i></button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="state-panel" id="vs-c-err">
+                <div class="var-previews">
+                  <div class="var-preview" style="padding:32px;">
+                    <div class="fuc-row fuc-row--error">
+                      <i data-lucide="alert-circle" class="fuc-icon fuc-icon--error"></i>
+                      <div class="fuc-body">
+                        <div class="fuc-title">shipment_photo.jpg</div>
+                        <div class="fuc-helper fuc-helper--error">File too large • max 10 MB</div>
+                      </div>
+                      <button class="fuc-dismiss" aria-label="Remove"><i data-lucide="x"></i></button>
+                    </div>
+                  </div>
+                  <div class="var-preview-dark" style="padding:32px;">
+                    <div class="fuc-row fuc-row--error">
+                      <i data-lucide="alert-circle" class="fuc-icon fuc-icon--error"></i>
+                      <div class="fuc-body">
+                        <div class="fuc-title">shipment_photo.jpg</div>
+                        <div class="fuc-helper fuc-helper--error">File too large • max 10 MB</div>
+                      </div>
+                      <button class="fuc-dismiss" aria-label="Remove"><i data-lucide="x"></i></button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="state-panel" id="vs-c-dis">
+                <div class="var-previews">
+                  <div class="var-preview" style="padding:32px;">
+                    <div class="fuc-row fuc-row--disabled">
+                      <i data-lucide="upload" class="fuc-icon"></i>
+                      <div class="fuc-body">
+                        <div class="fuc-title">Upload file</div>
+                        <div class="fuc-helper">JPG, PNG, or PDF • max 10 MB</div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="var-preview-dark" style="padding:32px;">
+                    <div class="fuc-row fuc-row--disabled">
+                      <i data-lucide="upload" class="fuc-icon"></i>
+                      <div class="fuc-body">
+                        <div class="fuc-title">Upload file</div>
+                        <div class="fuc-helper">JPG, PNG, or PDF • max 10 MB</div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+            </div>
+            <div class="var-desc">
+              <div class="var-use-when">Compact — use when:</div>
+              <ul class="var-use-list">
+                <li>Space is tight — inline file pickers in forms or menus</li>
+                <li>Single-file uploads where the full Drop Zone is overkill</li>
+                <li>States: Default, Hover (lighter bg), Selected (file icon + filename + dismiss), Error (red bg + border), Disabled</li>
               </ul>
             </div>
           </div>
