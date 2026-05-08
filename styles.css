@@ -2857,6 +2857,15 @@ code {
 /* ─── HD · Header ───────────────────────────────── */
 .hd-preview-scroll { width:100%; overflow-x:auto; -webkit-overflow-scrolling:touch; }
 .hd-header { display:flex; align-items:center; justify-content:space-between; gap:24px; background:#FFFFFF; border-bottom:1px solid #CDD2D7; padding:12px 24px; min-height:77px; box-sizing:border-box; width:100%; min-width:800px; font-family:'Lato', sans-serif; }
+/* Compact variant for the token-map preview — drops the design-width
+   constraint so it sits centered and fits like other component
+   previews. */
+.hd-header--mini { min-width:0; gap:12px; padding:10px 16px; min-height:64px; border-radius:8px; border:1px solid #CDD2D7; }
+.hd-header--mini .hd-left { gap:12px; flex:1; min-width:0; }
+.hd-header--mini .hd-nav-item { padding:8px 10px; font-size:14px; line-height:18px; }
+.hd-header--mini .hd-nav-item > svg, .hd-header--mini .hd-nav-item > i { width:16px; height:16px; }
+.hd-header--mini .hd-right { gap:12px; }
+.hd-header--mini .hd-help { width:20px; height:20px; }
 .hd-left { display:flex; align-items:center; gap:24px; min-width:0; flex-shrink:0; }
 .hd-right { display:flex; align-items:center; gap:24px; flex-shrink:0; }
 .hd-logo { width:70px; height:36px; flex-shrink:0; display:block; color:#027CB1; }
