@@ -676,8 +676,8 @@
   // ══════════════════════════════════════════
   // TOKEN MAP
   // ══════════════════════════════════════════
-  const tmColorLight = [{"role":"Text","token":"color/text/primary","hex":"#374151","ref":"color/gray/700"},{"role":"Active border","token":"color/tabs/contained/border/active","hex":"#027CB1","ref":"color/blue/600"},{"role":"Default border","token":"color/border/interactive","hex":"#CDD2D7","ref":"color/gray/300"},{"role":"Disabled border","token":"color/border/disabled","hex":"#E5E7EB","ref":"color/gray/200"},{"role":"Hover surface","token":"color/surface/layer-01/hover","hex":"#E5E7EB","ref":"color/gray/200"},{"role":"Icon","token":"color/icon/default","hex":"#4B5563","ref":"color/gray/600"},{"role":"Disabled icon","token":"color/icon/button-disabled","hex":"#9CA3AF","ref":"color/gray/400"}];
-  const tmColorDark = [{"role":"Text","token":"color/text/primary","hex":"#FFFFFF","ref":"color/gray/0"},{"role":"Active border","token":"color/tabs/contained/border/active","hex":"#5ABFE0","ref":"color/blue/400"},{"role":"Default border","token":"color/border/interactive","hex":"#6B7280","ref":"color/gray/500"},{"role":"Disabled border","token":"color/border/disabled","hex":"#374151","ref":"color/gray/700"},{"role":"Hover surface","token":"color/surface/layer-01/hover","hex":"#1E1E1E","ref":"color/neutral/900"},{"role":"Icon","token":"color/icon/default","hex":"#E5E7EB","ref":"color/gray/200"},{"role":"Disabled icon","token":"color/icon/button-disabled","hex":"#6B7280","ref":"color/gray/500"}];
+  const tmColorLight = [{"role":"Item surface","token":"color/surface/layer-01","hex":"#F9FAFB","ref":"color/gray/50"},{"role":"Hover surface","token":"color/surface/layer-01/hover","hex":"#E5E7EB","ref":"color/gray/200"},{"role":"Text","token":"color/text/primary","hex":"#374151","ref":"color/gray/700"},{"role":"Active border","token":"color/tabs/contained/border/active","hex":"#027CB1","ref":"color/blue/600"},{"role":"Default border","token":"color/border/interactive","hex":"#CDD2D7","ref":"color/gray/300"},{"role":"Disabled border","token":"color/border/disabled","hex":"#E5E7EB","ref":"color/gray/200"},{"role":"Icon","token":"color/icon/default","hex":"#4B5563","ref":"color/gray/600"},{"role":"Disabled icon","token":"color/icon/button-disabled","hex":"#9CA3AF","ref":"color/gray/400"}];
+  const tmColorDark = [{"role":"Item surface","token":"color/surface/layer-01","hex":"#1E1E1E","ref":"color/neutral/900"},{"role":"Hover surface","token":"color/surface/layer-01/hover","hex":"#374151","ref":"color/gray/700"},{"role":"Text","token":"color/text/primary","hex":"#FFFFFF","ref":"color/gray/0"},{"role":"Active border","token":"color/tabs/contained/border/active","hex":"#5ABFE0","ref":"color/blue/400"},{"role":"Default border","token":"color/border/interactive","hex":"#6B7280","ref":"color/gray/500"},{"role":"Disabled border","token":"color/border/disabled","hex":"#374151","ref":"color/gray/700"},{"role":"Icon","token":"color/icon/default","hex":"#E5E7EB","ref":"color/gray/200"},{"role":"Disabled icon","token":"color/icon/button-disabled","hex":"#6B7280","ref":"color/gray/500"}];
   const tmComponentTokens = [{"role":"Item padding","component":"pagination/item/padding","primitive":"spacing/1-5x","value":"6px","icon":"space"},{"role":"Item radius","component":"pagination/item/radius","primitive":"radius/sm","value":"4px","icon":"square-round-corner"},{"role":"Group gap","component":"pagination/group/gap","primitive":"spacing/2x","value":"8px","icon":"columns-3"},{"role":"Icon size","component":"icon/md","primitive":"icon/md","value":"20px","icon":"scan"}];
   const tmTypographyTokens = [{"role":"Page number","style":"typography/data/table-header","font":"Lato","weight":"Bold (700)","size":"14px","lineHeight":"20px","letterSpacing":"0"}];
   const tmTotalTokens = tmColorLight.length + tmComponentTokens.length + tmTypographyTokens.length;
@@ -689,9 +689,14 @@
   const tmPreview = document.getElementById('tmPreview');
 
   const colorPartMap = {
-    'text':['num','active','num2','ellipsis'], 'active-border':['active'],
-    'default-border':['arrow','arrow2'], 'disabled-border':[],
-    'hover-surface':[], 'icon':['arrow','arrow2'], 'disabled-icon':[],
+    'item-surface':['num','active','num2','arrow','arrow2'],
+    'hover-surface':[],
+    'text':['num','active','num2','ellipsis'],
+    'active-border':['active'],
+    'default-border':['arrow','arrow2'],
+    'disabled-border':[],
+    'icon':['arrow','arrow2'],
+    'disabled-icon':[],
   };
   const compSpotlightMap = {
     'item-padding':'spotlight-padding', 'item-radius':'spotlight-radius',
