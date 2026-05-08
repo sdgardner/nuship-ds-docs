@@ -3,21 +3,21 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Skeleton — nuShip Design System</title>
+  <title>Pagination — nuShip Design System</title>
   <link href="https://fonts.googleapis.com/css2?family=Lato:wght@400;600;700;900&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="tokens.css">
   <link rel="stylesheet" href="styles.css">
   <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.min.js"></script>
   <script src="nav-scroll.js" defer></script>
   <style>
-    /* Skeleton token map spotlights */
-    #tmPreview { position:relative; min-height:160px; display:flex; align-items:center; justify-content:center; padding:0 16px; }
-    #tmPreview.spotlight-text-radius .sk-line { outline:2px solid #FF4081; outline-offset:2px; }
-    #tmPreview.spotlight-text-radius::after { content:'2px'; position:absolute; top:-16px; left:16px; font-size:10px; font-family:var(--mono); color:#FF4081; background:rgba(255,255,255,0.95); padding:1px 4px; border-radius:2px; font-weight:700; }
-    #tmPreview.spotlight-area-radius .sk-area { outline:2px solid #FF4081; outline-offset:2px; }
-    #tmPreview.spotlight-area-radius::after { content:'6px'; position:absolute; top:-16px; right:16px; font-size:10px; font-family:var(--mono); color:#FF4081; background:rgba(255,255,255,0.95); padding:1px 4px; border-radius:2px; font-weight:700; }
-    #tmPreview.spotlight-text-gap .sk-text { outline:2px solid #FF4081; outline-offset:2px; border-radius:4px; }
-    #tmPreview.spotlight-text-gap::after { content:'16px'; position:absolute; top:50%; left:50%; transform:translate(-50%,-50%); font-size:10px; font-family:var(--mono); color:#FF4081; background:rgba(255,255,255,0.95); padding:1px 4px; border-radius:2px; font-weight:700; }
+    /* Pagination token map spotlights */
+    #tmPreview { position:relative; min-height:100px; display:flex; align-items:center; justify-content:center; }
+    #tmPreview.spotlight-padding .pg-num, #tmPreview.spotlight-padding .pg-arrow { outline:2px solid #FF4081; outline-offset:0; }
+    #tmPreview.spotlight-padding::after { content:'6px'; position:absolute; top:-16px; left:50%; transform:translateX(-50%); font-size:10px; font-family:var(--mono); color:#FF4081; background:rgba(255,255,255,0.95); padding:1px 4px; border-radius:2px; font-weight:700; }
+    #tmPreview.spotlight-radius .pg-num, #tmPreview.spotlight-radius .pg-arrow { outline:2px solid #FF4081; outline-offset:2px; }
+    #tmPreview.spotlight-radius::after { content:'4px'; position:absolute; top:-16px; left:0; font-size:10px; font-family:var(--mono); color:#FF4081; background:rgba(255,255,255,0.95); padding:1px 4px; border-radius:2px; font-weight:700; }
+    #tmPreview.spotlight-gap { outline:2px solid #FF4081; outline-offset:6px; border-radius:4px; }
+    #tmPreview.spotlight-gap::after { content:'8px'; position:absolute; top:-22px; right:0; font-size:10px; font-family:var(--mono); color:#FF4081; background:rgba(255,255,255,0.95); padding:1px 4px; border-radius:2px; font-weight:700; }
   </style>
 </head>
 <body>
@@ -31,9 +31,9 @@
   <div class="bc">
     <a href="index.html">UI Components</a>
     <i data-lucide="chevron-right" style="width:14px;height:14px;flex-shrink:0"></i>
-    <a href="#">Display</a>
+    <a href="#">Navigation</a>
     <i data-lucide="chevron-right" style="width:14px;height:14px;flex-shrink:0"></i>
-    <span class="cur">Skeleton</span>
+    <span class="cur">Pagination</span>
   </div>
   <div class="nav-actions">
     <div class="toggle-wrap" onclick="toggleTheme()" role="button">
@@ -80,7 +80,7 @@
           <li><a href="accordion.html">Accordion</a></li>
           <li><a href="dropdown.html">Dropdown</a></li>
           <li><a href="menu.html">Menu</a></li>
-          <li><a href="pagination.html">Pagination</a></li>
+          <li><a href="pagination.html" class="active">Pagination</a></li>
           <li><a href="segmentedcontrol.html">Segmented Control</a></li>
           <li><a href="stepindicator.html">Step Indicator</a></li>
           <li><a href="tabs.html">Tabs</a></li>
@@ -115,7 +115,7 @@
           <li><a href="carousel.html">Carousel</a></li>
           <li><a href="fileupload.html">File Upload</a></li>
           <li><a href="progressbar.html">Progress Bar</a></li>
-          <li><a href="skeleton.html" class="active">Skeleton</a></li>
+          <li><a href="skeleton.html">Skeleton</a></li>
           <li><a href="starrating.html">Star Rating</a></li>
         </ul>
       </div>
@@ -128,25 +128,36 @@
 
       <!-- 1 · DEFINITION -->
       <section class="doc-section" id="definition">
-        <div class="def-eyebrow">Display</div>
-        <h1 class="def-title">Skeleton</h1>
-        <p class="def-desc">Skeletons are placeholder shapes that hold the position of content while it loads, with a subtle shimmer animation that signals progress without distracting the user. Two variants are available — Text for paragraph or label placeholders and Area for rectangular blocks like cards, images, or media regions.</p>
+        <div class="def-eyebrow">Navigation</div>
+        <h1 class="def-title">Pagination</h1>
+        <p class="def-desc">Pagination breaks long lists or tables into navigable pages. The component combines previous/next chevrons, page-number tiles, and optional ellipsis to skip large gaps. The active page wears a blue border so it's always clear where you are in the set.</p>
         <div class="def-tags">
           <span class="tag">Developed</span>
           <span class="tag">Figma</span>
         </div>
         <div class="preview-box">
           <div class="preview-box-inner">
-            <div style="display:flex;flex-direction:column;gap:32px;width:100%;padding:24px 0;">
+            <div style="display:flex;flex-direction:column;gap:24px;align-items:center;padding:24px 0;">
 
-              <div class="sk-text" style="width:100%;">
-                <div class="sk-line"></div>
-                <div class="sk-line" style="width:70%;"></div>
-                <div class="sk-line"></div>
-                <div class="sk-line" style="width:50%;"></div>
+              <div class="pg-pagination">
+                <button class="pg-arrow" disabled aria-label="Previous"><i data-lucide="chevron-left"></i></button>
+                <button class="pg-num">1</button>
+                <button class="pg-num pg-num--active" aria-current="page">2</button>
+                <span class="pg-ellipsis">…</span>
+                <button class="pg-num">9</button>
+                <button class="pg-num">10</button>
+                <button class="pg-arrow" aria-label="Next"><i data-lucide="chevron-right"></i></button>
               </div>
 
-              <div class="sk-area" style="width:100%;height:96px;"></div>
+              <div class="pg-pagination">
+                <button class="pg-arrow" aria-label="Previous"><i data-lucide="chevron-left"></i></button>
+                <button class="pg-num">3</button>
+                <button class="pg-num">4</button>
+                <button class="pg-num pg-num--active" aria-current="page">5</button>
+                <button class="pg-num">6</button>
+                <button class="pg-num">7</button>
+                <button class="pg-arrow" aria-label="Next"><i data-lucide="chevron-right"></i></button>
+              </div>
 
             </div>
           </div>
@@ -157,25 +168,29 @@
       <section class="doc-section" id="anatomy">
         <h2 class="section-title">Anatomy</h2>
         <div class="anatomy-wrap">
-          <div class="anatomy-component" style="padding:32px 0;max-width:440px;">
-            <div style="position:relative;">
-              <div class="sk-text" style="width:100%;">
-                <div class="sk-line"></div>
-                <div class="sk-line" style="width:70%;"></div>
-                <div class="sk-line"></div>
+          <div class="anatomy-component" style="padding:32px 0;max-width:340px;">
+            <div style="position:relative;display:inline-block;">
+              <div class="pg-pagination">
+                <button class="pg-arrow" aria-label="Previous"><i data-lucide="chevron-left"></i></button>
+                <button class="pg-num">1</button>
+                <button class="pg-num pg-num--active" aria-current="page">2</button>
+                <span class="pg-ellipsis">…</span>
+                <button class="pg-num">9</button>
+                <button class="pg-arrow" aria-label="Next"><i data-lucide="chevron-right"></i></button>
               </div>
-              <div class="sk-area" style="width:100%;height:64px;margin-top:24px;"></div>
-              <span class="callout" style="top:2px;left:-4px;">1</span>
-              <span class="callout" style="top:18px;left:-4px;">2</span>
-              <span class="callout" style="bottom:32px;left:-4px;">3</span>
-              <span class="callout" style="top:8px;right:-4px;left:auto;transform:none;">4</span>
+              <span class="callout" style="top:-4px;left:8px;">1</span>
+              <span class="callout" style="top:-4px;left:88px;">2</span>
+              <span class="callout" style="top:-4px;left:128px;">3</span>
+              <span class="callout" style="top:-4px;left:168px;">4</span>
+              <span class="callout" style="top:-4px;right:8px;left:auto;transform:none;">5</span>
             </div>
           </div>
           <div class="anatomy-legend">
-            <div class="legend-item"><span class="legend-num">1</span>Track (base color)</div>
-            <div class="legend-item"><span class="legend-num">2</span>Shimmer highlight (sweeps left → right)</div>
-            <div class="legend-item"><span class="legend-num">3</span>Text line (2px radius)</div>
-            <div class="legend-item"><span class="legend-num">4</span>Area block (6px radius)</div>
+            <div class="legend-item"><span class="legend-num">1</span>Previous chevron (with border)</div>
+            <div class="legend-item"><span class="legend-num">2</span>Page number tile</div>
+            <div class="legend-item"><span class="legend-num">3</span>Active page (blue border)</div>
+            <div class="legend-item"><span class="legend-num">4</span>Ellipsis (skips a gap)</div>
+            <div class="legend-item"><span class="legend-num">5</span>Next chevron</div>
           </div>
         </div>
       </section>
@@ -185,109 +200,175 @@
         <h2 class="section-title">Variants</h2>
         <div class="tabs-wrap">
           <div class="tabs">
-            <button class="tab active" onclick="switchTab(this,'v-text')">Text</button>
-            <button class="tab" onclick="switchTab(this,'v-area')">Area</button>
-            <button class="tab" onclick="switchTab(this,'v-composed')">Composed</button>
+            <button class="tab active" onclick="switchTab(this,'v-arrows')">Arrows</button>
+            <button class="tab" onclick="switchTab(this,'v-numbers')">Numbers</button>
+            <button class="tab" onclick="switchTab(this,'v-full')">Full</button>
           </div>
         </div>
 
-        <!-- TEXT -->
-        <div class="tab-panel active" id="v-text">
+        <!-- ARROWS -->
+        <div class="tab-panel active" id="v-arrows">
+          <div class="state-tab-row">
+            <button class="state-tab-btn active" onclick="switchStateTab(this,'vs-ar-default')">Default</button>
+            <button class="state-tab-btn" onclick="switchStateTab(this,'vs-ar-hover')">Hover</button>
+            <button class="state-tab-btn" onclick="switchStateTab(this,'vs-ar-disabled')">Disabled</button>
+          </div>
           <div class="var-panel">
             <div class="var-previews-wrap">
-              <div class="var-previews">
-                <div class="var-preview" style="padding:32px 24px;">
-                  <div class="sk-text" style="width:100%;">
-                    <div class="sk-line"></div>
-                    <div class="sk-line" style="width:70%;"></div>
-                    <div class="sk-line"></div>
-                    <div class="sk-line" style="width:50%;"></div>
+
+              <div class="state-panel active" id="vs-ar-default">
+                <div class="var-previews">
+                  <div class="var-preview" style="padding:32px;">
+                    <div class="pg-pagination">
+                      <button class="pg-arrow" aria-label="Previous"><i data-lucide="chevron-left"></i></button>
+                      <button class="pg-arrow" aria-label="Next"><i data-lucide="chevron-right"></i></button>
+                    </div>
                   </div>
-                </div>
-                <div class="var-preview-dark" style="padding:32px 24px;">
-                  <div class="sk-text" style="width:100%;">
-                    <div class="sk-line"></div>
-                    <div class="sk-line" style="width:70%;"></div>
-                    <div class="sk-line"></div>
-                    <div class="sk-line" style="width:50%;"></div>
+                  <div class="var-preview-dark" style="padding:32px;">
+                    <div class="pg-pagination">
+                      <button class="pg-arrow" aria-label="Previous"><i data-lucide="chevron-left"></i></button>
+                      <button class="pg-arrow" aria-label="Next"><i data-lucide="chevron-right"></i></button>
+                    </div>
                   </div>
                 </div>
               </div>
+
+              <div class="state-panel" id="vs-ar-hover">
+                <div class="var-previews">
+                  <div class="var-preview" style="padding:32px;">
+                    <div class="pg-pagination">
+                      <button class="pg-arrow pg-state-hover" aria-label="Previous"><i data-lucide="chevron-left"></i></button>
+                      <button class="pg-arrow pg-state-hover" aria-label="Next"><i data-lucide="chevron-right"></i></button>
+                    </div>
+                  </div>
+                  <div class="var-preview-dark" style="padding:32px;">
+                    <div class="pg-pagination">
+                      <button class="pg-arrow pg-state-hover" aria-label="Previous"><i data-lucide="chevron-left"></i></button>
+                      <button class="pg-arrow pg-state-hover" aria-label="Next"><i data-lucide="chevron-right"></i></button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="state-panel" id="vs-ar-disabled">
+                <div class="var-previews">
+                  <div class="var-preview" style="padding:32px;">
+                    <div class="pg-pagination">
+                      <button class="pg-arrow" disabled aria-label="Previous"><i data-lucide="chevron-left"></i></button>
+                      <button class="pg-arrow" disabled aria-label="Next"><i data-lucide="chevron-right"></i></button>
+                    </div>
+                  </div>
+                  <div class="var-preview-dark" style="padding:32px;">
+                    <div class="pg-pagination">
+                      <button class="pg-arrow" disabled aria-label="Previous"><i data-lucide="chevron-left"></i></button>
+                      <button class="pg-arrow" disabled aria-label="Next"><i data-lucide="chevron-right"></i></button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
             </div>
             <div class="var-desc">
-              <div class="var-use-when">Text — use when:</div>
+              <div class="var-use-when">Arrows — use when:</div>
               <ul class="var-use-list">
-                <li>Reserving space for a paragraph, label, or list of strings</li>
-                <li>Each line uses <code>2px</code> radius and a <code>16px</code> gap below</li>
-                <li>Vary line widths (50%, 70%, 100%) so the placeholder reads as natural prose</li>
+                <li>You only need step-by-step "Previous / Next" navigation</li>
+                <li>Default has a 1px <code>#CDD2D7</code> border with a dark gray icon</li>
+                <li>Disable the chevron at the start/end of the range to communicate the boundary</li>
               </ul>
             </div>
           </div>
         </div>
 
-        <!-- AREA -->
-        <div class="tab-panel" id="v-area">
+        <!-- NUMBERS -->
+        <div class="tab-panel" id="v-numbers">
+          <div class="state-tab-row">
+            <button class="state-tab-btn active" onclick="switchStateTab(this,'vs-nm-default')">Default</button>
+            <button class="state-tab-btn" onclick="switchStateTab(this,'vs-nm-active')">Active</button>
+            <button class="state-tab-btn" onclick="switchStateTab(this,'vs-nm-hover')">Hover</button>
+          </div>
           <div class="var-panel">
             <div class="var-previews-wrap">
-              <div class="var-previews">
-                <div class="var-preview" style="padding:32px 24px;">
-                  <div style="display:flex;flex-direction:column;gap:16px;width:100%;">
-                    <div class="sk-area" style="width:100%;height:96px;"></div>
-                    <div class="sk-area" style="width:140px;height:140px;border-radius:50%;align-self:center;"></div>
+
+              <div class="state-panel active" id="vs-nm-default">
+                <div class="var-previews">
+                  <div class="var-preview" style="padding:32px;">
+                    <button class="pg-num">1</button>
                   </div>
-                </div>
-                <div class="var-preview-dark" style="padding:32px 24px;">
-                  <div style="display:flex;flex-direction:column;gap:16px;width:100%;">
-                    <div class="sk-area" style="width:100%;height:96px;"></div>
-                    <div class="sk-area" style="width:140px;height:140px;border-radius:50%;align-self:center;"></div>
+                  <div class="var-preview-dark" style="padding:32px;">
+                    <button class="pg-num">1</button>
                   </div>
                 </div>
               </div>
+
+              <div class="state-panel" id="vs-nm-active">
+                <div class="var-previews">
+                  <div class="var-preview" style="padding:32px;">
+                    <button class="pg-num pg-num--active" aria-current="page">1</button>
+                  </div>
+                  <div class="var-preview-dark" style="padding:32px;">
+                    <button class="pg-num pg-num--active" aria-current="page">1</button>
+                  </div>
+                </div>
+              </div>
+
+              <div class="state-panel" id="vs-nm-hover">
+                <div class="var-previews">
+                  <div class="var-preview" style="padding:32px;">
+                    <button class="pg-num pg-state-hover">1</button>
+                  </div>
+                  <div class="var-preview-dark" style="padding:32px;">
+                    <button class="pg-num pg-state-hover">1</button>
+                  </div>
+                </div>
+              </div>
+
             </div>
             <div class="var-desc">
-              <div class="var-use-when">Area — use when:</div>
+              <div class="var-use-when">Numbers — use when:</div>
               <ul class="var-use-list">
-                <li>Reserving space for a card, image, media block, or icon</li>
-                <li>Default <code>6px</code> radius; override to <code>50%</code> for circular avatars</li>
-                <li>Set explicit width and height to match the real content's footprint</li>
+                <li>Pages 1–N can be addressed directly</li>
+                <li>Active page wears a 1px <code>#027CB1</code> border; default and hover have no border</li>
+                <li>Apply <code>aria-current="page"</code> to the active tile</li>
               </ul>
             </div>
           </div>
         </div>
 
-        <!-- COMPOSED -->
-        <div class="tab-panel" id="v-composed">
+        <!-- FULL -->
+        <div class="tab-panel" id="v-full">
           <div class="var-panel">
             <div class="var-previews-wrap">
               <div class="var-previews">
-                <div class="var-preview" style="padding:24px;">
-                  <div style="display:flex;gap:16px;align-items:flex-start;width:100%;">
-                    <div class="sk-area" style="width:48px;height:48px;border-radius:50%;flex-shrink:0;"></div>
-                    <div class="sk-text" style="flex:1;">
-                      <div class="sk-line" style="width:60%;"></div>
-                      <div class="sk-line"></div>
-                      <div class="sk-line" style="width:80%;"></div>
-                    </div>
+                <div class="var-preview" style="padding:32px;">
+                  <div class="pg-pagination">
+                    <button class="pg-arrow" disabled aria-label="Previous"><i data-lucide="chevron-left"></i></button>
+                    <button class="pg-num">1</button>
+                    <button class="pg-num pg-num--active" aria-current="page">2</button>
+                    <span class="pg-ellipsis">…</span>
+                    <button class="pg-num">9</button>
+                    <button class="pg-num">10</button>
+                    <button class="pg-arrow" aria-label="Next"><i data-lucide="chevron-right"></i></button>
                   </div>
                 </div>
-                <div class="var-preview-dark" style="padding:24px;">
-                  <div style="display:flex;gap:16px;align-items:flex-start;width:100%;">
-                    <div class="sk-area" style="width:48px;height:48px;border-radius:50%;flex-shrink:0;"></div>
-                    <div class="sk-text" style="flex:1;">
-                      <div class="sk-line" style="width:60%;"></div>
-                      <div class="sk-line"></div>
-                      <div class="sk-line" style="width:80%;"></div>
-                    </div>
+                <div class="var-preview-dark" style="padding:32px;">
+                  <div class="pg-pagination">
+                    <button class="pg-arrow" disabled aria-label="Previous"><i data-lucide="chevron-left"></i></button>
+                    <button class="pg-num">1</button>
+                    <button class="pg-num pg-num--active" aria-current="page">2</button>
+                    <span class="pg-ellipsis">…</span>
+                    <button class="pg-num">9</button>
+                    <button class="pg-num">10</button>
+                    <button class="pg-arrow" aria-label="Next"><i data-lucide="chevron-right"></i></button>
                   </div>
                 </div>
               </div>
             </div>
             <div class="var-desc">
-              <div class="var-use-when">Composed — use when:</div>
+              <div class="var-use-when">Full — use when:</div>
               <ul class="var-use-list">
-                <li>Mirroring a real layout (e.g. avatar + name + body) so the load-in is seamless</li>
-                <li>Combine Area and Text primitives — keep widths and gaps consistent with the final UI</li>
-                <li>The shimmer animations stay in sync because they share a single keyframe timing</li>
+                <li>The page count is large enough to need ellipsis to skip a middle range</li>
+                <li>Always show the first and last page so users know the total scope</li>
+                <li>Prev/Next chevrons disable at the start/end of the set</li>
               </ul>
             </div>
           </div>
@@ -304,40 +385,40 @@
           </thead>
           <tbody>
             <tr>
-              <td class="p-name">variant</td>
-              <td class="p-type">"text" | "area"</td>
-              <td class="p-def">"area"</td>
-              <td class="p-desc">Shape preset — pill-shaped text line or rounded block</td>
-            </tr>
-            <tr>
-              <td class="p-name">width</td>
-              <td class="p-type">string | number</td>
-              <td class="p-def">"100%"</td>
-              <td class="p-desc">Width of the placeholder (px or %)</td>
-            </tr>
-            <tr>
-              <td class="p-name">height</td>
-              <td class="p-type">string | number</td>
-              <td class="p-def">"1em" / —</td>
-              <td class="p-desc">Height of the placeholder. Defaults match the variant.</td>
-            </tr>
-            <tr>
-              <td class="p-name">lines</td>
+              <td class="p-name">currentPage</td>
               <td class="p-type">number</td>
-              <td class="p-def">3</td>
-              <td class="p-desc">Number of text lines (text variant only)</td>
+              <td class="p-def">1</td>
+              <td class="p-desc">1-based index of the active page</td>
             </tr>
             <tr>
-              <td class="p-name">radius</td>
-              <td class="p-type">string | number</td>
-              <td class="p-def">"2" / "6"</td>
-              <td class="p-desc">Border-radius. Override for circles or custom shapes.</td>
+              <td class="p-name">totalPages</td>
+              <td class="p-type">number</td>
+              <td class="p-def">—</td>
+              <td class="p-desc">Total number of pages in the set</td>
             </tr>
             <tr>
-              <td class="p-name">animate</td>
+              <td class="p-name">siblingCount</td>
+              <td class="p-type">number</td>
+              <td class="p-def">1</td>
+              <td class="p-desc">Number of page tiles to show on each side of the active page before collapsing into an ellipsis</td>
+            </tr>
+            <tr>
+              <td class="p-name">showArrows</td>
               <td class="p-type">boolean</td>
               <td class="p-def">true</td>
-              <td class="p-desc">Whether to run the shimmer animation</td>
+              <td class="p-desc">Whether to show Previous / Next chevrons</td>
+            </tr>
+            <tr>
+              <td class="p-name">showFirstLast</td>
+              <td class="p-type">boolean</td>
+              <td class="p-def">true</td>
+              <td class="p-desc">Whether to always show page 1 and the final page</td>
+            </tr>
+            <tr>
+              <td class="p-name">onPageChange</td>
+              <td class="p-type">function</td>
+              <td class="p-def">—</td>
+              <td class="p-desc">Callback fired with the new page number</td>
             </tr>
           </tbody>
         </table>
@@ -454,13 +535,14 @@
           <div>
             <div class="tm-preview-card" data-bg="light">
               <div class="tm-preview-inner">
-                <div id="tmPreview" class="tm-preview" style="width:100%;">
-                  <div style="display:flex;flex-direction:column;gap:16px;width:100%;max-width:360px;">
-                    <div class="sk-text" data-part="text">
-                      <div class="sk-line" data-part="line1"></div>
-                      <div class="sk-line" data-part="line2" style="width:70%;"></div>
-                    </div>
-                    <div class="sk-area" data-part="area" style="width:100%;height:48px;"></div>
+                <div id="tmPreview" class="tm-preview">
+                  <div class="pg-pagination">
+                    <button class="pg-arrow" data-part="arrow" aria-label="Previous"><i data-lucide="chevron-left"></i></button>
+                    <button class="pg-num" data-part="num">1</button>
+                    <button class="pg-num pg-num--active" data-part="active" aria-current="page">2</button>
+                    <span class="pg-ellipsis" data-part="ellipsis">…</span>
+                    <button class="pg-num" data-part="num2">9</button>
+                    <button class="pg-arrow" data-part="arrow2" aria-label="Next"><i data-lucide="chevron-right"></i></button>
                   </div>
                 </div>
               </div>
@@ -473,6 +555,7 @@
               <div class="tm-seg" style="margin:0 0 12px;">
                 <button class="tm-seg-item tm-seg-item--active" data-tab="color"><i data-lucide="palette" class="tm-seg-icon"></i> Color</button>
                 <button class="tm-seg-item" data-tab="component"><i data-lucide="ruler" class="tm-seg-icon"></i> Component</button>
+                <button class="tm-seg-item" data-tab="typography"><i data-lucide="type" class="tm-seg-icon"></i> Typography</button>
               </div>
             </div>
             <div class="tm-tokens-body" id="tmCards"></div>
@@ -485,16 +568,16 @@
         <h2 class="section-title">Accessibility</h2>
         <ul class="a11y-list">
           <li>
-            <div><strong>ARIA:</strong> Wrap the skeleton group in <code>role="status"</code> with <code>aria-busy="true"</code> and <code>aria-live="polite"</code> so screen readers announce the loading state without dumping the placeholder shapes.</div>
+            <div><strong>ARIA:</strong> Wrap the group in <code>&lt;nav aria-label="Pagination"&gt;</code>. Mark the active tile with <code>aria-current="page"</code> and give the chevrons accessible labels like "Previous page".</div>
           </li>
           <li>
-            <div><strong>Hide decorations from AT:</strong> Each individual shape should have <code>aria-hidden="true"</code>. The visible "Loading…" announcement comes from the wrapping live region, not the skeleton bars themselves.</div>
+            <div><strong>Keyboard:</strong> Every page tile and chevron must be reachable in tab order. Disabled chevrons should be skipped via the native <code>disabled</code> attribute.</div>
           </li>
           <li>
-            <div><strong>Reduced motion:</strong> Honor <code>prefers-reduced-motion</code> by disabling the shimmer keyframes — the static gray track is still a valid loading indicator.</div>
+            <div><strong>Don't rely on color alone:</strong> The active tile uses both a blue border and the <code>aria-current</code> attribute, so screen readers and color-blind users still know which page is active.</div>
           </li>
           <li>
-            <div><strong>Don't show forever:</strong> If a request takes longer than ~10s, replace the skeleton with a fallback message so users aren't stuck staring at an animation.</div>
+            <div><strong>Touch targets:</strong> Minimum 32×32 hit area meets WCAG; pad surrounding elements to keep adjacent tiles from triggering accidental taps.</div>
           </li>
         </ul>
       </section>
@@ -503,13 +586,17 @@
       <section class="doc-section" id="related">
         <h2 class="section-title">Related Components</h2>
         <div class="related-grid">
-          <a href="progressbar.html" class="related-card">
-            <div class="rc-name">Progress Bar</div>
-            <div class="rc-desc">Use Progress Bar when you can report deterministic progress. Skeleton is for indeterminate loading.</div>
+          <a href="stepindicator.html" class="related-card">
+            <div class="rc-name">Step Indicator</div>
+            <div class="rc-desc">Use Step Indicator for sequential wizard flows. Pagination is for paged data tables and lists.</div>
           </a>
-          <a href="alert.html" class="related-card">
-            <div class="rc-name">Alert</div>
-            <div class="rc-desc">Use Alert to surface a fallback message after a long-running load fails or stalls.</div>
+          <a href="tabs.html" class="related-card">
+            <div class="rc-name">Tabs</div>
+            <div class="rc-desc">Use Tabs to switch between independent panels. Pagination addresses pages of the same content.</div>
+          </a>
+          <a href="button.html" class="related-card">
+            <div class="rc-name">Button</div>
+            <div class="rc-desc">Pagination tiles are styled buttons — use the Button component for stand-alone actions.</div>
           </a>
         </div>
       </section>
@@ -551,6 +638,14 @@
     const atEnd = tabsEl.scrollLeft + tabsEl.clientWidth >= tabsEl.scrollWidth - 2;
     wrap.classList.toggle('at-end', atEnd);
   }
+  function switchStateTab(btn, panelId) {
+    const wrap = btn.closest('.tab-panel');
+    wrap.querySelectorAll('.state-tab-btn').forEach(t => t.classList.remove('active'));
+    wrap.querySelectorAll('.state-panel').forEach(p => p.classList.remove('active'));
+    btn.classList.add('active');
+    document.getElementById(panelId).classList.add('active');
+    lucide.createIcons();
+  }
   function switchTab(btn, panelId) {
     btn.closest('.doc-section').querySelectorAll('.tab').forEach(b => b.classList.remove('active'));
     btn.closest('.doc-section').querySelectorAll('.tab-panel').forEach(p => p.classList.remove('active'));
@@ -581,10 +676,11 @@
   // ══════════════════════════════════════════
   // TOKEN MAP
   // ══════════════════════════════════════════
-  const tmColorLight = [{"role":"Track","token":"color/surface/skeleton/track","hex":"#CDD2D7","ref":"color/gray/300"},{"role":"Highlight","token":"color/surface/skeleton/highlight","hex":"#E5E7EB","ref":"color/gray/200"}];
-  const tmColorDark = [{"role":"Track","token":"color/surface/skeleton/track","hex":"#374151","ref":"color/gray/700"},{"role":"Highlight","token":"color/surface/skeleton/highlight","hex":"#4B5563","ref":"color/gray/600"}];
-  const tmComponentTokens = [{"role":"Text radius","component":"skeleton/radius/text","primitive":"radius/xs","value":"2px","icon":"square-round-corner"},{"role":"Area radius","component":"skeleton/radius/area","primitive":"radius/sm","value":"6px","icon":"square-round-corner"},{"role":"Text gap","component":"skeleton/text/gap","primitive":"spacing/4x","value":"16px","icon":"columns-3"}];
-  const tmTotalTokens = tmColorLight.length + tmComponentTokens.length;
+  const tmColorLight = [{"role":"Text","token":"color/text/primary","hex":"#374151","ref":"color/gray/700"},{"role":"Active border","token":"color/tabs/contained/border/active","hex":"#027CB1","ref":"color/blue/600"},{"role":"Default border","token":"color/border/interactive","hex":"#CDD2D7","ref":"color/gray/300"},{"role":"Disabled border","token":"color/border/disabled","hex":"#E5E7EB","ref":"color/gray/200"},{"role":"Hover surface","token":"color/surface/layer-01/hover","hex":"#E5E7EB","ref":"color/gray/200"},{"role":"Icon","token":"color/icon/default","hex":"#4B5563","ref":"color/gray/600"},{"role":"Disabled icon","token":"color/icon/button-disabled","hex":"#9CA3AF","ref":"color/gray/400"}];
+  const tmColorDark = [{"role":"Text","token":"color/text/primary","hex":"#FFFFFF","ref":"color/gray/0"},{"role":"Active border","token":"color/tabs/contained/border/active","hex":"#5ABFE0","ref":"color/blue/400"},{"role":"Default border","token":"color/border/interactive","hex":"#6B7280","ref":"color/gray/500"},{"role":"Disabled border","token":"color/border/disabled","hex":"#374151","ref":"color/gray/700"},{"role":"Hover surface","token":"color/surface/layer-01/hover","hex":"#1E1E1E","ref":"color/neutral/900"},{"role":"Icon","token":"color/icon/default","hex":"#E5E7EB","ref":"color/gray/200"},{"role":"Disabled icon","token":"color/icon/button-disabled","hex":"#6B7280","ref":"color/gray/500"}];
+  const tmComponentTokens = [{"role":"Item padding","component":"pagination/item/padding","primitive":"spacing/1-5x","value":"6px","icon":"space"},{"role":"Item radius","component":"pagination/item/radius","primitive":"radius/sm","value":"4px","icon":"square-round-corner"},{"role":"Group gap","component":"pagination/group/gap","primitive":"spacing/2x","value":"8px","icon":"columns-3"},{"role":"Icon size","component":"icon/md","primitive":"icon/md","value":"20px","icon":"scan"}];
+  const tmTypographyTokens = [{"role":"Page number","style":"typography/data/table-header","font":"Lato","weight":"Bold (700)","size":"14px","lineHeight":"20px","letterSpacing":"0"}];
+  const tmTotalTokens = tmColorLight.length + tmComponentTokens.length + tmTypographyTokens.length;
   const tmState = { tab:'color', mode:'light' };
   const tmCards = document.getElementById('tmCards');
   const tmPreviewCard = document.querySelector('.tm-preview-card');
@@ -593,12 +689,16 @@
   const tmPreview = document.getElementById('tmPreview');
 
   const colorPartMap = {
-    'track':['line1','line2','area'], 'highlight':['line1','line2','area'],
+    'text':['num','active','num2','ellipsis'], 'active-border':['active'],
+    'default-border':['arrow','arrow2'], 'disabled-border':[],
+    'hover-surface':[], 'icon':['arrow','arrow2'], 'disabled-icon':[],
   };
   const compSpotlightMap = {
-    'text-radius':'spotlight-text-radius', 'area-radius':'spotlight-area-radius', 'text-gap':'spotlight-text-gap',
+    'item-padding':'spotlight-padding', 'item-radius':'spotlight-radius',
+    'group-gap':'spotlight-gap', 'icon-size':'spotlight-padding',
   };
-  const spotlightClasses = ['has-spotlight','spotlight-text-radius','spotlight-area-radius','spotlight-text-gap'];
+  const typoPartMap = { 'page-number':['num','active','num2'] };
+  const spotlightClasses = ['has-spotlight','spotlight-padding','spotlight-radius','spotlight-gap'];
 
   function slug(s){ return s.toLowerCase().replace(/[^a-z0-9]+/g,'-').replace(/-+$/,''); }
   function clearSpotlight(){
@@ -607,12 +707,11 @@
   }
   function spotlight(sl){
     if(compSpotlightMap[sl]){ tmPreview.classList.add(compSpotlightMap[sl]); return; }
-    const parts = colorPartMap[sl];
+    const parts = colorPartMap[sl] || typoPartMap[sl];
     if(!parts||!parts.length) return;
     tmPreview.classList.add('has-spotlight');
     parts.forEach(p=>{ const el=tmPreview.querySelector('[data-part="'+p+'"]'); if(el) el.classList.add('spotlight'); });
   }
-
   function tmRender() {
     const colors = tmState.mode==='light' ? tmColorLight : tmColorDark;
     tmPreviewCard.setAttribute('data-bg', tmState.mode);
@@ -622,10 +721,15 @@
         const s=slug(c.role);
         html+='<div class="tm-row" data-slot="'+s+'"><div class="tm-row-header"><div class="tm-row-swatch" style="background:'+c.hex+'"></div><div class="tm-row-label">'+c.role+'</div></div><div class="tm-chain-row"><div class="tm-chip">'+c.token+'</div><div class="tm-chain-arrow">'+arrowSvg+'</div><div class="tm-chip">'+(c.ref||c.token)+'</div><div class="tm-chain-arrow">'+arrowSvg+'</div><div class="tm-chip" style="font-weight:600">'+c.hex+'</div></div></div>';
       }
-    } else {
+    } else if (tmState.tab==='component') {
       for (const ct of tmComponentTokens) {
         const s=slug(ct.role);
         html+='<div class="tm-row" data-slot="'+s+'"><div class="tm-row-header"><div class="tm-row-icon"><i data-lucide="'+ct.icon+'" style="width:16px;height:16px"></i></div><div class="tm-row-label">'+ct.role+'</div></div><div class="tm-chain-row"><div class="tm-chip">'+ct.component+'</div><div class="tm-chain-arrow">'+arrowSvg+'</div><div class="tm-chip">'+ct.primitive+'</div><div class="tm-chain-arrow">'+arrowSvg+'</div><div class="tm-chip" style="font-weight:600">'+ct.value+'</div></div></div>';
+      }
+    } else {
+      for (const tt of tmTypographyTokens) {
+        const s=slug(tt.role);
+        html+='<div class="tm-row" data-slot="'+s+'"><div class="tm-row-header"><div class="tm-row-icon"><i data-lucide="type" style="width:16px;height:16px"></i></div><div class="tm-row-label">'+tt.role+'</div></div><div class="tm-chain-row" style="flex-direction:column;align-items:flex-start;gap:6px;"><div style="display:flex;align-items:center;gap:10px;flex-wrap:wrap;"><div class="tm-chip">'+tt.style+'</div></div><div style="display:flex;align-items:center;gap:8px;flex-wrap:wrap;font-family:var(--mono);font-size:12px;color:var(--text-tertiary);"><span>'+tt.font+'</span><span>&middot;</span><span>'+tt.weight+'</span><span>&middot;</span><span>'+tt.size+' / '+tt.lineHeight+'</span></div></div></div>';
       }
     }
     tmCards.innerHTML = html;
