@@ -3,24 +3,23 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Divider — nuShip Design System</title>
+  <title>Tag — nuShip Design System</title>
   <link href="https://fonts.googleapis.com/css2?family=Lato:wght@400;600;700;900&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="tokens.css">
   <link rel="stylesheet" href="styles.css">
   <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.min.js"></script>
   <script src="nav-scroll.js" defer></script>
   <style>
-    /* Divider token map spotlights */
-    #tmPreview { position:relative; min-height:160px; display:flex; align-items:center; justify-content:center; padding:0 24px; }
-    #tmPreview.spotlight-color .dv-divider { outline:3px solid #FF4081; outline-offset:6px; border-radius:4px; }
-    #tmPreview.spotlight-color::after { content:'#CDD2D7'; position:absolute; top:50%; right:24px; transform:translateY(-50%); font-size:10px; font-family:var(--mono); color:#FF4081; background:rgba(255,255,255,0.95); padding:1px 4px; border-radius:2px; font-weight:700; }
-    #tmPreview.spotlight-thickness .dv-divider { outline:3px solid #FF4081; outline-offset:6px; border-radius:4px; }
-    #tmPreview.spotlight-thickness::after { content:'1px'; position:absolute; top:50%; left:24px; transform:translateY(-50%); font-size:10px; font-family:var(--mono); color:#FF4081; background:rgba(255,255,255,0.95); padding:1px 4px; border-radius:2px; font-weight:700; }
-    /* Demo "row" so the divider always has surrounding content for context */
-    .dv-demo-row { display:flex; flex-direction:column; gap:12px; width:100%; max-width:340px; }
-    .dv-demo-row .dv-demo-line { font-size:14px; color:var(--text-secondary); line-height:1.5; }
-    .dv-demo-col-row { display:flex; gap:16px; align-items:center; min-height:48px; }
-    .dv-demo-col { flex:1; font-size:14px; color:var(--text-secondary); }
+    /* Tag token map spotlights */
+    #tmPreview { position:relative; min-height:120px; display:flex; align-items:center; justify-content:center; gap:16px; flex-wrap:wrap; padding:24px; }
+    #tmPreview.spotlight-padding-x .tg-tag { outline:2px solid #FF4081; outline-offset:0; border-radius:100px; }
+    #tmPreview.spotlight-padding-x::after { content:'16px'; position:absolute; top:-16px; left:50%; transform:translateX(-50%); font-size:10px; font-family:var(--mono); color:#FF4081; background:rgba(255,255,255,0.95); padding:1px 4px; border-radius:2px; font-weight:700; }
+    #tmPreview.spotlight-padding-y .tg-tag { outline:2px solid #FF4081; outline-offset:0; border-radius:100px; }
+    #tmPreview.spotlight-padding-y::after { content:'8px'; position:absolute; bottom:6px; left:50%; transform:translateX(-50%); font-size:10px; font-family:var(--mono); color:#FF4081; background:rgba(255,255,255,0.95); padding:1px 4px; border-radius:2px; font-weight:700; }
+    #tmPreview.spotlight-radius .tg-tag { outline:2px solid #FF4081; outline-offset:2px; border-radius:100px; }
+    #tmPreview.spotlight-radius::after { content:'100px'; position:absolute; top:-16px; left:0; font-size:10px; font-family:var(--mono); color:#FF4081; background:rgba(255,255,255,0.95); padding:1px 4px; border-radius:2px; font-weight:700; }
+    #tmPreview.spotlight-gap .tg-tag { outline:2px solid #FF4081; outline-offset:2px; border-radius:100px; }
+    #tmPreview.spotlight-gap::after { content:'8px'; position:absolute; top:-16px; right:0; font-size:10px; font-family:var(--mono); color:#FF4081; background:rgba(255,255,255,0.95); padding:1px 4px; border-radius:2px; font-weight:700; }
   </style>
 </head>
 <body>
@@ -34,9 +33,9 @@
   <div class="bc">
     <a href="index.html">UI Components</a>
     <i data-lucide="chevron-right" style="width:14px;height:14px;flex-shrink:0"></i>
-    <a href="#">Display</a>
+    <a href="#">Actions</a>
     <i data-lucide="chevron-right" style="width:14px;height:14px;flex-shrink:0"></i>
-    <span class="cur">Divider</span>
+    <span class="cur">Tag</span>
   </div>
   <div class="nav-actions">
     <div class="toggle-wrap" onclick="toggleTheme()" role="button">
@@ -94,7 +93,7 @@
         <ul class="ln-list">
           <li><a href="button.html">Button</a></li>
           <li><a href="link.html">Link</a></li>
-          <li><a href="tag.html">Tag</a></li>
+          <li><a href="tag.html" class="active">Tag</a></li>
         </ul>
       </div>
       <div class="ln-group">
@@ -116,7 +115,7 @@
         <ul class="ln-list">
           <li><a href="avatar.html">Avatar</a></li>
           <li><a href="carousel.html">Carousel</a></li>
-          <li><a href="divider.html" class="active">Divider</a></li>
+          <li><a href="divider.html">Divider</a></li>
           <li><a href="filerow.html">File Row</a></li>
           <li><a href="fileupload.html">File Upload</a></li>
           <li><a href="metrics.html">Metrics</a></li>
@@ -134,33 +133,27 @@
 
       <!-- 1 · DEFINITION -->
       <section class="doc-section" id="definition">
-        <div class="def-eyebrow">Display</div>
-        <h1 class="def-title">Divider</h1>
-        <p class="def-desc">A 1px hairline that separates content into related groups. Dividers exist purely as a visual cue — they carry no semantic meaning, so reach for spacing first and only add a divider when whitespace alone isn't enough to communicate the break.</p>
+        <div class="def-eyebrow">Actions</div>
+        <h1 class="def-title">Tag</h1>
+        <p class="def-desc">Pill-shaped chips for filters, selections, and dropdown triggers. Tags toggle between Default and Active to show selection, optionally render a leading icon (e.g. Plus to add) and a trailing dismiss X, and come in two sizes — 40px Default and 24px Compact.</p>
         <div class="def-tags">
           <span class="tag">Developed</span>
           <span class="tag">Figma</span>
         </div>
         <div class="preview-box">
           <div class="preview-box-inner">
-            <div style="display:flex;flex-direction:column;gap:32px;align-items:center;padding:24px;">
+            <div style="display:flex;flex-direction:column;gap:16px;align-items:flex-start;padding:24px;width:100%;">
 
-              <!-- Horizontal between rows -->
-              <div class="dv-demo-row">
-                <div class="dv-demo-line"><strong style="color:var(--text-primary)">Account</strong> · billing details</div>
-                <hr class="dv-divider dv-divider--h">
-                <div class="dv-demo-line"><strong style="color:var(--text-primary)">Notifications</strong> · email + push</div>
-                <hr class="dv-divider dv-divider--h">
-                <div class="dv-demo-line"><strong style="color:var(--text-primary)">Privacy</strong> · who can see what</div>
+              <div style="display:flex;gap:12px;flex-wrap:wrap;align-items:center;">
+                <button class="tg-tag"><i data-lucide="plus" class="tg-icon"></i><span>Tag</span><i data-lucide="x" class="tg-icon tg-icon--dismiss"></i></button>
+                <button class="tg-tag tg-tag--active"><i data-lucide="plus" class="tg-icon"></i><span>Tag Active</span><i data-lucide="x" class="tg-icon tg-icon--dismiss"></i></button>
+                <button class="tg-tag tg-tag--compact"><i data-lucide="plus" class="tg-icon"></i><span>Small Tag</span><i data-lucide="x" class="tg-icon tg-icon--dismiss"></i></button>
+                <button class="tg-tag tg-tag--compact tg-tag--active"><i data-lucide="plus" class="tg-icon"></i><span>Small Tag Active</span><i data-lucide="x" class="tg-icon tg-icon--dismiss"></i></button>
               </div>
 
-              <!-- Vertical between inline items -->
-              <div class="dv-demo-col-row" style="max-width:340px;">
-                <div class="dv-demo-col" style="text-align:right;"><strong style="color:var(--text-primary)">USD</strong></div>
-                <div class="dv-divider dv-divider--v"></div>
-                <div class="dv-demo-col"><strong style="color:var(--text-primary)">EUR</strong></div>
-                <div class="dv-divider dv-divider--v"></div>
-                <div class="dv-demo-col"><strong style="color:var(--text-primary)">GBP</strong></div>
+              <div style="display:flex;gap:12px;flex-wrap:wrap;align-items:center;">
+                <button class="tg-tag"><span>Tag Dropdown</span><i data-lucide="chevron-down" class="tg-icon"></i></button>
+                <button class="tg-tag tg-tag--active"><span>Tag Active Dropdown</span><i data-lucide="chevron-down" class="tg-icon"></i></button>
               </div>
 
             </div>
@@ -172,20 +165,20 @@
       <section class="doc-section" id="anatomy">
         <h2 class="section-title">Anatomy</h2>
         <div class="anatomy-wrap">
-          <div class="anatomy-component" style="padding:32px 0;max-width:340px;">
-            <div style="position:relative;">
-              <div class="dv-demo-row">
-                <div class="dv-demo-line">Item above the rule</div>
-                <hr class="dv-divider dv-divider--h">
-                <div class="dv-demo-line">Item below the rule</div>
-              </div>
-              <span class="callout" style="top:36px;left:-4px;">1</span>
-              <span class="callout" style="top:36px;right:-4px;left:auto;transform:none;">2</span>
+          <div class="anatomy-component" style="padding:32px 0;max-width:280px;">
+            <div style="position:relative;display:inline-block;">
+              <button class="tg-tag tg-tag--active"><i data-lucide="plus" class="tg-icon"></i><span>Tag Active</span><i data-lucide="x" class="tg-icon tg-icon--dismiss"></i></button>
+              <span class="callout" style="top:-2px;left:14px;">1</span>
+              <span class="callout" style="top:-2px;left:46px;">2</span>
+              <span class="callout" style="top:-2px;left:80px;">3</span>
+              <span class="callout" style="top:-2px;right:14px;left:auto;transform:none;">4</span>
             </div>
           </div>
           <div class="anatomy-legend">
-            <div class="legend-item"><span class="legend-num">1</span>Hairline (1px tall, full available width)</div>
-            <div class="legend-item"><span class="legend-num">2</span>Border colour <code>#CDD2D7</code> (color/border/interactive)</div>
+            <div class="legend-item"><span class="legend-num">1</span>Container (1px border, 100px radius)</div>
+            <div class="legend-item"><span class="legend-num">2</span>Leading icon <span style="color:var(--text-tertiary);margin-left:3px">(optional)</span></div>
+            <div class="legend-item"><span class="legend-num">3</span>Label (Bold when active)</div>
+            <div class="legend-item"><span class="legend-num">4</span>Dismiss / chevron icon</div>
           </div>
         </div>
       </section>
@@ -195,103 +188,116 @@
         <h2 class="section-title">Variants</h2>
         <div class="tabs-wrap">
           <div class="tabs">
-            <button class="tab active" onclick="switchTab(this,'v-horizontal')">Horizontal</button>
-            <button class="tab" onclick="switchTab(this,'v-vertical')">Vertical</button>
-            <button class="tab" onclick="switchTab(this,'v-inset')">Inset</button>
+            <button class="tab active" onclick="switchTab(this,'v-default')">Default</button>
+            <button class="tab" onclick="switchTab(this,'v-active')">Active</button>
+            <button class="tab" onclick="switchTab(this,'v-dropdown')">Dropdown</button>
+            <button class="tab" onclick="switchTab(this,'v-sizes')">Sizes</button>
           </div>
         </div>
 
-        <!-- HORIZONTAL -->
-        <div class="tab-panel active" id="v-horizontal">
+        <!-- DEFAULT -->
+        <div class="tab-panel active" id="v-default">
           <div class="var-panel">
             <div class="var-previews-wrap">
               <div class="var-previews">
                 <div class="var-preview" style="padding:32px;">
-                  <div class="dv-demo-row">
-                    <div class="dv-demo-line">Section above</div>
-                    <hr class="dv-divider dv-divider--h">
-                    <div class="dv-demo-line">Section below</div>
-                  </div>
+                  <button class="tg-tag"><i data-lucide="plus" class="tg-icon"></i><span>Tag</span><i data-lucide="x" class="tg-icon tg-icon--dismiss"></i></button>
                 </div>
                 <div class="var-preview-dark" style="padding:32px;">
-                  <div class="dv-demo-row">
-                    <div class="dv-demo-line" style="color:#E5E7EB;">Section above</div>
-                    <hr class="dv-divider dv-divider--h">
-                    <div class="dv-demo-line" style="color:#E5E7EB;">Section below</div>
-                  </div>
+                  <button class="tg-tag"><i data-lucide="plus" class="tg-icon"></i><span>Tag</span><i data-lucide="x" class="tg-icon tg-icon--dismiss"></i></button>
                 </div>
               </div>
             </div>
             <div class="var-desc">
-              <div class="var-use-when">Horizontal — use when:</div>
+              <div class="var-use-when">Default — use when:</div>
               <ul class="var-use-list">
-                <li>Splitting a vertical stack of related content groups</li>
-                <li>Apply with <code>&lt;hr&gt;</code> for native screen-reader support</li>
-                <li>Span the full available width unless the inset variant fits better</li>
+                <li>The tag represents an unselected option in a filter or chip group</li>
+                <li>Surface uses <code>color/surface/layer-01</code> with a 1px gray border</li>
+                <li>Optional leading plus icon signals "add this tag"</li>
               </ul>
             </div>
           </div>
         </div>
 
-        <!-- VERTICAL -->
-        <div class="tab-panel" id="v-vertical">
+        <!-- ACTIVE -->
+        <div class="tab-panel" id="v-active">
           <div class="var-panel">
             <div class="var-previews-wrap">
               <div class="var-previews">
                 <div class="var-preview" style="padding:32px;">
-                  <div class="dv-demo-col-row" style="max-width:280px;">
-                    <div class="dv-demo-col" style="text-align:right;">Left</div>
-                    <div class="dv-divider dv-divider--v"></div>
-                    <div class="dv-demo-col">Right</div>
-                  </div>
+                  <button class="tg-tag tg-tag--active"><i data-lucide="plus" class="tg-icon"></i><span>Tag Active</span><i data-lucide="x" class="tg-icon tg-icon--dismiss"></i></button>
                 </div>
                 <div class="var-preview-dark" style="padding:32px;">
-                  <div class="dv-demo-col-row" style="max-width:280px;">
-                    <div class="dv-demo-col" style="color:#E5E7EB;text-align:right;">Left</div>
-                    <div class="dv-divider dv-divider--v"></div>
-                    <div class="dv-demo-col" style="color:#E5E7EB;">Right</div>
-                  </div>
+                  <button class="tg-tag tg-tag--active"><i data-lucide="plus" class="tg-icon"></i><span>Tag Active</span><i data-lucide="x" class="tg-icon tg-icon--dismiss"></i></button>
                 </div>
               </div>
             </div>
             <div class="var-desc">
-              <div class="var-use-when">Vertical — use when:</div>
+              <div class="var-use-when">Active — use when:</div>
               <ul class="var-use-list">
-                <li>Splitting inline items in a horizontal row (e.g. button toolbar, breadcrumb)</li>
-                <li>Set <code>aria-orientation="vertical"</code> if the divider has interactive siblings</li>
-                <li>Match the height of the surrounding content via <code>align-self:stretch</code></li>
+                <li>The tag is currently selected or applied as a filter</li>
+                <li>Surface flips to <code>color/status/info/bg</code> (#E5EEF5) with a blue border + bold blue label</li>
+                <li>Click the X to remove the tag from the active set</li>
               </ul>
             </div>
           </div>
         </div>
 
-        <!-- INSET -->
-        <div class="tab-panel" id="v-inset">
+        <!-- DROPDOWN -->
+        <div class="tab-panel" id="v-dropdown">
           <div class="var-panel">
             <div class="var-previews-wrap">
               <div class="var-previews">
                 <div class="var-preview" style="padding:32px;">
-                  <div class="dv-demo-row">
-                    <div class="dv-demo-line">Section above</div>
-                    <hr class="dv-divider dv-divider--h dv-divider--inset">
-                    <div class="dv-demo-line">Section below</div>
+                  <div style="display:flex;flex-direction:column;gap:12px;align-items:flex-start;">
+                    <button class="tg-tag"><span>Tag Dropdown</span><i data-lucide="chevron-down" class="tg-icon"></i></button>
+                    <button class="tg-tag tg-tag--active"><span>Tag Active Dropdown</span><i data-lucide="chevron-down" class="tg-icon"></i></button>
                   </div>
                 </div>
                 <div class="var-preview-dark" style="padding:32px;">
-                  <div class="dv-demo-row">
-                    <div class="dv-demo-line" style="color:#E5E7EB;">Section above</div>
-                    <hr class="dv-divider dv-divider--h dv-divider--inset">
-                    <div class="dv-demo-line" style="color:#E5E7EB;">Section below</div>
+                  <div style="display:flex;flex-direction:column;gap:12px;align-items:flex-start;">
+                    <button class="tg-tag"><span>Tag Dropdown</span><i data-lucide="chevron-down" class="tg-icon"></i></button>
+                    <button class="tg-tag tg-tag--active"><span>Tag Active Dropdown</span><i data-lucide="chevron-down" class="tg-icon"></i></button>
                   </div>
                 </div>
               </div>
             </div>
             <div class="var-desc">
-              <div class="var-use-when">Inset — use when:</div>
+              <div class="var-use-when">Dropdown — use when:</div>
               <ul class="var-use-list">
-                <li>The divider sits inside a list item or card and shouldn't reach the edge</li>
-                <li>Default inset is <code>16px</code> on each side; override per layout</li>
-                <li>Useful for menus, dropdowns, and any list with leading icons</li>
+                <li>The tag opens a menu of related options (filter facets, multi-select)</li>
+                <li>Trailing chevron replaces the dismiss icon</li>
+                <li>Active state shows when at least one option in the dropdown is selected</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <!-- SIZES -->
+        <div class="tab-panel" id="v-sizes">
+          <div class="var-panel">
+            <div class="var-previews-wrap">
+              <div class="var-previews">
+                <div class="var-preview" style="padding:32px;">
+                  <div style="display:flex;flex-direction:column;gap:16px;align-items:flex-start;">
+                    <div style="display:flex;align-items:center;gap:24px;"><span style="font-size:12px;font-weight:700;width:64px;color:var(--text-tertiary)">Default</span><button class="tg-tag"><i data-lucide="plus" class="tg-icon"></i><span>Tag</span><i data-lucide="x" class="tg-icon tg-icon--dismiss"></i></button></div>
+                    <div style="display:flex;align-items:center;gap:24px;"><span style="font-size:12px;font-weight:700;width:64px;color:var(--text-tertiary)">Compact</span><button class="tg-tag tg-tag--compact"><i data-lucide="plus" class="tg-icon"></i><span>Small Tag</span><i data-lucide="x" class="tg-icon tg-icon--dismiss"></i></button></div>
+                  </div>
+                </div>
+                <div class="var-preview-dark" style="padding:32px;">
+                  <div style="display:flex;flex-direction:column;gap:16px;align-items:flex-start;">
+                    <div style="display:flex;align-items:center;gap:24px;"><span style="font-size:12px;font-weight:700;width:64px;color:#9CA3AF;">Default</span><button class="tg-tag"><i data-lucide="plus" class="tg-icon"></i><span>Tag</span><i data-lucide="x" class="tg-icon tg-icon--dismiss"></i></button></div>
+                    <div style="display:flex;align-items:center;gap:24px;"><span style="font-size:12px;font-weight:700;width:64px;color:#9CA3AF;">Compact</span><button class="tg-tag tg-tag--compact"><i data-lucide="plus" class="tg-icon"></i><span>Small Tag</span><i data-lucide="x" class="tg-icon tg-icon--dismiss"></i></button></div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="var-desc">
+              <div class="var-use-when">Sizes:</div>
+              <ul class="var-use-list">
+                <li>Default — 40px tall, 16/8 padding, 14px label, 20px icons</li>
+                <li>Compact — 24px tall, 12/4 padding, 12px label, 16px icons</li>
+                <li>Pick Compact for dense filter bars; Default for primary CTAs</li>
               </ul>
             </div>
           </div>
@@ -308,28 +314,46 @@
           </thead>
           <tbody>
             <tr>
-              <td class="p-name">orientation</td>
-              <td class="p-type">"horizontal" | "vertical"</td>
-              <td class="p-def">"horizontal"</td>
-              <td class="p-desc">Direction of the rule</td>
+              <td class="p-name">label</td>
+              <td class="p-type">string</td>
+              <td class="p-def">—</td>
+              <td class="p-desc">Visible text inside the tag</td>
             </tr>
             <tr>
-              <td class="p-name">inset</td>
-              <td class="p-type">number | string</td>
-              <td class="p-def">0</td>
-              <td class="p-desc">Indent on each end (px or token like <code>spacing/4x</code>)</td>
+              <td class="p-name">size</td>
+              <td class="p-type">"default" | "compact"</td>
+              <td class="p-def">"default"</td>
+              <td class="p-desc">40px or 24px height</td>
             </tr>
             <tr>
-              <td class="p-name">decorative</td>
+              <td class="p-name">active</td>
               <td class="p-type">boolean</td>
-              <td class="p-def">true</td>
-              <td class="p-desc">Whether the divider is purely visual. Set to <code>false</code> on semantic section breaks.</td>
+              <td class="p-def">false</td>
+              <td class="p-desc">Toggles selected styling (info bg + border + bold blue label)</td>
             </tr>
             <tr>
-              <td class="p-name">as</td>
-              <td class="p-type">"hr" | "div" | "span"</td>
-              <td class="p-def">"hr"</td>
-              <td class="p-desc">Element used to render the divider. Use <code>&lt;hr&gt;</code> for horizontal, <code>&lt;div role="separator"&gt;</code> for vertical.</td>
+              <td class="p-name">leftIcon</td>
+              <td class="p-type">ReactNode</td>
+              <td class="p-def">Plus</td>
+              <td class="p-desc">Optional leading icon (Plus by default)</td>
+            </tr>
+            <tr>
+              <td class="p-name">trailing</td>
+              <td class="p-type">"dismiss" | "dropdown" | "none"</td>
+              <td class="p-def">"dismiss"</td>
+              <td class="p-desc">Trailing icon — X for dismissable tags or chevron for dropdown triggers</td>
+            </tr>
+            <tr>
+              <td class="p-name">onClick</td>
+              <td class="p-type">function</td>
+              <td class="p-def">—</td>
+              <td class="p-desc">Fired when the tag body is activated</td>
+            </tr>
+            <tr>
+              <td class="p-name">onDismiss</td>
+              <td class="p-type">function</td>
+              <td class="p-def">—</td>
+              <td class="p-desc">Fired when the trailing X is activated</td>
             </tr>
           </tbody>
         </table>
@@ -446,12 +470,9 @@
           <div>
             <div class="tm-preview-card" data-bg="light">
               <div class="tm-preview-inner">
-                <div id="tmPreview" class="tm-preview" style="width:100%;">
-                  <div class="dv-demo-row" style="max-width:300px;">
-                    <div class="dv-demo-line" data-part="above">Item above</div>
-                    <hr class="dv-divider dv-divider--h" data-part="divider">
-                    <div class="dv-demo-line" data-part="below">Item below</div>
-                  </div>
+                <div id="tmPreview" class="tm-preview">
+                  <button class="tg-tag" data-part="default"><i data-lucide="plus" class="tg-icon"></i><span>Tag</span><i data-lucide="x" class="tg-icon tg-icon--dismiss"></i></button>
+                  <button class="tg-tag tg-tag--active" data-part="active"><i data-lucide="plus" class="tg-icon"></i><span>Tag Active</span><i data-lucide="x" class="tg-icon tg-icon--dismiss"></i></button>
                 </div>
               </div>
             </div>
@@ -463,6 +484,7 @@
               <div class="tm-seg" style="margin:0 0 12px;">
                 <button class="tm-seg-item tm-seg-item--active" data-tab="color"><i data-lucide="palette" class="tm-seg-icon"></i> Color</button>
                 <button class="tm-seg-item" data-tab="component"><i data-lucide="ruler" class="tm-seg-icon"></i> Component</button>
+                <button class="tm-seg-item" data-tab="typography"><i data-lucide="type" class="tm-seg-icon"></i> Typography</button>
               </div>
             </div>
             <div class="tm-tokens-body" id="tmCards"></div>
@@ -475,16 +497,16 @@
         <h2 class="section-title">Accessibility</h2>
         <ul class="a11y-list">
           <li>
-            <div><strong>Semantic vs decorative:</strong> Use <code>&lt;hr&gt;</code> when the divider marks a meaningful section break (it's announced as "horizontal separator"). For purely decorative cases, use <code>&lt;div role="presentation"&gt;</code> so screen readers don't pause on it.</div>
+            <div><strong>ARIA:</strong> Dismissible filter tags should expose <code>aria-pressed</code> for the toggle state. Dropdown tags need <code>aria-haspopup="listbox"</code> and <code>aria-expanded</code>.</div>
           </li>
           <li>
-            <div><strong>Vertical orientation:</strong> If you need a vertical divider in a toolbar, use <code>&lt;div role="separator" aria-orientation="vertical"&gt;</code>.</div>
+            <div><strong>Two interactive zones:</strong> When the tag has both a body action and a trailing X, render them as separate <code>&lt;button&gt;</code> elements so each is independently focusable. Don't nest buttons.</div>
           </li>
           <li>
-            <div><strong>Contrast vs decoration:</strong> The hairline doesn't need to meet 4.5:1 since it carries no information — but make sure it's visible on whatever surface it lives on (use <code>color/border/interactive</code> on light, swap to a lighter neutral on dark).</div>
+            <div><strong>Keyboard:</strong> Tag and its X both reachable via <kbd>Tab</kbd>. <kbd>Enter</kbd> / <kbd>Space</kbd> activate. For filter chips, <kbd>Backspace</kbd> when focused on the tag itself can also remove it.</div>
           </li>
           <li>
-            <div><strong>Don't overuse:</strong> Reach for spacing tokens first. A divider on every break creates visual noise; reserve them for places where whitespace alone reads ambiguously.</div>
+            <div><strong>Touch targets:</strong> Compact (24px) is below the 32×32 mobile minimum — only use Compact in pointer-input contexts (dense desktop filter rails) or pad the surrounding hit area.</div>
           </li>
         </ul>
       </section>
@@ -493,17 +515,17 @@
       <section class="doc-section" id="related">
         <h2 class="section-title">Related Components</h2>
         <div class="related-grid">
-          <a href="header.html" class="related-card">
-            <div class="rc-name">Header</div>
-            <div class="rc-desc">The Header has its own dedicated 53px vertical divider between the user menu and help icon.</div>
+          <a href="badge.html" class="related-card">
+            <div class="rc-name">Badge</div>
+            <div class="rc-desc">Use Badge for non-interactive status labels. Tag is for interactive selection / filtering.</div>
           </a>
-          <a href="footer.html" class="related-card">
-            <div class="rc-name">Footer</div>
-            <div class="rc-desc">The Footer carries a top border using the same color/border/interactive token.</div>
+          <a href="dropdown.html" class="related-card">
+            <div class="rc-name">Dropdown</div>
+            <div class="rc-desc">Tag Dropdown opens a Dropdown panel of options to select from.</div>
           </a>
-          <a href="menu.html" class="related-card">
-            <div class="rc-name">Menu</div>
-            <div class="rc-desc">Menu items can be grouped using the inset divider variant.</div>
+          <a href="checkbox.html" class="related-card">
+            <div class="rc-name">Checkbox</div>
+            <div class="rc-desc">Use Checkbox lists for long, scannable multi-select. Tags are better when the selection is itself prominent UI.</div>
           </a>
         </div>
       </section>
@@ -575,10 +597,11 @@
   // ══════════════════════════════════════════
   // TOKEN MAP
   // ══════════════════════════════════════════
-  const tmColorLight = [{"role":"Hairline","token":"color/border/interactive","hex":"#CDD2D7","ref":"color/gray/300"}];
-  const tmColorDark = [{"role":"Hairline","token":"color/border/interactive","hex":"#6B7280","ref":"color/gray/500"}];
-  const tmComponentTokens = [{"role":"Thickness","component":"divider/thickness","primitive":"border-width/thin","value":"1px","icon":"separator-horizontal"},{"role":"Inset (optional)","component":"divider/inset","primitive":"spacing/4x","value":"16px","icon":"space"}];
-  const tmTotalTokens = tmColorLight.length + tmComponentTokens.length;
+  const tmColorLight = [{"role":"Default surface","token":"color/surface/layer-01","hex":"#F9FAFB","ref":"color/gray/50"},{"role":"Default border","token":"color/border/interactive","hex":"#CDD2D7","ref":"color/gray/300"},{"role":"Default text","token":"color/text/primary","hex":"#374151","ref":"color/gray/700"},{"role":"Active surface","token":"color/status/info/bg","hex":"#E5EEF5","ref":"color/blue/50"},{"role":"Active border","token":"color/status/info/border","hex":"#027CB1","ref":"color/blue/600"},{"role":"Active text","token":"color/status/info/text","hex":"#027CB1","ref":"color/blue/600"}];
+  const tmColorDark = [{"role":"Default surface","token":"color/surface/layer-01","hex":"#1E1E1E","ref":"color/neutral/900"},{"role":"Default border","token":"color/border/interactive","hex":"#6B7280","ref":"color/gray/500"},{"role":"Default text","token":"color/text/primary","hex":"#FFFFFF","ref":"color/gray/0"},{"role":"Active surface","token":"color/status/info/bg","hex":"#001F33","ref":"color/blue/950"},{"role":"Active border","token":"color/status/info/border","hex":"#5ABFE0","ref":"color/blue/400"},{"role":"Active text","token":"color/status/info/text","hex":"#5ABFE0","ref":"color/blue/400"}];
+  const tmComponentTokens = [{"role":"Padding X (default)","component":"tag/default/padding/x","primitive":"spacing/4x","value":"16px","icon":"space"},{"role":"Padding Y (default)","component":"tag/default/padding/y","primitive":"spacing/2x","value":"8px","icon":"space"},{"role":"Padding X (compact)","component":"tag/compact/padding/x","primitive":"spacing/3x","value":"12px","icon":"space"},{"role":"Padding Y (compact)","component":"tag/compact/padding/y","primitive":"spacing/1x","value":"4px","icon":"space"},{"role":"Gap (default)","component":"tag/default/gap","primitive":"spacing/2x","value":"8px","icon":"columns-3"},{"role":"Gap (compact)","component":"tag/compact/gap","primitive":"spacing/1x","value":"4px","icon":"columns-3"},{"role":"Border radius","component":"tag/radius","primitive":"radius/full","value":"100px","icon":"square-round-corner"},{"role":"Border width","component":"tag/border-width","primitive":"border-width/thin","value":"1px","icon":"separator-horizontal"}];
+  const tmTypographyTokens = [{"role":"Default label","style":"typography/body/small","font":"Lato","weight":"Regular (400)","size":"14px","lineHeight":"19px","letterSpacing":"0"},{"role":"Active label","style":"typography/body/small (bold)","font":"Lato","weight":"Bold (700)","size":"14px","lineHeight":"19px","letterSpacing":"0"},{"role":"Compact label","style":"typography/helper/regular","font":"Lato","weight":"Regular (400)","size":"12px","lineHeight":"16px","letterSpacing":"0"}];
+  const tmTotalTokens = tmColorLight.length + tmComponentTokens.length + tmTypographyTokens.length;
   const tmState = { tab:'color', mode:'light' };
   const tmCards = document.getElementById('tmCards');
   const tmPreviewCard = document.querySelector('.tm-preview-card');
@@ -586,9 +609,18 @@
   document.getElementById('tmCountNum').textContent = tmTotalTokens;
   const tmPreview = document.getElementById('tmPreview');
 
-  const colorPartMap = { 'hairline':['divider'] };
-  const compSpotlightMap = { 'thickness':'spotlight-thickness', 'inset-optional':'spotlight-color' };
-  const spotlightClasses = ['has-spotlight','spotlight-color','spotlight-thickness'];
+  const colorPartMap = {
+    'default-surface':['default'], 'default-border':['default'], 'default-text':['default'],
+    'active-surface':['active'], 'active-border':['active'], 'active-text':['active'],
+  };
+  const compSpotlightMap = {
+    'padding-x-default':'spotlight-padding-x', 'padding-y-default':'spotlight-padding-y',
+    'padding-x-compact':'spotlight-padding-x', 'padding-y-compact':'spotlight-padding-y',
+    'gap-default':'spotlight-gap', 'gap-compact':'spotlight-gap',
+    'border-radius':'spotlight-radius', 'border-width':'spotlight-radius',
+  };
+  const typoPartMap = { 'default-label':['default'], 'active-label':['active'], 'compact-label':[] };
+  const spotlightClasses = ['has-spotlight','spotlight-padding-x','spotlight-padding-y','spotlight-radius','spotlight-gap'];
 
   function slug(s){ return s.toLowerCase().replace(/[^a-z0-9]+/g,'-').replace(/-+$/,''); }
   function clearSpotlight(){
@@ -597,12 +629,11 @@
   }
   function spotlight(sl){
     if(compSpotlightMap[sl]){ tmPreview.classList.add(compSpotlightMap[sl]); return; }
-    const parts = colorPartMap[sl];
+    const parts = colorPartMap[sl] || typoPartMap[sl];
     if(!parts||!parts.length) return;
     tmPreview.classList.add('has-spotlight');
     parts.forEach(p=>{ const el=tmPreview.querySelector('[data-part="'+p+'"]'); if(el) el.classList.add('spotlight'); });
   }
-
   function tmRender() {
     const colors = tmState.mode==='light' ? tmColorLight : tmColorDark;
     tmPreviewCard.setAttribute('data-bg', tmState.mode);
@@ -612,10 +643,15 @@
         const s=slug(c.role);
         html+='<div class="tm-row" data-slot="'+s+'"><div class="tm-row-header"><div class="tm-row-swatch" style="background:'+c.hex+'"></div><div class="tm-row-label">'+c.role+'</div></div><div class="tm-chain-row"><div class="tm-chip">'+c.token+'</div><div class="tm-chain-arrow">'+arrowSvg+'</div><div class="tm-chip">'+(c.ref||c.token)+'</div><div class="tm-chain-arrow">'+arrowSvg+'</div><div class="tm-chip" style="font-weight:600">'+c.hex+'</div></div></div>';
       }
-    } else {
+    } else if (tmState.tab==='component') {
       for (const ct of tmComponentTokens) {
         const s=slug(ct.role);
         html+='<div class="tm-row" data-slot="'+s+'"><div class="tm-row-header"><div class="tm-row-icon"><i data-lucide="'+ct.icon+'" style="width:16px;height:16px"></i></div><div class="tm-row-label">'+ct.role+'</div></div><div class="tm-chain-row"><div class="tm-chip">'+ct.component+'</div><div class="tm-chain-arrow">'+arrowSvg+'</div><div class="tm-chip">'+ct.primitive+'</div><div class="tm-chain-arrow">'+arrowSvg+'</div><div class="tm-chip" style="font-weight:600">'+ct.value+'</div></div></div>';
+      }
+    } else {
+      for (const tt of tmTypographyTokens) {
+        const s=slug(tt.role);
+        html+='<div class="tm-row" data-slot="'+s+'"><div class="tm-row-header"><div class="tm-row-icon"><i data-lucide="type" style="width:16px;height:16px"></i></div><div class="tm-row-label">'+tt.role+'</div></div><div class="tm-chain-row" style="flex-direction:column;align-items:flex-start;gap:6px;"><div style="display:flex;align-items:center;gap:10px;flex-wrap:wrap;"><div class="tm-chip">'+tt.style+'</div></div><div style="display:flex;align-items:center;gap:8px;flex-wrap:wrap;font-family:var(--mono);font-size:12px;color:var(--text-tertiary);"><span>'+tt.font+'</span><span>&middot;</span><span>'+tt.weight+'</span><span>&middot;</span><span>'+tt.size+' / '+tt.lineHeight+'</span></div></div></div>';
       }
     }
     tmCards.innerHTML = html;
