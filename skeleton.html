@@ -3,23 +3,21 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Footer — nuShip Design System</title>
+  <title>Skeleton — nuShip Design System</title>
   <link href="https://fonts.googleapis.com/css2?family=Lato:wght@400;600;700;900&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="tokens.css">
   <link rel="stylesheet" href="styles.css">
   <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.min.js"></script>
   <script src="nav-scroll.js" defer></script>
   <style>
-    /* Footer token map spotlights */
-    #tmPreview { position:relative; min-height:120px; display:block; padding:0; }
-    #tmPreview.spotlight-padding-x .ft-footer { outline:2px solid #FF4081; outline-offset:-1px; }
-    #tmPreview.spotlight-padding-x::after { content:'24px'; position:absolute; top:50%; left:6px; transform:translateY(-50%); font-size:10px; font-family:var(--mono); color:#FF4081; background:rgba(255,255,255,0.95); padding:1px 4px; border-radius:2px; font-weight:700; z-index:2; }
-    #tmPreview.spotlight-padding-y .ft-footer { outline:2px solid #FF4081; outline-offset:-1px; }
-    #tmPreview.spotlight-padding-y::after { content:'16px'; position:absolute; top:6px; left:50%; transform:translateX(-50%); font-size:10px; font-family:var(--mono); color:#FF4081; background:rgba(255,255,255,0.95); padding:1px 4px; border-radius:2px; font-weight:700; z-index:2; }
-    #tmPreview.spotlight-row-gap .ft-footer { outline:2px solid #FF4081; outline-offset:-1px; }
-    #tmPreview.spotlight-row-gap::after { content:'16px'; position:absolute; top:50%; right:6px; transform:translateY(-50%); font-size:10px; font-family:var(--mono); color:#FF4081; background:rgba(255,255,255,0.95); padding:1px 4px; border-radius:2px; font-weight:700; z-index:2; }
-    #tmPreview.spotlight-link-gap .ft-links { outline:2px solid #FF4081; outline-offset:2px; border-radius:4px; }
-    #tmPreview.spotlight-link-gap::after { content:'24px'; position:absolute; bottom:6px; left:50%; transform:translateX(-50%); font-size:10px; font-family:var(--mono); color:#FF4081; background:rgba(255,255,255,0.95); padding:1px 4px; border-radius:2px; font-weight:700; z-index:2; }
+    /* Skeleton token map spotlights */
+    #tmPreview { position:relative; min-height:160px; display:flex; align-items:center; justify-content:center; padding:0 16px; }
+    #tmPreview.spotlight-text-radius .sk-line { outline:2px solid #FF4081; outline-offset:2px; }
+    #tmPreview.spotlight-text-radius::after { content:'2px'; position:absolute; top:-16px; left:16px; font-size:10px; font-family:var(--mono); color:#FF4081; background:rgba(255,255,255,0.95); padding:1px 4px; border-radius:2px; font-weight:700; }
+    #tmPreview.spotlight-area-radius .sk-area { outline:2px solid #FF4081; outline-offset:2px; }
+    #tmPreview.spotlight-area-radius::after { content:'6px'; position:absolute; top:-16px; right:16px; font-size:10px; font-family:var(--mono); color:#FF4081; background:rgba(255,255,255,0.95); padding:1px 4px; border-radius:2px; font-weight:700; }
+    #tmPreview.spotlight-text-gap .sk-text { outline:2px solid #FF4081; outline-offset:2px; border-radius:4px; }
+    #tmPreview.spotlight-text-gap::after { content:'16px'; position:absolute; top:50%; left:50%; transform:translate(-50%,-50%); font-size:10px; font-family:var(--mono); color:#FF4081; background:rgba(255,255,255,0.95); padding:1px 4px; border-radius:2px; font-weight:700; }
   </style>
 </head>
 <body>
@@ -33,9 +31,9 @@
   <div class="bc">
     <a href="index.html">UI Components</a>
     <i data-lucide="chevron-right" style="width:14px;height:14px;flex-shrink:0"></i>
-    <a href="#">Layout</a>
+    <a href="#">Display</a>
     <i data-lucide="chevron-right" style="width:14px;height:14px;flex-shrink:0"></i>
-    <span class="cur">Footer</span>
+    <span class="cur">Skeleton</span>
   </div>
   <div class="nav-actions">
     <div class="toggle-wrap" onclick="toggleTheme()" role="button">
@@ -106,7 +104,7 @@
         <div class="ln-label">Layout</div>
         <ul class="ln-list">
           <li><a href="header.html">Header</a></li>
-          <li><a href="footer.html" class="active">Footer</a></li>
+          <li><a href="footer.html">Footer</a></li>
         </ul>
       </div>
       <div class="ln-group">
@@ -116,7 +114,7 @@
           <li><a href="carousel.html">Carousel</a></li>
           <li><a href="fileupload.html">File Upload</a></li>
           <li><a href="progressbar.html">Progress Bar</a></li>
-          <li><a href="skeleton.html">Skeleton</a></li>
+          <li><a href="skeleton.html" class="active">Skeleton</a></li>
           <li><a href="starrating.html">Star Rating</a></li>
         </ul>
       </div>
@@ -129,25 +127,26 @@
 
       <!-- 1 · DEFINITION -->
       <section class="doc-section" id="definition">
-        <div class="def-eyebrow">Layout</div>
-        <h1 class="def-title">Footer</h1>
-        <p class="def-desc">The Footer anchors the bottom of every page with a copyright line and a row of utility links — User Agreement, Privacy Policy, Site Map, Cookie Policy, Accessibility, and Help.</p>
+        <div class="def-eyebrow">Display</div>
+        <h1 class="def-title">Skeleton</h1>
+        <p class="def-desc">Skeletons are placeholder shapes that hold the position of content while it loads, with a subtle shimmer animation that signals progress without distracting the user. Two variants are available — Text for paragraph or label placeholders and Area for rectangular blocks like cards, images, or media regions.</p>
         <div class="def-tags">
           <span class="tag">Developed</span>
           <span class="tag">Figma</span>
         </div>
         <div class="preview-box">
-          <div class="preview-box-inner" style="padding:0;">
-            <div class="ft-footer">
-              <p class="ft-copyright">Copyright © 2026, uShip Inc. and its licensors. All rights reserved.</p>
-              <div class="ft-links">
-                <a class="ft-link" href="#">uShip User Agreement</a>
-                <a class="ft-link" href="#">Privacy Policy</a>
-                <a class="ft-link" href="#">Site Map</a>
-                <a class="ft-link" href="#">Cookie Policy</a>
-                <a class="ft-link" href="#">Accessibility</a>
-                <a class="ft-link" href="#">Help</a>
+          <div class="preview-box-inner">
+            <div style="display:flex;flex-direction:column;gap:32px;width:100%;padding:24px 0;">
+
+              <div class="sk-text" style="width:100%;">
+                <div class="sk-line"></div>
+                <div class="sk-line" style="width:70%;"></div>
+                <div class="sk-line"></div>
+                <div class="sk-line" style="width:50%;"></div>
               </div>
+
+              <div class="sk-area" style="width:100%;height:96px;"></div>
+
             </div>
           </div>
         </div>
@@ -157,28 +156,25 @@
       <section class="doc-section" id="anatomy">
         <h2 class="section-title">Anatomy</h2>
         <div class="anatomy-wrap">
-          <div class="anatomy-component" style="padding:32px 0;max-width:100%;">
+          <div class="anatomy-component" style="padding:32px 0;max-width:440px;">
             <div style="position:relative;">
-              <div class="ft-footer">
-                <p class="ft-copyright">Copyright © 2026, uShip Inc. and its licensors. All rights reserved.</p>
-                <div class="ft-links">
-                  <a class="ft-link" href="#">uShip User Agreement</a>
-                  <a class="ft-link" href="#">Privacy Policy</a>
-                  <a class="ft-link" href="#">Site Map</a>
-                  <a class="ft-link" href="#">Cookie Policy</a>
-                  <a class="ft-link" href="#">Accessibility</a>
-                  <a class="ft-link" href="#">Help</a>
-                </div>
+              <div class="sk-text" style="width:100%;">
+                <div class="sk-line"></div>
+                <div class="sk-line" style="width:70%;"></div>
+                <div class="sk-line"></div>
               </div>
-              <span class="callout" style="top:-4px;left:-4px;">1</span>
-              <span class="callout" style="top:14px;left:14px;">2</span>
-              <span class="callout" style="bottom:14px;left:14px;">3</span>
+              <div class="sk-area" style="width:100%;height:64px;margin-top:24px;"></div>
+              <span class="callout" style="top:2px;left:-4px;">1</span>
+              <span class="callout" style="top:18px;left:-4px;">2</span>
+              <span class="callout" style="bottom:32px;left:-4px;">3</span>
+              <span class="callout" style="top:8px;right:-4px;left:auto;transform:none;">4</span>
             </div>
           </div>
           <div class="anatomy-legend">
-            <div class="legend-item"><span class="legend-num">1</span>Container (white bg, top border)</div>
-            <div class="legend-item"><span class="legend-num">2</span>Copyright line (secondary text)</div>
-            <div class="legend-item"><span class="legend-num">3</span>Link rail (24px gap between links)</div>
+            <div class="legend-item"><span class="legend-num">1</span>Track (base color)</div>
+            <div class="legend-item"><span class="legend-num">2</span>Shimmer highlight (sweeps left → right)</div>
+            <div class="legend-item"><span class="legend-num">3</span>Text line (2px radius)</div>
+            <div class="legend-item"><span class="legend-num">4</span>Area block (6px radius)</div>
           </div>
         </div>
       </section>
@@ -186,47 +182,116 @@
       <!-- 3 · VARIANTS -->
       <section class="doc-section" id="variants">
         <h2 class="section-title">Variants</h2>
-        <p style="font-size:14px;color:var(--text-secondary);margin-bottom:16px;">Footer has a single layout. The preview below shows it on light and dark surfaces.</p>
-        <div class="var-panel">
-          <div class="var-previews-wrap">
-            <div class="var-previews">
-              <div class="var-preview" style="padding:0;">
-                <div class="ft-footer" style="width:100%;">
-                  <p class="ft-copyright">Copyright © 2026, uShip Inc. and its licensors. All rights reserved.</p>
-                  <div class="ft-links">
-                    <a class="ft-link" href="#">uShip User Agreement</a>
-                    <a class="ft-link" href="#">Privacy Policy</a>
-                    <a class="ft-link" href="#">Site Map</a>
-                    <a class="ft-link" href="#">Cookie Policy</a>
-                    <a class="ft-link" href="#">Accessibility</a>
-                    <a class="ft-link" href="#">Help</a>
+        <div class="tabs-wrap">
+          <div class="tabs">
+            <button class="tab active" onclick="switchTab(this,'v-text')">Text</button>
+            <button class="tab" onclick="switchTab(this,'v-area')">Area</button>
+            <button class="tab" onclick="switchTab(this,'v-composed')">Composed</button>
+          </div>
+        </div>
+
+        <!-- TEXT -->
+        <div class="tab-panel active" id="v-text">
+          <div class="var-panel">
+            <div class="var-previews-wrap">
+              <div class="var-previews">
+                <div class="var-preview" style="padding:32px 24px;">
+                  <div class="sk-text" style="width:100%;">
+                    <div class="sk-line"></div>
+                    <div class="sk-line" style="width:70%;"></div>
+                    <div class="sk-line"></div>
+                    <div class="sk-line" style="width:50%;"></div>
                   </div>
                 </div>
-              </div>
-              <div class="var-preview-dark" style="padding:0;">
-                <div class="ft-footer" style="width:100%;">
-                  <p class="ft-copyright">Copyright © 2026, uShip Inc. and its licensors. All rights reserved.</p>
-                  <div class="ft-links">
-                    <a class="ft-link" href="#">uShip User Agreement</a>
-                    <a class="ft-link" href="#">Privacy Policy</a>
-                    <a class="ft-link" href="#">Site Map</a>
-                    <a class="ft-link" href="#">Cookie Policy</a>
-                    <a class="ft-link" href="#">Accessibility</a>
-                    <a class="ft-link" href="#">Help</a>
+                <div class="var-preview-dark" style="padding:32px 24px;">
+                  <div class="sk-text" style="width:100%;">
+                    <div class="sk-line"></div>
+                    <div class="sk-line" style="width:70%;"></div>
+                    <div class="sk-line"></div>
+                    <div class="sk-line" style="width:50%;"></div>
                   </div>
                 </div>
               </div>
             </div>
-          </div>
-          <div class="var-desc">
-            <div class="var-use-when">Footer — use when:</div>
-            <ul class="var-use-list">
-              <li>Anchoring the bottom of every page in the product</li>
-              <li>Surfacing legal, accessibility, and help links in a consistent place</li>
-              <li>The link rail wraps to a second line on narrower viewports</li>
-            </ul>
+            <div class="var-desc">
+              <div class="var-use-when">Text — use when:</div>
+              <ul class="var-use-list">
+                <li>Reserving space for a paragraph, label, or list of strings</li>
+                <li>Each line uses <code>2px</code> radius and a <code>16px</code> gap below</li>
+                <li>Vary line widths (50%, 70%, 100%) so the placeholder reads as natural prose</li>
+              </ul>
+            </div>
           </div>
         </div>
+
+        <!-- AREA -->
+        <div class="tab-panel" id="v-area">
+          <div class="var-panel">
+            <div class="var-previews-wrap">
+              <div class="var-previews">
+                <div class="var-preview" style="padding:32px 24px;">
+                  <div style="display:flex;flex-direction:column;gap:16px;width:100%;">
+                    <div class="sk-area" style="width:100%;height:96px;"></div>
+                    <div class="sk-area" style="width:140px;height:140px;border-radius:50%;align-self:center;"></div>
+                  </div>
+                </div>
+                <div class="var-preview-dark" style="padding:32px 24px;">
+                  <div style="display:flex;flex-direction:column;gap:16px;width:100%;">
+                    <div class="sk-area" style="width:100%;height:96px;"></div>
+                    <div class="sk-area" style="width:140px;height:140px;border-radius:50%;align-self:center;"></div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="var-desc">
+              <div class="var-use-when">Area — use when:</div>
+              <ul class="var-use-list">
+                <li>Reserving space for a card, image, media block, or icon</li>
+                <li>Default <code>6px</code> radius; override to <code>50%</code> for circular avatars</li>
+                <li>Set explicit width and height to match the real content's footprint</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <!-- COMPOSED -->
+        <div class="tab-panel" id="v-composed">
+          <div class="var-panel">
+            <div class="var-previews-wrap">
+              <div class="var-previews">
+                <div class="var-preview" style="padding:24px;">
+                  <div style="display:flex;gap:16px;align-items:flex-start;width:100%;">
+                    <div class="sk-area" style="width:48px;height:48px;border-radius:50%;flex-shrink:0;"></div>
+                    <div class="sk-text" style="flex:1;">
+                      <div class="sk-line" style="width:60%;"></div>
+                      <div class="sk-line"></div>
+                      <div class="sk-line" style="width:80%;"></div>
+                    </div>
+                  </div>
+                </div>
+                <div class="var-preview-dark" style="padding:24px;">
+                  <div style="display:flex;gap:16px;align-items:flex-start;width:100%;">
+                    <div class="sk-area" style="width:48px;height:48px;border-radius:50%;flex-shrink:0;"></div>
+                    <div class="sk-text" style="flex:1;">
+                      <div class="sk-line" style="width:60%;"></div>
+                      <div class="sk-line"></div>
+                      <div class="sk-line" style="width:80%;"></div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="var-desc">
+              <div class="var-use-when">Composed — use when:</div>
+              <ul class="var-use-list">
+                <li>Mirroring a real layout (e.g. avatar + name + body) so the load-in is seamless</li>
+                <li>Combine Area and Text primitives — keep widths and gaps consistent with the final UI</li>
+                <li>The shimmer animations stay in sync because they share a single keyframe timing</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
       </section>
 
       <!-- 4 · PROPERTIES -->
@@ -238,22 +303,40 @@
           </thead>
           <tbody>
             <tr>
-              <td class="p-name">copyright</td>
-              <td class="p-type">string</td>
-              <td class="p-def">"Copyright © {year}, uShip Inc. ..."</td>
-              <td class="p-desc">Top-row copyright statement</td>
+              <td class="p-name">variant</td>
+              <td class="p-type">"text" | "area"</td>
+              <td class="p-def">"area"</td>
+              <td class="p-desc">Shape preset — pill-shaped text line or rounded block</td>
             </tr>
             <tr>
-              <td class="p-name">links</td>
-              <td class="p-type">FooterLink[]</td>
-              <td class="p-def">defaults</td>
-              <td class="p-desc">Array of links displayed in the bottom rail</td>
+              <td class="p-name">width</td>
+              <td class="p-type">string | number</td>
+              <td class="p-def">"100%"</td>
+              <td class="p-desc">Width of the placeholder (px or %)</td>
             </tr>
             <tr>
-              <td class="p-name">year</td>
+              <td class="p-name">height</td>
+              <td class="p-type">string | number</td>
+              <td class="p-def">"1em" / —</td>
+              <td class="p-desc">Height of the placeholder. Defaults match the variant.</td>
+            </tr>
+            <tr>
+              <td class="p-name">lines</td>
               <td class="p-type">number</td>
-              <td class="p-def">current year</td>
-              <td class="p-desc">Year shown in the copyright statement</td>
+              <td class="p-def">3</td>
+              <td class="p-desc">Number of text lines (text variant only)</td>
+            </tr>
+            <tr>
+              <td class="p-name">radius</td>
+              <td class="p-type">string | number</td>
+              <td class="p-def">"2" / "6"</td>
+              <td class="p-desc">Border-radius. Override for circles or custom shapes.</td>
+            </tr>
+            <tr>
+              <td class="p-name">animate</td>
+              <td class="p-type">boolean</td>
+              <td class="p-def">true</td>
+              <td class="p-desc">Whether to run the shimmer animation</td>
             </tr>
           </tbody>
         </table>
@@ -273,6 +356,7 @@
               <ul class="usage-list">
                 <li>Lorem ipsum dolor sit amet consectetur</li>
                 <li>Adipiscing elit sed do eiusmod tempor</li>
+                <li>Incididunt ut labore et dolore magna</li>
               </ul>
             </div>
             <div class="usage-card">
@@ -368,15 +452,14 @@
         <div class="tm-map">
           <div>
             <div class="tm-preview-card" data-bg="light">
-              <div class="tm-preview-inner" style="padding:0;align-items:stretch;">
+              <div class="tm-preview-inner">
                 <div id="tmPreview" class="tm-preview" style="width:100%;">
-                  <div class="ft-footer" data-part="footer">
-                    <p class="ft-copyright" data-part="copyright">Copyright © 2026, uShip Inc. and its licensors. All rights reserved.</p>
-                    <div class="ft-links" data-part="links">
-                      <a class="ft-link" href="#">User Agreement</a>
-                      <a class="ft-link" href="#">Privacy Policy</a>
-                      <a class="ft-link" href="#">Help</a>
+                  <div style="display:flex;flex-direction:column;gap:16px;width:100%;max-width:360px;">
+                    <div class="sk-text" data-part="text">
+                      <div class="sk-line" data-part="line1"></div>
+                      <div class="sk-line" data-part="line2" style="width:70%;"></div>
                     </div>
+                    <div class="sk-area" data-part="area" style="width:100%;height:48px;"></div>
                   </div>
                 </div>
               </div>
@@ -389,7 +472,6 @@
               <div class="tm-seg" style="margin:0 0 12px;">
                 <button class="tm-seg-item tm-seg-item--active" data-tab="color"><i data-lucide="palette" class="tm-seg-icon"></i> Color</button>
                 <button class="tm-seg-item" data-tab="component"><i data-lucide="ruler" class="tm-seg-icon"></i> Component</button>
-                <button class="tm-seg-item" data-tab="typography"><i data-lucide="type" class="tm-seg-icon"></i> Typography</button>
               </div>
             </div>
             <div class="tm-tokens-body" id="tmCards"></div>
@@ -402,16 +484,16 @@
         <h2 class="section-title">Accessibility</h2>
         <ul class="a11y-list">
           <li>
-            <div><strong>Landmark:</strong> Wrap in <code>&lt;footer role="contentinfo"&gt;</code> so assistive tech can jump to it directly.</div>
+            <div><strong>ARIA:</strong> Wrap the skeleton group in <code>role="status"</code> with <code>aria-busy="true"</code> and <code>aria-live="polite"</code> so screen readers announce the loading state without dumping the placeholder shapes.</div>
           </li>
           <li>
-            <div><strong>Keyboard:</strong> Every link must be reachable in tab order with a visible focus ring.</div>
+            <div><strong>Hide decorations from AT:</strong> Each individual shape should have <code>aria-hidden="true"</code>. The visible "Loading…" announcement comes from the wrapping live region, not the skeleton bars themselves.</div>
           </li>
           <li>
-            <div><strong>Contrast:</strong> Copyright text (#4B5563 on white) clears WCAG AA at 7:1; link blue (#016692) clears AA at 4.5:1.</div>
+            <div><strong>Reduced motion:</strong> Honor <code>prefers-reduced-motion</code> by disabling the shimmer keyframes — the static gray track is still a valid loading indicator.</div>
           </li>
           <li>
-            <div><strong>Wrap behaviour:</strong> The link rail wraps gracefully on narrow viewports — no horizontal scroll.</div>
+            <div><strong>Don't show forever:</strong> If a request takes longer than ~10s, replace the skeleton with a fallback message so users aren't stuck staring at an animation.</div>
           </li>
         </ul>
       </section>
@@ -420,13 +502,13 @@
       <section class="doc-section" id="related">
         <h2 class="section-title">Related Components</h2>
         <div class="related-grid">
-          <a href="header.html" class="related-card">
-            <div class="rc-name">Header</div>
-            <div class="rc-desc">The top companion to Footer — branding, primary nav, and user menu.</div>
+          <a href="progressbar.html" class="related-card">
+            <div class="rc-name">Progress Bar</div>
+            <div class="rc-desc">Use Progress Bar when you can report deterministic progress. Skeleton is for indeterminate loading.</div>
           </a>
-          <a href="link.html" class="related-card">
-            <div class="rc-name">Link</div>
-            <div class="rc-desc">Footer links use the same color and underline-on-hover treatment as the Link component.</div>
+          <a href="alert.html" class="related-card">
+            <div class="rc-name">Alert</div>
+            <div class="rc-desc">Use Alert to surface a fallback message after a long-running load fails or stalls.</div>
           </a>
         </div>
       </section>
@@ -463,6 +545,22 @@
     if (!isMobile()) document.getElementById('contentWrap').style.marginLeft = sbOpen ? 'var(--left-w)' : '0';
     document.getElementById('navOverlay').classList.toggle('active', sbOpen && isMobile());
   }
+  function updateTabFade(tabsEl) {
+    const wrap = tabsEl.closest('.tabs-wrap'); if (!wrap) return;
+    const atEnd = tabsEl.scrollLeft + tabsEl.clientWidth >= tabsEl.scrollWidth - 2;
+    wrap.classList.toggle('at-end', atEnd);
+  }
+  function switchTab(btn, panelId) {
+    btn.closest('.doc-section').querySelectorAll('.tab').forEach(b => b.classList.remove('active'));
+    btn.closest('.doc-section').querySelectorAll('.tab-panel').forEach(p => p.classList.remove('active'));
+    btn.classList.add('active');
+    document.getElementById(panelId).classList.add('active');
+    const tabsEl = btn.closest('.tabs'); if (tabsEl) updateTabFade(tabsEl);
+    lucide.createIcons();
+  }
+  window.addEventListener('load', () => {
+    document.querySelectorAll('.tabs').forEach(tabsEl => { updateTabFade(tabsEl); tabsEl.addEventListener('scroll', () => updateTabFade(tabsEl)); });
+  });
   function toggleTheme() {
     const d = document.documentElement;
     d.setAttribute('data-theme', d.getAttribute('data-theme') === 'dark' ? 'light' : 'dark');
@@ -482,11 +580,10 @@
   // ══════════════════════════════════════════
   // TOKEN MAP
   // ══════════════════════════════════════════
-  const tmColorLight = [{"role":"Surface","token":"color/surface/shell","hex":"#FFFFFF","ref":"color/gray/0"},{"role":"Border top","token":"color/border/interactive","hex":"#CDD2D7","ref":"color/gray/300"},{"role":"Copyright text","token":"color/text/secondary","hex":"#4B5563","ref":"color/gray/600"},{"role":"Link","token":"color/link/surface-card/default","hex":"#016692","ref":"color/blue/700"}];
-  const tmColorDark = [{"role":"Surface","token":"color/surface/shell","hex":"#0A0A0A","ref":"color/neutral/950"},{"role":"Border top","token":"color/border/interactive","hex":"#6B7280","ref":"color/gray/500"},{"role":"Copyright text","token":"color/text/secondary","hex":"#E5E7EB","ref":"color/gray/200"},{"role":"Link","token":"color/link/surface-card/default","hex":"#5ABFE0","ref":"color/blue/400"}];
-  const tmComponentTokens = [{"role":"Padding X","component":"footer/padding/x","primitive":"spacing/6x","value":"24px","icon":"space"},{"role":"Padding Y","component":"footer/padding/y","primitive":"spacing/4x","value":"16px","icon":"space"},{"role":"Row gap","component":"footer/row/gap","primitive":"spacing/4x","value":"16px","icon":"columns-3"},{"role":"Link gap","component":"footer/link/gap","primitive":"spacing/6x","value":"24px","icon":"columns-3"}];
-  const tmTypographyTokens = [{"role":"Copyright","style":"typography/body/small","font":"Lato","weight":"Regular (400)","size":"14px","lineHeight":"19px","letterSpacing":"0"},{"role":"Link","style":"typography/body/small","font":"Lato","weight":"Regular (400)","size":"14px","lineHeight":"19px","letterSpacing":"0"}];
-  const tmTotalTokens = tmColorLight.length + tmComponentTokens.length + tmTypographyTokens.length;
+  const tmColorLight = [{"role":"Track","token":"color/surface/skeleton/track","hex":"#CDD2D7","ref":"color/gray/300"},{"role":"Highlight","token":"color/surface/skeleton/highlight","hex":"#E5E7EB","ref":"color/gray/200"}];
+  const tmColorDark = [{"role":"Track","token":"color/surface/skeleton/track","hex":"#374151","ref":"color/gray/700"},{"role":"Highlight","token":"color/surface/skeleton/highlight","hex":"#4B5563","ref":"color/gray/600"}];
+  const tmComponentTokens = [{"role":"Text radius","component":"skeleton/radius/text","primitive":"radius/xs","value":"2px","icon":"square-round-corner"},{"role":"Area radius","component":"skeleton/radius/area","primitive":"radius/sm","value":"6px","icon":"square-round-corner"},{"role":"Text gap","component":"skeleton/text/gap","primitive":"spacing/4x","value":"16px","icon":"columns-3"}];
+  const tmTotalTokens = tmColorLight.length + tmComponentTokens.length;
   const tmState = { tab:'color', mode:'light' };
   const tmCards = document.getElementById('tmCards');
   const tmPreviewCard = document.querySelector('.tm-preview-card');
@@ -495,15 +592,12 @@
   const tmPreview = document.getElementById('tmPreview');
 
   const colorPartMap = {
-    'surface':['footer'], 'border-top':['footer'],
-    'copyright-text':['copyright'], 'link':['links'],
+    'track':['line1','line2','area'], 'highlight':['line1','line2','area'],
   };
   const compSpotlightMap = {
-    'padding-x':'spotlight-padding-x', 'padding-y':'spotlight-padding-y',
-    'row-gap':'spotlight-row-gap', 'link-gap':'spotlight-link-gap',
+    'text-radius':'spotlight-text-radius', 'area-radius':'spotlight-area-radius', 'text-gap':'spotlight-text-gap',
   };
-  const typoPartMap = { 'copyright':['copyright'], 'link':['links'] };
-  const spotlightClasses = ['has-spotlight','spotlight-padding-x','spotlight-padding-y','spotlight-row-gap','spotlight-link-gap'];
+  const spotlightClasses = ['has-spotlight','spotlight-text-radius','spotlight-area-radius','spotlight-text-gap'];
 
   function slug(s){ return s.toLowerCase().replace(/[^a-z0-9]+/g,'-').replace(/-+$/,''); }
   function clearSpotlight(){
@@ -512,11 +606,12 @@
   }
   function spotlight(sl){
     if(compSpotlightMap[sl]){ tmPreview.classList.add(compSpotlightMap[sl]); return; }
-    const parts = colorPartMap[sl] || typoPartMap[sl];
+    const parts = colorPartMap[sl];
     if(!parts||!parts.length) return;
     tmPreview.classList.add('has-spotlight');
     parts.forEach(p=>{ const el=tmPreview.querySelector('[data-part="'+p+'"]'); if(el) el.classList.add('spotlight'); });
   }
+
   function tmRender() {
     const colors = tmState.mode==='light' ? tmColorLight : tmColorDark;
     tmPreviewCard.setAttribute('data-bg', tmState.mode);
@@ -526,15 +621,10 @@
         const s=slug(c.role);
         html+='<div class="tm-row" data-slot="'+s+'"><div class="tm-row-header"><div class="tm-row-swatch" style="background:'+c.hex+'"></div><div class="tm-row-label">'+c.role+'</div></div><div class="tm-chain-row"><div class="tm-chip">'+c.token+'</div><div class="tm-chain-arrow">'+arrowSvg+'</div><div class="tm-chip">'+(c.ref||c.token)+'</div><div class="tm-chain-arrow">'+arrowSvg+'</div><div class="tm-chip" style="font-weight:600">'+c.hex+'</div></div></div>';
       }
-    } else if (tmState.tab==='component') {
+    } else {
       for (const ct of tmComponentTokens) {
         const s=slug(ct.role);
         html+='<div class="tm-row" data-slot="'+s+'"><div class="tm-row-header"><div class="tm-row-icon"><i data-lucide="'+ct.icon+'" style="width:16px;height:16px"></i></div><div class="tm-row-label">'+ct.role+'</div></div><div class="tm-chain-row"><div class="tm-chip">'+ct.component+'</div><div class="tm-chain-arrow">'+arrowSvg+'</div><div class="tm-chip">'+ct.primitive+'</div><div class="tm-chain-arrow">'+arrowSvg+'</div><div class="tm-chip" style="font-weight:600">'+ct.value+'</div></div></div>';
-      }
-    } else {
-      for (const tt of tmTypographyTokens) {
-        const s=slug(tt.role);
-        html+='<div class="tm-row" data-slot="'+s+'"><div class="tm-row-header"><div class="tm-row-icon"><i data-lucide="type" style="width:16px;height:16px"></i></div><div class="tm-row-label">'+tt.role+'</div></div><div class="tm-chain-row" style="flex-direction:column;align-items:flex-start;gap:6px;"><div style="display:flex;align-items:center;gap:10px;flex-wrap:wrap;"><div class="tm-chip">'+tt.style+'</div></div><div style="display:flex;align-items:center;gap:8px;flex-wrap:wrap;font-family:var(--mono);font-size:12px;color:var(--text-tertiary);"><span>'+tt.font+'</span><span>&middot;</span><span>'+tt.weight+'</span><span>&middot;</span><span>'+tt.size+' / '+tt.lineHeight+'</span>'+(tt.letterSpacing!=='0'?'<span>&middot;</span><span>ls: '+tt.letterSpacing+'</span>':'')+'</div></div></div>';
       }
     }
     tmCards.innerHTML = html;
