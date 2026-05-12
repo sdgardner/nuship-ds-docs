@@ -60,9 +60,12 @@ body {
   position: absolute; top: 2px; left: 2px;
   width: 12px; height: 12px;
   background: #fff; border-radius: 50%;
+  /* default = light theme: thumb sits at the right (near the sun icon) */
+  transform: translateX(12px);
   transition: transform .2s;
 }
-[data-theme="dark"] .toggle-thumb { transform: translateX(12px); }
+/* dark theme: thumb slides left toward the moon */
+[data-theme="dark"] .toggle-thumb { transform: translateX(0); }
 
 /* ─── PAGE SHELL ─────────────────────────────────── */
 .shell {

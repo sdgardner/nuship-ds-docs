@@ -1,3 +1,26 @@
+// ── Theme persistence ───────────────────────────────────
+// Runs as soon as the script is parsed (defer fires after HTML parse
+// but before DOMContentLoaded), so the stored theme is applied to
+// <html data-theme> before most paints. Inline page scripts may run
+// after this; we also override window.toggleTheme below so future
+// clicks save to localStorage.
+(function applyStoredTheme() {
+  try {
+    const t = localStorage.getItem('theme');
+    if (t === 'dark' || t === 'light') {
+      document.documentElement.setAttribute('data-theme', t);
+    }
+  } catch (e) { /* localStorage may be unavailable */ }
+})();
+
+// Override the per-page inline toggleTheme so toggling persists.
+window.toggleTheme = function () {
+  const html = document.documentElement;
+  const next = html.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
+  html.setAttribute('data-theme', next);
+  try { localStorage.setItem('theme', next); } catch (e) { /* noop */ }
+};
+
 (function () {
   const SCROLL_KEY = 'leftNavScrollTop';
   const COLLAPSE_PREFIX = 'lnGroup:';
