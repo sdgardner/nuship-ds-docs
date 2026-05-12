@@ -1200,10 +1200,10 @@ code {
 .var-preview-dark .ic-arrow       { color: #5ABFE0; }
 .var-preview-dark .ic-arrow:hover { background: #374151; color: #8FCBE6; }
 .var-preview-dark .ic-dot--active { background: #35A8D6; }
-.var-preview-dark .ic-dot--default{ background: #0F0F0F; border-color: #6B7280; }
-.var-preview-dark .ic-dot--hover  { background: #0F0F0F; border-color: #6B7280; }
-.var-preview-dark .ic-dot--distant{ background: #0F0F0F; border-color: #6B7280; }
-.var-preview-dark .ic-dot--focus  { background: #0F0F0F; border-color: #0083BB; box-shadow: 0 0 0 4px rgba(0,131,187,0.35); }
+.var-preview-dark .ic-dot--default{ background: #1E1E1E; border-color: #6B7280; }
+.var-preview-dark .ic-dot--hover  { background: #1E1E1E; border-color: #6B7280; }
+.var-preview-dark .ic-dot--distant{ background: #1E1E1E; border-color: #6B7280; }
+.var-preview-dark .ic-dot--focus  { background: #1E1E1E; border-color: #0083BB; box-shadow: 0 0 0 4px rgba(0,131,187,0.35); }
 .var-preview-dark .ic-expand-btn  { background: #35A8D6; }
 
 /* ─── File Upload Zone ───────────────────────────── */
@@ -1385,7 +1385,7 @@ code {
 .var-preview .fu-right-icon--success { color: #006C21; }
 
 /* File Upload — var-preview-dark hardcoded dark overrides */
-.var-preview-dark .fu-card     { background: #0F0F0F; border-color: #6B7280; }
+.var-preview-dark .fu-card     { background: #1E1E1E; border-color: #6B7280; }
 .var-preview-dark .fu-icon-tile { border-color: #35A8D6; color: #35A8D6; }
 .var-preview-dark .fu-icon-tile--success { border-color: #4DAD82; color: #4DAD82; }
 .var-preview-dark .fu-icon-tile--error   { border-color: #DB3939; color: #DB3939; }
@@ -1933,7 +1933,7 @@ code {
 .var-preview .md-btn-confirm--success     { background: #006C21; }
 
 /* var-preview-dark overrides */
-.var-preview-dark .md-modal { background: #0F0F0F; border: 1px solid #1F2937; }
+.var-preview-dark .md-modal { background: #1E1E1E; border: 1px solid #1F2937; }
 .var-preview-dark .md-title { color: #FFFFFF; }
 .var-preview-dark .md-desc  { color: #E5E7EB; }
 .var-preview-dark .md-close { color: #E5E7EB; }
@@ -2626,7 +2626,7 @@ code {
 .var-preview-dark .tb-ul-item--disabled { color:#6B7280; border-bottom-color:#374151; }
 .var-preview-dark .tb-badge { background:#35A8D6; }
 .var-preview-dark .tb-contained { }
-.var-preview-dark .tb-ct-item { background:#0A0A0A; border-color:#6B7280; color:#FFFFFF; }
+.var-preview-dark .tb-ct-item { background:#1E1E1E; border-color:#6B7280; color:#FFFFFF; }
 .var-preview-dark .tb-ct-item--selected { background:#001F33; border-bottom-color:#5ABFE0; color:#8FCBE6; }
 .var-preview-dark .tb-ct-item--hover { background:#1A3A4A; }
 .var-preview-dark .tb-ct-item--disabled { background:#1F2937; color:#6B7280; border-color:#374151; }
@@ -3307,8 +3307,8 @@ code {
 .fuc-row--error .fuc-dismiss { color:#A12F2F; }
 
 /* Dark mode */
-[data-theme="dark"] .fuc-row { background:#0A0A0A; border-color:#6B7280; }
-[data-theme="dark"] .fuc-row:hover, [data-theme="dark"] .fuc-row--hover { background:#1E1E1E; border-color:#9CA3AF; }
+[data-theme="dark"] .fuc-row { background:#1E1E1E; border-color:#6B7280; }
+[data-theme="dark"] .fuc-row:hover, [data-theme="dark"] .fuc-row--hover { background:#292929; border-color:#9CA3AF; }
 [data-theme="dark"] .fuc-row--error { background:#811F1F; border-color:#E36868; }
 [data-theme="dark"] .fuc-row--disabled { background:#1E1E1E; border-color:#374151; }
 [data-theme="dark"] .fuc-icon { color:#FFFFFF; }
@@ -3336,8 +3336,8 @@ code {
 .var-preview .fuc-dismiss { color:#374151; }
 .var-preview .fuc-row--error .fuc-dismiss { color:#A12F2F; }
 
-.var-preview-dark .fuc-row { background:#0A0A0A; border-color:#6B7280; }
-.var-preview-dark .fuc-row--hover { background:#1E1E1E; border-color:#9CA3AF; }
+.var-preview-dark .fuc-row { background:#1E1E1E; border-color:#6B7280; }
+.var-preview-dark .fuc-row--hover { background:#292929; border-color:#9CA3AF; }
 .var-preview-dark .fuc-row--error { background:#811F1F; border-color:#E36868; }
 .var-preview-dark .fuc-row--disabled { background:#1E1E1E; border-color:#374151; }
 .var-preview-dark .fuc-icon, .var-preview-dark .fuc-title { color:#FFFFFF; }
@@ -3366,7 +3366,7 @@ code {
 .tm-preview-card[data-bg="dark"] {
   background:#0A0A0A;
   --text-primary:#FFFFFF; --text-secondary:#E5E7EB; --text-tertiary:#6B7280; --text-disabled:#6B7280;
-  --surface-layer01:#0A0A0A; --surface-layer02:#1E1E1E; --surface-layer03:#374151;
+  --surface-layer01:#1E1E1E; --surface-layer02:#292929; --surface-layer03:#374151; --surface-card:#1E1E1E;
   --border:#6B7280; --border-strong:#9CA3AF; --border-disabled:#374151; --border-focus:#0083BB;
   --action-secondary:#35A8D6; --err-bg:#811F1F; --err-bd:#DB3939; --err-tx:#E36868;
   --suc-bg:#003322; --suc-bd:#4DAD82; --inf-bg:#001F33; --inf-bd:#8FCBE6;

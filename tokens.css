@@ -111,11 +111,11 @@
   --text-disabled:  #6B7280;
   --text-link:      #5ABFE0;
 
-  --surface-shell:   #0A0A0A;
-  --surface-layer01: #0A0A0A;
-  --surface-layer02: #1E1E1E;
-  --surface-layer03: #374151;
-  --surface-card:    #0F0F0F;
+  --surface-shell:   #0A0A0A;  /* gray.950 — page background */
+  --surface-layer01: #1E1E1E;  /* gray.800 — first elevation, default card */
+  --surface-layer02: #292929;  /* gray.750 — hover / second elevation */
+  --surface-layer03: #374151;  /* gray.700 — strongest elevation */
+  --surface-card:    #1E1E1E;  /* alias of layer-01 in dark */
 
   --border:          #6B7280;
   --border-strong:   #9CA3AF;
