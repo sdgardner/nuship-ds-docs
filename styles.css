@@ -3349,6 +3349,29 @@ code {
 .var-preview-dark .fuc-dismiss { color:#FFFFFF; }
 .var-preview-dark .fuc-row--error .fuc-dismiss { color:#E36868; }
 
+/* ─── Phase B · Dark mode elevation ──────────────
+   Pure-black shadows alone barely register on dark surfaces, so every
+   card-like surface in dark mode gets a stronger drop shadow PLUS a
+   1px rim-light using a low-opacity white inset — that contrast edge
+   is what makes the elevation read. */
+[data-theme="dark"] .met-card,
+[data-theme="dark"] .fr-row,
+[data-theme="dark"] .tt-tooltip,
+[data-theme="dark"] .ts-toast,
+[data-theme="dark"] .mn-menu,
+[data-theme="dark"] .po-box,
+[data-theme="dark"] .fu-card,
+[data-theme="dark"] .md-modal,
+[data-theme="dark"] .fuc-row,
+[data-theme="dark"] .tm-preview-card,
+[data-theme="dark"] .tm-chip,
+[data-theme="dark"] .preview-box {
+  box-shadow:
+    0 1px 2px rgba(0,0,0,0.6),
+    0 4px 12px rgba(0,0,0,0.5),
+    0 0 0 1px rgba(255,255,255,0.06);
+}
+
 /* ─── TM · Token Map (shared) ──────────────────── */
 :root { --mono: ui-monospace, "SF Mono", "Menlo", Consolas, monospace; --tm-accent: #027CB1; }
 .tm-map { display:grid; grid-template-columns:1fr 1fr; gap:24px; align-items:start; }
