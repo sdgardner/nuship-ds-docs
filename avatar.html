@@ -134,7 +134,7 @@
       <section class="doc-section" id="definition">
         <div class="def-eyebrow">Display</div>
         <h1 class="def-title">Avatar</h1>
-        <p class="def-desc">Avatars identify users through photos or initials. They appear in profiles, comments, tables, and navigation — providing visual recognition at any scale.</p>
+        <p class="def-desc">An Avatar represents a person or entity in the UI. It displays a profile photo when available, or falls back to the user's initials. An optional status badge communicates presence or activity state. Avatars scale across six sizes to suit different contexts — from inline mentions to profile headers.</p>
         <div class="def-tags">
           <span class="bdg bdg--purple bdg--outline">Not Developed</span>
           <span class="bdg bdg--green bdg--outline">Figma</span>
@@ -245,14 +245,12 @@
             <div class="var-desc">
               <div class="var-use-when">Use when:</div>
               <ul class="var-use-list">
-                <li>Displaying a known user's photo</li>
-                <li>Profile or account pages</li>
-                <li>When visual recognition matters</li>
+                <li>User-generated photo uploaded</li>
               </ul>
-              <div class="var-use-when" style="margin-top:16px;">Visual changes:</div>
+              <div class="var-use-when" style="margin-top:16px;">Badge:</div>
               <ul class="var-use-list">
-                <li>Online — green badge <code class="prop-tag" style="font-size:11px;">#006C21</code></li>
-                <li>Offline — grey badge <code class="prop-tag" style="font-size:11px;">#9CA3AF</code></li>
+                <li>Online — <code>color/status/success/bg</code></li>
+                <li>Offline — neutral gray</li>
               </ul>
             </div>
           </div>
@@ -313,9 +311,13 @@
             <div class="var-desc">
               <div class="var-use-when">Use when:</div>
               <ul class="var-use-list">
-                <li>No photo is available</li>
-                <li>System-generated or anonymous users</li>
-                <li>Fallback before a photo loads</li>
+                <li>When the photo is not provided then use the name</li>
+              </ul>
+              <div class="var-use-when" style="margin-top:16px;">Tokens:</div>
+              <ul class="var-use-list">
+                <li>Background — <code>color/surface/layer-02</code></li>
+                <li>Text — <code>color/text/primary</code></li>
+                <li>Border — <code>color/border/interactive</code></li>
               </ul>
             </div>
           </div>
@@ -450,23 +452,41 @@
             <div class="usage-card">
               <div class="usage-card-header">
                 <div class="usage-icon do-icon"><i data-lucide="check" style="width:12px;height:12px"></i></div>
-                <div class="usage-card-title">Use for user identity</div>
+                <div class="usage-card-title">Photo quality</div>
               </div>
               <ul class="usage-list">
-                <li>Profiles, comment authors, account menus</li>
-                <li>Data tables with user columns</li>
+                <li>Ensure photos are square and face-centered before use</li>
               </ul>
             </div>
 
             <div class="usage-card">
               <div class="usage-card-header">
                 <div class="usage-icon do-icon"><i data-lucide="check" style="width:12px;height:12px"></i></div>
-                <div class="usage-card-title">Scale to context</div>
+                <div class="usage-card-title">Right-size for context</div>
               </div>
               <ul class="usage-list">
-                <li>xs/sm for dense tables or chips</li>
-                <li>md/lg for cards or threads</li>
-                <li>xl/xxl for profile pages</li>
+                <li>Use the smallest size that still provides enough recognition</li>
+                <li>Keep sizes consistent within a list or group of avatars</li>
+              </ul>
+            </div>
+
+            <div class="usage-card">
+              <div class="usage-card-header">
+                <div class="usage-icon do-icon"><i data-lucide="check" style="width:12px;height:12px"></i></div>
+                <div class="usage-card-title">Status badges</div>
+              </div>
+              <ul class="usage-list">
+                <li>Use the badge to indicate online or active status</li>
+              </ul>
+            </div>
+
+            <div class="usage-card">
+              <div class="usage-card-header">
+                <div class="usage-icon do-icon"><i data-lucide="check" style="width:12px;height:12px"></i></div>
+                <div class="usage-card-title">Reliable fallback</div>
+              </div>
+              <ul class="usage-list">
+                <li>Use initials as a reliable fallback when no photo is available</li>
               </ul>
             </div>
 
@@ -481,20 +501,40 @@
             <div class="usage-card">
               <div class="usage-card-header">
                 <div class="usage-icon dont-icon"><i data-lucide="x" style="width:12px;height:12px"></i></div>
-                <div class="usage-card-title">Don't use for brand or product logos</div>
+                <div class="usage-card-title">Initials count</div>
               </div>
               <ul class="usage-list">
-                <li>Use a dedicated logo component instead</li>
+                <li>Don't use more than 2 initials — it won't fit</li>
               </ul>
             </div>
 
             <div class="usage-card">
               <div class="usage-card-header">
                 <div class="usage-icon dont-icon"><i data-lucide="x" style="width:12px;height:12px"></i></div>
-                <div class="usage-card-title">Don't truncate initials beyond 2 characters</div>
+                <div class="usage-card-title">Badge misuse</div>
               </div>
               <ul class="usage-list">
-                <li>Use maximum 2-letter initials for readability at small sizes</li>
+                <li>Don't use the badge for non-presence states (errors, counts, etc.)</li>
+              </ul>
+            </div>
+
+            <div class="usage-card">
+              <div class="usage-card-header">
+                <div class="usage-icon dont-icon"><i data-lucide="x" style="width:12px;height:12px"></i></div>
+                <div class="usage-card-title">Mixed sizes</div>
+              </div>
+              <ul class="usage-list">
+                <li>Don't mix sizes in the same context (e.g., a user list)</li>
+              </ul>
+            </div>
+
+            <div class="usage-card">
+              <div class="usage-card-header">
+                <div class="usage-icon dont-icon"><i data-lucide="x" style="width:12px;height:12px"></i></div>
+                <div class="usage-card-title">Inline sizing</div>
+              </div>
+              <ul class="usage-list">
+                <li>Don't use xl or xxl for inline/body text contexts</li>
               </ul>
             </div>
 
