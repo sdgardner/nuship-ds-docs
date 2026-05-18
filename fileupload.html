@@ -139,7 +139,7 @@
       <section class="doc-section" id="definition">
         <div class="def-eyebrow">Display</div>
         <h1 class="def-title">File Upload</h1>
-        <p class="def-desc">The File Upload component provides a drop zone for dragging and dropping files, or browsing the file system. It manages the full upload lifecycle — from idle drop zone to per-file progress rows — with clear visual states for uploading, complete, and error conditions.</p>
+        <p class="def-desc">The Drop Zone is a file upload component that allows users to upload files by dragging and dropping them onto the target area or by clicking to browse their file system. It supports multiple files and provides per-file status feedback through the File Row sub-component.</p>
         <div class="def-tags">
           <span class="bdg bdg--purple bdg--outline">Not Developed</span>
           <span class="bdg bdg--green bdg--outline">Figma</span>
@@ -312,16 +312,29 @@
 
             </div><!-- /var-previews-wrap -->
             <div class="var-desc">
-              <div class="var-use-when">Empty drop zone</div>
+              <div class="var-use-when">Default — Use when:</div>
               <ul class="var-use-list">
-                <li>Shown before any files are selected or dropped</li>
-                <li>Provides two entry points: drag-and-drop or clicking Browse Files</li>
+                <li>The user has not yet interacted with the component</li>
+                <li>No files have been selected or dragged in</li>
+                <li>The entry point for the upload flow</li>
               </ul>
-              <div class="var-use-when" style="margin-top:16px;">Visual changes by state:</div>
+              <div class="var-use-when" style="margin-top:14px;">Example contexts:</div>
               <ul class="var-use-list">
-                <li>Default — dashed grey border (#9CA3AF), neutral grey background</li>
-                <li>Hover — same dashed border, background fills with light info blue</li>
-                <li>Dragging — solid blue border (#027CB1), blue tint bg, icon and text turn blue, button hidden</li>
+                <li>A document upload step in a shipment listing form</li>
+                <li>Attaching photos to a damage claim</li>
+                <li>Any flow where a file is needed before proceeding</li>
+              </ul>
+
+              <div class="var-use-when" style="margin-top:18px;">Hover — Use when:</div>
+              <ul class="var-use-list">
+                <li>The user has moved their cursor over the drop zone</li>
+                <li>Keyboard focus has been brought to the component</li>
+              </ul>
+
+              <div class="var-use-when" style="margin-top:18px;">Dragging — Use when:</div>
+              <ul class="var-use-list">
+                <li>The user is actively dragging a file over the drop zone</li>
+                <li>File is held and ready to be released</li>
               </ul>
             </div>
           </div>
@@ -738,16 +751,37 @@
 
             </div><!-- /var-previews-wrap -->
             <div class="var-desc">
-              <div class="var-use-when">With files</div>
+              <div class="var-use-when">Uploading — Use when:</div>
               <ul class="var-use-list">
-                <li>Zone switches from the centred drop area to a stacked file list once files are selected</li>
-                <li>Each file row shows its own status; the zone border reflects the overall batch status</li>
+                <li>Files have been selected and upload is actively in progress</li>
+                <li>One or more files may be queued, uploading, completed, or failed mid-batch</li>
               </ul>
-              <div class="var-use-when" style="margin-top:16px;">Visual changes by state:</div>
+              <div class="var-use-when" style="margin-top:14px;">Example contexts:</div>
               <ul class="var-use-list">
-                <li>Uploading — solid blue border; rows show mixed per-file states; warning footer text; Add More button</li>
-                <li>Complete — solid green border; all rows green; "N files uploaded" summary; Add More button</li>
-                <li>Error — solid red border; failed rows shown in red; error count summary; Retry Failed button</li>
+                <li>Batch photo upload for a vehicle transport listing</li>
+                <li>Document submission during carrier onboarding</li>
+              </ul>
+
+              <div class="var-use-when" style="margin-top:18px;">Success — Use when:</div>
+              <ul class="var-use-list">
+                <li>All files have finished uploading successfully</li>
+                <li>The user may need to review, add more, or remove files</li>
+              </ul>
+              <div class="var-use-when" style="margin-top:14px;">Example contexts:</div>
+              <ul class="var-use-list">
+                <li>Confirming all supporting documents have been attached before submitting a claim</li>
+                <li>Photo upload complete before publishing a listing</li>
+              </ul>
+
+              <div class="var-use-when" style="margin-top:18px;">Error — Use when:</div>
+              <ul class="var-use-list">
+                <li>One or more files failed to upload (size exceeded, unsupported type, network failure)</li>
+                <li>The batch completed but with partial failures</li>
+              </ul>
+              <div class="var-use-when" style="margin-top:14px;">Example contexts:</div>
+              <ul class="var-use-list">
+                <li>User attempts to upload an oversized image</li>
+                <li>Network interruption causes mid-batch failure on one or more files</li>
               </ul>
             </div>
           </div>
@@ -978,23 +1012,23 @@
             <div class="usage-card">
               <div class="usage-card-header">
                 <div class="usage-icon do-icon"><i data-lucide="check" style="width:12px;height:12px"></i></div>
-                <div class="usage-card-title">Lorem ipsum dolor sit amet</div>
+                <div class="usage-card-title">Multi-file selection with progress feedback</div>
               </div>
               <ul class="usage-list">
-                <li>Lorem ipsum dolor sit amet, consectetur adipiscing elit sed do eiusmod tempor</li>
-                <li>Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi</li>
-                <li>Duis aute irure dolor in reprehenderit in voluptate velit esse cillum</li>
+                <li>When users need to upload one or more files and benefit from seeing upload status per file</li>
+                <li>Batch uploads where individual file success/failure needs to be communicated</li>
+                <li>When file size and type constraints should be communicated upfront</li>
               </ul>
             </div>
             <div class="usage-card">
               <div class="usage-card-header">
                 <div class="usage-icon do-icon"><i data-lucide="check" style="width:12px;height:12px"></i></div>
-                <div class="usage-card-title">Ut labore et dolore magna aliqua</div>
+                <div class="usage-card-title">Drag-and-drop primary workflows</div>
               </div>
               <ul class="usage-list">
-                <li>Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia</li>
-                <li>Deserunt mollit anim id est laborum sed perspiciatis unde omnis iste natus</li>
-                <li>Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit</li>
+                <li>Contexts where users are likely to have files readily accessible (desktop, file manager)</li>
+                <li>When the upload action is a primary task on the screen, not a secondary one</li>
+                <li>Document submission, photo uploads, attachment flows</li>
               </ul>
             </div>
           </div>
@@ -1002,23 +1036,12 @@
             <div class="usage-card">
               <div class="usage-card-header">
                 <div class="usage-icon do-icon"><i data-lucide="check" style="width:12px;height:12px"></i></div>
-                <div class="usage-card-title">Neque porro quisquam est qui</div>
+                <div class="usage-card-title">Situations requiring upload validation</div>
               </div>
               <ul class="usage-list">
-                <li>Dolorem ipsum quia dolor sit amet consectetur adipisci velit sed quia</li>
-                <li>Quisquam est qui dolorem ipsum quia dolor sit amet consectetur</li>
-                <li>Ut enim ad minima veniam, quis nostrum exercitationem ullam corporis</li>
-              </ul>
-            </div>
-            <div class="usage-card">
-              <div class="usage-card-header">
-                <div class="usage-icon do-icon"><i data-lucide="check" style="width:12px;height:12px"></i></div>
-                <div class="usage-card-title">Quis autem vel eum iure reprehenderit</div>
-              </div>
-              <ul class="usage-list">
-                <li>At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis</li>
-                <li>Nam libero tempore cum soluta nobis eligendi optio cumque nihil impedit</li>
-                <li>Temporibus autem quibusdam et aut officiis debitis rerum necessitatibus</li>
+                <li>When file type or size restrictions need to be enforced with inline feedback</li>
+                <li>When partial failure (some files success, some fail) is a likely outcome and needs clear per-file status</li>
+                <li>When users may need to retry failed uploads without restarting the entire flow</li>
               </ul>
             </div>
           </div>
@@ -1031,23 +1054,23 @@
             <div class="usage-card">
               <div class="usage-card-header">
                 <div class="usage-icon dont-icon"><i data-lucide="x" style="width:12px;height:12px"></i></div>
-                <div class="usage-card-title">Itaque earum rerum hic tenetur</div>
+                <div class="usage-card-title">Single, simple file replacement</div>
               </div>
               <ul class="usage-list">
-                <li>Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium</li>
-                <li>Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit</li>
-                <li>Quis autem vel eum iure reprehenderit qui voluptate velit esse quam nihil</li>
+                <li>Replacing a profile photo or avatar — use a targeted upload button instead</li>
+                <li>When the interaction is one-tap and doesn't benefit from drag-and-drop affordance</li>
+                <li>Contexts where a compact inline input fits better than a full drop zone</li>
               </ul>
             </div>
             <div class="usage-card">
               <div class="usage-card-header">
                 <div class="usage-icon dont-icon"><i data-lucide="x" style="width:12px;height:12px"></i></div>
-                <div class="usage-card-title">Nam libero tempore cum soluta nobis</div>
+                <div class="usage-card-title">Mobile-primary experiences</div>
               </div>
               <ul class="usage-list">
-                <li>Temporibus autem quibusdam et aut officiis debitis rerum necessitatibus saepe</li>
-                <li>Et harum quidem rerum facilis est et expedita distinctio nam libero tempore</li>
-                <li>Cum soluta nobis est eligendi optio cumque nihil impedit quo minus</li>
+                <li>Drag-and-drop has no affordance on touch devices — use a button-triggered file picker instead</li>
+                <li>The drop zone's large fixed height (260px) is not optimized for small viewports</li>
+                <li>When the primary user is on a carrier mobile device in the field</li>
               </ul>
             </div>
           </div>
@@ -1055,23 +1078,23 @@
             <div class="usage-card">
               <div class="usage-card-header">
                 <div class="usage-icon dont-icon"><i data-lucide="x" style="width:12px;height:12px"></i></div>
-                <div class="usage-card-title">Totam rem aperiam eaque ipsa quae</div>
+                <div class="usage-card-title">Mandatory blocking flows</div>
               </div>
               <ul class="usage-list">
-                <li>Ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt</li>
-                <li>Explicabo nemo enim ipsam voluptatem quia voluptas sit aspernatur</li>
-                <li>Ut enim ad minima veniam quis nostrum exercitationem ullam corporis</li>
+                <li>Don't gate all page progression on file upload unless it's truly required</li>
+                <li>Avoid using the drop zone in a modal — combine with a dedicated screen instead</li>
+                <li>When the file is optional, consider a less prominent inline attachment pattern</li>
               </ul>
             </div>
             <div class="usage-card">
               <div class="usage-card-header">
                 <div class="usage-icon dont-icon"><i data-lucide="x" style="width:12px;height:12px"></i></div>
-                <div class="usage-card-title">Accusantium doloremque laudantium totam</div>
+                <div class="usage-card-title">Uploading files silently in the background</div>
               </div>
               <ul class="usage-list">
-                <li>Rem aperiam eaque ipsa quae ab illo inventore veritatis quasi architecto</li>
-                <li>Beatae vitae dicta sunt explicabo nemo enim ipsam voluptatem quia</li>
-                <li>Voluptas sit aspernatur aut odit aut fugit sed quia consequuntur magni</li>
+                <li>This component is designed to surface progress explicitly — don't use it if uploads should happen invisibly</li>
+                <li>If the user doesn't need to track individual file status, a simpler upload trigger is more appropriate</li>
+                <li>Avoid showing the Uploading state if the progress resolves too quickly to be meaningful</li>
               </ul>
             </div>
           </div>
@@ -1127,28 +1150,41 @@
         <h2 class="section-title">Accessibility</h2>
 
         <div class="a11y-group">
-          <h3 class="a11y-group-title">Keyboard Navigation</h3>
+          <h3 class="a11y-group-title">Keyboard Shortcut</h3>
           <ul class="a11y-list">
-            <li><div><strong>Tab</strong> moves focus to the Browse Files button and to each file row's action button (cancel or remove).</div></li>
-            <li><div><strong>Enter / Space</strong> activates the Browse Files button, opening the file picker dialog.</div></li>
-            <li><div><strong>Escape</strong> cancels an active drag operation and returns the zone to its default state.</div></li>
+            <li><div>The drop zone must be reachable and activatable via keyboard (<strong>Tab</strong> to focus, <strong>Enter / Space</strong> to trigger the file browser).</div></li>
+            <li><div>"Browse Files," "Add More," and "Retry Failed" buttons must all be in the natural tab order.</div></li>
+            <li><div>Each file row's action icon (cancel, delete) must be individually focusable and operable by keyboard.</div></li>
+            <li><div>Focus should not be trapped inside the component during upload.</div></li>
           </ul>
         </div>
 
         <div class="a11y-group">
-          <h3 class="a11y-group-title">Screen Reader</h3>
+          <h3 class="a11y-group-title">Screen Readers</h3>
           <ul class="a11y-list">
-            <li><div>The drop zone uses <code>role="region"</code> with an <code>aria-label</code> (e.g. "File upload area") to give it a descriptive landmark.</div></li>
-            <li><div>Drag-over state changes are announced via <code>aria-live="polite"</code> on a visually hidden status element, so users know when the zone is ready to accept a drop.</div></li>
-            <li><div>Each file row's progress bar uses <code>role="progressbar"</code> with <code>aria-valuenow</code>, <code>aria-valuemin="0"</code>, and <code>aria-valuemax="100"</code>.</div></li>
+            <li><div>The drop zone container should have <code>role="button"</code> or be a native <code>&lt;button&gt;</code> or <code>&lt;input type="file"&gt;</code> with a visible label.</div></li>
+            <li><div>Drag-and-drop affordance must not be the only way to upload — the Browse Files button is the accessible fallback.</div></li>
+            <li><div>Upload progress should be announced dynamically — use <code>aria-live="polite"</code> on the status region so "Uploading…", "Complete", and error messages are read aloud without requiring focus.</div></li>
+            <li><div>The summary message ("3 files uploaded successfully" / "2 of 4 files failed") should also be in a live region.</div></li>
+            <li><div>File row action icons need descriptive <code>aria-label</code> values — e.g., "Cancel upload for photo_001.jpg" and "Delete photo_001.jpg".</div></li>
           </ul>
         </div>
 
         <div class="a11y-group">
-          <h3 class="a11y-group-title">Status Announcements</h3>
+          <h3 class="a11y-group-title">Focus Management</h3>
           <ul class="a11y-list">
-            <li><div>Batch completion and error summaries ("3 files uploaded", "2 of 4 failed") use <code>aria-live="polite"</code> so they are announced automatically without interrupting the user.</div></li>
-            <li><div>The "do not close this window" warning during upload uses <code>role="alert"</code> to ensure it is read immediately when the upload begins.</div></li>
+            <li><div>When a file is removed or upload completes, focus should move logically — not drop to the top of the page.</div></li>
+            <li><div>After "Retry Failed" is triggered, focus should return to the file list region.</div></li>
+            <li><div>If the drop zone transitions from empty to file list view, screen readers should be informed of the context change.</div></li>
+          </ul>
+        </div>
+
+        <div class="a11y-group">
+          <h3 class="a11y-group-title">Visual</h3>
+          <ul class="a11y-list">
+            <li><div>Confirm button color must meet WCAG AA contrast (4.5:1) across all three semantic types.</div></li>
+            <li><div>Icon alone does not convey type — title and button color reinforce semantic meaning.</div></li>
+            <li><div>Close button (×) must have a visible focus ring.</div></li>
           </ul>
         </div>
 
