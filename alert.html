@@ -150,7 +150,7 @@
       <section class="doc-section" id="definition">
         <div class="def-eyebrow">Feedback</div>
         <h1 class="def-title">Alert</h1>
-        <p class="def-desc">Alerts communicate important messages to users — errors, warnings, confirmations, or contextual information. They appear inline within a page or section and can be dismissed when no longer needed.</p>
+        <p class="def-desc">The Alert component is used to communicate important information to users that requires their attention. Alerts provide contextual feedback about system status, user actions, or important updates.</p>
         <div class="def-tags">
           <span class="bdg bdg--purple bdg--outline">Not Developed</span>
           <span class="bdg bdg--green bdg--outline">Figma</span>
@@ -285,15 +285,19 @@
                 </div>
               </div>
             </div>
-            <div class="var-desc">
+            <div class="var-desc" id="var-desc-pl">
               <div class="var-use-when">Use when:</div>
               <ul class="var-use-list">
-                <li>Scoped to a specific form, card, or section</li>
-                <li>The message relates to a user action in context</li>
-                <li>Width is constrained by the surrounding layout</li>
+                <li>Action completed successfully</li>
+                <li>Important state change occurred</li>
+                <li>Confirmation of user action</li>
               </ul>
-              <div class="var-use-when" style="margin-top:12px;">Token group:</div>
-              <ul class="var-use-list"><li><code>color/status/*</code></li></ul>
+              <div class="var-use-when" style="margin-top:12px;">Example content:</div>
+              <ul class="var-use-list">
+                <li>"Your profile has been updated successfully."</li>
+                <li>"Changes saved."</li>
+                <li>"Email sent successfully."</li>
+              </ul>
             </div>
           </div>
         </div>
@@ -368,15 +372,19 @@
                 </div>
               </div>
             </div>
-            <div class="var-desc">
+            <div class="var-desc" id="var-desc-gl">
               <div class="var-use-when">Use when:</div>
               <ul class="var-use-list">
-                <li>The message applies to the entire page or session</li>
-                <li>Appears as a full-width banner above page content</li>
-                <li>Communicating system-wide status or maintenance</li>
+                <li>Action completed successfully</li>
+                <li>Important state change occurred</li>
+                <li>Confirmation of user action</li>
               </ul>
-              <div class="var-use-when" style="margin-top:12px;">Token group:</div>
-              <ul class="var-use-list"><li><code>color/status/*</code></li></ul>
+              <div class="var-use-when" style="margin-top:12px;">Example content:</div>
+              <ul class="var-use-list">
+                <li>"Your profile has been updated successfully."</li>
+                <li>"Changes saved."</li>
+                <li>"Email sent successfully."</li>
+              </ul>
             </div>
           </div>
         </div>
@@ -433,23 +441,47 @@
             <div class="usage-card">
               <div class="usage-card-header">
                 <div class="usage-icon do-icon"><i data-lucide="check" style="width:12px;height:12px"></i></div>
-                <div class="usage-card-title">Use for system feedback</div>
+                <div class="usage-card-title">Error Messages</div>
               </div>
               <ul class="usage-list">
-                <li>Show alerts after user actions like submitting a form</li>
-                <li>Use to communicate system status changes</li>
-                <li>Place alerts close to the content they relate to</li>
+                <li>System errors that prevent user actions</li>
+                <li>Validation errors that need immediate attention</li>
+                <li>Failed operations (e.g., "Failed to save changes")</li>
+                <li>Critical system issues</li>
               </ul>
             </div>
             <div class="usage-card">
               <div class="usage-card-header">
                 <div class="usage-icon do-icon"><i data-lucide="check" style="width:12px;height:12px"></i></div>
-                <div class="usage-card-title">Match variant to message</div>
+                <div class="usage-card-title">Success Confirmations</div>
               </div>
               <ul class="usage-list">
-                <li>Use error for failed actions or validation issues</li>
-                <li>Use success for confirmations and completed tasks</li>
-                <li>Use info for neutral guidance or announcements</li>
+                <li>Successful form submissions</li>
+                <li>Completed actions (e.g., "Profile updated successfully")</li>
+                <li>Important state changes</li>
+              </ul>
+            </div>
+            <div class="usage-card">
+              <div class="usage-card-header">
+                <div class="usage-icon do-icon"><i data-lucide="check" style="width:12px;height:12px"></i></div>
+                <div class="usage-card-title">Informational Messages</div>
+              </div>
+              <ul class="usage-list">
+                <li>Important updates or announcements</li>
+                <li>System status changes</li>
+                <li>Helpful context or tips</li>
+                <li>Non-critical warnings</li>
+              </ul>
+            </div>
+            <div class="usage-card">
+              <div class="usage-card-header">
+                <div class="usage-icon do-icon"><i data-lucide="check" style="width:12px;height:12px"></i></div>
+                <div class="usage-card-title">Page-Level Notifications</div>
+              </div>
+              <ul class="usage-list">
+                <li>Messages that apply to the entire page</li>
+                <li>Global system announcements</li>
+                <li>Important updates that affect the user's workflow</li>
               </ul>
             </div>
           </div>
@@ -462,23 +494,51 @@
             <div class="usage-card">
               <div class="usage-card-header">
                 <div class="usage-icon dont-icon"><i data-lucide="x" style="width:12px;height:12px"></i></div>
-                <div class="usage-card-title">Don't overuse alerts</div>
+                <div class="usage-card-title">Inline Validation</div>
               </div>
               <ul class="usage-list">
-                <li>Don't show multiple alerts simultaneously on the same page</li>
-                <li>Avoid using alerts for non-actionable information</li>
-                <li>Don't use alerts as persistent decorative elements</li>
+                <li>Use inline error messages near form fields instead</li>
+                <li>Field-level validation should appear next to the input</li>
               </ul>
             </div>
             <div class="usage-card">
               <div class="usage-card-header">
                 <div class="usage-icon dont-icon"><i data-lucide="x" style="width:12px;height:12px"></i></div>
-                <div class="usage-card-title">Don't block the page</div>
+                <div class="usage-card-title">Toast Notifications</div>
               </div>
               <ul class="usage-list">
-                <li>Don't use alerts for critical decisions — use a Modal instead</li>
-                <li>Don't use inline alerts for temporary notifications — use Toast</li>
-                <li>Avoid placing alerts in areas users rarely see</li>
+                <li>Use Toast/Notification components for temporary, non-blocking messages</li>
+                <li>Alerts are persistent and require user acknowledgment</li>
+              </ul>
+            </div>
+            <div class="usage-card">
+              <div class="usage-card-header">
+                <div class="usage-icon dont-icon"><i data-lucide="x" style="width:12px;height:12px"></i></div>
+                <div class="usage-card-title">Confirmation Dialogs</div>
+              </div>
+              <ul class="usage-list">
+                <li>Use Modal/Dialog components for actions requiring confirmation</li>
+                <li>Alerts are informational, not interactive decision points</li>
+              </ul>
+            </div>
+            <div class="usage-card">
+              <div class="usage-card-header">
+                <div class="usage-icon dont-icon"><i data-lucide="x" style="width:12px;height:12px"></i></div>
+                <div class="usage-card-title">Loading States</div>
+              </div>
+              <ul class="usage-list">
+                <li>Use Skeleton loaders or Spinner components</li>
+                <li>Alerts are for completed states, not in-progress actions</li>
+              </ul>
+            </div>
+            <div class="usage-card">
+              <div class="usage-card-header">
+                <div class="usage-icon dont-icon"><i data-lucide="x" style="width:12px;height:12px"></i></div>
+                <div class="usage-card-title">Trivial Information</div>
+              </div>
+              <ul class="usage-list">
+                <li>Don't use alerts for minor, non-critical information</li>
+                <li>Reserve for messages that genuinely need attention</li>
               </ul>
             </div>
           </div>
@@ -618,12 +678,44 @@
     d.setAttribute('data-theme', d.getAttribute('data-theme') === 'dark' ? 'light' : 'dark');
   }
 
+  // Figma per-state variant copy (alert node 2450-886)
+  const alertStateCopy = {
+    suc: {
+      use: ['Action completed successfully','Important state change occurred','Confirmation of user action'],
+      examples: ['"Your profile has been updated successfully."','"Changes saved."','"Email sent successfully."']
+    },
+    inf: {
+      use: ['Providing helpful context','System announcements','Non-critical updates','Educational information'],
+      examples: ['"New features are now available. Check out what\'s new."','"Your account will be upgraded in 24 hours."','"Tip: You can save time by using keyboard shortcuts."']
+    },
+    err: {
+      use: ['Something went wrong','User action failed','System error occurred','Critical issue needs attention'],
+      examples: ['"Unable to save changes. Please try again."','"Your session has expired. Please log in again."','"Payment processing failed. Check your payment method."']
+    }
+  };
+
+  function renderAlertStateCopy(panelId) {
+    // panelId is like vs-pl-suc, vs-gl-err
+    const parts = panelId.split('-'); // ['vs','pl','suc']
+    const variant = parts[1]; // pl or gl
+    const state = parts[2];   // suc, inf, err
+    const c = alertStateCopy[state];
+    if (!c) return;
+    const descEl = document.getElementById('var-desc-' + variant);
+    if (!descEl) return;
+    const lis = arr => arr.map(s => '<li>' + s + '</li>').join('');
+    descEl.innerHTML =
+      '<div class="var-use-when">Use when:</div><ul class="var-use-list">' + lis(c.use) + '</ul>' +
+      '<div class="var-use-when" style="margin-top:12px;">Example content:</div><ul class="var-use-list">' + lis(c.examples) + '</ul>';
+  }
+
   function switchStateTab(btn, panelId) {
     const wrap = btn.closest('.tab-panel');
     wrap.querySelectorAll('.state-tab-btn').forEach(t => t.classList.remove('active'));
     wrap.querySelectorAll('.state-panel').forEach(p => p.classList.remove('active'));
     btn.classList.add('active');
     document.getElementById(panelId).classList.add('active');
+    renderAlertStateCopy(panelId);
     lucide.createIcons();
   }
 
