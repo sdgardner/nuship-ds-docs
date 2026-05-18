@@ -255,12 +255,14 @@
             <div class="var-desc">
               <div class="var-use-when">Use when:</div>
               <ul class="var-use-list">
-                <li>Triggering the single most important action on a page or dialog</li>
-                <li>Confirming or submitting a task flow</li>
-                <li>Only one Primary button should appear per view</li>
+                <li>The primary button is the main call to action on a page. Use it for the key task you want the user to complete.</li>
               </ul>
-              <div class="var-use-when" style="margin-top:12px;">Token group:</div>
-              <ul class="var-use-list"><li><code>color/action/primary</code></li></ul>
+              <div class="var-use-when" style="margin-top:12px;">Example content:</div>
+              <ul class="var-use-list">
+                <li>One per context: Use a single primary button per page, modal, or independent card</li>
+                <li>Placement: Align it with the main task (e.g., "Continue", "Save", "Book now")</li>
+                <li>Priority: Reserve it for high-value or irreversible actions and avoid overusing it alongside other strong visuals</li>
+              </ul>
             </div>
           </div>
         </div>
@@ -303,12 +305,15 @@
             <div class="var-desc">
               <div class="var-use-when">Use when:</div>
               <ul class="var-use-list">
-                <li>Offering a supporting action alongside a Primary button</li>
-                <li>The action is important but not the critical path</li>
-                <li>Multiple equal-priority actions are available</li>
+                <li>Secondary buttons support the main flow and are used for confirm or progress actions in modals, drawers, and step flows. They're also used for in-page actions such as "Edit", "Select", "View", or "Apply filters".</li>
               </ul>
-              <div class="var-use-when" style="margin-top:12px;">Token group:</div>
-              <ul class="var-use-list"><li><code>color/action/secondary</code></li></ul>
+              <div class="var-use-when" style="margin-top:12px;">Example content:</div>
+              <ul class="var-use-list">
+                <li>Contextual primary: In contained surfaces (modals, drawers, wizards), secondary buttons can act as the main confirm action when a global primary already exists</li>
+                <li>In-page actions: Use for actions that stay on the same page (e.g., "Edit", "Select", "View", "Apply") without being the main page CTA</li>
+                <li>Pairing: When paired with a primary button, the secondary carries the supporting action (e.g., "Save draft", "Apply filters")</li>
+                <li>With ghost: If paired with a ghost button, the secondary should confirm or apply; the ghost should cancel or dismiss</li>
+              </ul>
             </div>
           </div>
         </div>
@@ -351,12 +356,14 @@
             <div class="var-desc">
               <div class="var-use-when">Use when:</div>
               <ul class="var-use-list">
-                <li>Supplementary actions need a visible affordance without overwhelming a Primary</li>
-                <li>Use in toolbars or dense interfaces where a solid fill would be too heavy</li>
-                <li>Stacking alongside solid buttons for optional or alternative paths</li>
+                <li>Tertiary buttons are low-emphasis actions used for small or repeated tasks that should not compete with the main page actions.</li>
               </ul>
-              <div class="var-use-when" style="margin-top:12px;">Token group:</div>
-              <ul class="var-use-list"><li><code>color/border/button-tertiary</code></li></ul>
+              <div class="var-use-when" style="margin-top:12px;">Example content:</div>
+              <ul class="var-use-list">
+                <li>Usage: Use for lightweight utilities such as "View details", "Add note", or "Manage"</li>
+                <li>Frequency: They can appear multiple times on a page without overwhelming the primary action</li>
+                <li>Priority: Do not use tertiary buttons for primary flows or high-impact decisions</li>
+              </ul>
             </div>
           </div>
         </div>
@@ -399,12 +406,14 @@
             <div class="var-desc">
               <div class="var-use-when">Use when:</div>
               <ul class="var-use-list">
-                <li>Ancillary actions should recede into the interface without visual weight</li>
-                <li>Embedding in cards, list rows, or inline alongside other content</li>
-                <li>Providing optional controls that shouldn't compete with primary actions</li>
+                <li>Ghost buttons are low-emphasis actions used for small or repeated tasks that should not compete with the main page actions.</li>
               </ul>
-              <div class="var-use-when" style="margin-top:12px;">Token group:</div>
-              <ul class="var-use-list"><li><code>color/bg/ghost</code></li></ul>
+              <div class="var-use-when" style="margin-top:12px;">Example content:</div>
+              <ul class="var-use-list">
+                <li>Usage: Use for lightweight utilities such as "View details", "Add note", or "Manage"</li>
+                <li>Frequency: They can appear multiple times on a page without overwhelming the primary action</li>
+                <li>Priority: Do not use ghost buttons for primary flows or high-impact decisions</li>
+              </ul>
             </div>
           </div>
         </div>
@@ -445,14 +454,12 @@
               </div>
             </div>
             <div class="var-desc">
-              <div class="var-use-when">Use when:</div>
+              <div class="var-use-when">High-impact deletion — use when:</div>
               <ul class="var-use-list">
-                <li>The primary action is irreversible — Delete, Remove All, Clear</li>
-                <li>The destructive action is the main focus of a confirmation dialog</li>
-                <li>High visual prominence is needed to signal risk</li>
+                <li>Loss is significant or disruptive (e.g., delete an account or payment profile)</li>
+                <li>Require strong confirmation (typing a name, checking a box) and clearly describe the outcome</li>
+                <li>After a destructive action, return the user to the parent view, animate removal or show clear success feedback, and restore state when possible if an error occurs</li>
               </ul>
-              <div class="var-use-when" style="margin-top:12px;">Token group:</div>
-              <ul class="var-use-list"><li><code>color/action/destructive</code></li></ul>
             </div>
           </div>
         </div>
@@ -493,14 +500,16 @@
               </div>
             </div>
             <div class="var-desc">
-              <div class="var-use-when">Use when:</div>
+              <div class="var-use-when">Low-impact deletion — use when:</div>
               <ul class="var-use-list">
-                <li>A destructive action is available alongside neutral or positive actions</li>
-                <li>Deletion exists but is not the recommended or primary path</li>
-                <li>Reduced visual weight is appropriate for the context</li>
+                <li>Destructive tertiary buttons are low-emphasis actions used for small or repeated deletions that should not compete with the main page actions</li>
               </ul>
-              <div class="var-use-when" style="margin-top:12px;">Token group:</div>
-              <ul class="var-use-list"><li><code>color/border/button-destructive</code></li></ul>
+              <div class="var-use-when" style="margin-top:12px;">Example content:</div>
+              <ul class="var-use-list">
+                <li>Usage: Use for lightweight removals such as "Remove tag", "Discard draft", or "Clear filter"</li>
+                <li>Frequency: They can appear multiple times on a page without overwhelming the primary action</li>
+                <li>Priority: Do not use destructive tertiary buttons for high-impact or irreversible deletions</li>
+              </ul>
             </div>
           </div>
         </div>
@@ -541,14 +550,12 @@
               </div>
             </div>
             <div class="var-desc">
-              <div class="var-use-when">Use when:</div>
+              <div class="var-use-when">Moderate-impact deletion — use when:</div>
               <ul class="var-use-list">
-                <li>A low-emphasis destructive option should not draw immediate attention</li>
-                <li>Embedded in dense interfaces like table rows or inline editors</li>
-                <li>The destructive path is rare and should feel accessible but unobtrusive</li>
+                <li>Deletion is irreversible or affects multiple items (e.g., delete a listing or shipment/quote)</li>
+                <li>Require confirmation and clearly state what will happen</li>
+                <li>Recommended style: Secondary Destructive</li>
               </ul>
-              <div class="var-use-when" style="margin-top:12px;">Token group:</div>
-              <ul class="var-use-list"><li><code>color/text/button-destructive</code></li></ul>
             </div>
           </div>
         </div>
@@ -599,58 +606,115 @@
 
       <!-- 5 · USAGE -->
       <section class="doc-section" id="usage">
-        <h2 class="section-title">Usage</h2>
+        <h2 class="section-title">Usage Guidelines</h2>
         <div class="usage-block">
           <div class="usage-cols">
+
             <div class="usage-card">
               <div class="usage-card-header">
                 <div class="usage-icon do-icon"><i data-lucide="check" style="width:12px;height:12px"></i></div>
-                <div class="usage-card-title">Do</div>
+                <div class="usage-card-title">Size</div>
               </div>
               <ul class="usage-list">
-                <li>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor</li>
-                <li>Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi</li>
-                <li>Duis aute irure dolor in reprehenderit in voluptate velit esse cillum</li>
+                <li>Use Medium (48px) as the default for most UI: forms, modals, in-page actions. It aligns with input heights and keeps a consistent rhythm. When pairing with a button use medium since it matches the same hight.</li>
+                <li>Use Large (56px) for primary CTAs in hero sections, mobile-first flows, and critical modals where the action needs strong emphasis.</li>
+                <li>Use Small (32px) in dense layouts: tables, toolbars, side panels, and compact cards where space is limited.</li>
+                <li>Keep one size per button group (e.g. same size for "Cancel" and "Save" in a modal).</li>
               </ul>
             </div>
+
             <div class="usage-card">
               <div class="usage-card-header">
                 <div class="usage-icon do-icon"><i data-lucide="check" style="width:12px;height:12px"></i></div>
-                <div class="usage-card-title">Do</div>
+                <div class="usage-card-title">Type and hierarchy</div>
               </div>
               <ul class="usage-list">
-                <li>Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia</li>
-                <li>Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium</li>
-                <li>Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit fugit</li>
+                <li>Use one primary button per context (page, modal, or card).</li>
+                <li>Use secondary for in-page actions (Edit, Select, View, Apply) and for confirm/cancel in modals.</li>
+                <li>Use ghost for low-emphasis or dismissive actions (Cancel, Back, Manage).</li>
               </ul>
             </div>
+
+            <div class="usage-card">
+              <div class="usage-card-header">
+                <div class="usage-icon do-icon"><i data-lucide="check" style="width:12px;height:12px"></i></div>
+                <div class="usage-card-title">Labels and layout</div>
+              </div>
+              <ul class="usage-list">
+                <li>Use short, action-oriented labels (e.g. "Save", "Cancel", "Add item").</li>
+                <li>Keep icon + label to a single icon (left or right); use the same side consistently in a flow.</li>
+                <li>Keep button width fixed when switching to loading state to avoid layout shift.</li>
+              </ul>
+            </div>
+
+            <div class="usage-card">
+              <div class="usage-card-header">
+                <div class="usage-icon do-icon"><i data-lucide="check" style="width:12px;height:12px"></i></div>
+                <div class="usage-card-title">Loading and disabled</div>
+              </div>
+              <ul class="usage-list">
+                <li>Use disabled background for loading on filled buttons; use disabled text only (no fill) for ghost loading.</li>
+                <li>Place spinner left, loading text right (e.g. "Saving…"); use spinner only for icon-only buttons.</li>
+                <li>Use disabled state when the action isn't available; pair with validation or messaging when it's not obvious why.</li>
+              </ul>
+            </div>
+
           </div>
         </div>
+
         <div class="usage-divider"></div>
+
         <div class="usage-block">
           <div class="usage-cols">
+
             <div class="usage-card">
               <div class="usage-card-header">
                 <div class="usage-icon dont-icon"><i data-lucide="x" style="width:12px;height:12px"></i></div>
-                <div class="usage-card-title">Don't</div>
+                <div class="usage-card-title">Size</div>
               </div>
               <ul class="usage-list">
-                <li>Neque porro quisquam est qui dolorem ipsum quia dolor sit amet consectetur</li>
-                <li>Quis autem vel eum iure reprehenderit qui in ea voluptate velit esse quam</li>
-                <li>At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis</li>
+                <li>Don't use Small for critical or primary actions; reserve it for secondary/utility actions in tight layouts.</li>
+                <li>Don't mix button sizes in the same row or group.</li>
+                <li>Don't use Large for every button on a page; use it only where you need maximum emphasis.</li>
               </ul>
             </div>
+
             <div class="usage-card">
               <div class="usage-card-header">
                 <div class="usage-icon dont-icon"><i data-lucide="x" style="width:12px;height:12px"></i></div>
-                <div class="usage-card-title">Don't</div>
+                <div class="usage-card-title">Type and hierarchy</div>
               </div>
               <ul class="usage-list">
-                <li>Nam libero tempore cum soluta nobis est eligendi optio cumque nihil</li>
-                <li>Temporibus autem quibusdam et aut officiis debitis aut rerum necessitatibus</li>
-                <li>Itaque earum rerum hic tenetur sapiente delectus ut aut reiciendis voluptatibus</li>
+                <li>Don't use two primary buttons in the same view; it dilutes the main action.</li>
+                <li>Don't use ghost for primary or high-impact actions.</li>
+                <li>Don't use primary styling for destructive actions; use the destructive variants (primary/secondary/ghost destructive).</li>
               </ul>
             </div>
+
+            <div class="usage-card">
+              <div class="usage-card-header">
+                <div class="usage-icon dont-icon"><i data-lucide="x" style="width:12px;height:12px"></i></div>
+                <div class="usage-card-title">Labels and layout</div>
+              </div>
+              <ul class="usage-list">
+                <li>Don't truncate button labels; use shorter copy or allow the button to grow within reason.</li>
+                <li>Don't use multiple icons in one button (except loading, where the spinner replaces the icon).</li>
+                <li>Don't rely on icon-only buttons without an accessible name (e.g. aria-label).</li>
+              </ul>
+            </div>
+
+            <div class="usage-card">
+              <div class="usage-card-header">
+                <div class="usage-icon dont-icon"><i data-lucide="x" style="width:12px;height:12px"></i></div>
+                <div class="usage-card-title">Loading and disabled</div>
+              </div>
+              <ul class="usage-list">
+                <li>Don't change button width on transition to the loading state.</li>
+                <li>Don't show loading without a label when the spinner is the only feedback users get.</li>
+                <li>Don't leave disabled buttons unexplained — pair with inline validation or tooltip when needed.</li>
+              </ul>
+            </div>
+
           </div>
         </div>
       </section>
