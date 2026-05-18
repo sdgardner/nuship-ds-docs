@@ -135,7 +135,7 @@
       <section class="doc-section" id="definition">
         <div class="def-eyebrow">Actions</div>
         <h1 class="def-title">Link</h1>
-        <p class="def-desc">The Link component is used for navigation within body text (inline) or as a standalone call-to-action. It supports three sizes, two surface contexts, and a full set of interactive states.</p>
+        <p class="def-desc">Links act as navigational elements, appearing either independently or embedded within text. While they offer a streamlined way to navigate, overusing links, especially inline ones, can overwhelm a page and make it harder for users to determine their next steps. For this reason, inline links should be used thoughtfully and sparingly.</p>
         <div class="def-tags">
           <span class="bdg bdg--purple bdg--outline">Not Developed</span>
           <span class="bdg bdg--green bdg--outline">Figma</span>
@@ -276,10 +276,26 @@
               </div>
             </div>
             <div class="var-desc">
-              <div class="var-use-when">Use when:</div>
+              <div class="var-use-when">Standalone — Use when:</div>
               <ul class="var-use-list">
-                <li>Standalone — use as a call-to-action that stands alone outside of running text</li>
-                <li>Inline — use inside sentences and paragraphs to link specific words</li>
+                <li>Used on their own or directly following content and do not use underlines</li>
+                <li>They can be paired with an icon</li>
+              </ul>
+              <div class="var-use-when" style="margin-top:14px;">Example content:</div>
+              <ul class="var-use-list">
+                <li>"Terms of Use"</li>
+                <li>"Already have an account?"</li>
+                <li>"Get Started →"</li>
+              </ul>
+
+              <div class="var-use-when" style="margin-top:18px;">Inline — Use when:</div>
+              <ul class="var-use-list">
+                <li>Used within a sentence or paragraph and is styled with an underline</li>
+              </ul>
+              <div class="var-use-when" style="margin-top:14px;">Example content:</div>
+              <ul class="var-use-list">
+                <li>"Don't have an account? <u>Join uShip</u>"</li>
+                <li>"I agree to the terms or <u>uShip's user agreement</u> and <u>privacy policy</u>"</li>
               </ul>
             </div>
           </div>
@@ -530,23 +546,23 @@
             <div class="usage-card">
               <div class="usage-card-header">
                 <div class="usage-icon do-icon"><i data-lucide="check" style="width:12px;height:12px"></i></div>
-                <div class="usage-card-title">Use standalone for navigation actions</div>
+                <div class="usage-card-title">Navigation</div>
               </div>
               <ul class="usage-list">
-                <li>Place standalone links after a block of content as a clear "read more" or "view all" CTA</li>
-                <li>Use in card footers, empty states, and sidebars where the link stands alone</li>
-                <li>Choose Large (Bold) for prominent sections that need extra visual weight</li>
+                <li>Navigate to a different page within the application</li>
+                <li>Navigate to an entirely different site</li>
+                <li>Jump to an element on the same page</li>
+                <li>Link to emails or phone numbers</li>
               </ul>
             </div>
             <div class="usage-card">
               <div class="usage-card-header">
                 <div class="usage-icon do-icon"><i data-lucide="check" style="width:12px;height:12px"></i></div>
-                <div class="usage-card-title">Use inline within body text sentences</div>
+                <div class="usage-card-title">Size inline</div>
               </div>
               <ul class="usage-list">
-                <li>Wrap specific words or short phrases — not entire sentences — with an inline link</li>
-                <li>Match the link size to the surrounding paragraph size for visual consistency</li>
-                <li>Provide descriptive link text that makes sense out of context</li>
+                <li>Use small for small body</li>
+                <li>Use medium for medium body</li>
               </ul>
             </div>
           </div>
@@ -559,23 +575,33 @@
             <div class="usage-card">
               <div class="usage-card-header">
                 <div class="usage-icon dont-icon"><i data-lucide="x" style="width:12px;height:12px"></i></div>
-                <div class="usage-card-title">Don't use links as buttons for primary actions</div>
+                <div class="usage-card-title">Interaction behavior</div>
               </div>
               <ul class="usage-list">
-                <li>If the action submits data, triggers a modal, or changes application state, use a Button instead</li>
-                <li>Avoid replacing Button components with styled links purely for aesthetic reasons</li>
-                <li>Links imply navigation; buttons imply action — preserve this semantic distinction</li>
+                <li>Avoid using links for actions that modify the display, alter a state, or trigger any process</li>
+                <li>Reserve buttons for guiding users to perform these specific actions</li>
               </ul>
             </div>
             <div class="usage-card">
               <div class="usage-card-header">
                 <div class="usage-icon dont-icon"><i data-lucide="x" style="width:12px;height:12px"></i></div>
-                <div class="usage-card-title">Don't mix sizes in the same sentence</div>
+                <div class="usage-card-title">Line height links</div>
               </div>
               <ul class="usage-list">
-                <li>An inline link must match the font size of the surrounding paragraph text</li>
-                <li>Avoid placing a Large link inside a paragraph written in 14px body copy</li>
-                <li>Keep standalone link sizes consistent within the same section or card</li>
+                <li>Never force spacing in a paragraph for inline links, always match baseline and rhythm</li>
+                <li>Inline links → inherit body line height</li>
+                <li>Standalone links → use link's own line height</li>
+              </ul>
+            </div>
+          </div>
+          <div class="usage-cols">
+            <div class="usage-card">
+              <div class="usage-card-header">
+                <div class="usage-icon dont-icon"><i data-lucide="x" style="width:12px;height:12px"></i></div>
+                <div class="usage-card-title">Content</div>
+              </div>
+              <ul class="usage-list">
+                <li>Never truncate text — allow it to wrap</li>
               </ul>
             </div>
           </div>
