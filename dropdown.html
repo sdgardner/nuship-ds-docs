@@ -20,6 +20,12 @@
     #tmPreview.spotlight-radius::after { content:'4px'; position:absolute; top:-16px; left:-2px; font-size:10px; font-family:var(--mono); color:#FF4081; background:rgba(255,255,255,0.9); padding:1px 4px; border-radius:2px; font-weight:700; }
     #tmPreview.spotlight-border-width { outline:2px solid #FF4081; outline-offset:0; border-radius:4px; }
     #tmPreview.spotlight-border-width::after { content:'1px'; position:absolute; top:-16px; right:4px; font-size:10px; font-family:var(--mono); color:#FF4081; background:rgba(255,255,255,0.9); padding:1px 4px; border-radius:2px; font-weight:700; }
+    .def-compare { margin:20px 0 24px; padding:16px 18px; background:var(--surface-layer01); border:1px solid var(--border-soft); border-radius:8px; }
+    .def-compare-title { font-size:14px; font-weight:700; color:var(--text-primary); margin:0 0 10px; }
+    .def-compare-list { list-style:none; padding:0; margin:0; display:flex; flex-direction:column; gap:10px; }
+    .def-compare-list li { font-size:14px; line-height:22px; color:var(--text-secondary); }
+    .def-compare-list strong { color:var(--text-primary); font-weight:700; }
+    .def-compare-list code { font-family:var(--mono); font-size:12px; background:var(--surface-layer02); padding:1px 5px; border-radius:3px; color:var(--text-primary); }
   </style>
 </head>
 <body>
@@ -138,10 +144,17 @@
       <section class="doc-section" id="definition">
         <div class="def-eyebrow">Navigation</div>
         <h1 class="def-title">Drop-down</h1>
-        <p class="def-desc">The Dropdown component allows users to choose one or more options from a dropdown list. It supports single and multi-selection with tag chips, keyboard navigation, and accessible option discovery for forms, filters, and configuration panels.</p>
+        <p class="def-desc">A Dropdown is a custom form control that allows users to select one or more options from a styled, application-rendered list. It supports features like tag chips for multi-selection, search/filtering, and custom option rendering. The options panel is built and controlled by the application, not the browser.</p>
         <div class="def-tags">
           <span class="bdg bdg--purple bdg--outline">Not Developed</span>
           <span class="bdg bdg--green bdg--outline">Figma</span>
+        </div>
+        <div class="def-compare">
+          <div class="def-compare-title">Dropdown vs. Select</div>
+          <ul class="def-compare-list">
+            <li><strong>Select</strong> — A native HTML <code>&lt;select&gt;</code> element that delegates rendering and interaction to the browser. It produces a system-native options list, is inherently accessible, and is best suited for simple, single-choice form inputs (e.g., country, state, currency). It cannot be heavily styled or extended.</li>
+            <li><strong>Dropdown</strong> — A custom-built control that gives full design and behavioral control. Use it when you need multi-select with tag chips, inline search/filtering, grouped or categorized options, custom option content (icons, descriptions, avatars), or any behavior beyond what native <code>&lt;select&gt;</code> provides.</li>
+          </ul>
         </div>
         <div class="preview-box">
           <div class="sl-field">
@@ -411,10 +424,10 @@
 
             </div>
             <div class="var-desc">
-              <div class="var-use-when">Empty variant</div>
+              <div class="var-use-when">Use when:</div>
               <ul class="var-use-list">
+                <li>The user needs to pick one or more values from a known set of options (e.g., country, role, category)</li>
                 <li>No value has been selected yet; placeholder text is shown</li>
-                <li>Starting state for all Select fields before user interaction</li>
               </ul>
               <div class="var-use-when" style="margin-top:16px;">Visual changes by state:</div>
               <ul class="var-use-list">
@@ -682,10 +695,10 @@
 
             </div>
             <div class="var-desc">
-              <div class="var-use-when">Filled variant</div>
+              <div class="var-use-when">Use when:</div>
               <ul class="var-use-list">
-                <li>One or more options have been selected; a tag chip indicates the selection count</li>
-                <li>Active/filled state with value "Ford" shown in Default state</li>
+                <li>The user has selected one or more values from the known set of options</li>
+                <li>A tag chip indicates the selection count and a close icon allows removal</li>
               </ul>
               <div class="var-use-when" style="margin-top:16px;">Visual changes by state:</div>
               <ul class="var-use-list">
@@ -777,23 +790,24 @@
             <div class="usage-card">
               <div class="usage-card-header">
                 <div class="usage-icon do-icon"><i data-lucide="check" style="width:12px;height:12px"></i></div>
-                <div class="usage-card-title">Lorem ipsum dolor sit amet</div>
+                <div class="usage-card-title">Labels & Text</div>
               </div>
               <ul class="usage-list">
-                <li>Lorem ipsum dolor sit amet, consectetur adipiscing elit sed do eiusmod tempor</li>
-                <li>Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi</li>
-                <li>Duis aute irure dolor in reprehenderit in voluptate velit esse cillum</li>
+                <li>Always provide a visible label above the dropdown</li>
+                <li>Keep label text short and descriptive (e.g., "Maker", "Country", "Role")</li>
+                <li>Use helper text to clarify what the user should select</li>
+                <li>Replace helper text with a specific error message in the error state (e.g., "Please select a maker")</li>
               </ul>
             </div>
             <div class="usage-card">
               <div class="usage-card-header">
                 <div class="usage-icon do-icon"><i data-lucide="check" style="width:12px;height:12px"></i></div>
-                <div class="usage-card-title">Ut labore et dolore magna aliqua</div>
+                <div class="usage-card-title">Placeholder & Value</div>
               </div>
               <ul class="usage-list">
-                <li>Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia</li>
-                <li>Deserunt mollit anim id est laborum sed perspiciatis unde omnis iste natus</li>
-                <li>Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit</li>
+                <li>Use placeholder text like "Select option" to indicate the dropdown is empty</li>
+                <li>Show selected values in primary text color (#374151) to distinguish them from placeholder gray</li>
+                <li>Display a badge/tag with a count and close icon when multiple items are selected</li>
               </ul>
             </div>
           </div>
@@ -801,23 +815,37 @@
             <div class="usage-card">
               <div class="usage-card-header">
                 <div class="usage-icon do-icon"><i data-lucide="check" style="width:12px;height:12px"></i></div>
-                <div class="usage-card-title">Neque porro quisquam est qui</div>
+                <div class="usage-card-title">States & Interaction</div>
               </div>
               <ul class="usage-list">
-                <li>Dolorem ipsum quia dolor sit amet consectetur adipisci velit sed quia</li>
-                <li>Quisquam est qui dolorem ipsum quia dolor sit amet consectetur</li>
-                <li>Ut enim ad minima veniam, quis nostrum exercitationem ullam corporis</li>
+                <li>Use the hover state to give visual feedback when the cursor enters the field</li>
+                <li>Show the focus ring (#5abfe0) when the dropdown is focused via keyboard or click</li>
+                <li>Flip the chevron icon upward when the dropdown menu is open</li>
+                <li>Disable the entire dropdown (label, field, icon, helper text) when the field is not available</li>
               </ul>
             </div>
             <div class="usage-card">
               <div class="usage-card-header">
                 <div class="usage-icon do-icon"><i data-lucide="check" style="width:12px;height:12px"></i></div>
-                <div class="usage-card-title">Quis autem vel eum iure reprehenderit</div>
+                <div class="usage-card-title">Error Handling</div>
               </div>
               <ul class="usage-list">
-                <li>At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis</li>
-                <li>Nam libero tempore cum soluta nobis eligendi optio cumque nihil impedit</li>
-                <li>Temporibus autem quibusdam et aut officiis debitis rerum necessitatibus</li>
+                <li>Use the red border combined with an alert icon and red helper text for errors</li>
+                <li>Provide redundant cues (color + icon + text) so errors are accessible to color blind users</li>
+                <li>Clear the error state once the user makes a valid selection</li>
+              </ul>
+            </div>
+          </div>
+          <div class="usage-cols">
+            <div class="usage-card">
+              <div class="usage-card-header">
+                <div class="usage-icon do-icon"><i data-lucide="check" style="width:12px;height:12px"></i></div>
+                <div class="usage-card-title">Layout & Sizing</div>
+              </div>
+              <ul class="usage-list">
+                <li>Use a consistent height of 48px for the input field across all states</li>
+                <li>Maintain 8px vertical spacing between label, input, and helper text</li>
+                <li>Allow the dropdown width to match its container or form column</li>
               </ul>
             </div>
           </div>
@@ -830,23 +858,24 @@
             <div class="usage-card">
               <div class="usage-card-header">
                 <div class="usage-icon dont-icon"><i data-lucide="x" style="width:12px;height:12px"></i></div>
-                <div class="usage-card-title">Itaque earum rerum hic tenetur</div>
+                <div class="usage-card-title">Labels & Text</div>
               </div>
               <ul class="usage-list">
-                <li>Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium</li>
-                <li>Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit</li>
-                <li>Quis autem vel eum iure reprehenderit qui voluptate velit esse quam nihil</li>
+                <li>Don't use long sentences as labels</li>
+                <li>Don't leave the label empty or rely on placeholder text alone as the label</li>
+                <li>Don't use generic error messages like "Invalid input" — be specific about what went wrong</li>
+                <li>Don't show both helper text and error text at the same time</li>
               </ul>
             </div>
             <div class="usage-card">
               <div class="usage-card-header">
                 <div class="usage-icon dont-icon"><i data-lucide="x" style="width:12px;height:12px"></i></div>
-                <div class="usage-card-title">Nam libero tempore cum soluta nobis</div>
+                <div class="usage-card-title">Placeholder & Value</div>
               </div>
               <ul class="usage-list">
-                <li>Temporibus autem quibusdam et aut officiis debitis rerum necessitatibus saepe</li>
-                <li>Et harum quidem rerum facilis est et expedita distinctio nam libero tempore</li>
-                <li>Cum soluta nobis est eligendi optio cumque nihil impedit quo minus</li>
+                <li>Don't use a selected value as placeholder text (e.g., don't pre-select a default unless intentional)</li>
+                <li>Don't truncate selected text without a tooltip or other way to reveal the full value</li>
+                <li>Don't show the badge/tag in the disabled state</li>
               </ul>
             </div>
           </div>
@@ -854,23 +883,24 @@
             <div class="usage-card">
               <div class="usage-card-header">
                 <div class="usage-icon dont-icon"><i data-lucide="x" style="width:12px;height:12px"></i></div>
-                <div class="usage-card-title">Totam rem aperiam eaque ipsa quae</div>
+                <div class="usage-card-title">States & Interaction</div>
               </div>
               <ul class="usage-list">
-                <li>Ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt</li>
-                <li>Explicabo nemo enim ipsam voluptatem quia voluptas sit aspernatur</li>
-                <li>Ut enim ad minima veniam quis nostrum exercitationem ullam corporis</li>
+                <li>Don't allow interaction on a disabled dropdown — no hover, focus, or click responses</li>
+                <li>Don't show a focus ring and an error border at the same time — focus should take priority</li>
+                <li>Don't change the chevron icon color independently of the field state</li>
+                <li>Don't open the dropdown menu on hover — it should open on click or keyboard activation only</li>
               </ul>
             </div>
             <div class="usage-card">
               <div class="usage-card-header">
                 <div class="usage-icon dont-icon"><i data-lucide="x" style="width:12px;height:12px"></i></div>
-                <div class="usage-card-title">Accusantium doloremque laudantium totam</div>
+                <div class="usage-card-title">Error Handling</div>
               </div>
               <ul class="usage-list">
-                <li>Rem aperiam eaque ipsa quae ab illo inventore veritatis quasi architecto</li>
-                <li>Beatae vitae dicta sunt explicabo nemo enim ipsam voluptatem quia</li>
-                <li>Voluptas sit aspernatur aut odit aut fugit sed quia consequuntur magni</li>
+                <li>Don't rely on border color alone to indicate an error</li>
+                <li>Don't show an error state while the dropdown is disabled</li>
+                <li>Don't keep the error visible after the user corrects the issue</li>
               </ul>
             </div>
           </div>
