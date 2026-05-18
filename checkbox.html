@@ -311,17 +311,17 @@
               </div>
             </div>
             <div class="var-desc">
-              <div class="var-use-when">Use when:</div>
+              <div class="var-use-when">Default (Unchecked) — use when:</div>
               <ul class="var-use-list">
-                <li>Presenting an option the user hasn't yet selected</li>
-                <li>Starting state for all checkboxes in a group</li>
+                <li>Checkbox option is not selected</li>
+                <li>Initial state for option selections</li>
+                <li>User has not made a choice yet</li>
               </ul>
-              <div class="var-use-when" style="margin-top:16px;">Visual changes:</div>
+              <div class="var-use-when" style="margin-top:16px;">Example contexts:</div>
               <ul class="var-use-list">
-                <li>Hover — stronger border</li>
-                <li>Focus — blue focus ring</li>
-                <li>Disabled — faded border and text</li>
-                <li>Error — red border and error message</li>
+                <li>Unselected filter options in a search</li>
+                <li>Opt-in preferences not yet chosen</li>
+                <li>Multi-select list with no items selected</li>
               </ul>
             </div>
           </div>
@@ -420,18 +420,17 @@
               </div>
             </div>
             <div class="var-desc">
-              <div class="var-use-when">Use when:</div>
+              <div class="var-use-when">Checked — use when:</div>
               <ul class="var-use-list">
-                <li>The user has actively selected this option</li>
-                <li>A default pre-selected value is required</li>
-                <li>Confirming agreement or preference</li>
+                <li>User has selected this option</li>
+                <li>Item is included in the user's selection</li>
+                <li>Preference or setting is enabled</li>
               </ul>
-              <div class="var-use-when" style="margin-top:16px;">Visual changes:</div>
+              <div class="var-use-when" style="margin-top:16px;">Example contexts:</div>
               <ul class="var-use-list">
-                <li>Hover — subtle outer ring on filled box</li>
-                <li>Focus — blue focus ring around filled box</li>
-                <li>Disabled — greyed fill, no interaction</li>
-                <li>Error — red border override on filled box</li>
+                <li>Selected accepted payment options</li>
+                <li>Enabled notification preferences</li>
+                <li>Checked items in a task list</li>
               </ul>
             </div>
           </div>
@@ -530,18 +529,17 @@
               </div>
             </div>
             <div class="var-desc">
-              <div class="var-use-when">Use when:</div>
+              <div class="var-use-when">Indeterminate — use when:</div>
               <ul class="var-use-list">
-                <li>A parent checkbox controls a group of children</li>
-                <li>Some — but not all — children are checked</li>
-                <li>Representing a mixed selection state</li>
+                <li>Parent checkbox represents a group where some but not all children are checked</li>
+                <li>Mixed state needs to be communicated</li>
+                <li>Partial selection in hierarchical lists</li>
               </ul>
-              <div class="var-use-when" style="margin-top:16px;">Visual changes:</div>
+              <div class="var-use-when" style="margin-top:16px;">Example contexts:</div>
               <ul class="var-use-list">
-                <li>Hover — subtle outer ring on filled box</li>
-                <li>Focus — blue focus ring</li>
-                <li>Disabled — greyed fill, no interaction</li>
-                <li>Error — red border override</li>
+                <li>"Select all" checkbox when only some rows are checked</li>
+                <li>Category filter where some sub-categories are selected</li>
+                <li>Parent option with mixed child selections</li>
               </ul>
             </div>
           </div>
@@ -595,48 +593,48 @@
             <div class="usage-card">
               <div class="usage-card-header">
                 <div class="usage-icon do-icon"><i data-lucide="check" style="width:12px;height:12px"></i></div>
-                <div class="usage-card-title">Lorem ipsum dolor sit amet</div>
+                <div class="usage-card-title">Multiple Selections</div>
               </div>
               <ul class="usage-list">
-                <li>Lorem ipsum dolor sit amet consectetur</li>
-                <li>Adipiscing elit sed do eiusmod tempor</li>
-                <li>Incididunt ut labore et dolore magna</li>
+                <li>Selecting multiple items from a list</li>
+                <li>Filters where users can apply several criteria at once</li>
+                <li>Multi-select forms where 0, 1, or many options are valid</li>
               </ul>
             </div>
 
             <div class="usage-card">
               <div class="usage-card-header">
                 <div class="usage-icon do-icon"><i data-lucide="check" style="width:12px;height:12px"></i></div>
-                <div class="usage-card-title">Ut enim ad minim veniam</div>
+                <div class="usage-card-title">Single Toggle Options</div>
               </div>
               <ul class="usage-list">
-                <li>Quis nostrud exercitation ullamco laboris</li>
-                <li>Nisi ut aliquip ex ea commodo consequat</li>
-                <li>Duis aute irure dolor in reprehenderit</li>
+                <li>On/off preferences or settings</li>
+                <li>Optional features that can be enabled/disabled</li>
+                <li>Agreement to terms or policies</li>
               </ul>
             </div>
 
             <div class="usage-card">
               <div class="usage-card-header">
                 <div class="usage-icon do-icon"><i data-lucide="check" style="width:12px;height:12px"></i></div>
-                <div class="usage-card-title">Excepteur sint occaecat cupidatat</div>
+                <div class="usage-card-title">Task or Item Lists</div>
               </div>
               <ul class="usage-list">
-                <li>Non proident sunt in culpa qui officia</li>
-                <li>Deserunt mollit anim id est laborum</li>
-                <li>Sed ut perspiciatis unde omnis iste</li>
+                <li>To-do lists or task completion tracking</li>
+                <li>Selection of items for batch actions</li>
+                <li>Item selection</li>
               </ul>
             </div>
 
             <div class="usage-card">
               <div class="usage-card-header">
                 <div class="usage-icon do-icon"><i data-lucide="check" style="width:12px;height:12px"></i></div>
-                <div class="usage-card-title">Nemo enim ipsam voluptatem</div>
+                <div class="usage-card-title">Hierarchical Selections</div>
               </div>
               <ul class="usage-list">
-                <li>Quia voluptas sit aspernatur aut odit</li>
-                <li>Neque porro quisquam est qui dolorem</li>
-                <li>Ut labore et dolore magnam aliquam</li>
+                <li>Parent-child relationships with "Select All" functionality</li>
+                <li>Nested categories with indeterminate states</li>
+                <li>Group selections with sub-options</li>
               </ul>
             </div>
 
@@ -651,50 +649,101 @@
             <div class="usage-card">
               <div class="usage-card-header">
                 <div class="usage-icon dont-icon"><i data-lucide="x" style="width:12px;height:12px"></i></div>
-                <div class="usage-card-title">Quis autem vel eum iure</div>
+                <div class="usage-card-title">Mutually Exclusive Choices</div>
               </div>
               <ul class="usage-list">
-                <li>Reprehenderit qui in ea voluptate velit</li>
-                <li>Esse quam nihil molestiae consequatur</li>
-                <li>Vel illum qui dolorem eum fugiat</li>
+                <li>When only one option can be selected (use radio buttons)</li>
+                <li>Binary either/or decisions between two options</li>
+                <li>Single selection from a list</li>
               </ul>
             </div>
 
             <div class="usage-card">
               <div class="usage-card-header">
                 <div class="usage-icon dont-icon"><i data-lucide="x" style="width:12px;height:12px"></i></div>
-                <div class="usage-card-title">At vero eos et accusamus</div>
+                <div class="usage-card-title">Immediate Action Triggers</div>
               </div>
               <ul class="usage-list">
-                <li>Et iusto odio dignissimos ducimus qui</li>
-                <li>Blanditiis praesentium voluptatum deleniti</li>
-                <li>Atque corrupti quos dolores et quas</li>
+                <li>Actions that take effect immediately (use switch/toggle)</li>
+                <li>Settings with instant visual feedback</li>
+                <li>States that don't require form submission</li>
               </ul>
             </div>
 
             <div class="usage-card">
               <div class="usage-card-header">
                 <div class="usage-icon dont-icon"><i data-lucide="x" style="width:12px;height:12px"></i></div>
-                <div class="usage-card-title">Nam libero tempore cum soluta</div>
+                <div class="usage-card-title">Navigation or Mode Switching</div>
               </div>
               <ul class="usage-list">
-                <li>Nobis est eligendi optio cumque nihil</li>
-                <li>Impedit quo minus id quod maxime</li>
+                <li>Switching between views or modes (use segmented controls or tabs)</li>
+                <li>Filter buttons that toggle on/off (use toggle buttons)</li>
               </ul>
             </div>
 
             <div class="usage-card">
               <div class="usage-card-header">
                 <div class="usage-icon dont-icon"><i data-lucide="x" style="width:12px;height:12px"></i></div>
-                <div class="usage-card-title">Temporibus autem quibusdam</div>
+                <div class="usage-card-title">Long Lists Without Search</div>
               </div>
               <ul class="usage-list">
-                <li>Et aut officiis debitis aut rerum necessitatibus</li>
-                <li>Saepe eveniet ut et voluptates repudiandae</li>
+                <li>More than 10–15 options without filtering capabilities (use multi-select dropdown)</li>
+                <li>Very long lists that require scrolling (consider dropdown with search)</li>
               </ul>
             </div>
 
           </div>
+        </div>
+      </section>
+
+      <!-- 5.5 · MESSAGING -->
+      <section class="doc-section" id="messaging">
+        <h2 class="section-title">Messaging</h2>
+        <p class="def-desc" style="margin-bottom:32px;">When and how to label checkbox groups.</p>
+
+        <div class="a11y-group">
+          <h3 class="a11y-group-title">Checkbox Labels</h3>
+          <ul class="a11y-list">
+            <li><div>Keep labels concise but descriptive</div></li>
+            <li><div>Use sentence case</div></li>
+            <li><div>Place label to the right of the checkbox</div></li>
+            <li><div>Make the entire label clickable (not just the checkbox)</div></li>
+            <li><div>Avoid negative phrasing (e.g., "Don't send emails" — use "Send emails" instead)</div></li>
+          </ul>
+          <p class="def-desc" style="margin-top:12px;"><strong>Example labels:</strong> "Express shipping", "Include uShip Protection", "Send email notifications", "Remember my preferences"</p>
+        </div>
+
+        <div class="a11y-group">
+          <h3 class="a11y-group-title">Group Labels</h3>
+          <ul class="a11y-list">
+            <li><div>Clearly describe what the group of options represents</div></li>
+            <li><div>Include required indicator (*) when at least one selection is mandatory</div></li>
+            <li><div>Use sentence case</div></li>
+            <li><div>Keep under 50 characters</div></li>
+          </ul>
+          <p class="def-desc" style="margin-top:12px;"><strong>Example group labels:</strong> "Notification Preferences *", "Shipment Add-ons", "Filter by Service Type"</p>
+        </div>
+
+        <div class="a11y-group">
+          <h3 class="a11y-group-title">Helper Text</h3>
+          <ul class="a11y-list">
+            <li><div>Explain what selecting options will do</div></li>
+            <li><div>Clarify any constraints (e.g., "Select at least one")</div></li>
+            <li><div>Keep to 1–2 lines maximum</div></li>
+            <li><div>Place below the group label, above the checkboxes</div></li>
+          </ul>
+          <p class="def-desc" style="margin-top:12px;"><strong>Example helper text:</strong> "Select all that apply", "Choose at least one notification method"</p>
+        </div>
+
+        <div class="a11y-group">
+          <h3 class="a11y-group-title">Error Message</h3>
+          <ul class="a11y-list">
+            <li><div>Display below the checkbox group</div></li>
+            <li><div>Use red text (<code>color/text/error</code>)</div></li>
+            <li><div>Be specific about what needs to be fixed</div></li>
+            <li><div>Appear immediately after validation</div></li>
+          </ul>
+          <p class="def-desc" style="margin-top:12px;"><strong>Example error messages:</strong> "Please select at least one option", "You must agree to the terms to continue"</p>
         </div>
       </section>
 
@@ -796,6 +845,7 @@
         <li><a href="#variants"     id="rn-variants">Variants</a></li>
         <li><a href="#properties"   id="rn-properties">Properties</a></li>
         <li><a href="#usage"        id="rn-usage">Usage</a></li>
+        <li><a href="#messaging"    id="rn-messaging">Messaging</a></li>
         <li><a href="#tokens"       id="rn-tokens">Tokens</a></li>
         <li><a href="#accessibility" id="rn-accessibility">Accessibility</a></li>
         <li><a href="#related"      id="rn-related">Related</a></li>
@@ -868,7 +918,7 @@
     d.setAttribute('data-theme', d.getAttribute('data-theme') === 'dark' ? 'light' : 'dark');
   }
 
-  const sections = ['definition','anatomy','variants','properties','usage','tokens','accessibility','related'];
+  const sections = ['definition','anatomy','variants','properties','usage','messaging','tokens','accessibility','related'];
   const observer = new IntersectionObserver(entries => {
     entries.forEach(e => {
       if (e.isIntersecting) {
