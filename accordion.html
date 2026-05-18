@@ -289,7 +289,7 @@
                 </div>
               </div>
             </div>
-            <div class="var-desc">
+            <div class="var-desc" id="var-desc-open">
               <div class="var-use-when">Use when:</div>
               <ul class="var-use-list">
                 <li>A section should be expanded by default on load</li>
@@ -301,6 +301,11 @@
                 <li>Label color: <code>color/text/button-tertiary/default</code></li>
                 <li>Chevron rotated 180°, stroke matches label color</li>
                 <li>Content area visible below trigger</li>
+              </ul>
+              <div class="var-use-when" style="margin-top:12px;">Example contexts:</div>
+              <ul class="var-use-list">
+                <li>First section in a carrier profile detail view</li>
+                <li>Most relevant Q&amp;A item pre-expanded</li>
               </ul>
             </div>
           </div>
@@ -381,7 +386,7 @@
                 </div>
               </div>
             </div>
-            <div class="var-desc">
+            <div class="var-desc" id="var-desc-closed">
               <div class="var-use-when">Use when:</div>
               <ul class="var-use-list">
                 <li>The user has not yet interacted with the section</li>
@@ -393,6 +398,11 @@
                 <li>Label color: <code>color/text/primary</code></li>
                 <li>Chevron pointing down, neutral stroke color</li>
                 <li>Content area hidden</li>
+              </ul>
+              <div class="var-use-when" style="margin-top:12px;">Example contexts:</div>
+              <ul class="var-use-list">
+                <li>Protection Plan details on a listing detail screen</li>
+                <li>FAQ items not yet viewed</li>
               </ul>
             </div>
           </div>
@@ -737,12 +747,70 @@
     d.setAttribute('data-theme', d.getAttribute('data-theme') === 'dark' ? 'light' : 'dark');
   }
 
+  // Figma per-state variant copy (3847-1029)
+  const stateCopy = {
+    'vs-open-en': {
+      use: ['A section should be expanded by default on load','The content is the primary reason the user is on the screen','You want to signal that content is available and readable'],
+      visual: ['Label color: <code>color/text/button-tertiary/default</code>','Chevron rotated 180°, stroke matches label color','Content area visible below trigger'],
+      examples: ['First section in a carrier profile detail view','Most relevant Q&A item pre-expanded']
+    },
+    'vs-open-hov': {
+      use: ['User\'s cursor is over an open accordion','Desktop or pointer-device contexts only'],
+      visual: ['Background fill: <code>color/surface/layer-01/hover</code>','Border weight increases to 2px','Transient — reverts on cursor exit'],
+      examples: ['Desktop web views of carrier listing detail screens']
+    },
+    'vs-open-foc': {
+      use: ['Keyboard focus has been brought to an open accordion trigger','User is navigating via Tab key'],
+      visual: ['2px border: <code>color/border/focus-ring</code>','Outer glow: <code>glow/focus-glow-light-mode</code>','All other open-state styles retained'],
+      examples: ['Keyboard-only users navigating a carrier detail screen']
+    },
+    'vs-open-dis': {
+      use: ['The section is not available in the current context or user state','Content will become accessible after a prerequisite action'],
+      visual: ['Label color: <code>color/text/disabled</code>','Chevron border: <code>color/border/disabled</code>','Not interactive — no hover or focus state'],
+      examples: ['A section locked until the user has completed a prior step','Content restricted by account tier or permissions']
+    },
+    'vs-closed-en': {
+      use: ['The user has not yet interacted with the section','Content is secondary and not needed immediately','Multiple accordion items are present on the same screen'],
+      visual: ['Label color: <code>color/text/primary</code>','Chevron pointing down, neutral stroke color','Content area hidden'],
+      examples: ['Protection Plan details on a listing detail screen','FAQ items not yet viewed']
+    },
+    'vs-closed-hov': {
+      use: ['User\'s cursor is over a closed accordion trigger','Signals the trigger is interactive before clicking'],
+      visual: ['Background fill: <code>color/surface/layer-01/hover</code>','Border weight increases to 2px','Label and chevron retain closed-state colors'],
+      examples: ['Same as Hover (Open) — transient pointer-interaction state']
+    },
+    'vs-closed-foc': {
+      use: ['Keyboard focus has been brought to a closed accordion trigger','User is about to press Enter/Space to expand the section'],
+      visual: ['2px border: <code>color/border/focus-ring</code>','Outer glow: <code>glow/focus-glow-light-mode</code>','Closed-state trigger label and chevron retained'],
+      examples: ['Same as Focus (Open) — transient keyboard navigation state']
+    },
+    'vs-closed-dis': {
+      use: ['The section is not available in the current context or user state','Content will become accessible after a prerequisite action'],
+      visual: ['Label color: <code>color/text/disabled</code>','Chevron border: <code>color/border/disabled</code>','Not interactive — no hover or focus state'],
+      examples: ['A section locked until the user has completed a prior step','Content restricted by account tier or permissions']
+    }
+  };
+
+  function renderStateCopy(panelId) {
+    const c = stateCopy[panelId];
+    if (!c) return;
+    const variant = panelId.startsWith('vs-open-') ? 'open' : 'closed';
+    const descEl = document.getElementById('var-desc-' + variant);
+    if (!descEl) return;
+    const lis = arr => arr.map(s => '<li>' + s + '</li>').join('');
+    descEl.innerHTML =
+      '<div class="var-use-when">Use when:</div><ul class="var-use-list">' + lis(c.use) + '</ul>' +
+      '<div class="var-use-when" style="margin-top:12px;">Visual changes:</div><ul class="var-use-list">' + lis(c.visual) + '</ul>' +
+      '<div class="var-use-when" style="margin-top:12px;">Example contexts:</div><ul class="var-use-list">' + lis(c.examples) + '</ul>';
+  }
+
   function switchStateTab(btn, panelId) {
     const wrap = btn.closest('.tab-panel');
     wrap.querySelectorAll('.state-tab-btn').forEach(t => t.classList.remove('active'));
     wrap.querySelectorAll('.state-panel').forEach(p => p.classList.remove('active'));
     btn.classList.add('active');
     document.getElementById(panelId).classList.add('active');
+    renderStateCopy(panelId);
     lucide.createIcons();
   }
 
