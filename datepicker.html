@@ -137,7 +137,7 @@
       <section class="doc-section" id="definition">
         <div class="def-eyebrow">Inputs</div>
         <h1 class="def-title">Date Picker</h1>
-        <p class="def-desc">The Date Picker allows users to select a single date, date range, or date and time. It opens a calendar popover from an input trigger, supporting keyboard navigation and accessible date selection across scheduling, filtering, and booking workflows.</p>
+        <p class="def-desc">The Date Picker allows users to select a single date, a date range, or a date and time from a calendar interface. It is used across uShip for pickup and delivery date selection, quote expiration, and date-based filtering. The component appears as a trigger input field that opens a popover calendar on interaction.</p>
         <div class="def-tags">
           <span class="bdg bdg--purple bdg--outline">Not Developed</span>
           <span class="bdg bdg--green bdg--outline">Figma</span>
@@ -505,11 +505,16 @@
 
             </div>
             <div class="var-desc">
-              <div class="var-use-when">Use when:</div>
+              <div class="var-use-when">Single — use when:</div>
               <ul class="var-use-list">
-                <li>Single date selection is needed</li>
-                <li>Scheduling a specific date for an event or shipment</li>
-                <li>Filtering records by a single date value</li>
+                <li>Only one specific date needs to be captured</li>
+                <li>The user does not need to specify a time</li>
+              </ul>
+              <div class="var-use-when" style="margin-top:12px;">Example contexts:</div>
+              <ul class="var-use-list">
+                <li>Pickup date selection on the shipper booking form</li>
+                <li>Quote expiration date when creating a quote from form</li>
+                <li>Post-booking date updates</li>
               </ul>
             </div>
           </div>
@@ -707,11 +712,15 @@
 
             </div>
             <div class="var-desc">
-              <div class="var-use-when">Use when:</div>
+              <div class="var-use-when">Range — use when:</div>
               <ul class="var-use-list">
-                <li>Date range filtering across records</li>
-                <li>Booking start and end dates for a shipment or service</li>
-                <li>Selecting a report period with a clear start and end</li>
+                <li>A start and end date are both required</li>
+                <li>The user needs to define a date span</li>
+              </ul>
+              <div class="var-use-when" style="margin-top:12px;">Example contexts:</div>
+              <ul class="var-use-list">
+                <li>Date filtering (e.g. Shipping &amp; Delivery) — Shipments search</li>
+                <li>Pickup-to-delivery window</li>
               </ul>
             </div>
           </div>
@@ -883,11 +892,15 @@
 
             </div>
             <div class="var-desc">
-              <div class="var-use-when">Use when:</div>
+              <div class="var-use-when">Date &amp; Time — use when:</div>
               <ul class="var-use-list">
-                <li>Scheduling events with specific times</li>
-                <li>Precise timestamp entry for bookings or logs</li>
-                <li>Booking with time slots where both date and time are required</li>
+                <li>Both a date and a specific time need to be captured</li>
+                <li>Precision matters beyond a calendar date</li>
+              </ul>
+              <div class="var-use-when" style="margin-top:12px;">Example contexts:</div>
+              <ul class="var-use-list">
+                <li>Quote expiration date with time</li>
+                <li>Any embedded event requiring a specific time</li>
               </ul>
             </div>
           </div>
@@ -963,54 +976,50 @@
 
       <!-- 5 · USAGE -->
       <section class="doc-section" id="usage">
-        <h2 class="section-title">Usage</h2>
+        <h2 class="section-title">Usage Guidelines</h2>
 
         <div class="usage-block">
           <div class="usage-cols">
             <div class="usage-card">
               <div class="usage-card-header">
                 <div class="usage-icon do-icon"><i data-lucide="check" style="width:12px;height:12px"></i></div>
-                <div class="usage-card-title">Lorem ipsum dolor sit amet</div>
+                <div class="usage-card-title">Single Date Selection</div>
               </div>
               <ul class="usage-list">
-                <li>Lorem ipsum dolor sit amet, consectetur adipiscing elit sed do eiusmod tempor</li>
-                <li>Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi</li>
-                <li>Duis aute irure dolor in reprehenderit in voluptate velit esse cillum</li>
+                <li>Selecting a pickup or delivery date for a shipment</li>
+                <li>Setting a post-booking date update</li>
+                <li>Any context where one specific date needs to be chosen</li>
               </ul>
             </div>
             <div class="usage-card">
               <div class="usage-card-header">
                 <div class="usage-icon do-icon"><i data-lucide="check" style="width:12px;height:12px"></i></div>
-                <div class="usage-card-title">Ut labore et dolore magna aliqua</div>
+                <div class="usage-card-title">Date Range Selection</div>
               </div>
               <ul class="usage-list">
-                <li>Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia</li>
-                <li>Deserunt mollit anim id est laborum sed perspiciatis unde omnis iste natus</li>
-                <li>Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit</li>
-              </ul>
-            </div>
-          </div>
-          <div class="usage-cols">
-            <div class="usage-card">
-              <div class="usage-card-header">
-                <div class="usage-icon do-icon"><i data-lucide="check" style="width:12px;height:12px"></i></div>
-                <div class="usage-card-title">Neque porro quisquam est qui</div>
-              </div>
-              <ul class="usage-list">
-                <li>Dolorem ipsum quia dolor sit amet consectetur adipisci velit sed quia</li>
-                <li>Quisquam est qui dolorem ipsum quia dolor sit amet consectetur</li>
-                <li>Ut enim ad minima veniam, quis nostrum exercitationem ullam corporis</li>
+                <li>Filtering shipments by pickup date window</li>
+                <li>Selecting a pickup-to-delivery date span</li>
+                <li>Any context where a start and end date are both required</li>
               </ul>
             </div>
             <div class="usage-card">
               <div class="usage-card-header">
                 <div class="usage-icon do-icon"><i data-lucide="check" style="width:12px;height:12px"></i></div>
-                <div class="usage-card-title">Quis autem vel eum iure reprehenderit</div>
+                <div class="usage-card-title">Date and Time Selection</div>
               </div>
               <ul class="usage-list">
-                <li>At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis</li>
-                <li>Nam libero tempore cum soluta nobis eligendi optio cumque nihil impedit</li>
-                <li>Temporibus autem quibusdam et aut officiis debitis rerum necessitatibus</li>
+                <li>Setting quote expiration with a specific time</li>
+                <li>Any context where both a date and time value need to be captured together</li>
+              </ul>
+            </div>
+            <div class="usage-card">
+              <div class="usage-card-header">
+                <div class="usage-icon do-icon"><i data-lucide="check" style="width:12px;height:12px"></i></div>
+                <div class="usage-card-title">Fixed Option Sets</div>
+              </div>
+              <ul class="usage-list">
+                <li>When dates must come from a calendar (not free-text entry)</li>
+                <li>When the valid date range needs to be constrained (e.g. no past dates)</li>
               </ul>
             </div>
           </div>
@@ -1023,47 +1032,38 @@
             <div class="usage-card">
               <div class="usage-card-header">
                 <div class="usage-icon dont-icon"><i data-lucide="x" style="width:12px;height:12px"></i></div>
-                <div class="usage-card-title">Itaque earum rerum hic tenetur</div>
+                <div class="usage-card-title">Approximate or Relative Dates</div>
               </div>
               <ul class="usage-list">
-                <li>Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium</li>
-                <li>Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit</li>
-                <li>Quis autem vel eum iure reprehenderit qui voluptate velit esse quam nihil</li>
+                <li>"Within the next 7 days" or "This week" type selections (use a dropdown or segmented control instead)</li>
+                <li>Contexts where the user doesn't know an exact date</li>
               </ul>
             </div>
             <div class="usage-card">
               <div class="usage-card-header">
                 <div class="usage-icon dont-icon"><i data-lucide="x" style="width:12px;height:12px"></i></div>
-                <div class="usage-card-title">Nam libero tempore cum soluta nobis</div>
+                <div class="usage-card-title">Year-Only or Month-Only Selection</div>
               </div>
               <ul class="usage-list">
-                <li>Temporibus autem quibusdam et aut officiis debitis rerum necessitatibus saepe</li>
-                <li>Et harum quidem rerum facilis est et expedita distinctio nam libero tempore</li>
-                <li>Cum soluta nobis est eligendi optio cumque nihil impedit quo minus</li>
-              </ul>
-            </div>
-          </div>
-          <div class="usage-cols">
-            <div class="usage-card">
-              <div class="usage-card-header">
-                <div class="usage-icon dont-icon"><i data-lucide="x" style="width:12px;height:12px"></i></div>
-                <div class="usage-card-title">Totam rem aperiam eaque ipsa quae</div>
-              </div>
-              <ul class="usage-list">
-                <li>Ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt</li>
-                <li>Explicabo nemo enim ipsam voluptatem quia voluptas sit aspernatur</li>
-                <li>Ut enim ad minima veniam quis nostrum exercitationem ullam corporis</li>
+                <li>Selecting just a month or year without a specific day (use a dropdown)</li>
               </ul>
             </div>
             <div class="usage-card">
               <div class="usage-card-header">
                 <div class="usage-icon dont-icon"><i data-lucide="x" style="width:12px;height:12px"></i></div>
-                <div class="usage-card-title">Accusantium doloremque laudantium totam</div>
+                <div class="usage-card-title">Numeric Date Entry</div>
               </div>
               <ul class="usage-list">
-                <li>Rem aperiam eaque ipsa quae ab illo inventore veritatis quasi architecto</li>
-                <li>Beatae vitae dicta sunt explicabo nemo enim ipsam voluptatem quia</li>
-                <li>Voluptas sit aspernatur aut odit aut fugit sed quia consequuntur magni</li>
+                <li>When users need to type a date directly into a field (use a text input with date formatting)</li>
+              </ul>
+            </div>
+            <div class="usage-card">
+              <div class="usage-card-header">
+                <div class="usage-icon dont-icon"><i data-lucide="x" style="width:12px;height:12px"></i></div>
+                <div class="usage-card-title">Very Long Date Ranges</div>
+              </div>
+              <ul class="usage-list">
+                <li>Ranges spanning more than a few months where a calendar is impractical (use dropdowns or free-text input)</li>
               </ul>
             </div>
           </div>
@@ -1115,37 +1115,48 @@
         <h2 class="section-title">Accessibility</h2>
 
         <div class="a11y-group">
-          <h3 class="a11y-group-title">Keyboard</h3>
+          <h3 class="a11y-group-title">Keyboard Shortcut</h3>
           <ul class="a11y-list">
-            <li><div><strong>Arrow keys</strong> navigate days within the calendar grid.</div></li>
-            <li><div><strong>Enter / Space</strong> selects the focused day.</div></li>
-            <li><div><strong>Escape</strong> closes the calendar popover and returns focus to the trigger.</div></li>
-            <li><div><strong>Tab</strong> moves focus between distinct UI regions: trigger, calendar header, day grid, and footer buttons.</div></li>
+            <li><div><strong>Tab:</strong> Move focus to the date picker input field</div></li>
+            <li><div><strong>Enter / Space:</strong> Open the calendar popover</div></li>
+            <li><div><strong>Arrow keys:</strong> Navigate between days in the calendar grid</div></li>
+            <li><div><strong>Page Up / Page Down:</strong> Navigate to the previous or next month</div></li>
+            <li><div><strong>Escape:</strong> Close the calendar popover without selecting</div></li>
+            <li><div><strong>Tab (within popover):</strong> Move between interactive elements (nav arrows, day cells, Clear, Apply)</div></li>
           </ul>
         </div>
 
         <div class="a11y-group">
           <h3 class="a11y-group-title">Screen Readers</h3>
           <ul class="a11y-list">
-            <li><div>The calendar grid uses <code>aria-label</code> with the current month and year so the context is announced when focus enters.</div></li>
-            <li><div>Each day button has an <code>aria-label</code> with the full date (e.g. "March 18, 2026") and an <code>aria-pressed</code> or <code>aria-selected</code> attribute to communicate the selected state.</div></li>
-            <li><div>Disabled days use <code>aria-disabled="true"</code> and are excluded from the tab order.</div></li>
+            <li><div>Use <code>&lt;input type="text"&gt;</code> with <code>role="combobox"</code> for the trigger field</div></li>
+            <li><div>Include <code>aria-label</code> on the calendar popover (e.g. <code>aria-label="Choose date"</code>)</div></li>
+            <li><div>Use <code>aria-selected="true"</code> on the selected day cell</div></li>
+            <li><div>Use <code>aria-disabled="true"</code> on past/disabled day cells</div></li>
+            <li><div>Announce the month and year when navigating between months</div></li>
+            <li><div>For the range picker, use <code>aria-label="Start date"</code> and <code>aria-label="End date"</code> on the respective input fields</div></li>
+            <li><div>Use <code>aria-live="polite"</code> to announce date selection changes</div></li>
           </ul>
         </div>
 
         <div class="a11y-group">
-          <h3 class="a11y-group-title">Focus Management</h3>
+          <h3 class="a11y-group-title">Visual</h3>
           <ul class="a11y-list">
-            <li><div>When the calendar opens, focus moves into the calendar — typically to the selected day or to the current date if no selection exists.</div></li>
-            <li><div>When the calendar closes via Apply, Clear, or Escape, focus returns to the input trigger that opened it.</div></li>
+            <li><div>Focus indicator must be clearly visible on day cells, nav arrows, and footer buttons (2px blue ring)</div></li>
+            <li><div>Minimum 3:1 contrast ratio for day cell text against background</div></li>
+            <li><div>Labels must meet WCAG AA contrast (4.5:1)</div></li>
+            <li><div>Don't rely on color alone to convey selected or in-range state — use shape (circle) and position cues as well</div></li>
+            <li><div>Today indicator (underline) must be visible at all zoom levels</div></li>
           </ul>
         </div>
 
         <div class="a11y-group">
-          <h3 class="a11y-group-title">Touch</h3>
+          <h3 class="a11y-group-title">Touch Targets</h3>
           <ul class="a11y-list">
-            <li><div>Each day cell maintains a minimum 44×44px touch target to meet WCAG 2.5.5 target size guidance.</div></li>
-            <li><div>The calendar should be dismissible by tapping outside the popover boundary without committing a selection.</div></li>
+            <li><div>Day cells must meet minimum 44×44px on mobile</div></li>
+            <li><div>Clear and Apply buttons must meet minimum 44px height</div></li>
+            <li><div>Ensure adequate spacing between interactive elements (at least 8px)</div></li>
+            <li><div>From and To input fields must be individually tappable with sufficient hit area</div></li>
           </ul>
         </div>
 
