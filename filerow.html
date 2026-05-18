@@ -137,7 +137,7 @@
       <section class="doc-section" id="definition">
         <div class="def-eyebrow">Display</div>
         <h1 class="def-title">File Row</h1>
-        <p class="def-desc">A horizontal row that represents a single file inside an upload list. Each row pairs a status-coloured icon tile, the filename, an inline progress bar, and a context-appropriate trailing action (cancel for in-progress, success check for complete). Four states are supported — Default (queued), Uploading, Success, and Error.</p>
+        <p class="def-desc">The File Row displays a single file's upload status within a file upload flow. It communicates per-file progress, completion, and failure states, and allows users to remove files from the upload queue. It uses the Progress Bar component internally to visualize upload progress.</p>
         <div class="def-tags">
           <span class="bdg bdg--purple bdg--outline">Not Developed</span>
           <span class="bdg bdg--green bdg--outline">Figma</span>
@@ -267,11 +267,15 @@
               </div>
             </div>
             <div class="var-desc">
-              <div class="var-use-when">Default — use when:</div>
+              <div class="var-use-when">Use when:</div>
               <ul class="var-use-list">
-                <li>The file is queued but not yet uploading</li>
-                <li>Icon tile uses the standard blue (<code>#027CB1</code>) border</li>
-                <li>Status reads "Queued" and percent shows an em-dash</li>
+                <li>A file has been added to the upload queue but has not started uploading yet</li>
+                <li>The user needs to review or remove files before initiating the upload</li>
+              </ul>
+              <div class="var-use-when" style="margin-top:16px;">Example contexts:</div>
+              <ul class="var-use-list">
+                <li>Files staged in the document upload flow before submitting a shipment</li>
+                <li>Attachments queued in the carrier quote form before sending</li>
               </ul>
             </div>
           </div>
@@ -307,11 +311,16 @@
               </div>
             </div>
             <div class="var-desc">
-              <div class="var-use-when">Uploading — use when:</div>
+              <div class="var-use-when">Use when:</div>
               <ul class="var-use-list">
-                <li>Bytes are actively transferring</li>
-                <li>Progress bar fills with <code>#027CB1</code>; percent updates live</li>
-                <li>Cancel button stays available for the entire upload</li>
+                <li>A file is actively being uploaded to the server</li>
+                <li>Real-time progress feedback needs to be communicated to the user</li>
+              </ul>
+              <div class="var-use-when" style="margin-top:16px;">Example contexts:</div>
+              <ul class="var-use-list">
+                <li>Photo upload in progress on the shipper booking flow</li>
+                <li>Document uploading on the carrier quote submission form</li>
+                <li>Any file transfer where the user should see live progress</li>
               </ul>
             </div>
           </div>
@@ -347,11 +356,16 @@
               </div>
             </div>
             <div class="var-desc">
-              <div class="var-use-when">Success — use when:</div>
+              <div class="var-use-when">Use when:</div>
               <ul class="var-use-list">
-                <li>Upload finished without errors</li>
-                <li>Icon border, percent, status text, and progress fill all switch to <code>#006C21</code></li>
-                <li>Trailing action becomes a non-interactive checkmark</li>
+                <li>A file has finished uploading successfully</li>
+                <li>Confirming to the user that the file was received</li>
+              </ul>
+              <div class="var-use-when" style="margin-top:16px;">Example contexts:</div>
+              <ul class="var-use-list">
+                <li>Photo confirmed uploaded on the shipment listing</li>
+                <li>Document successfully attached to a carrier quote</li>
+                <li>Any completed file transfer requiring confirmation</li>
               </ul>
             </div>
           </div>
@@ -387,11 +401,16 @@
               </div>
             </div>
             <div class="var-desc">
-              <div class="var-use-when">Error — use when:</div>
+              <div class="var-use-when">Use when:</div>
               <ul class="var-use-list">
-                <li>Upload failed (size, type, network, or server reject)</li>
-                <li>All status colour switches to <code>#A12F2F</code> red</li>
-                <li>Replace the percent with the failure label and surface the reason in the status row</li>
+                <li>A file upload has encountered an error and could not complete</li>
+                <li>The user needs to understand why the upload failed and what to do next</li>
+              </ul>
+              <div class="var-use-when" style="margin-top:16px;">Example contexts:</div>
+              <ul class="var-use-list">
+                <li>File exceeds the maximum size limit (e.g. "File too large — max 10 MB")</li>
+                <li>Unsupported file type rejected by the server</li>
+                <li>Network error interrupted the upload</li>
               </ul>
             </div>
           </div>
@@ -468,42 +487,35 @@
             <div class="usage-card">
               <div class="usage-card-header">
                 <div class="usage-icon do-icon"><i data-lucide="check" style="width:12px;height:12px"></i></div>
-                <div class="usage-card-title">Lorem ipsum dolor sit amet</div>
+                <div class="usage-card-title">File Upload Management</div>
               </div>
               <ul class="usage-list">
-                <li>Lorem ipsum dolor sit amet consectetur</li>
-                <li>Adipiscing elit sed do eiusmod tempor</li>
-                <li>Incididunt ut labore et dolore magna</li>
+                <li>Displaying individual files queued for or actively uploading</li>
+                <li>Showing upload progress, completion, or failure per file</li>
+                <li>Allowing users to cancel or remove files from the upload queue</li>
               </ul>
             </div>
             <div class="usage-card">
               <div class="usage-card-header">
                 <div class="usage-icon do-icon"><i data-lucide="check" style="width:12px;height:12px"></i></div>
-                <div class="usage-card-title">Ut enim ad minim veniam</div>
+                <div class="usage-card-title">Upload State Communication</div>
               </div>
               <ul class="usage-list">
-                <li>Quis nostrud exercitation ullamco laboris</li>
-                <li>Nisi ut aliquip ex ea commodo consequat</li>
+                <li>Queued — file is pending upload, no progress yet</li>
+                <li>Uploading — progress bar actively filling with percentage shown</li>
+                <li>Complete — green bar at 100%, success icon confirms upload</li>
+                <li>Failed — red bar with error message explaining why (e.g. "File too large — max 10 MB")</li>
               </ul>
             </div>
+          </div>
+          <div class="usage-cols">
             <div class="usage-card">
               <div class="usage-card-header">
                 <div class="usage-icon do-icon"><i data-lucide="check" style="width:12px;height:12px"></i></div>
-                <div class="usage-card-title">Excepteur sint occaecat</div>
+                <div class="usage-card-title">Contextual File Metadata</div>
               </div>
               <ul class="usage-list">
-                <li>Non proident sunt in culpa qui officia</li>
-                <li>Deserunt mollit anim id est laborum</li>
-              </ul>
-            </div>
-            <div class="usage-card">
-              <div class="usage-card-header">
-                <div class="usage-icon do-icon"><i data-lucide="check" style="width:12px;height:12px"></i></div>
-                <div class="usage-card-title">Nemo enim ipsam voluptatem</div>
-              </div>
-              <ul class="usage-list">
-                <li>Quia voluptas sit aspernatur aut odit</li>
-                <li>Neque porro quisquam est qui dolorem</li>
+                <li>Showing file name, file size, and a thumbnail or file type icon together in one row</li>
               </ul>
             </div>
           </div>
@@ -516,41 +528,30 @@
             <div class="usage-card">
               <div class="usage-card-header">
                 <div class="usage-icon dont-icon"><i data-lucide="x" style="width:12px;height:12px"></i></div>
-                <div class="usage-card-title">Quis autem vel eum iure</div>
+                <div class="usage-card-title">Non-Upload File Lists</div>
               </div>
               <ul class="usage-list">
-                <li>Reprehenderit qui in ea voluptate velit</li>
-                <li>Esse quam nihil molestiae consequatur</li>
+                <li>Browsing or selecting files from a library — use a file picker or list component instead</li>
               </ul>
             </div>
             <div class="usage-card">
               <div class="usage-card-header">
                 <div class="usage-icon dont-icon"><i data-lucide="x" style="width:12px;height:12px"></i></div>
-                <div class="usage-card-title">At vero eos et accusamus</div>
+                <div class="usage-card-title">Completed File History</div>
               </div>
               <ul class="usage-list">
-                <li>Et iusto odio dignissimos ducimus qui</li>
-                <li>Blanditiis praesentium voluptatum deleniti</li>
+                <li>Displaying a static list of previously uploaded files without upload state — use a plain list or table row</li>
               </ul>
             </div>
+          </div>
+          <div class="usage-cols">
             <div class="usage-card">
               <div class="usage-card-header">
                 <div class="usage-icon dont-icon"><i data-lucide="x" style="width:12px;height:12px"></i></div>
-                <div class="usage-card-title">Nam libero tempore soluta</div>
+                <div class="usage-card-title">Bulk Upload Summary</div>
               </div>
               <ul class="usage-list">
-                <li>Nobis est eligendi optio cumque nihil</li>
-                <li>Impedit quo minus id quod maxime</li>
-              </ul>
-            </div>
-            <div class="usage-card">
-              <div class="usage-card-header">
-                <div class="usage-icon dont-icon"><i data-lucide="x" style="width:12px;height:12px"></i></div>
-                <div class="usage-card-title">Temporibus autem quibusdam</div>
-              </div>
-              <ul class="usage-list">
-                <li>Et aut officiis debitis aut rerum necessitatibus</li>
-                <li>Saepe eveniet ut et voluptates repudiandae</li>
+                <li>Summarizing totals across multiple files — show individual File Rows for each file, not a single aggregated row</li>
               </ul>
             </div>
           </div>
@@ -602,20 +603,43 @@
       <!-- 7 · ACCESSIBILITY -->
       <section class="doc-section" id="accessibility">
         <h2 class="section-title">Accessibility</h2>
-        <ul class="a11y-list">
-          <li>
-            <div><strong>ARIA:</strong> Mark the row's progress with <code>role="progressbar"</code>, <code>aria-valuenow</code>, <code>aria-valuemin="0"</code>, and <code>aria-valuemax="100"</code> so the current percent is announced.</div>
-          </li>
-          <li>
-            <div><strong>Status announcements:</strong> Wrap the upload list in <code>aria-live="polite"</code> so transitions from Uploading → Success or Error are read out without interrupting other content.</div>
-          </li>
-          <li>
-            <div><strong>Don't rely on colour alone:</strong> Status colour is paired with text ("Queued", "Uploading…", "Complete", "Failed") and an icon shape change so colour-blind users still get the state.</div>
-          </li>
-          <li>
-            <div><strong>Keyboard:</strong> The cancel / remove button is reachable via Tab and activated by Enter or Space. The success-state checkmark is decorative — give it <code>aria-hidden="true"</code>.</div>
-          </li>
-        </ul>
+
+        <div class="a11y-group">
+          <h3 class="a11y-group-title">Keyboard Shortcut</h3>
+          <ul class="a11y-list">
+            <li><div><strong>Tab</strong> moves focus to the remove/cancel button.</div></li>
+            <li><div><strong>Enter / Space</strong> activates the remove/cancel button.</div></li>
+            <li><div>No navigation within the row itself is required.</div></li>
+          </ul>
+        </div>
+
+        <div class="a11y-group">
+          <h3 class="a11y-group-title">Screen Readers</h3>
+          <ul class="a11y-list">
+            <li><div>The file name, status, and file size should be grouped and read as a unit.</div></li>
+            <li><div>Status label changes (Queued → Uploading → Complete / Failed) should be announced via <code>aria-live="polite"</code> for non-critical updates and <code>aria-live="assertive"</code> for errors.</div></li>
+            <li><div>The remove button should have a descriptive <code>aria-label</code> (e.g. <code>aria-label="Remove photo_001.jpg"</code>) — not just an icon with no label.</div></li>
+            <li><div>Error messages must be programmatically associated with the file row using <code>aria-describedby</code>.</div></li>
+            <li><div>The progress bar within the row should follow the Progress Bar accessibility requirements.</div></li>
+          </ul>
+        </div>
+
+        <div class="a11y-group">
+          <h3 class="a11y-group-title">Visual</h3>
+          <ul class="a11y-list">
+            <li><div>Status must be communicated with both color and a label or icon — never color alone.</div></li>
+            <li><div>Error state must be clearly distinguishable from success and uploading states.</div></li>
+            <li><div>The remove button icon must have sufficient contrast against the background.</div></li>
+          </ul>
+        </div>
+
+        <div class="a11y-group">
+          <h3 class="a11y-group-title">Touch Targets</h3>
+          <ul class="a11y-list">
+            <li><div>Remove/cancel button must meet minimum 44×44px tap target.</div></li>
+            <li><div>Ensure adequate padding around the button so it is not accidentally triggered.</div></li>
+          </ul>
+        </div>
       </section>
 
       <!-- 8 · RELATED -->
