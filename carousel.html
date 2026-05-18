@@ -133,7 +133,8 @@
       <section class="doc-section" id="definition">
         <div class="def-eyebrow">Display</div>
         <h1 class="def-title">Carousel</h1>
-        <p class="def-desc">The Carousel component displays a series of images in a single framed slot with dot-based navigation and optional arrow controls. A position counter badge and fullscreen expand button can be overlaid on the image for added context and accessibility.</p>
+        <p class="def-desc">The Image Carousel is a browsable gallery component for displaying user-generated photography. It presents one image at a time within a fixed aspect-ratio slot, with navigation controls and an Instagram-style sliding dot indicator. Designed for listing pages where users upload photos of items (e.g., furniture, vehicles, goods for shipment).</p>
+        <p class="def-desc" style="margin-top:6px;"><strong>4:3 ratio</strong> — Desktop 480 × 360 px · Mobile 375 × 281 px</p>
         <div class="def-tags">
           <span class="bdg bdg--purple bdg--outline">Not Developed</span>
           <span class="bdg bdg--green bdg--outline">Figma</span>
@@ -479,7 +480,20 @@
           </div><!-- /var-previews-wrap -->
 
           <div class="var-desc">
-            <div class="var-use-when">Carousel variants</div>
+            <div class="var-use-when">Desktop — Use when:</div>
+            <ul class="var-use-list">
+              <li>Allow the user to navigate with the arrow buttons and open the full-screen viewer via the expand control</li>
+              <li>The cursor is the primary input, so dots, arrows, badge, and expand are all visible</li>
+            </ul>
+
+            <div class="var-use-when" style="margin-top:18px;">Mobile — Use when:</div>
+            <ul class="var-use-list">
+              <li>Reduce visual noise — remove the expand button and arrows since users navigate by swipe and tap</li>
+              <li>The entire photo slot becomes tappable to open the full-screen viewer</li>
+              <li>Dots stay on mobile for position indication</li>
+            </ul>
+
+            <div class="var-use-when" style="margin-top:18px;">Carousel variants (this page):</div>
             <ul class="var-use-list">
               <li>Empty — initial state before any images are loaded; shows upload prompt</li>
               <li>Default — all controls shown: arrows, dots, badge, expand button</li>
@@ -487,7 +501,8 @@
               <li>No badge — hides the position counter; useful when the total count is implied</li>
               <li>No expand — removes the fullscreen shortcut; use when a lightbox is not available</li>
             </ul>
-            <div class="var-use-when" style="margin-top:16px;">Navigation dots scale by proximity:</div>
+
+            <div class="var-use-when" style="margin-top:18px;">Navigation dots scale by proximity:</div>
             <ul class="var-use-list">
               <li>Active — 16px filled blue; marks the current image</li>
               <li>Default — 12px outlined; adjacent images</li>
@@ -571,23 +586,22 @@
             <div class="usage-card">
               <div class="usage-card-header">
                 <div class="usage-icon do-icon"><i data-lucide="check" style="width:12px;height:12px"></i></div>
-                <div class="usage-card-title">Lorem ipsum dolor sit amet</div>
+                <div class="usage-card-title">Image Handling</div>
               </div>
               <ul class="usage-list">
-                <li>Lorem ipsum dolor sit amet, consectetur adipiscing elit sed do eiusmod tempor</li>
-                <li>Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi</li>
-                <li>Duis aute irure dolor in reprehenderit in voluptate velit esse cillum</li>
+                <li>Do use <code>object-fit: cover; object-position: center</code> on all images</li>
+                <li>Do maintain the 4:3 aspect ratio at all breakpoints — only the width changes</li>
               </ul>
             </div>
             <div class="usage-card">
               <div class="usage-card-header">
                 <div class="usage-icon do-icon"><i data-lucide="check" style="width:12px;height:12px"></i></div>
-                <div class="usage-card-title">Ut labore et dolore magna aliqua</div>
+                <div class="usage-card-title">Navigation &amp; Dots</div>
               </div>
               <ul class="usage-list">
-                <li>Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia</li>
-                <li>Deserunt mollit anim id est laborum sed perspiciatis unde omnis iste natus</li>
-                <li>Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit</li>
+                <li>Do cap visible dots at 5 and use the sliding animation for larger sets</li>
+                <li>Do start the active dot on the left, transition to center by slide 3+</li>
+                <li>Do use <code>color/border/interactive</code> as the inactive dot fill — works in both light and dark mode</li>
               </ul>
             </div>
           </div>
@@ -595,23 +609,35 @@
             <div class="usage-card">
               <div class="usage-card-header">
                 <div class="usage-icon do-icon"><i data-lucide="check" style="width:12px;height:12px"></i></div>
-                <div class="usage-card-title">Neque porro quisquam est qui</div>
+                <div class="usage-card-title">Mobile</div>
               </div>
               <ul class="usage-list">
-                <li>Dolorem ipsum quia dolor sit amet consectetur adipisci velit sed quia</li>
-                <li>Quisquam est qui dolorem ipsum quia dolor sit amet consectetur</li>
-                <li>Ut enim ad minima veniam, quis nostrum exercitationem ullam corporis</li>
+                <li>Do remove arrow buttons on mobile — swipe is the expected interaction</li>
+                <li>Do remove the expand button on mobile — make the entire photo slot tappable instead</li>
+                <li>Do keep dots on mobile for position indication</li>
               </ul>
             </div>
             <div class="usage-card">
               <div class="usage-card-header">
                 <div class="usage-icon do-icon"><i data-lucide="check" style="width:12px;height:12px"></i></div>
-                <div class="usage-card-title">Quis autem vel eum iure reprehenderit</div>
+                <div class="usage-card-title">Interaction</div>
               </div>
               <ul class="usage-list">
-                <li>At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis</li>
-                <li>Nam libero tempore cum soluta nobis eligendi optio cumque nihil impedit</li>
-                <li>Temporibus autem quibusdam et aut officiis debitis rerum necessitatibus</li>
+                <li>Do support keyboard navigation (← → arrows)</li>
+                <li>Do use <code>cursor: zoom-in</code> on the photo slot for desktop</li>
+                <li>Do make the entire photo slot tappable to open the full-screen viewer on mobile</li>
+              </ul>
+            </div>
+          </div>
+          <div class="usage-cols">
+            <div class="usage-card">
+              <div class="usage-card-header">
+                <div class="usage-icon do-icon"><i data-lucide="check" style="width:12px;height:12px"></i></div>
+                <div class="usage-card-title">Badge &amp; Controls</div>
+              </div>
+              <ul class="usage-list">
+                <li>Do show the badge counter when there are 2+ images</li>
+                <li>Do keep the expand button as a secondary icon-only button on desktop</li>
               </ul>
             </div>
           </div>
@@ -624,23 +650,22 @@
             <div class="usage-card">
               <div class="usage-card-header">
                 <div class="usage-icon dont-icon"><i data-lucide="x" style="width:12px;height:12px"></i></div>
-                <div class="usage-card-title">Itaque earum rerum hic tenetur</div>
+                <div class="usage-card-title">Image Handling</div>
               </div>
               <ul class="usage-list">
-                <li>Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium</li>
-                <li>Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit</li>
-                <li>Quis autem vel eum iure reprehenderit qui voluptate velit esse quam nihil</li>
+                <li>Don't change the aspect ratio per image — every photo gets the same 4:3 slot</li>
+                <li>Don't use <code>object-fit: contain</code> (letterboxing) — it creates inconsistent backgrounds</li>
+                <li>Don't use negative offset positioning to force image fill — let <code>object-fit: cover</code> handle it</li>
               </ul>
             </div>
             <div class="usage-card">
               <div class="usage-card-header">
                 <div class="usage-icon dont-icon"><i data-lucide="x" style="width:12px;height:12px"></i></div>
-                <div class="usage-card-title">Nam libero tempore cum soluta nobis</div>
+                <div class="usage-card-title">Navigation &amp; Dots</div>
               </div>
               <ul class="usage-list">
-                <li>Temporibus autem quibusdam et aut officiis debitis rerum necessitatibus saepe</li>
-                <li>Et harum quidem rerum facilis est et expedita distinctio nam libero tempore</li>
-                <li>Cum soluta nobis est eligendi optio cumque nihil impedit quo minus</li>
+                <li>Don't show more than 5 dots at once — use the sliding pattern, not a longer row</li>
+                <li>Don't show dots for a single image — hide the entire navigation bar</li>
               </ul>
             </div>
           </div>
@@ -648,27 +673,37 @@
             <div class="usage-card">
               <div class="usage-card-header">
                 <div class="usage-icon dont-icon"><i data-lucide="x" style="width:12px;height:12px"></i></div>
-                <div class="usage-card-title">Totam rem aperiam eaque ipsa quae</div>
+                <div class="usage-card-title">Mobile</div>
               </div>
               <ul class="usage-list">
-                <li>Ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt</li>
-                <li>Explicabo nemo enim ipsam voluptatem quia voluptas sit aspernatur</li>
-                <li>Ut enim ad minima veniam quis nostrum exercitationem ullam corporis</li>
+                <li>Don't add hover states on mobile — they don't apply to touch</li>
               </ul>
             </div>
             <div class="usage-card">
               <div class="usage-card-header">
                 <div class="usage-icon dont-icon"><i data-lucide="x" style="width:12px;height:12px"></i></div>
-                <div class="usage-card-title">Accusantium doloremque laudantium totam</div>
+                <div class="usage-card-title">Interaction</div>
               </div>
               <ul class="usage-list">
-                <li>Rem aperiam eaque ipsa quae ab illo inventore veritatis quasi architecto</li>
-                <li>Beatae vitae dicta sunt explicabo nemo enim ipsam voluptatem quia</li>
-                <li>Voluptas sit aspernatur aut odit aut fugit sed quia consequuntur magni</li>
+                <li>Don't auto-play the carousel — user-generated content should be browsed intentionally</li>
+                <li>Don't add hover overlays or darken the photo on hover — the expand button handles the CTA</li>
+              </ul>
+            </div>
+          </div>
+          <div class="usage-cols">
+            <div class="usage-card">
+              <div class="usage-card-header">
+                <div class="usage-icon dont-icon"><i data-lucide="x" style="width:12px;height:12px"></i></div>
+                <div class="usage-card-title">Badge &amp; Controls</div>
+              </div>
+              <ul class="usage-list">
+                <li>Don't show the badge or controls for a single image</li>
               </ul>
             </div>
           </div>
         </div>
+
+        <p class="def-desc" style="margin-top:24px;font-size:14px;line-height:22px;">All user-generated photos are center-cropped to fill the 4:3 slot. This means portrait images lose some top and bottom, and wide landscape images lose some left and right. The subject remains visible in the vast majority of cases. <code>object-fit: contain</code> (letterboxing) is explicitly not used — it creates inconsistent empty space that varies per image and looks unpolished in a gallery context.</p>
       </section>
 
       <!-- 6 · TOKEN MAP -->
