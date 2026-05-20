@@ -141,7 +141,7 @@
       <section class="doc-section" id="definition">
         <div class="def-eyebrow">Overlays</div>
         <h1 class="def-title">Modal</h1>
-        <p class="def-desc">A focused dialog that interrupts the current workflow to request user confirmation, present critical information, or complete a short task. Modals support three intents and two screen sizes.</p>
+        <p class="def-desc">The Modal component displays focused content in a layer above the main page, requiring user interaction before returning to the primary workflow. Modals temporarily block interaction with the underlying page until the user completes the required action or dismisses the dialog.</p>
         <div class="def-tags">
           <span class="bdg bdg--purple bdg--outline">Not Developed</span>
           <span class="bdg bdg--green bdg--outline">Figma</span>
@@ -320,14 +320,23 @@
 
             </div>
             <div class="var-desc">
-              <div class="var-use-when">Use when:</div>
+              <div class="var-use-when">Info (Default) — Use when:</div>
               <ul class="var-use-list">
-                <li>Confirming a neutral or informational action before it executes</li>
-                <li>Presenting secondary information that requires user acknowledgment</li>
-                <li>The action has no destructive or high-risk consequence</li>
+                <li>The action requires user confirmation but carries no destructive consequence</li>
+                <li>Presenting a neutral prompt or decision point</li>
+                <li>Default choice when no specific semantic type applies</li>
               </ul>
-              <div class="var-use-when" style="margin-top:12px;">Token group:</div>
-              <ul class="var-use-list"><li><code>--inf-ic</code>, <code>--action-secondary</code></li></ul>
+              <div class="var-use-when" style="margin-top:14px;">Visual changes:</div>
+              <ul class="var-use-list">
+                <li>Icon uses <code>color/text/color/icon/info</code> (blue)</li>
+                <li>Confirm button uses <code>color/action/secondary/default</code> (blue)</li>
+              </ul>
+              <div class="var-use-when" style="margin-top:14px;">Example contexts:</div>
+              <ul class="var-use-list">
+                <li>Confirming a shipment address before submission</li>
+                <li>Prompting the user to save changes before navigating away</li>
+                <li>Verifying an action that affects a booking</li>
+              </ul>
             </div>
           </div>
         </div>
@@ -427,14 +436,22 @@
 
             </div>
             <div class="var-desc">
-              <div class="var-use-when">Use when:</div>
+              <div class="var-use-when">Destructive — Use when:</div>
               <ul class="var-use-list">
-                <li>The confirmed action permanently deletes or removes data</li>
-                <li>The user must explicitly acknowledge a high-risk or irreversible outcome</li>
-                <li>System integrity depends on a deliberate, informed decision</li>
+                <li>The action will delete, remove, or permanently alter data</li>
+                <li>The consequence is irreversible or difficult to undo</li>
               </ul>
-              <div class="var-use-when" style="margin-top:12px;">Token group:</div>
-              <ul class="var-use-list"><li><code>--err-ic</code>, <code>--action-destructive</code></li></ul>
+              <div class="var-use-when" style="margin-top:14px;">Visual changes:</div>
+              <ul class="var-use-list">
+                <li>Icon uses <code>color/text/color/icon/error</code> (red)</li>
+                <li>Confirm button uses <code>color/action/destructive/default</code> (red)</li>
+              </ul>
+              <div class="var-use-when" style="margin-top:14px;">Example contexts:</div>
+              <ul class="var-use-list">
+                <li>Deleting a saved shipment</li>
+                <li>Removing a payment method</li>
+                <li>Canceling an active booking</li>
+              </ul>
             </div>
           </div>
         </div>
@@ -534,15 +551,45 @@
 
             </div>
             <div class="var-desc">
-              <div class="var-use-when">Use when:</div>
+              <div class="var-use-when">Success — Use when:</div>
               <ul class="var-use-list">
-                <li>Confirming a positive, constructive action such as submitting or publishing</li>
-                <li>Signaling a successful outcome pathway to reassure the user before they commit</li>
-                <li>Green intent reinforces confidence and forward momentum</li>
+                <li>Confirming a positive outcome or completing a beneficial action</li>
+                <li>Reinforcing that the user is about to finalize something favorable</li>
               </ul>
-              <div class="var-use-when" style="margin-top:12px;">Token group:</div>
-              <ul class="var-use-list"><li><code>--suc-ic</code>, <code>--action-primary</code></li></ul>
+              <div class="var-use-when" style="margin-top:14px;">Visual changes:</div>
+              <ul class="var-use-list">
+                <li>Icon uses <code>color/text/color/icon/success</code> (green)</li>
+                <li>Confirm button uses <code>color/action/primary/default</code> (green)</li>
+              </ul>
+              <div class="var-use-when" style="margin-top:14px;">Example contexts:</div>
+              <ul class="var-use-list">
+                <li>Confirming a delivery has been completed</li>
+                <li>Finalizing a carrier selection</li>
+                <li>Submitting a positive rating or review</li>
+              </ul>
             </div>
+          </div>
+        </div>
+
+        <div class="modal-layout-intro" style="display:flex;flex-direction:column;gap:14px;padding:18px 20px;margin-top:24px;background:var(--surface-layer01);border:1px solid var(--border-soft);border-radius:8px;">
+          <div style="font-size:14px;font-weight:700;color:var(--text-primary);margin-bottom:-2px;">Button layout</div>
+          <div>
+            <div style="font-size:13px;font-weight:700;color:var(--text-primary);margin-bottom:4px;">Side-by-Side — Use when:</div>
+            <ul style="margin:0;padding-left:18px;font-size:14px;line-height:22px;color:var(--text-secondary);">
+              <li>Displaying on web</li>
+              <li>Sufficient horizontal space is available</li>
+              <li>Standard confirmation flow</li>
+            </ul>
+            <div style="font-size:12px;color:var(--text-tertiary);margin-top:4px;padding-left:18px;">Cancel (ghost) on the left, Confirm (filled) on the right.</div>
+          </div>
+          <div>
+            <div style="font-size:13px;font-weight:700;color:var(--text-primary);margin-bottom:4px;">Stacked — Use when:</div>
+            <ul style="margin:0;padding-left:18px;font-size:14px;line-height:22px;color:var(--text-secondary);">
+              <li>Displaying on mobile</li>
+              <li>Horizontal space is constrained</li>
+              <li>Primary action should have full visual weight</li>
+            </ul>
+            <div style="font-size:12px;color:var(--text-tertiary);margin-top:4px;padding-left:18px;">Confirm (filled) sits above Cancel (ghost); both buttons span full container width.</div>
           </div>
         </div>
 
@@ -621,23 +668,36 @@
             <div class="usage-card">
               <div class="usage-card-header">
                 <div class="usage-icon do-icon"><i data-lucide="check" style="width:12px;height:12px"></i></div>
-                <div class="usage-card-title">Do</div>
+                <div class="usage-card-title">Consequential or Irreversible Actions</div>
               </div>
               <ul class="usage-list">
-                <li>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore</li>
-                <li>Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat</li>
-                <li>Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur</li>
+                <li>When the user is about to do something that cannot be undone</li>
+                <li>Deleting a shipment, canceling a booking, removing saved information</li>
+                <li>When the cost of an accidental action is high</li>
               </ul>
             </div>
             <div class="usage-card">
               <div class="usage-card-header">
                 <div class="usage-icon do-icon"><i data-lucide="check" style="width:12px;height:12px"></i></div>
-                <div class="usage-card-title">Do</div>
+                <div class="usage-card-title">Explicit User Confirmation</div>
               </div>
               <ul class="usage-list">
-                <li>Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum</li>
-                <li>Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium totam rem</li>
-                <li>Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit sed quia consequuntur magni dolores</li>
+                <li>When you need a deliberate, conscious decision from the user</li>
+                <li>Actions that affect other users or external systems</li>
+                <li>When passive dismissal (like navigating away) is not sufficient</li>
+              </ul>
+            </div>
+          </div>
+          <div class="usage-cols">
+            <div class="usage-card">
+              <div class="usage-card-header">
+                <div class="usage-icon do-icon"><i data-lucide="check" style="width:12px;height:12px"></i></div>
+                <div class="usage-card-title">Brief Input Collection</div>
+              </div>
+              <ul class="usage-list">
+                <li>When a small amount of information is needed before proceeding</li>
+                <li>1–2 fields maximum — address confirmation, contact details</li>
+                <li>When the input is directly tied to the action being confirmed</li>
               </ul>
             </div>
           </div>
@@ -648,23 +708,47 @@
             <div class="usage-card">
               <div class="usage-card-header">
                 <div class="usage-icon dont-icon"><i data-lucide="x" style="width:12px;height:12px"></i></div>
-                <div class="usage-card-title">Don't</div>
+                <div class="usage-card-title">Status Updates and Notifications</div>
               </div>
               <ul class="usage-list">
-                <li>Neque porro quisquam est qui dolorem ipsum quia dolor sit amet consectetur adipisci velit sed quia non numquam</li>
-                <li>Quis autem vel eum iure reprehenderit qui in ea voluptate velit esse quam nihil molestiae consequatur vel illum</li>
-                <li>At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti</li>
+                <li>Confirming something completed successfully — use a toast</li>
+                <li>Displaying errors that don't require a decision — use inline validation</li>
+                <li>Non-critical system messages</li>
               </ul>
             </div>
             <div class="usage-card">
               <div class="usage-card-header">
                 <div class="usage-icon dont-icon"><i data-lucide="x" style="width:12px;height:12px"></i></div>
-                <div class="usage-card-title">Don't</div>
+                <div class="usage-card-title">Large Amounts of Content</div>
               </div>
               <ul class="usage-list">
-                <li>Nam libero tempore cum soluta nobis est eligendi optio cumque nihil impedit quo minus id quod maxime placeat</li>
-                <li>Temporibus autem quibusdam et aut officiis debitis aut rerum necessitatibus saepe eveniet ut et voluptates</li>
-                <li>Itaque earum rerum hic tenetur sapiente delectus ut aut reiciendis voluptatibus maiores alias consequatur</li>
+                <li>Information that requires scrolling to read in full</li>
+                <li>Multi-step flows or wizards — use a dedicated screen</li>
+                <li>Content that benefits from its own navigation context</li>
+              </ul>
+            </div>
+          </div>
+          <div class="usage-cols">
+            <div class="usage-card">
+              <div class="usage-card-header">
+                <div class="usage-icon dont-icon"><i data-lucide="x" style="width:12px;height:12px"></i></div>
+                <div class="usage-card-title">Low-Stakes Actions</div>
+              </div>
+              <ul class="usage-list">
+                <li>Actions that are easily reversible</li>
+                <li>Routine tasks that don't require confirmation</li>
+                <li>When interrupting the user's flow isn't justified by the action's risk</li>
+              </ul>
+            </div>
+            <div class="usage-card">
+              <div class="usage-card-header">
+                <div class="usage-icon dont-icon"><i data-lucide="x" style="width:12px;height:12px"></i></div>
+                <div class="usage-card-title">Stacked or Chained Modals</div>
+              </div>
+              <ul class="usage-list">
+                <li>Triggering a modal from within another modal</li>
+                <li>Using a modal as a navigation destination</li>
+                <li>Sequences that could be handled in a single screen</li>
               </ul>
             </div>
           </div>
@@ -722,20 +806,45 @@
       <!-- 7 · ACCESSIBILITY -->
       <section class="doc-section" id="accessibility">
         <h2 class="section-title">Accessibility</h2>
-        <ul class="a11y-list">
-          <li>
-            <div><strong>Keyboard navigation:</strong> When the modal opens, focus is moved to the first focusable element inside the dialog. <kbd>Tab</kbd> cycles forward through interactive elements; <kbd>Shift+Tab</kbd> cycles backward. Pressing <kbd>Enter</kbd> or <kbd>Space</kbd> activates the focused button. Pressing <kbd>Esc</kbd> dismisses the modal and returns focus to the triggering element.</div>
-          </li>
-          <li>
-            <div><strong>Focus trap:</strong> Keyboard focus must be contained within the modal while it is open. Focus must not reach elements in the background page. Implement a focus trap loop so that tabbing past the last element wraps back to the first, and shift-tabbing before the first wraps to the last.</div>
-          </li>
-          <li>
-            <div><strong>ARIA roles:</strong> The modal container must have <code>role="dialog"</code> and <code>aria-modal="true"</code> to inform assistive technologies that the dialog is modal. Use <code>aria-labelledby</code> pointing to the title element and <code>aria-describedby</code> pointing to the body text so screen readers announce context immediately on focus entry.</div>
-          </li>
-          <li>
-            <div><strong>Background inertness:</strong> When the modal is open, background content should be made inert (using the <code>inert</code> attribute or equivalent) to prevent screen reader and keyboard access to the underlying page until the modal is closed.</div>
-          </li>
-        </ul>
+
+        <div class="a11y-group">
+          <h3 class="a11y-group-title">Keyboard Shortcut</h3>
+          <ul class="a11y-list">
+            <li><div><strong>Tab</strong> — move focus between interactive elements inside the modal (close button, Cancel, Confirm).</div></li>
+            <li><div><strong>Shift + Tab</strong> — move focus backwards through modal elements.</div></li>
+            <li><div><strong>Enter / Space</strong> — activate the focused button.</div></li>
+            <li><div><strong>Escape</strong> — dismiss the modal (equivalent to Cancel).</div></li>
+          </ul>
+        </div>
+
+        <div class="a11y-group">
+          <h3 class="a11y-group-title">Screen Readers</h3>
+          <ul class="a11y-list">
+            <li><div>Modal container uses <code>role="dialog"</code> with <code>aria-modal="true"</code>.</div></li>
+            <li><div><code>aria-labelledby</code> points to the modal title element.</div></li>
+            <li><div><code>aria-describedby</code> points to the description element.</div></li>
+            <li><div>Screen reader announces modal title when it opens.</div></li>
+            <li><div>Backdrop/scrim marked with <code>aria-hidden="true"</code> to prevent background content from being read.</div></li>
+          </ul>
+        </div>
+
+        <div class="a11y-group">
+          <h3 class="a11y-group-title">Focus Management</h3>
+          <ul class="a11y-list">
+            <li><div>Focus moves into the modal immediately on open — do not leave focus on the triggering element.</div></li>
+            <li><div>Focus is trapped inside the modal while it is open — Tab should not reach background content.</div></li>
+            <li><div>On close, focus returns to the element that triggered the modal.</div></li>
+          </ul>
+        </div>
+
+        <div class="a11y-group">
+          <h3 class="a11y-group-title">Visual</h3>
+          <ul class="a11y-list">
+            <li><div>Confirm button color must meet WCAG AA contrast (4.5:1) across all three semantic types.</div></li>
+            <li><div>Icon alone does not convey type — title and button color reinforce semantic meaning.</div></li>
+            <li><div>Close button (×) must have a visible focus ring.</div></li>
+          </ul>
+        </div>
       </section>
 
       <!-- 8 · RELATED -->
