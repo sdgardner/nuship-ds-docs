@@ -20,6 +20,12 @@
     #tmPreview.spotlight-padding::after { content:'12px'; position:absolute; top:28px; left:4px; font-size:10px; font-family:var(--mono); color:#FF4081; background:rgba(255,255,255,0.9); padding:1px 4px; border-radius:2px; font-weight:700; }
     #tmPreview.spotlight-gap { outline:2px solid #FF4081; outline-offset:4px; border-radius:4px; }
     #tmPreview.spotlight-gap::after { content:'8px'; position:absolute; top:-20px; left:50%; font-size:10px; font-family:var(--mono); color:#FF4081; background:rgba(255,255,255,0.9); padding:1px 4px; border-radius:2px; font-weight:700; }
+    .def-compare { margin:20px 0 24px; padding:16px 18px; background:var(--surface-layer01); border:1px solid var(--border-soft); border-radius:8px; }
+    .def-compare-title { font-size:14px; font-weight:700; color:var(--text-primary); margin:0 0 10px; }
+    .def-compare-list { list-style:none; padding:0; margin:0; display:flex; flex-direction:column; gap:10px; }
+    .def-compare-list li { font-size:14px; line-height:22px; color:var(--text-secondary); }
+    .def-compare-list strong { color:var(--text-primary); font-weight:700; }
+    .def-compare-list code { font-family:var(--mono); font-size:12px; background:var(--surface-layer02); padding:1px 5px; border-radius:3px; color:var(--text-primary); }
   </style>
 </head>
 <body>
@@ -139,10 +145,18 @@
       <section class="doc-section" id="definition">
         <div class="def-eyebrow">Inputs</div>
         <h1 class="def-title">Select</h1>
-        <p class="def-desc">The Select component lets users choose a single option from a list presented in a native browser dropdown. It includes a label, placeholder, helper text, and supports hover, focus, open, error, and disabled states.</p>
+        <p class="def-desc">Select is a form control that lets users choose one option (single-select) or multiple options (multi-select) from a list. It shows a trigger field (with label, value or placeholder, and chevron) that opens a list when clicked or focused. That list uses the browser list (native option list / listbox), not the Menu component. Select is for form data (e.g. country, status, maker) and stores a value when the user chooses an option.</p>
         <div class="def-tags">
           <span class="bdg bdg--purple bdg--outline">Not Developed</span>
           <span class="bdg bdg--green bdg--outline">Figma</span>
+        </div>
+        <div class="def-compare">
+          <div class="def-compare-title">Select vs Dropdown vs Menu</div>
+          <ul class="def-compare-list">
+            <li><strong>Select</strong> — The component: a form control for choosing one or more options from a fixed list. Its open list uses the browser list (native list/listbox). Use it for form values that are saved (e.g. Maker, Country, Status).</li>
+            <li><strong>Dropdown</strong> — The open state of a Select — the list that appears below the trigger. "Dropdown" describes that open list, not a separate component.</li>
+            <li><strong>Menu</strong> — A different component for actions (e.g. Edit, Delete) or navigation. Used in split buttons, menus, and action lists. Do not use the Menu component for Select; Select uses the browser list.</li>
+          </ul>
         </div>
         <div class="preview-box">
           <div class="preview-box-inner">
@@ -334,7 +348,15 @@
 
             </div>
             <div class="var-desc">
-              <div class="var-use-when">States:</div>
+              <div class="var-use-when">Use when:</div>
+              <ul class="var-use-list">
+                <li>Use Select for form fields where users choose one or more options from a fixed list (e.g. Maker, Country, Status, Category)</li>
+              </ul>
+              <div class="var-use-when" style="margin-top:14px;">Example content:</div>
+              <ul class="var-use-list">
+                <li>5–20 options</li>
+              </ul>
+              <div class="var-use-when" style="margin-top:14px;">States:</div>
               <ul class="var-use-list">
                 <li>Default — idle field with placeholder and helper text</li>
                 <li>Hover — border darkens to <code>#6B7280</code></li>
@@ -414,19 +436,80 @@
         <h2 class="section-title">Usage Guidelines</h2>
         <div class="usage-block">
           <div class="usage-cols">
-            <div class="usage-card"><div class="usage-card-header"><div class="usage-icon do-icon"><i data-lucide="check" style="width:12px;height:12px"></i></div><div class="usage-card-title">Lorem ipsum dolor sit amet</div></div><ul class="usage-list"><li>Lorem ipsum dolor sit amet consectetur</li><li>Adipiscing elit sed do eiusmod tempor</li><li>Incididunt ut labore et dolore magna</li></ul></div>
-            <div class="usage-card"><div class="usage-card-header"><div class="usage-icon do-icon"><i data-lucide="check" style="width:12px;height:12px"></i></div><div class="usage-card-title">Ut enim ad minim veniam</div></div><ul class="usage-list"><li>Quis nostrud exercitation ullamco laboris</li><li>Nisi ut aliquip ex ea commodo consequat</li><li>Duis aute irure dolor in reprehenderit</li></ul></div>
-            <div class="usage-card"><div class="usage-card-header"><div class="usage-icon do-icon"><i data-lucide="check" style="width:12px;height:12px"></i></div><div class="usage-card-title">Excepteur sint occaecat</div></div><ul class="usage-list"><li>Non proident sunt in culpa qui officia</li><li>Deserunt mollit anim id est laborum</li><li>Sed ut perspiciatis unde omnis iste</li></ul></div>
-            <div class="usage-card"><div class="usage-card-header"><div class="usage-icon do-icon"><i data-lucide="check" style="width:12px;height:12px"></i></div><div class="usage-card-title">Nemo enim ipsam voluptatem</div></div><ul class="usage-list"><li>Quia voluptas sit aspernatur aut odit</li><li>Neque porro quisquam est qui dolorem</li><li>Ut labore et dolore magnam aliquam</li></ul></div>
+            <div class="usage-card">
+              <div class="usage-card-header">
+                <div class="usage-icon do-icon"><i data-lucide="check" style="width:12px;height:12px"></i></div>
+                <div class="usage-card-title">When to use</div>
+              </div>
+              <ul class="usage-list">
+                <li>Use Select for form fields where users choose one or more options from a fixed list (e.g. Maker, Country, Status, Category)</li>
+                <li>Use when the list has about 5–20 options and the choices are predictable</li>
+                <li>Use when the value is stored as form data and submitted or saved</li>
+                <li>Use the browser list for the open state (native listbox pattern)</li>
+              </ul>
+            </div>
+            <div class="usage-card">
+              <div class="usage-card-header">
+                <div class="usage-icon do-icon"><i data-lucide="check" style="width:12px;height:12px"></i></div>
+                <div class="usage-card-title">Labeling and helper text</div>
+              </div>
+              <ul class="usage-list">
+                <li>Give every Select a clear label (e.g. "Maker") above the trigger</li>
+                <li>Use placeholder text when empty (e.g. "Select option") that describes the field</li>
+                <li>Use helper text to explain constraints or behavior (e.g. "This is helper text")</li>
+                <li>Show error text and an error state (red border, icon) when validation fails</li>
+              </ul>
+            </div>
+            <div class="usage-card">
+              <div class="usage-card-header">
+                <div class="usage-icon do-icon"><i data-lucide="check" style="width:12px;height:12px"></i></div>
+                <div class="usage-card-title">States and behavior</div>
+              </div>
+              <ul class="usage-list">
+                <li>Support default, focus (e.g. blue outline), open (chevron up), and error states</li>
+                <li>Rotate the chevron (down when closed, up when open) to show state</li>
+                <li>Keep width fixed when opening so layout doesn't shift</li>
+                <li>Use disabled state when the field isn't available; match disabled styling across the design system</li>
+              </ul>
+            </div>
           </div>
         </div>
         <div class="usage-divider"></div>
         <div class="usage-block">
           <div class="usage-cols">
-            <div class="usage-card"><div class="usage-card-header"><div class="usage-icon dont-icon"><i data-lucide="x" style="width:12px;height:12px"></i></div><div class="usage-card-title">Quis autem vel eum iure</div></div><ul class="usage-list"><li>Reprehenderit qui in ea voluptate velit</li><li>Esse quam nihil molestiae consequatur</li><li>Vel illum qui dolorem eum fugiat</li></ul></div>
-            <div class="usage-card"><div class="usage-card-header"><div class="usage-icon dont-icon"><i data-lucide="x" style="width:12px;height:12px"></i></div><div class="usage-card-title">At vero eos et accusamus</div></div><ul class="usage-list"><li>Et iusto odio dignissimos ducimus qui</li><li>Blanditiis praesentium voluptatum deleniti</li><li>Atque corrupti quos dolores et quas</li></ul></div>
-            <div class="usage-card"><div class="usage-card-header"><div class="usage-icon dont-icon"><i data-lucide="x" style="width:12px;height:12px"></i></div><div class="usage-card-title">Nam libero tempore soluta</div></div><ul class="usage-list"><li>Nobis est eligendi optio cumque nihil</li><li>Impedit quo minus id quod maxime</li></ul></div>
-            <div class="usage-card"><div class="usage-card-header"><div class="usage-icon dont-icon"><i data-lucide="x" style="width:12px;height:12px"></i></div><div class="usage-card-title">Temporibus autem quibusdam</div></div><ul class="usage-list"><li>Et aut officiis debitis aut rerum necessitatibus</li><li>Saepe eveniet ut et voluptates repudiandae</li></ul></div>
+            <div class="usage-card">
+              <div class="usage-card-header">
+                <div class="usage-icon dont-icon"><i data-lucide="x" style="width:12px;height:12px"></i></div>
+                <div class="usage-card-title">When to use</div>
+              </div>
+              <ul class="usage-list">
+                <li>Don't use Select for actions (e.g. Edit, Delete); use the Menu component instead</li>
+                <li>Don't use the Menu component for Select's open list; use the browser list</li>
+                <li>Don't confuse "dropdown" with Select: dropdown = the open list; Select = the whole component</li>
+              </ul>
+            </div>
+            <div class="usage-card">
+              <div class="usage-card-header">
+                <div class="usage-icon dont-icon"><i data-lucide="x" style="width:12px;height:12px"></i></div>
+                <div class="usage-card-title">Labeling and helper text</div>
+              </div>
+              <ul class="usage-list">
+                <li>Don't rely on placeholder alone; always show a label</li>
+                <li>Don't use generic helper text for critical fields; be specific when it matters</li>
+                <li>Don't show error state without inline error text</li>
+              </ul>
+            </div>
+            <div class="usage-card">
+              <div class="usage-card-header">
+                <div class="usage-icon dont-icon"><i data-lucide="x" style="width:12px;height:12px"></i></div>
+                <div class="usage-card-title">States and behavior</div>
+              </div>
+              <ul class="usage-list">
+                <li>Don't skip focus state; ensure keyboard users can see focus</li>
+                <li>Don't change trigger width when the list opens</li>
+                <li>Don't use custom list styling that doesn't match the browser list pattern</li>
+              </ul>
+            </div>
           </div>
         </div>
       </section>
