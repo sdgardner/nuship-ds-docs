@@ -133,7 +133,7 @@
       <section class="doc-section" id="definition">
         <div class="def-eyebrow">Overlays</div>
         <h1 class="def-title">Popover</h1>
-        <p class="def-desc">A Popover is a non-modal floating container anchored to a trigger element. It surfaces contextual information, actions, or a short confirmation prompt without navigating away or blocking the full interface.</p>
+        <p class="def-desc">A floating surface container that appears on top of the page content, triggered by a user action. The pop-over is intentionally a generic shell with a single slot — it provides the container styling (background, border, radius, elevation, padding) while consumers compose whatever content they need inside it. It is not opinionated about its children.</p>
         <div class="def-tags">
           <span class="bdg bdg--purple bdg--outline">Not Developed</span>
           <span class="bdg bdg--green bdg--outline">Figma</span>
@@ -419,48 +419,50 @@
             <div class="usage-card">
               <div class="usage-card-header">
                 <div class="usage-icon do-icon"><i data-lucide="check" style="width:12px;height:12px"></i></div>
-                <div class="usage-card-title">Lorem ipsum dolor sit amet</div>
+                <div class="usage-card-title">Content &amp; Composition</div>
               </div>
               <ul class="usage-list">
-                <li>Lorem ipsum dolor sit amet consectetur</li>
-                <li>Adipiscing elit sed do eiusmod tempor</li>
-                <li>Incididunt ut labore et dolore magna</li>
+                <li>Use the slot for self-contained, focused content — a single task or small set of related options</li>
+                <li>Compose with existing DS components inside (Menu Items, Buttons, Checkboxes, Switches, Badges, Inputs)</li>
+                <li>Keep content scannable — users should understand the pop-over's purpose within 2 seconds</li>
+                <li>Use Small (32px) buttons inside pop-overs, not Default (40px)</li>
+                <li>Use <code>typography/body/small</code> (14px) for list items inside pop-overs — it matches your menu items</li>
               </ul>
             </div>
 
             <div class="usage-card">
               <div class="usage-card-header">
                 <div class="usage-icon do-icon"><i data-lucide="check" style="width:12px;height:12px"></i></div>
-                <div class="usage-card-title">Ut enim ad minim veniam</div>
+                <div class="usage-card-title">Sizing &amp; Spacing</div>
               </div>
               <ul class="usage-list">
-                <li>Quis nostrud exercitation ullamco laboris</li>
-                <li>Nisi ut aliquip ex ea commodo consequat</li>
-                <li>Duis aute irure dolor in reprehenderit</li>
+                <li>Let the pop-over width be driven by its content</li>
+                <li>Use the built-in <code>spacing/4x</code> (16px) padding — it provides consistent breathing room across all compositions</li>
               </ul>
             </div>
 
             <div class="usage-card">
               <div class="usage-card-header">
                 <div class="usage-icon do-icon"><i data-lucide="check" style="width:12px;height:12px"></i></div>
-                <div class="usage-card-title">Excepteur sint occaecat</div>
+                <div class="usage-card-title">Elevation &amp; Layering</div>
               </div>
               <ul class="usage-list">
-                <li>Non proident sunt in culpa qui officia</li>
-                <li>Deserunt mollit anim id est laborum</li>
-                <li>Sed ut perspiciatis unde omnis iste</li>
+                <li>Always render in a portal above the main content layer</li>
+                <li>Use <code>elevation/level-1</code> (the current shadow) for standard pop-overs</li>
+                <li>Ensure the pop-over sits above cards (layer-02) and below modals in your z-index stack</li>
+                <li>Pair the pop-over background (<code>surface/layer-02</code> #F4F6F8) with its border — the slight off-white + gray border creates enough visual separation on white pages</li>
               </ul>
             </div>
 
             <div class="usage-card">
               <div class="usage-card-header">
                 <div class="usage-icon do-icon"><i data-lucide="check" style="width:12px;height:12px"></i></div>
-                <div class="usage-card-title">Nemo enim ipsam voluptatem</div>
+                <div class="usage-card-title">Interaction &amp; Accessibility</div>
               </div>
               <ul class="usage-list">
-                <li>Quia voluptas sit aspernatur aut odit</li>
-                <li>Neque porro quisquam est qui dolorem</li>
-                <li>Ut labore et dolore magnam aliquam</li>
+                <li>Trap focus inside the pop-over when opened via click (cycle Tab through interactive children, then back to first)</li>
+                <li>Close on Escape and return focus to the trigger element</li>
+                <li>Close on click outside (but not on scroll — users may scroll the page while a pop-over is open on desktop)</li>
               </ul>
             </div>
 
@@ -475,46 +477,53 @@
             <div class="usage-card">
               <div class="usage-card-header">
                 <div class="usage-icon dont-icon"><i data-lucide="x" style="width:12px;height:12px"></i></div>
-                <div class="usage-card-title">Quis autem vel eum iure</div>
+                <div class="usage-card-title">Content &amp; Composition</div>
               </div>
               <ul class="usage-list">
-                <li>Reprehenderit qui in ea voluptate velit</li>
-                <li>Esse quam nihil molestiae consequatur</li>
-                <li>Vel illum qui dolorem eum fugiat</li>
+                <li>Don't put forms with more than 2–3 fields inside — use a Modal or Sheet instead</li>
+                <li>Don't nest pop-overs inside pop-overs — if you need sub-navigation, use a flyout menu pattern or navigate to a new view</li>
+                <li>Don't put scrollable lists with more than ~6 items without a scroll container and max-height — clip at ~185px as a guide</li>
+                <li>Don't put critical, irreversible actions (like "Delete Account") directly in a pop-over — those need a confirmation Modal</li>
+                <li>Don't hardcode slot dimensions — let the content size the slot naturally with <code>overflow: clip</code> as a safety net</li>
               </ul>
             </div>
 
             <div class="usage-card">
               <div class="usage-card-header">
                 <div class="usage-icon dont-icon"><i data-lucide="x" style="width:12px;height:12px"></i></div>
-                <div class="usage-card-title">At vero eos et accusamus</div>
+                <div class="usage-card-title">Sizing &amp; Spacing</div>
               </div>
               <ul class="usage-list">
-                <li>Et iusto odio dignissimos ducimus qui</li>
-                <li>Blanditiis praesentium voluptatum deleniti</li>
-                <li>Atque corrupti quos dolores et quas</li>
+                <li>Don't override the container padding per-instance — if 16px doesn't work, reconsider your content, not the component</li>
+                <li>Don't make pop-overs wider than 360px — at that point you need a Drawer or Modal</li>
+                <li>Don't make pop-overs full-width on mobile — they should remain floating and anchored to their trigger</li>
+                <li>Don't remove the shadow — it's the only visual cue that separates the pop-over from the surface beneath it</li>
               </ul>
             </div>
 
             <div class="usage-card">
               <div class="usage-card-header">
                 <div class="usage-icon dont-icon"><i data-lucide="x" style="width:12px;height:12px"></i></div>
-                <div class="usage-card-title">Nam libero tempore soluta</div>
+                <div class="usage-card-title">Elevation &amp; Layering</div>
               </div>
               <ul class="usage-list">
-                <li>Nobis est eligendi optio cumque nihil</li>
-                <li>Impedit quo minus id quod maxime</li>
+                <li>Don't use <code>elevation/level-1</code> on surfaces that are already elevated (like inside a Modal) — you'll get shadow-on-shadow</li>
+                <li>Don't change the background to pure white (#FFFFFF) — it would blend with <code>surface/layer-01</code> pages and lose the floating effect</li>
+                <li>Don't increase the shadow aggressively — level-1 is intentionally subtle for lightweight floating UI</li>
               </ul>
             </div>
 
             <div class="usage-card">
               <div class="usage-card-header">
                 <div class="usage-icon dont-icon"><i data-lucide="x" style="width:12px;height:12px"></i></div>
-                <div class="usage-card-title">Temporibus autem quibusdam</div>
+                <div class="usage-card-title">Interaction &amp; Accessibility</div>
               </div>
               <ul class="usage-list">
-                <li>Et aut officiis debitis aut rerum necessitatibus</li>
-                <li>Saepe eveniet ut et voluptates repudiandae</li>
+                <li>Don't auto-open pop-overs on hover for touch devices — hover doesn't exist on mobile</li>
+                <li>Don't allow multiple pop-overs open at the same time — opening one should close any other</li>
+                <li>Don't animate with delays longer than 150ms — pop-overs should feel instant</li>
+                <li>Don't leave orphaned pop-overs on screen when their trigger scrolls out of view — reposition or dismiss them</li>
+                <li>Don't skip the focus trap — without it, keyboard users Tab into the page behind the pop-over</li>
               </ul>
             </div>
 
