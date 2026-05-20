@@ -137,7 +137,7 @@
       <section class="doc-section" id="definition">
         <div class="def-eyebrow">Navigation</div>
         <h1 class="def-title">Segmented Control</h1>
-        <p class="def-desc">A Segmented Control presents a set of mutually exclusive options as a horizontal strip of connected buttons. Selecting an option immediately updates the visible content. It supports 2, 3, or 4 segments.</p>
+        <p class="def-desc">The Segmented Control component allows users to select one option from a set of 2–4 mutually exclusive choices. Unlike a dropdown, all options are visible simultaneously, making it ideal for switching between views, filters, or modes. Selection takes effect immediately without requiring form submission.</p>
         <div class="def-tags">
           <span class="bdg bdg--purple bdg--outline">Not Developed</span>
           <span class="bdg bdg--green bdg--outline">Figma</span>
@@ -282,13 +282,69 @@
 
             </div>
             <div class="var-desc">
-              <div class="var-use-when">States:</div>
+              <div class="var-use-when">Unselected — Use when:</div>
               <ul class="var-use-list">
-                <li>Default — first segment selected, rest unselected</li>
-                <li>Hover — unselected segment darkens to <code>layer-01/hover</code></li>
-                <li>Focus Selected — blue fill with focus ring + glow</li>
-                <li>Focus Unselected — layer-02 fill with focus ring + glow</li>
-                <li>Disabled — selected turns grey <code>#6B7280</code>, unselected turns <code>#EFF1F3</code></li>
+                <li>The segment is available for selection but is not the currently active option</li>
+                <li>Representing the inactive state of a view, filter, or mode option</li>
+                <li>No fill on segment background</li>
+              </ul>
+              <div class="var-use-when" style="margin-top:14px;">Example contexts:</div>
+              <ul class="var-use-list">
+                <li>A "Week" or "Month" option when "Day" is currently selected</li>
+                <li>An unselected filter option in a sort or filter control</li>
+              </ul>
+
+              <div class="var-use-when" style="margin-top:18px;">Selected — Use when:</div>
+              <ul class="var-use-list">
+                <li>The user has selected this option and it is the currently active view, filter, or mode</li>
+                <li>One segment must always be in this state — there is no empty selection</li>
+              </ul>
+              <div class="var-use-when" style="margin-top:14px;">Example contexts:</div>
+              <ul class="var-use-list">
+                <li>"Day" is selected in an Hour/Day/Week/Month time filter</li>
+                <li>The first option is selected as the default on initial load</li>
+              </ul>
+
+              <div class="var-use-when" style="margin-top:18px;">Hover — Use when:</div>
+              <ul class="var-use-list">
+                <li>The user's cursor is over an unselected segment on web</li>
+                <li>Indicating interactivity without implying the segment is already selected</li>
+                <li>Never applied to the currently selected segment</li>
+              </ul>
+              <div class="var-use-when" style="margin-top:14px;">Example contexts:</div>
+              <ul class="var-use-list">
+                <li>User is deciding between filter options</li>
+                <li>Keyboard or mouse navigation across the control</li>
+              </ul>
+
+              <div class="var-use-when" style="margin-top:18px;">Focus — Use when:</div>
+              <ul class="var-use-list">
+                <li>The user is navigating the control via keyboard</li>
+                <li>Accessibility requires a visible focus indicator on the active segment</li>
+              </ul>
+
+              <div class="var-use-when" style="margin-top:18px;">Disabled (Unselected) — Use when:</div>
+              <ul class="var-use-list">
+                <li>The segment is unavailable due to permissions, system state, or context</li>
+                <li>The option exists but cannot be interacted with at this time</li>
+                <li>No hover state applied; cursor indicates non-interactivity</li>
+              </ul>
+              <div class="var-use-when" style="margin-top:14px;">Example contexts:</div>
+              <ul class="var-use-list">
+                <li>A time range option unavailable for the current data set</li>
+                <li>A mode that requires a permission the user does not have</li>
+              </ul>
+
+              <div class="var-use-when" style="margin-top:18px;">Disabled (Selected) — Use when:</div>
+              <ul class="var-use-list">
+                <li>The currently active option is locked and cannot be changed</li>
+                <li>The user needs to see which option is active but interaction is not permitted</li>
+                <li>Retains enough visual distinction from disabled unselected segments to communicate active state</li>
+              </ul>
+              <div class="var-use-when" style="margin-top:14px;">Example contexts:</div>
+              <ul class="var-use-list">
+                <li>A view mode locked by system state or user role</li>
+                <li>A filter selection that cannot be changed until another condition is met</li>
               </ul>
             </div>
           </div>
@@ -479,45 +535,34 @@
             <div class="usage-card">
               <div class="usage-card-header">
                 <div class="usage-icon do-icon"><i data-lucide="check" style="width:12px;height:12px"></i></div>
-                <div class="usage-card-title">Lorem ipsum dolor sit amet</div>
+                <div class="usage-card-title">Mutually Exclusive View Switching</div>
               </div>
               <ul class="usage-list">
-                <li>Lorem ipsum dolor sit amet consectetur</li>
-                <li>Adipiscing elit sed do eiusmod tempor</li>
-                <li>Incididunt ut labore et dolore magna</li>
+                <li>When the user needs to switch between 2–4 distinct views of the same content</li>
+                <li>When all options should be visible simultaneously rather than hidden in a dropdown</li>
+                <li>When the selection takes effect immediately without requiring form submission</li>
               </ul>
             </div>
             <div class="usage-card">
               <div class="usage-card-header">
                 <div class="usage-icon do-icon"><i data-lucide="check" style="width:12px;height:12px"></i></div>
-                <div class="usage-card-title">Ut enim ad minim veniam</div>
+                <div class="usage-card-title">Filtering or Sorting Content</div>
               </div>
               <ul class="usage-list">
-                <li>Quis nostrud exercitation ullamco laboris</li>
-                <li>Nisi ut aliquip ex ea commodo consequat</li>
-                <li>Duis aute irure dolor in reprehenderit</li>
+                <li>When filtering a list or dataset by a single dimension (e.g. Hour, Day, Week, Month)</li>
+                <li>When the number of filter options is small and fixed</li>
+                <li>When the result of the selection is immediately visible in the content below</li>
               </ul>
             </div>
             <div class="usage-card">
               <div class="usage-card-header">
                 <div class="usage-icon do-icon"><i data-lucide="check" style="width:12px;height:12px"></i></div>
-                <div class="usage-card-title">Excepteur sint occaecat</div>
+                <div class="usage-card-title">Mode Selection</div>
               </div>
               <ul class="usage-list">
-                <li>Non proident sunt in culpa qui officia</li>
-                <li>Deserunt mollit anim id est laborum</li>
-                <li>Sed ut perspiciatis unde omnis iste</li>
-              </ul>
-            </div>
-            <div class="usage-card">
-              <div class="usage-card-header">
-                <div class="usage-icon do-icon"><i data-lucide="check" style="width:12px;height:12px"></i></div>
-                <div class="usage-card-title">Nemo enim ipsam voluptatem</div>
-              </div>
-              <ul class="usage-list">
-                <li>Quia voluptas sit aspernatur aut odit</li>
-                <li>Neque porro quisquam est qui dolorem</li>
-                <li>Ut labore et dolore magnam aliquam</li>
+                <li>When the user is choosing between clearly defined, mutually exclusive modes</li>
+                <li>When the options are parallel in nature and similar in weight</li>
+                <li>When labels are short and unambiguous — 1–2 words maximum</li>
               </ul>
             </div>
           </div>
@@ -530,43 +575,43 @@
             <div class="usage-card">
               <div class="usage-card-header">
                 <div class="usage-icon dont-icon"><i data-lucide="x" style="width:12px;height:12px"></i></div>
-                <div class="usage-card-title">Quis autem vel eum iure</div>
+                <div class="usage-card-title">More Than Four Options</div>
               </div>
               <ul class="usage-list">
-                <li>Reprehenderit qui in ea voluptate velit</li>
-                <li>Esse quam nihil molestiae consequatur</li>
-                <li>Vel illum qui dolorem eum fugiat</li>
+                <li>When there are 5 or more options — use a dropdown or select instead</li>
+                <li>When adding options in the future is likely — plan for scalability with a different component</li>
+                <li>When labels are long enough that truncation becomes a risk at any viewport width</li>
               </ul>
             </div>
             <div class="usage-card">
               <div class="usage-card-header">
                 <div class="usage-icon dont-icon"><i data-lucide="x" style="width:12px;height:12px"></i></div>
-                <div class="usage-card-title">At vero eos et accusamus</div>
+                <div class="usage-card-title">Non-Mutually Exclusive Selections</div>
               </div>
               <ul class="usage-list">
-                <li>Et iusto odio dignissimos ducimus qui</li>
-                <li>Blanditiis praesentium voluptatum deleniti</li>
-                <li>Atque corrupti quos dolores et quas</li>
+                <li>When the user can select more than one option at a time — use checkboxes instead</li>
+                <li>When options are independent of each other rather than alternatives</li>
               </ul>
             </div>
             <div class="usage-card">
               <div class="usage-card-header">
                 <div class="usage-icon dont-icon"><i data-lucide="x" style="width:12px;height:12px"></i></div>
-                <div class="usage-card-title">Nam libero tempore soluta</div>
+                <div class="usage-card-title">Navigation Between Pages</div>
               </div>
               <ul class="usage-list">
-                <li>Nobis est eligendi optio cumque nihil</li>
-                <li>Impedit quo minus id quod maxime</li>
+                <li>When selecting an option routes the user to a different page — use tabs instead</li>
+                <li>When the options represent separate destinations rather than filters on the same content</li>
               </ul>
             </div>
             <div class="usage-card">
               <div class="usage-card-header">
                 <div class="usage-icon dont-icon"><i data-lucide="x" style="width:12px;height:12px"></i></div>
-                <div class="usage-card-title">Temporibus autem quibusdam</div>
+                <div class="usage-card-title">Triggering Actions or Processes</div>
               </div>
               <ul class="usage-list">
-                <li>Et aut officiis debitis aut rerum necessitatibus</li>
-                <li>Saepe eveniet ut et voluptates repudiandae</li>
+                <li>When the selection initiates an action rather than changing a state — use a button instead</li>
+                <li>When confirmation is required before the selection takes effect</li>
+                <li>When the consequence of selection is difficult to reverse</li>
               </ul>
             </div>
           </div>
@@ -614,20 +659,26 @@
       <!-- 7 · ACCESSIBILITY -->
       <section class="doc-section" id="accessibility">
         <h2 class="section-title">Accessibility</h2>
-        <ul class="a11y-list">
-          <li>
-            <div><strong>Role:</strong> Use <code>role="tablist"</code> on the container and <code>role="tab"</code> on each segment. Set <code>aria-selected="true"</code> on the active segment and <code>aria-selected="false"</code> on all others.</div>
-          </li>
-          <li>
-            <div><strong>Keyboard:</strong> <kbd>Arrow Left/Right</kbd> moves focus between segments and selects the focused one. <kbd>Home</kbd> jumps to the first segment, <kbd>End</kbd> to the last.</div>
-          </li>
-          <li>
-            <div><strong>Focus ring:</strong> The 1px solid ring + 4px glow is visible in both themes. Ensure focus is never suppressed on keyboard navigation.</div>
-          </li>
-          <li>
-            <div><strong>Colour contrast:</strong> White text (#FFFFFF) on the selected fill (#027CB1 light) meets WCAG AA at 4.6:1. In dark mode the lighter blue (#35A8D6) requires verification against the white text.</div>
-          </li>
-        </ul>
+
+        <div class="a11y-group">
+          <h3 class="a11y-group-title">Keyboard Navigation</h3>
+          <ul class="a11y-list">
+            <li><div><strong>Tab</strong> — move focus to the Segmented Control.</div></li>
+            <li><div><strong>Shift + Tab</strong> — move focus backwards to the previous interactive element.</div></li>
+            <li><div><strong>Arrow Keys (Left / Right)</strong> — move between segments.</div></li>
+            <li><div><strong>Space or Enter</strong> — selects the focused segment.</div></li>
+          </ul>
+        </div>
+
+        <div class="a11y-group">
+          <h3 class="a11y-group-title">Screen Readers</h3>
+          <ul class="a11y-list">
+            <li><div>The control should use <code>role="radiogroup"</code> semantics.</div></li>
+            <li><div>Each segment should use <code>role="radio"</code> with <code>aria-checked</code>.</div></li>
+            <li><div>The group should have an <code>aria-label</code> describing the control's purpose.</div></li>
+            <li><div>Selected state must be communicated — not conveyed by color alone.</div></li>
+          </ul>
+        </div>
       </section>
 
       <!-- 8 · RELATED -->
