@@ -140,7 +140,7 @@
       <section class="doc-section" id="definition">
         <div class="def-eyebrow">Display</div>
         <h1 class="def-title">Progress Bar</h1>
-        <p class="def-desc">The Progress Bar communicates the status and completion of an ongoing operation. It appears in four statuses — default (idle), uploading, error, and success — and two sizes to suit different layout contexts.</p>
+        <p class="def-desc">The Progress Bar provides visual feedback on the completion status of an ongoing process. It is used within the File Row component to communicate per-file upload progress.</p>
         <div class="def-tags">
           <span class="bdg bdg--purple bdg--outline">Not Developed</span>
           <span class="bdg bdg--green bdg--outline">Figma</span>
@@ -245,17 +245,43 @@
 
             </div>
             <div class="var-desc">
-              <div class="var-use-when">Default — 6px</div>
+              <div class="var-use-when">Size: Default (6px) — Use when:</div>
               <ul class="var-use-list">
-                <li>Use in standard layouts where vertical space is available</li>
-                <li>Preferred size for file upload and data transfer contexts</li>
+                <li>The progress bar is a primary visual element with sufficient surrounding space</li>
+                <li>The upload context is prominent and needs clear visual weight</li>
               </ul>
-              <div class="var-use-when" style="margin-top:16px;">States:</div>
+              <div class="var-use-when" style="margin-top:14px;">Example contexts:</div>
               <ul class="var-use-list">
-                <li>Default — empty track, operation not yet started</li>
-                <li>Uploading — blue fill at 62% showing active progress</li>
-                <li>Error — red fill at same width showing where it failed</li>
-                <li>Success — green fill spanning full track width</li>
+                <li>Standalone progress indicators outside of a File Row</li>
+                <li>Any upload flow where the bar is the main feedback mechanism</li>
+              </ul>
+
+              <div class="var-use-when" style="margin-top:18px;">Status — Default:</div>
+              <ul class="var-use-list">
+                <li>Use when no upload has started yet</li>
+                <li>The track should appear empty with no fill</li>
+                <li>Example: initial state before a file begins uploading</li>
+              </ul>
+
+              <div class="var-use-when" style="margin-top:14px;">Status — Uploading:</div>
+              <ul class="var-use-list">
+                <li>A file transfer is actively in progress</li>
+                <li>The fill should reflect the current completion percentage</li>
+                <li>Example: photo transfer on shipper booking, file in carrier quote form</li>
+              </ul>
+
+              <div class="var-use-when" style="margin-top:14px;">Status — Success:</div>
+              <ul class="var-use-list">
+                <li>The upload has completed successfully</li>
+                <li>The full green fill confirms 100% completion</li>
+                <li>Example: file confirmed received after a successful upload</li>
+              </ul>
+
+              <div class="var-use-when" style="margin-top:14px;">Status — Failed:</div>
+              <ul class="var-use-list">
+                <li>The upload encountered an error and could not complete</li>
+                <li>The red fill communicates failure at a glance</li>
+                <li>Example: file rejected by size limit / unsupported format, or network interruption</li>
               </ul>
             </div>
           </div>
@@ -302,17 +328,19 @@
 
             </div>
             <div class="var-desc">
-              <div class="var-use-when">Compact — 4px</div>
+              <div class="var-use-when">Size: Compact (4px) — Use when:</div>
               <ul class="var-use-list">
-                <li>Use in space-constrained contexts like table rows or sidebars</li>
-                <li>All four statuses behave identically to Default size</li>
+                <li>Space is constrained and the progress bar is a secondary element</li>
+                <li>The bar is embedded inside another component such as the File Row</li>
               </ul>
-              <div class="var-use-when" style="margin-top:16px;">States:</div>
+              <div class="var-use-when" style="margin-top:14px;">Example contexts:</div>
               <ul class="var-use-list">
-                <li>Default — empty track, operation not yet started</li>
-                <li>Uploading — blue fill at 62% showing active progress</li>
-                <li>Error — red fill at same width showing where it failed</li>
-                <li>Success — green fill spanning full track width</li>
+                <li>Progress bar inside the File Row component</li>
+                <li>Dense list views where vertical space is limited</li>
+              </ul>
+              <div class="var-use-when" style="margin-top:14px;">Status colors:</div>
+              <ul class="var-use-list">
+                <li>All four statuses (Default, Uploading, Success, Failed) behave identically to the Default size</li>
               </ul>
             </div>
           </div>
@@ -366,48 +394,33 @@
             <div class="usage-card">
               <div class="usage-card-header">
                 <div class="usage-icon do-icon"><i data-lucide="check" style="width:12px;height:12px"></i></div>
-                <div class="usage-card-title">Lorem ipsum dolor sit amet</div>
+                <div class="usage-card-title">File Upload Progress</div>
               </div>
               <ul class="usage-list">
-                <li>Lorem ipsum dolor sit amet consectetur</li>
-                <li>Adipiscing elit sed do eiusmod tempor</li>
-                <li>Incididunt ut labore et dolore magna</li>
+                <li>Showing real-time upload progress for photos, documents, or attachments</li>
+                <li>Giving users visual feedback during any async file operation</li>
               </ul>
             </div>
 
             <div class="usage-card">
               <div class="usage-card-header">
                 <div class="usage-icon do-icon"><i data-lucide="check" style="width:12px;height:12px"></i></div>
-                <div class="usage-card-title">Ut enim ad minim veniam</div>
+                <div class="usage-card-title">Multi-Step Status Indication</div>
               </div>
               <ul class="usage-list">
-                <li>Quis nostrud exercitation ullamco laboris</li>
-                <li>Nisi ut aliquip ex ea commodo consequat</li>
-                <li>Duis aute irure dolor in reprehenderit</li>
+                <li>Communicating Default, Uploading, Success, or Error states clearly</li>
+                <li>Displaying completion percentage alongside the bar</li>
               </ul>
             </div>
 
             <div class="usage-card">
               <div class="usage-card-header">
                 <div class="usage-icon do-icon"><i data-lucide="check" style="width:12px;height:12px"></i></div>
-                <div class="usage-card-title">Excepteur sint occaecat</div>
+                <div class="usage-card-title">Compact vs Default Size</div>
               </div>
               <ul class="usage-list">
-                <li>Non proident sunt in culpa qui officia</li>
-                <li>Deserunt mollit anim id est laborum</li>
-                <li>Sed ut perspiciatis unde omnis iste</li>
-              </ul>
-            </div>
-
-            <div class="usage-card">
-              <div class="usage-card-header">
-                <div class="usage-icon do-icon"><i data-lucide="check" style="width:12px;height:12px"></i></div>
-                <div class="usage-card-title">Nemo enim ipsam voluptatem</div>
-              </div>
-              <ul class="usage-list">
-                <li>Quia voluptas sit aspernatur aut odit</li>
-                <li>Neque porro quisquam est qui dolorem</li>
-                <li>Ut labore et dolore magnam aliquam</li>
+                <li>Use Default (6px) when the progress bar is a primary UI element with enough surrounding space</li>
+                <li>Use Compact (4px) when space is constrained or the bar is a secondary element, such as inside the File Row component</li>
               </ul>
             </div>
 
@@ -422,46 +435,30 @@
             <div class="usage-card">
               <div class="usage-card-header">
                 <div class="usage-icon dont-icon"><i data-lucide="x" style="width:12px;height:12px"></i></div>
-                <div class="usage-card-title">Quis autem vel eum iure</div>
+                <div class="usage-card-title">Indeterminate Loading</div>
               </div>
               <ul class="usage-list">
-                <li>Reprehenderit qui in ea voluptate velit</li>
-                <li>Esse quam nihil molestiae consequatur</li>
-                <li>Vel illum qui dolorem eum fugiat</li>
+                <li>When the duration or percentage cannot be calculated — use a spinner or skeleton instead</li>
               </ul>
             </div>
 
             <div class="usage-card">
               <div class="usage-card-header">
                 <div class="usage-icon dont-icon"><i data-lucide="x" style="width:12px;height:12px"></i></div>
-                <div class="usage-card-title">At vero eos et accusamus</div>
+                <div class="usage-card-title">Step Indicators</div>
               </div>
               <ul class="usage-list">
-                <li>Et iusto odio dignissimos ducimus qui</li>
-                <li>Blanditiis praesentium voluptatum deleniti</li>
-                <li>Atque corrupti quos dolores et quas</li>
+                <li>When showing discrete steps in a multi-step flow — use a stepper component instead</li>
               </ul>
             </div>
 
             <div class="usage-card">
               <div class="usage-card-header">
                 <div class="usage-icon dont-icon"><i data-lucide="x" style="width:12px;height:12px"></i></div>
-                <div class="usage-card-title">Nam libero tempore soluta</div>
+                <div class="usage-card-title">Ratings or Scores</div>
               </div>
               <ul class="usage-list">
-                <li>Nobis est eligendi optio cumque nihil</li>
-                <li>Impedit quo minus id quod maxime</li>
-              </ul>
-            </div>
-
-            <div class="usage-card">
-              <div class="usage-card-header">
-                <div class="usage-icon dont-icon"><i data-lucide="x" style="width:12px;height:12px"></i></div>
-                <div class="usage-card-title">Temporibus autem quibusdam</div>
-              </div>
-              <ul class="usage-list">
-                <li>Et aut officiis debitis aut rerum necessitatibus</li>
-                <li>Saepe eveniet ut et voluptates repudiandae</li>
+                <li>Don't repurpose the progress bar to represent ratings, scores, or comparisons</li>
               </ul>
             </div>
 
