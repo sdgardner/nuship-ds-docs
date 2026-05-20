@@ -139,7 +139,7 @@
           <div class="def-hero-left">
             <div class="def-eyebrow">NAVIGATION</div>
             <h1 class="def-title">Menu</h1>
-            <p class="def-desc">A floating panel that presents a list of contextual actions for an element. Menus support items, submenus, selected states, destructive actions, and keyboard shortcuts.</p>
+            <p class="def-desc">A menu is a temporary list of actions or choices that appears when the user activates a control (e.g. clicks a button or field). It is built from a list of items (labels, optional icons, shortcuts, submenu indicators) and closes after a choice is made or when the user dismisses it.</p>
             <div class="def-tags">
               <span class="bdg bdg--purple bdg--outline">Not Developed</span>
               <span class="bdg bdg--green bdg--outline">Figma</span>
@@ -265,6 +265,23 @@
       <!-- 3 · VARIANTS -->
       <section class="doc-section" id="variants">
         <h2 class="section-title">Variants</h2>
+
+        <div class="menu-types-intro" style="display:flex;flex-direction:column;gap:14px;padding:18px 20px;margin-bottom:24px;background:var(--surface-layer01);border:1px solid var(--border-soft);border-radius:8px;">
+          <div>
+            <div style="font-size:13px;font-weight:700;color:var(--text-primary);margin-bottom:4px;">List menu — Use when:</div>
+            <ul style="margin:0;padding-left:18px;font-size:14px;line-height:22px;color:var(--text-secondary);">
+              <li>You need a temporary list of actions (sort, filters, row actions, account actions)</li>
+              <li>Items may include icons, shortcuts, chevrons, or destructive actions; groups can be separated as stacked menu containers</li>
+            </ul>
+          </div>
+          <div>
+            <div style="font-size:13px;font-weight:700;color:var(--text-primary);margin-bottom:4px;">Select menu — Use when:</div>
+            <ul style="margin:0;padding-left:18px;font-size:14px;line-height:22px;color:var(--text-secondary);">
+              <li>The menu is the picker for a single value (e.g. Ascending / Descending sort) with a checkmark indicating the active choice</li>
+            </ul>
+          </div>
+        </div>
+
         <div class="tabs-wrap">
           <div class="tabs">
             <button class="tab active" onclick="switchTab(this,'v-item')">Item</button>
@@ -576,44 +593,72 @@
           <div class="usage-card">
             <div class="usage-card-header">
               <i data-lucide="check-circle" class="usage-icon usage-do"></i>
-              <div class="usage-card-title">Lorem ipsum dolor sit amet</div>
+              <div class="usage-card-title">Usage</div>
             </div>
             <ul class="usage-list">
-              <li>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore</li>
-              <li>Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo</li>
+              <li>Use menus for lists of actions/choices (sort, filters, row actions, account actions)</li>
+              <li>Use a popover when content is richer than a list (forms, complex layouts, long descriptions)</li>
             </ul>
           </div>
 
           <div class="usage-card">
             <div class="usage-card-header">
               <i data-lucide="check-circle" class="usage-icon usage-do"></i>
-              <div class="usage-card-title">Duis aute irure dolor</div>
+              <div class="usage-card-title">Content &amp; structure</div>
             </div>
             <ul class="usage-list">
-              <li>Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur</li>
-              <li>Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim</li>
+              <li>Keep labels short and scannable (one action per row)</li>
+              <li>Use a consistent row pattern: icon (optional) + label + trailing (shortcut/chevron/check)</li>
+              <li>Treat "separated groups" as two menu containers stacked (Group A menu + Group B menu) to match the system</li>
+              <li>Use the same container styles for each group (same surface, radius, border, padding)</li>
+            </ul>
+          </div>
+
+          <div class="usage-card">
+            <div class="usage-card-header">
+              <i data-lucide="check-circle" class="usage-icon usage-do"></i>
+              <div class="usage-card-title">States and behavior</div>
+            </div>
+            <ul class="usage-list">
+              <li>Support default, focus, filled, error, disabled, and loading/skeleton states</li>
+              <li>Use a focus ring (e.g. blue border) so keyboard users can see focus</li>
+              <li>In error state, use a red border, error icon, and inline error message below the field</li>
+              <li>Use disabled styling (muted background, no resize) when the field isn't editable</li>
+              <li>In loading, use a skeleton that matches the shape of the text area (and label/count if shown)</li>
             </ul>
           </div>
 
           <div class="usage-card">
             <div class="usage-card-header">
               <i data-lucide="x-circle" class="usage-icon usage-dont"></i>
-              <div class="usage-card-title">Sed ut perspiciatis unde</div>
+              <div class="usage-card-title">Usage</div>
             </div>
             <ul class="usage-list">
-              <li>Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium</li>
-              <li>Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit sed quia consequuntur</li>
+              <li>Put rich/interactive layouts inside a menu (inputs, multi-step controls)</li>
             </ul>
           </div>
 
           <div class="usage-card">
             <div class="usage-card-header">
               <i data-lucide="x-circle" class="usage-icon usage-dont"></i>
-              <div class="usage-card-title">At vero eos et accusamus</div>
+              <div class="usage-card-title">Content &amp; structure</div>
             </div>
             <ul class="usage-list">
-              <li>At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum</li>
-              <li>Nam libero tempore cum soluta nobis eligendi optio cumque nihil impedit quo minus id quod maxime</li>
+              <li>Mix unrelated items without grouping or separation</li>
+              <li>Overuse icons — only use them where they add clarity or consistency</li>
+              <li>Draw a unique divider line that introduces a new style/token just to separate groups</li>
+            </ul>
+          </div>
+
+          <div class="usage-card">
+            <div class="usage-card-header">
+              <i data-lucide="x-circle" class="usage-icon usage-dont"></i>
+              <div class="usage-card-title">States and behavior</div>
+            </div>
+            <ul class="usage-list">
+              <li>Don't skip a visible focus state</li>
+              <li>Don't show error state without a clear error message</li>
+              <li>Don't make disabled or read-only look editable; reduce contrast and remove resize when disabled</li>
             </ul>
           </div>
 
