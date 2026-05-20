@@ -135,7 +135,7 @@
       <section class="doc-section" id="definition">
         <div class="def-eyebrow">Inputs</div>
         <h1 class="def-title">Radio Button</h1>
-        <p class="def-desc">A Radio Button allows the user to select exactly one option from a mutually exclusive set. Each radio shows a label and optional description text, providing context for the choice.</p>
+        <p class="def-desc">The Radio Button component allows users to select exactly one option from a set of mutually exclusive choices. Radio buttons are used when only a single selection is permitted and all available options should be visible to the user.</p>
         <div class="def-tags">
           <span class="bdg bdg--purple bdg--outline">Not Developed</span>
           <span class="bdg bdg--green bdg--outline">Figma</span>
@@ -318,12 +318,47 @@
 
             </div>
             <div class="var-desc">
-              <div class="var-use-when">Unselected states:</div>
+              <div class="var-use-when">Default (Unselected) — Use when:</div>
               <ul class="var-use-list">
-                <li>Default — idle, no user interaction</li>
-                <li>Hover — border darkens to <code>--border-strong</code> on pointer enter</li>
-                <li>Focus — blue 4px glow ring for keyboard navigation</li>
-                <li>Disabled — muted border and text, cursor blocked</li>
+                <li>Radio button is displayed but not selected</li>
+                <li>Initial state when no default selection is provided</li>
+                <li>Other option in the group is currently selected</li>
+              </ul>
+              <div class="var-use-when" style="margin-top:14px;">Example contexts:</div>
+              <ul class="var-use-list">
+                <li>Unselected shipping method options</li>
+                <li>Alternative payment methods not chosen</li>
+                <li>Non-selected filter criteria</li>
+              </ul>
+
+              <div class="var-use-when" style="margin-top:18px;">Hover — Use when:</div>
+              <ul class="var-use-list">
+                <li>User's cursor is positioned over the radio button</li>
+                <li>Indicates the radio is interactive</li>
+              </ul>
+              <div class="var-use-when" style="margin-top:14px;">Visual changes:</div>
+              <ul class="var-use-list">
+                <li>Subtle background change or border highlight</li>
+                <li>Cursor changes to pointer</li>
+              </ul>
+
+              <div class="var-use-when" style="margin-top:18px;">Focus (Unselected) — Use when:</div>
+              <ul class="var-use-list">
+                <li>User navigates to radio button via keyboard (Tab key)</li>
+                <li>Radio is selected for keyboard interaction</li>
+                <li>Shows focus ring for accessibility</li>
+              </ul>
+              <div class="var-use-when" style="margin-top:14px;">Visual changes:</div>
+              <ul class="var-use-list">
+                <li>Blue focus ring appears around radio button</li>
+                <li>Indicates keyboard focus for accessible navigation</li>
+              </ul>
+
+              <div class="var-use-when" style="margin-top:18px;">Disabled (Unselected) — Use when:</div>
+              <ul class="var-use-list">
+                <li>Radio is displayed but not selectable</li>
+                <li>Initial state for optional selections that aren't available</li>
+                <li>User has not made a choice yet but cannot interact with this option</li>
               </ul>
             </div>
           </div>
@@ -413,11 +448,54 @@
 
             </div>
             <div class="var-desc">
-              <div class="var-use-when">Selected states:</div>
+              <div class="var-use-when">Selected — Use when:</div>
               <ul class="var-use-list">
-                <li>Default — blue border and 10px filled dot indicate the active choice</li>
-                <li>Focus — adds the blue 4px glow ring for keyboard users</li>
-                <li>Disabled — grey dot and border, text muted, selection locked</li>
+                <li>User has chosen this option</li>
+                <li>This is the active selection in the group</li>
+                <li>Only one radio in a group can be selected at a time</li>
+              </ul>
+              <div class="var-use-when" style="margin-top:14px;">Visual changes:</div>
+              <ul class="var-use-list">
+                <li>Inner circle fills with blue (<code>color/action/secondary/default</code>)</li>
+                <li>Outer border also changes to blue</li>
+                <li>All other radios in the group become unselected</li>
+              </ul>
+              <div class="var-use-when" style="margin-top:14px;">Example contexts:</div>
+              <ul class="var-use-list">
+                <li>Selected payment method (uShip Payments / Deposit Method)</li>
+                <li>Chosen payment method</li>
+                <li>Active filter selection</li>
+              </ul>
+
+              <div class="var-use-when" style="margin-top:18px;">Focus (Selected) — Use when:</div>
+              <ul class="var-use-list">
+                <li>Radio button is both selected AND has keyboard focus</li>
+                <li>User has tabbed to a radio that's already selected</li>
+                <li>Navigating through form with keyboard on the active selection</li>
+              </ul>
+              <div class="var-use-when" style="margin-top:14px;">Visual changes:</div>
+              <ul class="var-use-list">
+                <li>Blue filled inner circle visible (selected state)</li>
+                <li>Blue focus ring around radio button</li>
+                <li>Combines selected state with focus indicator</li>
+              </ul>
+
+              <div class="var-use-when" style="margin-top:18px;">Disabled (Selected) — Use when:</div>
+              <ul class="var-use-list">
+                <li>Radio is selected but cannot be changed</li>
+                <li>Pre-selected option based on system requirements</li>
+                <li>Showing non-editable historical selection</li>
+              </ul>
+              <div class="var-use-when" style="margin-top:14px;">Visual changes:</div>
+              <ul class="var-use-list">
+                <li>Filled circle visible but grayed out</li>
+                <li>Cannot be changed to another option</li>
+              </ul>
+              <div class="var-use-when" style="margin-top:14px;">Example contexts:</div>
+              <ul class="var-use-list">
+                <li>Required shipping method for certain items</li>
+                <li>System-determined default that cannot be modified</li>
+                <li>Historical order data showing previous selection</li>
               </ul>
             </div>
           </div>
@@ -489,48 +567,49 @@
             <div class="usage-card">
               <div class="usage-card-header">
                 <div class="usage-icon do-icon"><i data-lucide="check" style="width:12px;height:12px"></i></div>
-                <div class="usage-card-title">Lorem ipsum dolor sit amet</div>
+                <div class="usage-card-title">Mutually Exclusive Choices</div>
               </div>
               <ul class="usage-list">
-                <li>Lorem ipsum dolor sit amet consectetur</li>
-                <li>Adipiscing elit sed do eiusmod tempor</li>
-                <li>Incididunt ut labore et dolore magna</li>
+                <li>When only ONE option can be selected from a list</li>
+                <li>Clear either/or decisions</li>
+                <li>Selection automatically deselects other options</li>
               </ul>
             </div>
 
             <div class="usage-card">
               <div class="usage-card-header">
                 <div class="usage-icon do-icon"><i data-lucide="check" style="width:12px;height:12px"></i></div>
-                <div class="usage-card-title">Ut enim ad minim veniam</div>
+                <div class="usage-card-title">Visible Options (Small Sets)</div>
               </div>
               <ul class="usage-list">
-                <li>Quis nostrud exercitation ullamco laboris</li>
-                <li>Nisi ut aliquip ex ea commodo consequat</li>
-                <li>Duis aute irure dolor in reprehenderit</li>
+                <li>2–7 options that should all be visible</li>
+                <li>When users benefit from seeing all choices at once</li>
+                <li>Options that need comparison before selection</li>
               </ul>
             </div>
 
             <div class="usage-card">
               <div class="usage-card-header">
                 <div class="usage-icon do-icon"><i data-lucide="check" style="width:12px;height:12px"></i></div>
-                <div class="usage-card-title">Excepteur sint occaecat</div>
+                <div class="usage-card-title">Required Single Selections</div>
               </div>
               <ul class="usage-list">
-                <li>Non proident sunt in culpa qui officia</li>
-                <li>Deserunt mollit anim id est laborum</li>
-                <li>Sed ut perspiciatis unde omnis iste</li>
+                <li>Shipping method selection</li>
+                <li>Payment type selection</li>
+                <li>Account type or plan selection</li>
+                <li>Sort order or view preferences</li>
               </ul>
             </div>
 
             <div class="usage-card">
               <div class="usage-card-header">
                 <div class="usage-icon do-icon"><i data-lucide="check" style="width:12px;height:12px"></i></div>
-                <div class="usage-card-title">Nemo enim ipsam voluptatem</div>
+                <div class="usage-card-title">Form Inputs with Clear Defaults</div>
               </div>
               <ul class="usage-list">
-                <li>Quia voluptas sit aspernatur aut odit</li>
-                <li>Neque porro quisquam est qui dolorem</li>
-                <li>Ut labore et dolore magnam aliquam</li>
+                <li>When one option should typically be pre-selected</li>
+                <li>Users need to make a conscious choice</li>
+                <li>Selection is required to proceed</li>
               </ul>
             </div>
 
@@ -545,50 +624,160 @@
             <div class="usage-card">
               <div class="usage-card-header">
                 <div class="usage-icon dont-icon"><i data-lucide="x" style="width:12px;height:12px"></i></div>
-                <div class="usage-card-title">Quis autem vel eum iure</div>
+                <div class="usage-card-title">Multiple Selections Allowed</div>
               </div>
               <ul class="usage-list">
-                <li>Reprehenderit qui in ea voluptate velit</li>
-                <li>Esse quam nihil molestiae consequatur</li>
-                <li>Vel illum qui dolorem eum fugiat</li>
+                <li>When users can select more than one option (use checkboxes)</li>
+                <li>Multi-select filters or preferences</li>
+                <li>"Select all that apply" scenarios</li>
               </ul>
             </div>
 
             <div class="usage-card">
               <div class="usage-card-header">
                 <div class="usage-icon dont-icon"><i data-lucide="x" style="width:12px;height:12px"></i></div>
-                <div class="usage-card-title">At vero eos et accusamus</div>
+                <div class="usage-card-title">Long Lists of Options</div>
               </div>
               <ul class="usage-list">
-                <li>Et iusto odio dignissimos ducimus qui</li>
-                <li>Blanditiis praesentium voluptatum deleniti</li>
-                <li>Atque corrupti quos dolores et quas</li>
+                <li>More than 7–8 options (use dropdown/select)</li>
+                <li>Options that require scrolling to view all</li>
+                <li>Dynamic or searchable option lists</li>
               </ul>
             </div>
 
             <div class="usage-card">
               <div class="usage-card-header">
                 <div class="usage-icon dont-icon"><i data-lucide="x" style="width:12px;height:12px"></i></div>
-                <div class="usage-card-title">Nam libero tempore soluta</div>
+                <div class="usage-card-title">Immediate Action Triggers</div>
               </div>
               <ul class="usage-list">
-                <li>Nobis est eligendi optio cumque nihil</li>
-                <li>Impedit quo minus id quod maxime</li>
+                <li>Actions that execute immediately upon selection (consider buttons)</li>
+                <li>Mode switching with instant feedback (use segmented control or tabs)</li>
+                <li>On/off states (use switch/toggle)</li>
               </ul>
             </div>
 
             <div class="usage-card">
               <div class="usage-card-header">
                 <div class="usage-icon dont-icon"><i data-lucide="x" style="width:12px;height:12px"></i></div>
-                <div class="usage-card-title">Temporibus autem quibusdam</div>
+                <div class="usage-card-title">Optional Single Selections</div>
               </div>
               <ul class="usage-list">
-                <li>Et aut officiis debitis aut rerum necessitatibus</li>
-                <li>Saepe eveniet ut et voluptates repudiandae</li>
+                <li>When "none selected" is a valid state and must remain selectable</li>
+                <li>If users might want to deselect all options (use checkboxes or dropdown with "None" option)</li>
+              </ul>
+            </div>
+
+            <div class="usage-card">
+              <div class="usage-card-header">
+                <div class="usage-icon dont-icon"><i data-lucide="x" style="width:12px;height:12px"></i></div>
+                <div class="usage-card-title">Binary On/Off States</div>
+              </div>
+              <ul class="usage-list">
+                <li>Simple enable/disable settings (use switch/toggle)</li>
+                <li>Single yes/no questions (use switch or checkbox)</li>
               </ul>
             </div>
 
           </div>
+        </div>
+      </section>
+
+      <!-- 5b · MESSAGING -->
+      <section class="doc-section" id="messaging">
+        <h2 class="section-title">Messaging</h2>
+
+        <div class="a11y-group">
+          <h3 class="a11y-group-title">Radio Button Labels</h3>
+          <p style="font-weight:600;color:var(--text-primary);margin:0 0 8px;">Use clear, distinct labels for each radio option:</p>
+          <ul class="a11y-list">
+            <li><div>Keep labels concise but specific enough to differentiate options.</div></li>
+            <li><div>Use sentence case.</div></li>
+            <li><div>Place label to the right of the radio button.</div></li>
+            <li><div>Make the entire label clickable (not just the radio circle).</div></li>
+            <li><div>Ensure labels are mutually exclusive and don't overlap in meaning.</div></li>
+          </ul>
+          <p style="font-weight:600;color:var(--text-primary);margin:14px 0 8px;">Example labels:</p>
+          <ul class="a11y-list">
+            <li><div>"Standard Shipping (5–7 days)"</div></li>
+            <li><div>"Express Shipping (2–3 days)"</div></li>
+            <li><div>"Overnight Shipping (Next day)"</div></li>
+          </ul>
+        </div>
+
+        <div class="a11y-group">
+          <h3 class="a11y-group-title">Individual Radio Helper Text</h3>
+          <p style="font-weight:600;color:var(--text-primary);margin:0 0 8px;">Provide additional context for specific radio options when needed:</p>
+          <ul class="a11y-list">
+            <li><div>Use to clarify costs, timeframes, or consequences.</div></li>
+            <li><div>Keep brief (1 line preferred, 2 lines maximum).</div></li>
+            <li><div>Use lighter text color (<code>color/text/secondary</code>).</div></li>
+            <li><div>Place directly below the radio label.</div></li>
+          </ul>
+          <p style="font-weight:600;color:var(--text-primary);margin:14px 0 8px;">When to use:</p>
+          <ul class="a11y-list">
+            <li><div>Option has additional costs or restrictions.</div></li>
+            <li><div>Selection has important consequences.</div></li>
+            <li><div>Clarification helps users make informed choice.</div></li>
+          </ul>
+          <p style="font-weight:600;color:var(--text-primary);margin:14px 0 8px;">Example helper text:</p>
+          <ul class="a11y-list">
+            <li><div>"Additional $25 fee"</div></li>
+            <li><div>"Available for domestic shipments only"</div></li>
+            <li><div>"Recommended for time-sensitive deliveries"</div></li>
+          </ul>
+        </div>
+
+        <div class="a11y-group">
+          <h3 class="a11y-group-title">Group Labels</h3>
+          <p style="font-weight:600;color:var(--text-primary);margin:0 0 8px;">Use group labels to frame the decision users need to make:</p>
+          <ul class="a11y-list">
+            <li><div>Phrase as a question or clear heading.</div></li>
+            <li><div>Include required indicator (<span style="color:#A12F2F;">*</span>) when selection is mandatory.</div></li>
+            <li><div>Use sentence case.</div></li>
+            <li><div>Keep under 50 characters.</div></li>
+          </ul>
+          <p style="font-weight:600;color:var(--text-primary);margin:14px 0 8px;">Example group labels:</p>
+          <ul class="a11y-list">
+            <li><div>"Shipping Method <span style="color:#A12F2F;">*</span>"</div></li>
+            <li><div>"Payment Type"</div></li>
+            <li><div>"How would you like to be contacted?"</div></li>
+            <li><div>"Select your plan"</div></li>
+          </ul>
+        </div>
+
+        <div class="a11y-group">
+          <h3 class="a11y-group-title">Group Helper Text</h3>
+          <p style="font-weight:600;color:var(--text-primary);margin:0 0 8px;">Provide context for the entire radio group when needed:</p>
+          <ul class="a11y-list">
+            <li><div>Explain what the selection affects.</div></li>
+            <li><div>Clarify any constraints or requirements.</div></li>
+            <li><div>Keep to 1–2 lines maximum.</div></li>
+            <li><div>Place below the group label, above the radio options.</div></li>
+          </ul>
+          <p style="font-weight:600;color:var(--text-primary);margin:14px 0 8px;">Example group helper text:</p>
+          <ul class="a11y-list">
+            <li><div>"Choose one shipping option for this order"</div></li>
+            <li><div>"Changing your plan will take effect immediately"</div></li>
+            <li><div>"This selection cannot be changed after submission"</div></li>
+          </ul>
+        </div>
+
+        <div class="a11y-group">
+          <h3 class="a11y-group-title">Error Messages</h3>
+          <p style="font-weight:600;color:var(--text-primary);margin:0 0 8px;">Show clear, actionable error messages for validation:</p>
+          <ul class="a11y-list">
+            <li><div>Display below the radio group.</div></li>
+            <li><div>Use red text (<code>color/text/error</code>).</div></li>
+            <li><div>Be specific about what needs to be fixed.</div></li>
+            <li><div>Appear after validation or attempted form submission.</div></li>
+          </ul>
+          <p style="font-weight:600;color:var(--text-primary);margin:14px 0 8px;">Example error messages:</p>
+          <ul class="a11y-list">
+            <li><div>"Please select a shipping method"</div></li>
+            <li><div>"Payment type is required"</div></li>
+            <li><div>"You must choose one option to continue"</div></li>
+          </ul>
         </div>
       </section>
 
@@ -644,20 +833,56 @@
       <!-- 7 · ACCESSIBILITY -->
       <section class="doc-section" id="accessibility">
         <h2 class="section-title">Accessibility</h2>
-        <ul class="a11y-list">
-          <li>
-            <div><strong>Role:</strong> Use a native <code>&lt;input type="radio"&gt;</code> element so the browser provides <code>role="radio"</code> and <code>aria-checked</code> automatically. Group radios with a <code>&lt;fieldset&gt;</code> and <code>&lt;legend&gt;</code> to describe the set.</div>
-          </li>
-          <li>
-            <div><strong>Keyboard:</strong> <kbd>Tab</kbd> moves focus into the radio group and to the selected item (or the first item if none is selected). <kbd>Arrow Up/Down</kbd> cycles through and selects options. <kbd>Space</kbd> selects the focused radio if not already selected.</div>
-          </li>
-          <li>
-            <div><strong>Focus ring:</strong> The 4px glow ring meets WCAG 2.4.7 (Focus Visible). Ensure the glow is never suppressed and is visible against the page background in both light and dark themes.</div>
-          </li>
-          <li>
-            <div><strong>Labels:</strong> Each radio must have a visible, associated <code>&lt;label&gt;</code>. Description text is connected via <code>aria-describedby</code> so screen readers announce both the label and the description when the radio receives focus.</div>
-          </li>
-        </ul>
+
+        <div class="a11y-group">
+          <h3 class="a11y-group-title">Keyboard Shortcut</h3>
+          <ul class="a11y-list">
+            <li><div><strong>Tab</strong> — navigate to radio group (focuses first/selected radio).</div></li>
+            <li><div><strong>Arrow Up/Down (or Left/Right)</strong> — navigate between options in the group.</div></li>
+            <li><div><strong>Space</strong> — select the focused radio (if not already selected).</div></li>
+            <li><div><strong>Shift + Tab</strong> — navigate to previous form element.</div></li>
+          </ul>
+        </div>
+
+        <div class="a11y-group">
+          <h3 class="a11y-group-title">Screen Readers</h3>
+          <ul class="a11y-list">
+            <li><div>Use proper <code>&lt;input type="radio"&gt;</code> markup with the same <code>name</code> attribute for grouped radios.</div></li>
+            <li><div>Include <code>aria-label</code> or associate visible labels with <code>for</code>/<code>id</code>.</div></li>
+            <li><div>Group related radios with <code>&lt;fieldset&gt;</code> and <code>&lt;legend&gt;</code>.</div></li>
+            <li><div>Announce which option is selected and the total number of options in the group.</div></li>
+            <li><div>Indicate required groups with <code>aria-required="true"</code>.</div></li>
+          </ul>
+        </div>
+
+        <div class="a11y-group">
+          <h3 class="a11y-group-title">Visual</h3>
+          <ul class="a11y-list">
+            <li><div>Focus indicator must be clearly visible (2px blue ring).</div></li>
+            <li><div>Minimum 3:1 contrast ratio for radio against background.</div></li>
+            <li><div>Labels must meet WCAG AA contrast (4.5:1).</div></li>
+            <li><div>Selected state must be distinguishable without relying on color alone.</div></li>
+          </ul>
+        </div>
+
+        <div class="a11y-group">
+          <h3 class="a11y-group-title">Touch Targets</h3>
+          <ul class="a11y-list">
+            <li><div>Radio + label hit area minimum 44×44px.</div></li>
+            <li><div>Ensure adequate spacing between radio options (at least 8px).</div></li>
+            <li><div>Make entire label clickable, not just the radio circle.</div></li>
+          </ul>
+        </div>
+
+        <div class="a11y-group">
+          <h3 class="a11y-group-title">Groups</h3>
+          <ul class="a11y-list">
+            <li><div>Always use one radio group per set of related options.</div></li>
+            <li><div>Ensure all radios in a group have the same <code>name</code> attribute.</div></li>
+            <li><div>Only one radio in a group can be selected at a time.</div></li>
+            <li><div>Provide clear group labels to establish context.</div></li>
+          </ul>
+        </div>
       </section>
 
       <!-- 8 · RELATED -->
@@ -690,6 +915,7 @@
         <li><a href="#variants"      id="rn-variants">Variants</a></li>
         <li><a href="#properties"    id="rn-properties">Properties</a></li>
         <li><a href="#usage"         id="rn-usage">Usage</a></li>
+        <li><a href="#messaging"     id="rn-messaging">Messaging</a></li>
         <li><a href="#tokens"        id="rn-tokens">Tokens</a></li>
         <li><a href="#accessibility" id="rn-accessibility">Accessibility</a></li>
         <li><a href="#related"       id="rn-related">Related</a></li>
@@ -762,7 +988,7 @@
     d.setAttribute('data-theme', d.getAttribute('data-theme') === 'dark' ? 'light' : 'dark');
   }
 
-  const sections = ['definition','anatomy','variants','properties','usage','tokens','accessibility','related'];
+  const sections = ['definition','anatomy','variants','properties','usage','messaging','tokens','accessibility','related'];
   const observer = new IntersectionObserver(entries => {
     entries.forEach(e => {
       if (e.isIntersecting) {
