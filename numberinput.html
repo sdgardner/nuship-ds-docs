@@ -141,7 +141,7 @@
       <section class="doc-section" id="definition">
         <div class="def-eyebrow">Inputs</div>
         <h1 class="def-title">Number Input</h1>
-        <p class="def-desc">The Number Input allows users to enter or adjust a numeric value using increment and decrement controls. It is ideal for quantities, counts, or any scenario where a precise integer value is needed within a defined range.</p>
+        <p class="def-desc">A number input (stepper) lets users increase or decrease a numeric value in controlled increments using − and + buttons. It combines a displayed value with direct step controls, making it ideal for small, bounded quantities where precision matters and freeform typing may introduce errors.</p>
         <div class="def-tags">
           <span class="bdg bdg--purple bdg--outline">Not Developed</span>
           <span class="bdg bdg--green bdg--outline">Figma</span>
@@ -482,48 +482,33 @@
             <div class="usage-card">
               <div class="usage-card-header">
                 <div class="usage-icon do-icon"><i data-lucide="check" style="width:12px;height:12px"></i></div>
-                <div class="usage-card-title">Lorem ipsum dolor sit amet</div>
+                <div class="usage-card-title">Labels &amp; content</div>
               </div>
               <ul class="usage-list">
-                <li>Lorem ipsum dolor sit amet consectetur</li>
-                <li>Adipiscing elit sed do eiusmod tempor</li>
-                <li>Incididunt ut labore et dolore magna</li>
+                <li>Always include a label so users know what value they're adjusting</li>
+                <li>Use helper text to communicate units, limits, or guidance (e.g. "Max 10 items")</li>
               </ul>
             </div>
 
             <div class="usage-card">
               <div class="usage-card-header">
                 <div class="usage-icon do-icon"><i data-lucide="check" style="width:12px;height:12px"></i></div>
-                <div class="usage-card-title">Ut enim ad minim veniam</div>
+                <div class="usage-card-title">Defaults &amp; boundaries</div>
               </div>
               <ul class="usage-list">
-                <li>Quis nostrud exercitation ullamco laboris</li>
-                <li>Nisi ut aliquip ex ea commodo consequat</li>
-                <li>Duis aute irure dolor in reprehenderit</li>
+                <li>Set a sensible default that suits the most common use case</li>
+                <li>Define clear min and max values, and disable the relevant button when the limit is reached</li>
               </ul>
             </div>
 
             <div class="usage-card">
               <div class="usage-card-header">
                 <div class="usage-icon do-icon"><i data-lucide="check" style="width:12px;height:12px"></i></div>
-                <div class="usage-card-title">Excepteur sint occaecat cupidatat</div>
+                <div class="usage-card-title">Range &amp; step</div>
               </div>
               <ul class="usage-list">
-                <li>Non proident sunt in culpa qui officia</li>
-                <li>Deserunt mollit anim id est laborum</li>
-                <li>Sed ut perspiciatis unde omnis iste</li>
-              </ul>
-            </div>
-
-            <div class="usage-card">
-              <div class="usage-card-header">
-                <div class="usage-icon do-icon"><i data-lucide="check" style="width:12px;height:12px"></i></div>
-                <div class="usage-card-title">Nemo enim ipsam voluptatem</div>
-              </div>
-              <ul class="usage-list">
-                <li>Quia voluptas sit aspernatur aut odit</li>
-                <li>Neque porro quisquam est qui dolorem</li>
-                <li>Ut labore et dolore magnam aliquam</li>
+                <li>Use for small, bounded ranges where stepping one unit at a time is practical</li>
+                <li>Keep the step size consistent and predictable throughout the input's range</li>
               </ul>
             </div>
 
@@ -538,46 +523,33 @@
             <div class="usage-card">
               <div class="usage-card-header">
                 <div class="usage-icon dont-icon"><i data-lucide="x" style="width:12px;height:12px"></i></div>
-                <div class="usage-card-title">Quis autem vel eum iure</div>
+                <div class="usage-card-title">Labels &amp; content</div>
               </div>
               <ul class="usage-list">
-                <li>Reprehenderit qui in ea voluptate velit</li>
-                <li>Esse quam nihil molestiae consequatur</li>
-                <li>Vel illum qui dolorem eum fugiat</li>
+                <li>Don't omit the label or helper text when context is needed to understand the value</li>
+                <li>Don't leave the helper text empty if the value requires a unit or has a constraint</li>
               </ul>
             </div>
 
             <div class="usage-card">
               <div class="usage-card-header">
                 <div class="usage-icon dont-icon"><i data-lucide="x" style="width:12px;height:12px"></i></div>
-                <div class="usage-card-title">At vero eos et accusamus</div>
+                <div class="usage-card-title">Defaults &amp; boundaries</div>
               </div>
               <ul class="usage-list">
-                <li>Et iusto odio dignissimos ducimus qui</li>
-                <li>Blanditiis praesentium voluptatum deleniti</li>
-                <li>Atque corrupti quos dolores et quas</li>
+                <li>Don't default to 0 if that value is invalid or unlikely to be useful</li>
+                <li>Don't let the value silently wrap around at min or max without feedback</li>
               </ul>
             </div>
 
             <div class="usage-card">
               <div class="usage-card-header">
                 <div class="usage-icon dont-icon"><i data-lucide="x" style="width:12px;height:12px"></i></div>
-                <div class="usage-card-title">Nam libero tempore cum soluta</div>
+                <div class="usage-card-title">States and behavior</div>
               </div>
               <ul class="usage-list">
-                <li>Nobis est eligendi optio cumque nihil</li>
-                <li>Impedit quo minus id quod maxime</li>
-              </ul>
-            </div>
-
-            <div class="usage-card">
-              <div class="usage-card-header">
-                <div class="usage-icon dont-icon"><i data-lucide="x" style="width:12px;height:12px"></i></div>
-                <div class="usage-card-title">Temporibus autem quibusdam</div>
-              </div>
-              <ul class="usage-list">
-                <li>Et aut officiis debitis aut rerum necessitatibus</li>
-                <li>Saepe eveniet ut et voluptates repudiandae</li>
+                <li>Don't use for large or unbounded ranges — stepping through 1–1000 is tedious. Use a text input instead</li>
+                <li>Don't vary the step size without clearly communicating it to the user</li>
               </ul>
             </div>
 
