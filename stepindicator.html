@@ -135,7 +135,8 @@
       <section class="doc-section" id="definition">
         <div class="def-eyebrow">Navigation</div>
         <h1 class="def-title">Step Indicator</h1>
-        <p class="def-desc">Step indicators show progress through a sequence of steps in a multi-step flow. Two layouts are available — Dot for compact, decorative use and Labeled for clear, numbered steppers with descriptive titles. Each step has three states: completed, active, and upcoming.</p>
+        <p class="def-desc">A step indicator shows a user's progress through a sequential, multi-step process. It communicates which step is current, which steps have been completed, and how many steps remain.</p>
+        <p class="def-desc" style="margin-top:6px;">Use the <strong>Dot variant</strong> for onboarding flows where brevity is preferred, and the <strong>Labeled variant</strong> for multi-step forms where step names help orient the user.</p>
         <div class="def-tags">
           <span class="bdg bdg--purple bdg--outline">Not Developed</span>
           <span class="bdg bdg--green bdg--outline">Figma</span>
@@ -289,11 +290,38 @@
 
             </div>
             <div class="var-desc">
-              <div class="var-use-when">Dot — use when:</div>
+              <div class="var-use-when">Dot — Use when:</div>
               <ul class="var-use-list">
-                <li>You need a compact, decorative progress indicator</li>
-                <li>Step labels would crowd the layout (e.g. carousel pagination, onboarding pips)</li>
-                <li>Active step extends to a 20×8 pill; others are 8×8 circles</li>
+                <li>Linear flows where step names aren't needed</li>
+                <li>Space is limited (e.g. mobile bottom bar)</li>
+                <li>Onboarding or walkthrough screens</li>
+              </ul>
+              <div class="var-use-when" style="margin-top:14px;">Example contexts:</div>
+              <ul class="var-use-list">
+                <li>App onboarding sequence (3–5 screens)</li>
+                <li>Photo upload walkthrough</li>
+              </ul>
+
+              <div class="var-use-when" style="margin-top:18px;">State — Upcoming:</div>
+              <ul class="var-use-list">
+                <li>The step has not yet been reached</li>
+                <li>No action has been taken on this step</li>
+                <li>Example: Steps 3–4 when user is on step 1 of a 4-step onboarding</li>
+              </ul>
+
+              <div class="var-use-when" style="margin-top:14px;">State — Active:</div>
+              <ul class="var-use-list">
+                <li>The user is currently on this step</li>
+                <li>Only one step should be active at a time</li>
+                <li>Example: Step 2 highlighted while user fills in shipping address</li>
+              </ul>
+
+              <div class="var-use-when" style="margin-top:14px;">State — Completed:</div>
+              <ul class="var-use-list">
+                <li>The user has moved past this step</li>
+                <li>All required inputs for this step have been submitted</li>
+                <li>Example: Step 1 marked complete after tapping "Next"</li>
+                <li>Completed steps in Labeled variant remain tappable</li>
               </ul>
             </div>
           </div>
@@ -406,11 +434,50 @@
 
             </div>
             <div class="var-desc">
-              <div class="var-use-when">Labeled — use when:</div>
+              <div class="var-use-when">Labeled — Use when:</div>
               <ul class="var-use-list">
-                <li>The user needs to know exactly which step they are on and what each step is</li>
-                <li>Multi-step forms, checkout flows, onboarding wizards</li>
-                <li>Completed steps show a check; active and upcoming show the step number</li>
+                <li>Step names help orient the user</li>
+                <li>Users may need to navigate back to a previous step</li>
+                <li>The form has distinct, named phases</li>
+              </ul>
+              <div class="var-use-when" style="margin-top:14px;">Example contexts:</div>
+              <ul class="var-use-list">
+                <li>Checkout: Shipping → Review → Confirm</li>
+                <li>Account setup wizard</li>
+                <li>Quote request form</li>
+              </ul>
+
+              <div class="var-use-when" style="margin-top:18px;">Upcoming (Labeled) — Use when:</div>
+              <ul class="var-use-list">
+                <li>The step hasn't been reached yet</li>
+                <li>The user needs to complete prior steps before this one is accessible</li>
+              </ul>
+              <div class="var-use-when" style="margin-top:10px;">Example contexts:</div>
+              <ul class="var-use-list">
+                <li>"Confirm" step shown as upcoming while user is still on "Shipping"</li>
+                <li>Final review step grayed out until previous steps are complete</li>
+              </ul>
+
+              <div class="var-use-when" style="margin-top:18px;">Active (Labeled) — Use when:</div>
+              <ul class="var-use-list">
+                <li>The user is currently on this step</li>
+                <li>The step name should be highlighted to orient the user within the flow</li>
+              </ul>
+              <div class="var-use-when" style="margin-top:10px;">Example contexts:</div>
+              <ul class="var-use-list">
+                <li>"Review" circle filled and label in blue while user reviews their order details</li>
+                <li>"Step 2" highlighted in a 3-step account setup wizard</li>
+              </ul>
+
+              <div class="var-use-when" style="margin-top:18px;">Completed (Labeled) — Use when:</div>
+              <ul class="var-use-list">
+                <li>The user has successfully moved past this step</li>
+                <li>The step should remain tappable so the user can navigate back</li>
+              </ul>
+              <div class="var-use-when" style="margin-top:10px;">Example contexts:</div>
+              <ul class="var-use-list">
+                <li>"Shipping" shows a checkmark after the user taps Next</li>
+                <li>Step 1 marked complete and tappable in a carrier quote form so the user can edit their entry</li>
               </ul>
             </div>
           </div>
@@ -475,45 +542,35 @@
             <div class="usage-card">
               <div class="usage-card-header">
                 <div class="usage-icon do-icon"><i data-lucide="check" style="width:12px;height:12px"></i></div>
-                <div class="usage-card-title">Lorem ipsum dolor sit amet</div>
+                <div class="usage-card-title">Linear multi-step flows</div>
               </div>
               <ul class="usage-list">
-                <li>Lorem ipsum dolor sit amet consectetur</li>
-                <li>Adipiscing elit sed do eiusmod tempor</li>
-                <li>Incididunt ut labore et dolore magna</li>
+                <li>Onboarding sequences where users move forward step by step</li>
+                <li>Multi-step forms like checkout, booking, or account setup</li>
+                <li>Wizards where each step must be completed before proceeding</li>
               </ul>
             </div>
             <div class="usage-card">
               <div class="usage-card-header">
                 <div class="usage-icon do-icon"><i data-lucide="check" style="width:12px;height:12px"></i></div>
-                <div class="usage-card-title">Ut enim ad minim veniam</div>
+                <div class="usage-card-title">Progress communication</div>
               </div>
               <ul class="usage-list">
-                <li>Quis nostrud exercitation ullamco laboris</li>
-                <li>Nisi ut aliquip ex ea commodo consequat</li>
-                <li>Duis aute irure dolor in reprehenderit</li>
+                <li>Flows with 3–6 discrete steps</li>
+                <li>Processes where knowing how many steps remain reduces anxiety</li>
+                <li>Forms where users may need to navigate back to a previous step</li>
               </ul>
             </div>
+          </div>
+          <div class="usage-cols">
             <div class="usage-card">
               <div class="usage-card-header">
                 <div class="usage-icon do-icon"><i data-lucide="check" style="width:12px;height:12px"></i></div>
-                <div class="usage-card-title">Excepteur sint occaecat</div>
+                <div class="usage-card-title">Contextual orientation</div>
               </div>
               <ul class="usage-list">
-                <li>Non proident sunt in culpa qui officia</li>
-                <li>Deserunt mollit anim id est laborum</li>
-                <li>Sed ut perspiciatis unde omnis iste</li>
-              </ul>
-            </div>
-            <div class="usage-card">
-              <div class="usage-card-header">
-                <div class="usage-icon do-icon"><i data-lucide="check" style="width:12px;height:12px"></i></div>
-                <div class="usage-card-title">Nemo enim ipsam voluptatem</div>
-              </div>
-              <ul class="usage-list">
-                <li>Quia voluptas sit aspernatur aut odit</li>
-                <li>Neque porro quisquam est qui dolorem</li>
-                <li>Ut labore et dolore magnam aliquam</li>
+                <li>Use the Labeled variant when step names help users understand where they are</li>
+                <li>Use the Dot variant when brevity is preferred and steps are self-explanatory</li>
               </ul>
             </div>
           </div>
@@ -526,43 +583,33 @@
             <div class="usage-card">
               <div class="usage-card-header">
                 <div class="usage-icon dont-icon"><i data-lucide="x" style="width:12px;height:12px"></i></div>
-                <div class="usage-card-title">Quis autem vel eum iure</div>
+                <div class="usage-card-title">Single-step actions</div>
               </div>
               <ul class="usage-list">
-                <li>Reprehenderit qui in ea voluptate velit</li>
-                <li>Esse quam nihil molestiae consequatur</li>
-                <li>Vel illum qui dolorem eum fugiat</li>
+                <li>Simple forms or confirmations that don't require multiple steps</li>
+                <li>Actions that complete immediately without a sequence</li>
               </ul>
             </div>
             <div class="usage-card">
               <div class="usage-card-header">
                 <div class="usage-icon dont-icon"><i data-lucide="x" style="width:12px;height:12px"></i></div>
-                <div class="usage-card-title">At vero eos et accusamus</div>
+                <div class="usage-card-title">Non-linear flows</div>
               </div>
               <ul class="usage-list">
-                <li>Et iusto odio dignissimos ducimus qui</li>
-                <li>Blanditiis praesentium voluptatum deleniti</li>
-                <li>Atque corrupti quos dolores et quas</li>
+                <li>Processes where steps can be completed in any order</li>
+                <li>Dashboards or settings pages where there's no defined sequence</li>
               </ul>
             </div>
+          </div>
+          <div class="usage-cols">
             <div class="usage-card">
               <div class="usage-card-header">
                 <div class="usage-icon dont-icon"><i data-lucide="x" style="width:12px;height:12px"></i></div>
-                <div class="usage-card-title">Nam libero tempore soluta</div>
+                <div class="usage-card-title">Too many steps</div>
               </div>
               <ul class="usage-list">
-                <li>Nobis est eligendi optio cumque nihil</li>
-                <li>Impedit quo minus id quod maxime</li>
-              </ul>
-            </div>
-            <div class="usage-card">
-              <div class="usage-card-header">
-                <div class="usage-icon dont-icon"><i data-lucide="x" style="width:12px;height:12px"></i></div>
-                <div class="usage-card-title">Temporibus autem quibusdam</div>
-              </div>
-              <ul class="usage-list">
-                <li>Et aut officiis debitis aut rerum necessitatibus</li>
-                <li>Saepe eveniet ut et voluptates repudiandae</li>
+                <li>Flows with more than 6 steps — consider breaking into sections instead</li>
+                <li>Avoid using the Labeled variant when step labels become truncated or crowded on mobile</li>
               </ul>
             </div>
           </div>
@@ -621,20 +668,44 @@
       <!-- 7 · ACCESSIBILITY -->
       <section class="doc-section" id="accessibility">
         <h2 class="section-title">Accessibility</h2>
-        <ul class="a11y-list">
-          <li>
-            <div><strong>ARIA:</strong> Use <code>role="list"</code> on the stepper and <code>role="listitem"</code> on each step. The active step should carry <code>aria-current="step"</code>; completed steps should have an accessible name like "Step 1, completed".</div>
-          </li>
-          <li>
-            <div><strong>Keyboard:</strong> Completed steps should be focusable so users can revisit them via <kbd>Tab</kbd> + <kbd>Enter</kbd>. Active and upcoming steps stay non-interactive.</div>
-          </li>
-          <li>
-            <div><strong>Don't rely on colour alone:</strong> Pair colour state with shape (filled circle, check icon, outline) so colour-blind users can still distinguish completed, active, and upcoming.</div>
-          </li>
-          <li>
-            <div><strong>Contrast:</strong> Active blue (#0083BB) on white meets WCAG AA. Verify the upcoming gray (#4B5563) on white at 7:1. In dark mode use the inverse — light text on a dark surface.</div>
-          </li>
-        </ul>
+
+        <div class="a11y-group">
+          <h3 class="a11y-group-title">Keyboard Navigation</h3>
+          <ul class="a11y-list">
+            <li><div><strong>Tab</strong> — move focus to the step indicator.</div></li>
+            <li><div>The step indicator is read-only and non-interactive in the Dot variant — no keyboard interaction required.</div></li>
+            <li><div>In the Labeled variant, completed steps should be focusable and activatable with Enter or Space to navigate back.</div></li>
+          </ul>
+        </div>
+
+        <div class="a11y-group">
+          <h3 class="a11y-group-title">Screen Readers</h3>
+          <ul class="a11y-list">
+            <li><div>The container should use <code>role="list"</code> with each step as a <code>role="listitem"</code>.</div></li>
+            <li><div>Each step should include an <code>aria-label</code> describing its state and name, e.g. "Step 1: Shipping, completed" or "Step 2: Review, current".</div></li>
+            <li><div>The active step should use <code>aria-current="step"</code> to communicate the user's current position.</div></li>
+            <li><div>Avoid relying on color alone to communicate state — the checkmark icon and outlined vs filled circle provide additional visual cues.</div></li>
+          </ul>
+        </div>
+
+        <div class="a11y-group">
+          <h3 class="a11y-group-title">Focus Management</h3>
+          <ul class="a11y-list">
+            <li><div>In the Labeled variant, completed steps that are tappable must have a visible focus ring.</div></li>
+            <li><div>Focus ring must meet 3:1 contrast ratio against the background.</div></li>
+            <li><div>Tapping a completed step should move focus to the relevant step's content, not stay on the indicator.</div></li>
+          </ul>
+        </div>
+
+        <div class="a11y-group">
+          <h3 class="a11y-group-title">Visual</h3>
+          <ul class="a11y-list">
+            <li><div>Active and completed states must not rely on color alone — shape changes (pill vs circle, filled vs outlined) reinforce meaning.</div></li>
+            <li><div>All text labels must meet 4.5:1 contrast ratio per WCAG AA.</div></li>
+            <li><div>The step indicator should never be the only wayfinding mechanism — pair it with a page heading or step title above the form content.</div></li>
+            <li><div>Touch targets for tappable completed steps in the Labeled variant must be padded to a minimum of 44×44px.</div></li>
+          </ul>
+        </div>
       </section>
 
       <!-- 8 · RELATED -->
