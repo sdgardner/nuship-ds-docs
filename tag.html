@@ -368,42 +368,42 @@
             <div class="usage-card">
               <div class="usage-card-header">
                 <div class="usage-icon do-icon"><i data-lucide="check" style="width:12px;height:12px"></i></div>
-                <div class="usage-card-title">Lorem ipsum dolor sit amet</div>
+                <div class="usage-card-title">Filter and selection</div>
               </div>
               <ul class="usage-list">
-                <li>Lorem ipsum dolor sit amet consectetur</li>
-                <li>Adipiscing elit sed do eiusmod tempor</li>
-                <li>Incididunt ut labore et dolore magna</li>
+                <li>Use tags to represent active filters, multi-select chips, or keyword selections</li>
+                <li>Provide a close icon so users can remove a tag inline</li>
+                <li>Group related tags in a single horizontal row with consistent spacing</li>
               </ul>
             </div>
             <div class="usage-card">
               <div class="usage-card-header">
                 <div class="usage-icon do-icon"><i data-lucide="check" style="width:12px;height:12px"></i></div>
-                <div class="usage-card-title">Ut enim ad minim veniam</div>
+                <div class="usage-card-title">Keep labels concise</div>
               </div>
               <ul class="usage-list">
-                <li>Quis nostrud exercitation ullamco laboris</li>
-                <li>Nisi ut aliquip ex ea commodo consequat</li>
+                <li>Use 1–2 short words per tag so the row stays scannable</li>
+                <li>Use sentence case unless the value is a proper noun</li>
               </ul>
             </div>
             <div class="usage-card">
               <div class="usage-card-header">
                 <div class="usage-icon do-icon"><i data-lucide="check" style="width:12px;height:12px"></i></div>
-                <div class="usage-card-title">Excepteur sint occaecat</div>
+                <div class="usage-card-title">Keyboard accessibility</div>
               </div>
               <ul class="usage-list">
-                <li>Non proident sunt in culpa qui officia</li>
-                <li>Deserunt mollit anim id est laborum</li>
+                <li>Make the remove button focusable and activatable with Enter or Space</li>
+                <li>Move focus to the next tag (or back to the input) when a tag is removed</li>
               </ul>
             </div>
             <div class="usage-card">
               <div class="usage-card-header">
                 <div class="usage-icon do-icon"><i data-lucide="check" style="width:12px;height:12px"></i></div>
-                <div class="usage-card-title">Nemo enim ipsam voluptatem</div>
+                <div class="usage-card-title">Pair with input</div>
               </div>
               <ul class="usage-list">
-                <li>Quia voluptas sit aspernatur aut odit</li>
-                <li>Neque porro quisquam est qui dolorem</li>
+                <li>When tags are user-generated, place them next to the input that created them</li>
+                <li>Animate insert and remove subtly so the row change is noticed without being jarring</li>
               </ul>
             </div>
           </div>
@@ -416,41 +416,41 @@
             <div class="usage-card">
               <div class="usage-card-header">
                 <div class="usage-icon dont-icon"><i data-lucide="x" style="width:12px;height:12px"></i></div>
-                <div class="usage-card-title">Quis autem vel eum iure</div>
+                <div class="usage-card-title">Use as a primary action</div>
               </div>
               <ul class="usage-list">
-                <li>Reprehenderit qui in ea voluptate velit</li>
-                <li>Esse quam nihil molestiae consequatur</li>
+                <li>Don't use tags as buttons or navigation links — use a Link or Button instead</li>
+                <li>Don't trigger destructive actions from a tag's close icon without a clear undo</li>
               </ul>
             </div>
             <div class="usage-card">
               <div class="usage-card-header">
                 <div class="usage-icon dont-icon"><i data-lucide="x" style="width:12px;height:12px"></i></div>
-                <div class="usage-card-title">At vero eos et accusamus</div>
+                <div class="usage-card-title">Confuse with Badge</div>
               </div>
               <ul class="usage-list">
-                <li>Et iusto odio dignissimos ducimus qui</li>
-                <li>Blanditiis praesentium voluptatum deleniti</li>
+                <li>Don't use a Tag when the value is non-removable status — use a Badge instead</li>
+                <li>Don't mix Badge and Tag styles in the same row; the visual contract should be obvious</li>
               </ul>
             </div>
             <div class="usage-card">
               <div class="usage-card-header">
                 <div class="usage-icon dont-icon"><i data-lucide="x" style="width:12px;height:12px"></i></div>
-                <div class="usage-card-title">Nam libero tempore soluta</div>
+                <div class="usage-card-title">Overflow uncontrollably</div>
               </div>
               <ul class="usage-list">
-                <li>Nobis est eligendi optio cumque nihil</li>
-                <li>Impedit quo minus id quod maxime</li>
+                <li>Don't allow tag labels to wrap mid-word or stretch wider than the surrounding container</li>
+                <li>Don't show more than ~7 tags inline — collapse extras behind a "+N more" affordance</li>
               </ul>
             </div>
             <div class="usage-card">
               <div class="usage-card-header">
                 <div class="usage-icon dont-icon"><i data-lucide="x" style="width:12px;height:12px"></i></div>
-                <div class="usage-card-title">Temporibus autem quibusdam</div>
+                <div class="usage-card-title">Hide the remove control</div>
               </div>
               <ul class="usage-list">
-                <li>Et aut officiis debitis aut rerum necessitatibus</li>
-                <li>Saepe eveniet ut et voluptates repudiandae</li>
+                <li>Don't hide the close icon behind hover only — it must be visible and focusable for keyboard and touch users</li>
+                <li>Don't rely on a small hit area; pad the close icon to a minimum 24×24 px target</li>
               </ul>
             </div>
           </div>

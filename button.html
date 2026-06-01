@@ -763,16 +763,16 @@
         <h2 class="section-title">Accessibility</h2>
         <ul class="a11y-list">
           <li>
-            <div><strong>Keyboard navigation:</strong> Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua ut enim.</div>
+            <div><strong>Keyboard navigation:</strong> Buttons are reached via <kbd>Tab</kbd> and activated with <kbd>Enter</kbd> or <kbd>Space</kbd>. <kbd>Shift + Tab</kbd> moves focus backwards. If a button opens a dialog or menu, <kbd>Escape</kbd> dismisses it and returns focus to the trigger.</div>
           </li>
           <li>
-            <div><strong>Icon-only buttons:</strong> Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat duis aute irure dolor.</div>
+            <div><strong>Icon-only buttons:</strong> Provide an accessible name via <code>aria-label</code> (e.g. <code>aria-label="Close"</code>) since the icon alone is not announced by screen readers. Pair the icon with a tooltip on hover/focus so sighted users learn the label too.</div>
           </li>
           <li>
-            <div><strong>Disabled state:</strong> Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur excepteur sint occaecat cupidatat.</div>
+            <div><strong>Disabled state:</strong> Use <code>disabled</code> when the action is not available. Disabled buttons should not receive focus and should not be activated by keyboard. If the user needs to understand why a button is disabled, surface that reason in nearby helper text or a tooltip — don't rely on the visual state alone.</div>
           </li>
           <li>
-            <div><strong>Focus indicator:</strong> Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum consectetur adipiscing elit.</div>
+            <div><strong>Focus indicator:</strong> The 2px blue ring + 4px glow meets WCAG 2.4.7 (Focus Visible) at 3:1 contrast against the page background. Never suppress focus rings on keyboard navigation, and verify visibility in both light and dark themes.</div>
           </li>
         </ul>
       </section>

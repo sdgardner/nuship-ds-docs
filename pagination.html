@@ -436,42 +436,42 @@
             <div class="usage-card">
               <div class="usage-card-header">
                 <div class="usage-icon do-icon"><i data-lucide="check" style="width:12px;height:12px"></i></div>
-                <div class="usage-card-title">Lorem ipsum dolor sit amet</div>
+                <div class="usage-card-title">When to paginate</div>
               </div>
               <ul class="usage-list">
-                <li>Lorem ipsum dolor sit amet consectetur</li>
-                <li>Adipiscing elit sed do eiusmod tempor</li>
-                <li>Incididunt ut labore et dolore magna</li>
+                <li>Use pagination when a dataset exceeds a single page of comfortable scrolling</li>
+                <li>Pair with results-per-page selection so users can choose a density that suits them</li>
+                <li>Show total results count when it helps users understand scope</li>
               </ul>
             </div>
             <div class="usage-card">
               <div class="usage-card-header">
                 <div class="usage-icon do-icon"><i data-lucide="check" style="width:12px;height:12px"></i></div>
-                <div class="usage-card-title">Ut enim ad minim veniam</div>
+                <div class="usage-card-title">Indicate current page</div>
               </div>
               <ul class="usage-list">
-                <li>Quis nostrud exercitation ullamco laboris</li>
-                <li>Nisi ut aliquip ex ea commodo consequat</li>
+                <li>Use a clear visual treatment for the active page</li>
+                <li>Mirror it with <code>aria-current="page"</code> for screen reader users</li>
               </ul>
             </div>
             <div class="usage-card">
               <div class="usage-card-header">
                 <div class="usage-icon do-icon"><i data-lucide="check" style="width:12px;height:12px"></i></div>
-                <div class="usage-card-title">Excepteur sint occaecat</div>
+                <div class="usage-card-title">Allow direct navigation</div>
               </div>
               <ul class="usage-list">
-                <li>Non proident sunt in culpa qui officia</li>
-                <li>Deserunt mollit anim id est laborum</li>
+                <li>Surface the first and last page numbers so users can jump to extremes</li>
+                <li>Use truncation (…) to keep the control compact when there are many pages</li>
               </ul>
             </div>
             <div class="usage-card">
               <div class="usage-card-header">
                 <div class="usage-icon do-icon"><i data-lucide="check" style="width:12px;height:12px"></i></div>
-                <div class="usage-card-title">Nemo enim ipsam voluptatem</div>
+                <div class="usage-card-title">Keep prev / next visible</div>
               </div>
               <ul class="usage-list">
-                <li>Quia voluptas sit aspernatur aut odit</li>
-                <li>Neque porro quisquam est qui dolorem</li>
+                <li>Provide explicit Previous and Next controls — don't make users hunt for page changes</li>
+                <li>Disable Previous on the first page and Next on the last page (don't hide them)</li>
               </ul>
             </div>
           </div>
@@ -484,41 +484,41 @@
             <div class="usage-card">
               <div class="usage-card-header">
                 <div class="usage-icon dont-icon"><i data-lucide="x" style="width:12px;height:12px"></i></div>
-                <div class="usage-card-title">Quis autem vel eum iure</div>
+                <div class="usage-card-title">Use for small lists</div>
               </div>
               <ul class="usage-list">
-                <li>Reprehenderit qui in ea voluptate velit</li>
-                <li>Esse quam nihil molestiae consequatur</li>
+                <li>Don't show pagination when all results fit on a single page</li>
+                <li>Don't paginate fewer than ~10 items just to maintain a consistent layout</li>
               </ul>
             </div>
             <div class="usage-card">
               <div class="usage-card-header">
                 <div class="usage-icon dont-icon"><i data-lucide="x" style="width:12px;height:12px"></i></div>
-                <div class="usage-card-title">At vero eos et accusamus</div>
+                <div class="usage-card-title">Hide page state</div>
               </div>
               <ul class="usage-list">
-                <li>Et iusto odio dignissimos ducimus qui</li>
-                <li>Blanditiis praesentium voluptatum deleniti</li>
+                <li>Don't omit the current-page indicator — users need to know where they are</li>
+                <li>Don't drop the total page count when more than one page exists</li>
               </ul>
             </div>
             <div class="usage-card">
               <div class="usage-card-header">
                 <div class="usage-icon dont-icon"><i data-lucide="x" style="width:12px;height:12px"></i></div>
-                <div class="usage-card-title">Nam libero tempore soluta</div>
+                <div class="usage-card-title">Replace search or filters</div>
               </div>
               <ul class="usage-list">
-                <li>Nobis est eligendi optio cumque nihil</li>
-                <li>Impedit quo minus id quod maxime</li>
+                <li>Don't use pagination as a substitute for search when users know what they want</li>
+                <li>Don't paginate datasets that would be better served by infinite scroll or virtualization</li>
               </ul>
             </div>
             <div class="usage-card">
               <div class="usage-card-header">
                 <div class="usage-icon dont-icon"><i data-lucide="x" style="width:12px;height:12px"></i></div>
-                <div class="usage-card-title">Temporibus autem quibusdam</div>
+                <div class="usage-card-title">Shift layout on click</div>
               </div>
               <ul class="usage-list">
-                <li>Et aut officiis debitis aut rerum necessitatibus</li>
-                <li>Saepe eveniet ut et voluptates repudiandae</li>
+                <li>Don't allow the pagination control's width to change as page numbers grow</li>
+                <li>Don't reset scroll position to the top of the entire page — return focus to the top of the result list</li>
               </ul>
             </div>
           </div>

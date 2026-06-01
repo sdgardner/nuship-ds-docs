@@ -472,45 +472,43 @@
             <div class="usage-card">
               <div class="usage-card-header">
                 <div class="usage-icon do-icon"><i data-lucide="check" style="width:12px;height:12px"></i></div>
-                <div class="usage-card-title">Lorem ipsum dolor sit amet</div>
+                <div class="usage-card-title">Confirm transient outcomes</div>
               </div>
               <ul class="usage-list">
-                <li>Lorem ipsum dolor sit amet consectetur</li>
-                <li>Adipiscing elit sed do eiusmod tempor</li>
-                <li>Incididunt ut labore et dolore magna</li>
+                <li>Use toasts to confirm an action completed (e.g. "Shipment saved")</li>
+                <li>Use them for non-blocking feedback that doesn't require a decision</li>
+                <li>Pair the message with a semantic intent (success, info, warning, error)</li>
               </ul>
             </div>
             <div class="usage-card">
               <div class="usage-card-header">
                 <div class="usage-icon do-icon"><i data-lucide="check" style="width:12px;height:12px"></i></div>
-                <div class="usage-card-title">Ut enim ad minim veniam</div>
+                <div class="usage-card-title">Auto-dismiss timing</div>
               </div>
               <ul class="usage-list">
-                <li>Quis nostrud exercitation ullamco laboris</li>
-                <li>Nisi ut aliquip ex ea commodo consequat</li>
-                <li>Duis aute irure dolor in reprehenderit</li>
+                <li>Dismiss informational toasts automatically after 4–6 seconds</li>
+                <li>Pause the timer on hover or keyboard focus so users can read longer messages</li>
+                <li>Always provide a manual close affordance in addition to auto-dismiss</li>
               </ul>
             </div>
             <div class="usage-card">
               <div class="usage-card-header">
                 <div class="usage-icon do-icon"><i data-lucide="check" style="width:12px;height:12px"></i></div>
-                <div class="usage-card-title">Excepteur sint occaecat</div>
+                <div class="usage-card-title">Provide an action when useful</div>
               </div>
               <ul class="usage-list">
-                <li>Non proident sunt in culpa qui officia</li>
-                <li>Deserunt mollit anim id est laborum</li>
-                <li>Sed ut perspiciatis unde omnis iste</li>
+                <li>Include a single action button when the user can undo or follow up (e.g. "Undo", "View")</li>
+                <li>Keep action labels short — 1–2 words is ideal</li>
               </ul>
             </div>
             <div class="usage-card">
               <div class="usage-card-header">
                 <div class="usage-icon do-icon"><i data-lucide="check" style="width:12px;height:12px"></i></div>
-                <div class="usage-card-title">Nemo enim ipsam voluptatem</div>
+                <div class="usage-card-title">Announce to assistive tech</div>
               </div>
               <ul class="usage-list">
-                <li>Quia voluptas sit aspernatur aut odit</li>
-                <li>Neque porro quisquam est qui dolorem</li>
-                <li>Ut labore et dolore magnam aliquam</li>
+                <li>Use <code>role="status"</code> for informational toasts and <code>role="alert"</code> for errors</li>
+                <li>Use <code>aria-live="polite"</code> by default — switch to <code>"assertive"</code> only for critical messages</li>
               </ul>
             </div>
           </div>
@@ -523,43 +521,41 @@
             <div class="usage-card">
               <div class="usage-card-header">
                 <div class="usage-icon dont-icon"><i data-lucide="x" style="width:12px;height:12px"></i></div>
-                <div class="usage-card-title">Quis autem vel eum iure</div>
+                <div class="usage-card-title">Use for critical errors</div>
               </div>
               <ul class="usage-list">
-                <li>Reprehenderit qui in ea voluptate velit</li>
-                <li>Esse quam nihil molestiae consequatur</li>
-                <li>Vel illum qui dolorem eum fugiat</li>
+                <li>Don't deliver irreversible or blocking errors via toast — use a Modal instead</li>
+                <li>Don't auto-dismiss a message users need time to read or act on</li>
               </ul>
             </div>
             <div class="usage-card">
               <div class="usage-card-header">
                 <div class="usage-icon dont-icon"><i data-lucide="x" style="width:12px;height:12px"></i></div>
-                <div class="usage-card-title">At vero eos et accusamus</div>
+                <div class="usage-card-title">Stack uncontrollably</div>
               </div>
               <ul class="usage-list">
-                <li>Et iusto odio dignissimos ducimus qui</li>
-                <li>Blanditiis praesentium voluptatum deleniti</li>
-                <li>Atque corrupti quos dolores et quas</li>
+                <li>Don't show more than 3 toasts at once — queue extras and reveal one at a time</li>
+                <li>Don't position toasts where they obscure form inputs or important content</li>
               </ul>
             </div>
             <div class="usage-card">
               <div class="usage-card-header">
                 <div class="usage-icon dont-icon"><i data-lucide="x" style="width:12px;height:12px"></i></div>
-                <div class="usage-card-title">Nam libero tempore soluta</div>
+                <div class="usage-card-title">Pack with content</div>
               </div>
               <ul class="usage-list">
-                <li>Nobis est eligendi optio cumque nihil</li>
-                <li>Impedit quo minus id quod maxime</li>
+                <li>Don't embed long-form content, multiple actions, or complex layouts inside a toast</li>
+                <li>Don't include destructive primary actions — confirm those in a Modal</li>
               </ul>
             </div>
             <div class="usage-card">
               <div class="usage-card-header">
                 <div class="usage-icon dont-icon"><i data-lucide="x" style="width:12px;height:12px"></i></div>
-                <div class="usage-card-title">Temporibus autem quibusdam</div>
+                <div class="usage-card-title">Replace inline validation</div>
               </div>
               <ul class="usage-list">
-                <li>Et aut officiis debitis aut rerum necessitatibus</li>
-                <li>Saepe eveniet ut et voluptates repudiandae</li>
+                <li>Don't show field-level errors as toasts — surface them inline under the field</li>
+                <li>Don't use toasts as the only feedback for actions that change the visible UI; pair with inline state</li>
               </ul>
             </div>
           </div>

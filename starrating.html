@@ -460,45 +460,43 @@
             <div class="usage-card">
               <div class="usage-card-header">
                 <div class="usage-icon do-icon"><i data-lucide="check" style="width:12px;height:12px"></i></div>
-                <div class="usage-card-title">Lorem ipsum dolor sit amet</div>
+                <div class="usage-card-title">Stick to a 5-star scale</div>
               </div>
               <ul class="usage-list">
-                <li>Lorem ipsum dolor sit amet consectetur</li>
-                <li>Adipiscing elit sed do eiusmod tempor</li>
-                <li>Incididunt ut labore et dolore magna</li>
+                <li>Use 5 stars by default — it is the most familiar scale across the web</li>
+                <li>Half-star fractions are acceptable for display, but rounded values are easier to compare</li>
+                <li>Show the numeric value alongside the stars for precision (e.g. "4.6")</li>
               </ul>
             </div>
             <div class="usage-card">
               <div class="usage-card-header">
                 <div class="usage-icon do-icon"><i data-lucide="check" style="width:12px;height:12px"></i></div>
-                <div class="usage-card-title">Ut enim ad minim veniam</div>
+                <div class="usage-card-title">Provide context</div>
               </div>
               <ul class="usage-list">
-                <li>Quis nostrud exercitation ullamco laboris</li>
-                <li>Nisi ut aliquip ex ea commodo consequat</li>
-                <li>Duis aute irure dolor in reprehenderit</li>
+                <li>Include the total number of ratings when displaying an aggregate (e.g. "4.6 (1,284 reviews)")</li>
+                <li>Surface the rating scale (out of 5) for users who may not infer it</li>
               </ul>
             </div>
             <div class="usage-card">
               <div class="usage-card-header">
                 <div class="usage-icon do-icon"><i data-lucide="check" style="width:12px;height:12px"></i></div>
-                <div class="usage-card-title">Excepteur sint occaecat</div>
+                <div class="usage-card-title">Make input accessible</div>
               </div>
               <ul class="usage-list">
-                <li>Non proident sunt in culpa qui officia</li>
-                <li>Deserunt mollit anim id est laborum</li>
-                <li>Sed ut perspiciatis unde omnis iste</li>
+                <li>Allow keyboard input — Arrow keys to change value, Space/Enter to confirm</li>
+                <li>Provide an accessible name (e.g. "Rate this carrier") on the rating control</li>
+                <li>Announce the current value as it changes via <code>aria-valuenow</code></li>
               </ul>
             </div>
             <div class="usage-card">
               <div class="usage-card-header">
                 <div class="usage-icon do-icon"><i data-lucide="check" style="width:12px;height:12px"></i></div>
-                <div class="usage-card-title">Nemo enim ipsam voluptatem</div>
+                <div class="usage-card-title">Differentiate display vs input</div>
               </div>
               <ul class="usage-list">
-                <li>Quia voluptas sit aspernatur aut odit</li>
-                <li>Neque porro quisquam est qui dolorem</li>
-                <li>Ut labore et dolore magnam aliquam</li>
+                <li>Use a non-interactive treatment when showing existing ratings (no hover/focus states)</li>
+                <li>Use clear interactive states (hover, focus) when the user is rating something</li>
               </ul>
             </div>
           </div>
@@ -511,43 +509,41 @@
             <div class="usage-card">
               <div class="usage-card-header">
                 <div class="usage-icon dont-icon"><i data-lucide="x" style="width:12px;height:12px"></i></div>
-                <div class="usage-card-title">Quis autem vel eum iure</div>
+                <div class="usage-card-title">Use for binary feedback</div>
               </div>
               <ul class="usage-list">
-                <li>Reprehenderit qui in ea voluptate velit</li>
-                <li>Esse quam nihil molestiae consequatur</li>
-                <li>Vel illum qui dolorem eum fugiat</li>
+                <li>Don't use stars for like/dislike or yes/no — use a thumbs-up/down control instead</li>
+                <li>Don't expand beyond 5 stars; finer scales (1–10) are better as a slider or numeric input</li>
               </ul>
             </div>
             <div class="usage-card">
               <div class="usage-card-header">
                 <div class="usage-icon dont-icon"><i data-lucide="x" style="width:12px;height:12px"></i></div>
-                <div class="usage-card-title">At vero eos et accusamus</div>
+                <div class="usage-card-title">Mix display and input states</div>
               </div>
               <ul class="usage-list">
-                <li>Et iusto odio dignissimos ducimus qui</li>
-                <li>Blanditiis praesentium voluptatum deleniti</li>
-                <li>Atque corrupti quos dolores et quas</li>
+                <li>Don't show interactive hover effects on read-only ratings</li>
+                <li>Don't make read-only ratings look identical to active input — users will try to click them</li>
               </ul>
             </div>
             <div class="usage-card">
               <div class="usage-card-header">
                 <div class="usage-icon dont-icon"><i data-lucide="x" style="width:12px;height:12px"></i></div>
-                <div class="usage-card-title">Nam libero tempore soluta</div>
+                <div class="usage-card-title">Omit numeric value</div>
               </div>
               <ul class="usage-list">
-                <li>Nobis est eligendi optio cumque nihil</li>
-                <li>Impedit quo minus id quod maxime</li>
+                <li>Don't rely on shape alone — a "4.7" star pattern is hard to read at a glance</li>
+                <li>Don't hide the rating from screen readers; provide a text equivalent</li>
               </ul>
             </div>
             <div class="usage-card">
               <div class="usage-card-header">
                 <div class="usage-icon dont-icon"><i data-lucide="x" style="width:12px;height:12px"></i></div>
-                <div class="usage-card-title">Temporibus autem quibusdam</div>
+                <div class="usage-card-title">Mislead with averages</div>
               </div>
               <ul class="usage-list">
-                <li>Et aut officiis debitis aut rerum necessitatibus</li>
-                <li>Saepe eveniet ut et voluptates repudiandae</li>
+                <li>Don't display an average when the sample size is tiny (e.g. fewer than 3 ratings)</li>
+                <li>Don't round so aggressively that you misrepresent the average (e.g. 4.4 → 5)</li>
               </ul>
             </div>
           </div>

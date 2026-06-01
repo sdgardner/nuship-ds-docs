@@ -459,23 +459,23 @@
             <div class="usage-card">
               <div class="usage-card-header">
                 <div class="usage-icon do-icon"><i data-lucide="check" style="width:12px;height:12px"></i></div>
-                <div class="usage-card-title">Do</div>
+                <div class="usage-card-title">Status and metadata</div>
               </div>
               <ul class="usage-list">
-                <li>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor</li>
-                <li>Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi</li>
-                <li>Duis aute irure dolor in reprehenderit in voluptate velit esse cillum</li>
+                <li>Use badges to communicate status, category, or a small count alongside content</li>
+                <li>Choose a semantic color that matches meaning (success/info/warning/error)</li>
+                <li>Pair the badge with a nearby label or element it describes</li>
               </ul>
             </div>
             <div class="usage-card">
               <div class="usage-card-header">
                 <div class="usage-icon do-icon"><i data-lucide="check" style="width:12px;height:12px"></i></div>
-                <div class="usage-card-title">Do</div>
+                <div class="usage-card-title">Labels and sizing</div>
               </div>
               <ul class="usage-list">
-                <li>Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia</li>
-                <li>Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium</li>
-                <li>Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit fugit</li>
+                <li>Keep labels short — 1–2 words or a small number is ideal</li>
+                <li>Use sentence case or uppercase consistently within a screen</li>
+                <li>Match badge size to the surrounding context — small badges in dense lists, large badges in headers</li>
               </ul>
             </div>
           </div>
@@ -486,23 +486,23 @@
             <div class="usage-card">
               <div class="usage-card-header">
                 <div class="usage-icon dont-icon"><i data-lucide="x" style="width:12px;height:12px"></i></div>
-                <div class="usage-card-title">Don't</div>
+                <div class="usage-card-title">As an interactive control</div>
               </div>
               <ul class="usage-list">
-                <li>Neque porro quisquam est qui dolorem ipsum quia dolor sit amet consectetur</li>
-                <li>Quis autem vel eum iure reprehenderit qui in ea voluptate velit esse quam</li>
-                <li>At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis</li>
+                <li>Don't use badges as buttons or links — they are non-interactive indicators</li>
+                <li>If users need to remove a value, use a Tag with a close icon instead</li>
+                <li>Don't rely on color alone to convey meaning; pair color with a label or icon</li>
               </ul>
             </div>
             <div class="usage-card">
               <div class="usage-card-header">
                 <div class="usage-icon dont-icon"><i data-lucide="x" style="width:12px;height:12px"></i></div>
-                <div class="usage-card-title">Don't</div>
+                <div class="usage-card-title">Overuse and ambiguity</div>
               </div>
               <ul class="usage-list">
-                <li>Nam libero tempore cum soluta nobis est eligendi optio cumque nihil</li>
-                <li>Temporibus autem quibusdam et aut officiis debitis aut rerum necessitatibus</li>
-                <li>Itaque earum rerum hic tenetur sapiente delectus ut aut reiciendis voluptatibus</li>
+                <li>Don't show more than 2–3 badges on a single item — pick the most important signal</li>
+                <li>Don't truncate badge text; if a label doesn't fit, the label is too long</li>
+                <li>Don't mix unrelated badge styles in the same group — keep the visual language consistent</li>
               </ul>
             </div>
           </div>
@@ -556,16 +556,16 @@
         <h2 class="section-title">Accessibility</h2>
         <ul class="a11y-list">
           <li>
-            <div><strong>Color alone:</strong> Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua ut enim.</div>
+            <div><strong>Color alone:</strong> Don't rely on color to communicate badge meaning. Pair the color with a text label or icon so users who can't perceive the color difference still understand the status.</div>
           </li>
           <li>
-            <div><strong>Screen readers:</strong> Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat duis aute irure dolor.</div>
+            <div><strong>Screen readers:</strong> The badge text is read in order with surrounding content. If a badge represents status (e.g. "Active") for a nearby element, use <code>aria-label</code> on the parent or <code>aria-describedby</code> to associate the badge with the element it describes.</div>
           </li>
           <li>
-            <div><strong>Non-interactive:</strong> Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur excepteur sint occaecat cupidatat.</div>
+            <div><strong>Non-interactive:</strong> Badges are static indicators — never give them <code>role="button"</code> or click handlers. If the value needs to be removed by the user, use a Tag with a close icon instead.</div>
           </li>
           <li>
-            <div><strong>Contrast:</strong> Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum consectetur adipiscing elit.</div>
+            <div><strong>Contrast:</strong> Badge text must meet WCAG AA contrast (4.5:1) against the badge background. Outline and solid variants must each satisfy this independently; verify in both light and dark themes.</div>
           </li>
         </ul>
       </section>

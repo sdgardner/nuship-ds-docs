@@ -556,45 +556,43 @@
             <div class="usage-card">
               <div class="usage-card-header">
                 <div class="usage-icon do-icon"><i data-lucide="check" style="width:12px;height:12px"></i></div>
-                <div class="usage-card-title">Lorem ipsum dolor sit amet</div>
+                <div class="usage-card-title">Reveal labels for icons</div>
               </div>
               <ul class="usage-list">
-                <li>Lorem ipsum dolor sit amet consectetur</li>
-                <li>Adipiscing elit sed do eiusmod tempor</li>
-                <li>Incididunt ut labore et dolore magna</li>
+                <li>Use tooltips to clarify the meaning of icon-only buttons and controls</li>
+                <li>Keep the label short — 1 to a few words is ideal (e.g. "Edit", "Cancel upload")</li>
+                <li>Match the tooltip text to the control's accessible name</li>
               </ul>
             </div>
             <div class="usage-card">
               <div class="usage-card-header">
                 <div class="usage-icon do-icon"><i data-lucide="check" style="width:12px;height:12px"></i></div>
-                <div class="usage-card-title">Ut enim ad minim veniam</div>
+                <div class="usage-card-title">Trigger on hover and focus</div>
               </div>
               <ul class="usage-list">
-                <li>Quis nostrud exercitation ullamco laboris</li>
-                <li>Nisi ut aliquip ex ea commodo consequat</li>
-                <li>Duis aute irure dolor in reprehenderit</li>
+                <li>Show the tooltip after a short delay (~300ms) so it doesn't appear on fly-by hovers</li>
+                <li>Show immediately when the trigger receives keyboard focus</li>
+                <li>Dismiss on mouse leave, blur, or Escape</li>
               </ul>
             </div>
             <div class="usage-card">
               <div class="usage-card-header">
                 <div class="usage-icon do-icon"><i data-lucide="check" style="width:12px;height:12px"></i></div>
-                <div class="usage-card-title">Excepteur sint occaecat</div>
+                <div class="usage-card-title">Position to avoid clipping</div>
               </div>
               <ul class="usage-list">
-                <li>Non proident sunt in culpa qui officia</li>
-                <li>Deserunt mollit anim id est laborum</li>
-                <li>Sed ut perspiciatis unde omnis iste</li>
+                <li>Position the tooltip so its arrow points to the trigger and stays inside the viewport</li>
+                <li>Flip to the opposite side if the preferred placement would overflow the screen</li>
               </ul>
             </div>
             <div class="usage-card">
               <div class="usage-card-header">
                 <div class="usage-icon do-icon"><i data-lucide="check" style="width:12px;height:12px"></i></div>
-                <div class="usage-card-title">Nemo enim ipsam voluptatem</div>
+                <div class="usage-card-title">Make it screen-reader friendly</div>
               </div>
               <ul class="usage-list">
-                <li>Quia voluptas sit aspernatur aut odit</li>
-                <li>Neque porro quisquam est qui dolorem</li>
-                <li>Ut labore et dolore magnam aliquam</li>
+                <li>Link the tooltip to the trigger via <code>aria-describedby</code></li>
+                <li>Ensure the underlying control already has an accessible name — the tooltip is supplemental, not a replacement</li>
               </ul>
             </div>
           </div>
@@ -607,43 +605,41 @@
             <div class="usage-card">
               <div class="usage-card-header">
                 <div class="usage-icon dont-icon"><i data-lucide="x" style="width:12px;height:12px"></i></div>
-                <div class="usage-card-title">Quis autem vel eum iure</div>
+                <div class="usage-card-title">Embed interactive content</div>
               </div>
               <ul class="usage-list">
-                <li>Reprehenderit qui in ea voluptate velit</li>
-                <li>Esse quam nihil molestiae consequatur</li>
-                <li>Vel illum qui dolorem eum fugiat</li>
+                <li>Don't place links, buttons, or form fields inside a tooltip — they aren't reachable by keyboard or touch</li>
+                <li>Use a Popover when you need interactive content with a similar layout</li>
               </ul>
             </div>
             <div class="usage-card">
               <div class="usage-card-header">
                 <div class="usage-icon dont-icon"><i data-lucide="x" style="width:12px;height:12px"></i></div>
-                <div class="usage-card-title">At vero eos et accusamus</div>
+                <div class="usage-card-title">Hide critical information</div>
               </div>
               <ul class="usage-list">
-                <li>Et iusto odio dignissimos ducimus qui</li>
-                <li>Blanditiis praesentium voluptatum deleniti</li>
-                <li>Atque corrupti quos dolores et quas</li>
+                <li>Don't put information users need to complete a task inside a tooltip — make it visible inline</li>
+                <li>Don't use a tooltip for error messages; show them under the field instead</li>
               </ul>
             </div>
             <div class="usage-card">
               <div class="usage-card-header">
                 <div class="usage-icon dont-icon"><i data-lucide="x" style="width:12px;height:12px"></i></div>
-                <div class="usage-card-title">Nam libero tempore soluta</div>
+                <div class="usage-card-title">Trigger on touch only</div>
               </div>
               <ul class="usage-list">
-                <li>Nobis est eligendi optio cumque nihil</li>
-                <li>Impedit quo minus id quod maxime</li>
+                <li>Don't rely on tooltips on touch devices — hover doesn't exist; pair with always-visible labels or a Popover</li>
+                <li>Don't open a tooltip on tap if the trigger also has a primary tap action — the conflict will confuse users</li>
               </ul>
             </div>
             <div class="usage-card">
               <div class="usage-card-header">
                 <div class="usage-icon dont-icon"><i data-lucide="x" style="width:12px;height:12px"></i></div>
-                <div class="usage-card-title">Temporibus autem quibusdam</div>
+                <div class="usage-card-title">Overload the content</div>
               </div>
               <ul class="usage-list">
-                <li>Et aut officiis debitis aut rerum necessitatibus</li>
-                <li>Saepe eveniet ut et voluptates repudiandae</li>
+                <li>Don't include multi-paragraph copy or formatting; if you need that, switch to a Popover</li>
+                <li>Don't show more than one tooltip at a time — only the focused/hovered element should reveal one</li>
               </ul>
             </div>
           </div>
