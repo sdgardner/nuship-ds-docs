@@ -139,7 +139,7 @@
       <section class="doc-section" id="definition">
         <div class="def-eyebrow">Inputs</div>
         <h1 class="def-title">Tile</h1>
-        <p class="def-desc">Tile is a card-based selection component that pairs a radio or checkbox indicator with visual content, giving users richer context for their choices. Two variants are available: Radio for single-select groups and Checkbox for multi-select groups.</p>
+        <p class="def-desc">Tiles are selectable card containers that embed a radio button or checkbox, allowing users to make single or multiple selections from a set of visual options. They are ideal when choices benefit from a larger click target or when the content inside the card aids decision-making.</p>
         <div class="def-tags">
           <span class="bdg bdg--purple bdg--outline">Not Developed</span>
           <span class="bdg bdg--green bdg--outline">Figma</span>
@@ -330,9 +330,12 @@
 
             </div>
             <div class="var-desc">
-              <div class="var-use-when">Radio — use when:</div>
+              <div class="var-use-when">Radio Button — Use when:</div>
               <ul class="var-use-list">
-                <li>Users must pick exactly one option from a set</li>
+                <li>Single select</li>
+              </ul>
+              <div class="var-use-when" style="margin-top:14px;">Visual changes:</div>
+              <ul class="var-use-list">
                 <li>Selected tile shows blue border <code>#027CB1</code> and filled radio dot</li>
                 <li>Hover darkens border to <code>#016692</code></li>
               </ul>
@@ -439,9 +442,12 @@
 
             </div>
             <div class="var-desc">
-              <div class="var-use-when">Checkbox — use when:</div>
+              <div class="var-use-when">Checkbox — Use when:</div>
               <ul class="var-use-list">
-                <li>Users can select multiple options simultaneously</li>
+                <li>Multi-select</li>
+              </ul>
+              <div class="var-use-when" style="margin-top:14px;">Visual changes:</div>
+              <ul class="var-use-list">
                 <li>Selected tile shows blue border + filled checkbox with check mark</li>
                 <li>Ideal for add-on features or optional extras</li>
               </ul>
@@ -508,45 +514,23 @@
             <div class="usage-card">
               <div class="usage-card-header">
                 <div class="usage-icon do-icon"><i data-lucide="check" style="width:12px;height:12px"></i></div>
-                <div class="usage-card-title">Lorem ipsum dolor sit amet</div>
+                <div class="usage-card-title">Single selection</div>
               </div>
               <ul class="usage-list">
-                <li>Lorem ipsum dolor sit amet consectetur</li>
-                <li>Adipiscing elit sed do eiusmod tempor</li>
-                <li>Incididunt ut labore et dolore magna</li>
+                <li>Use radio tiles when only one option can be chosen at a time</li>
+                <li>Best for choosing a shipping method, plan tier, or payment type</li>
+                <li>Use when the visual context inside the tile helps the user decide</li>
               </ul>
             </div>
             <div class="usage-card">
               <div class="usage-card-header">
                 <div class="usage-icon do-icon"><i data-lucide="check" style="width:12px;height:12px"></i></div>
-                <div class="usage-card-title">Ut enim ad minim veniam</div>
+                <div class="usage-card-title">Multiple selection</div>
               </div>
               <ul class="usage-list">
-                <li>Quis nostrud exercitation ullamco laboris</li>
-                <li>Nisi ut aliquip ex ea commodo consequat</li>
-                <li>Duis aute irure dolor in reprehenderit</li>
-              </ul>
-            </div>
-            <div class="usage-card">
-              <div class="usage-card-header">
-                <div class="usage-icon do-icon"><i data-lucide="check" style="width:12px;height:12px"></i></div>
-                <div class="usage-card-title">Excepteur sint occaecat</div>
-              </div>
-              <ul class="usage-list">
-                <li>Non proident sunt in culpa qui officia</li>
-                <li>Deserunt mollit anim id est laborum</li>
-                <li>Sed ut perspiciatis unde omnis iste</li>
-              </ul>
-            </div>
-            <div class="usage-card">
-              <div class="usage-card-header">
-                <div class="usage-icon do-icon"><i data-lucide="check" style="width:12px;height:12px"></i></div>
-                <div class="usage-card-title">Nemo enim ipsam voluptatem</div>
-              </div>
-              <ul class="usage-list">
-                <li>Quia voluptas sit aspernatur aut odit</li>
-                <li>Neque porro quisquam est qui dolorem</li>
-                <li>Ut labore et dolore magnam aliquam</li>
+                <li>Use checkbox tiles when more than one option can apply</li>
+                <li>Good for selecting features, add-ons, or preferences</li>
+                <li>Keep the number of options manageable — ideally 2–6 tiles per group</li>
               </ul>
             </div>
           </div>
@@ -559,43 +543,23 @@
             <div class="usage-card">
               <div class="usage-card-header">
                 <div class="usage-icon dont-icon"><i data-lucide="x" style="width:12px;height:12px"></i></div>
-                <div class="usage-card-title">Quis autem vel eum iure</div>
+                <div class="usage-card-title">Replace simple controls</div>
               </div>
               <ul class="usage-list">
-                <li>Reprehenderit qui in ea voluptate velit</li>
-                <li>Esse quam nihil molestiae consequatur</li>
-                <li>Vel illum qui dolorem eum fugiat</li>
+                <li>Don't use tiles when a standard checkbox or radio button is sufficient</li>
+                <li>Avoid tiles for inline form fields or dense list selections</li>
+                <li>Don't use tiles if the content inside adds no decision-making value</li>
               </ul>
             </div>
             <div class="usage-card">
               <div class="usage-card-header">
                 <div class="usage-icon dont-icon"><i data-lucide="x" style="width:12px;height:12px"></i></div>
-                <div class="usage-card-title">At vero eos et accusamus</div>
+                <div class="usage-card-title">Mix types or use for navigation</div>
               </div>
               <ul class="usage-list">
-                <li>Et iusto odio dignissimos ducimus qui</li>
-                <li>Blanditiis praesentium voluptatum deleniti</li>
-                <li>Atque corrupti quos dolores et quas</li>
-              </ul>
-            </div>
-            <div class="usage-card">
-              <div class="usage-card-header">
-                <div class="usage-icon dont-icon"><i data-lucide="x" style="width:12px;height:12px"></i></div>
-                <div class="usage-card-title">Nam libero tempore soluta</div>
-              </div>
-              <ul class="usage-list">
-                <li>Nobis est eligendi optio cumque nihil</li>
-                <li>Impedit quo minus id quod maxime</li>
-              </ul>
-            </div>
-            <div class="usage-card">
-              <div class="usage-card-header">
-                <div class="usage-icon dont-icon"><i data-lucide="x" style="width:12px;height:12px"></i></div>
-                <div class="usage-card-title">Temporibus autem quibusdam</div>
-              </div>
-              <ul class="usage-list">
-                <li>Et aut officiis debitis aut rerum necessitatibus</li>
-                <li>Saepe eveniet ut et voluptates repudiandae</li>
+                <li>Don't mix radio and checkbox tiles in the same selection group</li>
+                <li>Don't use tiles as navigation links or action triggers</li>
+                <li>Avoid overloading tile content — keep it scannable</li>
               </ul>
             </div>
           </div>
