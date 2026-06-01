@@ -153,7 +153,7 @@
       <section class="doc-section" id="definition">
         <div class="def-eyebrow">Inputs</div>
         <h1 class="def-title">Text Area</h1>
-        <p class="def-desc">The Text Area is a multi-line text input for longer freeform content such as notes, instructions, or descriptions. It supports a label, optional character counter, helper text, and multiple interaction states including error and read-only.</p>
+        <p class="def-desc">A text area is a multi-line form control for longer, free-form input. It includes a label, a resizable input area (with optional placeholder), and can show helper text, character count (e.g. 0/100), and error messaging. It's used when users need to enter paragraphs, notes, or descriptions (e.g. "Additional information", "Instructions") rather than a short, single-line value.</p>
         <div class="def-tags">
           <span class="bdg bdg--purple bdg--outline">Not Developed</span>
           <span class="bdg bdg--green bdg--outline">Figma</span>
@@ -484,23 +484,39 @@
             <div class="usage-card">
               <div class="usage-card-header">
                 <div class="usage-icon do-icon"><i data-lucide="check" style="width:12px;height:12px"></i></div>
-                <div class="usage-card-title">Use for multi-line input</div>
+                <div class="usage-card-title">When to use</div>
               </div>
               <ul class="usage-list">
-                <li>Use when the user needs to enter more than a single line of text</li>
-                <li>Good for notes, instructions, comments, and descriptions</li>
-                <li>Set a <code>maxLength</code> and show the counter for inputs with known limits</li>
+                <li>Use a text area when the user needs to enter multiple lines or longer text (e.g. descriptions, notes, instructions)</li>
+                <li>Use a single-line text input when one short value is enough (e.g. name, email)</li>
+                <li>Support resizing (e.g. resize handle) when variable length is expected, unless the layout requires a fixed height</li>
               </ul>
             </div>
             <div class="usage-card">
               <div class="usage-card-header">
                 <div class="usage-icon do-icon"><i data-lucide="check" style="width:12px;height:12px"></i></div>
-                <div class="usage-card-title">Provide helpful context</div>
+                <div class="usage-card-title">Labeling and helper text</div>
               </div>
               <ul class="usage-list">
-                <li>Always include a label — never rely on placeholder text alone</li>
-                <li>Use helper text to set expectations (format, limits, examples)</li>
-                <li>Show error messages inline, directly below the field</li>
+                <li>Give every text area a clear label above the field (e.g. "Additional information")</li>
+                <li>Use placeholder text to hint at what to enter (e.g. "Enter specific parking or drop-off guidance")</li>
+                <li>Use helper text below the field for extra context or rules</li>
+                <li>When there's a max length, show a character count (e.g. "0/100", "94/100") near the label or top-right so users know the limit</li>
+              </ul>
+            </div>
+          </div>
+          <div class="usage-cols">
+            <div class="usage-card">
+              <div class="usage-card-header">
+                <div class="usage-icon do-icon"><i data-lucide="check" style="width:12px;height:12px"></i></div>
+                <div class="usage-card-title">States and behavior</div>
+              </div>
+              <ul class="usage-list">
+                <li>Support default, focus (e.g. distinct border/outline), filled, error, disabled, and loading/skeleton states</li>
+                <li>Use a focus ring (e.g. blue border) so keyboard users can see focus</li>
+                <li>In error state, use a red border, error icon, and inline error message below the field</li>
+                <li>Use disabled styling (e.g. muted background, no resize) when the field isn't editable</li>
+                <li>In loading, use a skeleton that matches the shape of the text area (and label/count if shown)</li>
               </ul>
             </div>
           </div>
@@ -513,21 +529,35 @@
             <div class="usage-card">
               <div class="usage-card-header">
                 <div class="usage-icon dont-icon"><i data-lucide="x" style="width:12px;height:12px"></i></div>
-                <div class="usage-card-title">Don't use for short inputs</div>
+                <div class="usage-card-title">When to use</div>
               </div>
               <ul class="usage-list">
-                <li>Don't use a Text Area for single-word or single-line inputs — use Text Input instead</li>
-                <li>Avoid using it for structured data like dates, phone numbers, or amounts</li>
+                <li>Don't use a text area for single-line or single-value input; use a text input instead</li>
+                <li>Don't use for structured choice (e.g. options from a list); use Select instead</li>
               </ul>
             </div>
             <div class="usage-card">
               <div class="usage-card-header">
                 <div class="usage-icon dont-icon"><i data-lucide="x" style="width:12px;height:12px"></i></div>
-                <div class="usage-card-title">Don't leave errors unresolved</div>
+                <div class="usage-card-title">Labeling and helper text</div>
               </div>
               <ul class="usage-list">
-                <li>Don't show an error state without a clear, actionable error message</li>
-                <li>Avoid triggering errors before the user has finished typing</li>
+                <li>Don't rely on placeholder alone; always provide a label</li>
+                <li>Don't hide character limits; if there's a max, show count and/or limit in the UI</li>
+                <li>Don't use vague helper text when the rule is important (e.g. character limit, format)</li>
+              </ul>
+            </div>
+          </div>
+          <div class="usage-cols">
+            <div class="usage-card">
+              <div class="usage-card-header">
+                <div class="usage-icon dont-icon"><i data-lucide="x" style="width:12px;height:12px"></i></div>
+                <div class="usage-card-title">States and behavior</div>
+              </div>
+              <ul class="usage-list">
+                <li>Don't skip a visible focus state</li>
+                <li>Don't show error state without a clear error message</li>
+                <li>Don't make disabled or read-only look editable; reduce contrast and remove resize when disabled</li>
               </ul>
             </div>
           </div>
