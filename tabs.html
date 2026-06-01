@@ -143,7 +143,7 @@
       <section class="doc-section" id="definition">
         <div class="def-eyebrow">Navigation</div>
         <h1 class="def-title">Tabs</h1>
-        <p class="def-desc">Tabs organise content into separate panels, allowing users to switch between views without leaving the page. Three variants are available: Horizontal Underline for standard page-level navigation, Horizontal Contained for card-embedded contexts, and Vertical for sidebar or stacked layouts.</p>
+        <p class="def-desc">Tabs (in UI) are a control that lets people switch between multiple panels of content in the same space. Only one panel is shown at a time; choosing a tab shows its panel and hides the others.</p>
         <div class="def-tags">
           <span class="bdg bdg--purple bdg--outline">Not Developed</span>
           <span class="bdg bdg--green bdg--outline">Figma</span>
@@ -330,7 +330,12 @@
 
             </div>
             <div class="var-desc">
-              <div class="var-use-when">States:</div>
+              <div class="var-use-when">Line — Use when:</div>
+              <ul class="var-use-list">
+                <li>For top-level page navigation</li>
+                <li>Minimal and full-width</li>
+              </ul>
+              <div class="var-use-when" style="margin-top:14px;">States:</div>
               <ul class="var-use-list">
                 <li>Default — first tab active with 3px blue bottom border, others have 1px gray border</li>
                 <li>Active — blue underline indicator and bold text</li>
@@ -451,9 +456,13 @@
 
             </div>
             <div class="var-desc">
-              <div class="var-use-when">Contained — use when:</div>
+              <div class="var-use-when">Card — Use when:</div>
               <ul class="var-use-list">
-                <li>Tabs are embedded inside a card or panel</li>
+                <li>For sections inside a card or panel</li>
+                <li>Tabs feel part of a bounded container</li>
+              </ul>
+              <div class="var-use-when" style="margin-top:14px;">Visual changes:</div>
+              <ul class="var-use-list">
                 <li>Selected state uses light blue background <code>#E5EEF5</code> with 3px blue bottom border and dark text <code>#004F70</code></li>
                 <li>Hover lightens to <code>#B7DBEE</code></li>
               </ul>
@@ -570,9 +579,12 @@
 
             </div>
             <div class="var-desc">
-              <div class="var-use-when">Vertical — use when:</div>
+              <div class="var-use-when">Vertical — Use when:</div>
               <ul class="var-use-list">
-                <li>Sidebar or stacked layout with limited horizontal space</li>
+                <li>Side navigation within a page or settings layout</li>
+              </ul>
+              <div class="var-use-when" style="margin-top:14px;">Visual changes:</div>
+              <ul class="var-use-list">
                 <li>Left border indicator instead of bottom; selected uses blue left border + blue text</li>
                 <li>14px text instead of 16px for compact appearance</li>
               </ul>
@@ -645,45 +657,35 @@
             <div class="usage-card">
               <div class="usage-card-header">
                 <div class="usage-icon do-icon"><i data-lucide="check" style="width:12px;height:12px"></i></div>
-                <div class="usage-card-title">Lorem ipsum dolor sit amet</div>
+                <div class="usage-card-title">Content &amp; structure</div>
               </div>
               <ul class="usage-list">
-                <li>Lorem ipsum dolor sit amet consectetur</li>
-                <li>Adipiscing elit sed do eiusmod tempor</li>
-                <li>Incididunt ut labore et dolore magna</li>
+                <li>Keep labels short (1–2 words)</li>
+                <li>Use about 2–7 tabs; for more options, use another pattern (e.g. dropdown, nav list)</li>
+                <li>Use either icon-only tabs or text-with-icon tabs in a set — keep the pattern consistent within one tab list</li>
               </ul>
             </div>
             <div class="usage-card">
               <div class="usage-card-header">
                 <div class="usage-icon do-icon"><i data-lucide="check" style="width:12px;height:12px"></i></div>
-                <div class="usage-card-title">Ut enim ad minim veniam</div>
+                <div class="usage-card-title">Selection &amp; visibility</div>
               </div>
               <ul class="usage-list">
-                <li>Quis nostrud exercitation ullamco laboris</li>
-                <li>Nisi ut aliquip ex ea commodo consequat</li>
-                <li>Duis aute irure dolor in reprehenderit</li>
+                <li>Always show one selected tab</li>
+                <li>Make the selected state obvious (underline, background, or border)</li>
+                <li>Match the indicator to the tab (full or content width)</li>
               </ul>
             </div>
+          </div>
+          <div class="usage-cols">
             <div class="usage-card">
               <div class="usage-card-header">
                 <div class="usage-icon do-icon"><i data-lucide="check" style="width:12px;height:12px"></i></div>
-                <div class="usage-card-title">Excepteur sint occaecat</div>
+                <div class="usage-card-title">Visual design</div>
               </div>
               <ul class="usage-list">
-                <li>Non proident sunt in culpa qui officia</li>
-                <li>Deserunt mollit anim id est laborum</li>
-                <li>Sed ut perspiciatis unde omnis iste</li>
-              </ul>
-            </div>
-            <div class="usage-card">
-              <div class="usage-card-header">
-                <div class="usage-icon do-icon"><i data-lucide="check" style="width:12px;height:12px"></i></div>
-                <div class="usage-card-title">Nemo enim ipsam voluptatem</div>
-              </div>
-              <ul class="usage-list">
-                <li>Quia voluptas sit aspernatur aut odit</li>
-                <li>Neque porro quisquam est qui dolorem</li>
-                <li>Ut labore et dolore magnam aliquam</li>
+                <li>Use consistent spacing and alignment between label, icon, and badge</li>
+                <li>Use badges only when they add value; hide when a tab is disabled</li>
               </ul>
             </div>
           </div>
@@ -696,43 +698,37 @@
             <div class="usage-card">
               <div class="usage-card-header">
                 <div class="usage-icon dont-icon"><i data-lucide="x" style="width:12px;height:12px"></i></div>
-                <div class="usage-card-title">Quis autem vel eum iure</div>
+                <div class="usage-card-title">Content &amp; structure</div>
               </div>
               <ul class="usage-list">
-                <li>Reprehenderit qui in ea voluptate velit</li>
-                <li>Esse quam nihil molestiae consequatur</li>
-                <li>Vel illum qui dolorem eum fugiat</li>
+                <li>Don't use tabs for a single item</li>
+                <li>Don't nest tabs inside tabs</li>
+                <li>Avoid long or wrapping labels</li>
+                <li>Don't mix icon-only and text-with-icon tabs in the same row</li>
               </ul>
             </div>
             <div class="usage-card">
               <div class="usage-card-header">
                 <div class="usage-icon dont-icon"><i data-lucide="x" style="width:12px;height:12px"></i></div>
-                <div class="usage-card-title">At vero eos et accusamus</div>
+                <div class="usage-card-title">Selection &amp; visibility</div>
               </div>
               <ul class="usage-list">
-                <li>Et iusto odio dignissimos ducimus qui</li>
-                <li>Blanditiis praesentium voluptatum deleniti</li>
-                <li>Atque corrupti quos dolores et quas</li>
+                <li>Don't have a tab go to the same panel</li>
               </ul>
             </div>
+          </div>
+          <div class="usage-cols">
             <div class="usage-card">
               <div class="usage-card-header">
                 <div class="usage-icon dont-icon"><i data-lucide="x" style="width:12px;height:12px"></i></div>
-                <div class="usage-card-title">Nam libero tempore soluta</div>
+                <div class="usage-card-title">States and behavior</div>
               </div>
               <ul class="usage-list">
-                <li>Nobis est eligendi optio cumque nihil</li>
-                <li>Impedit quo minus id quod maxime</li>
-              </ul>
-            </div>
-            <div class="usage-card">
-              <div class="usage-card-header">
-                <div class="usage-icon dont-icon"><i data-lucide="x" style="width:12px;height:12px"></i></div>
-                <div class="usage-card-title">Temporibus autem quibusdam</div>
-              </div>
-              <ul class="usage-list">
-                <li>Et aut officiis debitis aut rerum necessitatibus</li>
-                <li>Saepe eveniet ut et voluptates repudiandae</li>
+                <li>Don't skip a visible focus state</li>
+                <li>Don't show error state without a clear error message</li>
+                <li>Don't make disabled or read-only look editable; reduce contrast and remove resize when disabled</li>
+                <li>Don't switch panel on hover only</li>
+                <li>Don't use tabs when the items navigate to a new page (use links/nav instead)</li>
               </ul>
             </div>
           </div>
