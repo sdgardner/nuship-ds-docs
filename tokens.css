@@ -16,6 +16,7 @@
   --surface-layer02: #F4F6F8;  /* color/surface/layer-02 */
   --surface-layer03: #E5E7EB;  /* color/surface/layer-03 */
   --surface-card:    #FFFFFF;  /* color/surface/card */
+  --surface-field:   #FFFFFF;  /* color/surface/field — input / select / dropdown bg */
 
   --border:          #CDD2D7;  /* color/border/interactive */
   --border-strong:   #9CA3AF;  /* color/border/strong */
@@ -71,6 +72,7 @@
   --surface-layer02: #F4F6F8;
   --surface-layer03: #E5E7EB;
   --surface-card:    #FFFFFF;
+  --surface-field:   #FFFFFF;
 
   --border:          #CDD2D7;
   --border-strong:   #9CA3AF;
@@ -116,6 +118,7 @@
   --surface-layer02: #292929;  /* gray.750 — hover / second elevation */
   --surface-layer03: #374151;  /* gray.700 — strongest elevation */
   --surface-card:    #1E1E1E;  /* alias of layer-01 in dark */
+  --surface-field:   #1E1E1E;  /* color/surface/field — input / select / dropdown bg in dark */
 
   --border:          #6B7280;
   --border-strong:   #9CA3AF;
