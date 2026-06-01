@@ -156,7 +156,7 @@
       <section class="doc-section" id="definition">
         <div class="def-eyebrow">Inputs</div>
         <h1 class="def-title">Text Input</h1>
-        <p class="def-desc">The Text Input is a single-line field for short freeform content such as names, addresses, and codes. It supports a label, optional leading or trailing icon, helper text, and multiple interaction states including error and read-only.</p>
+        <p class="def-desc">An input is a single-line form control for short text entry. It includes a label, a field (with optional placeholder), and can show helper text, error text, and optional leading or trailing icons. It's used when users enter one value per field (e.g. name, email, zip code). Icons can be interactive (e.g. password show/hide, clear) or decorative (e.g. location, calendar).</p>
         <div class="def-tags">
           <span class="bdg bdg--purple bdg--outline">Not Developed</span>
           <span class="bdg bdg--green bdg--outline">Figma</span>
@@ -464,23 +464,49 @@
             <div class="usage-card">
               <div class="usage-card-header">
                 <div class="usage-icon do-icon"><i data-lucide="check" style="width:12px;height:12px"></i></div>
-                <div class="usage-card-title">Use a clear, concise label</div>
+                <div class="usage-card-title">When to use</div>
               </div>
               <ul class="usage-list">
-                <li>Use a label that clearly identifies the expected input</li>
-                <li>Use placeholder text as an example, not a substitute for the label</li>
-                <li>Show helper text below the field to explain format requirements upfront</li>
+                <li>Use a single-line text input when one short value is enough (e.g. name, email, zip code)</li>
+                <li>Use a text area when the user needs to enter multiple lines or longer text (e.g. descriptions, notes, instructions)</li>
+                <li>Use icons (leading or trailing) intentionally — decorative (e.g. location, calendar) or interactive (e.g. clear, show/hide)</li>
               </ul>
             </div>
             <div class="usage-card">
               <div class="usage-card-header">
                 <div class="usage-icon do-icon"><i data-lucide="check" style="width:12px;height:12px"></i></div>
-                <div class="usage-card-title">Use icons intentionally</div>
+                <div class="usage-card-title">Labeling and helper text</div>
               </div>
               <ul class="usage-list">
-                <li>Use a leading icon to reinforce the input's purpose (e.g., map pin for location)</li>
-                <li>Keep icons decorative — if they convey meaning, provide an accessible label</li>
-                <li>Never use leading and trailing icons simultaneously as it clutters the field</li>
+                <li>Give every text input a clear label above the field</li>
+                <li>Use placeholder text to hint at what to enter (e.g. "Enter city or zip for pickup location")</li>
+                <li>Use helper text below the field for extra context or rules</li>
+              </ul>
+            </div>
+          </div>
+          <div class="usage-cols">
+            <div class="usage-card">
+              <div class="usage-card-header">
+                <div class="usage-icon do-icon"><i data-lucide="check" style="width:12px;height:12px"></i></div>
+                <div class="usage-card-title">States and behavior</div>
+              </div>
+              <ul class="usage-list">
+                <li>Support default, focus (e.g. distinct border/outline), filled, error, disabled, and loading/skeleton states</li>
+                <li>Use a focus ring (e.g. blue border) so keyboard users can see focus</li>
+                <li>In error state, use a red border, error icon, and inline error message below the field</li>
+                <li>Use disabled styling (e.g. muted background) when the field isn't editable</li>
+                <li>In loading, use a skeleton that matches the shape of the input</li>
+              </ul>
+            </div>
+            <div class="usage-card">
+              <div class="usage-card-header">
+                <div class="usage-icon do-icon"><i data-lucide="check" style="width:12px;height:12px"></i></div>
+                <div class="usage-card-title">Read-only input</div>
+              </div>
+              <ul class="usage-list">
+                <li>Use read-only when the value is display-only but should look like a form field (e.g. pre-filled, system-generated, or editable elsewhere). Style it so it's clearly not editable (e.g. muted background)</li>
+                <li>Allow focus and copy so users can select and copy the value. Use <code>readonly</code> (or <code>aria-readonly</code>) so assistive tech announces it correctly</li>
+                <li>Add helper text or an "Edit" link when it's not obvious why the field can't be edited or where to change it</li>
               </ul>
             </div>
           </div>
@@ -493,21 +519,45 @@
             <div class="usage-card">
               <div class="usage-card-header">
                 <div class="usage-icon dont-icon"><i data-lucide="x" style="width:12px;height:12px"></i></div>
-                <div class="usage-card-title">Don't rely on placeholder text</div>
+                <div class="usage-card-title">When to use</div>
               </div>
               <ul class="usage-list">
-                <li>Don't use placeholder text as a label — it disappears when typing begins</li>
-                <li>Don't use disabled for fields that might become relevant; prefer read-only</li>
+                <li>Don't use a text input for multi-line or long-form input; use a text area instead</li>
+                <li>Don't use for structured choice (e.g. options from a list); use Select instead</li>
               </ul>
             </div>
             <div class="usage-card">
               <div class="usage-card-header">
                 <div class="usage-icon dont-icon"><i data-lucide="x" style="width:12px;height:12px"></i></div>
-                <div class="usage-card-title">Don't trigger errors prematurely</div>
+                <div class="usage-card-title">Labeling and helper text</div>
               </div>
               <ul class="usage-list">
-                <li>Don't show an error until after the user has had a chance to interact (validate on blur or submit)</li>
-                <li>Don't show an error state without a clear, actionable error message</li>
+                <li>Don't rely on placeholder alone; always provide a label</li>
+                <li>Don't use vague helper text when the rule is important (e.g. character limit, format)</li>
+              </ul>
+            </div>
+          </div>
+          <div class="usage-cols">
+            <div class="usage-card">
+              <div class="usage-card-header">
+                <div class="usage-icon dont-icon"><i data-lucide="x" style="width:12px;height:12px"></i></div>
+                <div class="usage-card-title">States and behavior</div>
+              </div>
+              <ul class="usage-list">
+                <li>Don't skip a visible focus state</li>
+                <li>Don't show error state without a clear error message</li>
+                <li>Don't make disabled or read-only look editable; reduce contrast when disabled</li>
+              </ul>
+            </div>
+            <div class="usage-card">
+              <div class="usage-card-header">
+                <div class="usage-icon dont-icon"><i data-lucide="x" style="width:12px;height:12px"></i></div>
+                <div class="usage-card-title">Read-only input</div>
+              </div>
+              <ul class="usage-list">
+                <li>Don't use read-only when the user should be able to edit in that context; use an editable input</li>
+                <li>Don't make read-only look editable (e.g. same hover/focus as editable). Don't use disabled styling if the field should be focusable and copyable; keep read-only and disabled distinct</li>
+                <li>Don't leave read-only unexplained when users might expect to edit; clarify where they can change the value</li>
               </ul>
             </div>
           </div>
