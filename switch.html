@@ -86,7 +86,7 @@
       <section class="doc-section" id="definition">
         <div class="def-eyebrow">Inputs</div>
         <h1 class="def-title">Switch</h1>
-        <p class="def-desc">A Switch is a binary toggle that lets users turn a setting on or off. It comes in two sizes — Default (44 &times; 24) and Compact (36 &times; 20) — and can be paired with a label and description.</p>
+        <p class="def-desc">The Switch component allows users to toggle a setting or feature between two mutually exclusive states: on and off. Unlike a checkbox, a switch triggers an immediate action upon interaction and does not require a form submission to take effect. Switches are best used for enabling or disabling features, preferences, or system settings.</p>
         <div class="def-tags"><span class="bdg bdg--purple bdg--outline">Not Developed</span><span class="bdg bdg--green bdg--outline">Figma</span></div>
         <div class="preview-box">
           <div class="preview-box-inner">
@@ -196,12 +196,104 @@
 
             </div>
             <div class="var-desc">
-              <div class="var-use-when">Default size (44 &times; 24):</div>
+              <div class="var-use-when">Off (Default) — Use when:</div>
               <ul class="var-use-list">
-                <li>Each state shows Off (left) and On (right) side by side</li>
-                <li>Hover — adds a subtle halo behind the thumb</li>
-                <li>Focus — 2px blue ring + 4px glow around the track</li>
-                <li>Disabled — muted track colours, no interaction</li>
+                <li>The feature or setting is inactive and has not been enabled by the user</li>
+                <li>Representing the initial or reset state of a toggle</li>
+                <li>When no action has been taken yet</li>
+              </ul>
+              <div class="var-use-when" style="margin-top:10px;">Visual Changes:</div>
+              <ul class="var-use-list">
+                <li>Track uses <code>color/control/track-inactive</code> token</li>
+                <li>Thumb positioned on the left side of the track</li>
+              </ul>
+              <div class="var-use-when" style="margin-top:10px;">Example contexts:</div>
+              <ul class="var-use-list">
+                <li>A notification preference that has not yet been enabled</li>
+                <li>A feature flag that is off by default</li>
+                <li>An optional setting on a profile or preferences screen</li>
+              </ul>
+
+              <div class="var-use-when" style="margin-top:18px;">On — Use when:</div>
+              <ul class="var-use-list">
+                <li>The user has actively enabled a feature or setting</li>
+                <li>The toggle state should persist until the user turns it off</li>
+              </ul>
+              <div class="var-use-when" style="margin-top:10px;">Visual Changes:</div>
+              <ul class="var-use-list">
+                <li>Track uses <code>color/control/track-active</code> token</li>
+                <li>Thumb positioned on the right side of the track</li>
+              </ul>
+              <div class="var-use-when" style="margin-top:10px;">Example contexts:</div>
+              <ul class="var-use-list">
+                <li>Location sharing has been enabled</li>
+                <li>Dark mode is currently active</li>
+                <li>Auto-save is turned on</li>
+              </ul>
+
+              <div class="var-use-when" style="margin-top:18px;">Disabled-Off — Use when:</div>
+              <ul class="var-use-list">
+                <li>The setting is unavailable due to user permissions or system state</li>
+                <li>Another setting or condition must be met before this toggle can be interacted with</li>
+              </ul>
+              <div class="var-use-when" style="margin-top:10px;">Visual Changes:</div>
+              <ul class="var-use-list">
+                <li>Track uses <code>color/control/track-disabled-active</code> token</li>
+                <li>Thumb uses <code>color/icon/button-disabled</code> token</li>
+              </ul>
+              <div class="var-use-when" style="margin-top:10px;">Example contexts:</div>
+              <ul class="var-use-list">
+                <li>A premium feature not available on the user's current plan</li>
+                <li>A dependent setting locked until a parent setting is enabled</li>
+              </ul>
+
+              <div class="var-use-when" style="margin-top:18px;">Disabled-On — Use when:</div>
+              <ul class="var-use-list">
+                <li>A setting is currently active but cannot be changed by the user</li>
+                <li>The state is locked by an admin or system rule</li>
+              </ul>
+              <div class="var-use-when" style="margin-top:10px;">Visual Changes:</div>
+              <ul class="var-use-list">
+                <li>Track uses active color at reduced opacity</li>
+                <li>Thumb positioned on the right at reduced opacity</li>
+              </ul>
+              <div class="var-use-when" style="margin-top:10px;">Example contexts:</div>
+              <ul class="var-use-list">
+                <li>A required setting enforced by an organization</li>
+                <li>A feature locked on during an active session</li>
+              </ul>
+
+              <div class="var-use-when" style="margin-top:18px;">Focused-Off — Use when:</div>
+              <ul class="var-use-list">
+                <li>The switch is reachable via keyboard navigation or programmatic focus and is currently off</li>
+              </ul>
+              <div class="var-use-when" style="margin-top:10px;">Visual Changes:</div>
+              <ul class="var-use-list">
+                <li>Focus ring appears around the track</li>
+                <li>Track remains in inactive state</li>
+              </ul>
+
+              <div class="var-use-when" style="margin-top:18px;">Focused-On — Use when:</div>
+              <ul class="var-use-list">
+                <li>The switch is reachable via keyboard navigation or programmatic focus and is currently on</li>
+              </ul>
+              <div class="var-use-when" style="margin-top:10px;">Visual Changes:</div>
+              <ul class="var-use-list">
+                <li>Focus ring appears around the track</li>
+                <li>Track remains in active state</li>
+              </ul>
+
+              <div class="var-use-when" style="margin-top:18px;">Hover-On/Off — Use when:</div>
+              <ul class="var-use-list">
+                <li>The user's cursor is positioned over the switch on desktop</li>
+                <li>Indicating that the element is interactive and responsive to input</li>
+                <li>Applies to web and desktop breakpoints only — not applicable on touch devices</li>
+              </ul>
+              <div class="var-use-when" style="margin-top:10px;">Visual Changes:</div>
+              <ul class="var-use-list">
+                <li>A gray halo appears between the thumb and the track, expanding the thumb's visual footprint</li>
+                <li>Track and thumb colors remain unchanged</li>
+                <li>Cursor changes to pointer</li>
               </ul>
             </div>
           </div>
@@ -278,19 +370,96 @@
       <!-- 5 · USAGE -->
       <section class="doc-section" id="usage">
         <h2 class="section-title">Usage Guidelines</h2>
-        <div class="usage-block"><div class="usage-cols">
-          <div class="usage-card"><div class="usage-card-header"><div class="usage-icon do-icon"><i data-lucide="check" style="width:12px;height:12px"></i></div><div class="usage-card-title">Lorem ipsum dolor sit amet</div></div><ul class="usage-list"><li>Lorem ipsum dolor sit amet consectetur</li><li>Adipiscing elit sed do eiusmod tempor</li><li>Incididunt ut labore et dolore magna</li></ul></div>
-          <div class="usage-card"><div class="usage-card-header"><div class="usage-icon do-icon"><i data-lucide="check" style="width:12px;height:12px"></i></div><div class="usage-card-title">Ut enim ad minim veniam</div></div><ul class="usage-list"><li>Quis nostrud exercitation ullamco laboris</li><li>Nisi ut aliquip ex ea commodo consequat</li><li>Duis aute irure dolor in reprehenderit</li></ul></div>
-          <div class="usage-card"><div class="usage-card-header"><div class="usage-icon do-icon"><i data-lucide="check" style="width:12px;height:12px"></i></div><div class="usage-card-title">Excepteur sint occaecat</div></div><ul class="usage-list"><li>Non proident sunt in culpa qui officia</li><li>Deserunt mollit anim id est laborum</li><li>Sed ut perspiciatis unde omnis iste</li></ul></div>
-          <div class="usage-card"><div class="usage-card-header"><div class="usage-icon do-icon"><i data-lucide="check" style="width:12px;height:12px"></i></div><div class="usage-card-title">Nemo enim ipsam voluptatem</div></div><ul class="usage-list"><li>Quia voluptas sit aspernatur aut odit</li><li>Neque porro quisquam est qui dolorem</li><li>Ut labore et dolore magnam aliquam</li></ul></div>
-        </div></div>
+        <div class="usage-block">
+          <div class="usage-cols">
+            <div class="usage-card">
+              <div class="usage-card-header">
+                <div class="usage-icon do-icon"><i data-lucide="check" style="width:12px;height:12px"></i></div>
+                <div class="usage-card-title">Immediate On/Off Actions</div>
+              </div>
+              <ul class="usage-list">
+                <li>When toggling a setting that takes effect instantly without requiring form submission</li>
+                <li>Enabling or disabling notifications, permissions, or preferences</li>
+                <li>When the action is reversible and the user can toggle back at any time</li>
+              </ul>
+            </div>
+            <div class="usage-card">
+              <div class="usage-card-header">
+                <div class="usage-icon do-icon"><i data-lucide="check" style="width:12px;height:12px"></i></div>
+                <div class="usage-card-title">Single Independent Settings</div>
+              </div>
+              <ul class="usage-list">
+                <li>When each option operates independently from others in a list</li>
+                <li>User preference settings like dark mode, location sharing, or auto-save</li>
+                <li>When the two states are clearly binary and mutually exclusive</li>
+              </ul>
+            </div>
+          </div>
+          <div class="usage-cols">
+            <div class="usage-card">
+              <div class="usage-card-header">
+                <div class="usage-icon do-icon"><i data-lucide="check" style="width:12px;height:12px"></i></div>
+                <div class="usage-card-title">Feature or Mode Activation</div>
+              </div>
+              <ul class="usage-list">
+                <li>Turning a feature on or off within a settings screen</li>
+                <li>When the label clearly communicates what enabling the switch will do</li>
+                <li>When the result of toggling is immediately visible or understandable</li>
+              </ul>
+            </div>
+          </div>
+        </div>
         <div class="usage-divider"></div>
-        <div class="usage-block"><div class="usage-cols">
-          <div class="usage-card"><div class="usage-card-header"><div class="usage-icon dont-icon"><i data-lucide="x" style="width:12px;height:12px"></i></div><div class="usage-card-title">Quis autem vel eum iure</div></div><ul class="usage-list"><li>Reprehenderit qui in ea voluptate velit</li><li>Esse quam nihil molestiae consequatur</li><li>Vel illum qui dolorem eum fugiat</li></ul></div>
-          <div class="usage-card"><div class="usage-card-header"><div class="usage-icon dont-icon"><i data-lucide="x" style="width:12px;height:12px"></i></div><div class="usage-card-title">At vero eos et accusamus</div></div><ul class="usage-list"><li>Et iusto odio dignissimos ducimus qui</li><li>Blanditiis praesentium voluptatum deleniti</li><li>Atque corrupti quos dolores et quas</li></ul></div>
-          <div class="usage-card"><div class="usage-card-header"><div class="usage-icon dont-icon"><i data-lucide="x" style="width:12px;height:12px"></i></div><div class="usage-card-title">Nam libero tempore soluta</div></div><ul class="usage-list"><li>Nobis est eligendi optio cumque nihil</li><li>Impedit quo minus id quod maxime</li></ul></div>
-          <div class="usage-card"><div class="usage-card-header"><div class="usage-icon dont-icon"><i data-lucide="x" style="width:12px;height:12px"></i></div><div class="usage-card-title">Temporibus autem quibusdam</div></div><ul class="usage-list"><li>Et aut officiis debitis aut rerum necessitatibus</li><li>Saepe eveniet ut et voluptates repudiandae</li></ul></div>
-        </div></div>
+        <div class="usage-block">
+          <div class="usage-cols">
+            <div class="usage-card">
+              <div class="usage-card-header">
+                <div class="usage-icon dont-icon"><i data-lucide="x" style="width:12px;height:12px"></i></div>
+                <div class="usage-card-title">Form Inputs Requiring Submission</div>
+              </div>
+              <ul class="usage-list">
+                <li>Settings that only apply after the user taps a Save or Submit button — use a checkbox instead</li>
+                <li>When the action needs confirmation before taking effect</li>
+                <li>Multi-step flows where the toggle is one of many inputs being collected</li>
+              </ul>
+            </div>
+            <div class="usage-card">
+              <div class="usage-card-header">
+                <div class="usage-icon dont-icon"><i data-lucide="x" style="width:12px;height:12px"></i></div>
+                <div class="usage-card-title">Multiple Related Options</div>
+              </div>
+              <ul class="usage-list">
+                <li>When the user needs to select one option from a group — use radio buttons instead</li>
+                <li>When options are not independent of each other</li>
+                <li>Filtering or sorting interfaces where selections affect each other</li>
+              </ul>
+            </div>
+          </div>
+          <div class="usage-cols">
+            <div class="usage-card">
+              <div class="usage-card-header">
+                <div class="usage-icon dont-icon"><i data-lucide="x" style="width:12px;height:12px"></i></div>
+                <div class="usage-card-title">Unclear or Ambiguous States</div>
+              </div>
+              <ul class="usage-list">
+                <li>When the on/off metaphor doesn't map clearly to the action being performed</li>
+                <li>Labels that don't clearly communicate what "on" means — always write labels as a noun or feature name, not as a question</li>
+                <li>When a third state (like "sometimes" or "partial") is needed — use a different control</li>
+              </ul>
+            </div>
+            <div class="usage-card">
+              <div class="usage-card-header">
+                <div class="usage-icon dont-icon"><i data-lucide="x" style="width:12px;height:12px"></i></div>
+                <div class="usage-card-title">Destructive or Irreversible Actions</div>
+              </div>
+              <ul class="usage-list">
+                <li>Actions that cannot be undone should use a modal confirmation instead</li>
+                <li>Deleting data, revoking access, or permanently changing account status</li>
+                <li>When the consequences of accidentally toggling are severe</li>
+              </ul>
+            </div>
+          </div>
+        </div>
       </section>
 
       <!-- 6 · TOKEN MAP -->
@@ -333,12 +502,46 @@
       <!-- 7 · ACCESSIBILITY -->
       <section class="doc-section" id="accessibility">
         <h2 class="section-title">Accessibility</h2>
-        <ul class="a11y-list">
-          <li><div><strong>Role:</strong> Use <code>role="switch"</code> with <code>aria-checked="true/false"</code>. If using a native <code>&lt;input type="checkbox"&gt;</code>, add <code>role="switch"</code> to override the checkbox semantics.</div></li>
-          <li><div><strong>Keyboard:</strong> <kbd>Space</kbd> toggles the switch on/off. <kbd>Tab</kbd> moves focus to the next element. The focus ring (2px blue + 4px glow) wraps the entire track for clear visibility.</div></li>
-          <li><div><strong>Label:</strong> Every switch must have a visible label associated via <code>&lt;label for="..."&gt;</code>. Description text is connected via <code>aria-describedby</code>.</div></li>
-          <li><div><strong>Motion:</strong> The thumb slides between positions. Respect <code>prefers-reduced-motion</code> by disabling the slide transition when the user has opted out of motion.</div></li>
-        </ul>
+
+        <div class="a11y-group">
+          <h3 class="a11y-group-title">Keyboard Navigation</h3>
+          <ul class="a11y-list">
+            <li><div><strong>Tab</strong> — move focus to the switch element.</div></li>
+            <li><div><strong>Shift + Tab</strong> — move focus backwards to the previous interactive element.</div></li>
+            <li><div><strong>Space</strong> — toggle the switch between on and off states.</div></li>
+          </ul>
+        </div>
+
+        <div class="a11y-group">
+          <h3 class="a11y-group-title">Screen Readers</h3>
+          <ul class="a11y-list">
+            <li><div>Switch uses <code>role="switch"</code> with <code>aria-checked="true"</code> or <code>aria-checked="false"</code> to communicate current state.</div></li>
+            <li><div><code>aria-labelledby</code> points to the visible label element.</div></li>
+            <li><div><code>aria-describedby</code> points to the optional description text when present.</div></li>
+            <li><div>State change is announced immediately when the switch is toggled — no need to re-navigate.</div></li>
+            <li><div>Avoid including "on" or "off" in the label text — <code>aria-checked</code> already communicates this to screen readers.</div></li>
+          </ul>
+        </div>
+
+        <div class="a11y-group">
+          <h3 class="a11y-group-title">Focus Management</h3>
+          <ul class="a11y-list">
+            <li><div>Focus ring must be visible on the switch track when navigated to via keyboard.</div></li>
+            <li><div>Focus ring must meet 3:1 contrast ratio against the background.</div></li>
+            <li><div>Focus does not move automatically when a switch is toggled — the user remains on the element.</div></li>
+          </ul>
+        </div>
+
+        <div class="a11y-group">
+          <h3 class="a11y-group-title">Visual</h3>
+          <ul class="a11y-list">
+            <li><div>Active track color must meet 3:1 contrast ratio against the background for non-text UI components.</div></li>
+            <li><div>Label text must meet 4.5:1 contrast ratio per WCAG AA.</div></li>
+            <li><div>Disabled states use full-opacity colors rather than reduced opacity to maintain contrast compliance.</div></li>
+            <li><div>Compact switch touch target must be padded to a minimum of 44×44px — the full label row should be the interactive area.</div></li>
+            <li><div>Every switch must have a visible label — never use a switch without one.</div></li>
+          </ul>
+        </div>
       </section>
 
       <!-- 8 · RELATED -->
