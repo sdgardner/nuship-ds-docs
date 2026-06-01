@@ -165,7 +165,7 @@
       <section class="doc-section" id="definition">
         <div class="def-eyebrow">Inputs</div>
         <h1 class="def-title">Slider</h1>
-        <p class="def-desc">The Slider lets users select a value from a continuous range by dragging a thumb along a track. It displays the current value in a badge above the thumb and supports optional min/max labels, a label, and multiple interaction states.</p>
+        <p class="def-desc">The Slider component allows users to select a numeric value from a continuous range by dragging a thumb along a track. Sliders are ideal for adjusting settings, filtering by price ranges, or selecting values where the relative magnitude matters more than the exact number.</p>
         <div class="def-tags">
           <span class="bdg bdg--purple bdg--outline">Not Developed</span>
           <span class="bdg bdg--green bdg--outline">Figma</span>
@@ -443,23 +443,45 @@
             <div class="usage-card">
               <div class="usage-card-header">
                 <div class="usage-icon do-icon"><i data-lucide="check" style="width:12px;height:12px"></i></div>
-                <div class="usage-card-title">Use for continuous range selection</div>
+                <div class="usage-card-title">Continuous Range Selection</div>
               </div>
               <ul class="usage-list">
-                <li>Use when the user needs to select a value from a continuous range (volume, brightness, price)</li>
-                <li>Show the value badge so users can see the precise value while dragging</li>
-                <li>Include min/max labels to communicate the full range at a glance</li>
+                <li>Selecting approximate values from a range where precision isn't critical</li>
+                <li>Price range filters (e.g., $0 – $1,000)</li>
+                <li>Distance radius selection (e.g., 0 – 100 miles)</li>
+                <li>Weight or size ranges</li>
               </ul>
             </div>
             <div class="usage-card">
               <div class="usage-card-header">
                 <div class="usage-icon do-icon"><i data-lucide="check" style="width:12px;height:12px"></i></div>
-                <div class="usage-card-title">Provide enough track width</div>
+                <div class="usage-card-title">Visual Feedback Matters</div>
               </div>
               <ul class="usage-list">
-                <li>Give the slider sufficient horizontal space so users can make fine adjustments comfortably</li>
-                <li>Use a step value that reflects the precision the user actually needs</li>
-                <li>Add a label when the slider's purpose is not immediately obvious from context</li>
+                <li>Settings where seeing the relative position provides context</li>
+                <li>Adjustments that benefit from immediate visual representation of the value</li>
+              </ul>
+            </div>
+          </div>
+          <div class="usage-cols">
+            <div class="usage-card">
+              <div class="usage-card-header">
+                <div class="usage-icon do-icon"><i data-lucide="check" style="width:12px;height:12px"></i></div>
+                <div class="usage-card-title">Mobile-optimized Input</div>
+              </div>
+              <ul class="usage-list">
+                <li>Touch-friendly alternative to typing numeric values</li>
+                <li>Easier thumb dragging than keyboard input on mobile devices</li>
+              </ul>
+            </div>
+            <div class="usage-card">
+              <div class="usage-card-header">
+                <div class="usage-icon do-icon"><i data-lucide="check" style="width:12px;height:12px"></i></div>
+                <div class="usage-card-title">Approximate Adjustments</div>
+              </div>
+              <ul class="usage-list">
+                <li>When users are exploring or browsing rather than entering exact values</li>
+                <li>Filtering search results by flexible ranges</li>
               </ul>
             </div>
           </div>
@@ -472,24 +494,96 @@
             <div class="usage-card">
               <div class="usage-card-header">
                 <div class="usage-icon dont-icon"><i data-lucide="x" style="width:12px;height:12px"></i></div>
-                <div class="usage-card-title">Don't use for precise numeric entry</div>
+                <div class="usage-card-title">Precise Value Entry</div>
               </div>
               <ul class="usage-list">
-                <li>Don't use a slider when the user needs to enter a specific number — use Number Input instead</li>
-                <li>Don't use for selecting from a finite list of named options — use Select or Radio Buttons</li>
+                <li>Exact dollar amounts or financial inputs (use number input field instead)</li>
+                <li>Specific dates or times (use date/time picker)</li>
+                <li>Values requiring decimal precision</li>
               </ul>
             </div>
             <div class="usage-card">
               <div class="usage-card-header">
                 <div class="usage-icon dont-icon"><i data-lucide="x" style="width:12px;height:12px"></i></div>
-                <div class="usage-card-title">Don't omit feedback</div>
+                <div class="usage-card-title">Binary or Few Options</div>
               </div>
               <ul class="usage-list">
-                <li>Don't hide the value badge when precision matters — users need to see what they are setting</li>
-                <li>Don't disable a slider without explaining why the setting is unavailable</li>
+                <li>On/off states (use switch/toggle)</li>
+                <li>3–5 discrete choices (use radio buttons or segmented control)</li>
+                <li>Specific preset values (use dropdown or button group)</li>
               </ul>
             </div>
           </div>
+          <div class="usage-cols">
+            <div class="usage-card">
+              <div class="usage-card-header">
+                <div class="usage-icon dont-icon"><i data-lucide="x" style="width:12px;height:12px"></i></div>
+                <div class="usage-card-title">Critical or Legal Values</div>
+              </div>
+              <ul class="usage-list">
+                <li>Financial transactions requiring exact amounts</li>
+                <li>Legal or contractual numbers</li>
+                <li>Any value where mistakes have serious consequences</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- 5b · MESSAGING -->
+      <section class="doc-section" id="messaging">
+        <h2 class="section-title">Messaging</h2>
+
+        <div class="a11y-group">
+          <h3 class="a11y-group-title">Group Label</h3>
+          <p style="font-weight:600;color:var(--text-primary);margin:0 0 8px;">Use clear, descriptive labels that tell users what the slider controls:</p>
+          <ul class="a11y-list">
+            <li><div>Keep labels concise and action-oriented.</div></li>
+            <li><div>Include required indicator (<span style="color:#A12F2F;">*</span>) when the filter or input is mandatory.</div></li>
+            <li><div>Use title case for labels.</div></li>
+            <li><div>Keep labels under 50 characters for readability.</div></li>
+          </ul>
+          <p style="font-weight:600;color:var(--text-primary);margin:14px 0 8px;">Example labels:</p>
+          <ul class="a11y-list">
+            <li><div>"Price Range"</div></li>
+            <li><div>"Delivery Distance"</div></li>
+            <li><div>"Shipment Weight Limit"</div></li>
+          </ul>
+        </div>
+
+        <div class="a11y-group">
+          <h3 class="a11y-group-title">Helper Text</h3>
+          <p style="font-weight:600;color:var(--text-primary);margin:0 0 8px;">Provide additional context to guide users:</p>
+          <ul class="a11y-list">
+            <li><div>Explain what the range represents or what units are being used.</div></li>
+            <li><div>Clarify any constraints or limitations (e.g., "Based on your location").</div></li>
+            <li><div>Describe what happens when the value is adjusted.</div></li>
+            <li><div>Keep helper text brief (1–2 lines maximum).</div></li>
+          </ul>
+          <p style="font-weight:600;color:var(--text-primary);margin:14px 0 8px;">Example helper text:</p>
+          <ul class="a11y-list">
+            <li><div>"Adjust to filter shipments within your preferred price range"</div></li>
+            <li><div>"Maximum weight capacity for this shipment type"</div></li>
+            <li><div>"Shows carriers available within this distance from your location"</div></li>
+          </ul>
+        </div>
+
+        <div class="a11y-group">
+          <h3 class="a11y-group-title">Best Practices</h3>
+          <p style="font-weight:600;color:var(--text-primary);margin:0 0 8px;">✅ Do:</p>
+          <ul class="a11y-list">
+            <li><div>Always label sliders — unlabeled sliders create confusion.</div></li>
+            <li><div>Use helper text when the range or units might be unclear.</div></li>
+            <li><div>Match label terminology to what users see elsewhere in the app.</div></li>
+            <li><div>Test labels with actual users to ensure clarity.</div></li>
+          </ul>
+          <p style="font-weight:600;color:var(--text-primary);margin:14px 0 8px;">❌ Don't:</p>
+          <ul class="a11y-list">
+            <li><div>Use vague labels like "Slider 1" or "Adjust value".</div></li>
+            <li><div>Write lengthy helper text that requires scrolling.</div></li>
+            <li><div>Include redundant information between label and helper text.</div></li>
+            <li><div>Use technical jargon unless the audience expects it.</div></li>
+          </ul>
         </div>
       </section>
 
@@ -602,6 +696,7 @@
         <li><a href="#variants"      id="rn-variants">States</a></li>
         <li><a href="#properties"    id="rn-properties">Properties</a></li>
         <li><a href="#usage"         id="rn-usage">Usage</a></li>
+        <li><a href="#messaging"     id="rn-messaging">Messaging</a></li>
         <li><a href="#tokens"        id="rn-tokens">Tokens</a></li>
         <li><a href="#accessibility" id="rn-accessibility">Accessibility</a></li>
         <li><a href="#related"       id="rn-related">Related</a></li>
@@ -641,7 +736,7 @@
     lucide.createIcons();
   }
 
-  const sections = ['definition','anatomy','variants','properties','usage','tokens','accessibility','related'];
+  const sections = ['definition','anatomy','variants','properties','usage','messaging','tokens','accessibility','related'];
   const observer = new IntersectionObserver(entries => {
     entries.forEach(e => {
       if (e.isIntersecting) {
