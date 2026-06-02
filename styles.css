@@ -34,13 +34,7 @@ body {
   background: var(--text-secondary); border-radius: 2px;
 }
 .hamburger i { color: var(--text-secondary); display: flex; }
-.bc {
-  display: flex; align-items: center; gap: 6px;
-  font-size: 14px; color: var(--text-tertiary);
-}
-.bc a { color: var(--text-tertiary); text-decoration: none; transition: color .12s; }
-.bc a:hover { color: var(--text-link); }
-.bc .cur { color: var(--text-primary); font-weight: 700; }
+.bc { display: none; }
 
 .nav-actions { margin-left: auto; display: flex; align-items: center; gap: 8px; }
 .toggle-wrap {
