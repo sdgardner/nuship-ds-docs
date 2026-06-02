@@ -11,73 +11,241 @@
   <script src="nav-scroll.js" defer></script>
   <style>
     /* ─────────────────────────────────────────────────────────────
-       HOME — Direction 02 (Centered & Calm)
-       Implementation of Skid Home Explorations · Design 2 using
-       nuShip tokens + components. Sidebar is hidden by default on
-       this page (full-bleed marketing splash); the hamburger toggles
-       it on if the user wants to see the component index.
+       HOME — Direction 02 with floating-cards hero ported from the
+       Foundations page. Sidebar hidden by default; hamburger toggles
+       it on for component navigation.
        ───────────────────────────────────────────────────────────── */
+    :root {
+      --home-blue: #016692;
+      --home-mono: ui-monospace, "SF Mono", "Menlo", Consolas, monospace;
+    }
+
+    .content-wrap { overflow-x: clip; }
 
     .home-main {
       max-width: 1200px;
       margin: 0 auto;
-      padding: 72px 40px 96px;
+      padding: 56px 40px 96px;
     }
     @media (max-width: 720px) {
-      .home-main { padding: 56px 20px 72px; }
+      .home-main { padding: 40px 20px 72px; }
     }
 
-    /* ─── HERO ─────────────────────────────────────────────────── */
-    .home-hero {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      gap: 22px;
-      max-width: 680px;
-      margin: 0 auto;
-      text-align: center;
+    /* ═══ HERO BAND — blue full-bleed with floating-card stage ═══ */
+    .home-hero-band {
+      position: relative;
+      background: var(--home-blue);
+      color: #fff;
+      padding: 88px 56px 96px;
+      /* Extend the blue paint to the viewport edges without affecting layout */
+      box-shadow: 0 0 0 100vmax var(--home-blue);
+      clip-path: inset(0 -100vmax);
+      overflow: visible;
     }
+    .home-hero-inner {
+      max-width: 1180px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: 1fr 460px;
+      gap: 56px;
+      align-items: center;
+      position: relative;
+      z-index: 2;
+    }
+    .home-hero-copy { min-width: 0; }
+
     .home-eyebrow {
       display: inline-flex;
       align-items: center;
       gap: 8px;
-      font-size: 12px;
-      font-weight: 700;
-      line-height: 16px;
-      letter-spacing: 0.6px;
+      font-family: var(--home-mono);
+      font-size: 11px;
+      letter-spacing: 0.18em;
       text-transform: uppercase;
-      color: var(--action-secondary);
+      font-weight: 700;
+      margin: 0 0 24px;
+      opacity: 0.9;
+      color: #fff;
     }
     .home-eyebrow::before {
       content: "";
-      width: 18px;
-      height: 2px;
-      background: var(--action-secondary);
-      border-radius: 2px;
+      width: 28px;
+      height: 1px;
+      background: currentColor;
+      opacity: 0.6;
     }
     .home-title {
-      font-family: inherit;
-      font-size: 32px;
-      line-height: 38px;
-      font-weight: 700;
-      letter-spacing: -0.2px;
-      color: var(--text-primary);
-      margin: 0;
+      font-family: 'Lato', sans-serif;
+      font-size: clamp(36px, 5vw, 56px);
+      line-height: 1.05;
+      letter-spacing: -0.02em;
+      margin: 0 0 24px;
+      font-weight: 300;
+      color: #fff;
+      max-width: 640px;
     }
+    .home-title b { font-weight: 900; }
     .home-sub {
-      font-size: 18px;
-      line-height: 26px;
+      font-size: 17px;
+      line-height: 1.6;
       font-weight: 400;
-      color: var(--text-secondary);
-      margin: 0;
-      max-width: 42ch;
+      color: rgba(255, 255, 255, 0.85);
+      margin: 0 0 32px;
+      max-width: 540px;
     }
     .home-cta-row {
       display: flex;
       gap: 12px;
       flex-wrap: wrap;
-      justify-content: center;
+      margin: 0;
+    }
+    /* Adapt the existing .btn for the blue background */
+    .home-cta-row .btn--primary {
+      background: #fff;
+      color: var(--home-blue);
+      border-color: #fff;
+    }
+    .home-cta-row .btn--primary:hover {
+      background: rgba(255, 255, 255, 0.92);
+      border-color: rgba(255, 255, 255, 0.92);
+      color: var(--home-blue);
+    }
+    .home-cta-row .btn--tertiary {
+      background: transparent;
+      color: #fff;
+      border-color: rgba(255, 255, 255, 0.55);
+    }
+    .home-cta-row .btn--tertiary:hover {
+      background: rgba(255, 255, 255, 0.08);
+      border-color: #fff;
+      color: #fff;
+    }
+
+    /* ─── Floating stage cluster (ported from foundations hero) ─── */
+    .home-stage {
+      position: relative;
+      width: 100%;
+      height: 380px;
+    }
+    .home-stage-float {
+      position: absolute;
+      will-change: transform, opacity;
+      opacity: 0;
+      transform: translateY(18px);
+      transition: opacity 520ms cubic-bezier(0.2, 0, 0, 1),
+                  transform 520ms cubic-bezier(0.2, 0, 0, 1);
+    }
+    .home-stage.is-in .home-stage-float { opacity: 1; transform: translateY(0); }
+    .home-stage.is-in .sf1 { transition-delay: 60ms; }
+    .home-stage.is-in .sf2 { transition-delay: 150ms; }
+    .home-stage.is-in .sf3 { transition-delay: 240ms; }
+    .home-stage.is-in .sf4 { transition-delay: 330ms; }
+    .home-stage.is-in .sf5 { transition-delay: 420ms; }
+
+    .home-stage-float .ff {
+      background: rgba(255, 255, 255, 0.08);
+      border: 1px solid rgba(255, 255, 255, 0.22);
+      border-radius: 12px;
+      padding: 14px 16px;
+      backdrop-filter: blur(8px);
+      -webkit-backdrop-filter: blur(8px);
+      box-shadow: 0 24px 60px -20px rgba(0, 0, 0, 0.45);
+      color: rgba(255, 255, 255, 0.92);
+      font-family: var(--home-mono);
+      font-size: 12px;
+    }
+
+    /* Idle bob — each float drifts gently, out of phase */
+    @keyframes home-bob { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-7px); } }
+    .home-stage.is-in .ff { animation: home-bob 7s ease-in-out infinite; }
+    .home-stage.is-in .sf2 .ff { animation-duration: 8.4s; animation-delay: -1.2s; }
+    .home-stage.is-in .sf3 .ff { animation-duration: 6.2s; animation-delay: -0.6s; }
+    .home-stage.is-in .sf4 .ff { animation-duration: 9s;   animation-delay: -2.1s; }
+    .home-stage.is-in .sf5 .ff { animation-duration: 7.8s; animation-delay: -0.3s; }
+
+    @media (prefers-reduced-motion: reduce) {
+      .home-stage-float { opacity: 1 !important; transform: none !important; transition: none !important; }
+      .home-stage .ff { animation: none !important; }
+    }
+
+    /* Float positions */
+    .home-stage .sf1 { top: 0;     left: 0;    width: 240px; }
+    .home-stage .sf2 { top: 36px;  right: 0;   width: 200px; }
+    .home-stage .sf3 { top: 150px; left: 36px; width: 220px; }
+    .home-stage .sf4 { bottom: 16px; right: 24px; width: 180px; }
+    .home-stage .sf5 { bottom: 0;  left: 0;    width: 200px; }
+
+    /* Float contents */
+    .ff-row {
+      display: flex; align-items: center; gap: 10px;
+      padding: 6px 0;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+    }
+    .ff-row:last-child { border-bottom: 0; }
+    .ff-row .dot {
+      width: 16px; height: 16px;
+      border-radius: 4px;
+      flex-shrink: 0;
+      border: 1px solid rgba(255, 255, 255, 0.18);
+    }
+    .ff-row .nm { flex: 1; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+    .ff-row .hx { font-size: 11px; opacity: 0.6; }
+
+    .ff-title {
+      font-family: 'Lato', sans-serif;
+      font-size: 11px;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      font-weight: 900;
+      opacity: 0.7;
+      margin: 0 0 8px;
+    }
+    .ff-type {
+      font-family: 'Lato', sans-serif;
+      font-size: 28px;
+      font-weight: 900;
+      line-height: 1.1;
+      margin: 0;
+    }
+    .ff-type small {
+      display: block;
+      font-size: 11px;
+      font-family: var(--home-mono);
+      opacity: 0.6;
+      letter-spacing: 0.02em;
       margin-top: 6px;
+      font-weight: 400;
+    }
+    .ff-radius {
+      width: 56px; height: 56px;
+      background: rgba(255, 255, 255, 0.16);
+      border: 1px solid rgba(255, 255, 255, 0.28);
+      border-radius: 16px;
+      margin: 4px auto 8px;
+    }
+    .ff-spacing {
+      display: flex;
+      align-items: flex-end;
+      gap: 6px;
+      height: 28px;
+      margin: 8px 0 4px;
+    }
+    .ff-spacing span {
+      flex: 1;
+      background: rgba(255, 255, 255, 0.4);
+      border-radius: 2px;
+    }
+    .ff-spacing span:nth-child(1) { height: 25%; }
+    .ff-spacing span:nth-child(2) { height: 45%; }
+    .ff-spacing span:nth-child(3) { height: 70%; }
+    .ff-spacing span:nth-child(4) { height: 100%; }
+
+    /* Responsive — collapse to single column, stage becomes a flex row */
+    @media (max-width: 960px) {
+      .home-hero-band { padding: 64px 28px 76px; }
+      .home-hero-inner { grid-template-columns: 1fr; gap: 32px; }
+      .home-stage { height: auto; display: flex; flex-wrap: wrap; gap: 16px; justify-content: center; }
+      .home-stage-float { position: static !important; width: auto !important; }
     }
 
     /* ─── COMPONENT SHELF ──────────────────────────────────────── */
@@ -298,18 +466,73 @@
 
   <!-- CONTENT -->
   <div class="content-wrap" id="contentWrap">
-    <main class="home-main">
 
-      <!-- ─── HERO ────────────────────────────────────────────── -->
-      <section class="home-hero">
-        <span class="home-eyebrow">nuShip Design System</span>
-        <h1 class="home-title">Delivering the Impossible</h1>
-        <p class="home-sub">Ship the big stuff with peace of mind — a shared component and token library for every nuShip surface.</p>
-        <div class="home-cta-row">
-          <a href="#three-ways-in" class="btn btn--primary btn--lg">Get Started</a>
-          <a href="button.html" class="btn btn--tertiary btn--lg">View Components</a>
+    <!-- ─── HERO BAND (full-bleed blue + floating cards) ───────── -->
+    <section class="home-hero-band">
+      <div class="home-hero-inner">
+
+        <div class="home-hero-copy">
+          <p class="home-eyebrow">nuShip Design System</p>
+          <h1 class="home-title">Delivering the <b>Impossible.</b></h1>
+          <p class="home-sub">Ship the big stuff with peace of mind — a shared component and token library for every nuShip surface.</p>
+          <div class="home-cta-row">
+            <a href="#three-ways-in" class="btn btn--primary btn--lg">Get Started</a>
+            <a href="button.html" class="btn btn--tertiary btn--lg">View Components</a>
+          </div>
         </div>
-      </section>
+
+        <div class="home-stage" id="homeStage" aria-hidden="true">
+          <!-- 1 · Status color swatches -->
+          <div class="home-stage-float sf1">
+            <div class="ff">
+              <p class="ff-title">Status</p>
+              <div class="ff-row"><span class="dot" style="background:#FCE8E8"></span><span class="nm">status.error.bg</span><span class="hx">#FCE8E8</span></div>
+              <div class="ff-row"><span class="dot" style="background:#E8F2E8"></span><span class="nm">status.success.bg</span><span class="hx">#E8F2E8</span></div>
+              <div class="ff-row"><span class="dot" style="background:#E5EEF5"></span><span class="nm">status.info.bg</span><span class="hx">#E5EEF5</span></div>
+            </div>
+          </div>
+
+          <!-- 2 · Type sample -->
+          <div class="home-stage-float sf2">
+            <div class="ff">
+              <p class="ff-title">Type</p>
+              <p class="ff-type">Aa<small>Lato · 32 / 38</small></p>
+            </div>
+          </div>
+
+          <!-- 3 · Surface layer stack -->
+          <div class="home-stage-float sf3">
+            <div class="ff">
+              <p class="ff-title">Surface</p>
+              <div class="ff-row"><span class="dot" style="background:#FFFFFF"></span><span class="nm">layer-01</span><span class="hx">#FFFFFF</span></div>
+              <div class="ff-row"><span class="dot" style="background:#F3F4F6"></span><span class="nm">layer-02</span><span class="hx">#F3F4F6</span></div>
+              <div class="ff-row"><span class="dot" style="background:#E5E7EB"></span><span class="nm">layer-03</span><span class="hx">#E5E7EB</span></div>
+            </div>
+          </div>
+
+          <!-- 4 · Radius tile -->
+          <div class="home-stage-float sf4">
+            <div class="ff" style="text-align:center;">
+              <p class="ff-title">Radius</p>
+              <div class="ff-radius"></div>
+              <span style="font-family:var(--home-mono);font-size:11px;opacity:0.7;">radius / lg · 16px</span>
+            </div>
+          </div>
+
+          <!-- 5 · Spacing scale -->
+          <div class="home-stage-float sf5">
+            <div class="ff">
+              <p class="ff-title">Spacing</p>
+              <div class="ff-spacing"><span></span><span></span><span></span><span></span></div>
+              <span style="font-family:var(--home-mono);font-size:11px;opacity:0.7;">1x · 2x · 3x · 4x</span>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <main class="home-main">
 
       <!-- ─── COMPONENT SHELF ─────────────────────────────────── -->
       <div class="home-shelf">
@@ -432,6 +655,25 @@
     d.setAttribute('data-theme', next);
     try { localStorage.setItem('theme', next); } catch (e) {}
   }
+
+  // Floating-card hero stage: staggered fade-up on scroll-in.
+  (function initStage(){
+    const stage = document.getElementById('homeStage');
+    if (!stage) return;
+    if (!('IntersectionObserver' in window)) {
+      stage.classList.add('is-in');
+      return;
+    }
+    const obs = new IntersectionObserver((entries) => {
+      entries.forEach(e => {
+        if (e.isIntersecting) {
+          stage.classList.add('is-in');
+          obs.disconnect();
+        }
+      });
+    }, { threshold: 0.15 });
+    obs.observe(stage);
+  })();
 </script>
 </body>
 </html>
