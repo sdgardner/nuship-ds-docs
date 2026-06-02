@@ -18,52 +18,37 @@
     .col-sub { font-size: 14px; line-height: 19px; color: var(--text-secondary); margin: 0; }
 
     /* ─── Toolbar (search + count + theme preview) ───────────── */
-    /* Sentinel sits above the toolbar; we observe it to detect sticky state. */
-    .col-sentinel { height: 1px; margin-top: -1px; }
-
+    /* No sticky behaviour — scrolls naturally with the page. */
     .col-toolbar {
       display: flex; align-items: center; gap: 24px;
       flex-wrap: wrap;
-      padding: 12px 0;
+      padding: 0;
       margin-bottom: 28px;
-      position: sticky; top: 48px; z-index: 8;
-      background: transparent;
-      transition: background 180ms, box-shadow 180ms, padding 180ms;
-    }
-    /* When the toolbar leaves the page flow (stuck), give it a layer-02
-       backdrop, a hairline separator, and a soft shadow so it reads as
-       a floating utility bar — not a junior bordered panel. */
-    .col-toolbar.is-stuck {
-      padding: 14px 24px;
-      margin-left: -24px;
-      margin-right: -24px;
-      background: var(--surface-layer02);
-      border-bottom: 1px solid var(--border);
-      box-shadow: 0 6px 16px -8px rgba(15, 23, 42, 0.10);
-    }
-    [data-theme="dark"] .col-toolbar.is-stuck {
-      box-shadow: 0 6px 16px -8px rgba(0, 0, 0, 0.5);
     }
 
-    /* Skid search field — borderless variant for the toolbar */
+    /* Skid Search field — 48px height, surface-field background,
+       hover-darkens border, full pill radius (100px) per request,
+       1px focus ring + 4px glow exactly like the rest of Skid. */
     .col-search {
       display: flex; align-items: center; gap: 8px;
-      height: 40px; padding: 0 12px;
-      background: transparent;
-      border: none;
-      border-radius: 8px;
-      flex: 1; min-width: 240px; max-width: 440px;
-      transition: background 120ms, box-shadow 120ms;
+      height: 48px; padding: 0 16px;
+      background: var(--surface-field);
+      border: 1px solid var(--border);
+      border-radius: 100px;
+      flex: 1; min-width: 240px; max-width: 420px;
+      transition: border-color 120ms, box-shadow 120ms;
     }
-    .col-toolbar.is-stuck .col-search { background: var(--surface-card); }
+    .col-search:hover { border-color: var(--text-secondary); }
     .col-search:focus-within {
-      background: var(--surface-card);
-      box-shadow: inset 0 0 0 1px var(--border-focus),
-                  0 0 0 4px rgba(90, 191, 224, 0.22);
+      border-color: var(--border-focus);
+      box-shadow: 0 0 0 4px rgba(90, 191, 224, 0.35);
+    }
+    [data-theme="dark"] .col-search:focus-within {
+      box-shadow: 0 0 0 4px rgba(0, 131, 187, 0.35);
     }
     .col-search-icon {
-      width: 18px; height: 18px;
-      color: var(--text-tertiary);
+      width: 20px; height: 20px;
+      color: var(--text-secondary);
       flex-shrink: 0;
     }
     .col-search input {
@@ -71,20 +56,20 @@
       height: 100%;
       background: transparent;
       border: none; outline: none;
-      font-family: inherit; font-size: 14px;
+      font-family: inherit; font-size: 16px; line-height: 22px;
       color: var(--text-primary);
       padding: 0;
     }
     .col-search input::placeholder { color: var(--text-tertiary); }
     .col-search-clear {
-      width: 20px; height: 20px;
+      width: 22px; height: 22px;
       border: none; background: transparent; cursor: pointer;
-      color: var(--text-tertiary);
+      color: var(--text-secondary);
       display: none; align-items: center; justify-content: center;
       border-radius: 100px;
       flex-shrink: 0;
     }
-    .col-search-clear:hover { color: var(--text-primary); background: var(--surface-layer03); }
+    .col-search-clear:hover { color: var(--text-primary); background: var(--surface-layer02); }
     .col-search-clear.show { display: inline-flex; }
 
     .col-count {
@@ -105,10 +90,9 @@
       border: none;
       border-radius: 100px;
     }
-    .col-toolbar.is-stuck .col-mode-toggle { background: var(--surface-card); }
     .col-mode-btn {
       display: inline-flex; align-items: center; gap: 6px;
-      height: 30px; padding: 0 14px;
+      height: 36px; padding: 0 16px;
       background: transparent; border: none; cursor: pointer;
       font-family: inherit; font-size: 13px; font-weight: 700;
       color: var(--text-tertiary);
@@ -120,7 +104,6 @@
     .col-mode-btn.is-active {
       background: var(--action-secondary); color: #FFFFFF;
     }
-    [data-theme="dark"] .col-mode-btn.is-active { background: var(--action-secondary); }
 
     /* ─── Section heading ───────────────────────────────────── */
     .col-section { margin-top: 40px; }
@@ -304,9 +287,6 @@
         <h1 class="col-title">Color</h1>
         <p class="col-sub">nuShip Design System · Color Styles</p>
       </header>
-
-      <!-- Sentinel: when this scrolls off-screen, the toolbar is "stuck" -->
-      <div id="colToolbarSentinel" class="col-sentinel" aria-hidden="true"></div>
 
       <!-- Toolbar -->
       <div class="col-toolbar" id="colToolbar" role="toolbar" aria-label="Color tools">
@@ -655,20 +635,6 @@
       searchEl.focus(); searchEl.select();
     }
   });
-
-  // ─── Sticky-state detection ────────────────────────────────
-  // When the sentinel above the toolbar leaves the viewport, the
-  // toolbar is in its sticky position — give it a layer-02 backdrop.
-  const toolbarEl = document.getElementById('colToolbar');
-  const sentinel  = document.getElementById('colToolbarSentinel');
-  if ('IntersectionObserver' in window && toolbarEl && sentinel) {
-    const obs = new IntersectionObserver(function(entries){
-      entries.forEach(function(e){
-        toolbarEl.classList.toggle('is-stuck', e.intersectionRatio === 0);
-      });
-    }, { threshold: [0, 1], rootMargin: '-49px 0px 0px 0px' });
-    obs.observe(sentinel);
-  }
 </script>
 </body>
 </html>
