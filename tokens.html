@@ -94,8 +94,8 @@
     }
     .fnd-hero-grid {
       display: grid;
-      grid-template-columns: 1fr 380px;
-      gap: 64px;
+      grid-template-columns: 1fr 460px;
+      gap: 56px;
       align-items: center;
     }
     .fnd-okr {
@@ -114,38 +114,128 @@
     }
     .fnd-okr i { width: 14px; height: 14px; }
 
-    /* Right-side tokens-panel mock */
-    .fnd-mock {
-      background: rgba(255, 255, 255, 0.06);
-      border: 1px solid rgba(255, 255, 255, 0.18);
-      border-radius: 12px;
-      padding: 20px;
-      backdrop-filter: blur(6px);
-      transform: rotate(-1deg);
-      box-shadow: 0 20px 60px rgba(0, 0, 0, 0.25);
+    /* ─── Hero stage: floating cluster of token cards
+       (ported from Skid Home Direction 02 stage animation) ─── */
+    .fnd-stage {
+      position: relative;
+      width: 100%;
+      height: 380px;
     }
-    .fnd-mock-row {
-      display: flex;
-      align-items: center;
-      gap: 12px;
-      padding: 10px 0;
-      border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+    .fnd-stage-float {
+      position: absolute;
+      will-change: transform, opacity;
+      opacity: 0;
+      transform: translateY(18px);
+      transition: opacity 520ms cubic-bezier(0.2, 0, 0, 1),
+                  transform 520ms cubic-bezier(0.2, 0, 0, 1);
+    }
+    .fnd-stage.is-in .fnd-stage-float { opacity: 1; transform: translateY(0); }
+    .fnd-stage.is-in .sf1 { transition-delay: 60ms; }
+    .fnd-stage.is-in .sf2 { transition-delay: 150ms; }
+    .fnd-stage.is-in .sf3 { transition-delay: 240ms; }
+    .fnd-stage.is-in .sf4 { transition-delay: 330ms; }
+    .fnd-stage.is-in .sf5 { transition-delay: 420ms; }
+
+    .fnd-stage-float .ff {
+      background: rgba(255, 255, 255, 0.08);
+      border: 1px solid rgba(255, 255, 255, 0.22);
+      border-radius: 12px;
+      padding: 14px 16px;
+      backdrop-filter: blur(8px);
+      box-shadow: 0 24px 60px -20px rgba(0, 0, 0, 0.45);
+      color: rgba(255, 255, 255, 0.92);
       font-family: var(--fnd-mono);
       font-size: 12px;
-      color: rgba(255, 255, 255, 0.88);
     }
-    .fnd-mock-row:last-child { border-bottom: 0; }
-    .fnd-mock-row .dot {
-      width: 18px;
-      height: 18px;
+
+    /* Idle drift — each float bobs gently, out of phase */
+    @keyframes fnd-bob { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-7px); } }
+    .fnd-stage.is-in .ff { animation: fnd-bob 7s ease-in-out infinite; }
+    .fnd-stage.is-in .sf2 .ff { animation-duration: 8.4s; animation-delay: -1.2s; }
+    .fnd-stage.is-in .sf3 .ff { animation-duration: 6.2s; animation-delay: -0.6s; }
+    .fnd-stage.is-in .sf4 .ff { animation-duration: 9s;   animation-delay: -2.1s; }
+    .fnd-stage.is-in .sf5 .ff { animation-duration: 7.8s; animation-delay: -0.3s; }
+
+    @media (prefers-reduced-motion: reduce) {
+      .fnd-stage-float { opacity: 1 !important; transform: none !important; transition: none !important; }
+      .fnd-stage .ff { animation: none !important; }
+    }
+
+    /* Float positions */
+    .sf1 { top: 0;    left: 0;    width: 240px; }
+    .sf2 { top: 36px; right: 0;   width: 200px; }
+    .sf3 { top: 150px; left: 36px; width: 220px; }
+    .sf4 { bottom: 16px; right: 24px; width: 180px; }
+    .sf5 { bottom: 0;  left: 0;   width: 200px; }
+
+    /* Float contents — varied so each card teaches something different */
+    .ff-row {
+      display: flex; align-items: center; gap: 10px;
+      padding: 6px 0;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+    }
+    .ff-row:last-child { border-bottom: 0; }
+    .ff-row .dot {
+      width: 16px; height: 16px;
       border-radius: 4px;
       flex-shrink: 0;
-      border: 1px solid rgba(255, 255, 255, 0.2);
+      border: 1px solid rgba(255, 255, 255, 0.18);
     }
-    .fnd-mock-row .name { flex: 1; }
-    .fnd-mock-row .hex {
+    .ff-row .nm { flex: 1; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+    .ff-row .hx { font-size: 11px; opacity: 0.6; }
+
+    .ff-title {
+      font-family: 'Lato', sans-serif;
       font-size: 11px;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      font-weight: 900;
+      opacity: 0.7;
+      margin: 0 0 8px;
+    }
+    .ff-type {
+      font-family: 'Lato', sans-serif;
+      font-size: 28px;
+      font-weight: 900;
+      line-height: 1.1;
+      margin: 0;
+    }
+    .ff-type small {
+      display: block;
+      font-size: 11px;
+      font-family: var(--fnd-mono);
       opacity: 0.6;
+      letter-spacing: 0.02em;
+      margin-top: 6px;
+      font-weight: 400;
+    }
+    .ff-radius {
+      width: 56px; height: 56px;
+      background: rgba(255, 255, 255, 0.16);
+      border: 1px solid rgba(255, 255, 255, 0.28);
+      border-radius: 16px;
+      margin: 4px auto 8px;
+    }
+    .ff-spacing {
+      display: flex;
+      align-items: flex-end;
+      gap: 6px;
+      height: 28px;
+      margin: 8px 0 4px;
+    }
+    .ff-spacing span {
+      flex: 1;
+      background: rgba(255, 255, 255, 0.4);
+      border-radius: 2px;
+    }
+    .ff-spacing span:nth-child(1) { height: 25%; }
+    .ff-spacing span:nth-child(2) { height: 45%; }
+    .ff-spacing span:nth-child(3) { height: 70%; }
+    .ff-spacing span:nth-child(4) { height: 100%; }
+
+    @media (max-width: 960px) {
+      .fnd-stage { height: auto; display: flex; flex-wrap: wrap; gap: 16px; justify-content: center; }
+      .fnd-stage-float { position: static !important; width: auto !important; }
     }
 
     /* ─── Band 2 — Three Pillars (Light) ─── */
@@ -517,15 +607,52 @@
               </div>
             </div>
 
-            <div class="fnd-mock" aria-hidden="true">
-              <div class="fnd-mock-row"><span class="dot" style="background:#FCE8E8"></span><span class="name">status.error.bg</span><span class="hex">#FCE8E8</span></div>
-              <div class="fnd-mock-row"><span class="dot" style="background:#E8F2E8"></span><span class="name">status.success.bg</span><span class="hex">#E8F2E8</span></div>
-              <div class="fnd-mock-row"><span class="dot" style="background:#E5EEF5"></span><span class="name">status.info.bg</span><span class="hex">#E5EEF5</span></div>
-              <div class="fnd-mock-row"><span class="dot" style="background:#FFFFFF"></span><span class="name">surface.shell</span><span class="hex">#FFFFFF</span></div>
-              <div class="fnd-mock-row"><span class="dot" style="background:#F3F4F6"></span><span class="name">surface.layer-01</span><span class="hex">#F3F4F6</span></div>
-              <div class="fnd-mock-row"><span class="dot" style="background:#E5E7EB"></span><span class="name">surface.layer-02</span><span class="hex">#E5E7EB</span></div>
-              <div class="fnd-mock-row"><span class="dot" style="background:#374151"></span><span class="name">text.primary</span><span class="hex">#374151</span></div>
-              <div class="fnd-mock-row"><span class="dot" style="background:#4B5563"></span><span class="name">text.secondary</span><span class="hex">#4B5563</span></div>
+            <div class="fnd-stage" id="fndStage" aria-hidden="true">
+              <!-- 1 · Status color swatches -->
+              <div class="fnd-stage-float sf1">
+                <div class="ff">
+                  <p class="ff-title">Status</p>
+                  <div class="ff-row"><span class="dot" style="background:#FCE8E8"></span><span class="nm">status.error.bg</span><span class="hx">#FCE8E8</span></div>
+                  <div class="ff-row"><span class="dot" style="background:#E8F2E8"></span><span class="nm">status.success.bg</span><span class="hx">#E8F2E8</span></div>
+                  <div class="ff-row"><span class="dot" style="background:#E5EEF5"></span><span class="nm">status.info.bg</span><span class="hx">#E5EEF5</span></div>
+                </div>
+              </div>
+
+              <!-- 2 · Type sample -->
+              <div class="fnd-stage-float sf2">
+                <div class="ff">
+                  <p class="ff-title">Type</p>
+                  <p class="ff-type">Aa<small>Lato · 32 / 38</small></p>
+                </div>
+              </div>
+
+              <!-- 3 · Surface layer stack -->
+              <div class="fnd-stage-float sf3">
+                <div class="ff">
+                  <p class="ff-title">Surface</p>
+                  <div class="ff-row"><span class="dot" style="background:#FFFFFF"></span><span class="nm">layer-01</span><span class="hx">#FFFFFF</span></div>
+                  <div class="ff-row"><span class="dot" style="background:#F3F4F6"></span><span class="nm">layer-02</span><span class="hx">#F3F4F6</span></div>
+                  <div class="ff-row"><span class="dot" style="background:#E5E7EB"></span><span class="nm">layer-03</span><span class="hx">#E5E7EB</span></div>
+                </div>
+              </div>
+
+              <!-- 4 · Radius tile -->
+              <div class="fnd-stage-float sf4">
+                <div class="ff" style="text-align:center;">
+                  <p class="ff-title">Radius</p>
+                  <div class="ff-radius"></div>
+                  <span style="font-family:var(--fnd-mono);font-size:11px;opacity:0.7;">radius / lg · 16px</span>
+                </div>
+              </div>
+
+              <!-- 5 · Spacing scale -->
+              <div class="fnd-stage-float sf5">
+                <div class="ff">
+                  <p class="ff-title">Spacing</p>
+                  <div class="ff-spacing"><span></span><span></span><span></span><span></span></div>
+                  <span style="font-family:var(--fnd-mono);font-size:11px;opacity:0.7;">1x · 2x · 3x · 4x</span>
+                </div>
+              </div>
             </div>
           </div>
         </div>
@@ -708,6 +835,25 @@
     const d = document.documentElement;
     d.setAttribute('data-theme', d.getAttribute('data-theme') === 'dark' ? 'light' : 'dark');
   }
+
+  // ── Stage reveal: trigger staggered fade-up when the hero scrolls in ──
+  (function initStage(){
+    const stage = document.getElementById('fndStage');
+    if (!stage) return;
+    if (!('IntersectionObserver' in window)) {
+      stage.classList.add('is-in');
+      return;
+    }
+    const obs = new IntersectionObserver((entries) => {
+      entries.forEach(e => {
+        if (e.isIntersecting) {
+          stage.classList.add('is-in');
+          obs.disconnect();
+        }
+      });
+    }, { threshold: 0.15 });
+    obs.observe(stage);
+  })();
 </script>
 </body>
 </html>
