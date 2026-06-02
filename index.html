@@ -46,7 +46,7 @@
       max-width: 1180px;
       margin: 0 auto;
       display: grid;
-      grid-template-columns: 1fr 460px;
+      grid-template-columns: minmax(0, 1fr) 460px;
       gap: 56px;
       align-items: center;
       position: relative;
@@ -77,13 +77,13 @@
     }
     .home-title {
       font-family: 'Lato', sans-serif;
-      font-size: clamp(36px, 5vw, 56px);
-      line-height: 1.05;
+      font-size: clamp(32px, 4vw, 48px);
+      line-height: 1.08;
       letter-spacing: -0.02em;
       margin: 0 0 24px;
       font-weight: 300;
       color: #fff;
-      max-width: 640px;
+      max-width: 540px;
     }
     .home-title b { font-weight: 900; }
     .home-sub {
@@ -246,12 +246,29 @@
     .ff-spacing span:nth-child(3) { height: 70%; }
     .ff-spacing span:nth-child(4) { height: 100%; }
 
-    /* Responsive — collapse to single column, stage becomes a flex row */
-    @media (max-width: 960px) {
+    /* Responsive — collapse to single column before the 1fr column gets
+       squeezed by the fixed 460px stage column. */
+    @media (max-width: 1100px) {
       .home-hero-band { padding: 64px 28px 76px; }
-      .home-hero-inner { grid-template-columns: 1fr; gap: 32px; }
-      .home-stage { height: auto; display: flex; flex-wrap: wrap; gap: 16px; justify-content: center; }
-      .home-stage-float { position: static !important; width: auto !important; }
+      .home-hero-inner { grid-template-columns: 1fr; gap: 40px; }
+      .home-stage {
+        position: relative;
+        height: auto;
+        display: flex;
+        flex-wrap: wrap;
+        gap: 16px;
+        justify-content: center;
+        max-width: 760px;
+        margin: 0 auto;
+      }
+      .home-stage-float {
+        position: static !important;
+        width: auto !important;
+        flex: 0 1 220px;
+        opacity: 1 !important;
+        transform: none !important;
+      }
+      .home-stage .ff { animation: none !important; }
     }
 
     /* ─── COMPONENT SHELF ──────────────────────────────────────── */
