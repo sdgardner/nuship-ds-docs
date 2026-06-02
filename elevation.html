@@ -100,38 +100,6 @@
     }
     .ele-count em { font-style: normal; color: var(--text-primary); }
 
-    /* Skid segmented control */
-    .ele-mode-toggle {
-      display: inline-flex;
-      border: 1px solid var(--border);
-      border-radius: 4px;
-      overflow: hidden;
-      height: 40px;
-    }
-    .ele-mode-btn {
-      display: inline-flex; align-items: center; justify-content: center;
-      gap: 6px;
-      height: 100%; padding: 0 16px;
-      background: var(--surface-layer02);
-      border: none; border-right: 1px solid var(--border);
-      cursor: pointer;
-      font-family: inherit; font-size: 14px; font-weight: 700; line-height: 19px;
-      color: var(--text-secondary);
-      box-sizing: border-box;
-      transition: background 120ms, color 120ms;
-    }
-    .ele-mode-btn:last-child { border-right: none; }
-    .ele-mode-btn svg { width: 14px; height: 14px; }
-    .ele-mode-btn:hover:not(.is-active) {
-      background: var(--surface-layer01-hover);
-      color: var(--text-primary);
-    }
-    .ele-mode-btn.is-active { background: var(--action-secondary); color: #FFFFFF; }
-    .ele-mode-btn:focus-visible {
-      outline: 2px solid var(--border-focus);
-      outline-offset: 2px;
-    }
-
     /* ─── Section header ────────────────────────────────────── */
     .ele-section { margin-top: 40px; }
     .ele-section:first-of-type { margin-top: 0; }
@@ -140,6 +108,47 @@
       line-height: 16px; color: var(--text-secondary);
       letter-spacing: 0.4px;
       margin-bottom: 24px;
+    }
+    .ele-section-eyebrow {
+      display: inline-flex; align-items: center; gap: 8px;
+      font-size: 12px; font-weight: 700;
+      line-height: 16px;
+      letter-spacing: 0.4px; text-transform: uppercase;
+      color: var(--text-secondary);
+      margin-bottom: 14px;
+    }
+    .ele-section-eyebrow::before {
+      content: ""; display: inline-block;
+      width: 10px; height: 10px;
+      border-radius: 3px;
+      background: var(--surface-card);
+      border: 1px solid var(--border-strong);
+    }
+    .ele-section-eyebrow--dark::before {
+      background: #0A0A0A;
+      border-color: #374151;
+    }
+    .ele-section-eyebrow + .ele-section-eyebrow { margin-top: 56px; }
+
+    /* Force dark-mode surface tokens on the dark preview table so
+       shadows render against an appropriate background regardless of
+       the page's actual theme. */
+    .ele-darkframe {
+      --surface-shell:   #0A0A0A;
+      --surface-layer01: #1E1E1E;
+      --surface-layer02: #292929;
+      --surface-layer03: #374151;
+      --surface-card:    #1E1E1E;
+      --surface-field:   #1E1E1E;
+      --border:          #6B7280;
+      --border-soft:     #374151;
+      --border-strong:   #9CA3AF;
+      --text-primary:    #FFFFFF;
+      --text-secondary:  #E5E7EB;
+      --text-tertiary:   #CDD2D7;
+      padding: 24px;
+      background: #0A0A0A;
+      border-radius: 12px;
     }
 
     /* ─── Token table ────────────────────────────────────────
@@ -332,17 +341,21 @@
           <input id="eleSearch" type="search" placeholder="Search by name or role (e.g. modal, tooltip)" aria-label="Search elevation tokens">
           <button id="eleSearchClear" class="ele-search-clear" type="button" aria-label="Clear search"><i data-lucide="x" style="width:14px;height:14px"></i></button>
         </label>
-        <span class="ele-count"><em id="eleCount">0</em> tokens</span>
-        <div class="ele-mode-toggle" id="eleModeToggle" role="tablist" aria-label="Theme preview">
-          <button class="ele-mode-btn is-active" data-mode="light" role="tab" aria-selected="true" type="button"><i data-lucide="sun"></i>Light</button>
-          <button class="ele-mode-btn" data-mode="dark" role="tab" aria-selected="false" type="button"><i data-lucide="moon"></i>Dark</button>
-        </div>
+        <span class="ele-count"><em id="eleCount">0</em> elevations</span>
       </div>
 
-      <!-- ELEVATION TOKENS -->
+      <!-- ELEVATION TOKENS · LIGHT + DARK shown side-by-side (stacked) -->
       <section class="ele-section">
         <span class="ele-section-label">Elevation tokens</span>
-        <div class="ele-table" id="eleRoot" role="table"></div>
+
+        <span class="ele-section-eyebrow">Light surface</span>
+        <div class="ele-table" id="eleRootLight" data-theme-table="light" role="table"></div>
+
+        <span class="ele-section-eyebrow ele-section-eyebrow--dark">Dark surface</span>
+        <div class="ele-darkframe">
+          <div class="ele-table" id="eleRootDark" data-theme-table="dark" role="table"></div>
+        </div>
+
         <div class="ele-empty" id="eleEmpty">No elevation tokens match that search.</div>
       </section>
 
@@ -415,76 +428,53 @@
   ];
 
   // ─── Render ────────────────────────────────────────────────
-  const root = document.getElementById('eleRoot');
-  let total = 0;
-
-  let html =
-    '<div class="ele-row ele-row--head" role="row">' +
-      '<span class="ele-cell" role="columnheader">Token</span>' +
-      '<span class="ele-cell" role="columnheader">Role</span>' +
-      '<span class="ele-cell" role="columnheader">Value</span>' +
-      '<span class="ele-cell" role="columnheader" aria-label="Preview"></span>' +
-    '</div>';
-
-  ELEVATIONS.forEach(function(e){
-    total++;
-    html +=
-      '<div class="ele-row" role="row"' +
-        ' data-token="$' + e.token + '"' +
-        ' data-role="'  + e.role.replace(/"/g, '&quot;') + '"' +
-        ' data-light="' + e.light.replace(/"/g, '&quot;') + '"' +
-        ' data-dark="'  + e.dark.replace(/"/g, '&quot;')  + '">' +
-        '<span class="ele-cell" role="cell"><code class="ele-token">$' + e.token + '</code></span>' +
-        '<span class="ele-cell" role="cell">' + e.role + '</span>' +
-        '<span class="ele-cell" role="cell">' +
-          '<span class="ele-value">' +
-            '<code class="ele-value-code" data-code></code>' +
-            '<button class="ele-copy" type="button" data-copy aria-label="Copy ' + e.token + ' value">' +
-              '<i data-lucide="copy"></i>' +
-            '</button>' +
-          '</span>' +
-        '</span>' +
-        '<span class="ele-cell" role="cell">' +
-          '<div class="ele-preview-tile" data-preview></div>' +
-        '</span>' +
+  // Two tables: one with light-mode shadows, one with dark-mode shadows.
+  // Both share the same 6 tokens but each row applies its own theme's
+  // value and copies the matching value when the user clicks copy.
+  function buildTable(theme) {
+    let html =
+      '<div class="ele-row ele-row--head" role="row">' +
+        '<span class="ele-cell" role="columnheader">Token</span>' +
+        '<span class="ele-cell" role="columnheader">Role</span>' +
+        '<span class="ele-cell" role="columnheader">Value</span>' +
+        '<span class="ele-cell" role="columnheader" aria-label="Preview"></span>' +
       '</div>';
-  });
 
-  root.innerHTML = html;
-  document.getElementById('eleCount').textContent = total;
-  lucide.createIcons();
-
-  // ─── Light/dark preview ───────────────────────────────────
-  const modeBtns = document.querySelectorAll('#eleModeToggle .ele-mode-btn');
-  function applyMode(mode) {
-    modeBtns.forEach(function(b){
-      const active = b.dataset.mode === mode;
-      b.classList.toggle('is-active', active);
-      b.setAttribute('aria-selected', active ? 'true' : 'false');
+    ELEVATIONS.forEach(function(e){
+      const shadow = theme === 'dark' ? e.dark : e.light;
+      const tileBg = theme === 'dark' ? '#1E1E1E' : '#FFFFFF';
+      const tileBorder = theme === 'dark' ? '1px solid rgba(255,255,255,0.08)' : '1px solid rgba(0,0,0,0.04)';
+      html +=
+        '<div class="ele-row" role="row"' +
+          ' data-token="$' + e.token + '"' +
+          ' data-role="'  + e.role.replace(/"/g, '&quot;') + '"' +
+          ' data-value="' + shadow.replace(/"/g, '&quot;') + '">' +
+          '<span class="ele-cell" role="cell"><code class="ele-token">$' + e.token + '</code></span>' +
+          '<span class="ele-cell" role="cell">' + e.role + '</span>' +
+          '<span class="ele-cell" role="cell">' +
+            '<span class="ele-value">' +
+              '<code class="ele-value-code">' + shadow + '</code>' +
+              '<button class="ele-copy" type="button" data-copy aria-label="Copy ' + e.token + ' ' + theme + ' value">' +
+                '<i data-lucide="copy"></i>' +
+              '</button>' +
+            '</span>' +
+          '</span>' +
+          '<span class="ele-cell" role="cell">' +
+            '<div class="ele-preview-tile" style="' +
+              'box-shadow:' + (shadow === 'none' ? 'none' : shadow) + ';' +
+              'background:' + tileBg + ';' +
+              'border:' + tileBorder + ';' +
+            '"></div>' +
+          '</span>' +
+        '</div>';
     });
-    document.querySelectorAll('#eleRoot .ele-row:not(.ele-row--head)').forEach(function(row){
-      const shadow = mode === 'dark' ? row.dataset.dark : row.dataset.light;
-      const isDark = mode === 'dark';
-      const code = row.querySelector('[data-code]');
-      const tile = row.querySelector('[data-preview]');
-      if (code) code.textContent = shadow;
-      if (tile) {
-        tile.style.boxShadow = shadow === 'none' ? 'none' : shadow;
-        // tile fill flips so the shadow is visible against the swatch column bg
-        tile.style.background = isDark ? '#1E1E1E' : '#FFFFFF';
-        tile.style.border = isDark ? '1px solid rgba(255,255,255,0.08)' : '1px solid rgba(0,0,0,0.04)';
-      }
-    });
-    // tint the preview column background subtly for dark mode so shadows read
-    document.querySelectorAll('#eleRoot .ele-cell:nth-child(4)').forEach(function(c){
-      c.style.background = isDarkPreview(mode) ? 'var(--surface-layer02)' : '';
-    });
+    return html;
   }
-  function isDarkPreview(mode){ return mode === 'dark'; }
-  modeBtns.forEach(function(b){
-    b.addEventListener('click', function(){ applyMode(b.dataset.mode); });
-  });
-  applyMode('light');
+
+  document.getElementById('eleRootLight').innerHTML = buildTable('light');
+  document.getElementById('eleRootDark').innerHTML  = buildTable('dark');
+  document.getElementById('eleCount').textContent = ELEVATIONS.length;
+  lucide.createIcons();
 
   // ─── Copy ─────────────────────────────────────────────────
   const copied = document.getElementById('eleCopied');
@@ -514,13 +504,13 @@
   document.querySelectorAll('[data-copy]').forEach(function(btn){
     btn.addEventListener('click', function(){
       const row = btn.closest('.ele-row');
-      const active = document.querySelector('#eleModeToggle .ele-mode-btn.is-active').dataset.mode;
-      const value = active === 'dark' ? row.dataset.dark : row.dataset.light;
-      copy(value);
+      copy(row.dataset.value);
     });
   });
 
   // ─── Search filter ────────────────────────────────────────
+  // Filters both tables in lockstep — a token hidden in one is
+  // hidden in both so the rows stay aligned across the pair.
   const searchEl = document.getElementById('eleSearch');
   const clearEl  = document.getElementById('eleSearchClear');
   const countEl  = document.getElementById('eleCount');
@@ -529,15 +519,20 @@
   function applyFilter() {
     const q = searchEl.value.trim().toLowerCase();
     clearEl.classList.toggle('show', q.length > 0);
-    let visible = 0;
-    document.querySelectorAll('#eleRoot .ele-row:not(.ele-row--head)').forEach(function(row){
-      const hay = (row.dataset.token + ' ' + row.dataset.role + ' ' + row.dataset.light + ' ' + row.dataset.dark).toLowerCase();
-      const ok = !q || hay.includes(q);
-      row.style.display = ok ? '' : 'none';
-      if (ok) visible++;
+
+    // Track which tokens match — drives both tables together.
+    const visibleTokens = new Set();
+    ELEVATIONS.forEach(function(e){
+      const hay = ('$' + e.token + ' ' + e.role + ' ' + e.light + ' ' + e.dark).toLowerCase();
+      if (!q || hay.includes(q)) visibleTokens.add('$' + e.token);
     });
-    countEl.textContent = visible;
-    emptyEl.classList.toggle('show', visible === 0 && !!q);
+
+    document.querySelectorAll('[data-theme-table] .ele-row:not(.ele-row--head)').forEach(function(row){
+      row.style.display = visibleTokens.has(row.dataset.token) ? '' : 'none';
+    });
+
+    countEl.textContent = visibleTokens.size;
+    emptyEl.classList.toggle('show', visibleTokens.size === 0 && !!q);
   }
   searchEl.addEventListener('input', applyFilter);
   clearEl.addEventListener('click', function(){ searchEl.value = ''; applyFilter(); searchEl.focus(); });
