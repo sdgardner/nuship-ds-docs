@@ -448,6 +448,8 @@
       z-index: 2; pointer-events: none;
       transition: opacity 0.4s ease;
     }
+    .moon-rings[data-show="0"],
+    .moon-stars[data-show="0"] { opacity: 0; }
     .moon-rings .ring {
       position: absolute; top: 50%; left: 50%;
       border: 1px solid rgba(255, 255, 255, 0.07);
@@ -817,7 +819,7 @@
               </div>
             </div>
 
-            <div class="moon-stage" id="moonStage" style="--glow:#5ab9e0">
+            <div class="moon-stage" id="moonStage" style="--glow:#9B72BD">
               <div class="moon-stars" id="moonStars" aria-hidden="true"></div>
               <div class="moon-glow" aria-hidden="true"></div>
               <div class="moon-rings" aria-hidden="true">
@@ -826,7 +828,7 @@
                 <div class="ring ring-3"></div>
                 <div class="orbit"><span class="sat"></span></div>
               </div>
-              <canvas id="moonCanvas" class="moon-canvas" style="opacity:0.80"></canvas>
+              <canvas id="moonCanvas" class="moon-canvas" style="opacity:0.65"></canvas>
             </div>
           </div>
         </div>
@@ -955,8 +957,8 @@
     r.setParams({
       motion: reduced ? 'still' : 'breathe',
       speed: 50,
-      glow: '#5ab9e0',
-      phase: 20,
+      glow: '#9B72BD',
+      phase: 40,
       soft: 35,
     });
     window.addEventListener('resize', () => r.resize());
