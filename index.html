@@ -10,69 +10,264 @@
   <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.min.js"></script>
   <script src="nav-scroll.js" defer></script>
   <style>
+    /* ─────────────────────────────────────────────────────────────
+       HOME — Direction 02 (Centered & Calm)
+       Implementation of Skid Home Explorations · Design 2 using
+       nuShip tokens + components. Sidebar is hidden by default on
+       this page (full-bleed marketing splash); the hamburger toggles
+       it on if the user wants to see the component index.
+       ───────────────────────────────────────────────────────────── */
+
+    .home-main {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 72px 40px 96px;
+    }
+    @media (max-width: 720px) {
+      .home-main { padding: 56px 20px 72px; }
+    }
+
+    /* ─── HERO ─────────────────────────────────────────────────── */
     .home-hero {
-      padding: 64px 48px 48px;
-      max-width: 760px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 22px;
+      max-width: 680px;
+      margin: 0 auto;
+      text-align: center;
     }
     .home-eyebrow {
-      font-size: 10px; font-weight: 700;
-      letter-spacing: 1px; text-transform: uppercase;
-      color: var(--text-tertiary); margin-bottom: 10px;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 12px;
+      font-weight: 700;
+      line-height: 16px;
+      letter-spacing: 0.6px;
+      text-transform: uppercase;
+      color: var(--action-secondary);
+    }
+    .home-eyebrow::before {
+      content: "";
+      width: 18px;
+      height: 2px;
+      background: var(--action-secondary);
+      border-radius: 2px;
     }
     .home-title {
-      font-size: 40px; font-weight: 900;
-      line-height: 1.1; margin-bottom: 16px;
+      font-family: inherit;
+      font-size: 32px;
+      line-height: 38px;
+      font-weight: 700;
+      letter-spacing: -0.2px;
+      color: var(--text-primary);
+      margin: 0;
+    }
+    .home-sub {
+      font-size: 18px;
+      line-height: 26px;
+      font-weight: 400;
+      color: var(--text-secondary);
+      margin: 0;
+      max-width: 42ch;
+    }
+    .home-cta-row {
+      display: flex;
+      gap: 12px;
+      flex-wrap: wrap;
+      justify-content: center;
+      margin-top: 6px;
+    }
+
+    /* ─── COMPONENT SHELF ──────────────────────────────────────── */
+    .home-shelf {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 20px;
+      flex-wrap: wrap;
+      padding: 36px;
+      margin-top: 48px;
+      background: var(--surface-layer02);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+    }
+    .home-shelf-item {
+      background: var(--surface-card);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      box-shadow: 0 1px 2px rgba(55, 65, 80, 0.06);
+    }
+    .home-shelf-item--padded {
+      padding: 16px;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      align-items: flex-start;
+    }
+    .home-shelf-item--bare {
+      background: transparent;
+      border: 0;
+      box-shadow: none;
+      width: 286px;
+    }
+    .home-shelf-label {
+      font-size: 12px;
+      font-weight: 700;
+      line-height: 16px;
+      letter-spacing: 0.6px;
+      text-transform: uppercase;
+      color: var(--text-tertiary);
+    }
+    .home-shelf .met-card {
+      box-shadow: none;
+    }
+
+    [data-theme="dark"] .home-shelf-item {
+      box-shadow: 0 1px 2px rgba(0,0,0,0.6), 0 0 0 1px rgba(255,255,255,0.06);
+    }
+
+    /* ─── SECTION HEAD (Start here / Three ways in) ────────────── */
+    .home-section-head {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+      margin: 96px 0 28px;
+    }
+    .home-section-head__kicker {
+      font-size: 12px;
+      font-weight: 700;
+      line-height: 16px;
+      letter-spacing: 0.6px;
+      text-transform: uppercase;
+      color: var(--text-tertiary);
+    }
+    .home-section-head__title {
+      font-size: 24px;
+      font-weight: 700;
+      line-height: 31px;
       color: var(--text-primary);
     }
-    .home-desc {
-      font-size: 16px; color: var(--text-secondary);
-      line-height: 1.6; max-width: 520px; margin-bottom: 40px;
+
+    /* ─── INDEXED "THREE WAYS IN" LIST ─────────────────────────── */
+    .home-ed-list { display: flex; flex-direction: column; }
+    .home-ed-item {
+      display: flex;
+      align-items: center;
+      gap: 20px;
+      padding: 20px 4px;
+      border-top: 1px solid var(--border);
+      text-decoration: none;
+      color: inherit;
+      transition: background 120ms;
     }
-    .home-section { padding: 0 48px 48px; max-width: 760px; }
-    .home-section-title {
-      font-size: 11px; font-weight: 700;
-      letter-spacing: .8px; text-transform: uppercase;
-      color: var(--text-tertiary); margin-bottom: 16px;
-      padding-bottom: 10px; border-bottom: 1px solid var(--border);
+    .home-ed-item:last-child {
+      border-bottom: 1px solid var(--border);
     }
-    .component-grid {
+    .home-ed-item:hover {
+      background: var(--surface-layer01);
+    }
+    .home-ed-item__n {
+      font-size: 14px;
+      font-weight: 700;
+      line-height: 1;
+      color: var(--action-secondary);
+      font-variant-numeric: tabular-nums;
+      width: 28px;
+      flex-shrink: 0;
+    }
+    .home-ed-item__chip {
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
       display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 12px;
+      place-items: center;
+      flex-shrink: 0;
     }
-    .component-card {
-      border: 1px solid var(--border); border-radius: 8px;
-      padding: 16px; text-decoration: none;
-      background: var(--surface-card); transition: all .18s;
-      display: flex; flex-direction: column; gap: 4px;
+    .home-ed-item__chip svg {
+      width: 20px;
+      height: 20px;
     }
-    .component-card:hover {
-      border-color: var(--inf-ic);
-      box-shadow: 0 2px 12px rgba(0,0,0,.07);
-      transform: translateY(-1px);
+    .home-ed-item__chip--blue   { background: var(--inf-bg); color: var(--inf-ic); }
+    .home-ed-item__chip--green  { background: var(--suc-bg); color: var(--suc-ic); }
+    .home-ed-item__chip--purple { background: #F1E7FF; color: #6B3FA0; }
+    [data-theme="dark"] .home-ed-item__chip--purple { background: #2B1F3D; color: #B795E5; }
+
+    .home-ed-item__body {
+      flex: 1;
+      min-width: 0;
+      display: flex;
+      flex-direction: column;
+      gap: 3px;
     }
-    .cc-name { font-size: 14px; font-weight: 700; color: var(--text-primary); }
-    .cc-desc { font-size: 12px; color: var(--text-secondary); line-height: 1.4; }
-    .cc-tag {
-      display: inline-flex; margin-top: 6px;
-      padding: 2px 8px; border-radius: 100px;
-      font-size: 10px; font-weight: 700;
-      background: var(--inf-bg); color: var(--inf-tx);
-      border: 1px solid var(--inf-bd); width: fit-content;
+    .home-ed-item__t {
+      display: block;
+      font-size: 18px;
+      font-weight: 700;
+      line-height: 24px;
+      color: var(--text-primary);
     }
-    .cc-tag.coming {
-      background: var(--surface-layer02); color: var(--text-tertiary);
-      border-color: var(--border);
+    .home-ed-item__d {
+      display: block;
+      font-size: 14px;
+      font-weight: 400;
+      line-height: 20px;
+      color: var(--text-secondary);
     }
-    @media (max-width: 768px) {
-      .home-hero { padding: 32px 16px 24px; }
-      .home-title { font-size: 28px; }
-      .home-section { padding: 0 16px 40px; }
-      .component-grid { grid-template-columns: repeat(2, 1fr); }
+    .home-ed-item__go {
+      color: var(--text-tertiary);
+      flex-shrink: 0;
+      transition: transform 120ms, color 120ms;
+    }
+    .home-ed-item__go svg {
+      width: 20px;
+      height: 20px;
+      display: block;
+    }
+    .home-ed-item:hover .home-ed-item__t { color: var(--action-sec-hover); }
+    .home-ed-item:hover .home-ed-item__go {
+      transform: translateX(4px);
+      color: var(--action-sec-hover);
+    }
+
+    /* ─── FOOTER STRIP ─────────────────────────────────────────── */
+    .home-foot {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      flex-wrap: wrap;
+      max-width: 1200px;
+      margin: 96px auto 0;
+      padding: 24px 40px 0;
+      border-top: 1px solid var(--border);
+      font-size: 13px;
+      line-height: 18px;
+      color: var(--text-tertiary);
+    }
+    .home-foot a {
+      color: var(--text-tertiary);
+      text-decoration: none;
+    }
+    .home-foot a:hover { color: var(--action-sec-hover); }
+    .home-foot-links { display: flex; gap: 20px; flex-wrap: wrap; }
+    @media (max-width: 720px) {
+      .home-foot { padding: 24px 20px 0; }
     }
   </style>
 </head>
-<body>
+<body class="home">
+
+<!-- shared star symbol -->
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <defs>
+    <symbol id="sr-star-shape" viewBox="0 0 24 24">
+      <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"
+               stroke-linecap="round" stroke-linejoin="round" />
+    </symbol>
+  </defs>
+</svg>
 
 <!-- MOBILE OVERLAY -->
 <div id="navOverlay" class="nav-overlay" onclick="toggleSidebar()"></div>
@@ -96,212 +291,119 @@
 
 <div class="shell">
 
-  <!-- LEFT NAV -->
-  <nav class="left-nav" id="leftNav">
-    <div class="left-nav-inner">
-      <div class="ln-group">
-        <div class="ln-label">Inputs</div>
-        <ul class="ln-list">
-          <li><a href="checkbox.html">Checkbox</a></li>
-          <li><a href="#">Date Picker</a></li>
-          <li><a href="numberinput.html">Number Input</a></li>
-          <li><a href="passwordinput.html">Password Input</a></li>
-          <li><a href="radiobutton.html">Radio Button</a></li>
-          <li><a href="search.html">Search</a></li>
-          <li><a href="select.html">Select</a></li>
-          <li><a href="slider.html">Slider</a></li>
-          <li><a href="switch.html">Switch</a></li>
-          <li><a href="textarea.html">Text Area</a></li>
-          <li><a href="textinput.html">Text Input</a></li>
-          <li><a href="tile.html">Tile</a></li>
-        </ul>
-      </div>
-      <div class="ln-group">
-        <div class="ln-label">Feedback</div>
-        <ul class="ln-list">
-          <li><a href="alert.html">Alert</a></li>
-          <li><a href="badge.html">Badge</a></li>
-          <li><a href="toast.html">Toast</a></li>
-          <li><a href="tooltip.html">Tooltip</a></li>
-        </ul>
-      </div>
-      <div class="ln-group">
-        <div class="ln-label">Navigation</div>
-        <ul class="ln-list">
-          <li><a href="accordion.html">Accordion</a></li>
-          <li><a href="#">Dropdown</a></li>
-          <li><a href="menu.html">Menu</a></li>
-          <li><a href="pagination.html">Pagination</a></li>
-          <li><a href="segmentedcontrol.html">Segmented Control</a></li>
-          <li><a href="stepindicator.html">Step Indicator</a></li>
-          <li><a href="tabs.html">Tabs</a></li>
-        </ul>
-      </div>
-      <div class="ln-group">
-        <div class="ln-label">Actions</div>
-        <ul class="ln-list">
-          <li><a href="button.html">Button</a></li>
-          <li><a href="link.html">Link</a></li>
-          <li><a href="tag.html">Tag</a></li>
-        </ul>
-      </div>
-      <div class="ln-group">
-        <div class="ln-label">Overlays</div>
-        <ul class="ln-list">
-          <li><a href="modal.html">Modal</a></li>
-          <li><a href="popover.html">Popover</a></li>
-        </ul>
-      </div>
-      <div class="ln-group">
-        <div class="ln-label">Layout</div>
-        <ul class="ln-list">
-          <li><a href="header.html">Header</a></li>
-          <li><a href="footer.html">Footer</a></li>
-        </ul>
-      </div>
-      <div class="ln-group">
-        <div class="ln-label">Display</div>
-        <ul class="ln-list">
-          <li><a href="carousel.html">Carousel</a></li>
-          <li><a href="divider.html">Divider</a></li>
-          <li><a href="filerow.html">File Row</a></li>
-          <li><a href="fileupload.html">File Upload</a></li>
-          <li><a href="metrics.html">Metrics</a></li>
-          <li><a href="progressbar.html">Progress Bar</a></li>
-          <li><a href="skeleton.html">Skeleton</a></li>
-          <li><a href="starrating.html">Star Rating</a></li>
-        </ul>
-      </div>
-    </div>
+  <!-- LEFT NAV (built dynamically by nav-scroll.js) -->
+  <nav class="left-nav hidden" id="leftNav">
+    <div class="left-nav-inner"></div>
   </nav>
 
   <!-- CONTENT -->
   <div class="content-wrap" id="contentWrap">
-    <main class="doc" style="max-width:900px;">
+    <main class="home-main">
 
-      <div class="home-hero" style="padding-left:0;padding-right:0;">
-        <div class="home-eyebrow">nuShip</div>
-        <h1 class="home-title">Design System</h1>
-        <p class="home-desc">A shared design language for building consistent, accessible, and token-driven UI across nuShip products.</p>
-      </div>
+      <!-- ─── HERO ────────────────────────────────────────────── -->
+      <section class="home-hero">
+        <span class="home-eyebrow">nuShip Design System</span>
+        <h1 class="home-title">Delivering the Impossible</h1>
+        <p class="home-sub">Ship the big stuff with peace of mind — a shared component and token library for every nuShip surface.</p>
+        <div class="home-cta-row">
+          <a href="#three-ways-in" class="btn btn--primary btn--lg">Get Started</a>
+          <a href="button.html" class="btn btn--tertiary btn--lg">View Components</a>
+        </div>
+      </section>
 
-      <!-- Feedback -->
-      <div class="home-section" style="padding-left:0;padding-right:0;">
-        <div class="home-section-title">Feedback</div>
-        <div class="component-grid">
-          <a href="alert.html" class="component-card">
-            <div class="cc-name">Alert</div>
-            <div class="cc-desc">Inline messages for errors, warnings, and confirmations.</div>
-            <span class="cc-tag">Live</span>
-          </a>
-          <a href="badge.html" class="component-card">
-            <div class="cc-name">Badge</div>
-            <div class="cc-desc">Small labels for status, counts, and categories.</div>
-            <span class="cc-tag">Live</span>
-          </a>
-          <a href="#" class="component-card">
-            <div class="cc-name">Toast</div>
-            <div class="cc-desc">Temporary notifications that don't interrupt flow.</div>
-            <span class="cc-tag coming">Coming soon</span>
-          </a>
-          <a href="#" class="component-card">
-            <div class="cc-name">Tooltip</div>
-            <div class="cc-desc">Contextual hints triggered on hover or focus.</div>
-            <span class="cc-tag coming">Coming soon</span>
-          </a>
+      <!-- ─── COMPONENT SHELF ─────────────────────────────────── -->
+      <div class="home-shelf">
+        <!-- Badges -->
+        <div class="home-shelf-item home-shelf-item--padded">
+          <span class="home-shelf-label">Badges</span>
+          <div style="display:flex;gap:8px;">
+            <span class="bdg bdg--green bdg--solid">Live</span>
+            <span class="bdg bdg--blue">Stable</span>
+          </div>
+        </div>
+
+        <!-- Toast (Info) -->
+        <div class="home-shelf-item home-shelf-item--bare">
+          <div class="ts-toast ts-toast--info">
+            <i data-lucide="info" class="ts-toast-icon"></i>
+            <div class="ts-toast-content">
+              <div class="ts-toast-header">Quote received</div>
+              <div class="ts-toast-desc">3 carriers responded</div>
+            </div>
+            <button class="ts-toast-close" aria-label="Dismiss"><i data-lucide="x"></i></button>
+          </div>
+        </div>
+
+        <!-- Metric -->
+        <div class="home-shelf-item" style="padding:0;">
+          <div class="met-card" style="min-width:150px;border:none;box-shadow:none;">
+            <div class="met-title">Components</div>
+            <div class="met-stat">
+              <div class="met-value">48</div>
+              <div class="met-delta met-delta--up">+ 6 new</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Star rating -->
+        <div class="home-shelf-item home-shelf-item--padded">
+          <span class="home-shelf-label">Rating</span>
+          <div class="sr-rating">
+            <span class="sr-star sr-star--full"><svg class="sr-star-base"><use href="#sr-star-shape"/></svg><svg class="sr-star-fill"><use href="#sr-star-shape"/></svg></span>
+            <span class="sr-star sr-star--full"><svg class="sr-star-base"><use href="#sr-star-shape"/></svg><svg class="sr-star-fill"><use href="#sr-star-shape"/></svg></span>
+            <span class="sr-star sr-star--full"><svg class="sr-star-base"><use href="#sr-star-shape"/></svg><svg class="sr-star-fill"><use href="#sr-star-shape"/></svg></span>
+            <span class="sr-star sr-star--full"><svg class="sr-star-base"><use href="#sr-star-shape"/></svg><svg class="sr-star-fill"><use href="#sr-star-shape"/></svg></span>
+            <span class="sr-star sr-star--empty"><svg class="sr-star-base"><use href="#sr-star-shape"/></svg><svg class="sr-star-fill"><use href="#sr-star-shape"/></svg></span>
+          </div>
         </div>
       </div>
 
-      <!-- Inputs -->
-      <div class="home-section" style="padding-left:0;padding-right:0;margin-top:40px;">
-        <div class="home-section-title">Inputs</div>
-        <div class="component-grid">
-          <a href="checkbox.html" class="component-card">
-            <div class="cc-name">Checkbox</div>
-            <div class="cc-desc">Multi-select control for boolean or grouped choices.</div>
-            <span class="cc-tag">Live</span>
-          </a>
-          <a href="#" class="component-card">
-            <div class="cc-name">Radio Button</div>
-            <div class="cc-desc">Single-select control within a mutually exclusive group.</div>
-            <span class="cc-tag coming">Coming soon</span>
-          </a>
-          <a href="#" class="component-card">
-            <div class="cc-name">Select</div>
-            <div class="cc-desc">Dropdown for selecting a single value from a list.</div>
-            <span class="cc-tag coming">Coming soon</span>
-          </a>
-          <a href="#" class="component-card">
-            <div class="cc-name">Text Input</div>
-            <div class="cc-desc">Single-line field for short text entry.</div>
-            <span class="cc-tag coming">Coming soon</span>
-          </a>
-          <a href="#" class="component-card">
-            <div class="cc-name">Text Area</div>
-            <div class="cc-desc">Multi-line field for longer text content.</div>
-            <span class="cc-tag coming">Coming soon</span>
-          </a>
-          <a href="#" class="component-card">
-            <div class="cc-name">Switch</div>
-            <div class="cc-desc">Toggle control for binary on/off settings.</div>
-            <span class="cc-tag coming">Coming soon</span>
-          </a>
-        </div>
+      <!-- ─── "THREE WAYS IN" SECTION ─────────────────────────── -->
+      <div id="three-ways-in" class="home-section-head">
+        <span class="home-section-head__kicker">Start here</span>
+        <span class="home-section-head__title">Three ways in</span>
       </div>
 
-      <!-- Navigation -->
-      <div class="home-section" style="padding-left:0;padding-right:0;margin-top:40px;">
-        <div class="home-section-title">Navigation</div>
-        <div class="component-grid">
-          <a href="accordion.html" class="component-card">
-            <div class="cc-name">Accordion</div>
-            <div class="cc-desc">Expandable sections for progressively disclosing content.</div>
-            <span class="cc-tag">Live</span>
-          </a>
-          <a href="#" class="component-card">
-            <div class="cc-name">Tabs</div>
-            <div class="cc-desc">Horizontal navigation between sections at the same level.</div>
-            <span class="cc-tag coming">Coming soon</span>
-          </a>
-        </div>
+      <div class="home-ed-list">
+        <a class="home-ed-item" href="button.html">
+          <span class="home-ed-item__n">01</span>
+          <span class="home-ed-item__chip home-ed-item__chip--blue"><i data-lucide="palette"></i></span>
+          <span class="home-ed-item__body">
+            <span class="home-ed-item__t">Design</span>
+            <span class="home-ed-item__d">Open the Figma UI kit — tokens, components, and patterns ready to drop in.</span>
+          </span>
+          <span class="home-ed-item__go"><i data-lucide="arrow-right"></i></span>
+        </a>
+
+        <a class="home-ed-item" href="button.html">
+          <span class="home-ed-item__n">02</span>
+          <span class="home-ed-item__chip home-ed-item__chip--green"><i data-lucide="code-xml"></i></span>
+          <span class="home-ed-item__body">
+            <span class="home-ed-item__t">Develop</span>
+            <span class="home-ed-item__d">Install guides, CSS tokens, and copy-paste component markup for the web.</span>
+          </span>
+          <span class="home-ed-item__go"><i data-lucide="arrow-right"></i></span>
+        </a>
+
+        <a class="home-ed-item" href="button.html">
+          <span class="home-ed-item__n">03</span>
+          <span class="home-ed-item__chip home-ed-item__chip--purple"><i data-lucide="compass"></i></span>
+          <span class="home-ed-item__body">
+            <span class="home-ed-item__t">Guidelines</span>
+            <span class="home-ed-item__d">Voice, accessibility, and content standards that keep every surface on-brand.</span>
+          </span>
+          <span class="home-ed-item__go"><i data-lucide="arrow-right"></i></span>
+        </a>
       </div>
 
-      <!-- Display -->
-      <div class="home-section" style="padding-left:0;padding-right:0;margin-top:40px;">
-        <div class="home-section-title">Display</div>
-        <div class="component-grid">
-          <a href="avatar.html" class="component-card">
-            <div class="cc-name">Avatar</div>
-            <div class="cc-desc">User identity representation via image or initials.</div>
-            <span class="cc-tag">Live</span>
-          </a>
-          <a href="#" class="component-card">
-            <div class="cc-name">Star Rating</div>
-            <div class="cc-desc">Visual scale for expressing satisfaction or quality scores.</div>
-            <span class="cc-tag coming">Coming soon</span>
-          </a>
-        </div>
-      </div>
-
-      <!-- Actions -->
-      <div class="home-section" style="padding-left:0;padding-right:0;margin-top:40px;">
-        <div class="home-section-title">Actions</div>
-        <div class="component-grid">
-          <a href="button.html" class="component-card">
-            <div class="cc-name">Button</div>
-            <div class="cc-desc">Primary, secondary, and destructive action controls.</div>
-            <span class="cc-tag">Live</span>
-          </a>
-          <a href="#" class="component-card">
-            <div class="cc-name">Link</div>
-            <div class="cc-desc">Inline navigational text with underline treatment.</div>
-            <span class="cc-tag coming">Coming soon</span>
-          </a>
-          <a href="#" class="component-card">
-            <div class="cc-name">Tags</div>
-            <div class="cc-desc">Removable label chips for filtering and categorization.</div>
-            <span class="cc-tag coming">Coming soon</span>
-          </a>
+      <!-- ─── FOOTER STRIP ─────────────────────────────────────── -->
+      <div class="home-foot">
+        <div>nuShip Design System · v2.4 · Delivering the Impossible</div>
+        <div class="home-foot-links">
+          <a href="#">Changelog</a>
+          <a href="#">Accessibility</a>
+          <a href="#">Contribute</a>
+          <a href="#">Figma</a>
         </div>
       </div>
 
@@ -313,22 +415,22 @@
 <script>
   lucide.createIcons();
 
+  // Sidebar starts hidden on the home page (full-bleed splash).
+  // Hamburger toggles it on so users can jump to a component.
   const isMobile = () => window.innerWidth <= 768;
-  let sbOpen = !isMobile();
-  if (!sbOpen) document.getElementById('leftNav').classList.add('hidden');
+  let sbOpen = false;
 
   function toggleSidebar() {
     sbOpen = !sbOpen;
     document.getElementById('leftNav').classList.toggle('hidden', !sbOpen);
-    if (!isMobile()) {
-      document.getElementById('contentWrap').style.marginLeft = sbOpen ? 'var(--left-w)' : '0';
-    }
     document.getElementById('navOverlay').classList.toggle('active', sbOpen && isMobile());
   }
 
   function toggleTheme() {
     const d = document.documentElement;
-    d.setAttribute('data-theme', d.getAttribute('data-theme') === 'dark' ? 'light' : 'dark');
+    const next = d.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
+    d.setAttribute('data-theme', next);
+    try { localStorage.setItem('theme', next); } catch (e) {}
   }
 </script>
 </body>
