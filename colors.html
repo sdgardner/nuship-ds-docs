@@ -1,0 +1,626 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Color — nuShip Design System</title>
+  <link href="https://fonts.googleapis.com/css2?family=Lato:wght@400;600;700;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="tokens.css">
+  <link rel="stylesheet" href="styles.css">
+  <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.min.js"></script>
+  <script src="nav-scroll.js" defer></script>
+  <style>
+    /* ─── Page header ───────────────────────────────────────── */
+    .col-page { padding: 56px 40px 96px; max-width: 1200px; margin: 0 auto; }
+    @media (max-width: 720px) { .col-page { padding: 40px 20px 72px; } }
+    .col-head { display: flex; flex-direction: column; gap: 8px; margin-bottom: 32px; }
+    .col-title { font-size: 32px; line-height: 38px; font-weight: 700; color: var(--text-primary); margin: 0; }
+    .col-sub { font-size: 14px; line-height: 19px; color: var(--text-secondary); margin: 0; }
+
+    /* ─── Toolbar (search + copied indicator) ───────────────── */
+    .col-toolbar {
+      display: flex; align-items: center; gap: 12px;
+      flex-wrap: wrap;
+      padding: 14px 16px;
+      background: var(--surface-layer01);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      margin-bottom: 28px;
+      position: sticky; top: 56px; z-index: 8;
+      backdrop-filter: blur(8px);
+    }
+    .col-search {
+      position: relative; flex: 1; min-width: 220px; max-width: 420px;
+    }
+    .col-search input {
+      width: 100%; height: 36px;
+      padding: 0 12px 0 36px;
+      background: var(--surface-field);
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      font-family: inherit; font-size: 14px;
+      color: var(--text-primary);
+      outline: none;
+      transition: border-color 120ms, box-shadow 120ms;
+    }
+    .col-search input::placeholder { color: var(--text-tertiary); }
+    .col-search input:focus {
+      border-color: var(--border-focus);
+      box-shadow: 0 0 0 3px rgba(90,191,224,0.25);
+    }
+    .col-search-icon {
+      position: absolute; left: 10px; top: 50%; transform: translateY(-50%);
+      width: 16px; height: 16px;
+      color: var(--text-tertiary);
+      pointer-events: none;
+    }
+    .col-search-clear {
+      position: absolute; right: 8px; top: 50%; transform: translateY(-50%);
+      width: 20px; height: 20px;
+      border: none; background: transparent; cursor: pointer;
+      color: var(--text-tertiary);
+      display: none; align-items: center; justify-content: center;
+      border-radius: 3px;
+    }
+    .col-search-clear:hover { color: var(--text-primary); background: var(--surface-layer02); }
+    .col-search-clear.show { display: inline-flex; }
+
+    .col-count {
+      font-size: 12px; font-weight: 700; color: var(--text-tertiary);
+      letter-spacing: 0.4px; text-transform: uppercase;
+    }
+    .col-mode-toggle {
+      display: inline-flex; align-items: center; gap: 4px;
+      padding: 4px;
+      background: var(--surface-card);
+      border: 1px solid var(--border);
+      border-radius: 100px;
+    }
+    .col-mode-btn {
+      display: inline-flex; align-items: center; gap: 6px;
+      height: 26px; padding: 0 12px;
+      background: transparent; border: none; cursor: pointer;
+      font-family: inherit; font-size: 12px; font-weight: 700;
+      color: var(--text-secondary);
+      border-radius: 100px;
+      transition: background 120ms, color 120ms;
+    }
+    .col-mode-btn svg { width: 13px; height: 13px; }
+    .col-mode-btn:hover { color: var(--text-primary); }
+    .col-mode-btn.is-active {
+      background: var(--action-secondary); color: #FFFFFF;
+    }
+
+    /* ─── Section heading ───────────────────────────────────── */
+    .col-section { margin-top: 40px; }
+    .col-section:first-of-type { margin-top: 0; }
+    .col-section-label {
+      display: block; font-size: 12px; font-weight: 700;
+      line-height: 16px; color: var(--text-secondary);
+      letter-spacing: 0.4px;
+      margin-bottom: 24px;
+    }
+
+    /* ─── Ramp ─────────────────────────────────────────────── */
+    .col-ramp { margin-bottom: 24px; }
+    .col-ramp-name {
+      display: block; font-size: 12px; font-weight: 700;
+      line-height: 16px; color: var(--text-secondary);
+      margin-bottom: 10px;
+    }
+    .col-ramp-row {
+      display: grid;
+      grid-template-columns: repeat(13, minmax(0, 1fr));
+      gap: 8px;
+    }
+    .col-ramp--10 .col-ramp-row { grid-template-columns: repeat(10, minmax(0, 1fr)); max-width: calc(((100% - (8px * 12)) / 13 * 10) + (8px * 9)); }
+    @media (max-width: 900px) {
+      .col-ramp-row,
+      .col-ramp--10 .col-ramp-row { grid-template-columns: repeat(5, 1fr); max-width: none; }
+    }
+
+    /* ─── Swatch ───────────────────────────────────────────── */
+    .sw {
+      position: relative;
+      aspect-ratio: 1;
+      border-radius: 6px;
+      border: 1px solid transparent;
+      box-shadow: inset 0 0 0 1px rgba(0,0,0,0.04);
+      cursor: pointer;
+      transition: transform 120ms, box-shadow 120ms;
+    }
+    .sw:hover {
+      transform: translateY(-1px);
+      box-shadow: 0 4px 10px rgba(15, 23, 42, 0.08), inset 0 0 0 1px rgba(0,0,0,0.04);
+    }
+    .sw:focus-visible {
+      outline: 2px solid var(--border-focus);
+      outline-offset: 2px;
+    }
+    .sw.is-hit { animation: sw-flash 600ms ease-out; }
+    @keyframes sw-flash {
+      0% { box-shadow: 0 0 0 0 rgba(90,191,224,0.55), inset 0 0 0 1px rgba(0,0,0,0.04); }
+      100% { box-shadow: 0 0 0 14px rgba(90,191,224,0), inset 0 0 0 1px rgba(0,0,0,0.04); }
+    }
+    .sw[hidden] { display: none; }
+
+    /* Floating tooltip on hover */
+    .sw-tip {
+      position: fixed; z-index: 100;
+      pointer-events: none;
+      padding: 8px 10px;
+      background: var(--text-primary);
+      color: #FFFFFF;
+      border-radius: 6px;
+      font-size: 12px; font-weight: 700;
+      line-height: 1.4;
+      box-shadow: 0 4px 14px rgba(15,23,42,0.15);
+      opacity: 0; transform: translateY(4px);
+      transition: opacity 100ms, transform 100ms;
+    }
+    .sw-tip.show { opacity: 1; transform: translateY(0); }
+    .sw-tip-token { font-family: var(--mono); font-weight: 400; opacity: 0.78; }
+    [data-theme="dark"] .sw-tip { background: #FFFFFF; color: #0F0F0F; }
+
+    /* ─── Semantic card ─────────────────────────────────────── */
+    .col-sem-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 16px;
+    }
+    @media (max-width: 980px) { .col-sem-grid { grid-template-columns: repeat(2, 1fr); } }
+    @media (max-width: 600px) { .col-sem-grid { grid-template-columns: 1fr; } }
+
+    .col-sem-card {
+      background: var(--surface-card);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 20px;
+    }
+    .col-sem-title {
+      font-size: 15px; font-weight: 700; color: var(--text-primary);
+      margin-bottom: 14px;
+    }
+    .col-sem-row {
+      display: grid;
+      grid-template-columns: 1fr auto auto;
+      gap: 10px; align-items: center;
+      padding: 6px 0;
+    }
+    .col-sem-row + .col-sem-row { border-top: 1px dashed var(--border); }
+    .col-sem-label {
+      font-size: 13px; color: var(--text-secondary);
+      font-family: var(--mono);
+    }
+    .col-sem-swatch {
+      width: 24px; height: 24px;
+      border-radius: 4px;
+      border: 1px solid rgba(0,0,0,0.08);
+      cursor: pointer;
+      transition: transform 120ms;
+    }
+    .col-sem-swatch:hover { transform: scale(1.08); }
+    .col-sem-swatch:focus-visible {
+      outline: 2px solid var(--border-focus);
+      outline-offset: 2px;
+    }
+    .col-sem-swatch.is-hit { animation: sw-flash 600ms ease-out; }
+
+    /* Empty state */
+    .col-empty {
+      padding: 60px 20px; text-align: center;
+      color: var(--text-tertiary);
+      border: 1px dashed var(--border);
+      border-radius: 10px;
+      font-size: 14px;
+      display: none;
+    }
+    .col-empty.show { display: block; }
+
+    /* Copy toast */
+    .col-copied {
+      position: fixed; bottom: 28px; left: 50%; transform: translateX(-50%) translateY(20px);
+      z-index: 200; opacity: 0;
+      display: inline-flex; align-items: center; gap: 8px;
+      padding: 10px 16px;
+      background: var(--text-primary); color: #FFFFFF;
+      border-radius: 8px;
+      box-shadow: 0 8px 24px rgba(15,23,42,0.18);
+      font-size: 13px; font-weight: 700;
+      pointer-events: none;
+      transition: opacity 180ms, transform 180ms;
+    }
+    .col-copied svg { width: 14px; height: 14px; color: #5ABFE0; }
+    .col-copied.show { opacity: 1; transform: translateX(-50%) translateY(0); }
+    [data-theme="dark"] .col-copied { background: #FFFFFF; color: #0F0F0F; }
+    [data-theme="dark"] .col-copied svg { color: #027CB1; }
+  </style>
+</head>
+<body>
+
+<!-- MOBILE OVERLAY -->
+<div id="navOverlay" class="nav-overlay" onclick="toggleSidebar()"></div>
+
+<!-- TOP NAV -->
+<nav class="topnav">
+  <button class="hamburger" onclick="toggleSidebar()" aria-label="Menu">
+    <i data-lucide="menu" style="width:18px;height:18px;color:var(--text-secondary)"></i>
+  </button>
+  <div class="bc">
+    <span class="cur">Color</span>
+  </div>
+  <div class="nav-actions">
+    <div class="toggle-wrap" onclick="toggleTheme()" role="button">
+      <i data-lucide="moon" style="width:20px;height:20px"></i>
+      <div class="toggle-track"><div class="toggle-thumb"></div></div>
+      <i data-lucide="sun" style="width:20px;height:20px"></i>
+    </div>
+  </div>
+</nav>
+
+<div class="shell">
+
+  <!-- LEFT NAV (built by nav-scroll.js) -->
+  <nav class="left-nav" id="leftNav">
+    <div class="left-nav-inner"></div>
+  </nav>
+
+  <!-- CONTENT -->
+  <div class="content-wrap" id="contentWrap">
+    <main class="col-page">
+
+      <header class="col-head">
+        <h1 class="col-title">Color</h1>
+        <p class="col-sub">nuShip Design System · Color Styles</p>
+      </header>
+
+      <!-- Toolbar -->
+      <div class="col-toolbar" role="toolbar" aria-label="Color tools">
+        <div class="col-search">
+          <i data-lucide="search" class="col-search-icon"></i>
+          <input id="colSearch" type="search" placeholder="Search by name or hex (e.g. blue, 027CB1)" aria-label="Search swatches">
+          <button id="colSearchClear" class="col-search-clear" aria-label="Clear search"><i data-lucide="x" style="width:14px;height:14px"></i></button>
+        </div>
+        <span class="col-count"><span id="colCount">0</span> swatches</span>
+        <div class="col-mode-toggle" id="colModeToggle" role="tablist" aria-label="Theme preview">
+          <button class="col-mode-btn is-active" data-mode="light" role="tab" aria-selected="true"><i data-lucide="sun"></i>Light</button>
+          <button class="col-mode-btn" data-mode="dark" role="tab" aria-selected="false"><i data-lucide="moon"></i>Dark</button>
+        </div>
+      </div>
+
+      <!-- PRIMITIVE PALETTE -->
+      <section class="col-section" id="primitivePalette">
+        <span class="col-section-label">Primitive palette</span>
+        <div id="rampsRoot"></div>
+        <div class="col-empty" id="rampsEmpty">No primitive swatches match that search.</div>
+      </section>
+
+      <!-- SEMANTIC TOKENS -->
+      <section class="col-section" id="semanticTokens">
+        <span class="col-section-label">Semantic tokens</span>
+        <div class="col-sem-grid" id="semRoot"></div>
+        <div class="col-empty" id="semEmpty">No semantic tokens match that search.</div>
+      </section>
+
+    </main>
+  </div>
+
+</div><!-- /shell -->
+
+<!-- Floating tooltip + copy toast -->
+<div class="sw-tip" id="swTip" role="tooltip" aria-hidden="true"></div>
+<div class="col-copied" id="colCopied" role="status" aria-live="polite">
+  <i data-lucide="check"></i><span id="colCopiedLabel">Copied</span>
+</div>
+
+<script>
+  lucide.createIcons();
+
+  // ─── Sidebar boilerplate ───────────────────────────────────
+  const isMobile = () => window.innerWidth <= 768;
+  let sbOpen = !isMobile();
+  if (!sbOpen) document.getElementById('leftNav').classList.add('hidden');
+  function toggleSidebar() {
+    sbOpen = !sbOpen;
+    document.getElementById('leftNav').classList.toggle('hidden', !sbOpen);
+    if (!isMobile()) document.getElementById('contentWrap').style.marginLeft = sbOpen ? 'var(--left-w)' : '0';
+    document.getElementById('navOverlay').classList.toggle('active', sbOpen && isMobile());
+  }
+
+  // ─── Color data ────────────────────────────────────────────
+  // Primitive ramps — sourced from Figma node 3857-9633
+  const RAMPS = [
+    { name: 'Gray', stops: [
+      { step: '50',  hex: '#F9FAFB' }, { step: '100', hex: '#F4F6F8' },
+      { step: '150', hex: '#EFF1F3' }, { step: '200', hex: '#E5E7EB' },
+      { step: '300', hex: '#CDD2D7' }, { step: '400', hex: '#9CA3AF' },
+      { step: '500', hex: '#6B7280' }, { step: '600', hex: '#4B5563' },
+      { step: '700', hex: '#374151' }, { step: '750', hex: '#2B3038' },
+      { step: '800', hex: '#1E1E1E' }, { step: '900', hex: '#0F0F0F' },
+      { step: '950', hex: '#0A0A0A' }
+    ]},
+    { name: 'Red', stops: [
+      { step: '50',  hex: '#FCE8E8' }, { step: '100', hex: '#F1E6E6' },
+      { step: '200', hex: '#F8D0D0' }, { step: '300', hex: '#F2A3A3' },
+      { step: '400', hex: '#E36868' }, { step: '500', hex: '#DC4B4B' },
+      { step: '600', hex: '#DB3939' }, { step: '700', hex: '#C63B3B' },
+      { step: '800', hex: '#A12F2F' }, { step: '900', hex: '#811F1F' }
+    ]},
+    { name: 'Green', stops: [
+      { step: '50',  hex: '#E8F2E8' }, { step: '100', hex: '#C8E6C8' },
+      { step: '200', hex: '#A0D4A0' }, { step: '300', hex: '#6FBF8A' },
+      { step: '500', hex: '#33A17A' }, { step: '600', hex: '#00902C' },
+      { step: '700', hex: '#006C21' }, { step: '800', hex: '#004816' },
+      { step: '900', hex: '#003322' }
+    ]},
+    { name: 'Blue', stops: [
+      { step: '50',  hex: '#E5EEF5' }, { step: '100', hex: '#D6EAF4' },
+      { step: '200', hex: '#B7DBEE' }, { step: '300', hex: '#8FCBE6' },
+      { step: '400', hex: '#5ABFE0' }, { step: '500', hex: '#35A8D6' },
+      { step: '600', hex: '#027CB1' }, { step: '700', hex: '#016692' },
+      { step: '800', hex: '#004F70' }, { step: '900', hex: '#001F33' }
+    ]},
+    { name: 'Orange', stops: [
+      { step: '50',  hex: '#FDF4E8' }, { step: '100', hex: '#FAE4C4' },
+      { step: '200', hex: '#F5CE93' }, { step: '300', hex: '#EDB462' },
+      { step: '400', hex: '#E49A35' }, { step: '500', hex: '#DB8512' },
+      { step: '600', hex: '#D37203' }, { step: '700', hex: '#A85A02' },
+      { step: '800', hex: '#6E3B01' }, { step: '900', hex: '#331E00' }
+    ]},
+    { name: 'Purple', stops: [
+      { step: '50',  hex: '#F0ECF4' }, { step: '100', hex: '#DED4E8' },
+      { step: '200', hex: '#C8B4D8' }, { step: '300', hex: '#B293CB' },
+      { step: '400', hex: '#9B72BD' }, { step: '500', hex: '#8459A8' },
+      { step: '600', hex: '#6D4092' }, { step: '700', hex: '#572F78' },
+      { step: '800', hex: '#48236C' }, { step: '900', hex: '#3A1860' }
+    ]},
+    { name: 'Sky', stops: [
+      { step: '50',  hex: '#E8F7FC' }, { step: '100', hex: '#C8EDF9' },
+      { step: '200', hex: '#A4E2F7' }, { step: '300', hex: '#B0F0FF' },
+      { step: '400', hex: '#ADEDFF' }, { step: '500', hex: '#8ADBF9' },
+      { step: '600', hex: '#67C9F3' }, { step: '700', hex: '#3DA6D4' },
+      { step: '800', hex: '#1F7EA8' }, { step: '900', hex: '#0D4F6E' }
+    ]},
+    { name: 'Lime', stops: [
+      { step: '50',  hex: '#F0FDE4' }, { step: '100', hex: '#DAFBBF' },
+      { step: '200', hex: '#C4F998' }, { step: '300', hex: '#B8FA82' },
+      { step: '400', hex: '#ACF96C' }, { step: '500', hex: '#78E977' },
+      { step: '600', hex: '#4CD982' }, { step: '700', hex: '#30B466' },
+      { step: '800', hex: '#1C8A4A' }, { step: '900', hex: '#0E5C30' }
+    ]},
+    { name: 'Magenta', stops: [
+      { step: '50',  hex: '#FDE8F0' }, { step: '100', hex: '#FCC8D8' },
+      { step: '200', hex: '#FA9EBA' }, { step: '300', hex: '#F86F9B' },
+      { step: '400', hex: '#FF4081' }, { step: '500', hex: '#D72071' },
+      { step: '600', hex: '#AF0061' }, { step: '700', hex: '#8C004E' },
+      { step: '800', hex: '#66003A' }, { step: '900', hex: '#400025' }
+    ]}
+  ];
+
+  // Semantic tokens — Light + Dark pairs sourced from Figma node 3857-9633
+  const SEMANTIC = [
+    { name: 'Text', items: [
+      { token: 'primary',   light: '#374151', dark: '#FFFFFF' },
+      { token: 'secondary', light: '#4B5563', dark: '#E5E7EB' },
+      { token: 'tertiary',  light: '#9CA3AF', dark: '#CDD2D7' },
+      { token: 'disabled',  light: '#9CA3AF', dark: '#6B7280' },
+      { token: 'helper',    light: '#4B5563', dark: '#E5E7EB' }
+    ]},
+    { name: 'Surface', items: [
+      { token: 'layer-01', light: '#F9FAFB', dark: '#1E1E1E' },
+      { token: 'layer-02', light: '#F4F6F8', dark: '#2B3038' },
+      { token: 'layer-03', light: '#E5E7EB', dark: '#374151' },
+      { token: 'shell',    light: '#FFFFFF', dark: '#0A0A0A' }
+    ]},
+    { name: 'Border', items: [
+      { token: 'interactive', light: '#CDD2D7', dark: '#6B7280' },
+      { token: 'strong',      light: '#9CA3AF', dark: '#9CA3AF' },
+      { token: 'soft',        light: '#E5E7EB', dark: '#374151' },
+      { token: 'disabled',    light: '#E5E7EB', dark: '#374151' },
+      { token: 'focus',       light: '#5ABFE0', dark: '#0083BB' }
+    ]},
+    { name: 'Icon', items: [
+      { token: 'default', light: '#4B5563', dark: '#E5E7EB' },
+      { token: 'info',    light: '#027CB1', dark: '#8FCBE6' },
+      { token: 'button',  light: '#FFFFFF', dark: '#0A0A0A' },
+      { token: 'hover',   light: '#9CA3AF', dark: '#E5E7EB' },
+      { token: 'loading', light: '#0083BB', dark: '#0083BB' }
+    ]},
+    { name: 'Interactive', items: [
+      { token: 'default',  light: '#016692', dark: '#5ABFE0' },
+      { token: 'hover',    light: '#004F70', dark: '#027CB1' },
+      { token: 'pressed',  light: '#001F33', dark: '#016692' },
+      { token: 'disabled', light: '#6B7280', dark: '#4B5563' }
+    ]},
+    { name: 'Feedback', items: [
+      { token: 'success', light: '#006C21', dark: '#33A17A' },
+      { token: 'warning', light: '#A85A02', dark: '#E49A35' },
+      { token: 'error',   light: '#A12F2F', dark: '#E36868' },
+      { token: 'info',    light: '#027CB1', dark: '#8FCBE6' }
+    ]}
+  ];
+
+  // ─── Render ────────────────────────────────────────────────
+  const rampsRoot = document.getElementById('rampsRoot');
+  const semRoot   = document.getElementById('semRoot');
+  let totalSwatches = 0;
+
+  function tokenName(ramp, step) {
+    return 'color/' + ramp.toLowerCase() + '/' + step;
+  }
+  function makeSwatch(token, hex, extra) {
+    extra = extra || '';
+    return '<button class="sw" style="background:' + hex + '" data-token="' + token + '" data-hex="' + hex + '" type="button" aria-label="' + token + ' ' + hex + '"></button>';
+  }
+
+  RAMPS.forEach(function(r){
+    const ramp = document.createElement('div');
+    ramp.className = 'col-ramp col-ramp--' + r.stops.length;
+    let row = '';
+    r.stops.forEach(function(s){
+      totalSwatches++;
+      row += makeSwatch(tokenName(r.name, s.step), s.hex);
+    });
+    ramp.innerHTML =
+      '<span class="col-ramp-name">' + r.name + '</span>' +
+      '<div class="col-ramp-row">' + row + '</div>';
+    rampsRoot.appendChild(ramp);
+  });
+
+  SEMANTIC.forEach(function(card){
+    const el = document.createElement('div');
+    el.className = 'col-sem-card';
+    let rows = '';
+    card.items.forEach(function(it){
+      totalSwatches += 2;
+      const tok = 'color/' + card.name.toLowerCase() + '/' + it.token;
+      rows +=
+        '<div class="col-sem-row" data-token="' + tok + '" data-light="' + it.light + '" data-dark="' + it.dark + '">' +
+          '<span class="col-sem-label">' + it.token + '</span>' +
+          '<button class="col-sem-swatch" style="background:' + it.light + '" data-token="' + tok + '" data-hex="' + it.light + '" aria-label="' + tok + ' light ' + it.light + '" type="button"></button>' +
+          '<button class="col-sem-swatch" style="background:' + it.dark  + '" data-token="' + tok + '" data-hex="' + it.dark  + '" aria-label="' + tok + ' dark '  + it.dark  + '" type="button"></button>' +
+        '</div>';
+    });
+    el.innerHTML = '<div class="col-sem-title">' + card.name + '</div>' + rows;
+    semRoot.appendChild(el);
+  });
+
+  document.getElementById('colCount').textContent = totalSwatches;
+
+  // ─── Interactivity ────────────────────────────────────────
+  const tip = document.getElementById('swTip');
+  const copied = document.getElementById('colCopied');
+  const copiedLabel = document.getElementById('colCopiedLabel');
+  let copiedTimer = null;
+
+  function showTip(target, token, hex) {
+    tip.innerHTML = '<div>' + hex + '</div><div class="sw-tip-token">' + token + '</div>';
+    const r = target.getBoundingClientRect();
+    tip.style.left = Math.max(8, Math.min(window.innerWidth - 220, r.left + r.width / 2 - 90)) + 'px';
+    tip.style.top  = Math.max(8, r.top - 56) + 'px';
+    tip.classList.add('show');
+    tip.setAttribute('aria-hidden', 'false');
+  }
+  function hideTip() { tip.classList.remove('show'); tip.setAttribute('aria-hidden', 'true'); }
+
+  function fallbackCopy(text) {
+    try {
+      const ta = document.createElement('textarea');
+      ta.value = text; ta.style.position = 'fixed'; ta.style.opacity = '0';
+      document.body.appendChild(ta); ta.select();
+      document.execCommand('copy'); document.body.removeChild(ta);
+    } catch (e) { /* noop */ }
+  }
+  async function copyHex(hex, target) {
+    try {
+      if (navigator.clipboard && window.isSecureContext) {
+        await navigator.clipboard.writeText(hex);
+      } else { fallbackCopy(hex); }
+    } catch (e) { fallbackCopy(hex); }
+    if (target) {
+      target.classList.add('is-hit');
+      setTimeout(function(){ target.classList.remove('is-hit'); }, 600);
+    }
+    copiedLabel.textContent = 'Copied ' + hex;
+    copied.classList.add('show');
+    clearTimeout(copiedTimer);
+    copiedTimer = setTimeout(function(){ copied.classList.remove('show'); }, 1600);
+  }
+
+  function bindSwatch(el) {
+    el.addEventListener('mouseenter', function(){
+      showTip(el, el.dataset.token, el.dataset.hex);
+    });
+    el.addEventListener('mouseleave', hideTip);
+    el.addEventListener('focus', function(){ showTip(el, el.dataset.token, el.dataset.hex); });
+    el.addEventListener('blur', hideTip);
+    el.addEventListener('click', function(){ copyHex(el.dataset.hex, el); });
+  }
+  document.querySelectorAll('.sw, .col-sem-swatch').forEach(bindSwatch);
+
+  // ─── Light/dark preview toggle (semantic cards) ───────────
+  const modeBtns = document.querySelectorAll('#colModeToggle .col-mode-btn');
+  function setMode(mode) {
+    modeBtns.forEach(function(b){
+      const active = b.dataset.mode === mode;
+      b.classList.toggle('is-active', active);
+      b.setAttribute('aria-selected', active ? 'true' : 'false');
+    });
+    document.querySelectorAll('#semRoot .col-sem-row').forEach(function(row){
+      const swatches = row.querySelectorAll('.col-sem-swatch');
+      // mode toggle dims the inactive swatch
+      swatches.forEach(function(s, i){
+        const isLight = i === 0;
+        s.style.opacity = (mode === 'light' && isLight) || (mode === 'dark' && !isLight) ? '1' : '0.35';
+      });
+    });
+  }
+  modeBtns.forEach(function(b){
+    b.addEventListener('click', function(){ setMode(b.dataset.mode); });
+  });
+  setMode('light');
+
+  // ─── Search filter ────────────────────────────────────────
+  const searchEl = document.getElementById('colSearch');
+  const clearEl  = document.getElementById('colSearchClear');
+  const countEl  = document.getElementById('colCount');
+  const rampsEmpty = document.getElementById('rampsEmpty');
+  const semEmpty   = document.getElementById('semEmpty');
+
+  function matches(query, token, hex) {
+    if (!query) return true;
+    const q = query.toLowerCase().replace(/^#/, '');
+    return token.toLowerCase().includes(q) || hex.toLowerCase().replace('#', '').includes(q);
+  }
+  function applyFilter() {
+    const q = searchEl.value.trim();
+    clearEl.classList.toggle('show', q.length > 0);
+    let visible = 0;
+
+    // Primitive ramps
+    let rampsVisible = 0;
+    document.querySelectorAll('#rampsRoot .col-ramp').forEach(function(ramp){
+      let rampVisible = 0;
+      ramp.querySelectorAll('.sw').forEach(function(s){
+        const ok = matches(q, s.dataset.token, s.dataset.hex);
+        s.hidden = !ok;
+        if (ok) { rampVisible++; visible++; }
+      });
+      ramp.style.display = rampVisible > 0 ? '' : 'none';
+      if (rampVisible > 0) rampsVisible++;
+    });
+    rampsEmpty.classList.toggle('show', rampsVisible === 0 && !!q);
+
+    // Semantic
+    let semVisibleCards = 0;
+    document.querySelectorAll('#semRoot .col-sem-card').forEach(function(card){
+      let rowsVisible = 0;
+      card.querySelectorAll('.col-sem-row').forEach(function(row){
+        const sw = row.querySelector('.col-sem-swatch');
+        const token = sw.dataset.token;
+        const light = row.dataset.light;
+        const dark  = row.dataset.dark;
+        const ok = matches(q, token, light) || matches(q, token, dark);
+        row.style.display = ok ? '' : 'none';
+        if (ok) { rowsVisible++; visible += 2; }
+      });
+      card.style.display = rowsVisible > 0 ? '' : 'none';
+      if (rowsVisible > 0) semVisibleCards++;
+    });
+    semEmpty.classList.toggle('show', semVisibleCards === 0 && !!q);
+
+    countEl.textContent = visible;
+  }
+  searchEl.addEventListener('input', applyFilter);
+  clearEl.addEventListener('click', function(){ searchEl.value = ''; applyFilter(); searchEl.focus(); });
+
+  // keyboard shortcut: '/' focuses the search
+  document.addEventListener('keydown', function(e){
+    if (e.key === '/' && document.activeElement !== searchEl) {
+      e.preventDefault();
+      searchEl.focus(); searchEl.select();
+    }
+  });
+</script>
+</body>
+</html>
