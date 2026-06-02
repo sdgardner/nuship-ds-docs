@@ -17,79 +17,110 @@
     .col-title { font-size: 32px; line-height: 38px; font-weight: 700; color: var(--text-primary); margin: 0; }
     .col-sub { font-size: 14px; line-height: 19px; color: var(--text-secondary); margin: 0; }
 
-    /* ─── Toolbar (search + copied indicator) ───────────────── */
+    /* ─── Toolbar (search + count + theme preview) ───────────── */
+    /* Sentinel sits above the toolbar; we observe it to detect sticky state. */
+    .col-sentinel { height: 1px; margin-top: -1px; }
+
     .col-toolbar {
-      display: flex; align-items: center; gap: 12px;
+      display: flex; align-items: center; gap: 24px;
       flex-wrap: wrap;
-      padding: 14px 16px;
-      background: var(--surface-layer01);
-      border: 1px solid var(--border);
-      border-radius: 10px;
+      padding: 12px 0;
       margin-bottom: 28px;
-      position: sticky; top: 56px; z-index: 8;
-      backdrop-filter: blur(8px);
+      position: sticky; top: 48px; z-index: 8;
+      background: transparent;
+      transition: background 180ms, box-shadow 180ms, padding 180ms;
     }
+    /* When the toolbar leaves the page flow (stuck), give it a layer-02
+       backdrop, a hairline separator, and a soft shadow so it reads as
+       a floating utility bar — not a junior bordered panel. */
+    .col-toolbar.is-stuck {
+      padding: 14px 24px;
+      margin-left: -24px;
+      margin-right: -24px;
+      background: var(--surface-layer02);
+      border-bottom: 1px solid var(--border);
+      box-shadow: 0 6px 16px -8px rgba(15, 23, 42, 0.10);
+    }
+    [data-theme="dark"] .col-toolbar.is-stuck {
+      box-shadow: 0 6px 16px -8px rgba(0, 0, 0, 0.5);
+    }
+
+    /* Skid search field — borderless variant for the toolbar */
     .col-search {
-      position: relative; flex: 1; min-width: 220px; max-width: 420px;
+      display: flex; align-items: center; gap: 8px;
+      height: 40px; padding: 0 12px;
+      background: transparent;
+      border: none;
+      border-radius: 8px;
+      flex: 1; min-width: 240px; max-width: 440px;
+      transition: background 120ms, box-shadow 120ms;
     }
-    .col-search input {
-      width: 100%; height: 36px;
-      padding: 0 12px 0 36px;
-      background: var(--surface-field);
-      border: 1px solid var(--border);
-      border-radius: 6px;
-      font-family: inherit; font-size: 14px;
-      color: var(--text-primary);
-      outline: none;
-      transition: border-color 120ms, box-shadow 120ms;
-    }
-    .col-search input::placeholder { color: var(--text-tertiary); }
-    .col-search input:focus {
-      border-color: var(--border-focus);
-      box-shadow: 0 0 0 3px rgba(90,191,224,0.25);
+    .col-toolbar.is-stuck .col-search { background: var(--surface-card); }
+    .col-search:focus-within {
+      background: var(--surface-card);
+      box-shadow: inset 0 0 0 1px var(--border-focus),
+                  0 0 0 4px rgba(90, 191, 224, 0.22);
     }
     .col-search-icon {
-      position: absolute; left: 10px; top: 50%; transform: translateY(-50%);
-      width: 16px; height: 16px;
+      width: 18px; height: 18px;
       color: var(--text-tertiary);
-      pointer-events: none;
+      flex-shrink: 0;
     }
+    .col-search input {
+      flex: 1; min-width: 0;
+      height: 100%;
+      background: transparent;
+      border: none; outline: none;
+      font-family: inherit; font-size: 14px;
+      color: var(--text-primary);
+      padding: 0;
+    }
+    .col-search input::placeholder { color: var(--text-tertiary); }
     .col-search-clear {
-      position: absolute; right: 8px; top: 50%; transform: translateY(-50%);
       width: 20px; height: 20px;
       border: none; background: transparent; cursor: pointer;
       color: var(--text-tertiary);
       display: none; align-items: center; justify-content: center;
-      border-radius: 3px;
+      border-radius: 100px;
+      flex-shrink: 0;
     }
-    .col-search-clear:hover { color: var(--text-primary); background: var(--surface-layer02); }
+    .col-search-clear:hover { color: var(--text-primary); background: var(--surface-layer03); }
     .col-search-clear.show { display: inline-flex; }
 
     .col-count {
-      font-size: 12px; font-weight: 700; color: var(--text-tertiary);
-      letter-spacing: 0.4px; text-transform: uppercase;
+      font-size: 13px; font-weight: 700;
+      color: var(--text-tertiary);
+      font-variant-numeric: tabular-nums;
     }
+    .col-count em {
+      font-style: normal;
+      color: var(--text-primary);
+    }
+
+    /* Borderless mode toggle — pure pill, no outer chrome */
     .col-mode-toggle {
-      display: inline-flex; align-items: center; gap: 4px;
-      padding: 4px;
-      background: var(--surface-card);
-      border: 1px solid var(--border);
+      display: inline-flex; align-items: center; gap: 2px;
+      padding: 2px;
+      background: transparent;
+      border: none;
       border-radius: 100px;
     }
+    .col-toolbar.is-stuck .col-mode-toggle { background: var(--surface-card); }
     .col-mode-btn {
       display: inline-flex; align-items: center; gap: 6px;
-      height: 26px; padding: 0 12px;
+      height: 30px; padding: 0 14px;
       background: transparent; border: none; cursor: pointer;
-      font-family: inherit; font-size: 12px; font-weight: 700;
-      color: var(--text-secondary);
+      font-family: inherit; font-size: 13px; font-weight: 700;
+      color: var(--text-tertiary);
       border-radius: 100px;
       transition: background 120ms, color 120ms;
     }
-    .col-mode-btn svg { width: 13px; height: 13px; }
-    .col-mode-btn:hover { color: var(--text-primary); }
+    .col-mode-btn svg { width: 14px; height: 14px; }
+    .col-mode-btn:hover:not(.is-active) { color: var(--text-primary); }
     .col-mode-btn.is-active {
       background: var(--action-secondary); color: #FFFFFF;
     }
+    [data-theme="dark"] .col-mode-btn.is-active { background: var(--action-secondary); }
 
     /* ─── Section heading ───────────────────────────────────── */
     .col-section { margin-top: 40px; }
@@ -274,17 +305,20 @@
         <p class="col-sub">nuShip Design System · Color Styles</p>
       </header>
 
+      <!-- Sentinel: when this scrolls off-screen, the toolbar is "stuck" -->
+      <div id="colToolbarSentinel" class="col-sentinel" aria-hidden="true"></div>
+
       <!-- Toolbar -->
-      <div class="col-toolbar" role="toolbar" aria-label="Color tools">
-        <div class="col-search">
-          <i data-lucide="search" class="col-search-icon"></i>
+      <div class="col-toolbar" id="colToolbar" role="toolbar" aria-label="Color tools">
+        <label class="col-search">
+          <i data-lucide="search" class="col-search-icon" aria-hidden="true"></i>
           <input id="colSearch" type="search" placeholder="Search by name or hex (e.g. blue, 027CB1)" aria-label="Search swatches">
-          <button id="colSearchClear" class="col-search-clear" aria-label="Clear search"><i data-lucide="x" style="width:14px;height:14px"></i></button>
-        </div>
-        <span class="col-count"><span id="colCount">0</span> swatches</span>
+          <button id="colSearchClear" class="col-search-clear" type="button" aria-label="Clear search"><i data-lucide="x" style="width:14px;height:14px"></i></button>
+        </label>
+        <span class="col-count"><em id="colCount">0</em> swatches</span>
         <div class="col-mode-toggle" id="colModeToggle" role="tablist" aria-label="Theme preview">
-          <button class="col-mode-btn is-active" data-mode="light" role="tab" aria-selected="true"><i data-lucide="sun"></i>Light</button>
-          <button class="col-mode-btn" data-mode="dark" role="tab" aria-selected="false"><i data-lucide="moon"></i>Dark</button>
+          <button class="col-mode-btn is-active" data-mode="light" role="tab" aria-selected="true" type="button"><i data-lucide="sun"></i>Light</button>
+          <button class="col-mode-btn" data-mode="dark" role="tab" aria-selected="false" type="button"><i data-lucide="moon"></i>Dark</button>
         </div>
       </div>
 
@@ -621,6 +655,20 @@
       searchEl.focus(); searchEl.select();
     }
   });
+
+  // ─── Sticky-state detection ────────────────────────────────
+  // When the sentinel above the toolbar leaves the viewport, the
+  // toolbar is in its sticky position — give it a layer-02 backdrop.
+  const toolbarEl = document.getElementById('colToolbar');
+  const sentinel  = document.getElementById('colToolbarSentinel');
+  if ('IntersectionObserver' in window && toolbarEl && sentinel) {
+    const obs = new IntersectionObserver(function(entries){
+      entries.forEach(function(e){
+        toolbarEl.classList.toggle('is-stuck', e.intersectionRatio === 0);
+      });
+    }, { threshold: [0, 1], rootMargin: '-49px 0px 0px 0px' });
+    obs.observe(sentinel);
+  }
 </script>
 </body>
 </html>
