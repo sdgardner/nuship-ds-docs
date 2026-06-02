@@ -21,6 +21,49 @@ window.toggleTheme = function () {
   try { localStorage.setItem('theme', next); } catch (e) { /* noop */ }
 };
 
+// ── uShip logo: inject the SVG symbol + link in the top nav ────
+// Runs on every page (this script is deferred + global). The logo
+// links back to index.html so the topnav has a consistent return
+// affordance. Skips re-injection on pages that already include the
+// symbol (e.g. header.html).
+(function injectTopnavLogo() {
+  const LOGO_SYMBOL =
+    '<defs><symbol id="uship-logo" viewBox="0 0 69.956 35.399">' +
+      '<path fill="currentColor" d="M40.902 19.584H35.671V15.026H31V30.188H35.671V24.252H40.902V30.188H45.573V15H40.902V19.584Z"/>' +
+      '<path fill="currentColor" d="M47 30.19H51.668V15H47V30.19Z"/>' +
+      '<path fill="currentColor" d="M49.727 9.00016C48.237 8.98416 47.016 10.1792 47 11.6692C47 11.6882 47 11.7072 47 11.7262C46.999 13.2322 48.22 14.4542 49.726 14.4542C51.232 14.4552 52.453 13.2352 52.454 11.7282C52.455 10.2222 51.234 9.00116 49.728 9.00016H49.727Z"/>' +
+      '<path fill="currentColor" d="M60.764 25.802C59.121 25.781 57.794 24.454 57.772 22.811C57.772 21.219 59.171 19.823 60.764 19.823C62.357 19.823 63.752 21.223 63.752 22.811C63.752 24.399 62.356 25.802 60.764 25.802M60.764 15.416C59.766 15.411 58.777 15.616 57.864 16.019L57.772 16.06V15H53V33.393H57.772V29.587L57.864 29.628C58.777 30.03 59.766 30.235 60.764 30.229C64.91 30.229 68.271 26.968 68.271 22.822C68.271 18.676 64.91 15.315 60.764 15.416"/>' +
+      '<path fill="currentColor" d="M11.086 22.386C11.086 24.101 9.617 25.551 7.88 25.551C6.142 25.551 4.671 24.108 4.671 22.386V15H0V22.386C0 26.672 3.535 30.161 7.875 30.161C12.215 30.161 15.749 26.674 15.749 22.386V15H11.086V22.386Z"/>' +
+      '<path fill="currentColor" d="M32.652 7.134L36.702 8.599L32.672 0L24.074 4.033L27.776 5.371L27.752 5.434C27.462 6.171 27.211 6.725 27.112 6.844C26.967 7.016 26.769 7.251 25.64 7.326C25.367 7.344 25.139 7.352 24.919 7.352H24.421C23.869 7.358 23.32 7.408 22.776 7.501C21.174 7.73 19.966 8.268 18.847 9.227C17.918 10.03 16.993 11.065 16.51 13.214C16.168 14.737 16.395 16.247 17.184 17.703C17.676 18.615 18.801 20.028 21.36 21.586C22.51 22.284 23.3 22.827 23.678 23.377C23.931 23.747 24.037 24.149 23.971 24.481C23.94 24.665 23.837 24.828 23.683 24.934C23.388 25.125 22.813 25.284 22.205 25.451L22.165 25.461C21.232 25.724 20.075 26.036 19.146 26.643C17.729 27.561 17.309 28.277 16.074 33.752L16 34.076L20.641 35.399L20.729 35.044C21.167 33.278 21.516 32.24 21.759 31.958C22.036 31.638 22.195 31.506 22.896 31.288L23.33 31.157L23.51 31.103C24.547 30.819 25.554 30.438 26.521 29.967C28.279 29.11 29.523 26.994 29.767 24.444C30.03 21.74 29.05 20.268 27.958 19.082C27.206 18.268 23.926 16.155 23.457 15.876C22.88 15.533 22.204 14.957 22.257 14.122C22.3 13.466 23.006 13.178 23.192 13.134C23.334 13.103 23.577 13.079 23.96 13.042H23.998C24.531 12.992 25.335 12.911 26.48 12.747C28.673 12.423 29.853 11.363 30.258 10.922C31.268 9.833 32.073 8.572 32.636 7.198L32.652 7.134Z"/>' +
+    '</symbol></defs>';
+
+  function go() {
+    // 1) Symbol — skip if header.html already defined it
+    if (!document.getElementById('uship-logo')) {
+      const wrap = document.createElement('div');
+      wrap.style.cssText = 'position:absolute;width:0;height:0;overflow:hidden';
+      wrap.setAttribute('aria-hidden', 'true');
+      wrap.innerHTML = '<svg width="0" height="0">' + LOGO_SYMBOL + '</svg>';
+      document.body.insertBefore(wrap, document.body.firstChild);
+    }
+    // 2) Logo link — insert after the hamburger inside .topnav
+    const topnav = document.querySelector('.topnav');
+    if (!topnav || topnav.querySelector('.topnav-logo')) return;
+    const ham = topnav.querySelector('.hamburger');
+    const a = document.createElement('a');
+    a.className = 'topnav-logo';
+    a.href = 'index.html';
+    a.setAttribute('aria-label', 'nuShip Design System home');
+    a.innerHTML = '<svg viewBox="0 0 69.956 35.399"><use href="#uship-logo"/></svg>';
+    if (ham && ham.nextSibling) topnav.insertBefore(a, ham.nextSibling);
+    else topnav.appendChild(a);
+  }
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', go);
+  } else { go(); }
+})();
+
 (function () {
   const SCROLL_KEY = 'leftNavScrollTop';
   const COLLAPSE_PREFIX = 'lnGroup:';

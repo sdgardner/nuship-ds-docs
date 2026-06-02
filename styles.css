@@ -36,6 +36,20 @@ body {
 .hamburger i { color: var(--text-secondary); display: flex; }
 .bc { display: none; }
 
+/* uShip logo in the top nav — links back to index.html */
+.topnav-logo {
+  display: inline-flex; align-items: center;
+  height: 28px; padding: 0 6px;
+  color: #027CB1;
+  text-decoration: none;
+  border-radius: 4px;
+  transition: opacity 120ms;
+}
+.topnav-logo svg { width: 56px; height: 28px; fill: currentColor; display: block; }
+.topnav-logo:hover { opacity: 0.78; }
+.topnav-logo:focus-visible { outline: 2px solid var(--border-focus); outline-offset: 2px; }
+[data-theme="dark"] .topnav-logo { color: #5ABFE0; }
+
 .nav-actions { margin-left: auto; display: flex; align-items: center; gap: 8px; }
 .toggle-wrap {
   display: flex; align-items: center; gap: 6px;
