@@ -9,6 +9,7 @@
   <link rel="stylesheet" href="styles.css">
   <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.min.js"></script>
   <script src="nav-scroll.js" defer></script>
+  <script src="moon-renderer.js" defer></script>
   <style>
     /* ============ Foundations narrative page ============ */
     :root {
@@ -17,7 +18,7 @@
       --fnd-blue-bright: #027CB1;
       --fnd-green:       #006C21;
       --fnd-green-glow:  #4DAD82;
-      --fnd-dark:        #0A0A0A;
+      --fnd-dark:        #14171b;
       --fnd-magenta:     #B5267A;
       --fnd-ink:         #FFFFFF;
       --fnd-mono:        ui-monospace, "SF Mono", "Menlo", Consolas, monospace;
@@ -363,13 +364,16 @@
     .fnd-band--dark {
       background: var(--fnd-dark);
       color: var(--fnd-ink);
+      border-top: 1px solid rgba(255, 255, 255, 0.06);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+      overflow: hidden;
     }
     .fnd-band--dark .fnd-eyebrow { color: var(--fnd-green-glow); }
     .fnd-band--dark .fnd-lead { color: rgba(255, 255, 255, 0.7); }
     .fnd-dark-grid {
       display: grid;
-      grid-template-columns: 1fr 360px;
-      gap: 64px;
+      grid-template-columns: minmax(0, 1fr) minmax(360px, 540px);
+      gap: 48px;
       align-items: center;
     }
     .fnd-bullets {
@@ -410,78 +414,86 @@
       margin: 0;
       color: rgba(255, 255, 255, 0.65);
     }
-    /* ─── Moon rings — orbital animation ─── */
-    .fnd-rings {
+    /* ═══ Moon stage — ported from Dark Side handoff
+       Real moon photograph wrapped on a lit sphere via moon-renderer.js,
+       wrapped in CSS glow + orbit rings + satellite + starfield. ═══ */
+    .moon-stage {
       position: relative;
-      width: 360px;
-      height: 360px;
+      width: min(100%, 480px);
+      aspect-ratio: 1 / 1;
       margin-left: auto;
     }
-    .fnd-rings span {
-      position: absolute;
-      top: 50%;
-      left: 50%;
+    .moon-canvas {
+      position: absolute; inset: 0;
+      width: 100%; height: 100%;
+      z-index: 3;
+    }
+
+    /* Broad soft halo — CSS layer fades to transparent inside its bounds,
+       so there's never a visible box edge. Strength is animated by the
+       renderer via --glow-strength as the moon face brightens. */
+    .moon-glow {
+      position: absolute; inset: -26%;
+      z-index: 1; pointer-events: none;
+      background: radial-gradient(circle at 50% 50%, var(--glow, #5ab9e0) 0%, transparent 56%);
+      opacity: calc(0.08 + 0.24 * var(--glow-strength, 0.6));
+      filter: blur(6px);
+      transition: opacity 0.18s linear;
+    }
+
+    /* Orbit rings — three concentric circles. The middle (.orbit) rotates
+       and carries a small satellite at its top. */
+    .moon-rings {
+      position: absolute; inset: 0;
+      z-index: 2; pointer-events: none;
+      transition: opacity 0.4s ease;
+    }
+    .moon-rings .ring {
+      position: absolute; top: 50%; left: 50%;
+      border: 1px solid rgba(255, 255, 255, 0.07);
       border-radius: 50%;
-      border: 1px solid rgba(255, 255, 255, 0.1);
-      opacity: 0;
       transform: translate(-50%, -50%);
-      transition: opacity 720ms cubic-bezier(0.2, 0, 0, 1);
     }
-    .fnd-rings.is-in span { opacity: 1; }
-
-    .fnd-rings span:nth-child(1) { width: 100%; height: 100%; }
-    .fnd-rings span:nth-child(2) { width: 80%;  height: 80%;  }
-    .fnd-rings span:nth-child(3) { width: 60%;  height: 60%;  }
-    .fnd-rings span:nth-child(4) { width: 40%;  height: 40%;  }
-    .fnd-rings span:nth-child(5) {
-      width: 22%; height: 22%;
-      background: rgba(255, 255, 255, 0.04);
-      border-color: rgba(255, 255, 255, 0.2);
+    .moon-rings .ring-1 { width: 56%;  height: 56%; }
+    .moon-rings .ring-2 { width: 78%;  height: 78%; border-color: rgba(255, 255, 255, 0.055); }
+    .moon-rings .ring-3 { width: 100%; height: 100%; border-color: rgba(255, 255, 255, 0.04); }
+    .moon-rings .orbit {
+      position: absolute; top: 50%; left: 50%;
+      width: 78%; height: 78%;
+      transform: translate(-50%, -50%);
+      animation: moon-spin 16s linear infinite;
     }
-
-    /* Tiny "moon" pip that orbits the largest ring */
-    .fnd-rings .moon {
-      width: 14px; height: 14px;
+    .moon-rings .sat {
+      position: absolute; top: -3px; left: 50%;
+      width: 6px; height: 6px;
       border-radius: 50%;
-      background: var(--fnd-green-glow);
-      border: 0;
-      box-shadow: 0 0 18px 2px rgba(77, 173, 130, 0.55);
+      transform: translateX(-50%);
+      background: var(--glow, #5ab9e0);
+      box-shadow: 0 0 10px 1px var(--glow, #5ab9e0);
     }
-    .fnd-rings.is-in .moon {
-      animation: fnd-orbit 18s linear infinite;
-    }
+    @keyframes moon-spin { to { transform: translate(-50%, -50%) rotate(360deg); } }
 
-    /* Continuous spin on each ring — slow, alternating directions */
-    @keyframes fnd-spin-cw  { from { transform: translate(-50%, -50%) rotate(0deg); }   to { transform: translate(-50%, -50%) rotate(360deg); } }
-    @keyframes fnd-spin-ccw { from { transform: translate(-50%, -50%) rotate(0deg); }   to { transform: translate(-50%, -50%) rotate(-360deg); } }
-    @keyframes fnd-pulse {
-      0%, 100% { box-shadow: 0 0 0 0 rgba(255, 255, 255, 0.18); transform: translate(-50%, -50%) scale(1); }
-      50%      { box-shadow: 0 0 0 18px rgba(255, 255, 255, 0); transform: translate(-50%, -50%) scale(1.06); }
+    /* Starfield — 46 faint twinkling dots */
+    .moon-stars {
+      position: absolute; inset: -20% -30%;
+      z-index: 0; pointer-events: none;
+      transition: opacity 0.4s ease;
     }
-    @keyframes fnd-orbit {
-      from { transform: translate(-50%, -50%) rotate(0deg)   translateX(180px) rotate(0deg);   }
-      to   { transform: translate(-50%, -50%) rotate(360deg) translateX(180px) rotate(-360deg);}
+    .moon-stars span {
+      position: absolute;
+      border-radius: 50%;
+      background: #fff;
+      opacity: var(--o);
+      animation: moon-twinkle linear infinite;
     }
-
-    /* Stagger the ring spins so they feel like independent orbits */
-    .fnd-rings.is-in span:nth-child(1) { animation: fnd-spin-cw  80s linear infinite; }
-    .fnd-rings.is-in span:nth-child(2) { animation: fnd-spin-ccw 60s linear infinite; }
-    .fnd-rings.is-in span:nth-child(3) { animation: fnd-spin-cw  45s linear infinite; }
-    .fnd-rings.is-in span:nth-child(4) { animation: fnd-spin-ccw 32s linear infinite; }
-    .fnd-rings.is-in span:nth-child(5) { animation: fnd-pulse    4s  ease-in-out infinite; }
-
-    /* Dashed ring overlay for orbital feel */
-    .fnd-rings span:nth-child(1) { border-style: dashed; }
-    .fnd-rings span:nth-child(3) { border-style: dashed; }
+    @keyframes moon-twinkle {
+      0%, 100% { opacity: calc(var(--o) * 0.35); transform: scale(0.85); }
+      50%      { opacity: var(--o);              transform: scale(1.15); }
+    }
 
     @media (prefers-reduced-motion: reduce) {
-      .fnd-rings span,
-      .fnd-rings .moon {
-        animation: none !important;
-        opacity: 1 !important;
-        transform: translate(-50%, -50%) !important;
-        transition: none !important;
-      }
+      .moon-rings .orbit,
+      .moon-stars span { animation: none !important; }
     }
 
     /* ─── Band 5 — Token flow (Light) ─── */
@@ -586,7 +598,7 @@
       .fnd-flow { grid-template-columns: repeat(2, 1fr); }
       .fnd-flow-node .fnd-flow-arrow { display: none; }
       .fnd-flow-cards { grid-template-columns: 1fr; }
-      .fnd-rings { margin: 0 auto; width: 280px; height: 280px; }
+      .moon-stage { margin: 0 auto; width: min(78%, 360px); order: -1; }
     }
   </style>
 </head>
@@ -805,9 +817,16 @@
               </div>
             </div>
 
-            <div class="fnd-rings" id="fndRings" aria-hidden="true">
-              <span></span><span></span><span></span><span></span><span></span>
-              <span class="moon"></span>
+            <div class="moon-stage" id="moonStage" style="--glow:#5ab9e0">
+              <div class="moon-stars" id="moonStars" aria-hidden="true"></div>
+              <div class="moon-glow" aria-hidden="true"></div>
+              <div class="moon-rings" aria-hidden="true">
+                <div class="ring ring-1"></div>
+                <div class="ring ring-2"></div>
+                <div class="ring ring-3"></div>
+                <div class="orbit"><span class="sat"></span></div>
+              </div>
+              <canvas id="moonCanvas" class="moon-canvas" style="opacity:0.80"></canvas>
             </div>
           </div>
         </div>
@@ -886,24 +905,67 @@
     d.setAttribute('data-theme', d.getAttribute('data-theme') === 'dark' ? 'light' : 'dark');
   }
 
-  // ── Scroll-triggered reveal for hero stage + moon rings ──
+  // ── Scroll-triggered reveal for the hero stage ──
   (function initReveals(){
-    const targets = ['fndStage', 'fndRings'].map(id => document.getElementById(id)).filter(Boolean);
-    if (!targets.length) return;
+    const stage = document.getElementById('fndStage');
+    if (!stage) return;
     if (!('IntersectionObserver' in window)) {
-      targets.forEach(t => t.classList.add('is-in'));
+      stage.classList.add('is-in');
       return;
     }
     const obs = new IntersectionObserver((entries) => {
       entries.forEach(e => {
         if (e.isIntersecting) {
-          e.target.classList.add('is-in');
-          obs.unobserve(e.target);
+          stage.classList.add('is-in');
+          obs.disconnect();
         }
       });
     }, { threshold: 0.15 });
-    targets.forEach(t => obs.observe(t));
+    obs.observe(stage);
   })();
+
+  // ── Starfield: 46 randomly placed twinkling dots ──
+  (function initStarfield(){
+    const host = document.getElementById('moonStars');
+    if (!host) return;
+    const frag = document.createDocumentFragment();
+    for (let i = 0; i < 46; i++) {
+      const s = document.createElement('span');
+      const size  = (0.6 + Math.random() * 1.7).toFixed(2);
+      const opac  = (0.18 + Math.random() * 0.5).toFixed(2);
+      const dur   = (2.6 + Math.random() * 4.5).toFixed(2);
+      const delay = (-Math.random() * 6).toFixed(2);
+      s.style.cssText =
+        `left:${(Math.random()*100).toFixed(2)}%;` +
+        `top:${(Math.random()*100).toFixed(2)}%;` +
+        `width:${size}px;height:${size}px;` +
+        `--o:${opac};animation-duration:${dur}s;animation-delay:${delay}s;`;
+      frag.appendChild(s);
+    }
+    host.appendChild(frag);
+  })();
+
+  // ── Moon: photoreal sphere with sweeping terminator (ship defaults) ──
+  // moon-renderer.js is loaded with defer, so it's not on window until DOMContentLoaded fires.
+  function initMoon(){
+    const canvas = document.getElementById('moonCanvas');
+    if (!canvas || typeof window.MoonRenderer !== 'function') return;
+    const reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    const r = new window.MoonRenderer(canvas, 'moon.jpg');
+    r.setParams({
+      motion: reduced ? 'still' : 'breathe',
+      speed: 50,
+      glow: '#5ab9e0',
+      phase: 20,
+      soft: 35,
+    });
+    window.addEventListener('resize', () => r.resize());
+  }
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initMoon);
+  } else {
+    initMoon();
+  }
 </script>
 </body>
 </html>
