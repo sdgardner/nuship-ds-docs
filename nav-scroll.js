@@ -83,6 +83,7 @@ window.toggleTheme = function () {
     { name: 'Spacing',     href: 'spacing.html' },
     { name: 'Radius',      href: 'radius.html' },
     { name: 'Elevation',   href: 'elevation.html' },
+    { name: 'Iconography', href: 'icons.html' },
   ];
 
   // All 39 components A-Z

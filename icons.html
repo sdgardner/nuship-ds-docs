@@ -1,0 +1,505 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Iconography — nuShip Design System</title>
+  <link href="https://fonts.googleapis.com/css2?family=Lato:wght@400;600;700;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="tokens.css">
+  <link rel="stylesheet" href="styles.css">
+  <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.min.js"></script>
+  <script src="nav-scroll.js" defer></script>
+  <style>
+    :root {
+      --ic-mono: ui-monospace, "SF Mono", "Menlo", Consolas, monospace;
+    }
+
+    .ic-desc {
+      font-size: 14px;
+      color: var(--text-secondary);
+      margin: 0 0 8px;
+      max-width: 720px;
+      line-height: 1.55;
+    }
+    .ic-source {
+      font-size: 13px;
+      color: var(--text-secondary);
+      margin: 0 0 32px;
+    }
+    .ic-source a {
+      color: var(--text-primary);
+      text-decoration: underline;
+      text-underline-offset: 3px;
+    }
+
+    /* Sticky toolbar — Skid pattern */
+    .ic-toolbar-sentinel { height: 1px; }
+    .ic-toolbar {
+      position: sticky;
+      top: 80px;
+      z-index: 5;
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      padding: 12px 16px;
+      margin: 0 0 24px;
+      background: transparent;
+      border: 1px solid transparent;
+      border-radius: 12px;
+      transition: background 180ms, border-color 180ms, box-shadow 180ms, max-width 180ms, margin 180ms;
+      flex-wrap: wrap;
+    }
+    .ic-toolbar.is-stuck {
+      background: var(--surface-layer03);
+      border-color: var(--border-soft);
+      box-shadow: 0 4px 14px rgba(0,0,0,0.06);
+      max-width: 820px;
+      margin: 0 auto 24px;
+    }
+
+    /* Skid search field */
+    .sr-field {
+      flex: 1;
+      min-width: 240px;
+      height: 48px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      padding: 0 16px;
+      background: var(--surface-field);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      transition: border-color 120ms, box-shadow 120ms, background 120ms;
+    }
+    .sr-field:hover { background: var(--surface-field-hover); }
+    .sr-field:focus-within {
+      border-color: var(--action-primary);
+      box-shadow: 0 0 0 3px var(--focus-ring);
+    }
+    .sr-field i { color: var(--text-secondary); flex-shrink: 0; }
+    .sr-field input {
+      flex: 1;
+      border: 0;
+      background: transparent;
+      outline: 0;
+      font-family: inherit;
+      font-size: 14px;
+      color: var(--text-primary);
+    }
+    .sr-field input::placeholder { color: var(--text-secondary); }
+
+    /* Skid segmented control */
+    .sg-group {
+      display: inline-flex;
+      padding: 4px;
+      background: var(--surface-layer02);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      gap: 2px;
+    }
+    .sg-item {
+      border: 0;
+      background: transparent;
+      font-family: inherit;
+      font-size: 13px;
+      color: var(--text-secondary);
+      padding: 8px 16px;
+      border-radius: 6px;
+      cursor: pointer;
+      transition: background 120ms, color 120ms;
+      font-weight: 600;
+    }
+    .sg-item:hover { color: var(--text-primary); }
+    .sg-item[aria-pressed="true"] {
+      background: var(--action-secondary);
+      color: var(--text-on-action);
+    }
+
+    .ic-count {
+      font-size: 13px;
+      color: var(--text-secondary);
+      font-family: var(--ic-mono);
+      white-space: nowrap;
+    }
+
+    /* Category */
+    .ic-cat {
+      margin: 0 0 48px;
+    }
+    .ic-cat-head {
+      display: flex;
+      align-items: baseline;
+      justify-content: space-between;
+      margin: 0 0 16px;
+      padding: 0 0 12px;
+      border-bottom: 1px solid var(--border-soft);
+    }
+    .ic-cat-title {
+      font-size: 18px;
+      font-weight: 900;
+      color: var(--text-primary);
+      margin: 0;
+    }
+    .ic-cat-meta {
+      font-size: 12px;
+      color: var(--text-secondary);
+      font-family: var(--ic-mono);
+    }
+
+    /* Icon grid */
+    .ic-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+      gap: 8px;
+    }
+    .ic-tile {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 20px 8px 12px;
+      background: var(--surface-shell);
+      border: 1px solid var(--border-soft);
+      border-radius: 10px;
+      cursor: pointer;
+      transition: border-color 120ms, background 120ms, transform 120ms;
+      text-align: center;
+      gap: 12px;
+      min-height: 110px;
+    }
+    .ic-tile:hover {
+      border-color: var(--action-primary);
+      background: var(--surface-layer01);
+    }
+    .ic-tile.flash {
+      animation: icFlash 600ms ease;
+    }
+    @keyframes icFlash {
+      0%   { box-shadow: 0 0 0 0 var(--focus-ring); }
+      50%  { box-shadow: 0 0 0 6px var(--focus-ring); }
+      100% { box-shadow: 0 0 0 0 var(--focus-ring); }
+    }
+    .ic-tile-icon {
+      color: var(--text-primary);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 32px;
+      height: 32px;
+    }
+    .ic-tile-name {
+      font-family: var(--ic-mono);
+      font-size: 11px;
+      color: var(--text-secondary);
+      word-break: break-word;
+      line-height: 1.3;
+    }
+
+    /* Size states for grid icons */
+    .ic-grid[data-size="16"] .ic-tile-icon i { width: 16px !important; height: 16px !important; }
+    .ic-grid[data-size="20"] .ic-tile-icon i { width: 20px !important; height: 20px !important; }
+    .ic-grid[data-size="24"] .ic-tile-icon i { width: 24px !important; height: 24px !important; }
+    .ic-grid[data-size="32"] .ic-tile-icon i { width: 32px !important; height: 32px !important; }
+
+    /* Empty state */
+    .ic-empty {
+      padding: 64px 24px;
+      text-align: center;
+      color: var(--text-secondary);
+      border: 1px dashed var(--border-soft);
+      border-radius: 12px;
+      display: none;
+    }
+    .ic-empty.show { display: block; }
+
+    /* Toast */
+    .ic-toast {
+      position: fixed;
+      bottom: 32px;
+      left: 50%;
+      transform: translateX(-50%) translateY(20px);
+      background: var(--text-primary);
+      color: var(--surface-shell);
+      padding: 12px 20px;
+      border-radius: 999px;
+      font-size: 14px;
+      font-weight: 600;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 180ms, transform 180ms;
+      z-index: 100;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .ic-toast.show {
+      opacity: 1;
+      transform: translateX(-50%) translateY(0);
+    }
+
+    /* Usage block */
+    .ic-usage {
+      margin: 0 0 40px;
+      padding: 24px;
+      background: var(--surface-layer01);
+      border: 1px solid var(--border-soft);
+      border-radius: 12px;
+    }
+    .ic-usage h3 {
+      font-size: 14px;
+      font-weight: 700;
+      margin: 0 0 8px;
+      color: var(--text-primary);
+    }
+    .ic-usage p {
+      font-size: 13px;
+      color: var(--text-secondary);
+      line-height: 1.55;
+      margin: 0 0 12px;
+    }
+    .ic-usage code {
+      display: block;
+      background: var(--surface-shell);
+      border: 1px solid var(--border-soft);
+      border-radius: 8px;
+      padding: 12px 14px;
+      font-family: var(--ic-mono);
+      font-size: 12px;
+      color: var(--text-primary);
+      overflow-x: auto;
+      white-space: pre;
+    }
+  </style>
+</head>
+<body>
+
+<div id="navOverlay" class="nav-overlay" onclick="toggleSidebar()"></div>
+
+<nav class="topnav">
+  <button class="hamburger" onclick="toggleSidebar()" aria-label="Menu"><i data-lucide="menu" style="width:18px;height:18px;color:var(--text-secondary)"></i></button>
+  <div class="bc">
+    <a href="index.html">Foundations</a>
+    <i data-lucide="chevron-right" style="width:14px;height:14px;flex-shrink:0"></i>
+    <span class="cur">Iconography</span>
+  </div>
+  <div class="nav-actions">
+    <div class="toggle-wrap" onclick="togglePageTheme()" role="button">
+      <i data-lucide="moon" style="width:20px;height:20px"></i>
+      <div class="toggle-track"><div class="toggle-thumb"></div></div>
+      <i data-lucide="sun" style="width:20px;height:20px"></i>
+    </div>
+  </div>
+</nav>
+
+<div class="shell">
+  <nav class="left-nav" id="leftNav">
+    <div class="left-nav-inner">
+      <div class="ln-group"><div class="ln-label">Inputs</div><ul class="ln-list">
+        <li><a href="checkbox.html">Checkbox</a></li><li><a href="datepicker.html">Date Picker</a></li><li><a href="numberinput.html">Number Input</a></li><li><a href="passwordinput.html">Password Input</a></li><li><a href="radiobutton.html">Radio Button</a></li><li><a href="search.html">Search</a></li><li><a href="select.html">Select</a></li><li><a href="slider.html">Slider</a></li><li><a href="switch.html">Switch</a></li><li><a href="textarea.html">Text Area</a></li><li><a href="textinput.html">Text Input</a></li><li><a href="tile.html">Tile</a></li>
+      </ul></div>
+      <div class="ln-group"><div class="ln-label">Feedback</div><ul class="ln-list">
+        <li><a href="alert.html">Alert</a></li><li><a href="badge.html">Badge</a></li><li><a href="toast.html">Toast</a></li><li><a href="tooltip.html">Tooltip</a></li>
+      </ul></div>
+      <div class="ln-group"><div class="ln-label">Navigation</div><ul class="ln-list">
+        <li><a href="accordion.html">Accordion</a></li><li><a href="dropdown.html">Dropdown</a></li><li><a href="menu.html">Menu</a></li><li><a href="pagination.html">Pagination</a></li><li><a href="segmentedcontrol.html">Segmented Control</a></li><li><a href="stepindicator.html">Step Indicator</a></li><li><a href="tabs.html">Tabs</a></li>
+      </ul></div>
+      <div class="ln-group"><div class="ln-label">Actions</div><ul class="ln-list">
+        <li><a href="button.html">Button</a></li><li><a href="link.html">Link</a></li><li><a href="tag.html">Tag</a></li>
+      </ul></div>
+      <div class="ln-group"><div class="ln-label">Overlays</div><ul class="ln-list">
+        <li><a href="modal.html">Modal</a></li><li><a href="popover.html">Popover</a></li>
+      </ul></div>
+      <div class="ln-group">
+        <div class="ln-label">Layout</div>
+        <ul class="ln-list">
+          <li><a href="header.html">Header</a></li>
+          <li><a href="footer.html">Footer</a></li>
+        </ul>
+      </div>
+      <div class="ln-group"><div class="ln-label">Display</div><ul class="ln-list"><li><a href="avatar.html">Avatar</a></li><li><a href="carousel.html">Carousel</a></li><li><a href="divider.html">Divider</a></li><li><a href="filerow.html">File Row</a></li><li><a href="fileupload.html">File Upload</a></li><li><a href="metrics.html">Metrics</a></li><li><a href="progressbar.html">Progress Bar</a></li><li><a href="skeleton.html">Skeleton</a></li><li><a href="starrating.html">Star Rating</a></li></ul></div>
+    </div>
+  </nav>
+
+  <div class="content-wrap" id="contentWrap">
+    <main class="doc">
+
+      <section class="doc-section">
+        <h1 class="def-title">Iconography</h1>
+        <p class="ic-desc">nuShip uses <strong>Lucide</strong> — an open-source, MIT-licensed icon library with a unified 24×24 grid, 1.5px stroke, and rounded line caps. Every icon ships as a tree-shakeable SVG; the same icon name renders identically across web, native, and Figma.</p>
+        <p class="ic-source">Browse the full set at <a href="https://lucide.dev/icons/" target="_blank" rel="noopener">lucide.dev/icons</a>. Click any tile below to copy the HTML snippet.</p>
+
+        <!-- Usage -->
+        <div class="ic-usage">
+          <h3>Drop-in usage</h3>
+          <p>Reference an icon by name with <code style="display:inline;padding:2px 6px;background:var(--surface-shell);border:1px solid var(--border-soft);border-radius:4px;font-size:11px;">data-lucide="&lt;name&gt;"</code>. Lucide auto-renders any <code style="display:inline;padding:2px 6px;background:var(--surface-shell);border:1px solid var(--border-soft);border-radius:4px;font-size:11px;">&lt;i&gt;</code> tag with that attribute when <code style="display:inline;padding:2px 6px;background:var(--surface-shell);border:1px solid var(--border-soft);border-radius:4px;font-size:11px;">lucide.createIcons()</code> runs.</p>
+          <code>&lt;script src="https://unpkg.com/lucide@latest"&gt;&lt;/script&gt;
+&lt;i data-lucide="package" style="width:20px;height:20px"&gt;&lt;/i&gt;
+&lt;script&gt;lucide.createIcons();&lt;/script&gt;</code>
+        </div>
+
+        <!-- Sticky toolbar -->
+        <div class="ic-toolbar-sentinel" id="icSentinel"></div>
+        <div class="ic-toolbar" id="icToolbar">
+          <label class="sr-field">
+            <i data-lucide="search" style="width:18px;height:18px"></i>
+            <input type="text" id="icSearch" placeholder="Search icons (e.g. truck, package, user)" autocomplete="off" spellcheck="false">
+          </label>
+          <div class="sg-group" role="group" aria-label="Icon size">
+            <button class="sg-item" data-size="16" aria-pressed="false">16</button>
+            <button class="sg-item" data-size="20" aria-pressed="false">20</button>
+            <button class="sg-item" data-size="24" aria-pressed="true">24</button>
+            <button class="sg-item" data-size="32" aria-pressed="false">32</button>
+          </div>
+          <span class="ic-count" id="icCount">0 icons</span>
+        </div>
+
+        <!-- Categories rendered here -->
+        <div id="icContent"></div>
+
+        <div class="ic-empty" id="icEmpty">
+          <i data-lucide="search-x" style="width:32px;height:32px;color:var(--text-secondary);margin-bottom:8px"></i>
+          <p style="margin:0;font-size:14px;">No icons match your search.</p>
+          <p style="margin:4px 0 0;font-size:12px;">Try a different keyword or browse the full set at <a href="https://lucide.dev/icons/" target="_blank" rel="noopener" style="color:var(--action-primary);">lucide.dev/icons</a>.</p>
+        </div>
+
+      </section>
+
+    </main>
+  </div>
+</div>
+
+<div class="ic-toast" id="icToast"><i data-lucide="check" style="width:16px;height:16px"></i><span id="icToastText">Copied</span></div>
+
+<script>
+  // ── Sidebar boilerplate ──
+  const isMobile = () => window.innerWidth <= 768;
+  let sbOpen = !isMobile();
+  if (!sbOpen) document.getElementById('leftNav').classList.add('hidden');
+  function toggleSidebar() {
+    sbOpen = !sbOpen;
+    document.getElementById('leftNav').classList.toggle('hidden', !sbOpen);
+    if (!isMobile()) document.getElementById('contentWrap').style.marginLeft = sbOpen ? 'var(--left-w)' : '0';
+    document.getElementById('navOverlay').classList.toggle('active', sbOpen && isMobile());
+  }
+  function togglePageTheme() {
+    const d = document.documentElement;
+    d.setAttribute('data-theme', d.getAttribute('data-theme') === 'dark' ? 'light' : 'dark');
+  }
+
+  // ══════════════════════════════════════════════════════
+  // Curated Lucide icon library — grouped by use case
+  // ══════════════════════════════════════════════════════
+  const categories = [
+    { title: 'Logistics & Shipping', icons: ['package','package-2','package-check','package-open','package-plus','package-search','package-x','truck','ship','plane','train','car','bike','warehouse','container','forklift','box','boxes','map','map-pin','map-pinned','navigation','navigation-2','compass','route','globe','globe-2','earth','anchor'] },
+    { title: 'Commerce & Money', icons: ['shopping-cart','shopping-bag','store','receipt','credit-card','wallet','coins','dollar-sign','banknote','badge-dollar-sign','tag','tags','gift','percent','calculator','piggy-bank'] },
+    { title: 'User & People', icons: ['user','user-plus','user-check','user-x','user-cog','users','user-circle','contact','contact-round','at-sign','id-card','user-round','users-round','crown','baby'] },
+    { title: 'Communication', icons: ['mail','mail-open','message-square','message-circle','messages-square','send','phone','phone-call','phone-incoming','phone-outgoing','phone-off','bell','bell-ring','bell-off','megaphone','headphones','mic','mic-off','rss','inbox','reply','forward','share','share-2'] },
+    { title: 'Navigation & Arrows', icons: ['arrow-up','arrow-down','arrow-left','arrow-right','arrow-up-right','arrow-down-right','arrow-down-left','arrow-up-left','chevron-up','chevron-down','chevron-left','chevron-right','chevrons-up','chevrons-down','chevrons-left','chevrons-right','move','move-horizontal','move-vertical','corner-up-left','corner-up-right','undo','redo','rotate-cw','rotate-ccw','refresh-cw','refresh-ccw'] },
+    { title: 'Actions', icons: ['plus','minus','x','check','check-check','copy','clipboard','clipboard-copy','clipboard-check','clipboard-list','scissors','trash','trash-2','edit','edit-2','edit-3','pencil','pencil-line','save','download','upload','download-cloud','upload-cloud','external-link','link','link-2','unlink','printer'] },
+    { title: 'Status & Feedback', icons: ['check-circle','check-circle-2','circle-check','circle-check-big','alert-circle','circle-alert','alert-triangle','triangle-alert','info','circle-help','circle-x','x-circle','ban','shield','shield-check','shield-alert','shield-x','badge-check','badge-alert','badge-info','badge-help','badge-x','star','heart','thumbs-up','thumbs-down'] },
+    { title: 'Files & Documents', icons: ['file','file-text','file-plus','file-minus','file-check','file-x','file-search','file-spreadsheet','file-pen','file-clock','file-archive','file-code','file-image','file-video','file-audio','file-json','files','folder','folder-open','folder-plus','folder-minus','folder-check','folder-search','folder-tree','archive','book','book-open','bookmark','newspaper'] },
+    { title: 'Layout & UI', icons: ['layout-dashboard','layout-grid','layout-list','layout-panel-left','layout-panel-top','layout-template','sidebar','sidebar-open','sidebar-close','panel-left','panel-right','panel-top','panel-bottom','columns','rows','grid-2x2','grid-3x3','square','rectangle-horizontal','rectangle-vertical','circle','triangle','hexagon','octagon','pentagon'] },
+    { title: 'Search & Filter', icons: ['search','search-check','search-code','search-x','filter','filter-x','sliders','sliders-horizontal','arrow-up-down','arrow-down-up','arrow-down-a-z','arrow-down-z-a','list-filter','funnel'] },
+    { title: 'Time & Calendar', icons: ['clock','clock-2','clock-3','clock-4','clock-5','clock-6','clock-7','clock-8','clock-9','clock-10','clock-11','clock-12','timer','timer-off','timer-reset','hourglass','calendar','calendar-days','calendar-check','calendar-plus','calendar-minus','calendar-x','calendar-clock','calendar-range','alarm-clock','watch'] },
+    { title: 'Settings & Tools', icons: ['settings','settings-2','sliders-horizontal','cog','wrench','hammer','screwdriver','drill','ruler','toggle-left','toggle-right','power','plug','plug-2','play','pause','stop-circle','skip-forward','skip-back','fast-forward','rewind'] },
+    { title: 'Visibility & Privacy', icons: ['eye','eye-off','lock','lock-keyhole','lock-open','unlock','key','key-round','fingerprint','user-lock','shield-lock','scan','scan-eye','scan-face','scan-line'] },
+    { title: 'Charts & Data', icons: ['bar-chart','bar-chart-2','bar-chart-3','bar-chart-4','bar-chart-horizontal','line-chart','pie-chart','trending-up','trending-down','activity','sigma','table','database','server','hard-drive','cpu','gauge'] },
+    { title: 'Media', icons: ['image','image-plus','image-minus','image-off','camera','camera-off','video','video-off','film','clapperboard','music','disc','headphones','volume','volume-1','volume-2','volume-x'] },
+    { title: 'Weather & Nature', icons: ['sun','moon','cloud','cloud-sun','cloud-moon','cloud-rain','cloud-snow','cloud-lightning','cloud-drizzle','cloud-fog','wind','snowflake','umbrella','sunrise','sunset','thermometer','droplet','droplets','flame','tree-pine','tree-palm','leaf'] },
+    { title: 'Misc', icons: ['home','building','building-2','school','hospital','factory','flag','flag-triangle-right','target','crosshair','focus','zap','battery','battery-low','battery-charging','wifi','wifi-off','bluetooth','signal','radio','rocket','sparkles','wand','wand-sparkles','palette','paintbrush','pipette','grip','grip-vertical','grip-horizontal','menu','more-horizontal','more-vertical','ellipsis'] },
+  ];
+
+  const totalIcons = categories.reduce((a, c) => a + c.icons.length, 0);
+
+  // ── State ──
+  const state = { size: 24, query: '' };
+
+  // ── Refs ──
+  const content = document.getElementById('icContent');
+  const empty   = document.getElementById('icEmpty');
+  const search  = document.getElementById('icSearch');
+  const countEl = document.getElementById('icCount');
+  const toast   = document.getElementById('icToast');
+  const toastTx = document.getElementById('icToastText');
+
+  // ── Render ──
+  function render() {
+    const q = state.query.trim().toLowerCase();
+    let visibleTotal = 0;
+    let html = '';
+
+    categories.forEach(cat => {
+      const matched = cat.icons.filter(n => !q || n.toLowerCase().includes(q));
+      if (!matched.length) return;
+      visibleTotal += matched.length;
+
+      html += `<section class="ic-cat">
+        <header class="ic-cat-head">
+          <h2 class="ic-cat-title">${cat.title}</h2>
+          <span class="ic-cat-meta">${matched.length} icon${matched.length === 1 ? '' : 's'}</span>
+        </header>
+        <div class="ic-grid" data-size="${state.size}">`;
+
+      matched.forEach(name => {
+        html += `<button class="ic-tile" data-name="${name}" title="Click to copy">
+          <span class="ic-tile-icon"><i data-lucide="${name}" style="width:${state.size}px;height:${state.size}px"></i></span>
+          <span class="ic-tile-name">${name}</span>
+        </button>`;
+      });
+
+      html += `</div></section>`;
+    });
+
+    content.innerHTML = html;
+    countEl.textContent = `${visibleTotal} of ${totalIcons} icons`;
+    empty.classList.toggle('show', visibleTotal === 0);
+
+    // Hydrate icons (deferred to next frame so DOM is in place)
+    requestAnimationFrame(() => lucide.createIcons());
+
+    // Bind click-to-copy
+    content.querySelectorAll('.ic-tile').forEach(tile => {
+      tile.addEventListener('click', () => {
+        const name = tile.dataset.name;
+        const snippet = `<i data-lucide="${name}" style="width:${state.size}px;height:${state.size}px"></i>`;
+        navigator.clipboard.writeText(snippet).then(() => {
+          toastTx.textContent = `Copied <i data-lucide="${name}"> snippet`;
+          toast.classList.add('show');
+          tile.classList.add('flash');
+          setTimeout(() => tile.classList.remove('flash'), 600);
+          setTimeout(() => toast.classList.remove('show'), 1600);
+        });
+      });
+    });
+  }
+
+  // ── Wire up controls ──
+  search.addEventListener('input', e => {
+    state.query = e.target.value;
+    render();
+  });
+
+  document.querySelectorAll('.sg-item').forEach(btn => {
+    btn.addEventListener('click', () => {
+      state.size = parseInt(btn.dataset.size);
+      document.querySelectorAll('.sg-item').forEach(b => b.setAttribute('aria-pressed', b === btn ? 'true' : 'false'));
+      render();
+    });
+  });
+
+  // ── Sticky pop-out detection ──
+  const toolbar = document.getElementById('icToolbar');
+  const sentinel = document.getElementById('icSentinel');
+  if ('IntersectionObserver' in window) {
+    new IntersectionObserver(([entry]) => {
+      toolbar.classList.toggle('is-stuck', !entry.isIntersecting);
+    }, { rootMargin: '-81px 0px 0px 0px' }).observe(sentinel);
+  }
+
+  // ── First paint ──
+  lucide.createIcons();
+  render();
+</script>
+</body>
+</html>
