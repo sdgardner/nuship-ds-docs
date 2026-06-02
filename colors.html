@@ -41,6 +41,7 @@
       margin-left: -20px;
       margin-right: -20px;
       background: var(--surface-layer03);
+      border: 1px solid var(--border-soft);
       border-radius: 12px;
       box-shadow: 0 10px 28px -14px rgba(15, 23, 42, 0.18);
     }
@@ -98,7 +99,8 @@
 
     .col-count {
       font-size: 13px; font-weight: 700;
-      color: var(--text-tertiary);
+      /* WCAG AA — secondary (#4B5563) on shell or layer-03 ≥ 7:1 */
+      color: var(--text-secondary);
       font-variant-numeric: tabular-nums;
     }
     .col-count em {
@@ -122,15 +124,24 @@
       border: none; border-right: 1px solid var(--border);
       cursor: pointer;
       font-family: inherit; font-size: 14px; font-weight: 700; line-height: 19px;
+      /* WCAG AA — text-secondary on layer-02 = 7.24:1 (passes AA + AAA) */
       color: var(--text-secondary);
       box-sizing: border-box;
       transition: background 120ms, color 120ms;
     }
     .col-mode-btn:last-child { border-right: none; }
     .col-mode-btn svg { width: 14px; height: 14px; }
-    .col-mode-btn:hover:not(.is-active) { background: var(--surface-layer01-hover); }
+    .col-mode-btn:hover:not(.is-active) {
+      background: var(--surface-layer01-hover);
+      color: var(--text-primary);
+    }
     .col-mode-btn.is-active {
+      /* White on #027CB1 = 4.6:1, passes WCAG AA for bold/14px text */
       background: var(--action-secondary); color: #FFFFFF;
+    }
+    .col-mode-btn:focus-visible {
+      outline: 2px solid var(--border-focus);
+      outline-offset: 2px;
     }
 
     /* ─── Section heading ───────────────────────────────────── */
@@ -318,7 +329,8 @@
     /* Empty state */
     .col-empty {
       padding: 60px 20px; text-align: center;
-      color: var(--text-tertiary);
+      /* WCAG AA — secondary (#4B5563) on shell ≥ 7:1 */
+      color: var(--text-secondary);
       border: 1px dashed var(--border);
       border-radius: 10px;
       font-size: 14px;
