@@ -32,7 +32,8 @@
       text-underline-offset: 3px;
     }
 
-    /* Sticky toolbar — Skid pattern */
+    /* Sticky toolbar — search field IS the interactive border;
+       no outer wrapper background or border. */
     .ic-toolbar-sentinel { height: 1px; }
     .ic-toolbar {
       position: sticky;
@@ -41,20 +42,10 @@
       display: flex;
       align-items: center;
       gap: 16px;
-      padding: 12px 16px;
+      padding: 12px 0;
       margin: 0 0 24px;
-      background: transparent;
-      border: 1px solid transparent;
-      border-radius: 12px;
-      transition: background 180ms, border-color 180ms, box-shadow 180ms, max-width 180ms, margin 180ms;
+      background: var(--surface-layer01);
       flex-wrap: wrap;
-    }
-    .ic-toolbar.is-stuck {
-      background: var(--surface-layer03);
-      border-color: var(--border-soft);
-      box-shadow: 0 4px 14px rgba(0,0,0,0.06);
-      max-width: 820px;
-      margin: 0 auto 24px;
     }
 
     /* Skid Search field — true .sr-field spec: 48px, surface-field,
@@ -168,36 +159,33 @@
       font-family: var(--ic-mono);
     }
 
-    /* Icon grid — IBM Carbon flat layout: name on top, icon centered below,
-       hairline borders between cells (no chunky cards). */
+    /* Icon grid — flat cells with 1px gap between them.
+       Each tile carries its own border; the gap shows as page background. */
     .ic-grid {
       display: grid;
       grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
-      background: var(--surface-shell);
-      border: 1px solid var(--border-soft);
-      border-radius: 4px;
-      overflow: hidden;
+      gap: 1px;
     }
     .ic-tile {
       position: relative;
       display: flex;
       flex-direction: column;
-      align-items: flex-start;
-      justify-content: flex-start;
-      padding: 16px 16px 24px;
+      align-items: center;
+      justify-content: center;
+      padding: 20px 16px;
       background: var(--surface-shell);
-      border: none;
-      /* Hairline grid via shared borders on right + bottom */
-      border-right: 1px solid var(--border-soft);
-      border-bottom: 1px solid var(--border-soft);
+      border: 1px solid var(--border-soft);
       cursor: pointer;
-      transition: background 120ms;
-      text-align: left;
+      transition: background 120ms, border-color 120ms;
+      text-align: center;
       min-height: 140px;
       font-family: inherit;
+      gap: 16px;
     }
     .ic-tile:hover {
       background: var(--surface-layer01);
+      border-color: var(--text-secondary);
+      z-index: 1;
     }
     .ic-tile.flash {
       animation: icFlash 600ms ease;
@@ -214,17 +202,14 @@
       color: var(--text-primary);
       line-height: 1.4;
       word-break: break-word;
-      margin: 0 0 auto;
-      /* Reserve at least 2 lines so icons align */
-      min-height: 40px;
+      margin: 0;
+      text-align: center;
     }
     .ic-tile-icon {
       color: var(--text-primary);
       display: flex;
       align-items: center;
       justify-content: center;
-      width: 100%;
-      margin-top: 16px;
     }
 
     /* Size states for grid icons */
