@@ -14,10 +14,6 @@
       --ic-mono: ui-monospace, "SF Mono", "Menlo", Consolas, monospace;
     }
 
-    /* Page on pure white */
-    body { background: var(--surface-shell); }
-    .doc { background: var(--surface-shell); }
-
     .ic-desc {
       font-size: 14px;
       color: var(--text-secondary);
@@ -61,62 +57,84 @@
       margin: 0 auto 24px;
     }
 
-    /* Skid search field */
-    .sr-field {
-      flex: 1;
-      min-width: 240px;
-      height: 48px;
-      display: flex;
-      align-items: center;
-      gap: 10px;
-      padding: 0 16px;
+    /* Skid Search field — true .sr-field spec: 48px, surface-field,
+       1px border (darkens on hover), 4px radius, focus glow. */
+    .ic-search {
+      display: flex; align-items: center; gap: 8px;
+      height: 48px; padding: 0 12px;
       background: var(--surface-field);
       border: 1px solid var(--border);
-      border-radius: 8px;
-      transition: border-color 120ms, box-shadow 120ms, background 120ms;
+      border-radius: 4px;
+      flex: 1; min-width: 240px; max-width: 480px;
+      box-sizing: border-box;
+      transition: border-color 120ms, box-shadow 120ms;
     }
-    .sr-field:hover { background: var(--surface-field-hover); }
-    .sr-field:focus-within {
-      border-color: var(--action-primary);
-      box-shadow: 0 0 0 3px var(--focus-ring);
+    .ic-search:hover { border-color: var(--text-secondary); }
+    .ic-search:focus-within {
+      border-color: var(--border-focus);
+      box-shadow: 0 0 0 4px rgba(90, 191, 224, 0.35);
     }
-    .sr-field i { color: var(--text-secondary); flex-shrink: 0; }
-    .sr-field input {
-      flex: 1;
-      border: 0;
+    [data-theme="dark"] .ic-search:focus-within {
+      box-shadow: 0 0 0 4px rgba(0, 131, 187, 0.35);
+    }
+    .ic-search-icon {
+      width: 24px; height: 24px;
+      display: flex; align-items: center; justify-content: center;
+      color: var(--text-secondary);
+      flex-shrink: 0;
+    }
+    .ic-search-icon svg { width: 20px; height: 20px; }
+    .ic-search input {
+      flex: 1; min-width: 0;
+      height: 100%;
       background: transparent;
-      outline: 0;
-      font-family: inherit;
-      font-size: 14px;
+      border: none; outline: none;
+      font-family: inherit; font-size: 16px; line-height: 22px;
       color: var(--text-primary);
+      padding: 0;
     }
-    .sr-field input::placeholder { color: var(--text-secondary); }
+    .ic-search input::placeholder { color: #6B7280; }
+    .ic-search-clear {
+      width: 24px; height: 24px;
+      border: none; background: transparent; cursor: pointer;
+      color: var(--text-secondary);
+      display: none; align-items: center; justify-content: center;
+      border-radius: 2px;
+      flex-shrink: 0;
+    }
+    .ic-search-clear:hover { color: var(--text-primary); }
+    .ic-search-clear.show { display: inline-flex; }
 
-    /* Skid segmented control */
+    /* Skid segmented control — matches colors.html mode toggle */
     .sg-group {
       display: inline-flex;
-      padding: 4px;
-      background: var(--surface-layer02);
       border: 1px solid var(--border);
-      border-radius: 8px;
-      gap: 2px;
+      border-radius: 4px;
+      overflow: hidden;
+      height: 40px;
     }
     .sg-item {
-      border: 0;
-      background: transparent;
-      font-family: inherit;
-      font-size: 13px;
-      color: var(--text-secondary);
-      padding: 8px 16px;
-      border-radius: 6px;
+      display: inline-flex; align-items: center; justify-content: center;
+      height: 100%; padding: 0 16px;
+      background: var(--surface-layer02);
+      border: none; border-right: 1px solid var(--border);
       cursor: pointer;
+      font-family: inherit; font-size: 14px; font-weight: 700; line-height: 19px;
+      color: var(--text-secondary);
+      box-sizing: border-box;
       transition: background 120ms, color 120ms;
-      font-weight: 600;
     }
-    .sg-item:hover { color: var(--text-primary); }
+    .sg-item:last-child { border-right: none; }
+    .sg-item:hover:not([aria-pressed="true"]) {
+      background: var(--surface-layer01-hover);
+      color: var(--text-primary);
+    }
     .sg-item[aria-pressed="true"] {
-      background: var(--action-secondary);
-      color: var(--text-on-action);
+      background: var(--action-secondary); color: #FFFFFF;
+    }
+    .sg-item:focus-visible {
+      outline: 2px solid var(--border-focus);
+      outline-offset: 2px;
     }
 
     .ic-count {
@@ -150,53 +168,63 @@
       font-family: var(--ic-mono);
     }
 
-    /* Icon grid */
+    /* Icon grid — IBM Carbon flat layout: name on top, icon centered below,
+       hairline borders between cells (no chunky cards). */
     .ic-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
-      gap: 8px;
-    }
-    .ic-tile {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      padding: 20px 8px 12px;
+      grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
       background: var(--surface-shell);
       border: 1px solid var(--border-soft);
-      border-radius: 10px;
+      border-radius: 4px;
+      overflow: hidden;
+    }
+    .ic-tile {
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      justify-content: flex-start;
+      padding: 16px 16px 24px;
+      background: var(--surface-shell);
+      border: none;
+      /* Hairline grid via shared borders on right + bottom */
+      border-right: 1px solid var(--border-soft);
+      border-bottom: 1px solid var(--border-soft);
       cursor: pointer;
-      transition: border-color 120ms, background 120ms, transform 120ms;
-      text-align: center;
-      gap: 12px;
-      min-height: 110px;
+      transition: background 120ms;
+      text-align: left;
+      min-height: 140px;
+      font-family: inherit;
     }
     .ic-tile:hover {
-      border-color: var(--action-primary);
       background: var(--surface-layer01);
     }
     .ic-tile.flash {
       animation: icFlash 600ms ease;
     }
     @keyframes icFlash {
-      0%   { box-shadow: 0 0 0 0 var(--focus-ring); }
-      50%  { box-shadow: 0 0 0 6px var(--focus-ring); }
-      100% { box-shadow: 0 0 0 0 var(--focus-ring); }
+      0%   { background: var(--surface-layer01); }
+      50%  { background: rgba(2, 124, 177, 0.08); }
+      100% { background: var(--surface-shell); }
+    }
+    .ic-tile-name {
+      font-family: 'Lato', sans-serif;
+      font-size: 14px;
+      font-weight: 400;
+      color: var(--text-primary);
+      line-height: 1.4;
+      word-break: break-word;
+      margin: 0 0 auto;
+      /* Reserve at least 2 lines so icons align */
+      min-height: 40px;
     }
     .ic-tile-icon {
       color: var(--text-primary);
       display: flex;
       align-items: center;
       justify-content: center;
-      width: 32px;
-      height: 32px;
-    }
-    .ic-tile-name {
-      font-family: var(--ic-mono);
-      font-size: 11px;
-      color: var(--text-secondary);
-      word-break: break-word;
-      line-height: 1.3;
+      width: 100%;
+      margin-top: 16px;
     }
 
     /* Size states for grid icons */
@@ -345,9 +373,10 @@
         <!-- Sticky toolbar -->
         <div class="ic-toolbar-sentinel" id="icSentinel"></div>
         <div class="ic-toolbar" id="icToolbar">
-          <label class="sr-field">
-            <i data-lucide="search" style="width:18px;height:18px"></i>
-            <input type="text" id="icSearch" placeholder="Search icons (e.g. truck, package, user)" autocomplete="off" spellcheck="false">
+          <label class="ic-search">
+            <span class="ic-search-icon"><i data-lucide="search"></i></span>
+            <input type="text" id="icSearch" placeholder="Search icons" autocomplete="off" spellcheck="false">
+            <button type="button" class="ic-search-clear" id="icSearchClear" aria-label="Clear search"><i data-lucide="x" style="width:16px;height:16px"></i></button>
           </label>
           <div class="sg-group" role="group" aria-label="Icon size">
             <button class="sg-item" data-size="16" aria-pressed="false">16</button>
@@ -479,9 +508,18 @@
   }
 
   // ── Wire up controls ──
+  const searchClear = document.getElementById('icSearchClear');
   search.addEventListener('input', e => {
     state.query = e.target.value;
+    searchClear.classList.toggle('show', e.target.value.length > 0);
     render();
+  });
+  searchClear.addEventListener('click', () => {
+    search.value = '';
+    state.query = '';
+    searchClear.classList.remove('show');
+    render();
+    search.focus();
   });
 
   document.querySelectorAll('.sg-item').forEach(btn => {
