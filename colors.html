@@ -204,42 +204,93 @@
     .sw-tip-token { font-family: var(--mono); font-weight: 400; opacity: 0.78; }
     [data-theme="dark"] .sw-tip { background: #FFFFFF; color: #0F0F0F; }
 
-    /* ─── Semantic card ─────────────────────────────────────── */
-    .col-sem-grid {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 16px;
+    /* ─── Semantic tokens (IBM-style table) ─────────────────── */
+    .col-sem-group { margin-bottom: 32px; }
+    .col-sem-group:last-child { margin-bottom: 0; }
+    .col-sem-group-label {
+      display: block;
+      font-size: 13px; font-weight: 700;
+      line-height: 16px; color: var(--text-secondary);
+      letter-spacing: 0.4px; text-transform: uppercase;
+      margin-bottom: 10px;
     }
-    @media (max-width: 980px) { .col-sem-grid { grid-template-columns: repeat(2, 1fr); } }
-    @media (max-width: 600px) { .col-sem-grid { grid-template-columns: 1fr; } }
 
-    .col-sem-card {
+    .col-sem-table {
       background: var(--surface-card);
       border: 1px solid var(--border);
-      border-radius: 10px;
-      padding: 20px;
-    }
-    .col-sem-title {
-      font-size: 15px; font-weight: 700; color: var(--text-primary);
-      margin-bottom: 14px;
+      border-radius: 8px;
+      overflow: hidden;
     }
     .col-sem-row {
       display: grid;
-      grid-template-columns: 1fr auto auto;
-      gap: 10px; align-items: center;
-      padding: 6px 0;
+      grid-template-columns: minmax(160px, 220px) minmax(200px, 1fr) minmax(160px, 220px) 72px;
+      border-bottom: 1px solid var(--border);
+      transition: background 120ms;
     }
-    .col-sem-row + .col-sem-row { border-top: 1px dashed var(--border); }
-    .col-sem-label {
-      font-size: 13px; color: var(--text-secondary);
+    .col-sem-row:last-child { border-bottom: none; }
+    .col-sem-row:not(.col-sem-row--head):hover { background: var(--surface-layer01); }
+
+    .col-sem-cell {
+      padding: 16px 18px;
+      border-right: 1px solid var(--border);
+      display: flex; align-items: center;
+      font-size: 14px; line-height: 20px;
+      color: var(--text-secondary);
+      min-width: 0;
+    }
+    .col-sem-cell:last-child {
+      border-right: none;
+      justify-content: center;
+    }
+
+    /* Header row */
+    .col-sem-row--head .col-sem-cell {
+      font-size: 12px; font-weight: 700; line-height: 16px;
+      color: var(--text-primary);
+      background: var(--surface-layer01);
+      letter-spacing: 0.4px;
+    }
+
+    /* Token chip — monospaced badge */
+    .col-sem-token {
+      display: inline-flex; align-items: center;
+      padding: 4px 8px;
       font-family: var(--mono);
-    }
-    .col-sem-swatch {
-      width: 24px; height: 24px;
+      font-size: 13px; font-weight: 400; line-height: 16px;
+      color: var(--text-primary);
+      background: var(--surface-layer02);
       border-radius: 4px;
-      border: 1px solid rgba(0,0,0,0.08);
+      white-space: nowrap;
+    }
+
+    /* Value cell — primitive name above hex */
+    .col-sem-value {
+      display: flex; flex-direction: column; gap: 2px;
+      line-height: 18px;
+      min-width: 0;
+    }
+    .col-sem-value-name {
+      font-size: 14px; color: var(--text-primary); font-weight: 400;
+    }
+    .col-sem-value-sep {
+      display: block; width: 16px; height: 1px;
+      background: var(--text-tertiary);
+      margin: 2px 0;
+      opacity: 0.5;
+    }
+    .col-sem-value-hex {
+      font-family: var(--mono);
+      font-size: 13px; color: var(--text-secondary);
+    }
+
+    /* Swatch circle */
+    .col-sem-swatch {
+      width: 28px; height: 28px;
+      border-radius: 50%;
+      border: 1px solid rgba(0,0,0,0.06);
       cursor: pointer;
       transition: transform 120ms;
+      padding: 0;
     }
     .col-sem-swatch:hover { transform: scale(1.08); }
     .col-sem-swatch:focus-visible {
@@ -247,6 +298,22 @@
       outline-offset: 2px;
     }
     .col-sem-swatch.is-hit { animation: sw-flash 600ms ease-out; }
+
+    @media (max-width: 720px) {
+      .col-sem-row {
+        grid-template-columns: 1fr 64px;
+        grid-template-areas:
+          "token swatch"
+          "role swatch"
+          "value swatch";
+      }
+      .col-sem-cell { border-right: none; padding: 14px 14px 6px; }
+      .col-sem-cell:nth-child(1) { grid-area: token; }
+      .col-sem-cell:nth-child(2) { grid-area: role; padding-top: 0; padding-bottom: 6px; }
+      .col-sem-cell:nth-child(3) { grid-area: value; padding-top: 0; padding-bottom: 14px; }
+      .col-sem-cell:nth-child(4) { grid-area: swatch; border-left: 1px solid var(--border); padding: 14px; }
+      .col-sem-row--head { display: none; }
+    }
 
     /* Empty state */
     .col-empty {
@@ -333,18 +400,18 @@
         </div>
       </div>
 
+      <!-- SEMANTIC TOKENS (moved to top) -->
+      <section class="col-section" id="semanticTokens">
+        <span class="col-section-label">Semantic tokens</span>
+        <div id="semRoot"></div>
+        <div class="col-empty" id="semEmpty">No semantic tokens match that search.</div>
+      </section>
+
       <!-- PRIMITIVE PALETTE -->
       <section class="col-section" id="primitivePalette">
         <span class="col-section-label">Primitive palette</span>
         <div id="rampsRoot"></div>
         <div class="col-empty" id="rampsEmpty">No primitive swatches match that search.</div>
-      </section>
-
-      <!-- SEMANTIC TOKENS -->
-      <section class="col-section" id="semanticTokens">
-        <span class="col-section-label">Semantic tokens</span>
-        <div class="col-sem-grid" id="semRoot"></div>
-        <div class="col-empty" id="semEmpty">No semantic tokens match that search.</div>
       </section>
 
     </main>
@@ -442,46 +509,74 @@
     ]}
   ];
 
-  // Semantic tokens — Light + Dark pairs sourced from Figma node 3857-9633
+  // Semantic tokens — Token / Role / Value with primitive name + hex
+  // for both light and dark themes. Sourced from Figma node 3857-9633.
   const SEMANTIC = [
     { name: 'Text', items: [
-      { token: 'primary',   light: '#374151', dark: '#FFFFFF' },
-      { token: 'secondary', light: '#4B5563', dark: '#E5E7EB' },
-      { token: 'tertiary',  light: '#9CA3AF', dark: '#CDD2D7' },
-      { token: 'disabled',  light: '#9CA3AF', dark: '#6B7280' },
-      { token: 'helper',    light: '#4B5563', dark: '#E5E7EB' }
+      { token: 'text-primary',   role: 'Primary text on default backgrounds',
+        light: { name: 'Gray 700', hex: '#374151' }, dark: { name: 'White',    hex: '#FFFFFF' } },
+      { token: 'text-secondary', role: 'Supporting paragraph and body copy',
+        light: { name: 'Gray 600', hex: '#4B5563' }, dark: { name: 'Gray 200', hex: '#E5E7EB' } },
+      { token: 'text-tertiary',  role: 'Placeholders, captions, metadata',
+        light: { name: 'Gray 400', hex: '#9CA3AF' }, dark: { name: 'Gray 300', hex: '#CDD2D7' } },
+      { token: 'text-disabled',  role: 'Disabled labels and inputs',
+        light: { name: 'Gray 400', hex: '#9CA3AF' }, dark: { name: 'Gray 500', hex: '#6B7280' } },
+      { token: 'text-helper',    role: 'Field hints and supporting copy',
+        light: { name: 'Gray 600', hex: '#4B5563' }, dark: { name: 'Gray 200', hex: '#E5E7EB' } }
     ]},
     { name: 'Surface', items: [
-      { token: 'layer-01', light: '#F9FAFB', dark: '#1E1E1E' },
-      { token: 'layer-02', light: '#F4F6F8', dark: '#2B3038' },
-      { token: 'layer-03', light: '#E5E7EB', dark: '#374151' },
-      { token: 'shell',    light: '#FFFFFF', dark: '#0A0A0A' }
+      { token: 'surface-layer-01', role: 'First elevation — cards, panels, modals',
+        light: { name: 'Gray 50',  hex: '#F9FAFB' }, dark: { name: 'Gray 800', hex: '#1E1E1E' } },
+      { token: 'surface-layer-02', role: 'Second elevation — nested panels, toolbars',
+        light: { name: 'Gray 100', hex: '#F4F6F8' }, dark: { name: 'Gray 750', hex: '#2B3038' } },
+      { token: 'surface-layer-03', role: 'Third elevation — floating utilities, popovers',
+        light: { name: 'Gray 200', hex: '#E5E7EB' }, dark: { name: 'Gray 700', hex: '#374151' } },
+      { token: 'surface-shell',    role: 'Page background canvas',
+        light: { name: 'White',    hex: '#FFFFFF' }, dark: { name: 'Gray 950', hex: '#0A0A0A' } }
     ]},
     { name: 'Border', items: [
-      { token: 'interactive', light: '#CDD2D7', dark: '#6B7280' },
-      { token: 'strong',      light: '#9CA3AF', dark: '#9CA3AF' },
-      { token: 'soft',        light: '#E5E7EB', dark: '#374151' },
-      { token: 'disabled',    light: '#E5E7EB', dark: '#374151' },
-      { token: 'focus',       light: '#5ABFE0', dark: '#0083BB' }
+      { token: 'border-interactive', role: 'Default border — inputs, cards, dividers',
+        light: { name: 'Gray 300', hex: '#CDD2D7' }, dark: { name: 'Gray 500', hex: '#6B7280' } },
+      { token: 'border-strong',      role: 'Emphasized — strong dividers, separators',
+        light: { name: 'Gray 400', hex: '#9CA3AF' }, dark: { name: 'Gray 400', hex: '#9CA3AF' } },
+      { token: 'border-soft',        role: 'Subtle — between body content',
+        light: { name: 'Gray 200', hex: '#E5E7EB' }, dark: { name: 'Gray 700', hex: '#374151' } },
+      { token: 'border-disabled',    role: 'Non-interactive surface borders',
+        light: { name: 'Gray 200', hex: '#E5E7EB' }, dark: { name: 'Gray 700', hex: '#374151' } },
+      { token: 'border-focus',       role: 'Keyboard focus ring',
+        light: { name: 'Blue 400', hex: '#5ABFE0' }, dark: { name: 'Blue 600 alt', hex: '#0083BB' } }
     ]},
     { name: 'Icon', items: [
-      { token: 'default', light: '#4B5563', dark: '#E5E7EB' },
-      { token: 'info',    light: '#027CB1', dark: '#8FCBE6' },
-      { token: 'button',  light: '#FFFFFF', dark: '#0A0A0A' },
-      { token: 'hover',   light: '#9CA3AF', dark: '#E5E7EB' },
-      { token: 'loading', light: '#0083BB', dark: '#0083BB' }
+      { token: 'icon-default', role: 'Neutral icons in body content',
+        light: { name: 'Gray 600', hex: '#4B5563' }, dark: { name: 'Gray 200', hex: '#E5E7EB' } },
+      { token: 'icon-info',    role: 'Informational status icons',
+        light: { name: 'Blue 600', hex: '#027CB1' }, dark: { name: 'Blue 300', hex: '#8FCBE6' } },
+      { token: 'icon-button',  role: 'Icon on filled-button backgrounds',
+        light: { name: 'White',    hex: '#FFFFFF' }, dark: { name: 'Gray 950', hex: '#0A0A0A' } },
+      { token: 'icon-hover',   role: 'Icon color on interactive hover',
+        light: { name: 'Gray 400', hex: '#9CA3AF' }, dark: { name: 'Gray 200', hex: '#E5E7EB' } },
+      { token: 'icon-loading', role: 'Spinners and progress fills',
+        light: { name: 'Blue 600 alt', hex: '#0083BB' }, dark: { name: 'Blue 600 alt', hex: '#0083BB' } }
     ]},
     { name: 'Interactive', items: [
-      { token: 'default',  light: '#016692', dark: '#5ABFE0' },
-      { token: 'hover',    light: '#004F70', dark: '#027CB1' },
-      { token: 'pressed',  light: '#001F33', dark: '#016692' },
-      { token: 'disabled', light: '#6B7280', dark: '#4B5563' }
+      { token: 'interactive-default',  role: 'Link in body copy',
+        light: { name: 'Blue 700', hex: '#016692' }, dark: { name: 'Blue 400', hex: '#5ABFE0' } },
+      { token: 'interactive-hover',    role: 'Link on hover',
+        light: { name: 'Blue 800', hex: '#004F70' }, dark: { name: 'Blue 600', hex: '#027CB1' } },
+      { token: 'interactive-pressed',  role: 'Link when active or pressed',
+        light: { name: 'Blue 900', hex: '#001F33' }, dark: { name: 'Blue 700', hex: '#016692' } },
+      { token: 'interactive-disabled', role: 'Non-interactive link state',
+        light: { name: 'Gray 500', hex: '#6B7280' }, dark: { name: 'Gray 600', hex: '#4B5563' } }
     ]},
     { name: 'Feedback', items: [
-      { token: 'success', light: '#006C21', dark: '#33A17A' },
-      { token: 'warning', light: '#A85A02', dark: '#E49A35' },
-      { token: 'error',   light: '#A12F2F', dark: '#E36868' },
-      { token: 'info',    light: '#027CB1', dark: '#8FCBE6' }
+      { token: 'feedback-success', role: 'Confirmation and completed states',
+        light: { name: 'Green 700',  hex: '#006C21' }, dark: { name: 'Green 500',  hex: '#33A17A' } },
+      { token: 'feedback-warning', role: 'Caution — needs attention',
+        light: { name: 'Orange 700', hex: '#A85A02' }, dark: { name: 'Orange 400', hex: '#E49A35' } },
+      { token: 'feedback-error',   role: 'Errors and failed validation',
+        light: { name: 'Red 800',    hex: '#A12F2F' }, dark: { name: 'Red 400',    hex: '#E36868' } },
+      { token: 'feedback-info',    role: 'Informational alerts',
+        light: { name: 'Blue 600',   hex: '#027CB1' }, dark: { name: 'Blue 300',   hex: '#8FCBE6' } }
     ]}
   ];
 
@@ -512,22 +607,49 @@
     rampsRoot.appendChild(ramp);
   });
 
-  SEMANTIC.forEach(function(card){
-    const el = document.createElement('div');
-    el.className = 'col-sem-card';
-    let rows = '';
-    card.items.forEach(function(it){
-      totalSwatches += 2;
-      const tok = 'color/' + card.name.toLowerCase() + '/' + it.token;
+  // Render semantic groups as IBM-style tables (one per category)
+  SEMANTIC.forEach(function(group){
+    const wrap = document.createElement('div');
+    wrap.className = 'col-sem-group';
+    wrap.dataset.group = group.name;
+
+    let rows =
+      '<div class="col-sem-row col-sem-row--head" role="row">' +
+        '<span class="col-sem-cell" role="columnheader">Token</span>' +
+        '<span class="col-sem-cell" role="columnheader">Role</span>' +
+        '<span class="col-sem-cell" role="columnheader">Value</span>' +
+        '<span class="col-sem-cell" role="columnheader" aria-label="Preview"></span>' +
+      '</div>';
+
+    group.items.forEach(function(it){
+      totalSwatches++; // one swatch shown at a time per row
       rows +=
-        '<div class="col-sem-row" data-token="' + tok + '" data-light="' + it.light + '" data-dark="' + it.dark + '">' +
-          '<span class="col-sem-label">' + it.token + '</span>' +
-          '<button class="col-sem-swatch" style="background:' + it.light + '" data-token="' + tok + '" data-hex="' + it.light + '" aria-label="' + tok + ' light ' + it.light + '" type="button"></button>' +
-          '<button class="col-sem-swatch" style="background:' + it.dark  + '" data-token="' + tok + '" data-hex="' + it.dark  + '" aria-label="' + tok + ' dark '  + it.dark  + '" type="button"></button>' +
+        '<div class="col-sem-row" role="row"' +
+          ' data-token="$' + it.token + '"' +
+          ' data-role="'  + it.role.replace(/"/g, '&quot;') + '"' +
+          ' data-light-name="' + it.light.name + '"' +
+          ' data-light-hex="'  + it.light.hex  + '"' +
+          ' data-dark-name="'  + it.dark.name  + '"' +
+          ' data-dark-hex="'   + it.dark.hex   + '">' +
+          '<span class="col-sem-cell" role="cell"><code class="col-sem-token">$' + it.token + '</code></span>' +
+          '<span class="col-sem-cell" role="cell">' + it.role + '</span>' +
+          '<span class="col-sem-cell" role="cell">' +
+            '<span class="col-sem-value">' +
+              '<span class="col-sem-value-name" data-name></span>' +
+              '<span class="col-sem-value-sep" aria-hidden="true"></span>' +
+              '<span class="col-sem-value-hex"  data-hex></span>' +
+            '</span>' +
+          '</span>' +
+          '<span class="col-sem-cell" role="cell">' +
+            '<button class="col-sem-swatch" type="button" data-swatch data-token="$' + it.token + '" aria-label="' + it.token + ' swatch"></button>' +
+          '</span>' +
         '</div>';
     });
-    el.innerHTML = '<div class="col-sem-title">' + card.name + '</div>' + rows;
-    semRoot.appendChild(el);
+
+    wrap.innerHTML =
+      '<span class="col-sem-group-label">' + group.name + '</span>' +
+      '<div class="col-sem-table" role="table">' + rows + '</div>';
+    semRoot.appendChild(wrap);
   });
 
   document.getElementById('colCount').textContent = totalSwatches;
@@ -572,7 +694,8 @@
     copiedTimer = setTimeout(function(){ copied.classList.remove('show'); }, 1600);
   }
 
-  function bindSwatch(el) {
+  // Bind primitive swatches (single hex each)
+  function bindPrimitive(el) {
     el.addEventListener('mouseenter', function(){
       showTip(el, el.dataset.token, el.dataset.hex);
     });
@@ -581,29 +704,54 @@
     el.addEventListener('blur', hideTip);
     el.addEventListener('click', function(){ copyHex(el.dataset.hex, el); });
   }
-  document.querySelectorAll('.sw, .col-sem-swatch').forEach(bindSwatch);
+  document.querySelectorAll('.sw').forEach(bindPrimitive);
 
-  // ─── Light/dark preview toggle (semantic cards) ───────────
+  // Bind semantic swatches — token + hex read from the parent row's
+  // data attrs so the same swatch updates value/preview when mode flips.
+  function bindSemanticSwatch(el) {
+    function ctx() {
+      const row = el.closest('.col-sem-row');
+      return {
+        token: row.dataset.token,
+        hex: el.style.backgroundColor && el.dataset.hex ? el.dataset.hex : row.dataset.lightHex
+      };
+    }
+    el.addEventListener('mouseenter', function(){
+      const c = ctx(); showTip(el, c.token, el.dataset.hex || c.hex);
+    });
+    el.addEventListener('mouseleave', hideTip);
+    el.addEventListener('focus', function(){ const c = ctx(); showTip(el, c.token, el.dataset.hex || c.hex); });
+    el.addEventListener('blur', hideTip);
+    el.addEventListener('click', function(){ copyHex(el.dataset.hex || ctx().hex, el); });
+  }
+  document.querySelectorAll('#semRoot [data-swatch]').forEach(bindSemanticSwatch);
+
+  // ─── Light/dark preview toggle ────────────────────────────
   const modeBtns = document.querySelectorAll('#colModeToggle .col-mode-btn');
-  function setMode(mode) {
+  function applyMode(mode) {
     modeBtns.forEach(function(b){
       const active = b.dataset.mode === mode;
       b.classList.toggle('is-active', active);
       b.setAttribute('aria-selected', active ? 'true' : 'false');
     });
-    document.querySelectorAll('#semRoot .col-sem-row').forEach(function(row){
-      const swatches = row.querySelectorAll('.col-sem-swatch');
-      // mode toggle dims the inactive swatch
-      swatches.forEach(function(s, i){
-        const isLight = i === 0;
-        s.style.opacity = (mode === 'light' && isLight) || (mode === 'dark' && !isLight) ? '1' : '0.35';
-      });
+    document.querySelectorAll('#semRoot .col-sem-row:not(.col-sem-row--head)').forEach(function(row){
+      const name = mode === 'dark' ? row.dataset.darkName : row.dataset.lightName;
+      const hex  = mode === 'dark' ? row.dataset.darkHex  : row.dataset.lightHex;
+      const nameEl = row.querySelector('[data-name]');
+      const hexEl  = row.querySelector('[data-hex]');
+      const swatch = row.querySelector('[data-swatch]');
+      if (nameEl) nameEl.textContent = name;
+      if (hexEl)  hexEl.textContent  = hex;
+      if (swatch) {
+        swatch.style.background = hex;
+        swatch.dataset.hex = hex;
+      }
     });
   }
   modeBtns.forEach(function(b){
-    b.addEventListener('click', function(){ setMode(b.dataset.mode); });
+    b.addEventListener('click', function(){ applyMode(b.dataset.mode); });
   });
-  setMode('light');
+  applyMode('light');
 
   // ─── Search filter ────────────────────────────────────────
   const searchEl = document.getElementById('colSearch');
@@ -636,23 +784,29 @@
     });
     rampsEmpty.classList.toggle('show', rampsVisible === 0 && !!q);
 
-    // Semantic
-    let semVisibleCards = 0;
-    document.querySelectorAll('#semRoot .col-sem-card').forEach(function(card){
+    // Semantic — match against token, role text, or either theme's name/hex
+    let semVisibleGroups = 0;
+    document.querySelectorAll('#semRoot .col-sem-group').forEach(function(group){
       let rowsVisible = 0;
-      card.querySelectorAll('.col-sem-row').forEach(function(row){
-        const sw = row.querySelector('.col-sem-swatch');
-        const token = sw.dataset.token;
-        const light = row.dataset.light;
-        const dark  = row.dataset.dark;
-        const ok = matches(q, token, light) || matches(q, token, dark);
+      group.querySelectorAll('.col-sem-row:not(.col-sem-row--head)').forEach(function(row){
+        const token = row.dataset.token || '';
+        const role  = row.dataset.role  || '';
+        const lh = row.dataset.lightHex || '';
+        const dh = row.dataset.darkHex  || '';
+        const ln = row.dataset.lightName || '';
+        const dn = row.dataset.darkName  || '';
+        const haystack = (token + ' ' + role + ' ' + ln + ' ' + dn).toLowerCase();
+        const qLower = q.toLowerCase().replace(/^#/, '');
+        const ok = !q || haystack.includes(qLower) ||
+                   lh.toLowerCase().replace('#','').includes(qLower) ||
+                   dh.toLowerCase().replace('#','').includes(qLower);
         row.style.display = ok ? '' : 'none';
-        if (ok) { rowsVisible++; visible += 2; }
+        if (ok) { rowsVisible++; visible++; }
       });
-      card.style.display = rowsVisible > 0 ? '' : 'none';
-      if (rowsVisible > 0) semVisibleCards++;
+      group.style.display = rowsVisible > 0 ? '' : 'none';
+      if (rowsVisible > 0) semVisibleGroups++;
     });
-    semEmpty.classList.toggle('show', semVisibleCards === 0 && !!q);
+    semEmpty.classList.toggle('show', semVisibleGroups === 0 && !!q);
 
     countEl.textContent = visible;
   }
