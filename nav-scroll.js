@@ -82,7 +82,7 @@ window.toggleTheme = function () {
     { name: 'Typography',  href: '#' },
     { name: 'Spacing',     href: '#' },
     { name: 'Radius',      href: '#' },
-    { name: 'Elevation',   href: '#' },
+    { name: 'Elevation',   href: 'elevation.html' },
   ];
 
   // All 39 components A-Z

@@ -1,0 +1,564 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Elevation — nuShip Design System</title>
+  <link href="https://fonts.googleapis.com/css2?family=Lato:wght@400;600;700;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="tokens.css">
+  <link rel="stylesheet" href="styles.css">
+  <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.min.js"></script>
+  <script src="nav-scroll.js" defer></script>
+  <style>
+    /* ─── Page header ───────────────────────────────────────── */
+    .ele-page { padding: 56px 40px 96px; max-width: 1200px; margin: 0 auto; }
+    @media (max-width: 720px) { .ele-page { padding: 40px 20px 72px; } }
+    .ele-head { display: flex; flex-direction: column; gap: 8px; margin-bottom: 32px; }
+    .ele-title { font-size: 32px; line-height: 38px; font-weight: 700; color: var(--text-primary); margin: 0; }
+    .ele-sub { font-size: 14px; line-height: 19px; color: var(--text-secondary); margin: 0; }
+
+    /* ─── Toolbar (search + count + theme toggle) ────────────
+       Mirrors the Color page exactly: sticky with an 80px offset,
+       no border in flow; when stuck, layer-03 backdrop, soft border,
+       centered max-width. */
+    .ele-sentinel { height: 1px; margin-top: -1px; }
+    .ele-toolbar {
+      display: flex; align-items: center; gap: 24px;
+      flex-wrap: wrap;
+      padding: 12px 0;
+      margin-bottom: 28px;
+      position: sticky;
+      top: 80px;
+      z-index: 8;
+      background: transparent;
+      transition: background 180ms, box-shadow 180ms, padding 180ms, max-width 180ms, border-radius 180ms;
+    }
+    .ele-toolbar.is-stuck {
+      padding: 14px 20px;
+      max-width: 720px;
+      margin-left: auto;
+      margin-right: auto;
+      background: var(--surface-layer03);
+      border: 1px solid var(--border-soft);
+      border-radius: 12px;
+      box-shadow: 0 10px 28px -14px rgba(15, 23, 42, 0.18);
+    }
+    [data-theme="dark"] .ele-toolbar.is-stuck {
+      box-shadow: 0 10px 28px -14px rgba(0, 0, 0, 0.6);
+    }
+
+    /* Skid search field */
+    .ele-search {
+      display: flex; align-items: center; gap: 8px;
+      height: 48px; padding: 0 12px;
+      background: var(--surface-field);
+      border: 1px solid var(--border);
+      border-radius: 4px;
+      flex: 1; min-width: 240px; max-width: 420px;
+      box-sizing: border-box;
+      transition: border-color 120ms, box-shadow 120ms;
+    }
+    .ele-search:hover { border-color: var(--text-secondary); }
+    .ele-search:focus-within {
+      border-color: var(--border-focus);
+      box-shadow: 0 0 0 4px rgba(90, 191, 224, 0.35);
+    }
+    [data-theme="dark"] .ele-search:focus-within {
+      box-shadow: 0 0 0 4px rgba(0, 131, 187, 0.35);
+    }
+    .ele-search-icon {
+      width: 24px; height: 24px;
+      display: flex; align-items: center; justify-content: center;
+      color: var(--text-secondary); flex-shrink: 0;
+    }
+    .ele-search-icon svg { width: 20px; height: 20px; }
+    .ele-search input {
+      flex: 1; min-width: 0;
+      height: 100%;
+      background: transparent;
+      border: none; outline: none;
+      font-family: inherit; font-size: 16px; line-height: 22px;
+      color: var(--text-primary);
+      padding: 0;
+    }
+    .ele-search input::placeholder { color: #6B7280; }
+    .ele-search-clear {
+      width: 24px; height: 24px;
+      border: none; background: transparent; cursor: pointer;
+      color: var(--text-secondary);
+      display: none; align-items: center; justify-content: center;
+      border-radius: 2px;
+      flex-shrink: 0;
+    }
+    .ele-search-clear:hover { color: var(--text-primary); }
+    .ele-search-clear.show { display: inline-flex; }
+
+    .ele-count {
+      font-size: 13px; font-weight: 700;
+      color: var(--text-secondary);
+      font-variant-numeric: tabular-nums;
+    }
+    .ele-count em { font-style: normal; color: var(--text-primary); }
+
+    /* Skid segmented control */
+    .ele-mode-toggle {
+      display: inline-flex;
+      border: 1px solid var(--border);
+      border-radius: 4px;
+      overflow: hidden;
+      height: 40px;
+    }
+    .ele-mode-btn {
+      display: inline-flex; align-items: center; justify-content: center;
+      gap: 6px;
+      height: 100%; padding: 0 16px;
+      background: var(--surface-layer02);
+      border: none; border-right: 1px solid var(--border);
+      cursor: pointer;
+      font-family: inherit; font-size: 14px; font-weight: 700; line-height: 19px;
+      color: var(--text-secondary);
+      box-sizing: border-box;
+      transition: background 120ms, color 120ms;
+    }
+    .ele-mode-btn:last-child { border-right: none; }
+    .ele-mode-btn svg { width: 14px; height: 14px; }
+    .ele-mode-btn:hover:not(.is-active) {
+      background: var(--surface-layer01-hover);
+      color: var(--text-primary);
+    }
+    .ele-mode-btn.is-active { background: var(--action-secondary); color: #FFFFFF; }
+    .ele-mode-btn:focus-visible {
+      outline: 2px solid var(--border-focus);
+      outline-offset: 2px;
+    }
+
+    /* ─── Section header ────────────────────────────────────── */
+    .ele-section { margin-top: 40px; }
+    .ele-section:first-of-type { margin-top: 0; }
+    .ele-section-label {
+      display: block; font-size: 12px; font-weight: 700;
+      line-height: 16px; color: var(--text-secondary);
+      letter-spacing: 0.4px;
+      margin-bottom: 24px;
+    }
+
+    /* ─── Token table ────────────────────────────────────────
+       Matches the IBM-style table on the Color page: Token / Role /
+       Value / Preview columns with a single 1px border around the
+       whole table and dividers between rows + cells. */
+    .ele-table {
+      background: var(--surface-card);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      overflow: hidden;
+    }
+    .ele-row {
+      display: grid;
+      grid-template-columns: minmax(160px, 200px) minmax(220px, 1fr) minmax(260px, 360px) minmax(110px, 140px);
+      border-bottom: 1px solid var(--border);
+      transition: background 120ms;
+    }
+    .ele-row:last-child { border-bottom: none; }
+    .ele-row:not(.ele-row--head):hover { background: var(--surface-layer01); }
+
+    .ele-cell {
+      padding: 20px 18px;
+      border-right: 1px solid var(--border);
+      display: flex; align-items: center;
+      font-size: 14px; line-height: 20px;
+      color: var(--text-secondary);
+      min-width: 0;
+    }
+    .ele-cell:last-child { border-right: none; justify-content: center; padding: 16px; }
+
+    .ele-row--head .ele-cell {
+      font-size: 12px; font-weight: 700; line-height: 16px;
+      color: var(--text-primary);
+      background: var(--surface-layer01);
+      letter-spacing: 0.4px;
+    }
+
+    /* Token chip */
+    .ele-token {
+      display: inline-flex; align-items: center;
+      padding: 4px 8px;
+      font-family: var(--mono);
+      font-size: 13px; line-height: 16px;
+      color: var(--text-primary);
+      background: var(--surface-layer02);
+      border-radius: 4px;
+      white-space: nowrap;
+    }
+
+    /* Value — copyable monospaced shadow definition */
+    .ele-value {
+      display: flex; align-items: center; gap: 8px;
+      min-width: 0; width: 100%;
+    }
+    .ele-value-code {
+      flex: 1; min-width: 0;
+      font-family: var(--mono);
+      font-size: 12px; line-height: 18px;
+      color: var(--text-primary);
+      background: var(--surface-layer02);
+      border: 1px solid var(--border-soft);
+      border-radius: 4px;
+      padding: 8px 10px;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+    .ele-copy {
+      width: 32px; height: 32px;
+      display: inline-flex; align-items: center; justify-content: center;
+      background: transparent;
+      border: 1px solid var(--border);
+      border-radius: 4px;
+      color: var(--text-secondary);
+      cursor: pointer;
+      flex-shrink: 0;
+      transition: background 120ms, color 120ms, border-color 120ms;
+    }
+    .ele-copy:hover {
+      background: var(--surface-layer02);
+      color: var(--text-primary);
+      border-color: var(--text-secondary);
+    }
+    .ele-copy:focus-visible {
+      outline: 2px solid var(--border-focus);
+      outline-offset: 2px;
+    }
+    .ele-copy svg { width: 14px; height: 14px; }
+
+    /* Preview tile — small card with the elevation applied */
+    .ele-preview-tile {
+      width: 92px; height: 64px;
+      background: var(--surface-card);
+      border-radius: 8px;
+    }
+
+    @media (max-width: 720px) {
+      .ele-row {
+        grid-template-columns: 1fr 110px;
+        grid-template-areas:
+          "token preview"
+          "role  preview"
+          "value preview";
+      }
+      .ele-cell { border-right: none; padding: 14px 14px 6px; }
+      .ele-cell:nth-child(1) { grid-area: token; }
+      .ele-cell:nth-child(2) { grid-area: role; padding-top: 0; padding-bottom: 6px; }
+      .ele-cell:nth-child(3) { grid-area: value; padding-top: 0; padding-bottom: 14px; }
+      .ele-cell:nth-child(4) { grid-area: preview; border-left: 1px solid var(--border); padding: 14px; }
+      .ele-row--head { display: none; }
+    }
+
+    /* Empty state */
+    .ele-empty {
+      padding: 60px 20px; text-align: center;
+      color: var(--text-secondary);
+      border: 1px dashed var(--border);
+      border-radius: 10px;
+      font-size: 14px;
+      display: none;
+    }
+    .ele-empty.show { display: block; }
+
+    /* Copy toast */
+    .ele-copied {
+      position: fixed; bottom: 28px; left: 50%;
+      transform: translateX(-50%) translateY(20px);
+      z-index: 200; opacity: 0;
+      display: inline-flex; align-items: center; gap: 8px;
+      padding: 10px 16px;
+      background: var(--text-primary); color: #FFFFFF;
+      border-radius: 8px;
+      box-shadow: 0 8px 24px rgba(15,23,42,0.18);
+      font-size: 13px; font-weight: 700;
+      pointer-events: none;
+      transition: opacity 180ms, transform 180ms;
+    }
+    .ele-copied svg { width: 14px; height: 14px; color: #5ABFE0; }
+    .ele-copied.show { opacity: 1; transform: translateX(-50%) translateY(0); }
+    [data-theme="dark"] .ele-copied { background: #FFFFFF; color: #0F0F0F; }
+    [data-theme="dark"] .ele-copied svg { color: #027CB1; }
+  </style>
+</head>
+<body>
+
+<!-- MOBILE OVERLAY -->
+<div id="navOverlay" class="nav-overlay" onclick="toggleSidebar()"></div>
+
+<!-- TOP NAV -->
+<nav class="topnav">
+  <button class="hamburger" onclick="toggleSidebar()" aria-label="Menu">
+    <i data-lucide="menu" style="width:18px;height:18px;color:var(--text-secondary)"></i>
+  </button>
+  <div class="bc">
+    <span class="cur">Elevation</span>
+  </div>
+  <div class="nav-actions">
+    <div class="toggle-wrap" onclick="toggleTheme()" role="button">
+      <i data-lucide="moon" style="width:20px;height:20px"></i>
+      <div class="toggle-track"><div class="toggle-thumb"></div></div>
+      <i data-lucide="sun" style="width:20px;height:20px"></i>
+    </div>
+  </div>
+</nav>
+
+<div class="shell">
+
+  <!-- LEFT NAV -->
+  <nav class="left-nav" id="leftNav">
+    <div class="left-nav-inner"></div>
+  </nav>
+
+  <!-- CONTENT -->
+  <div class="content-wrap" id="contentWrap">
+    <main class="ele-page">
+
+      <header class="ele-head">
+        <h1 class="ele-title">Elevation</h1>
+        <p class="ele-sub">nuShip Design System · Elevation Tokens</p>
+      </header>
+
+      <!-- Sentinel -->
+      <div id="eleToolbarSentinel" class="ele-sentinel" aria-hidden="true"></div>
+
+      <!-- Toolbar -->
+      <div class="ele-toolbar" id="eleToolbar" role="toolbar" aria-label="Elevation tools">
+        <label class="ele-search">
+          <i data-lucide="search" class="ele-search-icon" aria-hidden="true"></i>
+          <input id="eleSearch" type="search" placeholder="Search by name or role (e.g. modal, tooltip)" aria-label="Search elevation tokens">
+          <button id="eleSearchClear" class="ele-search-clear" type="button" aria-label="Clear search"><i data-lucide="x" style="width:14px;height:14px"></i></button>
+        </label>
+        <span class="ele-count"><em id="eleCount">0</em> tokens</span>
+        <div class="ele-mode-toggle" id="eleModeToggle" role="tablist" aria-label="Theme preview">
+          <button class="ele-mode-btn is-active" data-mode="light" role="tab" aria-selected="true" type="button"><i data-lucide="sun"></i>Light</button>
+          <button class="ele-mode-btn" data-mode="dark" role="tab" aria-selected="false" type="button"><i data-lucide="moon"></i>Dark</button>
+        </div>
+      </div>
+
+      <!-- ELEVATION TOKENS -->
+      <section class="ele-section">
+        <span class="ele-section-label">Elevation tokens</span>
+        <div class="ele-table" id="eleRoot" role="table"></div>
+        <div class="ele-empty" id="eleEmpty">No elevation tokens match that search.</div>
+      </section>
+
+    </main>
+  </div>
+
+</div><!-- /shell -->
+
+<!-- Copy toast -->
+<div class="ele-copied" id="eleCopied" role="status" aria-live="polite">
+  <i data-lucide="check"></i><span id="eleCopiedLabel">Copied</span>
+</div>
+
+<script>
+  lucide.createIcons();
+
+  // ─── Sidebar boilerplate ───────────────────────────────────
+  const isMobile = () => window.innerWidth <= 768;
+  let sbOpen = !isMobile();
+  if (!sbOpen) document.getElementById('leftNav').classList.add('hidden');
+  function toggleSidebar() {
+    sbOpen = !sbOpen;
+    document.getElementById('leftNav').classList.toggle('hidden', !sbOpen);
+    if (!isMobile()) document.getElementById('contentWrap').style.marginLeft = sbOpen ? 'var(--left-w)' : '0';
+    document.getElementById('navOverlay').classList.toggle('active', sbOpen && isMobile());
+  }
+
+  // ─── Elevation tokens ─────────────────────────────────────
+  // Each token has a role description + light/dark shadow value.
+  // Dark shadows include a top-edge highlight (inset white) to
+  // simulate the light source against the dark surface, matching
+  // the existing pattern in styles.css.
+  const ELEVATIONS = [
+    {
+      token: 'elevation-0',
+      role: 'Flat surface — no lift. Used at rest on the page canvas.',
+      light: 'none',
+      dark:  'none'
+    },
+    {
+      token: 'elevation-1',
+      role: 'Subtle — cards, inputs, and component rests on layer-01.',
+      light: '0 1px 2px rgba(55, 65, 80, 0.06)',
+      dark:  '0 1px 2px rgba(0, 0, 0, 0.6), 0 0 0 1px rgba(255, 255, 255, 0.06)'
+    },
+    {
+      token: 'elevation-2',
+      role: 'Lifted — hover states on cards, raised tiles.',
+      light: '0 4px 10px rgba(15, 23, 42, 0.08)',
+      dark:  '0 4px 12px rgba(0, 0, 0, 0.55), 0 0 0 1px rgba(255, 255, 255, 0.06)'
+    },
+    {
+      token: 'elevation-3',
+      role: 'Floating — tooltips, popovers, sticky toolbars.',
+      light: '0 4px 14px rgba(15, 23, 42, 0.14)',
+      dark:  '0 4px 14px rgba(0, 0, 0, 0.6), 0 0 0 1px rgba(255, 255, 255, 0.08)'
+    },
+    {
+      token: 'elevation-4',
+      role: 'Prominent — toasts, dropdowns, menus.',
+      light: '0 8px 24px rgba(15, 23, 42, 0.18)',
+      dark:  '0 8px 24px rgba(0, 0, 0, 0.65), 0 0 0 1px rgba(255, 255, 255, 0.08)'
+    },
+    {
+      token: 'elevation-5',
+      role: 'Topmost — modals, drawers, full-screen overlays.',
+      light: '0 16px 40px -10px rgba(15, 23, 42, 0.25)',
+      dark:  '0 16px 40px -10px rgba(0, 0, 0, 0.7), 0 0 0 1px rgba(255, 255, 255, 0.08)'
+    }
+  ];
+
+  // ─── Render ────────────────────────────────────────────────
+  const root = document.getElementById('eleRoot');
+  let total = 0;
+
+  let html =
+    '<div class="ele-row ele-row--head" role="row">' +
+      '<span class="ele-cell" role="columnheader">Token</span>' +
+      '<span class="ele-cell" role="columnheader">Role</span>' +
+      '<span class="ele-cell" role="columnheader">Value</span>' +
+      '<span class="ele-cell" role="columnheader" aria-label="Preview"></span>' +
+    '</div>';
+
+  ELEVATIONS.forEach(function(e){
+    total++;
+    html +=
+      '<div class="ele-row" role="row"' +
+        ' data-token="$' + e.token + '"' +
+        ' data-role="'  + e.role.replace(/"/g, '&quot;') + '"' +
+        ' data-light="' + e.light.replace(/"/g, '&quot;') + '"' +
+        ' data-dark="'  + e.dark.replace(/"/g, '&quot;')  + '">' +
+        '<span class="ele-cell" role="cell"><code class="ele-token">$' + e.token + '</code></span>' +
+        '<span class="ele-cell" role="cell">' + e.role + '</span>' +
+        '<span class="ele-cell" role="cell">' +
+          '<span class="ele-value">' +
+            '<code class="ele-value-code" data-code></code>' +
+            '<button class="ele-copy" type="button" data-copy aria-label="Copy ' + e.token + ' value">' +
+              '<i data-lucide="copy"></i>' +
+            '</button>' +
+          '</span>' +
+        '</span>' +
+        '<span class="ele-cell" role="cell">' +
+          '<div class="ele-preview-tile" data-preview></div>' +
+        '</span>' +
+      '</div>';
+  });
+
+  root.innerHTML = html;
+  document.getElementById('eleCount').textContent = total;
+  lucide.createIcons();
+
+  // ─── Light/dark preview ───────────────────────────────────
+  const modeBtns = document.querySelectorAll('#eleModeToggle .ele-mode-btn');
+  function applyMode(mode) {
+    modeBtns.forEach(function(b){
+      const active = b.dataset.mode === mode;
+      b.classList.toggle('is-active', active);
+      b.setAttribute('aria-selected', active ? 'true' : 'false');
+    });
+    document.querySelectorAll('#eleRoot .ele-row:not(.ele-row--head)').forEach(function(row){
+      const shadow = mode === 'dark' ? row.dataset.dark : row.dataset.light;
+      const isDark = mode === 'dark';
+      const code = row.querySelector('[data-code]');
+      const tile = row.querySelector('[data-preview]');
+      if (code) code.textContent = shadow;
+      if (tile) {
+        tile.style.boxShadow = shadow === 'none' ? 'none' : shadow;
+        // tile fill flips so the shadow is visible against the swatch column bg
+        tile.style.background = isDark ? '#1E1E1E' : '#FFFFFF';
+        tile.style.border = isDark ? '1px solid rgba(255,255,255,0.08)' : '1px solid rgba(0,0,0,0.04)';
+      }
+    });
+    // tint the preview column background subtly for dark mode so shadows read
+    document.querySelectorAll('#eleRoot .ele-cell:nth-child(4)').forEach(function(c){
+      c.style.background = isDarkPreview(mode) ? 'var(--surface-layer02)' : '';
+    });
+  }
+  function isDarkPreview(mode){ return mode === 'dark'; }
+  modeBtns.forEach(function(b){
+    b.addEventListener('click', function(){ applyMode(b.dataset.mode); });
+  });
+  applyMode('light');
+
+  // ─── Copy ─────────────────────────────────────────────────
+  const copied = document.getElementById('eleCopied');
+  const copiedLabel = document.getElementById('eleCopiedLabel');
+  let copiedTimer = null;
+
+  function fallbackCopy(text) {
+    try {
+      const ta = document.createElement('textarea');
+      ta.value = text; ta.style.position = 'fixed'; ta.style.opacity = '0';
+      document.body.appendChild(ta); ta.select();
+      document.execCommand('copy'); document.body.removeChild(ta);
+    } catch (e) { /* noop */ }
+  }
+  async function copy(text) {
+    try {
+      if (navigator.clipboard && window.isSecureContext) {
+        await navigator.clipboard.writeText(text);
+      } else { fallbackCopy(text); }
+    } catch (e) { fallbackCopy(text); }
+    copiedLabel.textContent = 'Copied';
+    copied.classList.add('show');
+    clearTimeout(copiedTimer);
+    copiedTimer = setTimeout(function(){ copied.classList.remove('show'); }, 1600);
+  }
+
+  document.querySelectorAll('[data-copy]').forEach(function(btn){
+    btn.addEventListener('click', function(){
+      const row = btn.closest('.ele-row');
+      const active = document.querySelector('#eleModeToggle .ele-mode-btn.is-active').dataset.mode;
+      const value = active === 'dark' ? row.dataset.dark : row.dataset.light;
+      copy(value);
+    });
+  });
+
+  // ─── Search filter ────────────────────────────────────────
+  const searchEl = document.getElementById('eleSearch');
+  const clearEl  = document.getElementById('eleSearchClear');
+  const countEl  = document.getElementById('eleCount');
+  const emptyEl  = document.getElementById('eleEmpty');
+
+  function applyFilter() {
+    const q = searchEl.value.trim().toLowerCase();
+    clearEl.classList.toggle('show', q.length > 0);
+    let visible = 0;
+    document.querySelectorAll('#eleRoot .ele-row:not(.ele-row--head)').forEach(function(row){
+      const hay = (row.dataset.token + ' ' + row.dataset.role + ' ' + row.dataset.light + ' ' + row.dataset.dark).toLowerCase();
+      const ok = !q || hay.includes(q);
+      row.style.display = ok ? '' : 'none';
+      if (ok) visible++;
+    });
+    countEl.textContent = visible;
+    emptyEl.classList.toggle('show', visible === 0 && !!q);
+  }
+  searchEl.addEventListener('input', applyFilter);
+  clearEl.addEventListener('click', function(){ searchEl.value = ''; applyFilter(); searchEl.focus(); });
+  document.addEventListener('keydown', function(e){
+    if (e.key === '/' && document.activeElement !== searchEl) {
+      e.preventDefault();
+      searchEl.focus(); searchEl.select();
+    }
+  });
+
+  // ─── Sticky pop-out detection ─────────────────────────────
+  const toolbarEl = document.getElementById('eleToolbar');
+  const sentinel  = document.getElementById('eleToolbarSentinel');
+  if ('IntersectionObserver' in window && toolbarEl && sentinel) {
+    const obs = new IntersectionObserver(function(entries){
+      entries.forEach(function(e){
+        toolbarEl.classList.toggle('is-stuck', e.intersectionRatio === 0);
+      });
+    }, { threshold: [0, 1], rootMargin: '-81px 0px 0px 0px' });
+    obs.observe(sentinel);
+  }
+</script>
+</body>
+</html>
