@@ -129,6 +129,11 @@
       border-color: #374151;
     }
     .ele-section-eyebrow + .ele-section-eyebrow { margin-top: 56px; }
+    /* When the dark eyebrow follows the light table, push it down so the
+       two tables have generous breathing room between them. */
+    .ele-section-eyebrow--dark { margin-top: 64px; }
+    /* Add bottom margin under the light table for an extra cushion. */
+    #eleRootLight { margin-bottom: 8px; }
 
     /* Force dark-mode surface tokens on the dark preview table so
        shadows render against an appropriate background regardless of

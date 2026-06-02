@@ -1,0 +1,326 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Spacing — nuShip Design System</title>
+  <link href="https://fonts.googleapis.com/css2?family=Lato:wght@400;600;700;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="tokens.css">
+  <link rel="stylesheet" href="styles.css">
+  <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.min.js"></script>
+  <script src="nav-scroll.js" defer></script>
+  <style>
+    /* Page chrome — same as elevation/color, prefixed sp- */
+    .sp-page { padding: 56px 40px 96px; max-width: 1200px; margin: 0 auto; }
+    @media (max-width: 720px) { .sp-page { padding: 40px 20px 72px; } }
+    .sp-head { display: flex; flex-direction: column; gap: 8px; margin-bottom: 32px; }
+    .sp-title { font-size: 32px; line-height: 38px; font-weight: 700; color: var(--text-primary); margin: 0; }
+    .sp-sub { font-size: 14px; line-height: 19px; color: var(--text-secondary); margin: 0; }
+
+    /* Toolbar — sticky with offset, layer-03 pop-out */
+    .sp-sentinel { height: 1px; margin-top: -1px; }
+    .sp-toolbar {
+      display: flex; align-items: center; gap: 24px;
+      flex-wrap: wrap; padding: 12px 0; margin-bottom: 28px;
+      position: sticky; top: 80px; z-index: 8;
+      background: transparent;
+      transition: background 180ms, box-shadow 180ms, padding 180ms, max-width 180ms, border-radius 180ms;
+    }
+    .sp-toolbar.is-stuck {
+      padding: 14px 20px;
+      max-width: 720px; margin-left: auto; margin-right: auto;
+      background: var(--surface-layer03);
+      border: 1px solid var(--border-soft);
+      border-radius: 12px;
+      box-shadow: 0 10px 28px -14px rgba(15, 23, 42, 0.18);
+    }
+    [data-theme="dark"] .sp-toolbar.is-stuck { box-shadow: 0 10px 28px -14px rgba(0, 0, 0, 0.6); }
+
+    /* Search */
+    .sp-search {
+      display: flex; align-items: center; gap: 8px;
+      height: 48px; padding: 0 12px;
+      background: var(--surface-field);
+      border: 1px solid var(--border);
+      border-radius: 4px;
+      flex: 1; min-width: 240px; max-width: 420px;
+      box-sizing: border-box;
+      transition: border-color 120ms, box-shadow 120ms;
+    }
+    .sp-search:hover { border-color: var(--text-secondary); }
+    .sp-search:focus-within {
+      border-color: var(--border-focus);
+      box-shadow: 0 0 0 4px rgba(90, 191, 224, 0.35);
+    }
+    [data-theme="dark"] .sp-search:focus-within { box-shadow: 0 0 0 4px rgba(0, 131, 187, 0.35); }
+    .sp-search-icon { width: 24px; height: 24px; display: flex; align-items: center; justify-content: center; color: var(--text-secondary); flex-shrink: 0; }
+    .sp-search-icon svg { width: 20px; height: 20px; }
+    .sp-search input {
+      flex: 1; min-width: 0; height: 100%;
+      background: transparent; border: none; outline: none;
+      font-family: inherit; font-size: 16px; line-height: 22px;
+      color: var(--text-primary); padding: 0;
+    }
+    .sp-search input::placeholder { color: #6B7280; }
+    .sp-search-clear {
+      width: 24px; height: 24px; border: none; background: transparent;
+      cursor: pointer; color: var(--text-secondary);
+      display: none; align-items: center; justify-content: center;
+      border-radius: 2px; flex-shrink: 0;
+    }
+    .sp-search-clear:hover { color: var(--text-primary); }
+    .sp-search-clear.show { display: inline-flex; }
+
+    .sp-count { font-size: 13px; font-weight: 700; color: var(--text-secondary); font-variant-numeric: tabular-nums; }
+    .sp-count em { font-style: normal; color: var(--text-primary); }
+
+    /* Section */
+    .sp-section { margin-top: 40px; }
+    .sp-section:first-of-type { margin-top: 0; }
+    .sp-section-label {
+      display: block; font-size: 12px; font-weight: 700;
+      line-height: 16px; color: var(--text-secondary);
+      letter-spacing: 0.4px; margin-bottom: 24px;
+    }
+
+    /* Table — same IBM-style as elevation/color */
+    .sp-table {
+      background: var(--surface-card);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      overflow: hidden;
+    }
+    .sp-row {
+      display: grid;
+      grid-template-columns: minmax(140px, 180px) minmax(220px, 1fr) minmax(80px, 100px) minmax(200px, 380px);
+      border-bottom: 1px solid var(--border);
+      transition: background 120ms;
+    }
+    .sp-row:last-child { border-bottom: none; }
+    .sp-row:not(.sp-row--head):hover { background: var(--surface-layer01); }
+    .sp-cell {
+      padding: 20px 18px;
+      border-right: 1px solid var(--border);
+      display: flex; align-items: center;
+      font-size: 14px; line-height: 20px;
+      color: var(--text-secondary);
+      min-width: 0;
+    }
+    .sp-cell:last-child { border-right: none; }
+    .sp-row--head .sp-cell {
+      font-size: 12px; font-weight: 700; line-height: 16px;
+      color: var(--text-primary);
+      background: var(--surface-layer01);
+      letter-spacing: 0.4px;
+    }
+
+    .sp-token {
+      display: inline-flex; align-items: center;
+      padding: 4px 8px;
+      font-family: var(--mono);
+      font-size: 13px; line-height: 16px;
+      color: var(--text-primary);
+      background: var(--surface-layer02);
+      border-radius: 4px; white-space: nowrap;
+    }
+    .sp-value-px {
+      font-family: var(--mono); font-size: 14px;
+      color: var(--text-primary); font-variant-numeric: tabular-nums;
+    }
+
+    /* Visual preview bar — fixed track, fill scales with the spacing value */
+    .sp-preview {
+      display: flex; align-items: center; gap: 12px;
+      width: 100%;
+    }
+    .sp-preview-track {
+      position: relative;
+      flex: 1; min-width: 0;
+      height: 36px;
+      background: var(--surface-layer02);
+      border-radius: 4px;
+      overflow: hidden;
+    }
+    .sp-preview-bar {
+      position: absolute; top: 6px; bottom: 6px; left: 6px;
+      background: var(--action-secondary);
+      border-radius: 3px;
+      transition: width 180ms ease;
+    }
+
+    @media (max-width: 720px) {
+      .sp-row {
+        grid-template-columns: 1fr 100px;
+        grid-template-areas: "token value" "role role" "preview preview";
+      }
+      .sp-cell { border-right: none; padding: 14px 14px 6px; }
+      .sp-cell:nth-child(1) { grid-area: token; }
+      .sp-cell:nth-child(2) { grid-area: role; padding-top: 0; padding-bottom: 6px; }
+      .sp-cell:nth-child(3) { grid-area: value; justify-content: flex-end; padding-top: 14px; padding-bottom: 6px; }
+      .sp-cell:nth-child(4) { grid-area: preview; padding-top: 6px; padding-bottom: 14px; border-top: 1px solid var(--border); }
+      .sp-row--head { display: none; }
+    }
+
+    .sp-empty {
+      padding: 60px 20px; text-align: center;
+      color: var(--text-secondary);
+      border: 1px dashed var(--border);
+      border-radius: 10px;
+      font-size: 14px; display: none;
+    }
+    .sp-empty.show { display: block; }
+  </style>
+</head>
+<body>
+
+<div id="navOverlay" class="nav-overlay" onclick="toggleSidebar()"></div>
+
+<nav class="topnav">
+  <button class="hamburger" onclick="toggleSidebar()" aria-label="Menu">
+    <i data-lucide="menu" style="width:18px;height:18px;color:var(--text-secondary)"></i>
+  </button>
+  <div class="bc"><span class="cur">Spacing</span></div>
+  <div class="nav-actions">
+    <div class="toggle-wrap" onclick="toggleTheme()" role="button">
+      <i data-lucide="moon" style="width:20px;height:20px"></i>
+      <div class="toggle-track"><div class="toggle-thumb"></div></div>
+      <i data-lucide="sun" style="width:20px;height:20px"></i>
+    </div>
+  </div>
+</nav>
+
+<div class="shell">
+  <nav class="left-nav" id="leftNav"><div class="left-nav-inner"></div></nav>
+  <div class="content-wrap" id="contentWrap">
+    <main class="sp-page">
+
+      <header class="sp-head">
+        <h1 class="sp-title">Spacing</h1>
+        <p class="sp-sub">nuShip Design System · Spacing Tokens</p>
+      </header>
+
+      <div id="spToolbarSentinel" class="sp-sentinel" aria-hidden="true"></div>
+
+      <div class="sp-toolbar" id="spToolbar" role="toolbar" aria-label="Spacing tools">
+        <label class="sp-search">
+          <i data-lucide="search" class="sp-search-icon" aria-hidden="true"></i>
+          <input id="spSearch" type="search" placeholder="Search by name, role, or value (e.g. 16, padding)" aria-label="Search spacing tokens">
+          <button id="spSearchClear" class="sp-search-clear" type="button" aria-label="Clear search"><i data-lucide="x" style="width:14px;height:14px"></i></button>
+        </label>
+        <span class="sp-count"><em id="spCount">0</em> tokens</span>
+      </div>
+
+      <section class="sp-section">
+        <span class="sp-section-label">Spacing scale</span>
+        <div class="sp-table" id="spRoot" role="table"></div>
+        <div class="sp-empty" id="spEmpty">No spacing tokens match that search.</div>
+      </section>
+
+    </main>
+  </div>
+</div>
+
+<script>
+  lucide.createIcons();
+
+  const isMobile = () => window.innerWidth <= 768;
+  let sbOpen = !isMobile();
+  if (!sbOpen) document.getElementById('leftNav').classList.add('hidden');
+  function toggleSidebar() {
+    sbOpen = !sbOpen;
+    document.getElementById('leftNav').classList.toggle('hidden', !sbOpen);
+    if (!isMobile()) document.getElementById('contentWrap').style.marginLeft = sbOpen ? 'var(--left-w)' : '0';
+    document.getElementById('navOverlay').classList.toggle('active', sbOpen && isMobile());
+  }
+
+  // Skid spacing scale — n·x where x = 4px (matches Figma tokens like
+  // spacing/2x = 8px). The 1.5x half-step is preserved for icon-to-text
+  // gaps and other Skid-specific patterns.
+  const SPACING = [
+    { token: 'spacing/0x',   px: 0,  role: 'No gap. Used to zero-out flex/grid gaps between joined elements.' },
+    { token: 'spacing/1x',   px: 4,  role: 'Tightest unit — text + icon gaps inside buttons, badges, chips.' },
+    { token: 'spacing/1-5x', px: 6,  role: 'Half-step — internal gap between stacked label and helper.' },
+    { token: 'spacing/2x',   px: 8,  role: 'Default control gap — between input fields and adjacent icons.' },
+    { token: 'spacing/3x',   px: 12, role: 'Default cell padding inside inputs, popovers, and chips.' },
+    { token: 'spacing/4x',   px: 16, role: 'Default block padding — cards, modals, alerts.' },
+    { token: 'spacing/5x',   px: 20, role: 'Section padding — toolbars, dense list rows.' },
+    { token: 'spacing/6x',   px: 24, role: 'Standard section gap — between cards in a stack.' },
+    { token: 'spacing/8x',   px: 32, role: 'Large gap — between major page sections.' },
+    { token: 'spacing/10x',  px: 40, role: 'Page-level rhythm — hero spacing, modal padding.' },
+    { token: 'spacing/12x',  px: 48, role: 'Generous block separation — between page regions.' },
+    { token: 'spacing/14x',  px: 56, role: 'Spacious — between hero and content shelf.' },
+    { token: 'spacing/16x',  px: 64, role: 'Layout-level — top/bottom of long-form pages.' },
+    { token: 'spacing/20x',  px: 80, role: 'Maximum — first and last sections of full-bleed splashes.' }
+  ];
+
+  const root = document.getElementById('spRoot');
+  const maxPx = SPACING.reduce(function(m, s){ return s.px > m ? s.px : m; }, 0);
+
+  let html =
+    '<div class="sp-row sp-row--head" role="row">' +
+      '<span class="sp-cell" role="columnheader">Token</span>' +
+      '<span class="sp-cell" role="columnheader">Role</span>' +
+      '<span class="sp-cell" role="columnheader">Value</span>' +
+      '<span class="sp-cell" role="columnheader" aria-label="Preview"></span>' +
+    '</div>';
+
+  SPACING.forEach(function(s){
+    const pct = maxPx > 0 ? (s.px / maxPx * 100) : 0;
+    html +=
+      '<div class="sp-row" role="row"' +
+        ' data-token="$' + s.token + '"' +
+        ' data-role="' + s.role.replace(/"/g, '&quot;') + '"' +
+        ' data-px="' + s.px + '">' +
+        '<span class="sp-cell" role="cell"><code class="sp-token">$' + s.token + '</code></span>' +
+        '<span class="sp-cell" role="cell">' + s.role + '</span>' +
+        '<span class="sp-cell" role="cell"><span class="sp-value-px">' + s.px + 'px</span></span>' +
+        '<span class="sp-cell" role="cell">' +
+          '<div class="sp-preview">' +
+            '<div class="sp-preview-track">' +
+              '<div class="sp-preview-bar" style="width:calc(' + pct + '% - 12px);"></div>' +
+            '</div>' +
+          '</div>' +
+        '</span>' +
+      '</div>';
+  });
+
+  root.innerHTML = html;
+  document.getElementById('spCount').textContent = SPACING.length;
+  lucide.createIcons();
+
+  // Search
+  const searchEl = document.getElementById('spSearch');
+  const clearEl  = document.getElementById('spSearchClear');
+  const countEl  = document.getElementById('spCount');
+  const emptyEl  = document.getElementById('spEmpty');
+  function applyFilter() {
+    const q = searchEl.value.trim().toLowerCase();
+    clearEl.classList.toggle('show', q.length > 0);
+    let visible = 0;
+    document.querySelectorAll('#spRoot .sp-row:not(.sp-row--head)').forEach(function(row){
+      const hay = (row.dataset.token + ' ' + row.dataset.role + ' ' + row.dataset.px + 'px').toLowerCase();
+      const ok = !q || hay.includes(q);
+      row.style.display = ok ? '' : 'none';
+      if (ok) visible++;
+    });
+    countEl.textContent = visible;
+    emptyEl.classList.toggle('show', visible === 0 && !!q);
+  }
+  searchEl.addEventListener('input', applyFilter);
+  clearEl.addEventListener('click', function(){ searchEl.value = ''; applyFilter(); searchEl.focus(); });
+  document.addEventListener('keydown', function(e){
+    if (e.key === '/' && document.activeElement !== searchEl) { e.preventDefault(); searchEl.focus(); searchEl.select(); }
+  });
+
+  // Sticky pop-out detection
+  const toolbarEl = document.getElementById('spToolbar');
+  const sentinel  = document.getElementById('spToolbarSentinel');
+  if ('IntersectionObserver' in window && toolbarEl && sentinel) {
+    const obs = new IntersectionObserver(function(entries){
+      entries.forEach(function(e){ toolbarEl.classList.toggle('is-stuck', e.intersectionRatio === 0); });
+    }, { threshold: [0, 1], rootMargin: '-81px 0px 0px 0px' });
+    obs.observe(sentinel);
+  }
+</script>
+</body>
+</html>

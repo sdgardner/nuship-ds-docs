@@ -79,9 +79,9 @@ window.toggleTheme = function () {
   const webTokensItems = [
     { name: 'Foundations', href: 'tokens.html' },
     { name: 'Color',       href: 'colors.html' },
-    { name: 'Typography',  href: '#' },
-    { name: 'Spacing',     href: '#' },
-    { name: 'Radius',      href: '#' },
+    { name: 'Typography',  href: 'typography.html' },
+    { name: 'Spacing',     href: 'spacing.html' },
+    { name: 'Radius',      href: 'radius.html' },
     { name: 'Elevation',   href: 'elevation.html' },
   ];
 

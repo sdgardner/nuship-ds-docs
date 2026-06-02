@@ -1,0 +1,366 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Typography — nuShip Design System</title>
+  <link href="https://fonts.googleapis.com/css2?family=Lato:wght@400;600;700;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="tokens.css">
+  <link rel="stylesheet" href="styles.css">
+  <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.min.js"></script>
+  <script src="nav-scroll.js" defer></script>
+  <style>
+    .ty-page { padding: 56px 40px 96px; max-width: 1200px; margin: 0 auto; }
+    @media (max-width: 720px) { .ty-page { padding: 40px 20px 72px; } }
+    .ty-head { display: flex; flex-direction: column; gap: 8px; margin-bottom: 32px; }
+    .ty-title { font-size: 32px; line-height: 38px; font-weight: 700; color: var(--text-primary); margin: 0; }
+    .ty-sub { font-size: 14px; line-height: 19px; color: var(--text-secondary); margin: 0; }
+
+    .ty-sentinel { height: 1px; margin-top: -1px; }
+    .ty-toolbar {
+      display: flex; align-items: center; gap: 24px;
+      flex-wrap: wrap; padding: 12px 0; margin-bottom: 28px;
+      position: sticky; top: 80px; z-index: 8;
+      background: transparent;
+      transition: background 180ms, box-shadow 180ms, padding 180ms, max-width 180ms, border-radius 180ms;
+    }
+    .ty-toolbar.is-stuck {
+      padding: 14px 20px;
+      max-width: 720px; margin-left: auto; margin-right: auto;
+      background: var(--surface-layer03);
+      border: 1px solid var(--border-soft);
+      border-radius: 12px;
+      box-shadow: 0 10px 28px -14px rgba(15, 23, 42, 0.18);
+    }
+    [data-theme="dark"] .ty-toolbar.is-stuck { box-shadow: 0 10px 28px -14px rgba(0, 0, 0, 0.6); }
+
+    .ty-search {
+      display: flex; align-items: center; gap: 8px;
+      height: 48px; padding: 0 12px;
+      background: var(--surface-field);
+      border: 1px solid var(--border);
+      border-radius: 4px;
+      flex: 1; min-width: 240px; max-width: 420px;
+      box-sizing: border-box;
+      transition: border-color 120ms, box-shadow 120ms;
+    }
+    .ty-search:hover { border-color: var(--text-secondary); }
+    .ty-search:focus-within {
+      border-color: var(--border-focus);
+      box-shadow: 0 0 0 4px rgba(90, 191, 224, 0.35);
+    }
+    [data-theme="dark"] .ty-search:focus-within { box-shadow: 0 0 0 4px rgba(0, 131, 187, 0.35); }
+    .ty-search-icon { width: 24px; height: 24px; display: flex; align-items: center; justify-content: center; color: var(--text-secondary); flex-shrink: 0; }
+    .ty-search-icon svg { width: 20px; height: 20px; }
+    .ty-search input {
+      flex: 1; min-width: 0; height: 100%;
+      background: transparent; border: none; outline: none;
+      font-family: inherit; font-size: 16px; line-height: 22px;
+      color: var(--text-primary); padding: 0;
+    }
+    .ty-search input::placeholder { color: #6B7280; }
+    .ty-search-clear {
+      width: 24px; height: 24px; border: none; background: transparent;
+      cursor: pointer; color: var(--text-secondary);
+      display: none; align-items: center; justify-content: center;
+      border-radius: 2px; flex-shrink: 0;
+    }
+    .ty-search-clear:hover { color: var(--text-primary); }
+    .ty-search-clear.show { display: inline-flex; }
+
+    .ty-count { font-size: 13px; font-weight: 700; color: var(--text-secondary); font-variant-numeric: tabular-nums; }
+    .ty-count em { font-style: normal; color: var(--text-primary); }
+
+    .ty-section { margin-top: 56px; }
+    .ty-section:first-of-type { margin-top: 0; }
+    .ty-section-label {
+      display: block; font-size: 12px; font-weight: 700;
+      line-height: 16px; color: var(--text-secondary);
+      letter-spacing: 0.4px; margin-bottom: 14px;
+    }
+
+    .ty-group { margin-bottom: 40px; }
+    .ty-group:last-child { margin-bottom: 0; }
+    .ty-group-label {
+      display: block; font-size: 13px; font-weight: 700;
+      line-height: 16px; color: var(--text-secondary);
+      letter-spacing: 0.4px; text-transform: uppercase;
+      margin-bottom: 12px;
+    }
+
+    .ty-table {
+      background: var(--surface-card);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      overflow: hidden;
+    }
+    .ty-row {
+      display: grid;
+      grid-template-columns: minmax(160px, 220px) minmax(220px, 1fr) minmax(220px, 280px) minmax(220px, 360px);
+      border-bottom: 1px solid var(--border);
+      transition: background 120ms;
+    }
+    .ty-row:last-child { border-bottom: none; }
+    .ty-row:not(.ty-row--head):hover { background: var(--surface-layer01); }
+    .ty-cell {
+      padding: 24px 18px;
+      border-right: 1px solid var(--border);
+      display: flex; align-items: center;
+      font-size: 14px; line-height: 20px;
+      color: var(--text-secondary);
+      min-width: 0;
+    }
+    .ty-cell:last-child { border-right: none; }
+    .ty-row--head .ty-cell {
+      padding: 12px 18px;
+      font-size: 12px; font-weight: 700; line-height: 16px;
+      color: var(--text-primary);
+      background: var(--surface-layer01);
+      letter-spacing: 0.4px;
+    }
+
+    .ty-token {
+      display: inline-flex; align-items: center;
+      padding: 4px 8px;
+      font-family: var(--mono);
+      font-size: 13px; line-height: 16px;
+      color: var(--text-primary);
+      background: var(--surface-layer02);
+      border-radius: 4px; white-space: nowrap;
+    }
+
+    .ty-specs {
+      display: flex; flex-direction: column; gap: 4px;
+      font-family: var(--mono);
+      font-size: 12px; line-height: 17px;
+      color: var(--text-secondary);
+      font-variant-numeric: tabular-nums;
+    }
+    .ty-specs strong {
+      font-weight: 700; color: var(--text-primary);
+    }
+
+    .ty-sample {
+      color: var(--text-primary);
+      width: 100%;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+    }
+
+    @media (max-width: 720px) {
+      .ty-row {
+        grid-template-columns: 1fr;
+        grid-template-areas: "token" "role" "specs" "sample";
+      }
+      .ty-cell { border-right: none; padding: 14px; }
+      .ty-cell:nth-child(1) { grid-area: token; padding-bottom: 6px; }
+      .ty-cell:nth-child(2) { grid-area: role; padding-top: 0; padding-bottom: 6px; }
+      .ty-cell:nth-child(3) { grid-area: specs; padding-top: 0; padding-bottom: 6px; }
+      .ty-cell:nth-child(4) { grid-area: sample; padding-top: 6px; border-top: 1px solid var(--border); }
+      .ty-row--head { display: none; }
+    }
+
+    .ty-empty {
+      padding: 60px 20px; text-align: center;
+      color: var(--text-secondary);
+      border: 1px dashed var(--border);
+      border-radius: 10px;
+      font-size: 14px; display: none;
+    }
+    .ty-empty.show { display: block; }
+  </style>
+</head>
+<body>
+
+<div id="navOverlay" class="nav-overlay" onclick="toggleSidebar()"></div>
+
+<nav class="topnav">
+  <button class="hamburger" onclick="toggleSidebar()" aria-label="Menu">
+    <i data-lucide="menu" style="width:18px;height:18px;color:var(--text-secondary)"></i>
+  </button>
+  <div class="bc"><span class="cur">Typography</span></div>
+  <div class="nav-actions">
+    <div class="toggle-wrap" onclick="toggleTheme()" role="button">
+      <i data-lucide="moon" style="width:20px;height:20px"></i>
+      <div class="toggle-track"><div class="toggle-thumb"></div></div>
+      <i data-lucide="sun" style="width:20px;height:20px"></i>
+    </div>
+  </div>
+</nav>
+
+<div class="shell">
+  <nav class="left-nav" id="leftNav"><div class="left-nav-inner"></div></nav>
+  <div class="content-wrap" id="contentWrap">
+    <main class="ty-page">
+
+      <header class="ty-head">
+        <h1 class="ty-title">Typography</h1>
+        <p class="ty-sub">nuShip Design System · Type Styles · Lato</p>
+      </header>
+
+      <div id="tyToolbarSentinel" class="ty-sentinel" aria-hidden="true"></div>
+
+      <div class="ty-toolbar" id="tyToolbar" role="toolbar" aria-label="Typography tools">
+        <label class="ty-search">
+          <i data-lucide="search" class="ty-search-icon" aria-hidden="true"></i>
+          <input id="tySearch" type="search" placeholder="Search by name, role, or size (e.g. h1, helper, 16)" aria-label="Search type styles">
+          <button id="tySearchClear" class="ty-search-clear" type="button" aria-label="Clear search"><i data-lucide="x" style="width:14px;height:14px"></i></button>
+        </label>
+        <span class="ty-count"><em id="tyCount">0</em> styles</span>
+      </div>
+
+      <section class="ty-section">
+        <span class="ty-section-label">Type styles</span>
+        <div id="tyRoot"></div>
+        <div class="ty-empty" id="tyEmpty">No type styles match that search.</div>
+      </section>
+
+    </main>
+  </div>
+</div>
+
+<script>
+  lucide.createIcons();
+
+  const isMobile = () => window.innerWidth <= 768;
+  let sbOpen = !isMobile();
+  if (!sbOpen) document.getElementById('leftNav').classList.add('hidden');
+  function toggleSidebar() {
+    sbOpen = !sbOpen;
+    document.getElementById('leftNav').classList.toggle('hidden', !sbOpen);
+    if (!isMobile()) document.getElementById('contentWrap').style.marginLeft = sbOpen ? 'var(--left-w)' : '0';
+    document.getElementById('navOverlay').classList.toggle('active', sbOpen && isMobile());
+  }
+
+  // Skid type scale — sourced from Figma typography tokens. All Lato.
+  // Skid caps display at 32px (prefers density over display drama),
+  // so there is no h0/display style by design.
+  const TYPOGRAPHY = [
+    { group: 'Header', items: [
+      { token: 'header/h1', role: 'Page titles, hero headlines',     family: 'Lato', weight: 'Bold (700)',     size: 32, lh: 38, ls: 0,    sample: 'Delivering the Impossible' },
+      { token: 'header/h2', role: 'Section heads inside pages',      family: 'Lato', weight: 'Bold (700)',     size: 24, lh: 31, ls: 0,    sample: 'Get started with components' },
+      { token: 'header/h3', role: 'Sub-section heads, card titles',  family: 'Lato', weight: 'Bold (700)',     size: 20, lh: 24, ls: 0,    sample: 'Primary navigation' },
+      { token: 'header/h4', role: 'Tertiary heads, related items',   family: 'Lato', weight: 'Bold (700)',     size: 18, lh: 24, ls: 0,    sample: 'Account & utilities' }
+    ]},
+    { group: 'Body', items: [
+      { token: 'body/medium',      role: 'Default body copy — paragraphs, descriptions',  family: 'Lato', weight: 'Regular (400)', size: 16, lh: 22, ls: 0, sample: 'Ship the big stuff with peace of mind.' },
+      { token: 'body/medium-bold', role: 'Emphasized body copy — inline strong text',     family: 'Lato', weight: 'Bold (700)',    size: 16, lh: 22, ls: 0, sample: 'Action confirmed — tracking is live.' },
+      { token: 'body/small',       role: 'Compact body — list items, dense rows',         family: 'Lato', weight: 'Regular (400)', size: 14, lh: 19, ls: 0, sample: 'Use this style for dense list rows.' },
+      { token: 'body/input-field', role: 'Form input value text',                          family: 'Lato', weight: 'Regular (400)', size: 16, lh: 24, ls: 0, sample: 'Enter city or zip for pickup' }
+    ]},
+    { group: 'Label', items: [
+      { token: 'body/label',        role: 'Form labels above input fields',                family: 'Lato', weight: 'Bold (700)',    size: 12, lh: 16, ls: 0,    sample: 'Email address' },
+      { token: 'body/cell-label',   role: 'Table headers, column labels',                  family: 'Lato', weight: 'Regular (400)', size: 12, lh: 16, ls: 0.5,  sample: 'Token / Role / Value' }
+    ]},
+    { group: 'Helper', items: [
+      { token: 'helper/regular', role: 'Field helper text under inputs',                   family: 'Lato', weight: 'Regular (400)', size: 12, lh: 16, ls: 0, sample: 'Use a 5-digit US zip code.' }
+    ]},
+    { group: 'Badge', items: [
+      { token: 'badge/large', role: 'Standalone status badges, larger surfaces',           family: 'Lato', weight: 'Bold (700)', size: 12, lh: 18, ls: 0.35,  sample: 'LIVE' },
+      { token: 'badge/small', role: 'Inline badges next to text and table rows',            family: 'Lato', weight: 'Bold (700)', size: 10, lh: 18, ls: 0.35,  sample: 'STABLE' }
+    ]},
+    { group: 'Link', items: [
+      { token: 'link/large-inline', role: 'Inline links within body copy, underlined',      family: 'Lato', weight: 'Bold (700)', size: 18, lh: 24, ls: 0, sample: 'Read the full spec' }
+    ]}
+  ];
+
+  const root = document.getElementById('tyRoot');
+  let total = 0;
+
+  function rowHtml(it) {
+    total++;
+    const sampleStyle =
+      'font-family: Lato, sans-serif;' +
+      'font-weight:' + (it.weight.indexOf('Bold') !== -1 ? 700 : 400) + ';' +
+      'font-size:' + it.size + 'px;' +
+      'line-height:' + it.lh + 'px;' +
+      'letter-spacing:' + it.ls + 'px;' +
+      (it.token.indexOf('badge') !== -1 ? 'text-transform: uppercase;' : '') +
+      (it.token.indexOf('link/large-inline') !== -1 ? 'text-decoration: underline; color: var(--text-link);' : '');
+    return (
+      '<div class="ty-row" role="row"' +
+        ' data-token="$' + it.token + '"' +
+        ' data-role="'  + it.role.replace(/"/g, '&quot;') + '"' +
+        ' data-size="' + it.size + '"' +
+        ' data-weight="' + it.weight + '">' +
+        '<span class="ty-cell" role="cell"><code class="ty-token">$' + it.token + '</code></span>' +
+        '<span class="ty-cell" role="cell">' + it.role + '</span>' +
+        '<span class="ty-cell" role="cell">' +
+          '<span class="ty-specs">' +
+            '<span><strong>' + it.family + '</strong> · ' + it.weight + '</span>' +
+            '<span>' + it.size + ' / ' + it.lh + (it.ls ? ' · ls ' + it.ls : '') + '</span>' +
+          '</span>' +
+        '</span>' +
+        '<span class="ty-cell" role="cell">' +
+          '<span class="ty-sample" style="' + sampleStyle + '">' + it.sample + '</span>' +
+        '</span>' +
+      '</div>'
+    );
+  }
+
+  TYPOGRAPHY.forEach(function(group){
+    const wrap = document.createElement('div');
+    wrap.className = 'ty-group';
+
+    let rows =
+      '<div class="ty-row ty-row--head" role="row">' +
+        '<span class="ty-cell" role="columnheader">Token</span>' +
+        '<span class="ty-cell" role="columnheader">Role</span>' +
+        '<span class="ty-cell" role="columnheader">Spec</span>' +
+        '<span class="ty-cell" role="columnheader">Sample</span>' +
+      '</div>';
+
+    group.items.forEach(function(it){ rows += rowHtml(it); });
+
+    wrap.innerHTML =
+      '<span class="ty-group-label">' + group.group + '</span>' +
+      '<div class="ty-table" role="table">' + rows + '</div>';
+    root.appendChild(wrap);
+  });
+
+  document.getElementById('tyCount').textContent = total;
+  lucide.createIcons();
+
+  // Search
+  const searchEl = document.getElementById('tySearch');
+  const clearEl  = document.getElementById('tySearchClear');
+  const countEl  = document.getElementById('tyCount');
+  const emptyEl  = document.getElementById('tyEmpty');
+  function applyFilter() {
+    const q = searchEl.value.trim().toLowerCase();
+    clearEl.classList.toggle('show', q.length > 0);
+    let visible = 0;
+    let visibleGroups = 0;
+    document.querySelectorAll('#tyRoot .ty-group').forEach(function(group){
+      let n = 0;
+      group.querySelectorAll('.ty-row:not(.ty-row--head)').forEach(function(row){
+        const hay = (row.dataset.token + ' ' + row.dataset.role + ' ' + row.dataset.size + 'px ' + row.dataset.weight).toLowerCase();
+        const ok = !q || hay.includes(q);
+        row.style.display = ok ? '' : 'none';
+        if (ok) { n++; visible++; }
+      });
+      group.style.display = n > 0 ? '' : 'none';
+      if (n > 0) visibleGroups++;
+    });
+    countEl.textContent = visible;
+    emptyEl.classList.toggle('show', visibleGroups === 0 && !!q);
+  }
+  searchEl.addEventListener('input', applyFilter);
+  clearEl.addEventListener('click', function(){ searchEl.value = ''; applyFilter(); searchEl.focus(); });
+  document.addEventListener('keydown', function(e){
+    if (e.key === '/' && document.activeElement !== searchEl) { e.preventDefault(); searchEl.focus(); searchEl.select(); }
+  });
+
+  // Sticky pop-out detection
+  const toolbarEl = document.getElementById('tyToolbar');
+  const sentinel  = document.getElementById('tyToolbarSentinel');
+  if ('IntersectionObserver' in window && toolbarEl && sentinel) {
+    const obs = new IntersectionObserver(function(entries){
+      entries.forEach(function(e){ toolbarEl.classList.toggle('is-stuck', e.intersectionRatio === 0); });
+    }, { threshold: [0, 1], rootMargin: '-81px 0px 0px 0px' });
+    obs.observe(sentinel);
+  }
+</script>
+</body>
+</html>
