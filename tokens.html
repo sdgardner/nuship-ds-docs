@@ -3,248 +3,437 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Token Map — nuShip Design System</title>
-  <link href="https://fonts.googleapis.com/css2?family=Lato:wght@400;600;700;900&display=swap" rel="stylesheet">
+  <title>Foundations — nuShip Design System</title>
+  <link href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700;900&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="tokens.css">
   <link rel="stylesheet" href="styles.css">
   <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.min.js"></script>
   <script src="nav-scroll.js" defer></script>
   <style>
-    /* ── Token map page styles ── */
+    /* ============ Foundations narrative page ============ */
     :root {
-      --mono: ui-monospace, "SF Mono", "Menlo", Consolas, monospace;
-      --tm-accent: #0083bb;
+      --fnd-blue:        #016692;
+      --fnd-blue-deep:   #001F33;
+      --fnd-blue-bright: #027CB1;
+      --fnd-green:       #006C21;
+      --fnd-green-glow:  #4DAD82;
+      --fnd-dark:        #0A0A0A;
+      --fnd-magenta:     #B5267A;
+      --fnd-ink:         #FFFFFF;
+      --fnd-mono:        ui-monospace, "SF Mono", "Menlo", Consolas, monospace;
     }
 
-    .tm-desc {
-      font-size: 14px;
-      color: var(--text-secondary);
+    /* Reset the doc container so bands can go full-bleed */
+    .content-wrap .doc.foundations {
+      padding: 0;
+      max-width: none;
+    }
+
+    /* Each band fills the content area edge-to-edge */
+    .fnd-band {
+      padding: 88px 56px 96px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    /* Inner constraint for readable line length */
+    .fnd-inner {
+      max-width: 1180px;
+      margin: 0 auto;
+      position: relative;
+      z-index: 2;
+    }
+
+    /* Eyebrow above headings */
+    .fnd-eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-family: var(--fnd-mono);
+      font-size: 11px;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      font-weight: 700;
       margin: 0 0 24px;
-      max-width: 560px;
-      line-height: 1.5;
+      opacity: 0.85;
+    }
+    .fnd-eyebrow::before {
+      content: "";
+      width: 28px;
+      height: 1px;
+      background: currentColor;
+      opacity: 0.6;
     }
 
-    /* Controls bar */
-    .tm-controls {
+    /* Big titles */
+    .fnd-title {
+      font-family: 'Lato', sans-serif;
+      font-size: clamp(40px, 5vw, 64px);
+      line-height: 1.05;
+      letter-spacing: -0.02em;
+      margin: 0 0 32px;
+      font-weight: 300;
+      max-width: 880px;
+    }
+    .fnd-title b {
+      font-weight: 900;
+    }
+
+    .fnd-lead {
+      font-size: 18px;
+      line-height: 1.55;
+      margin: 0 0 32px;
+      max-width: 620px;
+      opacity: 0.92;
+    }
+
+    /* ─── Band 1 — Hero (Blue) ─── */
+    .fnd-band--hero {
+      background: var(--fnd-blue);
+      color: var(--fnd-ink);
+    }
+    .fnd-hero-grid {
+      display: grid;
+      grid-template-columns: 1fr 380px;
+      gap: 64px;
+      align-items: center;
+    }
+    .fnd-okr {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      padding: 8px 16px;
+      border-radius: 999px;
+      background: rgba(255, 255, 255, 0.12);
+      border: 1px solid rgba(255, 255, 255, 0.25);
+      backdrop-filter: blur(4px);
+      font-family: var(--fnd-mono);
+      font-size: 12px;
+      letter-spacing: 0.04em;
+      color: rgba(255, 255, 255, 0.92);
+    }
+    .fnd-okr i { width: 14px; height: 14px; }
+
+    /* Right-side tokens-panel mock */
+    .fnd-mock {
+      background: rgba(255, 255, 255, 0.06);
+      border: 1px solid rgba(255, 255, 255, 0.18);
+      border-radius: 12px;
+      padding: 20px;
+      backdrop-filter: blur(6px);
+      transform: rotate(-1deg);
+      box-shadow: 0 20px 60px rgba(0, 0, 0, 0.25);
+    }
+    .fnd-mock-row {
       display: flex;
       align-items: center;
-      justify-content: space-between;
       gap: 12px;
-      margin-bottom: 20px;
-      flex-wrap: wrap;
-    }
-    .tm-pills {
-      display: inline-flex;
-      padding: 3px;
-      background: var(--surface-layer01);
-      border: 1px solid var(--border);
-      border-radius: 6px;
-      gap: 2px;
-    }
-    .tm-pill {
-      border: 0;
-      background: transparent;
-      font-family: inherit;
-      font-size: 13px;
-      color: var(--text-tertiary);
-      padding: 5px 14px;
-      border-radius: 4px;
-      cursor: pointer;
-      transition: background 120ms, color 120ms;
-    }
-    .tm-pill:hover { color: var(--text-primary); }
-    .tm-pill[aria-pressed="true"] {
-      background: var(--surface-layer02);
-      color: var(--text-primary);
-      box-shadow: inset 0 0 0 1px var(--border);
-    }
-
-    .tm-theme-btn {
-      display: inline-flex;
-      align-items: center;
-      gap: 6px;
+      padding: 10px 0;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+      font-family: var(--fnd-mono);
       font-size: 12px;
-      font-family: inherit;
-      color: var(--text-tertiary);
-      padding: 5px 12px;
-      border-radius: 6px;
-      border: 1px solid var(--border);
-      background: var(--surface-layer01);
-      cursor: pointer;
+      color: rgba(255, 255, 255, 0.88);
     }
-    .tm-theme-btn:hover { color: var(--text-primary); }
+    .fnd-mock-row:last-child { border-bottom: 0; }
+    .fnd-mock-row .dot {
+      width: 18px;
+      height: 18px;
+      border-radius: 4px;
+      flex-shrink: 0;
+      border: 1px solid rgba(255, 255, 255, 0.2);
+    }
+    .fnd-mock-row .name { flex: 1; }
+    .fnd-mock-row .hex {
+      font-size: 11px;
+      opacity: 0.6;
+    }
 
-    /* Split layout */
-    .tm-map {
+    /* ─── Band 2 — Three Pillars (Green) ─── */
+    .fnd-band--pillars {
+      background: var(--fnd-green);
+      color: var(--fnd-ink);
+    }
+    .fnd-pillars {
       display: grid;
-      grid-template-columns: 1fr 360px;
+      grid-template-columns: repeat(3, 1fr);
       gap: 20px;
-      align-items: start;
+      margin-top: 48px;
     }
-    @media (max-width: 900px) {
-      .tm-map { grid-template-columns: 1fr; }
-    }
-
-    /* Preview stage */
-    .tm-stage {
+    .fnd-pillar {
+      background: var(--fnd-blue-deep);
+      border-radius: 16px;
+      padding: 32px 28px 36px;
       position: relative;
-      border-radius: 8px;
-      border: 1px solid var(--border);
-      padding: 64px 32px;
-      min-height: 320px;
+      min-height: 280px;
+      display: flex;
+      flex-direction: column;
+    }
+    .fnd-pillar-num {
+      font-family: var(--fnd-mono);
+      font-size: 11px;
+      letter-spacing: 0.18em;
+      color: var(--fnd-green-glow);
+      margin: 0 0 16px;
+      font-weight: 700;
+    }
+    .fnd-pillar-icon {
+      width: 40px;
+      height: 40px;
+      border-radius: 10px;
+      background: rgba(77, 173, 130, 0.15);
+      color: var(--fnd-green-glow);
       display: flex;
       align-items: center;
       justify-content: center;
-      transition: background 180ms;
+      margin-bottom: 20px;
     }
-    .tm-stage[data-bg="light"] { background: #FFFFFF; }
-    .tm-stage[data-bg="dark"]  { background: #0A0A0A; }
-
-    .tm-stage-label {
-      position: absolute;
-      top: 12px;
-      left: 16px;
-      font-size: 11px;
-      font-family: var(--mono);
-      letter-spacing: 0.04em;
-      color: var(--text-tertiary);
+    .fnd-pillar h3 {
+      font-size: 24px;
+      font-weight: 900;
+      margin: 0 0 12px;
+      line-height: 1.2;
     }
-    .tm-stage[data-bg="dark"] .tm-stage-label { color: #6B7280; }
+    .fnd-pillar p {
+      font-size: 14px;
+      line-height: 1.55;
+      margin: 0;
+      color: rgba(255, 255, 255, 0.78);
+    }
 
-    /* Alert inside stage */
-    .tm-alert {
-      width: 100%;
-      max-width: 420px;
-      border-radius: 8px;
-      border: 1px solid;
-      padding: 12px;
+    /* ─── Band 3 — Color Story (Light) ─── */
+    .fnd-band--color {
+      background: var(--surface-shell);
+      color: var(--text-primary);
+    }
+    .fnd-band--color .fnd-title b { color: var(--fnd-magenta); }
+    .fnd-band--color .fnd-lead { color: var(--text-secondary); }
+    .fnd-band--color .fnd-eyebrow { color: var(--fnd-magenta); }
+
+    .fnd-color-grid {
       display: grid;
-      grid-template-columns: 20px 1fr 20px;
-      gap: 12px;
+      grid-template-columns: 1fr 320px;
+      gap: 80px;
       align-items: start;
-      position: relative;
-      transition: background 180ms, border-color 180ms;
     }
-    .tm-alert-icon {
+
+    /* Layer chips */
+    .fnd-chips {
+      display: flex;
+      gap: 12px;
+      flex-wrap: wrap;
+      margin-top: 8px;
+    }
+    .fnd-chip {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      padding: 10px 16px;
+      border-radius: 10px;
+      border: 1px solid var(--border-soft);
+      background: var(--surface-layer01);
+      font-family: var(--fnd-mono);
+      font-size: 12px;
+      color: var(--text-primary);
+    }
+    .fnd-chip .sw {
+      width: 16px;
+      height: 16px;
+      border-radius: 4px;
+      border: 1px solid var(--border-soft);
+    }
+    .fnd-chip:nth-child(2) { background: var(--surface-layer02); }
+    .fnd-chip:nth-child(3) { background: var(--surface-layer03); }
+
+    /* Gray ramp on the right */
+    .fnd-ramp {
+      display: flex;
+      flex-direction: column;
+      border-radius: 12px;
+      overflow: hidden;
+      border: 1px solid var(--border-soft);
+      box-shadow: 0 8px 32px rgba(0, 0, 0, 0.06);
+    }
+    .fnd-ramp-row {
+      padding: 14px 18px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      font-family: var(--fnd-mono);
+      font-size: 12px;
+    }
+
+    /* ─── Band 4 — Dark side (Dark) ─── */
+    .fnd-band--dark {
+      background: var(--fnd-dark);
+      color: var(--fnd-ink);
+    }
+    .fnd-band--dark .fnd-eyebrow { color: var(--fnd-green-glow); }
+    .fnd-band--dark .fnd-lead { color: rgba(255, 255, 255, 0.7); }
+    .fnd-dark-grid {
+      display: grid;
+      grid-template-columns: 1fr 360px;
+      gap: 64px;
+      align-items: center;
+    }
+    .fnd-bullets {
+      display: flex;
+      flex-direction: column;
+      gap: 18px;
+      margin-top: 24px;
+    }
+    .fnd-bullet {
+      display: flex;
+      align-items: flex-start;
+      gap: 16px;
+    }
+    .fnd-bullet-num {
+      flex-shrink: 0;
+      width: 32px;
+      height: 32px;
+      border-radius: 8px;
+      background: rgba(255, 255, 255, 0.08);
+      border: 1px solid rgba(255, 255, 255, 0.18);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: var(--fnd-mono);
+      font-size: 12px;
+      font-weight: 700;
+      color: var(--fnd-green-glow);
+    }
+    .fnd-bullet h4 {
+      font-size: 16px;
+      font-weight: 900;
+      margin: 4px 0 4px;
+    }
+    .fnd-bullet p {
+      font-size: 14px;
+      line-height: 1.55;
+      margin: 0;
+      color: rgba(255, 255, 255, 0.65);
+    }
+    /* Concentric rings decoration */
+    .fnd-rings {
+      position: relative;
+      width: 360px;
+      height: 360px;
+      margin-left: auto;
+    }
+    .fnd-rings span {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      border-radius: 50%;
+      border: 1px solid rgba(255, 255, 255, 0.1);
+    }
+    .fnd-rings span:nth-child(1) { width: 100%; height: 100%; }
+    .fnd-rings span:nth-child(2) { width: 80%; height: 80%; }
+    .fnd-rings span:nth-child(3) { width: 60%; height: 60%; }
+    .fnd-rings span:nth-child(4) { width: 40%; height: 40%; }
+    .fnd-rings span:nth-child(5) {
+      width: 22%; height: 22%;
+      background: rgba(255, 255, 255, 0.04);
+      border-color: rgba(255, 255, 255, 0.2);
+    }
+
+    /* ─── Band 5 — Token flow (Blue bright) ─── */
+    .fnd-band--flow {
+      background: var(--fnd-blue-bright);
+      color: var(--fnd-ink);
+    }
+    .fnd-flow {
+      margin: 56px 0 48px;
+      background: rgba(255, 255, 255, 0.06);
+      border: 1px solid rgba(255, 255, 255, 0.18);
+      border-radius: 16px;
+      padding: 32px 24px;
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+      gap: 12px;
+      align-items: stretch;
+      position: relative;
+    }
+    .fnd-flow-node {
+      background: rgba(255, 255, 255, 0.08);
+      border: 1px solid rgba(255, 255, 255, 0.16);
+      border-radius: 12px;
+      padding: 20px 16px;
+      text-align: center;
+      position: relative;
+    }
+    .fnd-flow-node .label {
+      font-family: var(--fnd-mono);
+      font-size: 10px;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      opacity: 0.7;
+      margin: 0 0 8px;
+    }
+    .fnd-flow-node .name {
+      font-size: 18px;
+      font-weight: 900;
+      margin: 0 0 6px;
+    }
+    .fnd-flow-node .ex {
+      font-family: var(--fnd-mono);
+      font-size: 11px;
+      opacity: 0.7;
+      line-height: 1.4;
+      word-break: break-word;
+    }
+    .fnd-flow-arrow {
+      position: absolute;
+      top: 50%;
+      right: -14px;
+      transform: translateY(-50%);
       width: 20px;
       height: 20px;
       display: flex;
       align-items: center;
       justify-content: center;
-      margin-top: 1px;
-    }
-    .tm-alert-body { min-width: 0; }
-    .tm-alert-header { font-size: 14px; font-weight: 700; line-height: 1.4; margin: 0 0 2px; }
-    .tm-alert-desc   { font-size: 14px; line-height: 1.4; margin: 0; }
-    .tm-alert-dismiss { width: 20px; height: 20px; display: flex; align-items: center; justify-content: center; cursor: pointer; margin-top: 1px; }
-
-    /* Hoverable slot outlines */
-    [data-slot] {
-      position: relative;
-      cursor: pointer;
-      outline: 2px solid transparent;
-      outline-offset: 3px;
-      border-radius: 3px;
-      transition: outline-color 120ms;
-    }
-    [data-slot].is-hot { outline-color: var(--tm-accent); }
-
-    /* Edge pins for bg & border */
-    .tm-pin {
-      position: absolute;
-      top: -10px;
-      font-size: 10px;
-      font-family: var(--mono);
-      letter-spacing: 0.04em;
-      padding: 2px 8px;
-      border-radius: 10px;
-      background: var(--surface-layer01);
-      border: 1px solid var(--border);
-      color: var(--text-tertiary);
-      cursor: pointer;
-      text-transform: uppercase;
-      transition: color 120ms, border-color 120ms;
+      color: rgba(255, 255, 255, 0.5);
       z-index: 2;
     }
-    .tm-pin:hover { color: var(--text-primary); border-color: var(--text-tertiary); }
-    .tm-pin.is-hot { color: var(--tm-accent); border-color: var(--tm-accent); }
-    .tm-pin[data-slot="background"] { left: 16px; }
-    .tm-pin[data-slot="border"]     { right: 16px; }
+    .fnd-flow-node:last-child .fnd-flow-arrow { display: none; }
 
-    /* Token cards panel */
-    .tm-cards { display: flex; flex-direction: column; gap: 8px; }
-    .tm-cards-label {
-      font-size: 10px;
-      font-family: var(--mono);
-      letter-spacing: 0.06em;
-      text-transform: uppercase;
-      color: var(--text-tertiary);
-      margin: 12px 0 4px;
-    }
-    .tm-cards-label:first-child { margin-top: 0; }
-
-    .tm-card {
+    .fnd-flow-cards {
       display: grid;
-      grid-template-columns: 28px 1fr;
-      gap: 12px;
-      padding: 12px 14px;
-      background: var(--surface-layer01);
-      border: 1px solid var(--border);
-      border-radius: 6px;
-      cursor: pointer;
-      transition: border-color 120ms;
+      grid-template-columns: 1fr 1fr;
+      gap: 20px;
     }
-    .tm-card:hover, .tm-card.is-hot { border-color: var(--tm-accent); }
-    .tm-card.is-hot { box-shadow: inset 3px 0 0 var(--tm-accent); padding-left: 11px; }
-
-    .tm-swatch {
-      width: 28px;
-      height: 28px;
-      border-radius: 6px;
-      border: 1px solid var(--border);
-      margin-top: 2px;
+    .fnd-flow-card {
+      background: rgba(255, 255, 255, 0.08);
+      border: 1px solid rgba(255, 255, 255, 0.18);
+      border-radius: 12px;
+      padding: 24px;
     }
-    .tm-size-box {
-      width: 28px;
-      height: 28px;
-      border-radius: 6px;
-      background: var(--surface-layer03);
+    .fnd-flow-card h4 {
+      font-size: 16px;
+      font-weight: 900;
+      margin: 0 0 8px;
       display: flex;
       align-items: center;
-      justify-content: center;
-      font-size: 11px;
-      font-weight: 700;
-      font-family: var(--mono);
-      color: var(--text-primary);
-      margin-top: 2px;
+      gap: 10px;
+    }
+    .fnd-flow-card p {
+      font-size: 14px;
+      line-height: 1.55;
+      margin: 0;
+      opacity: 0.85;
     }
 
-    .tm-role {
-      font-size: 10px;
-      letter-spacing: 0.06em;
-      color: var(--text-tertiary);
-      text-transform: uppercase;
-      margin: 0 0 4px;
-      font-weight: 500;
-    }
-    .tm-chain {
-      font-family: var(--mono);
-      font-size: 12px;
-      line-height: 1.5;
-      color: var(--text-secondary);
-      word-break: break-all;
-    }
-    .tm-arrow { color: var(--text-tertiary); margin: 0 4px; }
-    .tm-hex   { color: var(--text-primary); font-weight: 500; }
-
-    /* Footer meta */
-    .tm-meta {
-      margin-top: 14px;
-      font-size: 12px;
-      color: var(--text-tertiary);
-      display: flex;
-      justify-content: space-between;
-      font-family: var(--mono);
+    /* Responsive */
+    @media (max-width: 1000px) {
+      .fnd-band { padding: 64px 32px 72px; }
+      .fnd-hero-grid,
+      .fnd-color-grid,
+      .fnd-dark-grid { grid-template-columns: 1fr; gap: 40px; }
+      .fnd-pillars { grid-template-columns: 1fr; }
+      .fnd-flow { grid-template-columns: repeat(2, 1fr); }
+      .fnd-flow-node .fnd-flow-arrow { display: none; }
+      .fnd-flow-cards { grid-template-columns: 1fr; }
+      .fnd-rings { margin: 0 auto; width: 280px; height: 280px; }
     }
   </style>
 </head>
@@ -255,9 +444,9 @@
 <nav class="topnav">
   <button class="hamburger" onclick="toggleSidebar()" aria-label="Menu"><i data-lucide="menu" style="width:18px;height:18px;color:var(--text-secondary)"></i></button>
   <div class="bc">
-    <a href="index.html">UI Components</a>
+    <a href="index.html">Foundations</a>
     <i data-lucide="chevron-right" style="width:14px;height:14px;flex-shrink:0"></i>
-    <span class="cur">Token Map</span>
+    <span class="cur">Overview</span>
   </div>
   <div class="nav-actions">
     <div class="toggle-wrap" onclick="togglePageTheme()" role="button">
@@ -278,8 +467,7 @@
         <li><a href="alert.html">Alert</a></li><li><a href="badge.html">Badge</a></li><li><a href="toast.html">Toast</a></li><li><a href="tooltip.html">Tooltip</a></li>
       </ul></div>
       <div class="ln-group"><div class="ln-label">Navigation</div><ul class="ln-list">
-        <li><a href="accordion.html">Accordion</a></li><li><a href="dropdown.html">Dropdown</a></li><li><a href="menu.html">Menu</a></li><li><a href="pagination.html">Pagination</a></li><li><a href="segmentedcontrol.html">Segmented Control</a></li><li><a href="stepindicator.html">Step Indicator</a></li>
-          <li><a href="stepindicator.html">Step Indicator</a></li><li><a href="tabs.html">Tabs</a></li>
+        <li><a href="accordion.html">Accordion</a></li><li><a href="dropdown.html">Dropdown</a></li><li><a href="menu.html">Menu</a></li><li><a href="pagination.html">Pagination</a></li><li><a href="segmentedcontrol.html">Segmented Control</a></li><li><a href="stepindicator.html">Step Indicator</a></li><li><a href="tabs.html">Tabs</a></li>
       </ul></div>
       <div class="ln-group"><div class="ln-label">Actions</div><ul class="ln-list">
         <li><a href="button.html">Button</a></li><li><a href="link.html">Link</a></li><li><a href="tag.html">Tag</a></li>
@@ -299,51 +487,190 @@
   </nav>
 
   <div class="content-wrap" id="contentWrap">
-    <main class="doc">
+    <main class="doc foundations">
 
-      <section class="doc-section">
-        <h1 class="def-title">Token Map</h1>
-        <p class="tm-desc">Hover a part of the component to trace its token chain. Tokens resolve from <strong>semantic → primitive → value</strong>. Component tokens (spacing, radius) are shown below.</p>
-
-        <div class="tm-controls">
-          <div class="tm-pills" role="tablist">
-            <button class="tm-pill" data-variant="error" aria-pressed="true">Error</button>
-            <button class="tm-pill" data-variant="success" aria-pressed="false">Success</button>
-            <button class="tm-pill" data-variant="info" aria-pressed="false">Info</button>
-          </div>
-          <button class="tm-theme-btn" id="stageThemeToggle">
-            <i data-lucide="sun" style="width:14px;height:14px"></i>
-            <span id="stageThemeLabel">Light</span>
-          </button>
-        </div>
-
-        <div class="tm-map">
-
-          <!-- STAGE -->
-          <div class="tm-stage" data-bg="light" id="tmStage">
-            <span class="tm-stage-label" id="tmStageLabel">skid-semantic / light</span>
-
-            <div class="tm-alert" id="tmAlert">
-              <span class="tm-pin" data-slot="background">bg</span>
-              <span class="tm-pin" data-slot="border">border</span>
-
-              <span class="tm-alert-icon" data-slot="icon"><i data-lucide="circle-alert" style="width:20px;height:20px"></i></span>
-              <div class="tm-alert-body">
-                <p class="tm-alert-header" data-slot="headerText">Alert Header</p>
-                <p class="tm-alert-desc" data-slot="descriptionText">This is a description of the alert with helpful context for the user.</p>
+      <!-- ════════════ BAND 1 — Hero ════════════ -->
+      <section class="fnd-band fnd-band--hero">
+        <div class="fnd-inner">
+          <div class="fnd-hero-grid">
+            <div>
+              <p class="fnd-eyebrow">Foundations / 2026</p>
+              <h1 class="fnd-title">From Chaos to <b>Clarity.</b><br>Rebuilding nuShip's<br>Design System.</h1>
+              <p class="fnd-lead">A unified visual language built on tokens, not guesswork — so every team ships from the same source of truth.</p>
+              <div class="fnd-okr">
+                <i data-lucide="target"></i>
+                OKR · Q2 2026 — Foundation reset
               </div>
-              <span class="tm-alert-dismiss" data-slot="dismissIcon"><i data-lucide="x" style="width:16px;height:16px"></i></span>
+            </div>
+
+            <div class="fnd-mock" aria-hidden="true">
+              <div class="fnd-mock-row"><span class="dot" style="background:#FCE8E8"></span><span class="name">status.error.bg</span><span class="hex">#FCE8E8</span></div>
+              <div class="fnd-mock-row"><span class="dot" style="background:#E8F2E8"></span><span class="name">status.success.bg</span><span class="hex">#E8F2E8</span></div>
+              <div class="fnd-mock-row"><span class="dot" style="background:#E5EEF5"></span><span class="name">status.info.bg</span><span class="hex">#E5EEF5</span></div>
+              <div class="fnd-mock-row"><span class="dot" style="background:#FFFFFF"></span><span class="name">surface.shell</span><span class="hex">#FFFFFF</span></div>
+              <div class="fnd-mock-row"><span class="dot" style="background:#F3F4F6"></span><span class="name">surface.layer-01</span><span class="hex">#F3F4F6</span></div>
+              <div class="fnd-mock-row"><span class="dot" style="background:#E5E7EB"></span><span class="name">surface.layer-02</span><span class="hex">#E5E7EB</span></div>
+              <div class="fnd-mock-row"><span class="dot" style="background:#374151"></span><span class="name">text.primary</span><span class="hex">#374151</span></div>
+              <div class="fnd-mock-row"><span class="dot" style="background:#4B5563"></span><span class="name">text.secondary</span><span class="hex">#4B5563</span></div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ════════════ BAND 2 — Three Pillars ════════════ -->
+      <section class="fnd-band fnd-band--pillars">
+        <div class="fnd-inner">
+          <p class="fnd-eyebrow">The three pillars</p>
+          <h2 class="fnd-title">Building a <b>Better</b><br>Foundation.</h2>
+          <p class="fnd-lead">Every decision in nuShip rolls up to three principles. If a token, component, or pattern doesn't serve one of them, it doesn't ship.</p>
+
+          <div class="fnd-pillars">
+            <div class="fnd-pillar">
+              <p class="fnd-pillar-num">01</p>
+              <div class="fnd-pillar-icon"><i data-lucide="eye" style="width:20px;height:20px"></i></div>
+              <h3>Clarity</h3>
+              <p>Every token names a role, not a value. Designers and engineers reach for the same word when they mean the same thing.</p>
+            </div>
+            <div class="fnd-pillar">
+              <p class="fnd-pillar-num">02</p>
+              <div class="fnd-pillar-icon"><i data-lucide="layers" style="width:20px;height:20px"></i></div>
+              <h3>Consistency</h3>
+              <p>One source of truth from Figma to code. Color, spacing, radius, and type all resolve to the same primitives — no drift between surfaces.</p>
+            </div>
+            <div class="fnd-pillar">
+              <p class="fnd-pillar-num">03</p>
+              <div class="fnd-pillar-icon"><i data-lucide="trending-up" style="width:20px;height:20px"></i></div>
+              <h3>Scalability</h3>
+              <p>New themes, new modes, and new brands plug into the layer system without rewriting components. Foundation first, features after.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ════════════ BAND 3 — Color story ════════════ -->
+      <section class="fnd-band fnd-band--color">
+        <div class="fnd-inner">
+          <div class="fnd-color-grid">
+            <div>
+              <p class="fnd-eyebrow">The color story</p>
+              <h2 class="fnd-title">A palette with <b>room to breathe.</b></h2>
+              <p class="fnd-lead">nuShip ships an expanded eleven-step gray ramp — from a pure white shell to a near-black ink. That depth gives us three surface layers stacked clearly without relying on heavy shadow.</p>
+
+              <div class="fnd-chips">
+                <div class="fnd-chip"><span class="sw" style="background:#FFFFFF"></span> surface / layer-01</div>
+                <div class="fnd-chip"><span class="sw" style="background:#F3F4F6"></span> surface / layer-02</div>
+                <div class="fnd-chip"><span class="sw" style="background:#E5E7EB"></span> surface / layer-03</div>
+              </div>
+            </div>
+
+            <div class="fnd-ramp" aria-label="Gray ramp 0 through 950">
+              <div class="fnd-ramp-row" style="background:#FFFFFF;color:#374151;border-bottom:1px solid #E5E7EB"><span>gray / 0</span><span>#FFFFFF</span></div>
+              <div class="fnd-ramp-row" style="background:#F9FAFB;color:#374151"><span>gray / 50</span><span>#F9FAFB</span></div>
+              <div class="fnd-ramp-row" style="background:#F3F4F6;color:#374151"><span>gray / 100</span><span>#F3F4F6</span></div>
+              <div class="fnd-ramp-row" style="background:#E5E7EB;color:#374151"><span>gray / 200</span><span>#E5E7EB</span></div>
+              <div class="fnd-ramp-row" style="background:#D1D5DB;color:#374151"><span>gray / 300</span><span>#D1D5DB</span></div>
+              <div class="fnd-ramp-row" style="background:#9CA3AF;color:#FFFFFF"><span>gray / 400</span><span>#9CA3AF</span></div>
+              <div class="fnd-ramp-row" style="background:#6B7280;color:#FFFFFF"><span>gray / 500</span><span>#6B7280</span></div>
+              <div class="fnd-ramp-row" style="background:#4B5563;color:#FFFFFF"><span>gray / 600</span><span>#4B5563</span></div>
+              <div class="fnd-ramp-row" style="background:#374151;color:#FFFFFF"><span>gray / 700</span><span>#374151</span></div>
+              <div class="fnd-ramp-row" style="background:#1F2937;color:#FFFFFF"><span>gray / 800</span><span>#1F2937</span></div>
+              <div class="fnd-ramp-row" style="background:#111827;color:#FFFFFF"><span>gray / 900</span><span>#111827</span></div>
+              <div class="fnd-ramp-row" style="background:#0A0A0A;color:#FFFFFF"><span>gray / 950</span><span>#0A0A0A</span></div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ════════════ BAND 4 — Dark side ════════════ -->
+      <section class="fnd-band fnd-band--dark">
+        <div class="fnd-inner">
+          <div class="fnd-dark-grid">
+            <div>
+              <p class="fnd-eyebrow">Dark mode, by design</p>
+              <h2 class="fnd-title">The <b>dark side</b><br>of the moon.</h2>
+              <p class="fnd-lead">Dark mode isn't a re-skin — it's a parallel set of semantic values that maps onto the same component contracts. Components don't know which theme is active.</p>
+
+              <div class="fnd-bullets">
+                <div class="fnd-bullet">
+                  <span class="fnd-bullet-num">01</span>
+                  <div>
+                    <h4>System-first</h4>
+                    <p>Every component reads from semantic tokens. Theme switching is one CSS variable swap away — no per-component overrides.</p>
+                  </div>
+                </div>
+                <div class="fnd-bullet">
+                  <span class="fnd-bullet-num">02</span>
+                  <div>
+                    <h4>No rework</h4>
+                    <p>Designers don't redraw screens for dark mode. The token map handles the translation; the layout stays identical.</p>
+                  </div>
+                </div>
+                <div class="fnd-bullet">
+                  <span class="fnd-bullet-num">03</span>
+                  <div>
+                    <h4>Consistent feel</h4>
+                    <p>Status, action, and surface roles keep their meaning across modes. Error still reads as error, just calibrated for the new background.</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="fnd-rings" aria-hidden="true">
+              <span></span><span></span><span></span><span></span><span></span>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ════════════ BAND 5 — Token flow ════════════ -->
+      <section class="fnd-band fnd-band--flow">
+        <div class="fnd-inner">
+          <p class="fnd-eyebrow">How tokens resolve</p>
+          <h2 class="fnd-title">Speaking the <b>same language.</b></h2>
+          <p class="fnd-lead">A button's background isn't a hex. It's a chain — a component token pointing at a semantic role, pointing at a base scale, pointing at a raw primitive. Change one link and the whole system updates in lockstep.</p>
+
+          <div class="fnd-flow">
+            <div class="fnd-flow-node">
+              <p class="label">Raw</p>
+              <p class="name">Primitives</p>
+              <p class="ex">#016692</p>
+              <span class="fnd-flow-arrow"><i data-lucide="chevron-right" style="width:18px;height:18px"></i></span>
+            </div>
+            <div class="fnd-flow-node">
+              <p class="label">Base</p>
+              <p class="name">Scale</p>
+              <p class="ex">blue / 600</p>
+              <span class="fnd-flow-arrow"><i data-lucide="chevron-right" style="width:18px;height:18px"></i></span>
+            </div>
+            <div class="fnd-flow-node">
+              <p class="label">Semantic</p>
+              <p class="name">Role</p>
+              <p class="ex">action / primary</p>
+              <span class="fnd-flow-arrow"><i data-lucide="chevron-right" style="width:18px;height:18px"></i></span>
+            </div>
+            <div class="fnd-flow-node">
+              <p class="label">Component</p>
+              <p class="name">Slot</p>
+              <p class="ex">button / bg</p>
+              <span class="fnd-flow-arrow"><i data-lucide="chevron-right" style="width:18px;height:18px"></i></span>
+            </div>
+            <div class="fnd-flow-node">
+              <p class="label">UI</p>
+              <p class="name">Pixels</p>
+              <p class="ex">rendered</p>
             </div>
           </div>
 
-          <!-- CARDS -->
-          <div id="tmCards"></div>
-
-        </div>
-
-        <div class="tm-meta">
-          <span id="tmTokenCount"></span>
-          <span id="tmPath"></span>
+          <div class="fnd-flow-cards">
+            <div class="fnd-flow-card">
+              <h4><i data-lucide="link" style="width:18px;height:18px"></i>One change, propagated</h4>
+              <p>Rebrand blue from 600 to 700 once and every button, link, and focus ring across nuShip moves with it. No grep-and-replace.</p>
+            </div>
+            <div class="fnd-flow-card">
+              <h4><i data-lucide="message-square" style="width:18px;height:18px"></i>Shared vocabulary</h4>
+              <p>Designers reference <code>action.primary</code> in a critique; engineers reference <code>action.primary</code> in code. Same word, same meaning.</p>
+            </div>
+          </div>
         </div>
       </section>
 
@@ -354,220 +681,19 @@
 <script>
   lucide.createIcons();
 
-  // ── Sidebar boilerplate ──
   const isMobile = () => window.innerWidth <= 768;
   let sbOpen = !isMobile();
   if (!sbOpen) document.getElementById('leftNav').classList.add('hidden');
-  function toggleSidebar() { sbOpen = !sbOpen; document.getElementById('leftNav').classList.toggle('hidden', !sbOpen); if (!isMobile()) document.getElementById('contentWrap').style.marginLeft = sbOpen ? 'var(--left-w)' : '0'; document.getElementById('navOverlay').classList.toggle('active', sbOpen && isMobile()); }
-  function togglePageTheme() { const d = document.documentElement; d.setAttribute('data-theme', d.getAttribute('data-theme') === 'dark' ? 'light' : 'dark'); }
-
-  // ══════════════════════════════════════════════════════
-  // TOKEN DATA — sourced from design token JSON files
-  // ══════════════════════════════════════════════════════
-
-  const primitives = {
-    'color/red/50':   '#FCE8E8',
-    'color/red/100':  '#F8D0D0',
-    'color/red/400':  '#E36868',
-    'color/red/600':  '#DB3939',
-    'color/red/800':  '#A12F2F',
-    'color/red/900':  '#811F1F',
-    'color/green/50':  '#E8F2E8',
-    'color/green/400': '#4DAD82',
-    'color/green/500': '#33A17A',
-    'color/green/700': '#006C21',
-    'color/green/900': '#003322',
-    'color/blue/50':   '#E5EEF5',
-    'color/blue/300':  '#8FCBE6',
-    'color/blue/600':  '#027CB1',
-    'color/blue/900':  '#001F33',
-    'color/gray/0':    '#FFFFFF',
-    'color/gray/200':  '#E5E7EB',
-    'color/gray/500':  '#6B7280',
-    'color/gray/600':  '#4B5563',
-    'color/gray/700':  '#374151',
-  };
-
-  const semantic = {
-    light: {
-      'color/status/error/bg':      { ref: 'color/red/50',    hex: '#FCE8E8' },
-      'color/status/error/border':   { ref: 'color/red/800',   hex: '#A12F2F' },
-      'color/status/error/icon':     { ref: 'color/red/800',   hex: '#A12F2F' },
-      'color/status/success/bg':     { ref: 'color/green/50',  hex: '#E8F2E8' },
-      'color/status/success/border': { ref: 'color/green/700', hex: '#006C21' },
-      'color/status/success/icon':   { ref: 'color/green/700', hex: '#006C21' },
-      'color/status/info/bg':        { ref: 'color/blue/50',   hex: '#E5EEF5' },
-      'color/status/info/border':    { ref: 'color/blue/600',  hex: '#027CB1' },
-      'color/status/info/icon':      { ref: 'color/blue/600',  hex: '#027CB1' },
-      'color/text/primary':          { ref: 'color/gray/700',  hex: '#374151' },
-      'color/text/secondary':        { ref: 'color/gray/600',  hex: '#4B5563' },
-      'color/icon/default':          { ref: 'color/gray/600',  hex: '#4B5563' },
-    },
-    dark: {
-      'color/status/error/bg':      { ref: 'color/red/900',   hex: '#811F1F' },
-      'color/status/error/border':   { ref: 'color/red/600',   hex: '#DB3939' },
-      'color/status/error/icon':     { ref: 'color/red/100',   hex: '#F8D0D0' },
-      'color/status/success/bg':     { ref: 'color/green/900', hex: '#003322' },
-      'color/status/success/border': { ref: 'color/green/400', hex: '#4DAD82' },
-      'color/status/success/icon':   { ref: 'color/green/500', hex: '#33A17A' },
-      'color/status/info/bg':        { ref: 'color/blue/900',  hex: '#001F33' },
-      'color/status/info/border':    { ref: 'color/blue/300',  hex: '#8FCBE6' },
-      'color/status/info/icon':      { ref: 'color/blue/300',  hex: '#8FCBE6' },
-      'color/text/primary':          { ref: 'color/gray/0',    hex: '#FFFFFF' },
-      'color/text/secondary':        { ref: 'color/gray/200',  hex: '#E5E7EB' },
-      'color/icon/default':          { ref: 'color/gray/200',  hex: '#E5E7EB' },
-    },
-  };
-
-  // Component-level specs: slot → { role, token }
-  const alertSpec = {
-    error: {
-      background:      { role: 'Background',     token: 'color/status/error/bg' },
-      border:          { role: 'Border',          token: 'color/status/error/border' },
-      icon:            { role: 'Icon',            token: 'color/status/error/icon' },
-      headerText:      { role: 'Header text',     token: 'color/text/primary' },
-      descriptionText: { role: 'Description',     token: 'color/text/secondary' },
-      dismissIcon:     { role: 'Dismiss icon',    token: 'color/icon/default' },
-    },
-    success: {
-      background:      { role: 'Background',     token: 'color/status/success/bg' },
-      border:          { role: 'Border',          token: 'color/status/success/border' },
-      icon:            { role: 'Icon',            token: 'color/status/success/icon' },
-      headerText:      { role: 'Header text',     token: 'color/text/primary' },
-      descriptionText: { role: 'Description',     token: 'color/text/secondary' },
-      dismissIcon:     { role: 'Dismiss icon',    token: 'color/icon/default' },
-    },
-    info: {
-      background:      { role: 'Background',     token: 'color/status/info/bg' },
-      border:          { role: 'Border',          token: 'color/status/info/border' },
-      icon:            { role: 'Icon',            token: 'color/status/info/icon' },
-      headerText:      { role: 'Header text',     token: 'color/text/primary' },
-      descriptionText: { role: 'Description',     token: 'color/text/secondary' },
-      dismissIcon:     { role: 'Dismiss icon',    token: 'color/icon/default' },
-    },
-  };
-
-  // Component tokens (from component.tokens.json)
-  const componentTokens = [
-    { role: 'Padding',      component: 'alert/padding',      primitive: 'spacing/3x',        value: '12px' },
-    { role: 'Radius',       component: 'alert/radius',       primitive: 'radius/lg',          value: '8px' },
-    { role: 'Border width', component: 'alert/border-width', primitive: 'border-width/thin',  value: '1px' },
-    { role: 'Icon size',    component: 'alert/icon/size',    primitive: 'icon/md',            value: '20px' },
-  ];
-
-  // ── State ──
-  const tmState = { variant: 'error', theme: 'light' };
-
-  // ── Refs ──
-  const tmStage    = document.getElementById('tmStage');
-  const tmAlert    = document.getElementById('tmAlert');
-  const tmCards    = document.getElementById('tmCards');
-
-  // ── Resolve chain ──
-  function resolveChain(tokenName, theme) {
-    const sem = semantic[theme][tokenName];
-    if (!sem) return { chain: [tokenName], hex: tokenName };
-    return {
-      chain: [tokenName, sem.ref, sem.hex],
-      hex: sem.hex,
-    };
+  function toggleSidebar() {
+    sbOpen = !sbOpen;
+    document.getElementById('leftNav').classList.toggle('hidden', !sbOpen);
+    if (!isMobile()) document.getElementById('contentWrap').style.marginLeft = sbOpen ? 'var(--left-w)' : '0';
+    document.getElementById('navOverlay').classList.toggle('active', sbOpen && isMobile());
   }
-
-  // ── Render ──
-  function tmRender() {
-    const spec  = alertSpec[tmState.variant];
-    const theme = tmState.theme;
-
-    // Resolve all color slots
-    const resolved = {};
-    for (const [slot, meta] of Object.entries(spec)) {
-      const r = resolveChain(meta.token, theme);
-      resolved[slot] = { ...meta, ...r };
-    }
-
-    // Apply colors to the alert
-    tmAlert.style.background  = resolved.background.hex;
-    tmAlert.style.borderColor = resolved.border.hex;
-    tmAlert.querySelector('[data-slot="icon"]').style.color            = resolved.icon.hex;
-    tmAlert.querySelector('[data-slot="headerText"]').style.color      = resolved.headerText.hex;
-    tmAlert.querySelector('[data-slot="descriptionText"]').style.color = resolved.descriptionText.hex;
-    tmAlert.querySelector('[data-slot="dismissIcon"]').style.color     = resolved.dismissIcon.hex;
-
-    // Stage
-    tmStage.setAttribute('data-bg', theme);
-    document.getElementById('tmStageLabel').textContent = `skid-semantic / ${theme}`;
-    document.getElementById('tmPath').textContent       = `skid-semantic/${theme} · alert.${tmState.variant}`;
-
-    // Build cards
-    let html = '<div class="tm-cards-label">Color tokens</div><div class="tm-cards">';
-    for (const [slot, meta] of Object.entries(resolved)) {
-      const chainHtml = meta.chain.map((node, i) => {
-        return i === meta.chain.length - 1
-          ? `<span class="tm-hex">${node}</span>`
-          : `${node}<span class="tm-arrow">→</span>`;
-      }).join('');
-
-      const borderFix = meta.hex === '#FFFFFF' || meta.hex === '#FCE8E8' || meta.hex === '#E8F2E8' || meta.hex === '#E5EEF5'
-        ? 'border-color:#CDD2D7' : '';
-
-      html += `
-        <div class="tm-card" data-slot="${slot}">
-          <div class="tm-swatch" style="background:${meta.hex};${borderFix}"></div>
-          <div>
-            <p class="tm-role">${meta.role}</p>
-            <div class="tm-chain">${chainHtml}</div>
-          </div>
-        </div>`;
-    }
-    html += '</div>';
-
-    // Component tokens (don't change with theme or variant)
-    html += '<div class="tm-cards-label" style="margin-top:20px;">Component tokens</div><div class="tm-cards">';
-    for (const ct of componentTokens) {
-      html += `
-        <div class="tm-card">
-          <div class="tm-size-box">${parseInt(ct.value)}</div>
-          <div>
-            <p class="tm-role">${ct.role}</p>
-            <div class="tm-chain">${ct.component}<span class="tm-arrow">→</span>${ct.primitive}<span class="tm-arrow">→</span><span class="tm-hex">${ct.value}</span></div>
-          </div>
-        </div>`;
-    }
-    html += '</div>';
-
-    tmCards.innerHTML = html;
-    document.getElementById('tmTokenCount').textContent = `${Object.keys(resolved).length + componentTokens.length} tokens`;
-
-    // Rebind hover sync
-    document.querySelectorAll('[data-slot]').forEach(el => {
-      const slot = el.dataset.slot;
-      el.addEventListener('mouseenter', () => {
-        document.querySelectorAll(`[data-slot="${slot}"]`).forEach(e => e.classList.add('is-hot'));
-      });
-      el.addEventListener('mouseleave', () => {
-        document.querySelectorAll(`[data-slot="${slot}"]`).forEach(e => e.classList.remove('is-hot'));
-      });
-    });
-
-    lucide.createIcons();
+  function togglePageTheme() {
+    const d = document.documentElement;
+    d.setAttribute('data-theme', d.getAttribute('data-theme') === 'dark' ? 'light' : 'dark');
   }
-
-  // ── Controls ──
-  document.querySelectorAll('.tm-pill').forEach(btn => {
-    btn.addEventListener('click', () => {
-      tmState.variant = btn.dataset.variant;
-      document.querySelectorAll('.tm-pill').forEach(b => b.setAttribute('aria-pressed', b === btn ? 'true' : 'false'));
-      tmRender();
-    });
-  });
-
-  document.getElementById('stageThemeToggle').addEventListener('click', () => {
-    tmState.theme = tmState.theme === 'light' ? 'dark' : 'light';
-    document.getElementById('stageThemeLabel').textContent = tmState.theme === 'light' ? 'Light' : 'Dark';
-    tmRender();
-  });
-
-  tmRender();
 </script>
 </body>
 </html>
