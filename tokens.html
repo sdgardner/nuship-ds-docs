@@ -28,6 +28,9 @@
     .content-wrap .doc.foundations {
       padding: 0;
       max-width: none;
+      /* Contain the hero + dark band's viewport-wide box-shadow horizontally
+         without breaking vertical sticky positioning */
+      overflow-x: clip;
     }
 
     /* Each band fills the content area edge-to-edge */
@@ -92,6 +95,10 @@
     .fnd-band--hero {
       background: var(--fnd-blue);
       color: var(--fnd-ink);
+      /* Extend the blue paint to the viewport edges without affecting layout */
+      box-shadow: 0 0 0 100vmax var(--fnd-blue);
+      clip-path: inset(0 -100vmax);
+      overflow: visible;
     }
     .fnd-hero-grid {
       display: grid;
@@ -366,7 +373,10 @@
       color: var(--fnd-ink);
       border-top: 1px solid rgba(255, 255, 255, 0.06);
       border-bottom: 1px solid rgba(255, 255, 255, 0.06);
-      overflow: hidden;
+      /* Extend the dark paint + hairlines to the viewport edges */
+      box-shadow: 0 0 0 100vmax var(--fnd-dark);
+      clip-path: inset(0 -100vmax);
+      overflow: visible;
     }
     .fnd-band--dark .fnd-eyebrow { color: var(--fnd-green-glow); }
     .fnd-band--dark .fnd-lead { color: rgba(255, 255, 255, 0.7); }
@@ -526,24 +536,30 @@
       padding: 20px 16px;
       text-align: center;
       position: relative;
+      box-shadow: 0 1px 2px rgba(0, 0, 0, 0.04), 0 4px 12px -8px rgba(0, 0, 0, 0.06);
     }
     .fnd-flow-node .label {
-      font-family: var(--fnd-mono);
-      font-size: 10px;
-      letter-spacing: 0.14em;
+      font-family: 'Lato', sans-serif;
+      font-size: 12px;
+      font-weight: 700;
+      line-height: 16px;
+      letter-spacing: 0.4px;
       text-transform: uppercase;
       color: var(--text-secondary);
       margin: 0 0 8px;
     }
     .fnd-flow-node .name {
-      font-size: 18px;
-      font-weight: 900;
+      font-family: 'Lato', sans-serif;
+      font-size: 20px;
+      font-weight: 700;
+      line-height: 28px;
+      letter-spacing: -0.2px;
       margin: 0 0 6px;
       color: var(--text-primary);
     }
     .fnd-flow-node .ex {
       font-family: var(--fnd-mono);
-      font-size: 11px;
+      font-size: 12px;
       color: var(--text-secondary);
       line-height: 1.4;
       word-break: break-word;
@@ -573,10 +589,13 @@
       border: 1px solid var(--border-soft);
       border-radius: 12px;
       padding: 24px;
+      box-shadow: 0 1px 2px rgba(0, 0, 0, 0.04), 0 4px 12px -8px rgba(0, 0, 0, 0.06);
     }
     .fnd-flow-card h4 {
+      font-family: 'Lato', sans-serif;
       font-size: 16px;
-      font-weight: 900;
+      font-weight: 700;
+      line-height: 22px;
       margin: 0 0 8px;
       display: flex;
       align-items: center;
@@ -584,7 +603,9 @@
       color: var(--text-primary);
     }
     .fnd-flow-card p {
+      font-family: 'Lato', sans-serif;
       font-size: 14px;
+      font-weight: 400;
       line-height: 1.55;
       margin: 0;
       color: var(--text-secondary);
