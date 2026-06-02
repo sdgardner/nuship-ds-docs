@@ -48,14 +48,15 @@
       z-index: 2;
     }
 
-    /* Eyebrow above headings */
+    /* Eyebrow above headings — Skid section-label spec */
     .fnd-eyebrow {
       display: inline-flex;
       align-items: center;
       gap: 8px;
-      font-family: var(--fnd-mono);
-      font-size: 11px;
-      letter-spacing: 0.18em;
+      font-family: 'Lato', sans-serif;
+      font-size: 12px;
+      line-height: 16px;
+      letter-spacing: 0.4px;
       text-transform: uppercase;
       font-weight: 700;
       margin: 0 0 24px;
@@ -115,9 +116,10 @@
       background: rgba(255, 255, 255, 0.12);
       border: 1px solid rgba(255, 255, 255, 0.25);
       backdrop-filter: blur(4px);
-      font-family: var(--fnd-mono);
+      font-family: 'Lato', sans-serif;
       font-size: 12px;
-      letter-spacing: 0.04em;
+      font-weight: 700;
+      letter-spacing: 0.4px;
       color: rgba(255, 255, 255, 0.92);
     }
     .fnd-okr i { width: 14px; height: 14px; }
@@ -152,8 +154,13 @@
       backdrop-filter: blur(8px);
       box-shadow: 0 24px 60px -20px rgba(0, 0, 0, 0.45);
       color: rgba(255, 255, 255, 0.92);
+      font-family: 'Lato', sans-serif;
+      font-size: 13px;
+    }
+    /* Inside the floating cards, only hex values + token paths keep mono */
+    .fnd-stage-float .ff-row .nm,
+    .fnd-stage-float .ff-row .hx {
       font-family: var(--fnd-mono);
-      font-size: 12px;
     }
 
     /* Idle drift — each float bobs gently, out of phase */
@@ -210,10 +217,10 @@
     }
     .ff-type small {
       display: block;
-      font-size: 11px;
-      font-family: var(--fnd-mono);
-      opacity: 0.6;
-      letter-spacing: 0.02em;
+      font-size: 12px;
+      font-family: 'Lato', sans-serif;
+      opacity: 0.7;
+      letter-spacing: 0;
       margin-top: 6px;
       font-weight: 400;
     }
@@ -558,8 +565,9 @@
       color: var(--text-primary);
     }
     .fnd-flow-node .ex {
-      font-family: var(--fnd-mono);
-      font-size: 12px;
+      font-family: 'Lato', sans-serif;
+      font-size: 13px;
+      font-weight: 400;
       color: var(--text-secondary);
       line-height: 1.4;
       word-break: break-word;
@@ -725,7 +733,7 @@
                 <div class="ff" style="text-align:center;">
                   <p class="ff-title">Radius</p>
                   <div class="ff-radius"></div>
-                  <span style="font-family:var(--fnd-mono);font-size:11px;opacity:0.7;">radius / lg · 16px</span>
+                  <span style="font-size:12px;opacity:0.7;">radius / lg · 16px</span>
                 </div>
               </div>
 
@@ -734,7 +742,7 @@
                 <div class="ff">
                   <p class="ff-title">Spacing</p>
                   <div class="ff-spacing"><span></span><span></span><span></span><span></span></div>
-                  <span style="font-family:var(--fnd-mono);font-size:11px;opacity:0.7;">1x · 2x · 3x · 4x</span>
+                  <span style="font-size:12px;opacity:0.7;">1x · 2x · 3x · 4x</span>
                 </div>
               </div>
             </div>
