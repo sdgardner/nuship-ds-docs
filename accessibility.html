@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Accessibility — nuShip Design System</title>
+  <link href="https://fonts.googleapis.com/css2?family=Lato:wght@400;700;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="tokens.css">
+  <link rel="stylesheet" href="styles.css">
+  <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.min.js"></script>
+  <script src="nav-scroll.js" defer></script>
+  <style>
+    /* Coming-soon empty state — Skid type scale only */
+    .cs-wrap {
+      min-height: calc(100vh - 64px);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 56px 24px;
+    }
+    .cs-card {
+      max-width: 520px;
+      text-align: center;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 24px;
+    }
+    .cs-glyph {
+      width: 72px;
+      height: 72px;
+      border-radius: 16px;
+      background: var(--surface-layer02);
+      border: 1px solid var(--border-soft);
+      display: grid;
+      place-items: center;
+      color: var(--action-secondary);
+    }
+    .cs-glyph i { width: 32px; height: 32px; }
+    .cs-eyebrow {
+      font-family: 'Lato', sans-serif;
+      font-size: 12px;
+      line-height: 16px;
+      font-weight: 700;
+      letter-spacing: 0.4px;
+      text-transform: uppercase;
+      color: var(--action-secondary);
+      margin: 0;
+    }
+    .cs-title {
+      font-family: 'Lato', sans-serif;
+      font-size: 32px;
+      line-height: 40px;
+      font-weight: 700;
+      color: var(--text-primary);
+      margin: 0;
+    }
+    .cs-sub {
+      font-family: 'Lato', sans-serif;
+      font-size: 16px;
+      line-height: 22px;
+      font-weight: 400;
+      color: var(--text-secondary);
+      margin: 0;
+      max-width: 440px;
+    }
+    .cs-list {
+      list-style: none;
+      margin: 8px 0 0;
+      padding: 0;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      text-align: left;
+      width: 100%;
+      max-width: 360px;
+    }
+    .cs-list li {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      font-family: 'Lato', sans-serif;
+      font-size: 14px;
+      line-height: 20px;
+      color: var(--text-secondary);
+    }
+    .cs-list i {
+      width: 16px;
+      height: 16px;
+      color: var(--action-secondary);
+      flex-shrink: 0;
+    }
+    .cs-back {
+      font-family: 'Lato', sans-serif;
+      font-size: 14px;
+      line-height: 20px;
+      font-weight: 700;
+      color: var(--action-secondary);
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      margin-top: 8px;
+    }
+    .cs-back:hover { color: var(--action-sec-hover); }
+    .cs-back i { width: 16px; height: 16px; }
+  </style>
+</head>
+<body>
+
+<div id="navOverlay" class="nav-overlay" onclick="toggleSidebar()"></div>
+
+<nav class="topnav">
+  <button class="hamburger" onclick="toggleSidebar()" aria-label="Menu">
+    <i data-lucide="menu" style="width:18px;height:18px;color:var(--text-secondary)"></i>
+  </button>
+  <div class="bc"><span class="cur">Accessibility</span></div>
+  <div class="nav-actions">
+    <div class="toggle-wrap" onclick="toggleTheme()" role="button">
+      <i data-lucide="moon" style="width:20px;height:20px"></i>
+      <div class="toggle-track"><div class="toggle-thumb"></div></div>
+      <i data-lucide="sun" style="width:20px;height:20px"></i>
+    </div>
+  </div>
+</nav>
+
+<div class="shell">
+  <nav class="left-nav" id="leftNav"><div class="left-nav-inner"></div></nav>
+
+  <div class="content-wrap" id="contentWrap">
+    <main class="doc">
+      <div class="cs-wrap">
+        <div class="cs-card">
+          <div class="cs-glyph"><i data-lucide="accessibility"></i></div>
+          <p class="cs-eyebrow">Coming soon</p>
+          <h1 class="cs-title">Accessibility guidelines</h1>
+          <p class="cs-sub">We're writing the accessibility playbook for nuShip — contrast targets, focus order, keyboard support, screen-reader patterns, and motion preferences. Check back shortly.</p>
+
+          <ul class="cs-list">
+            <li><i data-lucide="check"></i> Contrast targets across every token pair</li>
+            <li><i data-lucide="check"></i> Focus order + visible focus ring spec</li>
+            <li><i data-lucide="check"></i> Keyboard interaction map per component</li>
+            <li><i data-lucide="check"></i> Reduced-motion + prefers-color-scheme</li>
+          </ul>
+
+          <a class="cs-back" href="index.html"><i data-lucide="arrow-left"></i>Back to overview</a>
+        </div>
+      </div>
+    </main>
+  </div>
+</div>
+
+<script>
+  lucide.createIcons();
+  const isMobile = () => window.innerWidth <= 768;
+  let sbOpen = !isMobile();
+  if (!sbOpen) document.getElementById('leftNav').classList.add('hidden');
+  function toggleSidebar() {
+    sbOpen = !sbOpen;
+    document.getElementById('leftNav').classList.toggle('hidden', !sbOpen);
+    if (!isMobile()) document.getElementById('contentWrap').style.marginLeft = sbOpen ? 'var(--left-w)' : '0';
+    document.getElementById('navOverlay').classList.toggle('active', sbOpen && isMobile());
+  }
+  function toggleTheme() {
+    const d = document.documentElement;
+    d.setAttribute('data-theme', d.getAttribute('data-theme') === 'dark' ? 'light' : 'dark');
+  }
+</script>
+</body>
+</html>

@@ -72,8 +72,8 @@ window.toggleTheme = function () {
   const designSystemItems = [
     { name: "What's new",        href: '#' },
     { name: 'Design principles', href: '#' },
-    { name: 'Accessibility',     href: '#' },
-    { name: 'Content guidelines',href: '#' },
+    { name: 'Accessibility',     href: 'accessibility.html' },
+    { name: 'Content guidelines',href: 'content-guidelines.html' },
   ];
 
   const webTokensItems = [
