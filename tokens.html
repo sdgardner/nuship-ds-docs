@@ -289,7 +289,6 @@
     .fnd-chip {
       display: inline-flex;
       align-items: center;
-      gap: 10px;
       padding: 10px 16px;
       border-radius: 10px;
       border: 1px solid var(--border-soft);
@@ -297,12 +296,8 @@
       font-family: var(--fnd-mono);
       font-size: 12px;
       color: var(--text-primary);
-    }
-    .fnd-chip .sw {
-      width: 16px;
-      height: 16px;
-      border-radius: 4px;
-      border: 1px solid var(--border-soft);
+      /* elevation-2 — lifted (hover states on cards / raised tiles) */
+      box-shadow: 0 4px 10px rgba(15, 23, 42, 0.08);
     }
     .fnd-chip:nth-child(2) { background: var(--surface-layer02); }
     .fnd-chip:nth-child(3) { background: var(--surface-layer03); }
@@ -716,9 +711,9 @@
               <p class="fnd-lead">nuShip ships an expanded eleven-step gray ramp — from a pure white shell to a near-black ink. That depth gives us three surface layers stacked clearly without relying on heavy shadow.</p>
 
               <div class="fnd-chips">
-                <div class="fnd-chip"><span class="sw" style="background:#FFFFFF"></span> surface / layer-01</div>
-                <div class="fnd-chip"><span class="sw" style="background:#F3F4F6"></span> surface / layer-02</div>
-                <div class="fnd-chip"><span class="sw" style="background:#E5E7EB"></span> surface / layer-03</div>
+                <div class="fnd-chip">surface / layer-01</div>
+                <div class="fnd-chip">surface / layer-02</div>
+                <div class="fnd-chip">surface / layer-03</div>
               </div>
             </div>
 
