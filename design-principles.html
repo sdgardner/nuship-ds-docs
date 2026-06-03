@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Design principles — nuShip Design System</title>
+  <link href="https://fonts.googleapis.com/css2?family=Lato:wght@400;700;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="tokens.css">
+  <link rel="stylesheet" href="styles.css">
+  <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.min.js"></script>
+  <script src="nav-scroll.js" defer></script>
+  <style>
+    /* ─── Three pillars — dark navy accent cards on the light page ─── */
+    .dp-eyebrow {
+      font-family: 'Lato', sans-serif;
+      font-size: 12px;
+      line-height: 16px;
+      font-weight: 700;
+      letter-spacing: 0.4px;
+      text-transform: uppercase;
+      color: #006C21;
+      margin: 0 0 12px;
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .dp-eyebrow::before {
+      content: "";
+      width: 28px;
+      height: 1px;
+      background: currentColor;
+      opacity: 0.7;
+    }
+    .dp-title {
+      font-family: 'Lato', sans-serif;
+      font-size: 32px;
+      line-height: 40px;
+      font-weight: 700;
+      color: var(--text-primary);
+      margin: 0 0 16px;
+    }
+    .dp-lead {
+      font-family: 'Lato', sans-serif;
+      font-size: 16px;
+      line-height: 22px;
+      font-weight: 400;
+      color: var(--text-secondary);
+      margin: 0 0 48px;
+      max-width: 620px;
+    }
+
+    .dp-pillars {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 20px;
+      margin: 0 0 64px;
+    }
+    @media (max-width: 880px) {
+      .dp-pillars { grid-template-columns: 1fr; }
+    }
+    .dp-pillar {
+      background: #001F33;
+      color: #fff;
+      border-radius: 16px;
+      padding: 32px 28px 36px;
+      position: relative;
+      min-height: 280px;
+      display: flex;
+      flex-direction: column;
+    }
+    .dp-pillar-num {
+      font-family: 'Lato', sans-serif;
+      font-size: 32px;
+      line-height: 40px;
+      letter-spacing: 0;
+      color: #4DAD82;
+      margin: 0 0 16px;
+      font-weight: 700;
+    }
+    .dp-pillar-icon {
+      width: 40px;
+      height: 40px;
+      border-radius: 10px;
+      background: rgba(77, 173, 130, 0.15);
+      color: #4DAD82;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 20px;
+    }
+    .dp-pillar-icon i { width: 20px; height: 20px; }
+    .dp-pillar h3 {
+      font-family: 'Lato', sans-serif;
+      font-size: 22px;
+      font-weight: 700;
+      line-height: 28px;
+      margin: 0 0 12px;
+      color: #fff;
+    }
+    .dp-pillar p {
+      font-family: 'Lato', sans-serif;
+      font-size: 14px;
+      font-weight: 400;
+      line-height: 20px;
+      margin: 0;
+      color: rgba(255, 255, 255, 0.78);
+    }
+
+    /* ─── Applying the principles — supporting note row ─── */
+    .dp-apply {
+      border-top: 1px solid var(--border-soft);
+      padding-top: 32px;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 24px;
+    }
+    @media (max-width: 720px) {
+      .dp-apply { grid-template-columns: 1fr; }
+    }
+    .dp-apply-card {
+      background: var(--surface-layer01);
+      border: 1px solid var(--border-soft);
+      border-radius: 12px;
+      padding: 24px;
+    }
+    .dp-apply-card h4 {
+      font-family: 'Lato', sans-serif;
+      font-size: 16px;
+      font-weight: 700;
+      line-height: 22px;
+      margin: 0 0 8px;
+      color: var(--text-primary);
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .dp-apply-card h4 i { width: 18px; height: 18px; color: #006C21; }
+    .dp-apply-card p {
+      font-family: 'Lato', sans-serif;
+      font-size: 14px;
+      font-weight: 400;
+      line-height: 20px;
+      margin: 0;
+      color: var(--text-secondary);
+    }
+  </style>
+</head>
+<body>
+
+<div id="navOverlay" class="nav-overlay" onclick="toggleSidebar()"></div>
+
+<nav class="topnav">
+  <button class="hamburger" onclick="toggleSidebar()" aria-label="Menu">
+    <i data-lucide="menu" style="width:18px;height:18px;color:var(--text-secondary)"></i>
+  </button>
+  <div class="bc"><span class="cur">Design principles</span></div>
+  <div class="nav-actions">
+    <div class="toggle-wrap" onclick="toggleTheme()" role="button">
+      <i data-lucide="moon" style="width:20px;height:20px"></i>
+      <div class="toggle-track"><div class="toggle-thumb"></div></div>
+      <i data-lucide="sun" style="width:20px;height:20px"></i>
+    </div>
+  </div>
+</nav>
+
+<div class="shell">
+  <nav class="left-nav" id="leftNav"><div class="left-nav-inner"></div></nav>
+
+  <div class="content-wrap" id="contentWrap">
+    <main class="doc">
+
+      <p class="dp-eyebrow">The three pillars</p>
+      <h1 class="dp-title">Design principles</h1>
+      <p class="dp-lead">Every decision in nuShip rolls up to three principles. If a token, component, or pattern doesn't serve one of them, it doesn't ship.</p>
+
+      <div class="dp-pillars">
+        <article class="dp-pillar">
+          <p class="dp-pillar-num">01</p>
+          <div class="dp-pillar-icon"><i data-lucide="eye"></i></div>
+          <h3>Clarity</h3>
+          <p>Every token names a role, not a value. Designers and engineers reach for the same word when they mean the same thing.</p>
+        </article>
+        <article class="dp-pillar">
+          <p class="dp-pillar-num">02</p>
+          <div class="dp-pillar-icon"><i data-lucide="layers"></i></div>
+          <h3>Consistency</h3>
+          <p>One source of truth from Figma to code. Color, spacing, radius, and type all resolve to the same primitives — no drift between surfaces.</p>
+        </article>
+        <article class="dp-pillar">
+          <p class="dp-pillar-num">03</p>
+          <div class="dp-pillar-icon"><i data-lucide="trending-up"></i></div>
+          <h3>Scalability</h3>
+          <p>New themes, new modes, and new brands plug into the layer system without rewriting components. Foundation first, features after.</p>
+        </article>
+      </div>
+
+      <div class="dp-apply">
+        <div class="dp-apply-card">
+          <h4><i data-lucide="check-circle"></i>How to apply</h4>
+          <p>Before shipping a new component or token, ask which pillar it serves. If you can't answer in a sentence, the work isn't ready — revisit scope or naming before code.</p>
+        </div>
+        <div class="dp-apply-card">
+          <h4><i data-lucide="message-square"></i>How to push back</h4>
+          <p>If a request conflicts with a pillar, name the conflict and propose the lower-friction alternative. Principles win over feature pressure when they're cited concretely.</p>
+        </div>
+      </div>
+
+    </main>
+  </div>
+</div>
+
+<script>
+  lucide.createIcons();
+  const isMobile = () => window.innerWidth <= 768;
+  let sbOpen = !isMobile();
+  if (!sbOpen) document.getElementById('leftNav').classList.add('hidden');
+  function toggleSidebar() {
+    sbOpen = !sbOpen;
+    document.getElementById('leftNav').classList.toggle('hidden', !sbOpen);
+    if (!isMobile()) document.getElementById('contentWrap').style.marginLeft = sbOpen ? 'var(--left-w)' : '0';
+    document.getElementById('navOverlay').classList.toggle('active', sbOpen && isMobile());
+  }
+  function toggleTheme() {
+    const d = document.documentElement;
+    d.setAttribute('data-theme', d.getAttribute('data-theme') === 'dark' ? 'light' : 'dark');
+  }
+</script>
+</body>
+</html>

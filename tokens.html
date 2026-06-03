@@ -263,68 +263,9 @@
       .fnd-stage-float { position: static !important; width: auto !important; }
     }
 
-    /* ─── Band 2 — Three Pillars (Light) ─── */
-    .fnd-band--pillars {
-      background: transparent;
-      color: var(--text-primary);
-      border-top: 1px solid var(--border-soft);
-      border-bottom: 1px solid var(--border-soft);
-    }
-    .fnd-band--pillars .fnd-eyebrow { color: var(--fnd-green); }
-    .fnd-band--pillars .fnd-lead { color: var(--text-secondary); }
-    .fnd-pillars {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 20px;
-      margin-top: 48px;
-    }
-    .fnd-pillar {
-      background: var(--fnd-blue-deep);
-      color: var(--fnd-ink);
-      border-radius: 16px;
-      padding: 32px 28px 36px;
-      position: relative;
-      min-height: 280px;
-      display: flex;
-      flex-direction: column;
-    }
-    .fnd-pillar-num {
-      font-family: 'Lato', sans-serif;
-      font-size: 32px;
-      line-height: 40px;
-      letter-spacing: 0;
-      color: var(--fnd-green-glow);
-      margin: 0 0 16px;
-      font-weight: 700;
-    }
-    .fnd-pillar-icon {
-      width: 40px;
-      height: 40px;
-      border-radius: 10px;
-      background: rgba(77, 173, 130, 0.15);
-      color: var(--fnd-green-glow);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      margin-bottom: 20px;
-    }
-    .fnd-pillar h3 {
-      font-family: 'Lato', sans-serif;
-      font-size: 22px;
-      font-weight: 700;
-      line-height: 28px;
-      margin: 0 0 12px;
-    }
-    .fnd-pillar p {
-      font-family: 'Lato', sans-serif;
-      font-size: 14px;
-      font-weight: 400;
-      line-height: 20px;
-      margin: 0;
-      color: rgba(255, 255, 255, 0.78);
-    }
+    /* Three Pillars moved to design-principles.html — styles removed. */
 
-    /* ─── Band 3 — Color Story (Light) ─── */
+    /* ─── Band 2 — Color Story (Light) ─── */
     .fnd-band--color {
       background: transparent;
       color: var(--text-primary);
@@ -640,7 +581,6 @@
       .fnd-hero-grid,
       .fnd-color-grid,
       .fnd-dark-grid { grid-template-columns: 1fr; gap: 40px; }
-      .fnd-pillars { grid-template-columns: 1fr; }
       .fnd-flow { grid-template-columns: repeat(2, 1fr); }
       .fnd-flow-node .fnd-flow-arrow { display: none; }
       .fnd-flow-cards { grid-template-columns: 1fr; }
@@ -765,37 +705,9 @@
         </div>
       </section>
 
-      <!-- ════════════ BAND 2 — Three Pillars ════════════ -->
-      <section class="fnd-band fnd-band--pillars">
-        <div class="fnd-inner">
-          <p class="fnd-eyebrow">The three pillars</p>
-          <h2 class="fnd-title">Building a better foundation.</h2>
-          <p class="fnd-lead">Every decision in nuShip rolls up to three principles. If a token, component, or pattern doesn't serve one of them, it doesn't ship.</p>
+      <!-- Three Pillars section moved to design-principles.html -->
 
-          <div class="fnd-pillars">
-            <div class="fnd-pillar">
-              <p class="fnd-pillar-num">01</p>
-              <div class="fnd-pillar-icon"><i data-lucide="eye" style="width:20px;height:20px"></i></div>
-              <h3>Clarity</h3>
-              <p>Every token names a role, not a value. Designers and engineers reach for the same word when they mean the same thing.</p>
-            </div>
-            <div class="fnd-pillar">
-              <p class="fnd-pillar-num">02</p>
-              <div class="fnd-pillar-icon"><i data-lucide="layers" style="width:20px;height:20px"></i></div>
-              <h3>Consistency</h3>
-              <p>One source of truth from Figma to code. Color, spacing, radius, and type all resolve to the same primitives — no drift between surfaces.</p>
-            </div>
-            <div class="fnd-pillar">
-              <p class="fnd-pillar-num">03</p>
-              <div class="fnd-pillar-icon"><i data-lucide="trending-up" style="width:20px;height:20px"></i></div>
-              <h3>Scalability</h3>
-              <p>New themes, new modes, and new brands plug into the layer system without rewriting components. Foundation first, features after.</p>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <!-- ════════════ BAND 3 — Color story ════════════ -->
+      <!-- ════════════ BAND 2 — Color story ════════════ -->
       <section class="fnd-band fnd-band--color">
         <div class="fnd-inner">
           <div class="fnd-color-grid">
