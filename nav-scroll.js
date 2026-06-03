@@ -54,14 +54,183 @@ window.toggleTheme = function () {
     a.className = 'topnav-logo';
     a.href = 'index.html';
     a.setAttribute('aria-label', 'nuShip Design System home');
+    a.setAttribute('data-tooltip', 'nuShip home');
     a.innerHTML = '<svg viewBox="0 0 69.956 35.399"><use href="#uship-logo"/></svg>';
     if (ham && ham.nextSibling) topnav.insertBefore(a, ham.nextSibling);
     else topnav.appendChild(a);
+
+    // 3) Top-nav controls — add data-tooltip to common icon buttons so
+    //    the site-wide tooltip helper picks them up.
+    if (ham && !ham.hasAttribute('data-tooltip')) {
+      ham.setAttribute('data-tooltip', 'Menu');
+    }
+    const themeToggle = topnav.querySelector('.toggle-wrap');
+    if (themeToggle && !themeToggle.hasAttribute('data-tooltip')) {
+      themeToggle.setAttribute('data-tooltip', 'Toggle theme');
+    }
   }
 
   if (document.readyState === 'loading') {
     document.addEventListener('DOMContentLoaded', go);
   } else { go(); }
+})();
+
+// ── Site-wide Skid tooltips ─────────────────────────────────
+// Any element marked with `data-tooltip="Some text"` (or
+// `data-tooltip-html="..."` for richer markup) gets a Skid .tt-tooltip
+// on hover or focus. Position is controlled by `data-tooltip-pos`
+// (up | bottom | left | right) — defaults to "up" for icon buttons in
+// the top nav and "bottom" for in-page content. The tooltip is a
+// fixed-position floating layer rendered once on body, so it never
+// breaks the trigger's own layout.
+(function initSkidTooltips() {
+  if (window.__skidTooltipsReady) return;
+  window.__skidTooltipsReady = true;
+
+  // Arrow centering — the Skid spec pins the arrow to left:24px which is
+  // off-center for small icon-button triggers. Center it for our floating
+  // instance only (selector targets body > .tt-tooltip).
+  function ensureArrowCSS() {
+    if (document.getElementById('tt-floating-arrow-css')) return;
+    const s = document.createElement('style');
+    s.id = 'tt-floating-arrow-css';
+    s.textContent = [
+      'body > .tt-tooltip--up::after,',
+      'body > .tt-tooltip--bottom::after {',
+      '  left: 50%; transform: translateX(-50%);',
+      '}',
+      'body > .tt-tooltip { font-family: "Lato", sans-serif; }',
+    ].join('');
+    document.head.appendChild(s);
+  }
+
+  function buildHost() {
+    ensureArrowCSS();
+    const host = document.createElement('div');
+    host.className = 'tt-tooltip tt-tooltip--simple tt-tooltip--up';
+    host.style.cssText = [
+      'position:fixed',
+      'top:-9999px',
+      'left:-9999px',
+      'z-index:9999',
+      'pointer-events:none',
+      'opacity:0',
+      'transition:opacity 120ms ease',
+      'will-change:transform, opacity',
+      'white-space:nowrap',
+    ].join(';');
+    host.setAttribute('role', 'tooltip');
+    const txt = document.createElement('span');
+    txt.className = 'tt-tooltip-text';
+    host.appendChild(txt);
+    return { host: host, txt: txt };
+  }
+
+  function placeHost(host, trigger, pos) {
+    const r = trigger.getBoundingClientRect();
+    // Reset so transform doesn't accumulate
+    host.style.transform = '';
+    // Set position class so the arrow matches
+    host.classList.remove('tt-tooltip--up', 'tt-tooltip--bottom', 'tt-tooltip--left', 'tt-tooltip--right');
+    host.classList.add('tt-tooltip--' + pos);
+
+    // Measure the host once positioned roughly so we can center it
+    host.style.top = '0px';
+    host.style.left = '0px';
+    const h = host.getBoundingClientRect();
+    let top, left, tx, ty;
+    const gap = 10; // distance between trigger and tooltip
+    switch (pos) {
+      case 'bottom':
+        top = r.bottom + gap;
+        left = r.left + r.width / 2 - h.width / 2;
+        break;
+      case 'left':
+        top = r.top + r.height / 2 - h.height / 2;
+        left = r.left - h.width - gap;
+        break;
+      case 'right':
+        top = r.top + r.height / 2 - h.height / 2;
+        left = r.right + gap;
+        break;
+      case 'up':
+      default:
+        top = r.top - h.height - gap;
+        left = r.left + r.width / 2 - h.width / 2;
+        break;
+    }
+    // Clamp to viewport so we don't paint off-screen
+    const pad = 6;
+    left = Math.max(pad, Math.min(left, window.innerWidth - h.width - pad));
+    top  = Math.max(pad, Math.min(top,  window.innerHeight - h.height - pad));
+    host.style.left = left + 'px';
+    host.style.top  = top  + 'px';
+  }
+
+  let host, txt;
+  function ensureHost() {
+    if (host) return;
+    const built = buildHost();
+    host = built.host;
+    txt = built.txt;
+    document.body.appendChild(host);
+  }
+
+  let active = null;
+  let showTimer = null;
+
+  function defaultPos(el) {
+    return el.closest('.topnav') ? 'bottom' : (el.getAttribute('data-tooltip-pos') || 'up');
+  }
+
+  function show(el) {
+    ensureHost();
+    const text = el.getAttribute('data-tooltip');
+    if (!text) return;
+    txt.textContent = text;
+    placeHost(host, el, el.getAttribute('data-tooltip-pos') || defaultPos(el));
+    host.style.opacity = '1';
+    active = el;
+  }
+
+  function hide() {
+    if (!host) return;
+    host.style.opacity = '0';
+    active = null;
+    if (showTimer) { clearTimeout(showTimer); showTimer = null; }
+  }
+
+  document.addEventListener('mouseover', function (e) {
+    const trigger = e.target.closest && e.target.closest('[data-tooltip]');
+    if (!trigger || trigger === active) return;
+    if (showTimer) clearTimeout(showTimer);
+    showTimer = setTimeout(function () { show(trigger); }, 300);
+  });
+
+  document.addEventListener('mouseout', function (e) {
+    const trigger = e.target.closest && e.target.closest('[data-tooltip]');
+    if (!trigger) return;
+    // If the new mouse position is still inside the same trigger, ignore
+    const to = e.relatedTarget;
+    if (to && to.closest && to.closest('[data-tooltip]') === trigger) return;
+    hide();
+  });
+
+  document.addEventListener('focusin', function (e) {
+    const trigger = e.target.closest && e.target.closest('[data-tooltip]');
+    if (trigger) show(trigger);
+  });
+
+  document.addEventListener('focusout', function () { hide(); });
+
+  // Hide on scroll / resize so it doesn't drift away from the trigger
+  window.addEventListener('scroll', hide, true);
+  window.addEventListener('resize', hide);
+
+  // Escape dismisses
+  document.addEventListener('keydown', function (e) {
+    if (e.key === 'Escape') hide();
+  });
 })();
 
 (function () {
