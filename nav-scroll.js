@@ -126,13 +126,24 @@ window.toggleTheme = function () {
     return { host: host, txt: txt };
   }
 
+  // Map our "where is the tooltip relative to the trigger" name to the
+  // Skid modifier that describes WHERE THE ARROW IS on the tooltip
+  // (always the opposite side from the trigger so the arrow points at
+  // the trigger).
+  const ARROW_CLASS = {
+    up:     'tt-tooltip--bottom', // tooltip above → arrow at bottom of tooltip, pointing down
+    bottom: 'tt-tooltip--up',     // tooltip below → arrow at top of tooltip, pointing up
+    left:   'tt-tooltip--right',  // tooltip left  → arrow on right of tooltip, pointing right
+    right:  'tt-tooltip--left',   // tooltip right → arrow on left of tooltip, pointing left
+  };
+
   function placeHost(host, trigger, pos) {
     const r = trigger.getBoundingClientRect();
     // Reset so transform doesn't accumulate
     host.style.transform = '';
-    // Set position class so the arrow matches
+    // Set the Skid arrow-position class so the arrow points at the trigger
     host.classList.remove('tt-tooltip--up', 'tt-tooltip--bottom', 'tt-tooltip--left', 'tt-tooltip--right');
-    host.classList.add('tt-tooltip--' + pos);
+    host.classList.add(ARROW_CLASS[pos] || ARROW_CLASS.up);
 
     // Measure the host once positioned roughly so we can center it
     host.style.top = '0px';
