@@ -70,26 +70,28 @@
       opacity: 0.6;
     }
 
-    /* Big titles */
+    /* Section title — Skid header/h1 spec: Lato 700 / 32 / 40, no mixed weights */
     .fnd-title {
       font-family: 'Lato', sans-serif;
-      font-size: clamp(40px, 5vw, 64px);
-      line-height: 1.05;
-      letter-spacing: -0.02em;
-      margin: 0 0 32px;
-      font-weight: 300;
-      max-width: 880px;
+      font-size: 32px;
+      line-height: 40px;
+      letter-spacing: 0;
+      margin: 0 0 16px;
+      font-weight: 700;
+      color: var(--text-primary);
+      max-width: 720px;
     }
-    .fnd-title b {
-      font-weight: 900;
-    }
+    .fnd-title b { font-weight: 700; color: inherit; }
 
+    /* Body lead — Skid body/medium spec: Lato 400 / 16 / 22 */
     .fnd-lead {
-      font-size: 18px;
-      line-height: 1.55;
+      font-family: 'Lato', sans-serif;
+      font-size: 16px;
+      font-weight: 400;
+      line-height: 22px;
       margin: 0 0 32px;
       max-width: 620px;
-      opacity: 0.92;
+      color: var(--text-secondary);
     }
 
     /* ─── Band 1 — Hero (Blue) ─── */
@@ -101,6 +103,8 @@
       clip-path: inset(0 -100vmax);
       overflow: visible;
     }
+    .fnd-band--hero .fnd-title { color: #fff; }
+    .fnd-band--hero .fnd-lead  { color: rgba(255, 255, 255, 0.88); }
     .fnd-hero-grid {
       display: grid;
       grid-template-columns: 1fr 460px;
@@ -201,17 +205,18 @@
 
     .ff-title {
       font-family: 'Lato', sans-serif;
-      font-size: 11px;
-      letter-spacing: 0.14em;
+      font-size: 12px;
+      line-height: 16px;
+      letter-spacing: 0.4px;
       text-transform: uppercase;
-      font-weight: 900;
+      font-weight: 700;
       opacity: 0.7;
       margin: 0 0 8px;
     }
     .ff-type {
       font-family: 'Lato', sans-serif;
       font-size: 28px;
-      font-weight: 900;
+      font-weight: 700;
       line-height: 1.1;
       margin: 0;
     }
@@ -261,7 +266,6 @@
       border-bottom: 1px solid var(--border-soft);
     }
     .fnd-band--pillars .fnd-eyebrow { color: var(--fnd-green); }
-    .fnd-band--pillars .fnd-title b { color: var(--fnd-green); }
     .fnd-band--pillars .fnd-lead { color: var(--text-secondary); }
     .fnd-pillars {
       display: grid;
@@ -281,12 +285,12 @@
     }
     .fnd-pillar-num {
       font-family: 'Lato', sans-serif;
-      font-size: 36px;
-      letter-spacing: -0.02em;
+      font-size: 32px;
+      line-height: 40px;
+      letter-spacing: 0;
       color: var(--fnd-green-glow);
       margin: 0 0 16px;
-      font-weight: 900;
-      line-height: 1;
+      font-weight: 700;
     }
     .fnd-pillar-icon {
       width: 40px;
@@ -300,14 +304,17 @@
       margin-bottom: 20px;
     }
     .fnd-pillar h3 {
-      font-size: 24px;
-      font-weight: 900;
+      font-family: 'Lato', sans-serif;
+      font-size: 22px;
+      font-weight: 700;
+      line-height: 28px;
       margin: 0 0 12px;
-      line-height: 1.2;
     }
     .fnd-pillar p {
+      font-family: 'Lato', sans-serif;
       font-size: 14px;
-      line-height: 1.55;
+      font-weight: 400;
+      line-height: 20px;
       margin: 0;
       color: rgba(255, 255, 255, 0.78);
     }
@@ -317,7 +324,6 @@
       background: transparent;
       color: var(--text-primary);
     }
-    .fnd-band--color .fnd-title b { color: var(--fnd-magenta); }
     .fnd-band--color .fnd-lead { color: var(--text-secondary); }
     .fnd-band--color .fnd-eyebrow { color: var(--fnd-magenta); }
 
@@ -386,6 +392,7 @@
       overflow: visible;
     }
     .fnd-band--dark .fnd-eyebrow { color: var(--fnd-green-glow); }
+    .fnd-band--dark .fnd-title { color: #fff; }
     .fnd-band--dark .fnd-lead { color: rgba(255, 255, 255, 0.7); }
     .fnd-dark-grid {
       display: grid;
@@ -416,18 +423,22 @@
       justify-content: center;
       font-family: 'Lato', sans-serif;
       font-size: 16px;
-      font-weight: 900;
+      font-weight: 700;
       color: var(--fnd-green-glow);
-      line-height: 1;
+      line-height: 22px;
     }
     .fnd-bullet h4 {
+      font-family: 'Lato', sans-serif;
       font-size: 16px;
-      font-weight: 900;
+      font-weight: 700;
+      line-height: 22px;
       margin: 4px 0 4px;
     }
     .fnd-bullet p {
+      font-family: 'Lato', sans-serif;
       font-size: 14px;
-      line-height: 1.55;
+      font-weight: 400;
+      line-height: 20px;
       margin: 0;
       color: rgba(255, 255, 255, 0.65);
     }
@@ -522,7 +533,6 @@
       border-top: 1px solid var(--border-soft);
     }
     .fnd-band--flow .fnd-eyebrow { color: var(--fnd-blue-bright); }
-    .fnd-band--flow .fnd-title b { color: var(--fnd-blue-bright); }
     .fnd-band--flow .fnd-lead { color: var(--text-secondary); }
     .fnd-flow {
       margin: 56px 0 48px;
