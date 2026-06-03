@@ -202,23 +202,9 @@
     }
     .sw[hidden] { display: none; }
 
-    /* Floating tooltip on hover */
-    .sw-tip {
-      position: fixed; z-index: 100;
-      pointer-events: none;
-      padding: 8px 10px;
-      background: var(--text-primary);
-      color: #FFFFFF;
-      border-radius: 6px;
-      font-size: 12px; font-weight: 700;
-      line-height: 1.4;
-      box-shadow: 0 4px 14px rgba(15,23,42,0.15);
-      opacity: 0; transform: translateY(4px);
-      transition: opacity 100ms, transform 100ms;
-    }
-    .sw-tip.show { opacity: 1; transform: translateY(0); }
-    .sw-tip-token { font-family: var(--mono); font-weight: 400; opacity: 0.78; }
-    [data-theme="dark"] .sw-tip { background: #FFFFFF; color: #0F0F0F; }
+    /* Swatch hover tooltips are handled by the site-wide Skid tooltip
+       helper in nav-scroll.js via the data-tooltip attribute on each
+       swatch button. No per-page tip element. */
 
     /* ─── Semantic tokens (IBM-style table) ─────────────────── */
     .col-sem-group { margin-bottom: 32px; }
@@ -436,8 +422,7 @@
 
 </div><!-- /shell -->
 
-<!-- Floating tooltip + copy toast -->
-<div class="sw-tip" id="swTip" role="tooltip" aria-hidden="true"></div>
+<!-- Copy toast (the swatch tooltip is now handled by the global Skid helper) -->
 <div class="col-copied" id="colCopied" role="status" aria-live="polite">
   <i data-lucide="check"></i><span id="colCopiedLabel">Copied</span>
 </div>
@@ -607,7 +592,7 @@
   }
   function makeSwatch(token, hex, extra) {
     extra = extra || '';
-    return '<button class="sw" style="background:' + hex + '" data-token="' + token + '" data-hex="' + hex + '" type="button" aria-label="' + token + ' ' + hex + '"></button>';
+    return '<button class="sw" style="background:' + hex + '" data-token="' + token + '" data-hex="' + hex + '" data-tooltip="' + token + ' · ' + hex + '" type="button" aria-label="' + token + ' ' + hex + '"></button>';
   }
 
   RAMPS.forEach(function(r){
@@ -658,7 +643,7 @@
             '</span>' +
           '</span>' +
           '<span class="col-sem-cell" role="cell">' +
-            '<button class="col-sem-swatch" type="button" data-swatch data-token="$' + it.token + '" aria-label="' + it.token + ' swatch"></button>' +
+            '<button class="col-sem-swatch" type="button" data-swatch data-token="$' + it.token + '" data-tooltip="$' + it.token + '" aria-label="' + it.token + ' swatch"></button>' +
           '</span>' +
         '</div>';
     });
@@ -672,20 +657,12 @@
   document.getElementById('colCount').textContent = totalSwatches;
 
   // ─── Interactivity ────────────────────────────────────────
-  const tip = document.getElementById('swTip');
+  // Hover tooltips for every swatch are wired through the site-wide
+  // Skid helper (nav-scroll.js) via data-tooltip. Click-to-copy stays
+  // here.
   const copied = document.getElementById('colCopied');
   const copiedLabel = document.getElementById('colCopiedLabel');
   let copiedTimer = null;
-
-  function showTip(target, token, hex) {
-    tip.innerHTML = '<div>' + hex + '</div><div class="sw-tip-token">' + token + '</div>';
-    const r = target.getBoundingClientRect();
-    tip.style.left = Math.max(8, Math.min(window.innerWidth - 220, r.left + r.width / 2 - 90)) + 'px';
-    tip.style.top  = Math.max(8, r.top - 56) + 'px';
-    tip.classList.add('show');
-    tip.setAttribute('aria-hidden', 'false');
-  }
-  function hideTip() { tip.classList.remove('show'); tip.setAttribute('aria-hidden', 'true'); }
 
   function fallbackCopy(text) {
     try {
@@ -711,37 +688,21 @@
     copiedTimer = setTimeout(function(){ copied.classList.remove('show'); }, 1600);
   }
 
-  // Bind primitive swatches (single hex each)
-  function bindPrimitive(el) {
-    el.addEventListener('mouseenter', function(){
-      showTip(el, el.dataset.token, el.dataset.hex);
-    });
-    el.addEventListener('mouseleave', hideTip);
-    el.addEventListener('focus', function(){ showTip(el, el.dataset.token, el.dataset.hex); });
-    el.addEventListener('blur', hideTip);
+  // Bind primitive swatches — click copies the hex. Hover/focus tooltip
+  // is provided by the global Skid helper via the data-tooltip attribute.
+  document.querySelectorAll('.sw').forEach(function(el){
     el.addEventListener('click', function(){ copyHex(el.dataset.hex, el); });
-  }
-  document.querySelectorAll('.sw').forEach(bindPrimitive);
+  });
 
-  // Bind semantic swatches — token + hex read from the parent row's
-  // data attrs so the same swatch updates value/preview when mode flips.
-  function bindSemanticSwatch(el) {
-    function ctx() {
+  // Bind semantic swatches — same deal. data-tooltip is refreshed in
+  // applyMode() when the light/dark hex flips.
+  document.querySelectorAll('#semRoot [data-swatch]').forEach(function(el){
+    el.addEventListener('click', function(){
       const row = el.closest('.col-sem-row');
-      return {
-        token: row.dataset.token,
-        hex: el.style.backgroundColor && el.dataset.hex ? el.dataset.hex : row.dataset.lightHex
-      };
-    }
-    el.addEventListener('mouseenter', function(){
-      const c = ctx(); showTip(el, c.token, el.dataset.hex || c.hex);
+      const hex = el.dataset.hex || row.dataset.lightHex;
+      copyHex(hex, el);
     });
-    el.addEventListener('mouseleave', hideTip);
-    el.addEventListener('focus', function(){ const c = ctx(); showTip(el, c.token, el.dataset.hex || c.hex); });
-    el.addEventListener('blur', hideTip);
-    el.addEventListener('click', function(){ copyHex(el.dataset.hex || ctx().hex, el); });
-  }
-  document.querySelectorAll('#semRoot [data-swatch]').forEach(bindSemanticSwatch);
+  });
 
   // ─── Light/dark preview toggle ────────────────────────────
   const modeBtns = document.querySelectorAll('#colModeToggle .col-mode-btn');
@@ -762,6 +723,7 @@
       if (swatch) {
         swatch.style.background = hex;
         swatch.dataset.hex = hex;
+        swatch.setAttribute('data-tooltip', '$' + row.dataset.token + ' · ' + hex);
       }
     });
   }
