@@ -1,0 +1,768 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>What's new — nuShip Design System</title>
+  <link href="https://fonts.googleapis.com/css2?family=Lato:wght@400;700;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="tokens.css">
+  <link rel="stylesheet" href="styles.css">
+  <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.min.js"></script>
+  <script src="nav-scroll.js" defer></script>
+  <style>
+    :root {
+      --wn-blue: #016692;
+      --wn-ink:  #FFFFFF;
+      --wn-mono: ui-monospace, "SF Mono", "Menlo", Consolas, monospace;
+    }
+
+    /* Full-bleed page — neutralise the docs shell's side padding so the
+       hero band reaches the viewport edges. Keep the sidebar-push margin. */
+    body:has(.doc.whats-new) .content-wrap { padding: 0; }
+    .content-wrap .doc.whats-new {
+      padding: 0;
+      max-width: none;
+      overflow-x: clip;
+    }
+
+    /* ─── HERO BAND ─── */
+    .wn-hero {
+      position: relative;
+      background: var(--wn-blue);
+      color: var(--wn-ink);
+      padding: 88px 56px 96px;
+      box-shadow: 0 0 0 100vmax var(--wn-blue);
+      clip-path: inset(0 -100vmax);
+      overflow: visible;
+    }
+    .wn-hero-inner {
+      max-width: 1180px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) 460px;
+      gap: 56px;
+      align-items: center;
+      position: relative;
+      z-index: 2;
+    }
+
+    .wn-eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-family: 'Lato', sans-serif;
+      font-size: 12px;
+      line-height: 16px;
+      letter-spacing: 0.4px;
+      text-transform: uppercase;
+      font-weight: 700;
+      margin: 0 0 24px;
+      color: #fff;
+      opacity: 0.9;
+    }
+    .wn-eyebrow::before {
+      content: "";
+      width: 28px;
+      height: 1px;
+      background: currentColor;
+      opacity: 0.6;
+    }
+    .wn-title {
+      font-family: 'Lato', sans-serif;
+      font-size: 32px;
+      line-height: 40px;
+      letter-spacing: 0;
+      margin: 0 0 16px;
+      font-weight: 700;
+      color: #fff;
+      max-width: 640px;
+    }
+    .wn-lead {
+      font-family: 'Lato', sans-serif;
+      font-size: 16px;
+      font-weight: 400;
+      line-height: 22px;
+      margin: 0 0 32px;
+      max-width: 540px;
+      color: rgba(255, 255, 255, 0.88);
+    }
+    .wn-chip {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      padding: 8px 16px;
+      border-radius: 999px;
+      background: rgba(255, 255, 255, 0.12);
+      border: 1px solid rgba(255, 255, 255, 0.25);
+      backdrop-filter: blur(4px);
+      font-family: 'Lato', sans-serif;
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: 0.4px;
+      color: #fff;
+    }
+    .wn-chip i { width: 14px; height: 14px; }
+
+    /* ─── Floating component stage (mirrors foundations hero) ─── */
+    .wn-stage {
+      position: relative;
+      width: 100%;
+      height: 380px;
+    }
+    .wn-stage-float {
+      position: absolute;
+      will-change: transform, opacity;
+      opacity: 0;
+      transform: translateY(18px);
+      transition: opacity 520ms cubic-bezier(0.2, 0, 0, 1),
+                  transform 520ms cubic-bezier(0.2, 0, 0, 1);
+    }
+    .wn-stage.is-in .wn-stage-float { opacity: 1; transform: translateY(0); }
+    .wn-stage.is-in .sf1 { transition-delay: 60ms; }
+    .wn-stage.is-in .sf2 { transition-delay: 150ms; }
+    .wn-stage.is-in .sf3 { transition-delay: 240ms; }
+    .wn-stage.is-in .sf4 { transition-delay: 330ms; }
+    .wn-stage.is-in .sf5 { transition-delay: 420ms; }
+
+    .wn-stage-float .ff {
+      background: rgba(255, 255, 255, 0.08);
+      border: 1px solid rgba(255, 255, 255, 0.22);
+      border-radius: 12px;
+      padding: 14px 16px;
+      backdrop-filter: blur(8px);
+      -webkit-backdrop-filter: blur(8px);
+      box-shadow: 0 24px 60px -20px rgba(0, 0, 0, 0.45);
+      color: rgba(255, 255, 255, 0.92);
+      font-family: 'Lato', sans-serif;
+      font-size: 13px;
+    }
+
+    @keyframes wn-bob { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-7px); } }
+    .wn-stage.is-in .ff { animation: wn-bob 7s ease-in-out infinite; }
+    .wn-stage.is-in .sf2 .ff { animation-duration: 8.4s; animation-delay: -1.2s; }
+    .wn-stage.is-in .sf3 .ff { animation-duration: 6.2s; animation-delay: -0.6s; }
+    .wn-stage.is-in .sf4 .ff { animation-duration: 9s;   animation-delay: -2.1s; }
+    .wn-stage.is-in .sf5 .ff { animation-duration: 7.8s; animation-delay: -0.3s; }
+
+    @media (prefers-reduced-motion: reduce) {
+      .wn-stage-float { opacity: 1 !important; transform: none !important; transition: none !important; }
+      .wn-stage .ff { animation: none !important; }
+    }
+
+    /* Float positions */
+    .wn-stage .sf1 { top: 0;     left: 0;    width: 220px; }
+    .wn-stage .sf2 { top: 36px;  right: 0;   width: 220px; }
+    .wn-stage .sf3 { top: 150px; left: 36px; width: 220px; }
+    .wn-stage .sf4 { bottom: 16px; right: 24px; width: 180px; }
+    .wn-stage .sf5 { bottom: 0;  left: 0;    width: 200px; }
+
+    .ff-title {
+      font-family: 'Lato', sans-serif;
+      font-size: 12px;
+      line-height: 16px;
+      letter-spacing: 0.4px;
+      text-transform: uppercase;
+      font-weight: 700;
+      opacity: 0.7;
+      margin: 0 0 10px;
+      color: #fff;
+    }
+
+    /* Mini component samples inside the floats */
+    .ff-btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 0 16px;
+      height: 36px;
+      border-radius: 4px;
+      background: #fff;
+      color: var(--wn-blue);
+      font-family: 'Lato', sans-serif;
+      font-size: 14px;
+      font-weight: 700;
+      line-height: 1;
+      border: none;
+    }
+    .ff-toast {
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+      padding: 10px;
+      border-radius: 8px;
+      background: rgba(255, 255, 255, 0.12);
+      border: 1px solid rgba(255, 255, 255, 0.18);
+    }
+    .ff-toast i { width: 16px; height: 16px; color: #fff; flex-shrink: 0; margin-top: 1px; }
+    .ff-toast-body { display: flex; flex-direction: column; gap: 2px; flex: 1; min-width: 0; }
+    .ff-toast-hd { font-size: 13px; font-weight: 700; color: #fff; line-height: 18px; }
+    .ff-toast-tx { font-size: 12px; color: rgba(255, 255, 255, 0.75); line-height: 16px; }
+    .ff-bdgs { display: flex; gap: 8px; flex-wrap: wrap; }
+    .ff-bdg {
+      display: inline-flex;
+      align-items: center;
+      padding: 2px 8px;
+      border-radius: 999px;
+      font-family: 'Lato', sans-serif;
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 0.35px;
+      text-transform: uppercase;
+      line-height: 18px;
+      background: rgba(255, 255, 255, 0.16);
+      color: #fff;
+    }
+    .ff-bdg--solid { background: #fff; color: var(--wn-blue); }
+    .ff-stars { display: flex; gap: 4px; }
+    .ff-stars i { width: 18px; height: 18px; color: #fff; fill: #fff; }
+    .ff-stars i.empty { fill: transparent; opacity: 0.45; }
+    .ff-metric-value {
+      font-family: 'Lato', sans-serif;
+      font-size: 28px;
+      line-height: 32px;
+      font-weight: 700;
+      color: #fff;
+      margin: 0;
+    }
+    .ff-metric-delta {
+      font-family: 'Lato', sans-serif;
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.4px;
+      text-transform: uppercase;
+      color: rgba(255, 255, 255, 0.78);
+      margin-top: 4px;
+    }
+
+    /* ─── Body content ─── */
+    .wn-body {
+      max-width: 1180px;
+      margin: 0 auto;
+      padding: 72px 56px 96px;
+    }
+    .wn-section { margin-bottom: 72px; }
+    .wn-section:last-child { margin-bottom: 0; }
+    .wn-section-eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-family: 'Lato', sans-serif;
+      font-size: 12px;
+      line-height: 16px;
+      letter-spacing: 0.4px;
+      text-transform: uppercase;
+      font-weight: 700;
+      color: var(--action-secondary);
+      margin: 0 0 12px;
+    }
+    .wn-section-eyebrow::before {
+      content: "";
+      width: 28px;
+      height: 1px;
+      background: currentColor;
+      opacity: 0.7;
+    }
+    .wn-section-title {
+      font-family: 'Lato', sans-serif;
+      font-size: 24px;
+      line-height: 31px;
+      font-weight: 700;
+      color: var(--text-primary);
+      margin: 0 0 12px;
+    }
+    .wn-section-lead {
+      font-family: 'Lato', sans-serif;
+      font-size: 16px;
+      line-height: 22px;
+      color: var(--text-secondary);
+      max-width: 620px;
+      margin: 0 0 32px;
+    }
+
+    /* ─── "Recently added" grid ─── */
+    .wn-added {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 16px;
+    }
+    @media (max-width: 880px) {
+      .wn-added { grid-template-columns: 1fr; }
+    }
+    .wn-card {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      padding: 20px;
+      background: var(--surface-card);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      box-shadow: 0 1px 2px rgba(0, 0, 0, 0.04);
+      text-decoration: none;
+      color: inherit;
+      transition: border-color 120ms, box-shadow 120ms, transform 120ms;
+    }
+    .wn-card:hover {
+      border-color: var(--action-secondary);
+      box-shadow: 0 4px 10px rgba(15, 23, 42, 0.08);
+      transform: translateY(-1px);
+    }
+    .wn-card-glyph {
+      width: 36px;
+      height: 36px;
+      border-radius: 999px;
+      background: var(--inf-bg);
+      color: var(--inf-ic);
+      display: grid;
+      place-items: center;
+    }
+    .wn-card-glyph i { width: 18px; height: 18px; }
+    .wn-card-tag {
+      font-family: 'Lato', sans-serif;
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 0.35px;
+      text-transform: uppercase;
+      color: var(--action-secondary);
+      line-height: 18px;
+    }
+    .wn-card-title {
+      font-family: 'Lato', sans-serif;
+      font-size: 16px;
+      font-weight: 700;
+      line-height: 22px;
+      color: var(--text-primary);
+      margin: 0;
+    }
+    .wn-card-desc {
+      font-family: 'Lato', sans-serif;
+      font-size: 14px;
+      font-weight: 400;
+      line-height: 20px;
+      color: var(--text-secondary);
+      margin: 0;
+    }
+
+    /* ─── Changelog ─── */
+    .wn-log {
+      display: flex;
+      flex-direction: column;
+    }
+    .wn-log-entry {
+      display: grid;
+      grid-template-columns: 160px 1fr;
+      gap: 32px;
+      padding: 24px 0;
+      border-top: 1px solid var(--border);
+    }
+    .wn-log-entry:last-child {
+      border-bottom: 1px solid var(--border);
+    }
+    @media (max-width: 720px) {
+      .wn-log-entry { grid-template-columns: 1fr; gap: 12px; }
+    }
+    .wn-log-date {
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+    }
+    .wn-log-date-version {
+      font-family: 'Lato', sans-serif;
+      font-size: 14px;
+      font-weight: 700;
+      color: var(--text-primary);
+      line-height: 20px;
+    }
+    .wn-log-date-day {
+      font-family: 'Lato', sans-serif;
+      font-size: 12px;
+      font-weight: 400;
+      color: var(--text-secondary);
+      line-height: 16px;
+    }
+    .wn-log-items {
+      list-style: none;
+      margin: 0;
+      padding: 0;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+    .wn-log-item {
+      display: grid;
+      grid-template-columns: 80px 1fr;
+      gap: 16px;
+      align-items: start;
+    }
+    .wn-log-tag {
+      font-family: 'Lato', sans-serif;
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 0.35px;
+      text-transform: uppercase;
+      line-height: 18px;
+      padding: 0 8px;
+      border-radius: 999px;
+      align-self: start;
+      white-space: nowrap;
+      text-align: center;
+    }
+    .wn-log-tag--added   { background: var(--suc-bg); color: var(--suc-ic); }
+    .wn-log-tag--changed { background: var(--inf-bg); color: var(--inf-ic); }
+    .wn-log-tag--fixed   { background: var(--war-bg); color: var(--war-ic); }
+    .wn-log-tag--removed { background: var(--err-bg); color: var(--err-ic); }
+    .wn-log-text {
+      font-family: 'Lato', sans-serif;
+      font-size: 14px;
+      font-weight: 400;
+      line-height: 20px;
+      color: var(--text-secondary);
+    }
+
+    @media (max-width: 1100px) {
+      .wn-hero { padding: 64px 28px 76px; }
+      .wn-hero-inner { grid-template-columns: 1fr; gap: 40px; }
+      .wn-stage {
+        height: auto;
+        display: flex;
+        flex-wrap: wrap;
+        gap: 16px;
+        justify-content: center;
+        max-width: 760px;
+        margin: 0 auto;
+      }
+      .wn-stage-float {
+        position: static !important;
+        width: auto !important;
+        opacity: 1 !important;
+        transform: none !important;
+      }
+      .wn-stage .ff { animation: none !important; }
+      .wn-body { padding: 56px 28px 72px; }
+    }
+  </style>
+</head>
+<body>
+
+<div id="navOverlay" class="nav-overlay" onclick="toggleSidebar()"></div>
+
+<nav class="topnav">
+  <button class="hamburger" onclick="toggleSidebar()" aria-label="Menu">
+    <i data-lucide="menu" style="width:18px;height:18px;color:var(--text-secondary)"></i>
+  </button>
+  <div class="bc"><span class="cur">What's new</span></div>
+  <div class="nav-actions">
+    <div class="toggle-wrap" onclick="toggleTheme()" role="button">
+      <i data-lucide="moon" style="width:20px;height:20px"></i>
+      <div class="toggle-track"><div class="toggle-thumb"></div></div>
+      <i data-lucide="sun" style="width:20px;height:20px"></i>
+    </div>
+  </div>
+</nav>
+
+<div class="shell">
+  <nav class="left-nav" id="leftNav"><div class="left-nav-inner"></div></nav>
+
+  <div class="content-wrap" id="contentWrap">
+    <main class="doc whats-new">
+
+      <!-- ═══ HERO ═══ -->
+      <section class="wn-hero">
+        <div class="wn-hero-inner">
+
+          <div>
+            <p class="wn-eyebrow">What's new / 2026</p>
+            <h1 class="wn-title">A faster, calmer way to ship.</h1>
+            <p class="wn-lead">Components, tokens, and pages refreshed this quarter — same shared library, new surfaces and motion, the same accessibility floor. Here's everything that shipped.</p>
+            <div class="wn-chip">
+              <i data-lucide="sparkles"></i>
+              Latest release · v2.4
+            </div>
+          </div>
+
+          <div class="wn-stage" id="wnStage" aria-hidden="true">
+            <!-- 1 · Button -->
+            <div class="wn-stage-float sf1">
+              <div class="ff" style="text-align:center;">
+                <p class="ff-title">Button</p>
+                <button class="ff-btn">Get started</button>
+              </div>
+            </div>
+
+            <!-- 2 · Toast -->
+            <div class="wn-stage-float sf2">
+              <div class="ff">
+                <p class="ff-title">Toast</p>
+                <div class="ff-toast">
+                  <i data-lucide="info"></i>
+                  <div class="ff-toast-body">
+                    <div class="ff-toast-hd">Quote received</div>
+                    <div class="ff-toast-tx">3 carriers responded</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- 3 · Badges -->
+            <div class="wn-stage-float sf3">
+              <div class="ff">
+                <p class="ff-title">Badge</p>
+                <div class="ff-bdgs">
+                  <span class="ff-bdg ff-bdg--solid">Live</span>
+                  <span class="ff-bdg">Stable</span>
+                  <span class="ff-bdg">Beta</span>
+                </div>
+              </div>
+            </div>
+
+            <!-- 4 · Star rating -->
+            <div class="wn-stage-float sf4">
+              <div class="ff" style="text-align:center;">
+                <p class="ff-title">Rating</p>
+                <div class="ff-stars">
+                  <i data-lucide="star"></i>
+                  <i data-lucide="star"></i>
+                  <i data-lucide="star"></i>
+                  <i data-lucide="star"></i>
+                  <i data-lucide="star" class="empty"></i>
+                </div>
+              </div>
+            </div>
+
+            <!-- 5 · Metric -->
+            <div class="wn-stage-float sf5">
+              <div class="ff">
+                <p class="ff-title">Metric</p>
+                <p class="ff-metric-value">48</p>
+                <p class="ff-metric-delta">▲ 6 new</p>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </section>
+
+      <!-- ═══ Body content ═══ -->
+      <div class="wn-body">
+
+        <!-- Recently added -->
+        <section class="wn-section">
+          <p class="wn-section-eyebrow">Recently shipped</p>
+          <h2 class="wn-section-title">New this quarter</h2>
+          <p class="wn-section-lead">A snapshot of the biggest additions across foundations, components, and patterns.</p>
+
+          <div class="wn-added">
+            <a class="wn-card" href="design-principles.html">
+              <div class="wn-card-glyph"><i data-lucide="compass"></i></div>
+              <span class="wn-card-tag">New page</span>
+              <h3 class="wn-card-title">Design principles</h3>
+              <p class="wn-card-desc">The three pillars that gate every token, component, and pattern decision.</p>
+            </a>
+            <a class="wn-card" href="icons.html">
+              <div class="wn-card-glyph"><i data-lucide="shapes"></i></div>
+              <span class="wn-card-tag">New page</span>
+              <h3 class="wn-card-title">Iconography</h3>
+              <p class="wn-card-desc">~300 curated Lucide icons, searchable, sized 16 / 20 / 24 / 32, click to copy snippet.</p>
+            </a>
+            <a class="wn-card" href="tokens.html">
+              <div class="wn-card-glyph"><i data-lucide="layers"></i></div>
+              <span class="wn-card-tag">Refreshed</span>
+              <h3 class="wn-card-title">Foundations</h3>
+              <p class="wn-card-desc">Hero, color story, token-flow diagram, and the photoreal "dark side of the moon" section.</p>
+            </a>
+            <a class="wn-card" href="colors.html">
+              <div class="wn-card-glyph"><i data-lucide="palette"></i></div>
+              <span class="wn-card-tag">Refreshed</span>
+              <h3 class="wn-card-title">Color</h3>
+              <p class="wn-card-desc">Semantic tokens at the top in an IBM-style table, primitive ramp below, click-to-copy with toast.</p>
+            </a>
+            <a class="wn-card" href="elevation.html">
+              <div class="wn-card-glyph"><i data-lucide="square-stack"></i></div>
+              <span class="wn-card-tag">Refreshed</span>
+              <h3 class="wn-card-title">Elevation</h3>
+              <p class="wn-card-desc">Six elevation tokens, light + dark tables shown side-by-side. Hover states unified.</p>
+            </a>
+            <a class="wn-card" href="typography.html">
+              <div class="wn-card-glyph"><i data-lucide="type"></i></div>
+              <span class="wn-card-tag">Refreshed</span>
+              <h3 class="wn-card-title">Typography</h3>
+              <p class="wn-card-desc">Live samples for every type style, grouped by purpose. Lato weights 400 / 700 / 900.</p>
+            </a>
+            <a class="wn-card" href="accessibility.html">
+              <div class="wn-card-glyph"><i data-lucide="accessibility"></i></div>
+              <span class="wn-card-tag">Coming soon</span>
+              <h3 class="wn-card-title">Accessibility</h3>
+              <p class="wn-card-desc">Contrast targets, focus order, keyboard support, and reduced-motion patterns — page in progress.</p>
+            </a>
+            <a class="wn-card" href="content-guidelines.html">
+              <div class="wn-card-glyph"><i data-lucide="message-square-quote"></i></div>
+              <span class="wn-card-tag">Coming soon</span>
+              <h3 class="wn-card-title">Content guidelines</h3>
+              <p class="wn-card-desc">Voice, sentence case, error and empty-state copy, formatting rules — page in progress.</p>
+            </a>
+            <a class="wn-card" href="tooltip.html">
+              <div class="wn-card-glyph"><i data-lucide="message-circle"></i></div>
+              <span class="wn-card-tag">New behavior</span>
+              <h3 class="wn-card-title">Site-wide tooltips</h3>
+              <p class="wn-card-desc">Any element with <code style="font-family:var(--wn-mono);font-size:12px;">data-tooltip</code> now gets a Skid tooltip on hover or focus.</p>
+            </a>
+          </div>
+        </section>
+
+        <!-- Changelog -->
+        <section class="wn-section">
+          <p class="wn-section-eyebrow">Changelog</p>
+          <h2 class="wn-section-title">Release history</h2>
+          <p class="wn-section-lead">Dated entries for every meaningful change. Tagged so you can scan by intent — added, changed, fixed, removed.</p>
+
+          <div class="wn-log">
+
+            <div class="wn-log-entry">
+              <div class="wn-log-date">
+                <span class="wn-log-date-version">v2.4 · Foundations refresh</span>
+                <span class="wn-log-date-day">June 3, 2026</span>
+              </div>
+              <ul class="wn-log-items">
+                <li class="wn-log-item">
+                  <span class="wn-log-tag wn-log-tag--added">Added</span>
+                  <span class="wn-log-text">Site-wide tooltip helper — every page picks up the <code style="font-family:var(--wn-mono);font-size:12px;">data-tooltip</code> attribute and renders Skid's <code style="font-family:var(--wn-mono);font-size:12px;">.tt-tooltip</code> on hover or focus.</span>
+                </li>
+                <li class="wn-log-item">
+                  <span class="wn-log-tag wn-log-tag--added">Added</span>
+                  <span class="wn-log-text">Design principles page — three pillars (Clarity / Consistency / Scalability) moved out of Foundations and into a dedicated page.</span>
+                </li>
+                <li class="wn-log-item">
+                  <span class="wn-log-tag wn-log-tag--added">Added</span>
+                  <span class="wn-log-text">Coming-soon empty state for Accessibility and Content guidelines, using the Skid Styled Icon component.</span>
+                </li>
+                <li class="wn-log-item">
+                  <span class="wn-log-tag wn-log-tag--changed">Changed</span>
+                  <span class="wn-log-text">All headlines on the Foundations page are now sentence case with single-weight Lato 700 — no more mixed 300/900 display flair.</span>
+                </li>
+                <li class="wn-log-item">
+                  <span class="wn-log-tag wn-log-tag--changed">Changed</span>
+                  <span class="wn-log-text">Web-token search toolbars share one pop-out treatment: surface-card backdrop, 1px interactive border, soft shadow, 720px max-width.</span>
+                </li>
+                <li class="wn-log-item">
+                  <span class="wn-log-tag wn-log-tag--fixed">Fixed</span>
+                  <span class="wn-log-text">Hero blue band and the dark-mode "moon" band now extend edge-to-edge across the viewport even on wide screens.</span>
+                </li>
+              </ul>
+            </div>
+
+            <div class="wn-log-entry">
+              <div class="wn-log-date">
+                <span class="wn-log-date-version">v2.3 · Dark side of the moon</span>
+                <span class="wn-log-date-day">June 2, 2026</span>
+              </div>
+              <ul class="wn-log-items">
+                <li class="wn-log-item">
+                  <span class="wn-log-tag wn-log-tag--added">Added</span>
+                  <span class="wn-log-text">Photoreal moon hero on the Foundations dark-mode section — real moon photo wrapped on a lit sphere with a terminator shadow that walks the full lunar phase cycle.</span>
+                </li>
+                <li class="wn-log-item">
+                  <span class="wn-log-tag wn-log-tag--added">Added</span>
+                  <span class="wn-log-text">Floating-card stage on the Foundations hero — 5 translucent token cards reveal in stagger and idle-bob over the blue band.</span>
+                </li>
+                <li class="wn-log-item">
+                  <span class="wn-log-tag wn-log-tag--added">Added</span>
+                  <span class="wn-log-text">Iconography page with ~300 curated Lucide icons in 17 categories, size selector, click-to-copy snippet.</span>
+                </li>
+                <li class="wn-log-item">
+                  <span class="wn-log-tag wn-log-tag--changed">Changed</span>
+                  <span class="wn-log-text">Home hero now uses the same blue full-bleed + floating-card pattern as Foundations.</span>
+                </li>
+              </ul>
+            </div>
+
+            <div class="wn-log-entry">
+              <div class="wn-log-date">
+                <span class="wn-log-date-version">v2.2 · Color &amp; type</span>
+                <span class="wn-log-date-day">May 28, 2026</span>
+              </div>
+              <ul class="wn-log-items">
+                <li class="wn-log-item">
+                  <span class="wn-log-tag wn-log-tag--added">Added</span>
+                  <span class="wn-log-text">Interactive Color page — semantic tokens above, primitive ramp below, light/dark mode toggle, click-to-copy.</span>
+                </li>
+                <li class="wn-log-item">
+                  <span class="wn-log-tag wn-log-tag--added">Added</span>
+                  <span class="wn-log-text">Typography, Spacing, Radius, Elevation pages with searchable token tables and live previews.</span>
+                </li>
+                <li class="wn-log-item">
+                  <span class="wn-log-tag wn-log-tag--changed">Changed</span>
+                  <span class="wn-log-text">Sticky toolbars across web-token pages now follow the IBM Carbon pop-out pattern (transparent in flow, lifted card when scrolled past the nav).</span>
+                </li>
+                <li class="wn-log-item">
+                  <span class="wn-log-tag wn-log-tag--fixed">Fixed</span>
+                  <span class="wn-log-text">Contrast on secondary text in the Color page now passes WCAG AA (text-secondary on layer-03 = 7.24:1).</span>
+                </li>
+              </ul>
+            </div>
+
+            <div class="wn-log-entry">
+              <div class="wn-log-date">
+                <span class="wn-log-date-version">v2.1 · Site shell</span>
+                <span class="wn-log-date-day">May 20, 2026</span>
+              </div>
+              <ul class="wn-log-items">
+                <li class="wn-log-item">
+                  <span class="wn-log-tag wn-log-tag--added">Added</span>
+                  <span class="wn-log-text">uShip logo wordmark in the top nav across all 41 pages, with a return-to-home link.</span>
+                </li>
+                <li class="wn-log-item">
+                  <span class="wn-log-tag wn-log-tag--added">Added</span>
+                  <span class="wn-log-text">Landing page (Skid Home Direction 02) — centered hero, component shelf, "Three ways in" entry list.</span>
+                </li>
+                <li class="wn-log-item">
+                  <span class="wn-log-tag wn-log-tag--removed">Removed</span>
+                  <span class="wn-log-text">Breadcrumb pattern from the top nav site-wide — the sidebar covers the same need.</span>
+                </li>
+              </ul>
+            </div>
+
+          </div>
+        </section>
+
+      </div>
+
+    </main>
+  </div>
+</div>
+
+<script>
+  lucide.createIcons();
+
+  const isMobile = () => window.innerWidth <= 768;
+  let sbOpen = !isMobile();
+  if (!sbOpen) document.getElementById('leftNav').classList.add('hidden');
+  function toggleSidebar() {
+    sbOpen = !sbOpen;
+    document.getElementById('leftNav').classList.toggle('hidden', !sbOpen);
+    document.getElementById('navOverlay').classList.toggle('active', sbOpen && isMobile());
+  }
+  function toggleTheme() {
+    const d = document.documentElement;
+    d.setAttribute('data-theme', d.getAttribute('data-theme') === 'dark' ? 'light' : 'dark');
+  }
+
+  // Staggered fade-up on the floating component stage
+  (function initStage(){
+    const stage = document.getElementById('wnStage');
+    if (!stage) return;
+    if (!('IntersectionObserver' in window)) {
+      stage.classList.add('is-in');
+      return;
+    }
+    const obs = new IntersectionObserver((entries) => {
+      entries.forEach(e => {
+        if (e.isIntersecting) {
+          stage.classList.add('is-in');
+          obs.disconnect();
+        }
+      });
+    }, { threshold: 0.15 });
+    obs.observe(stage);
+  })();
+</script>
+</body>
+</html>

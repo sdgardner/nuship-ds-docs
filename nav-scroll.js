@@ -239,7 +239,7 @@ window.toggleTheme = function () {
 
   // ── Nav data ────────────────────────────────────────────
   const designSystemItems = [
-    { name: "What's new",        href: '#' },
+    { name: "What's new",        href: 'whats-new.html' },
     { name: 'Design principles', href: 'design-principles.html' },
     { name: 'Accessibility',     href: 'accessibility.html' },
     { name: 'Content guidelines',href: 'content-guidelines.html' },
