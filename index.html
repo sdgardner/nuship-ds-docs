@@ -436,6 +436,31 @@
       color: var(--action-sec-hover);
     }
 
+    /* Coming-soon variant — non-interactive, dimmed, replaces the arrow
+       with a Skid status badge so the user can see what's queued up. */
+    .home-ed-item--soon { cursor: default; }
+    .home-ed-item--soon:hover { background: transparent; }
+    .home-ed-item--soon:hover .home-ed-item__t { color: var(--text-primary); }
+    .home-ed-item--soon .home-ed-item__t,
+    .home-ed-item--soon .home-ed-item__d { opacity: 0.65; }
+    .home-ed-item--soon .home-ed-item__chip { opacity: 0.55; filter: saturate(0.85); }
+    .home-ed-item__soon {
+      display: inline-flex;
+      align-items: center;
+      padding: 0 10px;
+      height: 22px;
+      border-radius: 999px;
+      background: var(--inf-bg);
+      color: var(--inf-tx);
+      font-family: 'Lato', sans-serif;
+      font-size: 10px;
+      font-weight: 700;
+      line-height: 18px;
+      letter-spacing: 0.35px;
+      text-transform: uppercase;
+      flex-shrink: 0;
+    }
+
     /* ─── FOOTER STRIP ─────────────────────────────────────────── */
     .home-foot {
       display: flex;
@@ -625,35 +650,35 @@
       </div>
 
       <div class="home-ed-list">
-        <a class="home-ed-item" href="button.html">
+        <div class="home-ed-item home-ed-item--soon" aria-disabled="true">
           <span class="home-ed-item__n">01</span>
           <span class="home-ed-item__chip home-ed-item__chip--blue"><i data-lucide="palette"></i></span>
           <span class="home-ed-item__body">
             <span class="home-ed-item__t">Design</span>
             <span class="home-ed-item__d">Open the Figma UI kit — tokens, components, and patterns ready to drop in.</span>
           </span>
-          <span class="home-ed-item__go"><i data-lucide="arrow-right"></i></span>
-        </a>
+          <span class="home-ed-item__soon">Coming soon</span>
+        </div>
 
-        <a class="home-ed-item" href="button.html">
+        <div class="home-ed-item home-ed-item--soon" aria-disabled="true">
           <span class="home-ed-item__n">02</span>
           <span class="home-ed-item__chip home-ed-item__chip--green"><i data-lucide="code-xml"></i></span>
           <span class="home-ed-item__body">
             <span class="home-ed-item__t">Develop</span>
             <span class="home-ed-item__d">Install guides, CSS tokens, and copy-paste component markup for the web.</span>
           </span>
-          <span class="home-ed-item__go"><i data-lucide="arrow-right"></i></span>
-        </a>
+          <span class="home-ed-item__soon">Coming soon</span>
+        </div>
 
-        <a class="home-ed-item" href="button.html">
+        <div class="home-ed-item home-ed-item--soon" aria-disabled="true">
           <span class="home-ed-item__n">03</span>
           <span class="home-ed-item__chip home-ed-item__chip--purple"><i data-lucide="compass"></i></span>
           <span class="home-ed-item__body">
             <span class="home-ed-item__t">Guidelines</span>
             <span class="home-ed-item__d">Voice, accessibility, and content standards that keep every surface on-brand.</span>
           </span>
-          <span class="home-ed-item__go"><i data-lucide="arrow-right"></i></span>
-        </a>
+          <span class="home-ed-item__soon">Coming soon</span>
+        </div>
       </div>
 
       <!-- ─── FOOTER STRIP ─────────────────────────────────────── -->
