@@ -24,12 +24,17 @@
       --fnd-mono:        ui-monospace, "SF Mono", "Menlo", Consolas, monospace;
     }
 
-    /* Reset the doc container so bands can go full-bleed */
+    /* Foundations is a full-bleed marketing page — neutralise the docs
+       shell's sidebar offset and side padding so the colored bands can
+       reach the viewport edges with no gap. The sidebar (when toggled
+       open) is position:fixed and overlays the content. */
+    body:has(.doc.foundations) .content-wrap {
+      margin-left: 0 !important;
+      padding: 0;
+    }
     .content-wrap .doc.foundations {
       padding: 0;
       max-width: none;
-      /* Contain the hero + dark band's viewport-wide box-shadow horizontally
-         without breaking vertical sticky positioning */
       overflow-x: clip;
     }
 
@@ -938,7 +943,8 @@
   function toggleSidebar() {
     sbOpen = !sbOpen;
     document.getElementById('leftNav').classList.toggle('hidden', !sbOpen);
-    if (!isMobile()) document.getElementById('contentWrap').style.marginLeft = sbOpen ? 'var(--left-w)' : '0';
+    /* Foundations is full-bleed — the sidebar is a fixed overlay, so the
+       content-wrap should always stay at margin-left: 0 (not push). */
     document.getElementById('navOverlay').classList.toggle('active', sbOpen && isMobile());
   }
   function togglePageTheme() {
