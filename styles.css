@@ -492,8 +492,10 @@ body {
 }
 .var-use-list { list-style: none; display: flex; flex-direction: column; gap: 6px; }
 .var-use-list li {
-  display: flex; gap: 6px;
-  font-size: 12px; color: var(--text-secondary); line-height: 1.45;
+  display: flex; gap: 8px;
+  /* typography/body/medium — 16 / 22 Lato Regular */
+  font-size: 16px; line-height: 22px; font-weight: 400;
+  color: var(--text-secondary);
 }
 .var-use-list li::before { content: '•'; color: var(--text-tertiary); flex-shrink: 0; }
 
@@ -749,9 +751,11 @@ body {
 .usage-icon.do-icon   { background: var(--suc-bg); color: var(--suc-ic); }
 .usage-icon.dont-icon { background: var(--err-bg); color: var(--err-ic); }
 .usage-icon i { width: 12px; height: 12px; }
-.usage-card-title { font-size: 14px; font-weight: 700; color: var(--text-primary); padding-top: 1px; }
-.usage-list { list-style: none; display: flex; flex-direction: column; gap: 3px; padding-left: 30px; }
-.usage-list li { font-size: 12px; color: var(--text-secondary); line-height: 1.45; }
+/* typography/header/h5 — 16 / 22 Lato Bold (usage card titles) */
+.usage-card-title { font-size: 16px; line-height: 22px; font-weight: 700; color: var(--text-primary); padding-top: 1px; }
+.usage-list { list-style: none; display: flex; flex-direction: column; gap: 4px; padding-left: 30px; }
+/* typography/body/medium — 16 / 22 Lato Regular */
+.usage-list li { font-size: 16px; line-height: 22px; font-weight: 400; color: var(--text-secondary); }
 .usage-list li::before { content: '– '; color: var(--text-tertiary); }
 .usage-divider { height: 1px; background: var(--border); margin: 20px 0; }
 
@@ -773,7 +777,9 @@ body {
 .a11y-list { list-style: none; display: flex; flex-direction: column; gap: 12px; }
 .a11y-list li {
   display: flex; gap: 10px;
-  font-size: 14px; color: var(--text-secondary); line-height: 1.571;
+  /* typography/body/medium — 16 / 22 Lato Regular */
+  font-size: 16px; line-height: 22px; font-weight: 400;
+  color: var(--text-secondary);
 }
 .a11y-list li strong { color: var(--text-primary); }
 code {
