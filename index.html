@@ -20,7 +20,17 @@
       --home-mono: ui-monospace, "SF Mono", "Menlo", Consolas, monospace;
     }
 
-    .content-wrap { overflow-x: clip; }
+    /* Home page stacks its sections vertically — the shared docs shell
+       sets .content-wrap to display:flex with horizontal alignment, which
+       would render the hero band beside .home-main instead of above it.
+       Also: margin-left + padding on the docs shell would gutter the
+       full-bleed hero; both are reset here. */
+    .content-wrap {
+      display: block !important;
+      margin-left: 0 !important;
+      padding: 0;
+      overflow-x: clip;
+    }
 
     .home-main {
       max-width: 1200px;
