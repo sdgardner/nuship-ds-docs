@@ -24,12 +24,11 @@
       --fnd-mono:        ui-monospace, "SF Mono", "Menlo", Consolas, monospace;
     }
 
-    /* Foundations is a full-bleed marketing page — neutralise the docs
-       shell's sidebar offset and side padding so the colored bands can
-       reach the viewport edges with no gap. The sidebar (when toggled
-       open) is position:fixed and overlays the content. */
+    /* Foundations is a full-bleed marketing page — drop the docs shell's
+       side padding so the colored bands reach the viewport edges. Keep
+       the sidebar-push margin behavior intact so the menu doesn't cover
+       the content when it's opened. */
     body:has(.doc.foundations) .content-wrap {
-      margin-left: 0 !important;
       padding: 0;
     }
     .content-wrap .doc.foundations {
@@ -855,8 +854,10 @@
   function toggleSidebar() {
     sbOpen = !sbOpen;
     document.getElementById('leftNav').classList.toggle('hidden', !sbOpen);
-    /* Foundations is full-bleed — the sidebar is a fixed overlay, so the
-       content-wrap should always stay at margin-left: 0 (not push). */
+    /* The shared CSS rule (.left-nav.hidden ~ .content-wrap { margin-left: 0 })
+       already toggles content-wrap margin-left in response to the .hidden
+       class — so the sidebar pushes content when opened and the bands
+       reach the viewport edges when it's closed. */
     document.getElementById('navOverlay').classList.toggle('active', sbOpen && isMobile());
   }
   function togglePageTheme() {
