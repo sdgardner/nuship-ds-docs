@@ -741,11 +741,13 @@ body {
    Each card has a tinted header band (green = do, red = don't) with
    a ringed status badge + title, and a white body with clean
    check/cross-marker bullets. Equal-height in a row. */
-.usage-block { margin-bottom: 28px; }
+.usage-block { margin-bottom: 40px; }
+.usage-block:last-child { margin-bottom: 0; }
 .usage-cols {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
-  gap: 20px;
+  column-gap: 20px;
+  row-gap: 32px;
   align-items: stretch;
 }
 
