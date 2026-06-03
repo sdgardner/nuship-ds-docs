@@ -741,7 +741,7 @@ body {
    Each card has a tinted header band (green = do, red = don't) with
    a ringed status badge + title, and a white body with clean
    check/cross-marker bullets. Equal-height in a row. */
-.usage-block { margin-bottom: 40px; }
+.usage-block { margin-bottom: 56px; }
 .usage-block:last-child { margin-bottom: 0; }
 .usage-cols {
   display: grid;
@@ -750,6 +750,10 @@ body {
   row-gap: 32px;
   align-items: stretch;
 }
+/* Pages like carousel.html stack several .usage-cols rows inside one
+   .usage-block. Add the same 32px gap between them so the spacing is
+   uniform whether the page uses one grid or many. */
+.usage-cols + .usage-cols { margin-top: 32px; }
 
 .usage-card {
   display: flex;
@@ -865,8 +869,13 @@ body {
 }
 
 .usage-divider {
-  /* The tinted headers already separate Do from Don't; no rule needed. */
-  display: none;
+  /* Lightweight separator between the Do block and the Don't block.
+     Hairline rule with extra padding so multi-row Do/Don't groups
+     read as two distinct chapters. */
+  height: 1px;
+  background: var(--border);
+  border: 0;
+  margin: 8px 0 48px;
 }
 
 /* Responsive — single column on narrow viewports */
