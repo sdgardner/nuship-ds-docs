@@ -434,35 +434,61 @@ body {
 
 .var-panel {
   display: grid;
-  /* Wider description column (was 280px) so 16/22 page-copy doesn't
-     cramp into a 200-character-wide rail. minmax lets it shrink a
-     touch on medium viewports before collapsing. */
   grid-template-columns: minmax(0, 1fr) minmax(300px, 360px);
   gap: 0;
   border: 1px solid var(--border);
-  border-radius: 8px;
+  border-radius: 12px;
   overflow: hidden;
+  background: var(--surface-card);
+  box-shadow: 0 1px 2px rgba(15, 23, 42, 0.04);
 }
-/* Vertical divider via border on the description side so it survives
-   the responsive stack without absolute-position calc math. */
 .var-desc { border-left: 1px solid var(--border); }
+/* Light + dark previews sit SIDE BY SIDE inside the panel, not stacked
+   vertically. The previous half-light/half-black split was the
+   "crazy"-looking box. Each side gets a quiet corner label so the
+   theme is obvious without reading both swatches. */
 .var-previews {
-  display: flex; flex-direction: column;
-  background: #0A0A0A;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  min-height: 200px;
 }
-.var-preview {
-  flex: 1;
-  padding: 28px 24px; background: #F9FAFB;
-  display: flex; align-items: center; justify-content: center;
-}
-.var-preview .alert { width: 100%; }
+.var-preview,
 .var-preview-dark {
-  flex: 1;
-  padding: 28px 24px; background: #0A0A0A;
-  border-top: 1px solid rgba(255,255,255,.08);
-  display: flex; align-items: center; justify-content: center;
+  position: relative;
+  padding: 36px 24px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
+.var-preview      { background: #F9FAFB; }
+.var-preview-dark { background: #0A0A0A; border-left: 1px solid rgba(255, 255, 255, 0.06); }
+
+/* Theme labels in the corner — small caps, low contrast on purpose. */
+.var-preview::before,
+.var-preview-dark::before {
+  position: absolute;
+  top: 10px;
+  left: 14px;
+  font-family: 'Lato', sans-serif;
+  font-size: 10px;
+  font-weight: 700;
+  line-height: 16px;
+  letter-spacing: 0.6px;
+  text-transform: uppercase;
+  pointer-events: none;
+}
+.var-preview::before      { content: 'Light'; color: #9CA3AF; }
+.var-preview-dark::before { content: 'Dark';  color: #6B7280; }
+
+.var-preview .alert,
 .var-preview-dark .alert { width: 100%; }
+
+/* When the .var-panel collapses to a single column below 1024px, stack
+   the previews vertically since there's no horizontal room. */
+@media (max-width: 1024px) {
+  .var-previews { grid-template-columns: 1fr; }
+  .var-preview-dark { border-left: 0; border-top: 1px solid rgba(255, 255, 255, 0.06); }
+}
 
 /* Variant previews — hardcoded light/dark (immune to global toggle) */
 .var-preview .al-err { background:#FCE8E8; border-color:#A12F2F; }
