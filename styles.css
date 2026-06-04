@@ -432,17 +432,20 @@ body {
 .tab-panel { display: none; }
 .tab-panel.active { display: block; }
 
+/* Panel stacks vertically — preview area on top, description rail on
+   bottom — so the description has the full panel width to flow into
+   instead of being crammed into a 300px sidebar that turns 8 states
+   into a 1000px-tall rail. */
 .var-panel {
-  display: grid;
-  grid-template-columns: minmax(0, 1fr) minmax(300px, 360px);
-  gap: 0;
+  display: flex;
+  flex-direction: column;
   border: 1px solid var(--border);
   border-radius: 12px;
   overflow: hidden;
   background: var(--surface-card);
   box-shadow: 0 1px 2px rgba(15, 23, 42, 0.04);
 }
-.var-desc { border-left: 1px solid var(--border); }
+.var-desc { border-top: 1px solid var(--border); border-left: 0; }
 /* Light + dark previews sit SIDE BY SIDE inside the panel, not stacked
    vertically. The previous half-light/half-black split was the
    "crazy"-looking box. Each side gets a quiet corner label so the
@@ -511,23 +514,27 @@ body {
 .var-preview-dark .alert-link { color: #5ABFE0; }
 
 .var-desc {
-  padding: 24px;
+  padding: 28px 32px;
   background: var(--surface-shell);
   min-width: 0;
+  /* Flow into multi-column when there's enough horizontal room.
+     Each column is at least 320px wide, so:
+       ≥ 1024px panel → 3 columns (≈340px each)
+       640–1023px     → 2 columns
+       < 640px        → 1 column (auto)
+     For pages with one short description (Alert/Button) this just
+     renders as one column at the full panel width. For multi-state
+     pages like Switch with 8 state groups, content reflows
+     horizontally instead of stacking 1000px tall. */
+  columns: 320px;
+  column-gap: 48px;
+  column-rule: 1px dashed var(--border);
 }
 
-/* Collapse to a single column once the desc rail starts feeling
-   cramped with 16/22 body copy. Above this, the 2-col split is fine.
-   The previous breakpoint sat at 768px which let the layout break for
-   ~250px between "feels cramped" and "single column kicks in". */
-@media (max-width: 1024px) {
-  .var-panel { grid-template-columns: 1fr; }
-  .var-desc {
-    border-left: 0;
-    border-top: 1px solid var(--border);
-  }
-  .var-previews { border-bottom: 0; }
-}
+/* Column-break controls so labels never split from their lists and a
+   single list isn't sliced in half across a column boundary. */
+.var-desc .var-use-when { break-after: avoid-column; }
+.var-desc .var-use-list { break-inside: avoid-column; margin-bottom: 4px; }
 /* Variant description rail — section labels + bullet lists.
    Two label tiers:
      1. Sub-section label   (.var-use-when on its own, between lists)
