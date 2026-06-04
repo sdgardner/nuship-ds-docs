@@ -432,28 +432,30 @@ body {
 .tab-panel { display: none; }
 .tab-panel.active { display: block; }
 
-/* Panel stacks vertically — preview area on top, description rail on
-   bottom — so the description has the full panel width to flow into
-   instead of being crammed into a 300px sidebar that turns 8 states
-   into a 1000px-tall rail. */
+/* No outer panel box — the preview area and the description rail are
+   two independent cards stacked with a gap, sitting on the page
+   surface directly. */
 .var-panel {
   display: flex;
   flex-direction: column;
+  gap: 16px;
+  background: transparent;
+  border: 0;
+  border-radius: 0;
+  box-shadow: none;
+}
+.var-desc { border-top: 0; border-left: 0; }
+/* Preview area is its own card — rounded, bordered, with a soft
+   shadow. Light + dark sit side by side inside it. */
+.var-previews {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  min-height: 200px;
   border: 1px solid var(--border);
   border-radius: 12px;
   overflow: hidden;
   background: var(--surface-card);
   box-shadow: 0 1px 2px rgba(15, 23, 42, 0.04);
-}
-.var-desc { border-top: 1px solid var(--border); border-left: 0; }
-/* Light + dark previews sit SIDE BY SIDE inside the panel, not stacked
-   vertically. The previous half-light/half-black split was the
-   "crazy"-looking box. Each side gets a quiet corner label so the
-   theme is obvious without reading both swatches. */
-.var-previews {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  min-height: 200px;
 }
 .var-preview,
 .var-preview-dark {
@@ -513,19 +515,18 @@ body {
 .var-preview-dark .alert-close { color: #FFFFFF; }
 .var-preview-dark .alert-link { color: #5ABFE0; }
 
+/* Description rail is its own card. Multi-column flow keeps long
+   content (Switch's 7 state groups) from becoming a tall narrow rail.
+     ≥ 1024px panel → 3 columns (≈340px each)
+     640–1023px     → 2 columns
+     < 640px        → 1 column */
 .var-desc {
   padding: 28px 32px;
-  background: var(--surface-shell);
+  background: var(--surface-card);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  box-shadow: 0 1px 2px rgba(15, 23, 42, 0.04);
   min-width: 0;
-  /* Flow into multi-column when there's enough horizontal room.
-     Each column is at least 320px wide, so:
-       ≥ 1024px panel → 3 columns (≈340px each)
-       640–1023px     → 2 columns
-       < 640px        → 1 column (auto)
-     For pages with one short description (Alert/Button) this just
-     renders as one column at the full panel width. For multi-state
-     pages like Switch with 8 state groups, content reflows
-     horizontally instead of stacking 1000px tall. */
   columns: 320px;
   column-gap: 48px;
   column-rule: 1px dashed var(--border);
