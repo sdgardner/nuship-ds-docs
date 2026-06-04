@@ -433,20 +433,19 @@ body {
 .tab-panel.active { display: block; }
 
 .var-panel {
-  display: grid; grid-template-columns: 1fr 280px;
-  gap: 0; border: 1px solid var(--border);
-  border-radius: 8px; overflow: hidden;
-  position: relative;
+  display: grid;
+  /* Wider description column (was 280px) so 16/22 page-copy doesn't
+     cramp into a 200-character-wide rail. minmax lets it shrink a
+     touch on medium viewports before collapsing. */
+  grid-template-columns: minmax(0, 1fr) minmax(300px, 360px);
+  gap: 0;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  overflow: hidden;
 }
-.var-panel::after {
-  content: '';
-  position: absolute;
-  top: 0; bottom: 0;
-  left: calc(100% - 280px);
-  width: 1px;
-  background: var(--border);
-  pointer-events: none;
-}
+/* Vertical divider via border on the description side so it survives
+   the responsive stack without absolute-position calc math. */
+.var-desc { border-left: 1px solid var(--border); }
 .var-previews {
   display: flex; flex-direction: column;
   background: #0A0A0A;
@@ -485,7 +484,24 @@ body {
 .var-preview-dark .alert-close { color: #FFFFFF; }
 .var-preview-dark .alert-link { color: #5ABFE0; }
 
-.var-desc { padding: 24px; background: var(--surface-shell); }
+.var-desc {
+  padding: 24px;
+  background: var(--surface-shell);
+  min-width: 0;
+}
+
+/* Collapse to a single column once the desc rail starts feeling
+   cramped with 16/22 body copy. Above this, the 2-col split is fine.
+   The previous breakpoint sat at 768px which let the layout break for
+   ~250px between "feels cramped" and "single column kicks in". */
+@media (max-width: 1024px) {
+  .var-panel { grid-template-columns: 1fr; }
+  .var-desc {
+    border-left: 0;
+    border-top: 1px solid var(--border);
+  }
+  .var-previews { border-bottom: 0; }
+}
 .var-use-when {
   font-size: 12px; font-weight: 700;
   color: var(--text-secondary); margin-bottom: 10px;
@@ -1740,9 +1756,7 @@ code {
   .tabs-wrap { margin-right: -16px; }
   .def-title { font-size: 24px; line-height: 30px; }
   .def-desc { max-width: 100%; }
-  .var-panel { grid-template-columns: 1fr; }
-  .var-panel::after { display: none; }
-  .var-previews { border-bottom: 1px solid var(--border); }
+  /* var-panel collapse moved to the 1024px breakpoint above. */
   .tokens-grid { grid-template-columns: 1fr; }
   .usage-cols { grid-template-columns: 1fr; }
   .related-grid { grid-template-columns: repeat(2, 1fr); }
