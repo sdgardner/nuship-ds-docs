@@ -244,6 +244,55 @@ window.toggleTheme = function () {
   });
 })();
 
+// ── Variant description: split into one card per state group ────
+// The pattern across component pages is a flat .var-desc with a
+// sequence of .var-use-when labels and .var-use-list bullets — the
+// first label of each state group is marked inline with
+// style="margin-top:18px" on multi-state pages (Switch, Radio Button,
+// etc.). We split on that marker (plus the first child) and wrap each
+// group into a .var-state-card so the CSS grid in styles.css can tile
+// them. Idempotent — re-running on the same DOM does nothing.
+(function wrapVariantStateCards() {
+  function isStateHeader(el, isFirst) {
+    if (!el || el.nodeType !== 1) return false;
+    if (!el.classList.contains('var-use-when')) return false;
+    if (isFirst) return true;
+    const s = el.getAttribute('style') || '';
+    return /margin-top\s*:\s*18/.test(s);
+  }
+  function go() {
+    document.querySelectorAll('.var-desc').forEach(function (desc) {
+      if (desc.dataset.cardsApplied === '1') return;
+      const groups = [];
+      let current = null;
+      let first = true;
+      Array.from(desc.childNodes).forEach(function (node) {
+        if (node.nodeType !== 1) return; // skip text nodes / whitespace
+        if (isStateHeader(node, first)) {
+          current = { header: node, items: [] };
+          groups.push(current);
+          first = false;
+        } else if (current) {
+          current.items.push(node);
+        }
+      });
+      // Build card wrappers and replace desc's content
+      desc.innerHTML = '';
+      groups.forEach(function (g) {
+        const card = document.createElement('div');
+        card.className = 'var-state-card';
+        card.appendChild(g.header);
+        g.items.forEach(function (n) { card.appendChild(n); });
+        desc.appendChild(card);
+      });
+      desc.dataset.cardsApplied = '1';
+    });
+  }
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', go);
+  } else { go(); }
+})();
+
 (function () {
   const SCROLL_KEY = 'leftNavScrollTop';
   const COLLAPSE_PREFIX = 'lnGroup:';

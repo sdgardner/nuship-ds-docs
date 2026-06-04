@@ -515,27 +515,52 @@ body {
 .var-preview-dark .alert-close { color: #FFFFFF; }
 .var-preview-dark .alert-link { color: #5ABFE0; }
 
-/* Description rail is its own card. Multi-column flow keeps long
-   content (Switch's 7 state groups) from becoming a tall narrow rail.
-     ≥ 1024px panel → 3 columns (≈340px each)
-     640–1023px     → 2 columns
-     < 640px        → 1 column */
+/* Description rail is no longer a single big card. nav-scroll.js wraps
+   each state group (state header + its sub-sections) into a
+   .var-state-card at load time. They tile in a responsive grid. */
 .var-desc {
-  padding: 28px 32px;
+  padding: 0;
+  background: transparent;
+  border: 0;
+  border-radius: 0;
+  box-shadow: none;
+  min-width: 0;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  gap: 16px;
+}
+
+/* Each state group becomes its own card */
+.var-state-card {
   background: var(--surface-card);
   border: 1px solid var(--border);
   border-radius: 12px;
+  padding: 24px 24px 20px;
   box-shadow: 0 1px 2px rgba(15, 23, 42, 0.04);
-  min-width: 0;
-  columns: 320px;
-  column-gap: 48px;
-  column-rule: 1px dashed var(--border);
+  display: flex;
+  flex-direction: column;
 }
-
-/* Column-break controls so labels never split from their lists and a
-   single list isn't sliced in half across a column boundary. */
-.var-desc .var-use-when { break-after: avoid-column; }
-.var-desc .var-use-list { break-inside: avoid-column; margin-bottom: 4px; }
+/* Inside a state card, the first label sits flush at the top
+   (the inline margin-top:18px marker the page sets to mean
+   "state header" no longer makes sense once each state is its
+   own card — override it). */
+.var-state-card > .var-use-when:first-child {
+  margin-top: 0 !important;
+  padding-top: 0 !important;
+  border-top: 0 !important;
+  font-size: 15px;
+  line-height: 20px;
+  letter-spacing: 0;
+  text-transform: none;
+  color: var(--text-primary);
+  margin-bottom: 14px;
+}
+/* Subsequent labels stay as small-caps sub-section headers */
+.var-state-card > .var-use-when:not(:first-child) {
+  margin-top: 18px;
+  padding-top: 0;
+  border-top: 0;
+}
 /* Variant description rail — section labels + bullet lists.
    Two label tiers:
      1. Sub-section label   (.var-use-when on its own, between lists)
@@ -608,14 +633,17 @@ body {
   background: var(--text-tertiary);
   margin-top: 9px;
 }
-/* Inline <code> in variant bullets — quieter than the global <code>
-   chip so it doesn't shout next to the body copy. */
+/* Inline <code> in variant bullets — muted text-secondary color on a
+   gentle layer-01 fill, no border. Was bright info-blue + bold which
+   read as the heaviest thing on the page. */
 .var-use-list li code {
-  font-size: 13px;
+  font-family: ui-monospace, "SF Mono", Menlo, Consolas, monospace;
+  font-size: 12.5px;
+  font-weight: 400;
   padding: 1px 6px;
-  background: var(--surface-layer02);
-  border: 1px solid var(--border);
-  color: var(--inf-tx);
+  background: var(--surface-layer01);
+  border: 0;
+  color: var(--text-secondary);
   border-radius: 4px;
 }
 
