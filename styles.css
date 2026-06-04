@@ -502,18 +502,88 @@ body {
   }
   .var-previews { border-bottom: 0; }
 }
+/* Variant description rail — section labels + bullet lists.
+   Two label tiers:
+     1. Sub-section label   (.var-use-when on its own, between lists)
+     2. State / group label (.var-use-when[style*="margin-top:18"] —
+        a marker switch.html and similar multi-state pages set inline
+        to mean "next state group". Picked up here so it reads as a
+        proper section heading without HTML refactors per page.) */
 .var-use-when {
-  font-size: 12px; font-weight: 700;
-  color: var(--text-secondary); margin-bottom: 10px;
+  font-family: 'Lato', sans-serif;
+  font-size: 12px;
+  font-weight: 700;
+  line-height: 16px;
+  letter-spacing: 0.4px;
+  text-transform: uppercase;
+  color: var(--text-tertiary);
+  margin-bottom: 10px;
 }
-.var-use-list { list-style: none; display: flex; flex-direction: column; gap: 6px; }
+/* Spacing between consecutive sub-sections inside one state group.
+   The list above gets a clear breath of air before the next label. */
+.var-use-list + .var-use-when { margin-top: 18px; }
+
+/* State / group header — bigger, darker, with a hairline rule above so
+   each state reads as its own chapter. Matches the inline marker in
+   pages like switch.html (margin-top:18px). The inline px on those
+   tags overrides our spacing rules above; that's fine — keeps the
+   selector compatible with the existing HTML. */
+.var-desc .var-use-when[style*="margin-top:18"],
+.var-desc .var-use-when[style*="margin-top: 18"] {
+  margin-top: 32px !important;
+  padding-top: 22px;
+  border-top: 1px solid var(--border);
+  font-size: 15px;
+  line-height: 20px;
+  letter-spacing: 0;
+  text-transform: none;
+  color: var(--text-primary);
+  margin-bottom: 16px;
+}
+/* First state in the rail doesn't need a top divider. */
+.var-desc > .var-use-when:first-child,
+.var-desc .var-use-when:first-of-type:not([style*="margin-top:18"]):not([style*="margin-top: 18"]) {
+  margin-top: 0 !important;
+  padding-top: 0;
+  border-top: 0;
+}
+
+.var-use-list {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin: 0;
+  padding: 0;
+}
 .var-use-list li {
-  display: flex; gap: 8px;
+  display: flex;
+  gap: 10px;
   /* typography/body/medium — 16 / 22 Lato Regular */
-  font-size: 16px; line-height: 22px; font-weight: 400;
+  font-size: 16px;
+  line-height: 22px;
+  font-weight: 400;
   color: var(--text-secondary);
 }
-.var-use-list li::before { content: '•'; color: var(--text-tertiary); flex-shrink: 0; }
+.var-use-list li::before {
+  content: '';
+  flex-shrink: 0;
+  width: 4px;
+  height: 4px;
+  border-radius: 50%;
+  background: var(--text-tertiary);
+  margin-top: 9px;
+}
+/* Inline <code> in variant bullets — quieter than the global <code>
+   chip so it doesn't shout next to the body copy. */
+.var-use-list li code {
+  font-size: 13px;
+  padding: 1px 6px;
+  background: var(--surface-layer02);
+  border: 1px solid var(--border);
+  color: var(--inf-tx);
+  border-radius: 4px;
+}
 
 /* ─── PROPERTIES ─────────────────────────────────── */
 .props-table {
