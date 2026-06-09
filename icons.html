@@ -199,14 +199,14 @@
       padding: 20px 16px;
       background: var(--surface-shell);
       border: 1px solid var(--border-soft);
-      cursor: pointer;
       transition: background 120ms, border-color 120ms;
       text-align: center;
       min-height: 140px;
       font-family: inherit;
       gap: 16px;
     }
-    .ic-tile:hover {
+    .ic-tile:hover,
+    .ic-tile:focus-within {
       background: var(--surface-layer01);
       border-color: var(--text-secondary);
       z-index: 1;
@@ -214,6 +214,49 @@
     .ic-tile.flash {
       animation: icFlash 600ms ease;
     }
+
+    /* Ghost action buttons revealed in the top-right on hover/focus */
+    .ic-tile-actions {
+      position: absolute;
+      top: 8px;
+      right: 8px;
+      display: flex;
+      gap: 4px;
+      opacity: 0;
+      transform: translateY(-2px);
+      transition: opacity 140ms ease, transform 140ms ease;
+      pointer-events: none;
+    }
+    .ic-tile:hover .ic-tile-actions,
+    .ic-tile:focus-within .ic-tile-actions {
+      opacity: 1;
+      transform: translateY(0);
+      pointer-events: auto;
+    }
+    .ic-tile-action {
+      width: 28px;
+      height: 28px;
+      border-radius: 6px;
+      background: var(--surface-card);
+      border: 1px solid var(--border);
+      color: var(--text-secondary);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      padding: 0;
+      transition: background 120ms, color 120ms, border-color 120ms;
+    }
+    .ic-tile-action:hover {
+      background: var(--surface-layer02);
+      color: var(--text-primary);
+      border-color: var(--text-secondary);
+    }
+    .ic-tile-action:focus-visible {
+      outline: 2px solid var(--border-focus);
+      outline-offset: 2px;
+    }
+    .ic-tile-action i { width: 14px; height: 14px; }
     @keyframes icFlash {
       0%   { background: var(--surface-layer01); }
       50%  { background: rgba(2, 124, 177, 0.08); }
@@ -484,10 +527,14 @@
         <div class="ic-grid" data-size="${state.size}">`;
 
       matched.forEach(name => {
-        html += `<button class="ic-tile" data-name="${name}" title="Click to copy">
+        html += `<div class="ic-tile" data-name="${name}">
+          <div class="ic-tile-actions" aria-hidden="false">
+            <button type="button" class="ic-tile-action" data-action="copy" data-tooltip="Copy snippet" aria-label="Copy ${name} snippet"><i data-lucide="clipboard"></i></button>
+            <button type="button" class="ic-tile-action" data-action="download" data-tooltip="Download SVG" aria-label="Download ${name} SVG"><i data-lucide="download"></i></button>
+          </div>
           <span class="ic-tile-icon"><i data-lucide="${name}" style="width:${state.size}px;height:${state.size}px"></i></span>
           <span class="ic-tile-name">${name}</span>
-        </button>`;
+        </div>`;
       });
 
       html += `</div></section>`;
@@ -500,18 +547,65 @@
     // Hydrate icons (deferred to next frame so DOM is in place)
     requestAnimationFrame(() => lucide.createIcons());
 
-    // Bind click-to-copy
+    // Helpers
+    function flash(tile) {
+      tile.classList.add('flash');
+      setTimeout(() => tile.classList.remove('flash'), 600);
+    }
+    function showToast(text) {
+      toastTx.textContent = text;
+      toast.classList.add('show');
+      clearTimeout(showToast._t);
+      showToast._t = setTimeout(() => toast.classList.remove('show'), 1600);
+    }
+    function copySnippet(name, tile) {
+      const snippet = `<i data-lucide="${name}" style="width:${state.size}px;height:${state.size}px"></i>`;
+      navigator.clipboard.writeText(snippet).then(() => {
+        showToast(`Copied ${name} snippet`);
+        flash(tile);
+      });
+    }
+    function downloadSvg(name, tile) {
+      // Pull the live-rendered Lucide SVG out of the icon container
+      const svgEl = tile.querySelector('.ic-tile-icon svg');
+      if (!svgEl) return;
+      const clone = svgEl.cloneNode(true);
+      // Normalise the SVG so it stands alone as a file
+      clone.setAttribute('xmlns', 'http://www.w3.org/2000/svg');
+      clone.removeAttribute('style');
+      clone.setAttribute('width', '24');
+      clone.setAttribute('height', '24');
+      const svgText = '<?xml version="1.0" encoding="UTF-8"?>\n' + new XMLSerializer().serializeToString(clone);
+      const blob = new Blob([svgText], { type: 'image/svg+xml' });
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement('a');
+      a.href = url;
+      a.download = `${name}.svg`;
+      document.body.appendChild(a);
+      a.click();
+      document.body.removeChild(a);
+      setTimeout(() => URL.revokeObjectURL(url), 1000);
+      showToast(`Downloaded ${name}.svg`);
+      flash(tile);
+    }
+
+    // Bind actions
     content.querySelectorAll('.ic-tile').forEach(tile => {
-      tile.addEventListener('click', () => {
-        const name = tile.dataset.name;
-        const snippet = `<i data-lucide="${name}" style="width:${state.size}px;height:${state.size}px"></i>`;
-        navigator.clipboard.writeText(snippet).then(() => {
-          toastTx.textContent = `Copied <i data-lucide="${name}"> snippet`;
-          toast.classList.add('show');
-          tile.classList.add('flash');
-          setTimeout(() => tile.classList.remove('flash'), 600);
-          setTimeout(() => toast.classList.remove('show'), 1600);
-        });
+      const name = tile.dataset.name;
+      const copyBtn = tile.querySelector('[data-action="copy"]');
+      const dlBtn = tile.querySelector('[data-action="download"]');
+      copyBtn.addEventListener('click', (e) => {
+        e.stopPropagation();
+        copySnippet(name, tile);
+      });
+      dlBtn.addEventListener('click', (e) => {
+        e.stopPropagation();
+        downloadSvg(name, tile);
+      });
+      // Click anywhere on the tile body (not on an action button) still copies
+      tile.addEventListener('click', (e) => {
+        if (e.target.closest('.ic-tile-action')) return;
+        copySnippet(name, tile);
       });
     });
   }
