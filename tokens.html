@@ -340,7 +340,10 @@
     .fnd-band--dark .fnd-lead { color: rgba(255, 255, 255, 0.7); }
     .fnd-dark-grid {
       display: grid;
-      grid-template-columns: minmax(0, 1fr) minmax(360px, 540px);
+      /* Tighter moon column so the copy never gets squeezed under 1100px.
+         min 280 (was 360) lets the moon shrink rather than starve the copy;
+         max 460 (was 540) caps it from dominating the band. */
+      grid-template-columns: minmax(0, 1fr) minmax(280px, 460px);
       gap: 48px;
       align-items: center;
     }
@@ -573,16 +576,31 @@
       color: var(--text-secondary);
     }
 
-    /* Responsive */
-    @media (max-width: 1000px) {
-      .fnd-band { padding: 64px 32px 72px; }
+    /* Responsive — tuned in two passes so the in-between viewport
+       (~720–1100px) doesn't squeeze the copy column. */
+
+    /* Above 1100px the 2-col layouts hold. From here down, switch every
+       band's 2-col grid to single column so titles and body copy get the
+       full width back. */
+    @media (max-width: 1100px) {
+      .fnd-band { padding: 72px 40px 80px; }
       .fnd-hero-grid,
       .fnd-color-grid,
       .fnd-dark-grid { grid-template-columns: 1fr; gap: 40px; }
       .fnd-flow { grid-template-columns: repeat(2, 1fr); }
       .fnd-flow-node .fnd-flow-arrow { display: none; }
       .fnd-flow-cards { grid-template-columns: 1fr; }
-      .moon-stage { margin: 0 auto; width: min(78%, 360px); order: -1; }
+      .moon-stage {
+        margin: 0 auto;
+        width: min(72%, 380px);
+        order: -1;
+      }
+    }
+
+    /* Tighten padding + shrink the moon further on tablet / phone widths. */
+    @media (max-width: 720px) {
+      .fnd-band { padding: 56px 24px 64px; }
+      .moon-stage { width: min(80%, 300px); }
     }
   </style>
 </head>
