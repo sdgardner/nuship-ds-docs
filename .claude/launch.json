@@ -4,8 +4,8 @@
     {
       "name": "nuship-docs",
       "runtimeExecutable": "python3",
-      "runtimeArgs": ["-m", "http.server", "4242", "--directory", "/Users/sgardner/Desktop/nuship-ds-docs"],
-      "port": 4242
+      "runtimeArgs": ["-m", "http.server", "--directory", "/Users/sgardner/Desktop/nuship-ds-docs"],
+      "autoPort": true
     }
   ]
 }
