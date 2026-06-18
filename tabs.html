@@ -157,7 +157,7 @@
             <div style="display:flex;flex-direction:column;gap:24px;align-items:flex-start;">
 
               <div style="display:flex;align-items:center;gap:24px;">
-                <div style="font-size:12px;font-weight:700;width:90px;color:var(--text-tertiary)">Underline</div>
+                <div style="font-size:12px;font-weight:700;width:90px;color:var(--text-secondary)">Underline</div>
                 <div class="tb-underline">
                   <div class="tb-ul-item tb-ul-item--active"><i data-lucide="truck" class="tb-ul-icon"></i>Shipments<span class="tb-badge">3</span></div>
                   <div class="tb-ul-item"><i data-lucide="truck" class="tb-ul-icon"></i>Tracking<span class="tb-badge">3</span></div>
@@ -166,7 +166,7 @@
               </div>
 
               <div style="display:flex;align-items:center;gap:24px;">
-                <div style="font-size:12px;font-weight:700;width:90px;color:var(--text-tertiary)">Contained</div>
+                <div style="font-size:12px;font-weight:700;width:90px;color:var(--text-secondary)">Contained</div>
                 <div class="tb-contained">
                   <div class="tb-ct-item tb-ct-item--selected"><i data-lucide="truck" class="tb-ul-icon"></i>Shipments<span class="tb-badge">3</span></div>
                   <div class="tb-ct-item"><i data-lucide="truck" class="tb-ul-icon"></i>Tracking<span class="tb-badge">3</span></div>
@@ -175,7 +175,7 @@
               </div>
 
               <div style="display:flex;align-items:center;gap:24px;">
-                <div style="font-size:12px;font-weight:700;width:90px;color:var(--text-tertiary)">Vertical</div>
+                <div style="font-size:12px;font-weight:700;width:90px;color:var(--text-secondary)">Vertical</div>
                 <div class="tb-vertical">
                   <div class="tb-vt-item tb-vt-item--selected"><i data-lucide="truck" class="tb-vt-icon"></i>Shipments<span class="tb-badge">3</span></div>
                   <div class="tb-vt-item"><i data-lucide="truck" class="tb-vt-icon"></i>Tracking<span class="tb-badge">3</span></div>
@@ -975,7 +975,7 @@
     } else {
       for (const tt of tmTypographyTokens) {
         const s=slug(tt.role);
-        html+='<div class="tm-row" data-slot="'+s+'"><div class="tm-row-header"><div class="tm-row-icon"><i data-lucide="type" style="width:16px;height:16px"></i></div><div class="tm-row-label">'+tt.role+'</div></div><div class="tm-chain-row" style="flex-direction:column;align-items:flex-start;gap:6px;"><div style="display:flex;align-items:center;gap:10px;flex-wrap:wrap;"><div class="tm-chip">'+tt.style+'</div></div><div style="display:flex;align-items:center;gap:8px;flex-wrap:wrap;font-family:var(--mono);font-size:12px;color:var(--text-tertiary);"><span>'+tt.font+'</span><span>&middot;</span><span>'+tt.weight+'</span><span>&middot;</span><span>'+tt.size+' / '+tt.lineHeight+'</span>'+(tt.letterSpacing!=='0'?'<span>&middot;</span><span>ls: '+tt.letterSpacing+'</span>':'')+'</div></div></div>';
+        html+='<div class="tm-row" data-slot="'+s+'"><div class="tm-row-header"><div class="tm-row-icon"><i data-lucide="type" style="width:16px;height:16px"></i></div><div class="tm-row-label">'+tt.role+'</div></div><div class="tm-chain-row" style="flex-direction:column;align-items:flex-start;gap:6px;"><div style="display:flex;align-items:center;gap:10px;flex-wrap:wrap;"><div class="tm-chip">'+tt.style+'</div></div><div style="display:flex;align-items:center;gap:8px;flex-wrap:wrap;font-family:var(--mono);font-size:12px;color:var(--text-secondary);"><span>'+tt.font+'</span><span>&middot;</span><span>'+tt.weight+'</span><span>&middot;</span><span>'+tt.size+' / '+tt.lineHeight+'</span>'+(tt.letterSpacing!=='0'?'<span>&middot;</span><span>ls: '+tt.letterSpacing+'</span>':'')+'</div></div></div>';
       }
     }
     tmCards.innerHTML = html;

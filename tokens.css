@@ -5,9 +5,9 @@
    ───────────────────────────────────────────────────── */
 
 :root {
-  --text-primary:   #374151;  /* color/text/primary */
-  --text-secondary: #4B5563;  /* color/text/secondary */
-  --text-tertiary:  #9CA3AF;  /* color/text/tertiary */
+  --text-primary:   #2A3441;  /* color/text/primary — gray.750 */
+  --text-secondary: #6B7280;  /* color/text/secondary — gray.500 */
+  --text-tertiary:  #6B7280;  /* DEPRECATED — aliased to secondary; tertiary tier removed */
   --text-disabled:  #9CA3AF;  /* color/text/disabled-on-card */
   --text-link:      #016692;  /* color/link/surface-01/default */
 
@@ -61,9 +61,9 @@
 }
 
 [data-theme="light"] {
-  --text-primary:   #374151;
-  --text-secondary: #4B5563;
-  --text-tertiary:  #9CA3AF;
+  --text-primary:   #2A3441;
+  --text-secondary: #6B7280;
+  --text-tertiary:  #6B7280;
   --text-disabled:  #9CA3AF;
   --text-link:      #016692;
 
@@ -108,7 +108,7 @@
 
 [data-theme="dark"] {
   --text-primary:   #FFFFFF;
-  --text-secondary: #E5E7EB;
+  --text-secondary: #CDD2D7;
   --text-tertiary:  #CDD2D7;
   --text-disabled:  #6B7280;
   --text-link:      #5ABFE0;
