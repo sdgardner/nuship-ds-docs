@@ -1,0 +1,575 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Component lifecycle — nuShip Design System</title>
+  <link href="https://fonts.googleapis.com/css2?family=Lato:wght@400;700;900&display=swap" rel="stylesheet">
+  <link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="favicon-16x16.png">
+  <link rel="shortcut icon" href="favicon.ico">
+  <link rel="stylesheet" href="tokens.css">
+  <link rel="stylesheet" href="styles.css">
+  <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.min.js"></script>
+  <script src="nav-scroll.js" defer></script>
+  <style>
+    :root {
+      --lc-blue:  #016692;
+      --lc-mono:  ui-monospace, "SF Mono", "Menlo", Consolas, monospace;
+    }
+
+    /* Full-bleed shell — same pattern as foundations / whats-new pages */
+    body:has(.doc.lifecycle) .content-wrap { padding: 0; }
+    .content-wrap .doc.lifecycle {
+      padding: 0;
+      max-width: none;
+      overflow-x: clip;
+    }
+
+    /* ─── HERO BAND (blue, full-bleed) ─── */
+    .lc-hero {
+      position: relative;
+      background: var(--lc-blue);
+      color: #fff;
+      padding: 88px 56px 96px;
+      box-shadow: 0 0 0 100vmax var(--lc-blue);
+      clip-path: inset(0 -100vmax);
+      overflow: visible;
+    }
+    .lc-hero-inner {
+      max-width: 1180px;
+      margin: 0 auto;
+      position: relative;
+      z-index: 2;
+    }
+    .lc-eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-family: 'Lato', sans-serif;
+      font-size: 12px;
+      line-height: 16px;
+      letter-spacing: 0.4px;
+      text-transform: uppercase;
+      font-weight: 700;
+      margin: 0 0 24px;
+      color: #fff;
+      opacity: 0.9;
+    }
+    .lc-eyebrow::before {
+      content: "";
+      width: 28px; height: 1px;
+      background: currentColor;
+      opacity: 0.6;
+    }
+    .lc-title {
+      font-family: 'Lato', sans-serif;
+      font-size: 32px;
+      line-height: 40px;
+      letter-spacing: 0;
+      font-weight: 700;
+      color: #fff;
+      margin: 0 0 16px;
+      max-width: 720px;
+    }
+    .lc-lead {
+      font-family: 'Lato', sans-serif;
+      font-size: 16px;
+      line-height: 22px;
+      color: rgba(255, 255, 255, 0.88);
+      margin: 0 0 32px;
+      max-width: 620px;
+    }
+    .lc-chip {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      padding: 8px 16px;
+      border-radius: 999px;
+      background: rgba(255, 255, 255, 0.12);
+      border: 1px solid rgba(255, 255, 255, 0.25);
+      backdrop-filter: blur(4px);
+      font-family: 'Lato', sans-serif;
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: 0.4px;
+      color: #fff;
+    }
+    .lc-chip i { width: 14px; height: 14px; }
+
+    /* ─── BODY ─── */
+    .lc-body {
+      max-width: 1180px;
+      margin: 0 auto;
+      padding: 72px 56px 96px;
+    }
+    .lc-section { margin-bottom: 64px; }
+    .lc-section:last-child { margin-bottom: 0; }
+    .lc-section-eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-family: 'Lato', sans-serif;
+      font-size: 12px;
+      line-height: 16px;
+      letter-spacing: 0.4px;
+      text-transform: uppercase;
+      font-weight: 700;
+      color: var(--action-secondary);
+      margin: 0 0 12px;
+    }
+    .lc-section-eyebrow::before {
+      content: "";
+      width: 28px; height: 1px;
+      background: currentColor;
+      opacity: 0.7;
+    }
+    .lc-section-title {
+      font-family: 'Lato', sans-serif;
+      font-size: 24px;
+      line-height: 31px;
+      font-weight: 700;
+      color: var(--text-primary);
+      margin: 0 0 12px;
+    }
+    .lc-section-lead {
+      font-family: 'Lato', sans-serif;
+      font-size: 16px;
+      line-height: 22px;
+      color: var(--text-secondary);
+      margin: 0 0 32px;
+      max-width: 720px;
+    }
+
+    /* ─── Workflow chart ─────────────────────────────────
+       Five horizontal nodes connected by arrows. Step 2 carries an
+       extra "if new tokens" branch beneath it so the conditional
+       reads at a glance without breaking the linear flow. */
+    .lc-chart {
+      background: var(--surface-layer01);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 40px 32px;
+    }
+    .lc-flow {
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+      gap: 12px;
+      position: relative;
+    }
+    .lc-flow-node {
+      position: relative;
+      background: var(--surface-card);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 20px 16px 24px;
+      text-align: center;
+      box-shadow: 0 1px 2px rgba(15, 23, 42, 0.04);
+    }
+    .lc-flow-node .step {
+      font-family: 'Lato', sans-serif;
+      font-size: 10px;
+      line-height: 16px;
+      font-weight: 700;
+      letter-spacing: 0.6px;
+      text-transform: uppercase;
+      color: var(--action-secondary);
+      margin: 0 0 8px;
+    }
+    .lc-flow-node .icon {
+      width: 36px; height: 36px;
+      border-radius: 999px;
+      background: var(--inf-bg);
+      color: var(--inf-ic);
+      display: grid; place-items: center;
+      margin: 0 auto 12px;
+    }
+    .lc-flow-node .icon i { width: 18px; height: 18px; }
+    .lc-flow-node .name {
+      font-family: 'Lato', sans-serif;
+      font-size: 16px;
+      line-height: 22px;
+      font-weight: 700;
+      color: var(--text-primary);
+      margin: 0 0 4px;
+    }
+    .lc-flow-node .where {
+      font-family: 'Lato', sans-serif;
+      font-size: 12px;
+      line-height: 16px;
+      font-weight: 700;
+      letter-spacing: 0.4px;
+      text-transform: uppercase;
+      color: var(--text-secondary);
+    }
+    /* Arrow between nodes */
+    .lc-flow-arrow {
+      position: absolute;
+      top: 50%;
+      right: -12px;
+      transform: translateY(-50%);
+      width: 24px;
+      height: 24px;
+      background: var(--surface-card);
+      border-radius: 50%;
+      display: grid;
+      place-items: center;
+      color: var(--text-secondary);
+      box-shadow: 0 1px 3px rgba(15, 23, 42, 0.08);
+      z-index: 2;
+    }
+    .lc-flow-arrow i { width: 14px; height: 14px; }
+    .lc-flow-node:last-child .lc-flow-arrow { display: none; }
+
+    /* Conditional branch beneath step 2 */
+    .lc-flow-branch {
+      grid-column: 2;
+      margin-top: 16px;
+      background: var(--wrn-bg);
+      border: 1px dashed var(--wrn-bd);
+      border-radius: 10px;
+      padding: 12px 14px;
+      text-align: left;
+      position: relative;
+    }
+    .lc-flow-branch::before {
+      content: "";
+      position: absolute;
+      top: -16px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 1px;
+      height: 16px;
+      background: var(--wrn-bd);
+      opacity: 0.5;
+    }
+    .lc-flow-branch .branch-label {
+      font-family: 'Lato', sans-serif;
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 0.5px;
+      text-transform: uppercase;
+      color: var(--wrn-tx);
+      margin: 0 0 6px;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+    .lc-flow-branch .branch-label i { width: 12px; height: 12px; }
+    .lc-flow-branch p {
+      font-family: 'Lato', sans-serif;
+      font-size: 12px;
+      line-height: 16px;
+      color: var(--text-primary);
+      margin: 0;
+    }
+
+    /* ─── Step cards ─── */
+    .lc-cards {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 16px;
+    }
+    .lc-card {
+      background: var(--surface-card);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 24px;
+      box-shadow: 0 1px 2px rgba(15, 23, 42, 0.04);
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+    .lc-card-head {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+    .lc-card-num {
+      flex-shrink: 0;
+      width: 28px;
+      height: 28px;
+      border-radius: 999px;
+      background: var(--inf-bg);
+      color: var(--inf-ic);
+      font-family: 'Lato', sans-serif;
+      font-size: 13px;
+      font-weight: 700;
+      line-height: 1;
+      display: grid;
+      place-items: center;
+    }
+    .lc-card-icon {
+      width: 32px; height: 32px;
+      border-radius: 8px;
+      background: var(--surface-layer02);
+      color: var(--text-primary);
+      display: grid; place-items: center;
+      margin-left: auto;
+    }
+    .lc-card-icon i { width: 16px; height: 16px; }
+    .lc-card h3 {
+      font-family: 'Lato', sans-serif;
+      font-size: 18px;
+      line-height: 24px;
+      font-weight: 700;
+      color: var(--text-primary);
+      margin: 0;
+    }
+    .lc-card p {
+      font-family: 'Lato', sans-serif;
+      font-size: 14px;
+      line-height: 20px;
+      color: var(--text-secondary);
+      margin: 0;
+    }
+    .lc-card-tools {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+      margin-top: auto;
+      padding-top: 8px;
+    }
+    .lc-card-tool {
+      display: inline-flex;
+      align-items: center;
+      padding: 2px 8px;
+      border-radius: 999px;
+      background: var(--surface-layer02);
+      color: var(--text-secondary);
+      font-family: 'Lato', sans-serif;
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 0.4px;
+      text-transform: uppercase;
+      line-height: 18px;
+    }
+
+    /* Responsive */
+    @media (max-width: 1100px) {
+      .lc-hero { padding: 64px 28px 76px; }
+      .lc-body { padding: 56px 28px 72px; }
+      .lc-flow {
+        grid-template-columns: 1fr;
+        gap: 12px;
+      }
+      .lc-flow-node {
+        display: grid;
+        grid-template-columns: auto 36px 1fr;
+        gap: 14px;
+        text-align: left;
+        align-items: center;
+        padding: 14px 16px;
+      }
+      .lc-flow-node .step { order: -1; min-width: 60px; margin: 0; }
+      .lc-flow-node .icon { margin: 0; }
+      .lc-flow-node .name { margin: 0; }
+      .lc-flow-node .where { display: block; margin-top: 2px; }
+      .lc-flow-arrow {
+        position: static;
+        margin: 4px auto;
+        transform: rotate(90deg);
+      }
+      .lc-flow-branch { grid-column: 1; margin-top: 4px; }
+    }
+  </style>
+</head>
+<body>
+
+<div id="navOverlay" class="nav-overlay" onclick="toggleSidebar()"></div>
+
+<nav class="topnav">
+  <button class="hamburger" onclick="toggleSidebar()" aria-label="Menu">
+    <i data-lucide="menu" style="width:18px;height:18px;color:var(--text-secondary)"></i>
+  </button>
+  <div class="bc"><span class="cur">Component lifecycle</span></div>
+  <div class="nav-actions">
+    <div class="toggle-wrap" onclick="toggleTheme()" role="button">
+      <i data-lucide="moon" style="width:20px;height:20px"></i>
+      <div class="toggle-track"><div class="toggle-thumb"></div></div>
+      <i data-lucide="sun" style="width:20px;height:20px"></i>
+    </div>
+  </div>
+</nav>
+
+<div class="shell">
+  <nav class="left-nav" id="leftNav"><div class="left-nav-inner"></div></nav>
+
+  <div class="content-wrap" id="contentWrap">
+    <main class="doc lifecycle">
+
+      <!-- ═══ HERO ═══ -->
+      <section class="lc-hero">
+        <div class="lc-hero-inner">
+          <p class="lc-eyebrow">Process</p>
+          <h1 class="lc-title">From Figma to Claude Design — the component lifecycle.</h1>
+          <p class="lc-lead">Every nuShip component starts in Figma with tokens already applied and ends as a published, dev-reviewed asset in Claude Design. Here's the five-step path it takes, and what to do at each stop.</p>
+          <div class="lc-chip">
+            <i data-lucide="workflow"></i>
+            Five steps · One source of truth
+          </div>
+        </div>
+      </section>
+
+      <!-- ═══ Workflow chart ═══ -->
+      <div class="lc-body">
+
+        <section class="lc-section">
+          <p class="lc-section-eyebrow">The flow</p>
+          <h2 class="lc-section-title">Lifecycle at a glance</h2>
+          <p class="lc-section-lead">Designers start with existing tokens. If a new token is needed, it's added in two places before anything moves downstream. Dev review gates every push to GitHub, and Claude Design is the final stop.</p>
+
+          <div class="lc-chart">
+            <div class="lc-flow">
+
+              <div class="lc-flow-node">
+                <p class="step">Step 01</p>
+                <span class="icon"><i data-lucide="figma"></i></span>
+                <p class="name">Apply tokens</p>
+                <p class="where">Figma</p>
+                <span class="lc-flow-arrow"><i data-lucide="chevron-right"></i></span>
+              </div>
+
+              <div class="lc-flow-node">
+                <p class="step">Step 02</p>
+                <span class="icon"><i data-lucide="layers"></i></span>
+                <p class="name">New tokens?</p>
+                <p class="where">Figma + Token Studio</p>
+                <span class="lc-flow-arrow"><i data-lucide="chevron-right"></i></span>
+              </div>
+
+              <div class="lc-flow-node">
+                <p class="step">Step 03</p>
+                <span class="icon"><i data-lucide="users"></i></span>
+                <p class="name">Dev review</p>
+                <p class="where">Sync with engineering</p>
+                <span class="lc-flow-arrow"><i data-lucide="chevron-right"></i></span>
+              </div>
+
+              <div class="lc-flow-node">
+                <p class="step">Step 04</p>
+                <span class="icon"><i data-lucide="git-branch"></i></span>
+                <p class="name">Push tokens</p>
+                <p class="where">GitHub</p>
+                <span class="lc-flow-arrow"><i data-lucide="chevron-right"></i></span>
+              </div>
+
+              <div class="lc-flow-node">
+                <p class="step">Step 05</p>
+                <span class="icon"><i data-lucide="sparkles"></i></span>
+                <p class="name">Publish</p>
+                <p class="where">Claude Design</p>
+              </div>
+
+              <!-- Conditional branch under Step 02 -->
+              <div class="lc-flow-branch">
+                <p class="branch-label"><i data-lucide="git-fork"></i>If new tokens are needed</p>
+                <p>Add them to the Variables chart in Figma <strong>and</strong> update Token Studio — both stay in sync. If existing tokens cover the design, skip this step.</p>
+              </div>
+
+            </div>
+          </div>
+        </section>
+
+        <!-- ═══ Step detail cards ═══ -->
+        <section class="lc-section">
+          <p class="lc-section-eyebrow">Step by step</p>
+          <h2 class="lc-section-title">What happens at each stop</h2>
+          <p class="lc-section-lead">One card per step. Each lists the tool you're in, who's involved, and what counts as "done" before you move on.</p>
+
+          <div class="lc-cards">
+
+            <article class="lc-card">
+              <div class="lc-card-head">
+                <span class="lc-card-num">01</span>
+                <span class="lc-card-icon"><i data-lucide="figma"></i></span>
+              </div>
+              <h3>Apply existing tokens</h3>
+              <p>Build the component in Figma using only published variables. Every fill, stroke, radius, and spacing reads from a token — no raw hex, no detached values.</p>
+              <div class="lc-card-tools">
+                <span class="lc-card-tool">Figma</span>
+                <span class="lc-card-tool">Designer</span>
+              </div>
+            </article>
+
+            <article class="lc-card">
+              <div class="lc-card-head">
+                <span class="lc-card-num">02</span>
+                <span class="lc-card-icon"><i data-lucide="layers"></i></span>
+              </div>
+              <h3>Create new tokens if needed</h3>
+              <p>If the design needs a value that doesn't exist yet, add it twice — once to the Variables chart in Figma, once to Token Studio. Name it by role, not by value. Skip the step if existing tokens cover the design.</p>
+              <div class="lc-card-tools">
+                <span class="lc-card-tool">Figma Variables</span>
+                <span class="lc-card-tool">Token Studio</span>
+                <span class="lc-card-tool">Designer</span>
+              </div>
+            </article>
+
+            <article class="lc-card">
+              <div class="lc-card-head">
+                <span class="lc-card-num">03</span>
+                <span class="lc-card-icon"><i data-lucide="users"></i></span>
+              </div>
+              <h3>Check with developers</h3>
+              <p>Before anything ships to GitHub, walk the new tokens through with engineering. Names, semantics, naming-collision risks, and dark-mode pairings all get reviewed here. This is a hard gate.</p>
+              <div class="lc-card-tools">
+                <span class="lc-card-tool">Slack / sync</span>
+                <span class="lc-card-tool">Designer + Engineering</span>
+              </div>
+            </article>
+
+            <article class="lc-card">
+              <div class="lc-card-head">
+                <span class="lc-card-num">04</span>
+                <span class="lc-card-icon"><i data-lucide="git-branch"></i></span>
+              </div>
+              <h3>Push tokens to GitHub</h3>
+              <p>Once devs are aligned, push the Token Studio export to the repo. Open a PR with the token diff, dark-mode pair, and a screenshot of the component using it.</p>
+              <div class="lc-card-tools">
+                <span class="lc-card-tool">GitHub</span>
+                <span class="lc-card-tool">Designer</span>
+              </div>
+            </article>
+
+            <article class="lc-card">
+              <div class="lc-card-head">
+                <span class="lc-card-num">05</span>
+                <span class="lc-card-icon"><i data-lucide="sparkles"></i></span>
+              </div>
+              <h3>Update Claude Design</h3>
+              <p>After the PR merges, publish the updated component to Claude Design so the docs site reflects the new state. The component is now part of the system.</p>
+              <div class="lc-card-tools">
+                <span class="lc-card-tool">Claude Design</span>
+                <span class="lc-card-tool">Designer</span>
+              </div>
+            </article>
+
+          </div>
+        </section>
+
+      </div>
+
+    </main>
+  </div>
+</div>
+
+<script>
+  lucide.createIcons();
+
+  const isMobile = () => window.innerWidth <= 768;
+  let sbOpen = !isMobile();
+  if (!sbOpen) document.getElementById('leftNav').classList.add('hidden');
+  function toggleSidebar() {
+    sbOpen = !sbOpen;
+    document.getElementById('leftNav').classList.toggle('hidden', !sbOpen);
+    document.getElementById('navOverlay').classList.toggle('active', sbOpen && isMobile());
+  }
+  function toggleTheme() {
+    const d = document.documentElement;
+    d.setAttribute('data-theme', d.getAttribute('data-theme') === 'dark' ? 'light' : 'dark');
+  }
+</script>
+</body>
+</html>
